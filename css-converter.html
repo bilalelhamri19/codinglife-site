@@ -9,90 +9,51 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1fr 350px;
-      gap: 32px;
-      margin-top: 40px;
-    }
-    @media (max-width: 1000px) {
-      .main-grid { grid-template-columns: 1fr; }
-    }
-    .converter-card {
-      background: var(--cl-surface);
-      padding: 40px;
-      border-radius: var(--cl-radius);
-      border: 1px solid var(--cl-line);
-      box-shadow: var(--cl-shadow-lg);
-    }
-    .grid-inputs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-    .result-box {
-      padding: 24px;
-      background: var(--cl-bg);
-      border-radius: 12px;
-      border: 1px solid var(--cl-line);
-      text-align: center;
-      transition: var(--cl-transition);
-      cursor: pointer;
-    }
+    .main-grid { display: grid; grid-template-columns: 1fr 350px; gap: 32px; margin-top: 40px; }
+    @media (max-width: 1000px) { .main-grid { grid-template-columns: 1fr; } }
+    .converter-card { background: var(--cl-surface); padding: 40px; border-radius: var(--cl-radius); border: 1px solid var(--cl-line); box-shadow: var(--cl-shadow-lg); }
+    .grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    .result-box { padding: 24px; background: var(--cl-bg); border-radius: 12px; border: 1px solid var(--cl-line); text-align: center; transition: var(--cl-transition); cursor: pointer; }
     .result-box:hover { border-color: var(--cl-brand); transform: translateY(-4px); }
     .result-box strong { display: block; font-size: 1.4rem; color: var(--cl-brand); margin-bottom: 4px; }
-    
-    .reference-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      font-size: 0.9rem;
-    }
-    .reference-table th, .reference-table td {
-      padding: 12px;
-      border-bottom: 1px solid var(--cl-line);
-      text-align: left;
-    }
+    .reference-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9rem; }
+    .reference-table th, .reference-table td { padding: 12px; border-bottom: 1px solid var(--cl-line); text-align: left; }
+    [dir="rtl"] .reference-table th, [dir="rtl"] .reference-table td { text-align: right; }
     .reference-table th { color: var(--cl-brand); font-weight: 800; }
-
-    .pro-tip {
-      background: var(--cl-brand-soft);
-      border-right: 4px solid var(--cl-brand);
-      padding: 20px;
-      border-radius: 8px;
-      margin: 24px 0;
-    }
-    .unit-tag {
-      padding: 4px 8px;
-      background: var(--cl-bg);
-      border-radius: 4px;
-      font-family: monospace;
-      font-weight: 700;
-      color: var(--cl-brand);
-    }
+    .pro-tip { background: var(--cl-brand-soft); border-left: 4px solid var(--cl-brand); padding: 20px; border-radius: 8px; margin: 24px 0; }
+    [dir="rtl"] .pro-tip { border-left: none; border-right: 4px solid var(--cl-brand); }
+    .unit-tag { padding: 4px 8px; background: var(--cl-bg); border-radius: 4px; font-family: monospace; font-weight: 700; color: var(--cl-brand); }
   </style>
 </head>
 <body>
 
 <div class="course-container" style="max-width: 1200px;">
   <div class="course-header">
-    <h1><i class="fa-solid fa-layer-group"></i> CSS Unit Mastery</h1>
-    <p>The complete professional toolkit for mastering responsive units and precise layout calculations.</p>
+    <div data-cl-lang="en">
+      <h1><i class="fa-solid fa-layer-group"></i> CSS Unit Mastery</h1>
+      <p>The complete professional toolkit for mastering responsive units and precise layout calculations.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-solid fa-layer-group"></i> إتقان وحدات CSS</h1>
+      <p>المجموعة الكاملة للمحترفين لإتقان الوحدات المتجاوبة وحسابات التخطيط الدقيقة.</p>
+    </div>
   </div>
 
   <div class="main-grid">
-    <!-- Left Column: Converter & Education -->
     <div class="left-col">
       <div class="converter-card reveal">
-        <h2 style="margin-bottom: 24px;"><i class="fa-solid fa-bolt"></i> Instant Converter</h2>
+        <div data-cl-lang="en"><h2 style="margin-bottom: 24px;"><i class="fa-solid fa-bolt"></i> Instant Converter</h2></div>
+        <div data-cl-lang="ar"><h2 style="margin-bottom: 24px;"><i class="fa-solid fa-bolt"></i> محول فوري</h2></div>
+        
         <div class="grid-inputs">
           <div class="input-group">
-            <label style="font-weight:700; display:block; margin-bottom:8px;">Pixels (PX)</label>
+            <div data-cl-lang="en"><label style="font-weight:700; display:block; margin-bottom:8px;">Pixels (PX)</label></div>
+            <div data-cl-lang="ar"><label style="font-weight:700; display:block; margin-bottom:8px;">بكسل (PX)</label></div>
             <input type="number" id="pxVal" value="16" style="padding:14px; width:100%; border-radius:8px; border:1px solid var(--cl-line); background:var(--cl-bg); color:var(--cl-ink);">
           </div>
           <div class="input-group">
-            <label style="font-weight:700; display:block; margin-bottom:8px;">Base Font Size</label>
+            <div data-cl-lang="en"><label style="font-weight:700; display:block; margin-bottom:8px;">Base Font Size</label></div>
+            <div data-cl-lang="ar"><label style="font-weight:700; display:block; margin-bottom:8px;">حجم الخط الأساسي</label></div>
             <input type="number" id="baseVal" value="16" style="padding:14px; width:100%; border-radius:8px; border:1px solid var(--cl-line); background:var(--cl-bg); color:var(--cl-ink);">
           </div>
         </div>
@@ -105,88 +66,49 @@
         </div>
 
         <div class="pro-tip" style="margin-top: 32px;">
-          <strong><i class="fa-solid fa-lightbulb"></i> Expert Tip:</strong> Use <span class="unit-tag">rem</span> for font sizes and <span class="unit-tag">em</span> for spacing (padding/margins) that should scale with the local font size.
-        </div>
-      </div>
-
-      <div class="chapter reveal" style="margin-top: 32px;">
-        <h2><i class="fa-solid fa-book"></i> Unit Theory: Which one to use?</h2>
-        <div class="article-content">
-          <p>Choosing the right unit is the difference between a broken layout and a perfectly responsive masterpiece.</p>
-          
-          <h3 style="margin-top: 24px;">1. Absolute Units: <span class="unit-tag">px</span></h3>
-          <p>Pixels are absolute and don't scale. Great for borders or fixed-size icons, but dangerous for typography because they ignore user accessibility settings.</p>
-
-          <h3 style="margin-top: 24px;">2. Root Relative: <span class="unit-tag">rem</span></h3>
-          <p>Relative to the root <code>&lt;html&gt;</code> font size. This is the <strong>industry standard</strong> for accessible typography. If the user changes their browser font size, your site scales beautifully.</p>
-
-          <h3 style="margin-top: 24px;">3. Parent Relative: <span class="unit-tag">em</span></h3>
-          <p>Relative to the font size of the element itself. Perfect for components that need to maintain their proportions regardless of where they are placed.</p>
-
-          <h3 style="margin-top: 24px;">4. Viewport Units: <span class="unit-tag">vw</span> / <span class="unit-tag">vh</span></h3>
-          <p>Relative to the browser window size. Use <span class="unit-tag">vh</span> for full-screen hero sections and <span class="unit-tag">vw</span> for typography that needs to grow with the screen width.</p>
+          <div data-cl-lang="en"><strong><i class="fa-solid fa-lightbulb"></i> Expert Tip:</strong> Use <span class="unit-tag">rem</span> for font sizes and <span class="unit-tag">em</span> for spacing.</div>
+          <div data-cl-lang="ar"><strong><i class="fa-solid fa-lightbulb"></i> نصيحة الخبراء:</strong> استخدم <span class="unit-tag">rem</span> لأحجام الخطوط و <span class="unit-tag">em</span> للمسافات.</div>
         </div>
       </div>
     </div>
 
-    <!-- Right Column: Reference & Tools -->
     <div class="right-col">
       <div class="chapter reveal" style="padding: 20px;">
-        <h3 style="font-size: 1.1rem; margin-bottom: 16px;"><i class="fa-solid fa-table"></i> Quick Reference</h3>
+        <div data-cl-lang="en"><h3 style="font-size: 1.1rem; margin-bottom: 16px;"><i class="fa-solid fa-table"></i> Quick Reference</h3></div>
+        <div data-cl-lang="ar"><h3 style="font-size: 1.1rem; margin-bottom: 16px;"><i class="fa-solid fa-table"></i> مرجع سريع</h3></div>
         <table class="reference-table">
           <thead>
             <tr><th>PX</th><th>REM</th></tr>
           </thead>
           <tbody>
             <tr><td>12px</td><td>0.75rem</td></tr>
-            <tr><td>14px</td><td>0.875rem</td></tr>
-            <tr style="background: var(--cl-brand-soft);"><td>16px</td><td>1.00rem</td></tr>
-            <tr><td>18px</td><td>1.125rem</td></tr>
-            <tr><td>20px</td><td>1.25rem</td></tr>
+            <tr><td>16px</td><td>1.00rem</td></tr>
             <tr><td>24px</td><td>1.50rem</td></tr>
             <tr><td>32px</td><td>2.00rem</td></tr>
-            <tr><td>48px</td><td>3.00rem</td></tr>
-            <tr><td>64px</td><td>4.00rem</td></tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="chapter reveal" style="margin-top: 24px; padding: 20px; background: var(--cl-surface);">
-        <h3 style="font-size: 1.1rem; margin-bottom: 16px;"><i class="fa-solid fa-vial"></i> Visual Box</h3>
-        <div id="previewBox" style="width: 16px; height: 16px; background: var(--cl-brand); border-radius: 4px; margin: 0 auto 12px;"></div>
-        <p id="previewLabel" style="text-align: center; font-size: 0.75rem; color: var(--cl-muted);">16px × 16px</p>
-      </div>
-
-      <div class="chapter reveal" style="margin-top: 24px; padding: 20px; background: var(--cl-ink); color: white;">
-        <h3 style="font-size: 1rem; color: white; margin-bottom: 12px;">Did you know?</h3>
-        <p style="font-size: 0.85rem; opacity: 0.8;">Setting <code>font-size: 62.5%</code> on the <code>html</code> element makes 1rem equal exactly 10px, making math much easier for developers!</p>
       </div>
     </div>
   </div>
 </div>
 
-<div id="toast" style="position: fixed; bottom: 20px; right: 20px; background: var(--cl-brand); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 700; transform: translateY(100px); opacity: 0; transition: all 0.3s; z-index: 10000;">Copied to Clipboard!</div>
+<div id="toast" style="position: fixed; bottom: 20px; right: 20px; background: var(--cl-brand); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 700; transform: translateY(100px); opacity: 0; transition: all 0.3s; z-index: 10000;">
+  <span data-cl-lang="en">Copied to Clipboard!</span>
+  <span data-cl-lang="ar">تم النسخ إلى الحافظة!</span>
+</div>
 
 <script src="site-polish.js"></script>
 <script>
   const pxVal = document.getElementById('pxVal');
   const baseVal = document.getElementById('baseVal');
-  const previewBox = document.getElementById('previewBox');
-  const previewLabel = document.getElementById('previewLabel');
 
   function update() {
     const px = parseFloat(pxVal.value) || 0;
     const base = parseFloat(baseVal.value) || 16;
-
     document.getElementById('resREM').innerText = (px / base).toFixed(3);
     document.getElementById('resEM').innerText = (px / base).toFixed(3);
     document.getElementById('resPCT').innerText = ((px / base) * 100).toFixed(1);
     document.getElementById('resPT').innerText = (px * 0.75).toFixed(1);
-
-    const displayPx = Math.min(px, 150);
-    previewBox.style.width = displayPx + 'px';
-    previewBox.style.height = displayPx + 'px';
-    previewLabel.innerText = `${px}px × ${px}px`;
   }
 
   function copyVal(el) {
