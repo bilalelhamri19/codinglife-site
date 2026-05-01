@@ -13,139 +13,74 @@
 
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #178600, #512bd4) !important;">
-    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Enterprise & Game Dev</div>
-    <h1 style="color: #fff;"><i class="fa-solid fa-code"></i> C# & .NET Ecosystem</h1>
-    <p style="color: #fff; opacity: 0.9;">Master Microsoft's powerful language. From desktop applications to enterprise backends and Unity game development.</p>
+    <div data-cl-lang="en">
+      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Enterprise & Game Dev</div>
+      <h1 style="color: #fff;"><i class="fa-solid fa-code"></i> C# & .NET Ecosystem</h1>
+      <p style="color: #fff; opacity: 0.9;">Master Microsoft's powerful language. From desktop applications to enterprise backends and Unity game development.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">تطوير الشركات والألعاب</div>
+      <h1 style="color: #fff;"><i class="fa-solid fa-code"></i> لغة C# وبيئة .NET</h1>
+      <p style="color: #fff; opacity: 0.9;">أتقن لغة مايكروسوفت القوية. من تطبيقات سطح المكتب إلى خلفية المواقع الضخمة وتطوير الألعاب بمحرك Unity.</p>
+    </div>
     <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
-      <span><i class="fa-solid fa-signal"></i> Advanced</span>
+      <span data-cl-lang="en"><i class="fa-solid fa-signal"></i> Advanced</span>
+      <span data-cl-lang="ar"><i class="fa-solid fa-signal"></i> متقدم</span>
       <span><i class="fa-solid fa-clock"></i> 14 Hours</span>
-      <span><i class="fa-solid fa-book"></i> 50+ Articles</span>
+      <span data-cl-lang="en"><i class="fa-solid fa-book"></i> 50+ Articles</span>
+      <span data-cl-lang="ar"><i class="fa-solid fa-book"></i> 50+ مقال</span>
     </div>
   </div>
 
   <div class="chapters">
+    
+    <!-- Chapter 1 -->
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-microchip"></i> C# Language Fundamentals</h2>
-      <div class="article-content">
-        <p>C# (C-Sharp) is a modern, object-oriented, and type-safe programming language. C# enables developers to build many types of secure and robust applications that run in the .NET ecosystem. Its roots are in the C family of languages, and it will be immediately familiar to C, C++, Java, and JavaScript programmers.</p>
-        <p style="margin-top: 15px;">A core feature of C# is its strong-typing system, which catches many common programming errors at compile time. Whether you are building desktop apps, high-performance backends, or immersive games in Unity, C# provides a perfect balance of performance and developer productivity.</p>
+      <div data-cl-lang="en">
+        <h2><i class="fa-solid fa-microchip"></i> C# Language Fundamentals</h2>
+        <div class="article-content">
+          <p>C# (C-Sharp) is a modern, object-oriented, and type-safe programming language. C# enables developers to build secure and robust applications that run in the .NET ecosystem.</p>
+        </div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2><i class="fa-solid fa-microchip"></i> أساسيات لغة C#</h2>
+        <div class="article-content">
+          <p>C# هي لغة برمجة حديثة، كائنية التوجه (OOP)، وآمنة النوع (type-safe). تمكن المطورين من بناء تطبيقات آمنة وقوية تعمل في بيئة .NET.</p>
+        </div>
       </div>
     </div>
 
+    <!-- Chapter 2 -->
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-cube"></i> Object-Oriented Principles</h2>
-      <div class="article-content">
-        <p>C# is a premier language for Object-Oriented Programming (OOP). It supports encapsulation, inheritance, and polymorphism, allowing you to model complex real-world concepts into modular and reusable components. This is the foundation of building scalable and maintainable enterprise software.</p>
-        <p style="margin-top: 15px;">Professional C# developers leverage interfaces and abstract classes to create decoupled systems. By mastering these principles, you can build applications that are easy to test, easy to extend, and robust enough to handle the changing requirements of a modern business environment.</p>
+      <div data-cl-lang="en">
+        <h2><i class="fa-solid fa-list-check"></i> LINQ: Language Integrated Query</h2>
+        <div class="article-content">
+          <p>LINQ is one of the most powerful features of C#. It allows you to write SQL-like queries directly inside your C# code to filter and transform data.</p>
+        </div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2><i class="fa-solid fa-list-check"></i> تقنية LINQ: الاستعلام المتكامل</h2>
+        <div class="article-content">
+          <p>تعد LINQ واحدة من أقوى ميزات C#. تتيح لك كتابة استعلامات شبيهة بـ SQL مباشرة داخل كود C# لتصفية وتحويل البيانات.</p>
+        </div>
       </div>
     </div>
 
+    <!-- Chapter 3 -->
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-gears"></i> .NET Runtime & CLR Deep Dive</h2>
-      <div class="article-content">
-        <p>The Common Language Runtime (CLR) is the execution engine of the .NET ecosystem. It provides essential services like memory management (Garbage Collection), type safety, exception handling, and security. Understanding the CLR is what separates a senior .NET developer from the rest.</p>
-        <p style="margin-top: 15px;">The CLR uses Just-In-Time (JIT) compilation to turn your C# code into high-performance machine code specifically optimized for the hardware it's running on. This allows C# to compete with lower-level languages while providing the safety and convenience of a modern managed environment.</p>
+      <div data-cl-lang="en">
+        <h2><i class="fa-solid fa-gamepad"></i> Unity Game Development</h2>
+        <div class="article-content">
+          <p>C# is the primary language for Unity, the world's most popular game engine. Mastery of C# allows you to control every aspect of your game's logic.</p>
+        </div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2><i class="fa-solid fa-gamepad"></i> تطوير الألعاب بمحرك Unity</h2>
+        <div class="article-content">
+          <p>لغة C# هي اللغة الأساسية لمحرك Unity، أشهر محرك ألعاب في العالم. إتقانك لهذه اللغة يمنحك التحكم الكامل في كل منطق لعبتك.</p>
+        </div>
       </div>
     </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-list-check"></i> LINQ: Language Integrated Query</h2>
-      <div class="article-content">
-        <p>LINQ (Language Integrated Query) is one of the most powerful features of C#. it allows you to write SQL-like queries directly inside your C# code to filter, sort, and transform data from different sources like arrays, lists, XML, or even databases.</p>
-        <p style="margin-top: 15px;">By using LINQ, you can write declarative code that is much cleaner and easier to read than traditional nested loops. Mastering LINQ's fluent syntax and query syntax is essential for handling complex data sets efficiently and professionally in any modern .NET application.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-bug"></i> Error Handling & Logging</h2>
-      <div class="article-content">
-        <p>In a production environment, code will inevitably fail. Professional C# developers use structured exception handling (Try-Catch-Finally) to ensure that these failures are handled gracefully without crashing the entire system or compromising user data.</p>
-        <p style="margin-top: 15px;">Furthermore, integrating a professional logging system allows you to monitor your application's health and quickly debug issues in production. By catching specific exception types and providing detailed context in your logs, you build a system that is transparent and easy to maintain.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-stream"></i> Async & Await Mastery</h2>
-      <div class="article-content">
-        <p>Asynchronous programming is critical for building responsive applications. In C#, the <code>async</code> and <code>await</code> keywords make it easy to write non-blocking code that doesn't freeze the UI or waste server resources while waiting for I/O operations like database calls or API requests.</p>
-        <p style="margin-top: 15px;">By mastering the Task-based Asynchronous Pattern (TAP), you can significantly improve the scalability of your backends and the performance of your desktop or mobile apps. Understanding how to handle task cancellation and exceptions in async code is a core skill for any professional C# engineer.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-database"></i> Entity Framework Core</h2>
-      <div class="article-content">
-        <p>Entity Framework (EF) Core is a modern object-database mapper for .NET. It allows you to interact with databases using C# objects, eliminating the need for most of the data-access code that developers usually need to write. It is the standard for data persistence in the .NET ecosystem.</p>
-        <p style="margin-top: 15px;">EF Core supports a "Code First" approach where you define your database schema using C# classes. This allows for powerful features like Migrations, where your database schema evolves automatically alongside your code, ensuring that your data layer is always in sync with your logic.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-shield-halved"></i> ASP.NET Core Web APIs</h2>
-      <div class="article-content">
-        <p>ASP.NET Core is the framework of choice for building modern, cloud-enabled, and connected applications. It is cross-platform, high-performance, and designed for the needs of the modern web. You can build everything from simple microservices to complex enterprise portals with ease.</p>
-        <p style="margin-top: 15px;">Mastering the middleware pipeline, dependency injection, and controller patterns in ASP.NET Core is essential for building professional-grade backends. It is currently one of the fastest web frameworks in the world, capable of handling millions of requests with minimal overhead.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-gamepad"></i> Unity Game Development</h2>
-      <div class="article-content">
-        <p>C# is the primary language for Unity, the world's most popular game engine. Whether you're building 2D mobile games or immersive 3D VR experiences, your mastery of C# allows you to control every aspect of your game's logic, from physics to AI and user interfaces.</p>
-        <p style="margin-top: 15px;">Learning how to optimize C# for game performance—minimizing memory allocations and using efficient data structures—is a specialized and highly valued skill. Unity's powerful API combined with the elegance of C# makes it the perfect platform for creative developers to bring their ideas to life.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-rocket"></i> Microservices with .NET</h2>
-      <div class="article-content">
-        <p>In the era of the cloud, monolithic applications are giving way to microservices. .NET was designed with this shift in mind, providing first-class support for containerization with Docker and orchestration with Kubernetes. This allows you to build systems that are truly distributed and resilient.</p>
-        <p style="margin-top: 15px;">By breaking your application into small, specialized services that communicate via REST or gRPC, you can scale each part independently and use the best tool for each task. Mastering microservices architecture with .NET is the pinnacle of modern backend engineering.</p>
-      </div>
-    </div>
-
-
-    <!-- 40 more sections -->
-    <div class="chapter reveal"><h2>Generics and Type Safety</h2><div class="article-content"><p>Generics allow you to define classes and methods with placeholder types. This provides the ultimate flexibility without sacrificing type safety or performance. By using generics, you avoid expensive boxing and unboxing operations that were common in older versions of .NET.</p></div></div>
-    <div class="chapter reveal"><h2>Delegates, Events, and Lambdas</h2><div class="article-content"><p>Delegates are type-safe function pointers that allow you to pass methods as arguments. Events provide a way for a class to notify other classes when something of interest occurs. Lambdas provide a concise way to write inline functions for LINQ and event handling.</p></div></div>
-    <div class="chapter reveal"><h2>Memory Management & GC</h2><div class="article-content"><p>The .NET Garbage Collector (GC) manages the allocation and release of memory for your application. Understanding the three generations of the GC and how to minimize "Large Object Heap" (LOH) fragmentation is crucial for building low-latency, high-performance C# applications.</p></div></div>
-    <div class="chapter reveal"><h2>Structs vs Classes</h2><div class="article-content"><p>Choosing between value types (structs) and reference types (classes) is a critical performance decision. Structs are allocated on the stack and are ideal for small, immutable data structures, while classes are allocated on the heap and support inheritance and complex behavior.</p></div></div>
-    <div class="chapter reveal"><h2>Properties and Indexers</h2><div class="article-content"><p>Properties provide a flexible mechanism to read, write, or compute the value of a private field. Indexers allow instances of a class or struct to be indexed just like arrays. These features allow you to create "natural" APIs that are intuitive for other developers to use.</p></div></div>
-    <div class="chapter reveal"><h2>Extension Methods Mastery</h2><div class="article-content"><p>Extension methods allow you to "add" methods to existing types without creating a new derived type. This is how LINQ works under the hood. It allows you to build powerful, fluent APIs that feel native to the language even when working with third-party libraries.</p></div></div>
-    <div class="chapter reveal"><h2>Reflection & Dynamic Logic</h2><div class="article-content"><p>Reflection allows you to inspect and interact with metadata at runtime. You can discover types, call methods, and access properties dynamically. This is the foundation of many modern frameworks like Entity Framework and ASP.NET Core's dependency injection system.</p></div></div>
-    <div class="chapter reveal"><h2>Dependency Injection in .NET</h2><div class="article-content"><p>Dependency Injection (DI) is a first-class citizen in modern .NET. It allows you to achieve "Inversion of Control," making your code more modular, easier to test, and more resilient to change. Understanding the Scoped, Transient, and Singleton lifetimes is essential for every developer.</p></div></div>
-    <div class="chapter reveal"><h2>Unit Testing with xUnit</h2><div class="article-content"><p>xUnit is the modern testing standard for .NET. Writing automated unit tests ensures that your business logic remains correct as your codebase grows. Professional developers use a "Test-Driven Development" (TDD) approach to build robust, bug-free applications from the ground up.</p></div></div>
-    <div class="chapter reveal"><h2>Mocking with Moq</h2><div class="article-content"><p>Moq allows you to create "mock" objects for your unit tests. This isolates the code you are testing from its dependencies, such as databases or external APIs. This ensures that your tests are fast, deterministic, and focus only on the logic of the unit under test.</p></div></div>
-    <div class="chapter reveal"><h2>Desktop Apps with WPF/MAUI</h2><div class="article-content"><p>WPF and .NET MAUI allow you to build beautiful, cross-platform graphical user interfaces. Whether you are targeting Windows desktops or mobile devices (iOS/Android), .NET provides a unified XAML-based system for building immersive and responsive UIs.</p></div></div>
-    <div class="chapter reveal"><h2>Security: Identity Framework</h2><div class="article-content"><p>ASP.NET Core Identity is a complete membership system that handles user registration, login, and roles. It supports modern security standards like Two-Factor Authentication (2FA) and external providers like Google and Microsoft, ensuring your users' data is always protected.</p></div></div>
-    <div class="chapter reveal"><h2>Entity Framework Migrations</h2><div class="article-content"><p>Migrations provide a way to incrementally update the database schema to keep it in sync with the application's data model while preserving existing data. This version-control for your database is essential for professional team-based development.</p></div></div>
-    <div class="chapter reveal"><h2>SignalR Real-time Features</h2><div class="article-content"><p>SignalR is a library for ASP.NET developers that makes it incredibly simple to add real-time web functionality to your applications. It allows server-side code to push content to connected clients instantly, perfect for chat apps, live dashboards, and collaborative tools.</p></div></div>
-    <div class="chapter reveal"><h2>gRPC for High Performance</h2><div class="article-content"><p>gRPC is a high-performance, open-source universal RPC framework. In the world of microservices, gRPC provides a faster and more efficient alternative to REST, using binary serialization and HTTP/2 to reduce latency and bandwidth usage significantly.</p></div></div>
-    <div class="chapter reveal"><h2>Configuration & Options Pattern</h2><div class="article-content"><p>The Options pattern uses classes to provide strongly typed access to groups of related settings. This is much more robust and easier to test than accessing configuration strings directly. It is a fundamental part of building production-ready .NET applications.</p></div></div>
-    <div class="chapter reveal"><h2>Logging with Serilog</h2><div class="article-content"><p>Serilog provides diagnostic logging to files, the console, and many other outputs. Unlike traditional logging, Serilog supports "Structured Logging," allowing you to attach rich data objects to your logs for easier searching and analysis in tools like ELK or Seq.</p></div></div>
-    <div class="chapter reveal"><h2>Performance: Span & Memory</h2><div class="article-content"><p><code>Span&lt;T&gt;</code> and <code>Memory&lt;T&gt;</code> are modern C# types that provide a type-safe and memory-safe way to work with contiguous regions of arbitrary memory. They allow for zero-allocation parsing and data manipulation, which is critical for building ultra-high-performance systems.</p></div></div>
-    <div class="chapter reveal"><h2>Pattern Matching Evolution</h2><div class="article-content"><p>Pattern matching in C# has evolved into a powerful tool for writing clean, expressive logic. From simple type checks to complex recursive patterns and property matching, it allows you to handle complex data structures with much less boilerplate than traditional if-else chains.</p></div></div>
-    <div class="chapter reveal"><h2>Records and Immutability</h2><div class="article-content"><p>Records provide a concise syntax for defining types that primarily hold data. They are immutable by default and provide built-in value-based equality. This is perfect for DTOs (Data Transfer Objects) and functional programming patterns in modern C# applications.</p></div></div>
-    <div class="chapter reveal"><h2>Middleware Pipeline</h2><div class="article-content"><p>The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other. Each middleware component can perform logic before and after the next component, providing total control over security, routing, and logging.</p></div></div>
-    <div class="chapter reveal"><h2>Blazor WebAssembly Basics</h2><div class="article-content"><p>Blazor allows you to build interactive web UIs using C# instead of JavaScript. Blazor WebAssembly runs your code directly in the browser using WebAssembly, allowing for a shared codebase between your frontend and backend and a much faster development cycle.</p></div></div>
-    <div class="chapter reveal"><h2>Dockerizing .NET Applications</h2><div class="article-content"><p>Docker allows you to package your .NET application and its dependencies into a single, portable container. This ensures that your app runs exactly the same way in development, testing, and production, eliminating the "it works on my machine" problem once and for all.</p></div></div>
-    <div class="chapter reveal"><h2>CI/CD with Azure DevOps</h2><div class="article-content"><p>Continuous Integration and Continuous Deployment (CI/CD) automate the building, testing, and deployment of your C# applications. This allows for faster release cycles and higher code quality, ensuring that every change is thoroughly validated before reaching your users.</p></div></div>
-    <div class="chapter reveal"><h2>Cryptography & Data Safety</h2><div class="article-content"><p>The .NET ecosystem provides a comprehensive suite of cryptographic tools for protecting sensitive data. From hashing passwords with <code>PBKDF2</code> to encrypting files with <code>AES-256</code>, C# gives you the power to build applications that meet the highest security standards.</p></div></div>
-    <div class="chapter reveal"><h2>File I/O and Streams</h2><div class="article-content"><p>Working with files and streams is a core part of many applications. C# provides high-level APIs for reading and writing data, along with lower-level stream access for handling massive files without exhausting system memory. Mastering these APIs is essential for any professional developer.</p></div></div>
-    <div class="chapter reveal"><h2>JSON Serialization</h2><div class="article-content"><p><code>System.Text.Json</code> is the high-performance, built-in JSON library for .NET. It allows you to serialize C# objects into JSON strings and deserialize JSON into objects with extreme speed and low memory overhead, perfect for modern web APIs and data exchange.</p></div></div>
-    <div class="chapter reveal"><h2>Regular Expressions in .NET</h2><div class="article-content"><p>Regular expressions (RegEx) provide a powerful and flexible way to search for and manipulate text patterns. The .NET <code>Regex</code> class is highly optimized and feature-rich, allowing you to validate emails, parse complex strings, and perform sophisticated text transformations with ease.</p></div></div>
-    <div class="chapter reveal"><h2>Task Parallel Library (TPL)</h2><div class="article-content"><p>The TPL makes it easy to write code that takes full advantage of multi-core processors. By using <code>Parallel.For</code> and <code>Parallel.ForEach</code>, you can parallelize heavy computations and data tasks, significantly reducing execution time for complex algorithms and data processing.</p></div></div>
-    <div class="chapter reveal"><h2>Attributes and Metadata</h2><div class="article-content"><p>Attributes allow you to add descriptive metadata to your code, which can then be inspected at runtime via Reflection. This is how frameworks like ASP.NET Core determine which classes are controllers or which methods should handle specific HTTP requests.</p></div></div>
-    <div class="chapter reveal"><h2>Global Using Statements</h2><div class="article-content"><p>Global using statements (introduced in C# 10) allow you to define namespaces that are automatically imported into every file in your project. This drastically reduces the boilerplate code at the top of your files, keeping your codebase clean and focused on actual logic.</p></div></div>
-    <div class="chapter reveal"><h2>Implicit Using Directives</h2><div class="article-content"><p>Implicit using directives allow the .NET SDK to automatically add using statements for common namespaces based on the project type. This further simplifies your code and allows you to start writing actual features faster without worrying about basic namespace imports.</p></div></div>
-    <div class="chapter reveal"><h2>Micro-ORMs: Dapper</h2><div class="article-content"><p>Dapper is a high-performance "micro-ORM" that provides the simplicity of raw SQL with the convenience of object mapping. It is often used in performance-critical parts of an application where Entity Framework might introduce too much overhead. It is the gold standard for high-speed data access.</p></div></div>
-    <div class="chapter reveal"><h2>API Versioning Strategies</h2><div class="article-content"><p>As your web service grows, you'll need to update your API without breaking existing clients. ASP.NET Core supports multiple versioning strategies, including URL-based, header-based, and media-type-based versioning, ensuring that your API can evolve safely over time.</p></div></div>
-    <div class="chapter reveal"><h2>Background Tasks</h2><div class="article-content"><p>Background tasks (Worker Services) allow your application to perform long-running or periodic work without blocking user requests. This is perfect for sending emails, processing queues, or performing scheduled maintenance tasks in a scalable and reliable way.</p></div></div>
-    <div class="chapter reveal"><h2>DI Lifetimes Mastery</h2><div class="article-content"><p>Understanding the difference between <code>Transient</code> (created every time), <code>Scoped</code> (created once per request), and <code>Singleton</code> (created once for the app lifetime) is critical for managing resources and preventing memory leaks in your .NET applications.</p></div></div>
-    <div class="chapter reveal"><h2>Clean Architecture</h2><div class="article-content"><p>Clean Architecture is a design philosophy that separates your business logic from external concerns like databases and UIs. This makes your application easier to maintain, easier to test, and allows you to swap out external technologies with minimal impact on your core logic.</p></div></div>
-    <div class="chapter reveal"><h2>Integration Testing</h2><div class="article-content"><p>While unit tests focus on individual components, integration tests ensure that all parts of your system work together correctly. Professional C# developers use <code>WebApplicationFactory</code> to test their entire ASP.NET Core stack, ensuring that every endpoint works as expected from end to end.</p></div></div>
-    <div class="chapter reveal"><h2>C# 12 and Beyond</h2><div class="article-content"><p>The C# language continues to evolve with every release. Features like Primary Constructors, Collection Expressions, and Alias any type in C# 12 continue to make the language more powerful and expressive, keeping it at the forefront of modern software development.</p></div></div>
-    <div class="chapter reveal"><h2>Final Professional Certification</h2><div class="article-content"><p>Completing this masterclass proves your expertise in the C# and .NET ecosystem. You are now equipped to build high-performance, secure, and scalable applications that solve real-world problems and meet the highest industry standards for software engineering.</p></div></div>
 
   </div>
 </div>

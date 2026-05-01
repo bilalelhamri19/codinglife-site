@@ -83,7 +83,11 @@
 
   function refreshPageContent() {
     document.querySelectorAll('[data-cl-lang]').forEach(el => {
-      el.style.display = (el.getAttribute('data-cl-lang') === currentLang) ? '' : 'none';
+      if (el.getAttribute('data-cl-lang') === currentLang) {
+        el.classList.add('cl-active-lang');
+      } else {
+        el.classList.remove('cl-active-lang');
+      }
     });
   }
 
