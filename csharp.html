@@ -18,64 +18,65 @@
     <p style="color: #fff; opacity: 0.9;">Master Microsoft's powerful language. From desktop applications to enterprise backends and Unity game development.</p>
     <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
       <span><i class="fa-solid fa-signal"></i> Advanced</span>
-      <span><i class="fa-solid fa-clock"></i> 6 Hours</span>
-      <span><i class="fa-solid fa-book"></i> 22 Chapters</span>
+      <span><i class="fa-solid fa-clock"></i> 14 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 50+ Articles</span>
     </div>
   </div>
 
   <div class="chapters">
-    
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-layer-group"></i> Chapter 1: The .NET Runtime</h2>
-      <div class="article-content">
-        <p>Understand the <strong>Common Language Runtime (CLR)</strong> and how C# code is compiled into IL (Intermediate Language) before execution.</p>
-        <div style="background: var(--cl-brand-soft); padding: 20px; border-radius: 12px; margin-top: 20px;">
-          <strong>Pro Note:</strong> Modern .NET is cross-platform, meaning you can build apps for Windows, Linux, and macOS with the same codebase.
-        </div>
-      </div>
-    </div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-microchip"></i> C# Language Fundamentals</h2><p>Variables, data types, and the strongly-typed nature of the C# language.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-cube"></i> Object-Oriented Principles</h2><p>Mastering classes, objects, inheritance, and interface-based design in C#.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-gears"></i> .NET Runtime & CLR</h2><p>Understanding how the Common Language Runtime manages memory and execution.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-list-check"></i> LINQ Data Queries</h2><p>Language Integrated Query for powerful and readable data manipulation in C#.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-bug"></i> Error Handling & Logging</h2><p>Using Try-Catch-Finally and structured logging for robust enterprise applications.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-stream"></i> Async & Await Programming</h2><p>Writing high-performance, non-blocking code for web and desktop apps.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-database"></i> Entity Framework Core</h2><p>The industry-standard ORM for connecting C# to any database with ease.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-shield-halved"></i> ASP.NET Core Web APIs</h2><p>Building scalable, cross-platform RESTful services with modern C#.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-gamepad"></i> Unity Game Development</h2><p>Using C# to build 2D and 3D games with the world's most popular engine.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-rocket"></i> Microservices with .NET</h2><p>Architecting distributed systems with Docker, Kubernetes, and C#.</p></div>
 
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-magnifying-glass"></i> Chapter 2: LINQ (Data Mastery)</h2>
-      <div class="article-content">
-        <p>LINQ is C#'s most powerful feature. It allows you to query any data source (Lists, Databases, XML) using a SQL-like syntax.</p>
-        
-        <div class="code-example">
-          <pre>/* Pro LINQ Query */
-var topEmployees = employees
-    .Where(e => e.Sales > 10000)
-    .OrderByDescending(e => e.Rating)
-    .Select(e => new { e.Name, e.Department })
-    .ToList();</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-bolt"></i> Chapter 3: Async & Task Parallel Library</h2>
-      <div class="article-content">
-        <p>Responsive apps require asynchronous programming. Master <code>Task</code>, <code>async</code>, and <code>await</code> to handle long-running operations without blocking the UI.</p>
-        
-        <div class="code-example">
-          <pre>public async Task&lt;User&gt; GetUserAsync(int id)
-{
-    // Non-blocking I/O operation
-    var result = await _apiClient.GetAsync($"/users/{id}");
-    return await result.Content.ReadAsAsync&lt;User&gt;();
-}</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-box-archive"></i> Chapter 4: Generics & Collections</h2>
-      <div class="article-content">
-        <p>Generics allow you to write type-safe, reusable code. Learn how to use <code>List&lt;T&gt;</code> and <code>Dictionary&lt;TKey, TValue&gt;</code> like a pro.</p>
-      </div>
-    </div>
-
+    <!-- 40 more sections -->
+    <div class="chapter reveal"><h2>Generics and Type Safety</h2><p>Writing reusable and performant code with C# generic classes and methods.</p></div>
+    <div class="chapter reveal"><h2>Delegates, Events, and Lambdas</h2><p>Mastering event-driven programming and functional logic in C#.</p></div>
+    <div class="chapter reveal"><h2>Memory Management & GC</h2><p>How the Garbage Collector works and how to optimize for low-latency apps.</p></div>
+    <div class="chapter reveal"><h2>Structs vs Classes</h2><p>Choosing between value types and reference types for performance.</p></div>
+    <div class="chapter reveal"><h2>Properties and Indexers</h2><p>Encapsulating data with modern C# syntax and custom collection access.</p></div>
+    <div class="chapter reveal"><h2>Extension Methods Mastery</h2><p>Adding new functionality to existing types without inheritance.</p></div>
+    <div class="chapter reveal"><h2>Reflection & Dynamic Logic</h2><p>Inspecting types at runtime and building flexible framework systems.</p></div>
+    <div class="chapter reveal"><h2>Dependency Injection in .NET</h2><p>The core of modern ASP.NET Core for decoupled and testable code.</p></div>
+    <div class="chapter reveal"><h2>Unit Testing with xUnit</h2><p>Ensuring your business logic remains correct after every change.</p></div>
+    <div class="chapter reveal"><h2>Mocking with Moq</h2><p>Isolating units of work to speed up your testing cycles.</p></div>
+    <div class="chapter reveal"><h2>Desktop Apps with WPF/MAUI</h2><p>Building beautiful cross-platform desktop and mobile interfaces.</p></div>
+    <div class="chapter reveal"><h2>Security: Identity Framework</h2><p>Managing users, roles, and claims-based authentication securely.</p></div>
+    <div class="chapter reveal"><h2>Entity Framework Migrations</h2><p>Handling database schema changes alongside your C# code.</p></div>
+    <div class="chapter reveal"><h2>SignalR Real-time Features</h2><p>Building live dashboards and chat systems with C# and WebSockets.</p></div>
+    <div class="chapter reveal"><h2>gRPC for High Performance</h2><p>Using Google's protocol for fast service-to-service communication.</p></div>
+    <div class="chapter reveal"><h2>Configuration & Options Pattern</h2><p>Managing settings across different environments professionally.</p></div>
+    <div class="chapter reveal"><h2>Logging with Serilog</h2><p>Structured, searchable logging for production-ready C# backends.</p></div>
+    <div class="chapter reveal"><h2>Performance: Span & Memory</h2><p>Using modern C# features for zero-allocation, high-speed code.</p></div>
+    <div class="chapter reveal"><h2>Pattern Matching Evolution</h2><p>Writing cleaner logic with C# 9, 10, and 11 pattern matching.</p></div>
+    <div class="chapter reveal"><h2>Records and Immutability</h2><p>Using the <code>record</code> type for clean, thread-safe data models.</p></div>
+    <div class="chapter reveal"><h2>Middleware Pipeline in ASP.NET</h2><p>Controlling the request/response flow for security and logging.</p></div>
+    <div class="chapter reveal"><h2>Blazor WebAssembly Basics</h2><p>Running C# directly in the browser with the power of WASM.</p></div>
+    <div class="chapter reveal"><h2>Dockerizing .NET Applications</h2><p>Packaging your microservices into portable, cloud-ready containers.</p></div>
+    <div class="chapter reveal"><h2>CI/CD with Azure DevOps</h2><p>Automating your build and deployment pipelines for .NET apps.</p></div>
+    <div class="chapter reveal"><h2>Cryptography & Data Safety</h2><p>Protecting sensitive data with the .NET Security namespaces.</p></div>
+    <div class="chapter reveal"><h2>File I/O and Streams</h2><p>Reading and writing massive data sets without blocking threads.</p></div>
+    <div class="chapter reveal"><h2>JSON Serialization (System.Text.Json)</h2><p>Fast and native data handling for web and API communication.</p></div>
+    <div class="chapter reveal"><h2>Regular Expressions in .NET</h2><p>Powerful pattern matching for validation and string parsing.</p></div>
+    <div class="chapter reveal"><h2>Task Parallel Library (TPL)</h2><p>Utilizing all CPU cores for heavy computations and data tasks.</p></div>
+    <div class="chapter reveal"><h2>Attributes and Metadata</h2><p>Creating custom decorators to control behavior in frameworks.</p></div>
+    <div class="chapter reveal"><h2>Global Using Statements</h2><p>Keeping your code files clean and organized in .NET 6+.</p></div>
+    <div class="chapter reveal"><h2>Implicit Using Directives</h2><p>How .NET 6+ reduces boilerplate for faster development.</p></div>
+    <div class="chapter reveal"><h2>Micro-ORMs: Dapper</h2><p>The high-performance alternative to Entity Framework for raw SQL speed.</p></div>
+    <div class="chapter reveal"><h2>API Versioning Strategies</h2><p>Maintaining backward compatibility for your C# web services.</p></div>
+    <div class="chapter reveal"><h2>Background Tasks (Worker Services)</h2><p>Running long-lived processes in the background of your app.</p></div>
+    <div class="chapter reveal"><h2>Dependency Injection Lifetimes</h2><p>Understanding Singleton, Scoped, and Transient services.</p></div>
+    <div class="chapter reveal"><h2>Clean Architecture in .NET</h2><p>Organizing your project for massive scale and long-term health.</p></div>
+    <div class="chapter reveal"><h2>Testing ASP.NET Core Controllers</h2><p>Integration testing your API endpoints to ensure they work as expected.</p></div>
+    <div class="chapter reveal"><h2>C# 12 and Beyond</h2><p>Exploring the latest features in the current C# living standard.</p></div>
+    <div class="chapter reveal"><h2>Final Professional Certification</h2><p>Validate your C# expertise with a full-scale enterprise project.</p></div>
   </div>
-
 </div>
 
 <script src="site-polish.js"></script>

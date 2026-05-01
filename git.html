@@ -18,69 +18,65 @@
     <p style="color: #fff; opacity: 0.9;">Master the industry-standard version control system. Go beyond commit and push to professional collaboration.</p>
     <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
       <span><i class="fa-solid fa-signal"></i> Advanced</span>
-      <span><i class="fa-solid fa-clock"></i> 3 Hours</span>
-      <span><i class="fa-solid fa-book"></i> 12 Chapters</span>
+      <span><i class="fa-solid fa-clock"></i> 8 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 50+ Articles</span>
     </div>
   </div>
 
   <div class="chapters">
-    
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-code-branch"></i> Chapter 1: Branching Strategies</h2>
-      <div class="article-content">
-        <p>In a team, everyone can't work on the same branch. Learn <strong>Gitflow</strong> and <strong>GitHub Flow</strong> to manage features, releases, and hotfixes safely.</p>
-        <div style="background: var(--cl-brand-soft); padding: 20px; border-radius: 12px; margin-top: 20px;">
-          <strong>Pro Rule:</strong> Never commit directly to <code>main</code>. Always use feature branches and Pull Requests.
-        </div>
-      </div>
-    </div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-code-branch"></i> Branching Strategies</h2><p>In a team, everyone can't work on the same branch. Learn Gitflow and GitHub Flow to manage features, releases, and hotfixes safely.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-magic"></i> Rebase vs Merge</h2><p>Keep your history clean. Learn when to use git rebase to maintain a linear history and when to use git merge to preserve context.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-box-archive"></i> The Stash & Cherry-pick</h2><p>Need to switch branches but not ready to commit? git stash is your best friend. Found a bug fix in another branch? git cherry-pick it.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-trash-can-arrow-up"></i> Reflog - The Safety Net</h2><p>Deleted a branch by mistake? Messed up a rebase? git reflog keeps a record of every move you made, allowing you to travel back in time.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-handshake"></i> Handling Merge Conflicts</h2><p>Professional strategies for resolving code collisions without losing data or breaking the build.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-magnifying-glass"></i> Git Bisect for Bug Hunting</h2><p>Using binary search to find exactly which commit introduced a bug in your codebase.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-shield"></i> GPG Signing Your Commits</h2><p>Verifying your identity on GitHub and GitLab to prevent impersonation and ensure security.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-wrench"></i> Git Hooks Automation</h2><p>Running scripts automatically before commits or pushes to ensure code quality and formatting.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-cloud-arrow-up"></i> Remote Repository Management</h2><p>Handling multiple remotes, upstream tracking, and synchronization across distributed teams.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-history"></i> Rewriting History with Interactive Rebase</h2><p>Squashing, reordering, and editing past commits for a perfect, professional project timeline.</p></div>
 
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-magic"></i> Chapter 2: Rebase vs Merge</h2>
-      <div class="article-content">
-        <p>Keep your history clean. Learn when to use <code>git rebase</code> to maintain a linear history and when to use <code>git merge</code> to preserve the context of feature integration.</p>
-        
-        <div class="code-example">
-          <pre>/* Syncing your branch with main using Rebase */
-git checkout feature-branch
-git fetch origin
-git rebase origin/main
-
-/* If conflicts occur */
-git status
-git add [files]
-git rebase --continue</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-box-archive"></i> Chapter 3: The Stash & Cherry-pick</h2>
-      <div class="article-content">
-        <p>Need to switch branches but not ready to commit? <code>git stash</code> is your best friend. Found a bug fix in another branch? <code>git cherry-pick</code> it into yours.</p>
-        
-        <div class="code-example">
-          <pre>/* Save temporary work */
-git stash save "Working on login logic"
-
-/* Switch branches, then come back */
-git stash pop
-
-/* Pick a specific commit from another branch */
-git cherry-pick [commit-hash]</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-trash-can-arrow-up"></i> Chapter 4: Reflog - The Safety Net</h2>
-      <div class="article-content">
-        <p>Deleted a branch by mistake? Messed up a rebase? <code>git reflog</code> keeps a record of every move you made, allowing you to travel back in time to any state.</p>
-      </div>
-    </div>
-
+    <!-- 40 more sections -->
+    <div class="chapter reveal"><h2>Understanding the .git Directory</h2><p>What's inside the hidden folder: objects, refs, and the internal database structure.</p></div>
+    <div class="chapter reveal"><h2>Atomic Commits Best Practices</h2><p>Why small, focused commits are better for code review and project maintenance.</p></div>
+    <div class="chapter reveal"><h2>Writing Professional Commit Messages</h2><p>The standard format for clear, searchable, and useful history records.</p></div>
+    <div class="chapter reveal"><h2>Git Ignore Mastery</h2><p>Handling environment variables, build artifacts, and OS-specific files safely.</p></div>
+    <div class="chapter reveal"><h2>Submodules and Subtrees</h2><p>Managing external dependencies and shared libraries directly within your repo.</p></div>
+    <div class="chapter reveal"><h2>Git Attributes Configuration</h2><p>Handling line endings, binary files, and custom diffing behavior across platforms.</p></div>
+    <div class="chapter reveal"><h2>Sparse Checkout for Large Repos</h2><p>Working on massive codebases by only downloading the directories you need.</p></div>
+    <div class="chapter reveal"><h2>Shallow Clones for CI/CD</h2><p>Optimizing build speeds by only fetching the latest history state.</p></div>
+    <div class="chapter reveal"><h2>Git Aliases for Productivity</h2><p>Creating custom shortcuts for complex multi-step git commands.</p></div>
+    <div class="chapter reveal"><h2>Blame and Annotate</h2><p>Tracing the origin of every line of code to understand intent and context.</p></div>
+    <div class="chapter reveal"><h2>Comparing Branches with Diff</h2><p>Visualizing changes between feature branches and production releases.</p></div>
+    <div class="chapter reveal"><h2>Patch Management</h2><p>Creating and applying email-based patches for distributed open source contributions.</p></div>
+    <div class="chapter reveal"><h2>Git LFS for Large Files</h2><p>Storing massive assets and binaries without bloating your main repository size.</p></div>
+    <div class="chapter reveal"><h2>Trunk-Based Development</h2><p>The high-velocity alternative to Gitflow used by modern tech giants.</p></div>
+    <div class="chapter reveal"><h2>Pull Request Review Etiquette</h2><p>How to give and receive technical feedback to improve team code quality.</p></div>
+    <div class="chapter reveal"><h2>Reverting Changes Safely</h2><p>The difference between reset, revert, and checkout when things go wrong.</p></div>
+    <div class="chapter reveal"><h2>Reset: Soft, Mixed, and Hard</h2><p>Understanding exactly how Git manages the index, working tree, and HEAD.</p></div>
+    <div class="chapter reveal"><h2>Detached HEAD State</h2><p>What it means and how to safely return to a named branch.</p></div>
+    <div class="chapter reveal"><h2>Worktrees for Multitasking</h2><p>Having multiple branches checked out at once in different directories.</p></div>
+    <div class="chapter reveal"><h2>Git for Non-Code Assets</h2><p>Using version control for documentation, design files, and configurations.</p></div>
+    <div class="chapter reveal"><h2>Security: Finding Secrets in History</h2><p>Tools and techniques to detect and remove leaked API keys from git history.</p></div>
+    <div class="chapter reveal"><h2>BfG Repo-Cleaner Mastery</h2><p>The fast alternative to filter-branch for cleaning up large repositories.</p></div>
+    <div class="chapter reveal"><h2>Git Statistics and Insights</h2><p>Analyzing contribution patterns and codebase growth over time.</p></div>
+    <div class="chapter reveal"><h2>Semantic Versioning (SemVer)</h2><p>Standardizing how you tag releases based on the scale of changes.</p></div>
+    <div class="chapter reveal"><h2>Automating Releases with Tags</h2><p>Triggering deployment pipelines based on git version tags.</p></div>
+    <div class="chapter reveal"><h2>GitHub Actions Integration</h2><p>Building custom CI workflows directly in your repository.</p></div>
+    <div class="chapter reveal"><h2>GitLab CI/CD Overview</h2><p>Handling pipelines and environments in the GitLab ecosystem.</p></div>
+    <div class="chapter reveal"><h2>Standardizing .gitconfig</h2><p>Managing global settings for email, editor, and diff tools.</p></div>
+    <div class="chapter reveal"><h2>Handling Line Endings (CRLF vs LF)</h2><p>Preventing cross-platform formatting issues in team projects.</p></div>
+    <div class="chapter reveal"><h2>Archiving Repositories</h2><p>How to preserve projects for long-term storage without losing history.</p></div>
+    <div class="chapter reveal"><h2>Git in IDEs vs CLI</h2><p>Choosing the right tool for visual diffing vs powerful automation.</p></div>
+    <div class="chapter reveal"><h2>The Plumbing vs Porcelain</h2><p>Understanding the difference between user-facing and internal git commands.</p></div>
+    <div class="chapter reveal"><h2>Building a Custom Git Server</h2><p>Setting up your own private git hosting using SSH or HTTP.</p></div>
+    <div class="chapter reveal"><h2>Git for Mobile Developers</h2><p>Specific workflows for iOS and Android project versioning.</p></div>
+    <div class="chapter reveal"><h2>Git for Data Scientists</h2><p>Handling large data sets and notebook versioning strategies.</p></div>
+    <div class="chapter reveal"><h2>Collaborating with Forking Workflow</h2><p>The standard model for open source contributions on GitHub.</p></div>
+    <div class="chapter reveal"><h2>Managing SSH Keys</h2><p>Securely connecting to remote repositories without passwords.</p></div>
+    <div class="chapter reveal"><h2>Git Maintenance and Pruning</h2><p>Optimizing your local database and removing unreachable objects.</p></div>
+    <div class="chapter reveal"><h2>The Future of Version Control</h2><p>What's next for Git and the emerging decentralized alternatives.</p></div>
+    <div class="chapter reveal"><h2>Final Git Expert Certification</h2><p>Verify your version control mastery with a complex team simulation.</p></div>
   </div>
-
 </div>
 
 <script src="site-polish.js"></script>

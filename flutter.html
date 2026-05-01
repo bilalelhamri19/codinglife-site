@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flutter Masterclass - Coding Life</title>
+  <title>Flutter Mobile Mastery - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -13,78 +13,70 @@
 
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #02569b, #0175c2) !important;">
-    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Mobile & Multi-platform</div>
-    <h1 style="color: #fff;"><i class="fa-solid fa-mobile-screen-button"></i> Flutter Expert Development</h1>
-    <p style="color: #fff; opacity: 0.9;">Build beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.</p>
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Multi-platform Dev</div>
+    <h1 style="color: #fff;"><i class="fa-solid fa-mobile-screen"></i> Flutter & Dart Masterclass</h1>
+    <p style="color: #fff; opacity: 0.9;">Build beautiful, natively compiled apps for mobile, web, and desktop from a single codebase using Google's toolkit.</p>
     <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
-      <span><i class="fa-solid fa-signal"></i> Expert</span>
-      <span><i class="fa-solid fa-clock"></i> 10 Hours</span>
-      <span><i class="fa-solid fa-book"></i> 35 Chapters</span>
+      <span><i class="fa-solid fa-signal"></i> All Levels</span>
+      <span><i class="fa-solid fa-clock"></i> 13 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 50+ Articles</span>
     </div>
   </div>
 
   <div class="chapters">
-    
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-cubes"></i> Chapter 1: Deep Dive into Widgets</h2>
-      <div class="article-content">
-        <p>In Flutter, everything is a widget. Learn the difference between <strong>Stateless</strong>, <strong>Stateful</strong>, and the power of <strong>InheritedWidgets</strong> for performance.</p>
-        <div style="background: var(--cl-brand-soft); padding: 20px; border-radius: 12px; margin-top: 20px;">
-          <strong>Pro Tip:</strong> Keep your build methods pure and small. Extract large widget trees into separate classes to optimize re-builds.
-        </div>
-      </div>
-    </div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-bullseye"></i> Dart Language Fundamentals</h2><p>Variables, types, and the unique features that make Dart perfect for UI development.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-layer-group"></i> Everything is a Widget</h2><p>Understanding the core philosophy of Flutter: StatelessWidget vs StatefulWidget.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-palette"></i> Material & Cupertino UI</h2><p>Building apps that look native on both Android and iOS with pre-built widget sets.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-box"></i> Layout Mastery: Row & Column</h2><p>Mastering flexible and expanded layouts to create complex responsive interfaces.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-shuffle"></i> State Management (Provider)</h2><p>The standard way to manage and share data across your entire Flutter application.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-route"></i> Navigation & Routing</h2><p>Mastering the Navigator API and named routes for complex app transitions.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-cloud-arrow-down"></i> Working with REST APIs</h2><p>Fetching and parsing JSON data using the http package and async/await.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-wand-magic-sparkles"></i> Animations in Flutter</h2><p>Using implicit and explicit animations to create smooth and delightful UX.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-database"></i> Local Storage (Sqflite)</h2><p>Persisting data on the device using a relational SQL database for offline support.</p></div>
+    <div class="chapter reveal"><h2><i class="fa-solid fa-rocket"></i> Firebase Integration</h2><p>Adding authentication, real-time database, and cloud messaging to your app.</p></div>
 
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-share-nodes"></i> Chapter 2: Professional State Management</h2>
-      <div class="article-content">
-        <p>Scaling a Flutter app requires a solid state strategy. Compare <strong>Provider</strong>, <strong>Riverpod</strong>, and <strong>BLoC</strong> to choose the right one for your architecture.</p>
-        
-        <div class="code-example">
-          <pre>/* Pro BLoC Pattern Logic */
-class AuthBloc extends Bloc&lt;AuthEvent, AuthState&gt; {
-  AuthBloc() : super(AuthInitial()) {
-    on&lt;LoginRequested&gt;((event, emit) async {
-      emit(AuthLoading());
-      try {
-        final user = await repository.login(event.email, event.pass);
-        emit(AuthSuccess(user));
-      } catch (e) {
-        emit(AuthFailure(e.toString()));
-      }
-    });
-  }
-}</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-wind"></i> Chapter 3: Animations & Motion</h2>
-      <div class="article-content">
-        <p>Flutter's animation system is elite. Master <strong>Implicit Animations</strong>, <strong>Hero Widgets</strong>, and <strong>Custom Painters</strong> for a premium user experience.</p>
-        
-        <div class="code-example">
-          <pre>/* Smooth Hero Transition */
-Hero(
-  tag: 'profile-pic-${user.id}',
-  child: CircleAvatar(
-    backgroundImage: NetworkImage(user.avatarUrl),
-  ),
-)</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-bridge"></i> Chapter 4: Method Channels</h2>
-      <div class="article-content">
-        <p>Need access to a native iOS/Android feature that Flutter doesn't support? Use <strong>Method Channels</strong> to communicate directly with Swift or Kotlin code.</p>
-      </div>
-    </div>
-
+    <!-- 40 more sections -->
+    <div class="chapter reveal"><h2>Asynchronous Dart: Futures</h2><p>Handling delayed operations and API responses with clean async logic.</p></div>
+    <div class="chapter reveal"><h2>Dart Streams Deep Dive</h2><p>Handling continuous data flows like real-time updates and user events.</p></div>
+    <div class="chapter reveal"><h2>Flutter Custom Painting</h2><p>Using the CustomPainter class to draw unique, high-performance UI elements.</p></div>
+    <div class="chapter reveal"><h2>Handling User Input</h2><p>Mastering TextField, Form validation, and focus management in mobile apps.</p></div>
+    <div class="chapter reveal"><h2>Asset and Font Management</h2><p>Correctly loading images, JSON, and custom typography in your Flutter project.</p></div>
+    <div class="chapter reveal"><h2>ListView and GridView</h2><p>Handling large lists of data with lazy loading and optimized performance.</p></div>
+    <div class="chapter reveal"><h2>Responsive UI: LayoutBuilder</h2><p>Adapting your interface based on screen dimensions and orientation.</p></div>
+    <div class="chapter reveal"><h2>The Widget Lifecycle</h2><p>Understanding initState, didUpdateWidget, and dispose for memory safety.</p></div>
+    <div class="chapter reveal"><h2>State Management: Riverpod</h2><p>Moving beyond Provider to the next-generation of safe state handling.</p></div>
+    <div class="chapter reveal"><h2>State Management: BLoC Pattern</h2><p>Using Business Logic Components for complex enterprise apps.</p></div>
+    <div class="chapter reveal"><h2>Error Handling and ErrorWidget</h2><p>Customizing how your app behaves when something goes wrong at runtime.</p></div>
+    <div class="chapter reveal"><h2>Package Management (Pub.dev)</h2><p>Finding, installing, and managing external libraries for your project.</p></div>
+    <div class="chapter reveal"><h2>Platform Channels Mastery</h2><p>Calling native Swift/Kotlin code from your Flutter app for specific hardware.</p></div>
+    <div class="chapter reveal"><h2>Flutter Web Support</h2><p>Optimizing your mobile code to run smoothly in modern browsers.</p></div>
+    <div class="chapter reveal"><h2>Desktop Apps with Flutter</h2><p>Building native Windows, macOS, and Linux apps from your codebase.</p></div>
+    <div class="chapter reveal"><h2>Unit and Widget Testing</h2><p>Writing automated tests to ensure your UI and logic stay bug-free.</p></div>
+    <div class="chapter reveal"><h2>Integration Testing</h2><p>Running full-app tests on real devices to verify the entire user journey.</p></div>
+    <div class="chapter reveal"><h2>Performance Profiling</h2><p>Using DevTools to find jank, memory leaks, and over-rendering issues.</p></div>
+    <div class="chapter reveal"><h2>Deep Linking Strategies</h2><p>Opening your app to specific pages from web links or notifications.</p></div>
+    <div class="chapter reveal"><h2>Internationalization (i18n)</h2><p>Translating your Flutter app for a global audience with l10n files.</p></div>
+    <div class="chapter reveal"><h2>Accessibility in Flutter</h2><p>Using Semantic widgets to make your app usable for everyone.</p></div>
+    <div class="chapter reveal"><h2>The InheritedWidget Core</h2><p>Understanding the internal mechanism behind Provider and Theme.</p></div>
+    <div class="chapter reveal"><h2>Isolates and Multithreading</h2><p>Running heavy computations without freezing the main UI thread.</p></div>
+    <div class="chapter reveal"><h2>Native Splash Screens</h2><p>Configuring the first thing users see on Android and iOS launch.</p></div>
+    <div class="chapter reveal"><h2>App Icon Customization</h2><p>Managing launcher icons for all resolutions and adaptive versions.</p></div>
+    <div class="chapter reveal"><h2>Camera and Photo Gallery</h2><p>Integrating image capture and file picking into your Flutter app.</p></div>
+    <div class="chapter reveal"><h2>Maps and Geolocation</h2><p>Building location-aware apps with Google Maps integration.</p></div>
+    <div class="chapter reveal"><h2>Push Notifications (FCM)</h2><p>Keeping users engaged with targeted remote messages.</p></div>
+    <div class="chapter reveal"><h2>Payment Gateways (Stripe)</h2><p>Implementing secure in-app payments for e-commerce apps.</p></div>
+    <div class="chapter reveal"><h2>Biometric Authentication</h2><p>Using FaceID and Fingerprint for high-security login flows.</p></div>
+    <div class="chapter reveal"><h2>Sliver Widgets Deep Dive</h2><p>Building complex scrolling effects like parallax and shrinking headers.</p></div>
+    <div class="chapter reveal"><h2>Shared Preferences Basics</h2><p>Storing simple key-value settings for user preferences.</p></div>
+    <div class="chapter reveal"><h2>Dependency Injection (GetIt)</h2><p>Managing service instances for clean and testable architecture.</p></div>
+    <div class="chapter reveal"><h2>Flutter DevTools mastery</h2><p>Using the inspector, network tab, and memory timeline like a pro.</p></div>
+    <div class="chapter reveal"><h2>The BuildContext Context</h2><p>Deep dive into what context actually is and why it matters.</p></div>
+    <div class="chapter reveal"><h2>Conditional UI Rendering</h2><p>Handling loading, error, and empty states gracefully for users.</p></div>
+    <div class="chapter reveal"><h2>Clean Architecture for Flutter</h2><p>Organizing your code into Data, Domain, and Presentation layers.</p></div>
+    <div class="chapter reveal"><h2>The Future of Flutter</h2><p>What's coming in the latest stable releases and future roadmap.</p></div>
+    <div class="chapter reveal"><h2>Publishing to App Store & Play</h2><p>The complete checklist for releasing your app to the world.</p></div>
+    <div class="chapter reveal"><h2>Final Mobile Certification</h2><p>Verify your mastery by building a complete, production-ready app.</p></div>
   </div>
-
 </div>
 
 <script src="site-polish.js"></script>
