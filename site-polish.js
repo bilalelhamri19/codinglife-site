@@ -255,18 +255,19 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const data = new FormData(form);
+      const email = form.querySelector('input[type="email"]').value;
       status.style.display = "block";
       status.style.color = "var(--cl-brand)";
       status.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Subscribing...';
 
       try {
-        const response = await fetch(form.action, {
+        const response = await fetch("https://formsubmit.co/ajax/elhamribilal65@gmail.com", {
           method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email: email, _subject: "New Subscriber - Coding Life", message: "New subscriber: " + email })
         });
-        if (response.ok) {
+        const result = await response.json();
+        if (result.success === "true" || result.success === true) {
           status.style.color = "var(--cl-success)";
           status.innerHTML = '<i class="fa-solid fa-check-circle"></i> Thank you! You are subscribed.';
           form.reset();
