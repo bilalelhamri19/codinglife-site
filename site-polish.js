@@ -93,6 +93,7 @@
     refreshHeader();
     refreshFooter();
     updateSearchPlaceholder();
+    refreshPageContent(); // Added to refresh main content
     
     // Update body class for RTL specific styling if needed
     if (TRANSLATIONS[lang].dir === 'rtl') {
@@ -100,6 +101,16 @@
     } else {
       document.body.classList.remove('rtl');
     }
+  }
+
+  function refreshPageContent() {
+    document.querySelectorAll('[data-cl-lang]').forEach(el => {
+      if (el.getAttribute('data-cl-lang') === currentLang) {
+        el.style.display = '';
+      } else {
+        el.style.display = 'none';
+      }
+    });
   }
 
   function navItems() {
@@ -531,6 +542,7 @@
     polishCodeBlocks();
     initAnimations();
     bindFooterEvents();
+    refreshPageContent();
 
     const btt = document.createElement("button");
     btt.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
