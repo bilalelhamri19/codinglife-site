@@ -309,35 +309,46 @@
       if (!q) { results.innerHTML = ""; return; }
       
       const pages = [
-        { t: "HTML5 Masterclass", d: "Foundation of web development.", h: "html.html" },
-        { t: "CSS3 Styling", d: "Responsive design, Flexbox, Grid.", h: "css.html" },
-        { t: "JavaScript Deep Dive", d: "Modern JS and async logic.", h: "javascript.html" },
-        { t: "React Modern", d: "Component-based architecture.", h: "react.html" },
-        { t: "PHP Backend", d: "Server-side programming.", h: "php.html" },
-        { t: "Node.js Scalable", d: "High-performance backend.", h: "nodejs.html" },
-        { t: "SQL Databases", d: "Relational data management.", h: "sql.html" },
-        { t: "Python Expert", d: "Automation and data science.", h: "python.html" },
-        { t: "C# & .NET", d: "Enterprise logic and Unity.", h: "csharp.html" },
-        { t: "Java Enterprise", d: "Spring Boot backend.", h: "java.html" },
-        { t: "Git Expert", d: "Version control and collaboration.", h: "git.html" },
-        { t: "Flutter Mobile", d: "Multi-platform mobile apps.", h: "flutter.html" },
-        { t: "CSS Unit Converter", d: "PX, REM, EM, VW conversion.", h: "css-converter.html" },
-        { t: "Palette Generator", d: "Color scheme creator.", h: "colors.html" },
-        { t: "Code Playground", d: "Live editor for practice.", h: "playground.html" },
-        { t: "Blog", d: "Articles and tips.", h: "blog.html" },
-        { t: "Workshops", d: "Live coding workshops.", h: "workshops.html" },
-        { t: "About", d: "Our mission.", h: "about.html" },
-        { t: "Contact", d: "Support or collaborations.", h: "contact.html" }
+        { t: "HTML5 Masterclass", t_ar: "احتراف HTML5", d: "Foundation of web development.", d_ar: "أساسيات تطوير الويب.", h: "html.html" },
+        { t: "CSS3 Styling", t_ar: "تصميم CSS3", d: "Responsive design, Flexbox, Grid.", d_ar: "تصميم متجاوب، فليكس بوكس، وجريد.", h: "css.html" },
+        { t: "JavaScript Deep Dive", t_ar: "تعمق في JavaScript", d: "Modern JS and async logic.", d_ar: "جافا سكريبت الحديثة والمنطق غير المتزامن.", h: "javascript.html" },
+        { t: "React Modern", t_ar: "React الحديث", d: "Component-based architecture.", d_ar: "هندسة المكونات المعاصرة.", h: "react.html" },
+        { t: "PHP Backend", t_ar: "احتراف PHP", d: "Server-side programming.", d_ar: "برمجة السيرفرات.", h: "php.html" },
+        { t: "Node.js Scalable", t_ar: "Node.js المتقدم", d: "High-performance backend.", d_ar: "خوادم عالية الأداء.", h: "nodejs.html" },
+        { t: "SQL Databases", t_ar: "قواعد بيانات SQL", d: "Relational data management.", d_ar: "إدارة البيانات العلائقية.", h: "sql.html" },
+        { t: "Python Expert", t_ar: "خبير بايثون", d: "Automation and data science.", d_ar: "الأتمتة وعلوم البيانات.", h: "python.html" },
+        { t: "C# & .NET", t_ar: "C# و .NET", d: "Enterprise logic and Unity.", d_ar: "برمجة الشركات ومحرك Unity.", h: "csharp.html" },
+        { t: "Java Enterprise", t_ar: "جافا للمؤسسات", d: "Spring Boot backend.", d_ar: "تطوير الأنظمة بـ Spring Boot.", h: "java.html" },
+        { t: "Git Expert", t_ar: "خبير Git", d: "Version control and collaboration.", d_ar: "إدارة النسخ والتعاون.", h: "git.html" },
+        { t: "Flutter Mobile", t_ar: "تطوير تطبيقات Flutter", d: "Multi-platform mobile apps.", d_ar: "تطبيقات الموبايل لكافة المنصات.", h: "flutter.html" },
+        { t: "CSS Unit Converter", t_ar: "محول وحدات CSS", d: "PX, REM, EM, VW conversion.", d_ar: "تحويل البكسل والريم وغيرها.", h: "css-converter.html" },
+        { t: "Palette Generator", t_ar: "مولد الألوان", d: "Color scheme creator.", d_ar: "إنشاء مجموعات ألوان متناسقة.", h: "colors.html" },
+        { t: "Code Playground", t_ar: "مختبر الكود", d: "Live editor for practice.", d_ar: "محرر مباشر للتجربة.", h: "playground.html" },
+        { t: "Productivity Tips", t_ar: "نصائح الإنتاجية", d: "Increase your daily output.", d_ar: "زيادة إنتاجيتك اليومية.", h: "productivity.html" },
+        { t: "Mental Health", t_ar: "صحة العقل والجسد", d: "Well-being for developers.", d_ar: "الصحة النفسية للمبرمجين.", h: "mental_health.html" },
+        { t: "Blog", t_ar: "المدونة", d: "Articles and tips.", d_ar: "مقالات ونصائح تقنية.", h: "blog.html" },
+        { t: "Workshops", t_ar: "ورشات العمل", d: "Live coding workshops.", d_ar: "ورشات عمل مباشرة.", h: "workshops.html" },
+        { t: "About", t_ar: "من نحن", d: "Our mission.", d_ar: "مهمتنا ورؤيتنا.", h: "about.html" },
+        { t: "Contact", t_ar: "تواصل معنا", d: "Support or collaborations.", d_ar: "الدعم والتعاون المهني.", h: "contact.html" }
       ];
 
-      const filtered = pages.filter(p => p.t.toLowerCase().includes(q) || p.d.toLowerCase().includes(q));
+      const filtered = pages.filter(p => 
+        p.t.toLowerCase().includes(q) || p.d.toLowerCase().includes(q) ||
+        (p.t_ar && p.t_ar.includes(q)) || (p.d_ar && p.d_ar.includes(q))
+      );
+
+      const lang = currentLang;
       results.innerHTML = filtered.length > 0 
-        ? filtered.map(p => `
-          <a href="${p.h}" style="padding:16px; background:rgba(30,41,59,0.8); border-radius:8px; color:white; text-decoration:none; display:block; transition:0.2s; border:1px solid #1e293b;">
-            <div style="font-weight:bold; color:#2dd4bf; margin-bottom:4px;">${p.t}</div>
-            <div style="font-size:0.85rem; color:#94a3b8;">${p.d}</div>
-          </a>
-        `).join("")
+        ? filtered.map(p => {
+          const title = lang === 'ar' ? (p.t_ar || p.t) : p.t;
+          const desc = lang === 'ar' ? (p.d_ar || p.d) : p.d;
+          return `
+            <a href="${p.h}" style="padding:16px; background:rgba(30,41,59,0.8); border-radius:8px; color:white; text-decoration:none; display:block; transition:0.2s; border:1px solid #1e293b; text-align:${lang === 'ar' ? 'right' : 'left'};">
+              <div style="font-weight:bold; color:#2dd4bf; margin-bottom:4px;">${title}</div>
+              <div style="font-size:0.85rem; color:#94a3b8;">${desc}</div>
+            </a>
+          `;
+        }).join("")
         : `<div style="color:#94a3b8; text-align:center; padding:20px;">${t().search.noResults} "${q}"</div>`;
     });
   }
