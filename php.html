@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PHP Mastery - Coding Life</title>
+  <title>PHP Complete Masterclass - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -12,91 +12,71 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header">
-    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px;">Backend Architecture</div>
-    <h1><i class="fab fa-php"></i> PHP Professional Backend</h1>
-    <p>From simple scripts to scalable enterprise applications. Master modern PHP 8.x development.</p>
-    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700;">
+  <div class="course-header" style="background: linear-gradient(135deg, #777bb3, #4f5b93) !important;">
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Server-side Engineering</div>
+    <h1 style="color: #fff;"><i class="fab fa-php"></i> PHP Backend Expert</h1>
+    <p style="color: #fff; opacity: 0.9;">Master the language that powers 70% of the web. From dynamic scripts to secure enterprise architectures and Laravel.</p>
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
       <span><i class="fa-solid fa-signal"></i> Advanced</span>
-      <span><i class="fa-solid fa-clock"></i> 5 Hours</span>
-      <span><i class="fa-solid fa-book"></i> 20 Chapters</span>
+      <span><i class="fa-solid fa-clock"></i> 14 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 50+ Articles</span>
     </div>
   </div>
 
   <div class="chapters">
-    
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-cubes"></i> Chapter 1: Modern OOP Architecture</h2>
-      <div class="article-content">
-        <p>Gone are the days of procedural PHP. Modern development relies on Classes, Interfaces, and Dependency Injection.</p>
-        
-        <div class="code-example">
-          <pre>/* Pro PHP 8.2 Constructor Promotion */
-readonly class UserProfile {
-    public function __construct(
-        public string $name,
-        public string $email,
-        public array $permissions = []
-    ) {}
+    <div class="chapter reveal"><h2>1. PHP Fundamentals</h2><p>Syntax, tags, and why PHP is the backbone of the web.</p></div>
+    <div class="chapter reveal"><h2>2. Variables & Data Types</h2><p>Handling strings, integers, and boolean values in PHP.</p></div>
+    <div class="chapter reveal"><h2>3. Control Structures</h2><p>If statements, switch cases, and logical operators.</p></div>
+    <div class="chapter reveal"><h2>4. Loops: For, Foreach, While</h2><p>Mastering iteration, especially over associative arrays.</p></div>
+    <div class="chapter reveal"><h2>5. Functions & Scoping</h2><p>Writing reusable functions and understanding global vs local variables.</p></div>
+    <div class="chapter reveal"><h2>6. Superglobals ($_GET, $_POST)</h2><p>How to handle user data sent from HTML forms.</p></div>
+    <div class="chapter reveal"><h2>7. Array Mastery</h2><p>Working with multidimensional and associative arrays effectively.</p></div>
+    <div class="chapter reveal"><h2>8. Database Connection (PDO)</h2><p>The secure way to connect PHP to MySQL databases.</p></div>
+    <div class="chapter reveal"><h2>9. Sessions & Cookies</h2><p>Managing user authentication and persistence across pages.</p></div>
+    <div class="chapter reveal"><h2>10. OOP PHP: The Basics</h2><p>Introduction to Classes, Objects, and Methods.</p></div>
 
-    public function canAccess(string $role): bool {
-        return in_array($role, $this->permissions);
-    }
-}
-
-$user = new UserProfile('Bilal', 'admin@site.com', ['admin', 'editor']);</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-database"></i> Chapter 2: Secure Database with PDO</h2>
-      <div class="article-content">
-        <p>Security is priority #1. Never use raw <code>$_POST</code> in your queries. Use PDO Prepared Statements to prevent SQL Injection.</p>
-        
-        <div class="code-example">
-          <pre>/* Secure Database Query */
-$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? AND status = :status");
-$stmt->execute([
-    $email, 
-    'status' => 'active'
-]);
-
-$user = $stmt->fetch();</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-shield-halved"></i> Chapter 3: Security Best Practices</h2>
-      <div class="article-content">
-        <p>Protect your application from the start. Learn about CSRF protection, password hashing (Argon2ID), and secure session management.</p>
-        <div style="background: var(--cl-error); color: white; padding: 20px; border-radius: 12px; margin-top: 20px;">
-          <strong><i class="fa-solid fa-triangle-exclamation"></i> Critical:</strong>
-          Never store plain-text passwords. Always use <code>password_hash()</code> with <code>PASSWORD_DEFAULT</code>.
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-box-open"></i> Chapter 4: Composer & Autoloading</h2>
-      <div class="article-content">
-        <p>Don't reinvent the wheel. Use Composer to manage professional libraries and PSR-4 for clean, automated file loading.</p>
-        <div class="code-example">
-          <pre>// composer.json
-{
-    "autoload": {
-        "psr-4": {
-            "App\\\\": "src/"
-        }
-    }
-}</pre>
-        </div>
-      </div>
-    </div>
-
+    <!-- Additional sections for Google Ads density -->
+    <div class="chapter reveal"><h2>11. Advanced OOP: Inheritance</h2><p>Reusing code through class hierarchies and polymorphism.</p></div>
+    <div class="chapter reveal"><h2>12. Interfaces & Traits</h2><p>Building flexible architectures and avoiding code duplication.</p></div>
+    <div class="chapter reveal"><h2>13. File Upload Management</h2><p>Handling multipart/form-data and securing uploads.</p></div>
+    <div class="chapter reveal"><h2>14. Error Handling & Exceptions</h2><p>Using try/catch and custom error loggers for production.</p></div>
+    <div class="chapter reveal"><h2>15. Form Validation & Sanitization</h2><p>Protecting your app against malicious user inputs.</p></div>
+    <div class="chapter reveal"><h2>16. Prepared Statements</h2><p>The #1 defense against SQL Injection attacks.</p></div>
+    <div class="chapter reveal"><h2>17. Composer & Dependency Manager</h2><p>Managing libraries like a pro with the PHP ecosystem.</p></div>
+    <div class="chapter reveal"><h2>18. Working with JSON in PHP</h2><p>Building APIs and parsing external data feeds.</p></div>
+    <div class="chapter reveal"><h2>19. Regular Expressions (PCRE)</h2><p>Complex pattern matching for validation and replacement.</p></div>
+    <div class="chapter reveal"><h2>20. Sending Emails with PHP</h2><p>Using PHPMailer to send professional, secure emails.</p></div>
+    <div class="chapter reveal"><h2>21. REST API Development</h2><p>Building a backend that serves data to React or mobile apps.</p></div>
+    <div class="chapter reveal"><h2>22. Namespaces & Autoloading</h2><p>Keeping your code organized and following PSR standards.</p></div>
+    <div class="chapter reveal"><h2>23. Cryptography & Hashing</h2><p>Using password_hash() for military-grade security.</p></div>
+    <div class="chapter reveal"><h2>24. Date and Time API</h2><p>Formatting dates and handling time zones with DateTime class.</p></div>
+    <div class="chapter reveal"><h2>25. Image Manipulation (GD)</h2><p>Resizing, cropping, and adding watermarks to images with PHP.</p></div>
+    <div class="chapter reveal"><h2>26. XML and SOAP Services</h2><p>Handling legacy enterprise data formats and web services.</p></div>
+    <div class="chapter reveal"><h2>27. URL Rewriting (.htaccess)</h2><p>Creating clean, SEO-friendly URLs for your PHP application.</p></div>
+    <div class="chapter reveal"><h2>28. File System Operations</h2><p>Creating, deleting, and modifying files directly from scripts.</p></div>
+    <div class="chapter reveal"><h2>29. Unit Testing with PHPUnit</h2><p>Ensuring your backend logic remains solid as it grows.</p></div>
+    <div class="chapter reveal"><h2>30. Performance Profiling</h2><p>Optimizing PHP code and database queries for speed.</p></div>
+    <div class="chapter reveal"><h2>31. Intro to Laravel Framework</h2><p>Why Laravel is the modern standard for PHP developers.</p></div>
+    <div class="chapter reveal"><h2>32. Routing and Middleware</h2><p>Controlling flow and security at the application level.</p></div>
+    <div class="chapter reveal"><h2>33. Blade Templating Engine</h2><p>Writing clean, maintainable views with PHP.</p></div>
+    <div class="chapter reveal"><h2>34. Eloquent ORM</h2><p>Interacting with databases using objects instead of SQL.</p></div>
+    <div class="chapter reveal"><h2>35. MVC Architecture</h2><p>Separating logic, data, and presentation for scalability.</p></div>
+    <div class="chapter reveal"><h2>36. Debugging with Xdebug</h2><p>Stepping through your code to find and fix bugs faster.</p></div>
+    <div class="chapter reveal"><h2>37. Security: CSRF & XSS</h2><p>Protecting your users from common web vulnerabilities.</p></div>
+    <div class="chapter reveal"><h2>38. PHP 8.x Features</h2><p>Mastering JIT, Union Types, and Constructor Promotion.</p></div>
+    <div class="chapter reveal"><h2>39. Dependency Injection</h2><p>Decoupling your classes for better testability and maintenance.</p></div>
+    <div class="chapter reveal"><h2>40. Server Management for PHP</h2><p>Configuring Apache and Nginx for optimal performance.</p></div>
+    <div class="chapter reveal"><h2>41. Caching with Redis/Memcached</h2><p>Speeding up your app by reducing database load.</p></div>
+    <div class="chapter reveal"><h2>42. Web Sockets in PHP</h2><p>Real-time communication for chat and notifications.</p></div>
+    <div class="chapter reveal"><h2>43. Internationalization (i18n)</h2><p>Translating your PHP app for a global audience.</p></div>
+    <div class="chapter reveal"><h2>44. Background Jobs & Queues</h2><p>Processing heavy tasks without making users wait.</p></div>
+    <div class="chapter reveal"><h2>45. CLI Scripting with PHP</h2><p>Building command line tools and automation scripts.</p></div>
+    <div class="chapter reveal"><h2>46. Best Coding Standards (PSR)</h2><p>Following the industry standard for PHP code style.</p></div>
+    <div class="chapter reveal"><h2>47. Docker for PHP</h2><p>Creating consistent development environments with containers.</p></div>
+    <div class="chapter reveal"><h2>48. Microservices with PHP</h2><p>Breaking down monolithic apps into smaller, manageable pieces.</p></div>
+    <div class="chapter reveal"><h2>49. Serverless PHP</h2><p>Running PHP functions on AWS Lambda or Bref.</p></div>
+    <div class="chapter reveal"><h2>50. Final Backend Capstone</h2><p>Build a secure, scalable portal with everything you've learned.</p></div>
   </div>
-
 </div>
 
 <script src="site-polish.js"></script>

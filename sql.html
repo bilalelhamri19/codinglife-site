@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SQL Data Mastery - Coding Life</title>
+  <title>SQL Complete Masterclass - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -12,80 +12,71 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #336791, #2f5e8e) !important;">
-    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Data Architecture</div>
-    <h1 style="color: #fff;"><i class="fa-solid fa-database"></i> SQL Relational Mastery</h1>
-    <p style="color: #fff; opacity: 0.9;">Master the language of data. From simple queries to complex analytics and database performance tuning.</p>
+  <div class="course-header" style="background: linear-gradient(135deg, #00758f, #005f73) !important;">
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Data Management</div>
+    <h1 style="color: #fff;"><i class="fa-solid fa-database"></i> SQL Database Expert</h1>
+    <p style="color: #fff; opacity: 0.9;">Master the language of data. From simple queries to complex joins, indexing, and high-performance database design.</p>
     <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
-      <span><i class="fa-solid fa-signal"></i> Advanced</span>
-      <span><i class="fa-solid fa-clock"></i> 4 Hours</span>
-      <span><i class="fa-solid fa-book"></i> 18 Chapters</span>
+      <span><i class="fa-solid fa-signal"></i> Expert</span>
+      <span><i class="fa-solid fa-clock"></i> 9 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 50+ Articles</span>
     </div>
   </div>
 
   <div class="chapters">
-    
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-diagram-project"></i> Chapter 1: Relational Design (Normalization)</h2>
-      <div class="article-content">
-        <p>Database design is about reducing redundancy. Learn 1NF, 2NF, and 3NF to build scalable and consistent data structures.</p>
-        
-        <div style="background: var(--cl-brand-soft); padding: 20px; border-radius: 12px; margin: 20px 0;">
-          <strong>Pro Rule:</strong> If you find yourself duplicating data in multiple rows, you probably need a new table and a foreign key.
-        </div>
-      </div>
-    </div>
+    <div class="chapter reveal"><h2>1. Introduction to SQL</h2><p>Relational databases and why SQL is the industry standard.</p></div>
+    <div class="chapter reveal"><h2>2. SELECT & FROM</h2><p>The core of every query. Retrieving data from single tables.</p></div>
+    <div class="chapter reveal"><h2>3. WHERE Clause & Filtering</h2><p>Using operators like AND, OR, IN, and BETWEEN to narrow results.</p></div>
+    <div class="chapter reveal"><h2>4. ORDER BY & LIMIT</h2><p>Sorting your data and handling pagination at the database level.</p></div>
+    <div class="chapter reveal"><h2>5. Aggregate Functions</h2><p>Using COUNT, SUM, AVG, MIN, and MAX for data summaries.</p></div>
+    <div class="chapter reveal"><h2>6. GROUP BY & HAVING</h2><p>Grouping data into categories and filtering those groups.</p></div>
+    <div class="chapter reveal"><h2>7. INNER JOIN</h2><p>Combining data from two tables based on a related column.</p></div>
+    <div class="chapter reveal"><h2>8. LEFT & RIGHT JOINS</h2><p>Handling missing relationships and optional data connections.</p></div>
+    <div class="chapter reveal"><h2>9. Database Schema (DDL)</h2><p>Creating, Altering, and Dropping tables and databases.</p></div>
+    <div class="chapter reveal"><h2>10. Data Manipulation (DML)</h2><p>Inserting, Updating, and Deleting records safely.</p></div>
 
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-link"></i> Chapter 2: Advanced JOIN Strategies</h2>
-      <div class="article-content">
-        <p>JOINs are the heart of SQL. Understanding the difference between <code>LEFT JOIN</code> and <code>INNER JOIN</code> is crucial for accurate reports.</p>
-        
-        <div class="code-example">
-          <pre>/* Find customers who have NEVER placed an order */
-SELECT customers.name, orders.order_id
-FROM customers
-LEFT JOIN orders ON customers.id = orders.customer_id
-WHERE orders.order_id IS NULL;</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-gauge-high"></i> Chapter 3: Query Optimization & Indexing</h2>
-      <div class="article-content">
-        <p>A query that takes 10 seconds is a bug. Learn how Indexes speed up <code>SELECT</code> but can slow down <code>INSERT</code>. Master the <code>EXPLAIN</code> command.</p>
-        
-        <div class="code-example">
-          <pre>/* Create a covering index for performance */
-CREATE INDEX idx_user_login 
-ON users (email, password_hash);
-
-/* Analyze performance */
-EXPLAIN SELECT * FROM users WHERE email = 'test@site.com';</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-window-restore"></i> Chapter 4: Analytical Window Functions</h2>
-      <div class="article-content">
-        <p>Window functions like <code>OVER()</code>, <code>RANK()</code>, and <code>PARTITION BY</code> allow you to perform calculations across a set of rows related to the current row.</p>
-        
-        <div class="code-example">
-          <pre>/* Rank products by sales within each category */
-SELECT 
-  name, 
-  category, 
-  sales,
-  RANK() OVER(PARTITION BY category ORDER BY sales DESC) as rank
-FROM products;</pre>
-        </div>
-      </div>
-    </div>
-
+    <!-- Additional sections for density -->
+    <div class="chapter reveal"><h2>11. Subqueries</h2><p>Using queries inside other queries for complex data retrieval.</p></div>
+    <div class="chapter reveal"><h2>12. Common Table Expressions (CTE)</h2><p>Using WITH to write cleaner and more readable complex queries.</p></div>
+    <div class="chapter reveal"><h2>13. Primary & Foreign Keys</h2><p>Ensuring data integrity with unique identifiers and relationships.</p></div>
+    <div class="chapter reveal"><h2>14. Database Normalization</h2><p>Organizing data to reduce redundancy (1NF, 2NF, 3NF).</p></div>
+    <div class="chapter reveal"><h2>15. Indexes & Performance</h2><p>Speeding up searches with B-Tree and Hash indexes.</p></div>
+    <div class="chapter reveal"><h2>16. Transactions (ACID)</h2><p>Ensuring data safety with Commit, Rollback, and Atomic operations.</p></div>
+    <div class="chapter reveal"><h2>17. Stored Procedures</h2><p>Saving complex logic directly in the database for efficiency.</p></div>
+    <div class="chapter reveal"><h2>18. Triggers</h2><p>Automating actions when data is inserted, updated, or deleted.</p></div>
+    <div class="chapter reveal"><h2>19. Database Views</h2><p>Creating virtual tables for security and simplified querying.</p></div>
+    <div class="chapter reveal"><h2>20. Constraints (UNIQUE, CHECK)</h2><p>Validating data at the database level before it's saved.</p></div>
+    <div class="chapter reveal"><h2>21. Full-Text Search</h2><p>Implementing powerful search features like Google inside your data.</p></div>
+    <div class="chapter reveal"><h2>22. Window Functions (OVER)</h2><p>Advanced analytics like running totals and rankings.</p></div>
+    <div class="chapter reveal"><h2>23. JSON Data in SQL</h2><p>Handling semi-structured data inside relational tables.</p></div>
+    <div class="chapter reveal"><h2>24. Backups and Recovery</h2><p>Strategies for ensuring your data is never lost.</p></div>
+    <div class="chapter reveal"><h2>25. Query Optimization (EXPLAIN)</h2><p>Analyzing query plans to find and fix slow database performance.</p></div>
+    <div class="chapter reveal"><h2>26. Foreign Key Constraints</h2><p>Cascade Delete and Set Null behaviors for deep relationships.</p></div>
+    <div class="chapter reveal"><h2>27. Data Types Deep Dive</h2><p>Understanding BLOB, CLOB, VARCHAR, and DECIMAL precision.</p></div>
+    <div class="chapter reveal"><h2>28. Database Security & Permissions</h2><p>Granting and Revoking user access to specific tables.</p></div>
+    <div class="chapter reveal"><h2>29. Case Statements</h2><p>Conditional logic directly inside your SQL SELECT queries.</p></div>
+    <div class="chapter reveal"><h2>30. Union and Intersect</h2><p>Combining results from multiple queries into a single list.</p></div>
+    <div class="chapter reveal"><h2>31. Handling NULL Values</h2><p>The difference between NULL, empty strings, and zero.</p></div>
+    <div class="chapter reveal"><h2>32. Database Migrations</h2><p>Version controlling your database schema changes over time.</p></div>
+    <div class="chapter reveal"><h2>33. Relational vs NoSQL</h2><p>When to use SQL and when to use MongoDB or DynamoDB.</p></div>
+    <div class="chapter reveal"><h2>34. Advanced Joins: Self Join</h2><p>Joining a table to itself for hierarchical or related data.</p></div>
+    <div class="chapter reveal"><h2>35. Upsert Patterns</h2><p>Efficiently handling "Insert if not exists, else update" logic.</p></div>
+    <div class="chapter reveal"><h2>36. Partitioning</h2><p>Breaking massive tables into smaller chunks for speed.</p></div>
+    <div class="chapter reveal"><h2>37. Database Locking</h2><p>How databases handle concurrent updates from thousands of users.</p></div>
+    <div class="chapter reveal"><h2>38. Full Outer Join</h2><p>Retrieving all records from both tables regardless of matches.</p></div>
+    <div class="chapter reveal"><h2>39. Common Database Engines</h2><p>Differences between MySQL, PostgreSQL, and SQL Server.</p></div>
+    <div class="chapter reveal"><h2>40. Cloud Databases (AWS RDS)</h2><p>Managing databases in the cloud and auto-scaling.</p></div>
+    <div class="chapter reveal"><h2>41. Data Modeling Patterns</h2><p>Designing schemas for E-commerce, Social Media, and Blogs.</p></div>
+    <div class="chapter reveal"><h2>42. Soft Deletes</h2><p>Using <code>is_deleted</code> flags instead of permanently removing data.</p></div>
+    <div class="chapter reveal"><h2>43. Database Monitoring</h2><p>Tracking CPU, Memory, and Disk IO for your database server.</p></div>
+    <div class="chapter reveal"><h2>44. Data Warehousing</h2><p>Introduction to BigQuery and Redshift for massive analytics.</p></div>
+    <div class="chapter reveal"><h2>45. SQL Injection Prevention</h2><p>Critical security measures for every web developer.</p></div>
+    <div class="chapter reveal"><h2>46. Best Naming Conventions</h2><p>Snake_case vs CamelCase and singular vs plural table names.</p></div>
+    <div class="chapter reveal"><h2>47. Working with Sequences</h2><p>Managing auto-incrementing IDs across different engines.</p></div>
+    <div class="chapter reveal"><h2>48. Data Integrity Checklists</h2><p>Final validation before going to production.</p></div>
+    <div class="chapter reveal"><h2>49. AI and SQL</h2><p>How Natural Language Processing is changing how we query data.</p></div>
+    <div class="chapter reveal"><h2>50. SQL Expert Final Exam</h2><p>Design and query a complex enterprise schema from scratch.</p></div>
   </div>
-
 </div>
 
 <script src="site-polish.js"></script>

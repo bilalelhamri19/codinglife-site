@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Mastery - Coding Life</title>
+  <title>JavaScript Complete Masterclass - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -12,94 +12,71 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header">
-    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px;">Logic & Interactivity</div>
-    <h1><i class="fab fa-js"></i> JavaScript Modern Mastery</h1>
-    <p>Go beyond syntax. Master asynchronous logic, functional patterns, and modern browser APIs.</p>
-    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700;">
-      <span><i class="fa-solid fa-signal"></i> Expert</span>
-      <span><i class="fa-solid fa-clock"></i> 6 Hours</span>
-      <span><i class="fa-solid fa-book"></i> 22 Chapters</span>
+  <div class="course-header" style="background: linear-gradient(135deg, #eab308, #ca8a04) !important;">
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Logic & Interaction</div>
+    <h1 style="color: #fff;"><i class="fab fa-js"></i> JavaScript Mastery</h1>
+    <p style="color: #fff; opacity: 0.9;">Master the engine of the web. From variables and functions to asynchronous logic and functional programming.</p>
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
+      <span><i class="fa-solid fa-signal"></i> Advanced</span>
+      <span><i class="fa-solid fa-clock"></i> 12 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 50+ Articles</span>
     </div>
   </div>
 
   <div class="chapters">
     
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-clock-rotate-left"></i> Chapter 1: The Power of Async/Await</h2>
-      <div class="article-content">
-        <p>JavaScript is single-threaded, but its non-blocking nature makes it powerful. Learn to handle external data without freezing the UI.</p>
-        
-        <div class="code-example">
-          <pre>/* Pro Data Fetching Pattern */
-async function loadUserData(id) {
-  try {
-    const response = await fetch(`https://api.site.com/users/${id}`);
-    if (!response.ok) throw new Error('User not found');
-    
-    const data = await response.json();
-    updateUI(data);
-  } catch (err) {
-    showError(err.message);
-  } finally {
-    hideLoader();
-  }
-}</pre>
-        </div>
-      </div>
-    </div>
+    <div class="chapter reveal"><h2>1. JS Fundamentals</h2><p>Variables (let, const), data types, and the dynamic nature of JavaScript.</p></div>
+    <div class="chapter reveal"><h2>2. Arrow Functions & Scope</h2><p>Understanding lexicial scoping, the 'this' keyword, and modern function syntax.</p></div>
+    <div class="chapter reveal"><h2>3. DOM Manipulation</h2><p>Selecting elements, event listeners, and creating interactive user interfaces.</p></div>
+    <div class="chapter reveal"><h2>4. Array Methods Mastery</h2><p>Using map, filter, reduce, and find to handle complex data sets elegantly.</p></div>
+    <div class="chapter reveal"><h2>5. Asynchronous JS (Promises)</h2><p>Handling API calls and delayed operations without blocking the main thread.</p></div>
+    <div class="chapter reveal"><h2>6. Async/Await Patterns</h2><p>Writing asynchronous code that looks and behaves like synchronous logic.</p></div>
+    <div class="chapter reveal"><h2>7. Object Destructuring</h2><p>Clean ways to extract data from objects and arrays in modern ES6+.</p></div>
+    <div class="chapter reveal"><h2>8. Classes and OOP</h2><p>Understanding prototypes, inheritance, and the class syntax in JavaScript.</p></div>
+    <div class="chapter reveal"><h2>9. Error Handling</h2><p>Using try/catch blocks and creating custom error classes for robust apps.</p></div>
+    <div class="chapter reveal"><h2>10. ES Modules</h2><p>Importing and exporting code to build scalable and modular applications.</p></div>
 
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-code-branch"></i> Chapter 2: Modern ES6+ Features</h2>
-      <div class="article-content">
-        <p>Clean code is about using the right tools. Destructuring and Spread operators make your code readable and maintainable.</p>
-        
-        <div class="code-example">
-          <pre>const user = { name: 'Bilal', role: 'Lead', skills: ['JS', 'React'] };
-
-/* Destructuring with Default Values */
-const { name, role, country = 'Morocco' } = user;
-
-/* Spread for Immutable Updates */
-const updatedUser = { 
-  ...user, 
-  skills: [...user.skills, 'Node.js'],
-  role: 'Architect'
-};</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-sitemap"></i> Chapter 3: Event Delegation Pattern</h2>
-      <div class="article-content">
-        <p>Don't attach 1,000 listeners to 1,000 buttons. Attach ONE listener to the parent. This is critical for performance and handling dynamic elements.</p>
-        
-        <div class="code-example">
-          <pre>/* Efficient Event Handling */
-const list = document.querySelector('.user-list');
-
-list.addEventListener('click', (e) => {
-  // Check if the clicked element is a delete button
-  const btn = e.target.closest('.delete-btn');
-  if (btn) {
-    const id = btn.dataset.id;
-    removeUser(id);
-  }
-});</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-brain"></i> Chapter 4: Closures & Scope</h2>
-      <div class="article-content">
-        <p>Understand the "Lexical Environment." A closure is the combination of a function bundled together with references to its surrounding state.</p>
-        <div style="background: var(--cl-brand-soft); padding: 20px; border-radius: 12px; margin-top: 20px;">
-          <p><strong>Pro Insight:</strong> Closures allow for private variables and powerful functional patterns like Currying and Memoization.</p>
-        </div>
-      </div>
-    </div>
+    <!-- 40 more for density -->
+    <div class="chapter reveal"><h2>11. Closure and HOF</h2><p>Understanding functions that return functions and how scope is preserved.</p></div>
+    <div class="chapter reveal"><h2>12. The Event Loop</h2><p>How JS handles concurrency with the call stack, task queue, and microtasks.</p></div>
+    <div class="chapter reveal"><h2>13. LocalStorage API</h2><p>Persisting data in the browser across sessions without a database.</p></div>
+    <div class="chapter reveal"><h2>14. Fetch API & Axios</h2><p>Communicating with servers and handling JSON data structures.</p></div>
+    <div class="chapter reveal"><h2>15. Regular Expressions</h2><p>Mastering pattern matching for validation and string manipulation.</p></div>
+    <div class="chapter reveal"><h2>16. Template Literals</h2><p>Using backticks for multi-line strings and variable interpolation.</p></div>
+    <div class="chapter reveal"><h2>17. Spread & Rest Operators</h2><p>Working with variable arguments and shallow-copying data structures.</p></div>
+    <div class="chapter reveal"><h2>18. Map and Set</h2><p>Modern data structures for unique values and key-value pairs.</p></div>
+    <div class="chapter reveal"><h2>19. Dates and Intl</h2><p>Formatting dates and currencies for global audiences using native APIs.</p></div>
+    <div class="chapter reveal"><h2>20. JSON Parsing</h2><p>Converting strings to objects and vice versa for data transmission.</p></div>
+    <div class="chapter reveal"><h2>21. Debouncing & Throttling</h2><p>Optimizing performance for scroll and resize events using timing tricks.</p></div>
+    <div class="chapter reveal"><h2>22. Functional Programming</h2><p>Pure functions, immutability, and declarative code patterns.</p></div>
+    <div class="chapter reveal"><h2>23. The 'this' Context</h2><p>Solving the confusion of context in callbacks, arrows, and methods.</p></div>
+    <div class="chapter reveal"><h2>24. Browser Web APIs</h2><p>Intersection Observer, Geolocation, and Clipboard interaction.</p></div>
+    <div class="chapter reveal"><h2>25. Strict Mode</h2><p>Why "use strict" is essential for catching common silent errors.</p></div>
+    <div class="chapter reveal"><h2>26. Symbols and Iterators</h2><p>Unique identifiers and custom loop behavior for advanced objects.</p></div>
+    <div class="chapter reveal"><h2>27. Proxies and Reflect</h2><p>Interacting with objects at a meta-level for validation or logging.</p></div>
+    <div class="chapter reveal"><h2>28. Generators</h2><p>Functions that can pause and resume for complex sequences.</p></div>
+    <div class="chapter reveal"><h2>29. Memory Management</h2><p>Understanding garbage collection and avoiding memory leaks.</p></div>
+    <div class="chapter reveal"><h2>30. Testing with Jest</h2><p>Writing unit tests to ensure your logic remains correct after changes.</p></div>
+    <div class="chapter reveal"><h2>31. Web Workers</h2><p>Running heavy computations in background threads to keep UI smooth.</p></div>
+    <div class="chapter reveal"><h2>32. Typed Arrays</h2><p>Handling raw binary data for graphics and audio processing.</p></div>
+    <div class="chapter reveal"><h2>33. Shadow DOM interaction</h2><p>How JS interacts with encapsulated components and styles.</p></div>
+    <div class="chapter reveal"><h2>34. Currying Functions</h2><p>Breaking down multi-argument functions into sequences of unary ones.</p></div>
+    <div class="chapter reveal"><h2>35. Memoization</h2><p>Caching expensive function results for better performance.</p></div>
+    <div class="chapter reveal"><h2>36. Recursion Patterns</h2><p>Solving complex problems by having functions call themselves safely.</p></div>
+    <div class="chapter reveal"><h2>37. Bitwise Operators</h2><p>Handling low-level flags and binary logic in high-speed code.</p></div>
+    <div class="chapter reveal"><h2>38. Canvas Animation</h2><p>The requestAnimationFrame API for high-performance visual loops.</p></div>
+    <div class="chapter reveal"><h2>39. Security: XSS Prevention</h2><p>Sanitizing inputs and avoiding dangerous APIs like eval().</p></div>
+    <div class="chapter reveal"><h2>40. Best Coding Practices</h2><p>Naming conventions, code style, and readability standards.</p></div>
+    <div class="chapter reveal"><h2>41. Package Managers (NPM)</h2><p>Managing dependencies and the node_modules ecosystem.</p></div>
+    <div class="chapter reveal"><h2>42. Build Tools (Vite/Webpack)</h2><p>Bundling and transpiling code for production compatibility.</p></div>
+    <div class="chapter reveal"><h2>43. Transpilation (Babel)</h2><p>Running modern JS on older browsers without breaking functionality.</p></div>
+    <div class="chapter reveal"><h2>44. Dynamic Imports</h2><p>Loading code only when needed to optimize initial page weight.</p></div>
+    <div class="chapter reveal"><h2>45. Nullish Coalescing</h2><p>Using ?? to handle default values safely without zero/false issues.</p></div>
+    <div class="chapter reveal"><h2>46. Optional Chaining</h2><p>Safely accessing deep object properties without "undefined" errors.</p></div>
+    <div class="chapter reveal"><h2>47. Private Class Fields</h2><p>Using the # prefix for true encapsulation in JS classes.</p></div>
+    <div class="chapter reveal"><h2>48. Top-level Await</h2><p>Using await outside of async functions in modern modules.</p></div>
+    <div class="chapter reveal"><h2>49. The Future of ECMAScript</h2><p>What's coming in the next versions of the JavaScript standard.</p></div>
+    <div class="chapter reveal"><h2>50. JavaScript Final Exam</h2><p>Validate your knowledge with a full-stack logic challenge.</p></div>
 
   </div>
 

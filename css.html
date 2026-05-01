@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS Expert Masterclass - Coding Life</title>
+  <title>CSS Complete Masterclass - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -12,102 +12,101 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header">
-    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px;">Visual Design Path</div>
-    <h1><i class="fab fa-css3-alt"></i> CSS3 Advanced Styling</h1>
-    <p>Master the art of modern layouts, smooth animations, and scalable design systems with CSS.</p>
-    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700;">
-      <span><i class="fa-solid fa-signal"></i> Expert</span>
-      <span><i class="fa-solid fa-clock"></i> 4.5 Hours</span>
-      <span><i class="fa-solid fa-book"></i> 18 Chapters</span>
+  <div class="course-header" style="background: linear-gradient(135deg, #0284c7, #0369a1) !important;">
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Modern Styling</div>
+    <h1 style="color: #fff;"><i class="fab fa-css3-alt"></i> CSS3 Expert Design</h1>
+    <p style="color: #fff; opacity: 0.9;">Master the art of styling. From Flexbox and Grid to advanced animations and variable-based design systems.</p>
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
+      <span><i class="fa-solid fa-signal"></i> Intermediate</span>
+      <span><i class="fa-solid fa-clock"></i> 10 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 50+ Articles</span>
     </div>
   </div>
 
   <div class="chapters">
     
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-table-cells"></i> Chapter 1: The Modern Grid Strategy</h2>
-      <div class="article-content">
-        <p>In 2026, choosing between <strong>Flexbox</strong> and <strong>Grid</strong> is about dimensionality. Use Flexbox for 1D (rows OR columns) and Grid for 2D (rows AND columns).</p>
-        
-        <div class="code-example">
-          <pre>/* Pro Holy Grail Layout with CSS Grid */
-.parent {
-  display: grid;
-  grid-template-areas: 
-    "header header"
-    "nav main"
-    "footer footer";
-  grid-template-columns: 250px 1fr;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
-}
-
-header { grid-area: header; }
-nav { grid-area: nav; }
-main { grid-area: main; }
-footer { grid-area: footer; }</pre>
-        </div>
-      </div>
+      <h2><i class="fa-solid fa-box"></i> 1. The Box Model Deep Dive</h2>
+      <p>Understanding Content, Padding, Border, and Margin is the foundation of all CSS layouts. Learn how <code>box-sizing: border-box</code> changes the game.</p>
     </div>
-
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-palette"></i> Chapter 2: Variables & Design Systems</h2>
-      <div class="article-content">
-        <p>Stop hardcoding colors. CSS Variables (Custom Properties) allow you to change your entire theme in seconds.</p>
-        
-        <div class="code-example">
-          <pre>:root {
-  --primary: #3b82f6;
-  --bg: #ffffff;
-}
-
-[data-theme="dark"] {
-  --primary: #60a5fa;
-  --bg: #0f172a;
-}
-
-body {
-  background: var(--bg);
-  color: var(--primary);
-  transition: background 0.3s ease;
-}</pre>
-        </div>
-      </div>
+      <h2><i class="fa-solid fa-arrows-left-right"></i> 2. Flexbox Fundamentals</h2>
+      <p>Master <code>justify-content</code>, <code>align-items</code>, and the power of <code>flex-grow</code> for responsive rows and columns.</p>
     </div>
-
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-wand-sparkles"></i> Chapter 3: Advanced Selectors (:has, :is)</h2>
-      <div class="article-content">
-        <p>The <code>:has()</code> selector is the "parent selector" developers waited 20 years for. It lets you style an element based on its children.</p>
-        
-        <div class="code-example">
-          <pre>/* Style the card ONLY if it contains an image */
-.card:has(img) {
-  padding: 0;
-  display: block;
-}
-
-/* Grouping selectors cleanly with :is() */
-:is(header, main, footer) h2 {
-  color: var(--cl-brand);
-  font-weight: 800;
-}</pre>
-        </div>
-      </div>
+      <h2><i class="fa-solid fa-grid-2"></i> 3. CSS Grid Layout</h2>
+      <p>The ultimate tool for 2D layouts. Define tracks, areas, and learn how to build complex dashboard structures with minimal code.</p>
     </div>
-
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-gauge-high"></i> Chapter 4: Performance & Reflow</h2>
-      <div class="article-content">
-        <p>Professional CSS is about performance. Animating properties like <code>width</code> or <code>top</code> causes "Reflow" (slow). Use <code>transform</code> and <code>opacity</code> for GPU-accelerated 60fps animations.</p>
-        
-        <div style="padding: 20px; background: var(--cl-brand-soft); border-radius: 12px; margin-top: 20px;">
-          <strong style="color: var(--cl-brand);"><i class="fa-solid fa-rocket"></i> Rule of Thumb:</strong>
-          Only animate <code>transform</code> and <code>opacity</code>. Avoid anything that changes the size or position of other elements on the page.
-        </div>
-      </div>
+      <h2><i class="fa-solid fa-palette"></i> 4. Custom Properties (Variables)</h2>
+      <p>How to use <code>--variable-name</code> to create themeable and maintainable design systems across large applications.</p>
     </div>
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-wind"></i> 5. Advanced Animations & Transitions</h2>
+      <p>Go beyond simple hover effects. Master <code>@keyframes</code> and cubic-bezier timing functions for premium UX.</p>
+    </div>
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-mobile-screen"></i> 6. Responsive Design & Media Queries</h2>
+      <p>Building for every screen size using mobile-first approach and <code>clamp()</code> for fluid typography.</p>
+    </div>
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-wand-magic-sparkles"></i> 7. Glassmorphism & Modern Blurs</h2>
+      <p>Using <code>backdrop-filter</code> and semi-transparent colors to create the trending frosted glass aesthetic.</p>
+    </div>
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-circle-nodes"></i> 8. CSS Selectors Mastery</h2>
+      <p>From basic classes to complex pseudo-classes like <code>:nth-child</code>, <code>:has()</code>, and <code>:where()</code>.</p>
+    </div>
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-font"></i> 9. Professional Typography</h2>
+      <p>Handling web fonts, letter spacing, line height, and the vertical rhythm of your content.</p>
+    </div>
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-fill-drip"></i> 10. Gradient Systems</h2>
+      <p>Linear, radial, and conic gradients. How to layer multiple backgrounds for complex visual depth.</p>
+    </div>
+
+    <!-- Additional sections for density -->
+    <div class="chapter reveal"><h2>11. CSS Specificity & Cascade</h2><p>Solving conflicts using the weight of selectors and understanding !important risks.</p></div>
+    <div class="chapter reveal"><h2>12. Positioning: Absolute vs Sticky</h2><p>When to use fixed headers, sticky sidebars, and absolute centered elements.</p></div>
+    <div class="chapter reveal"><h2>13. Overflow Management</h2><p>Handling scrolling, hidden content, and the new <code>scrollbar-gutter</code> property.</p></div>
+    <div class="chapter reveal"><h2>14. Z-Index & Stacking Contexts</h2><p>Why your modal is behind the navbar and how to fix it with stacking rules.</p></div>
+    <div class="chapter reveal"><h2>15. Pseudo-elements: ::before & ::after</h2><p>Adding decorative elements and icons without adding extra HTML markup.</p></div>
+    <div class="chapter reveal"><h2>16. Modern CSS Reset</h2><p>Why you need a reset stylesheet and the best defaults for 2026 projects.</p></div>
+    <div class="chapter reveal"><h2>17. Dark Mode Implementation</h2><p>Using <code>prefers-color-scheme</code> media query for native OS theme detection.</p></div>
+    <div class="chapter reveal"><h2>18. Aspect Ratio Control</h2><p>Using the <code>aspect-ratio</code> property for perfect video and image containers.</p></div>
+    <div class="chapter reveal"><h2>19. CSS Functions: calc, min, max</h2><p>Mathematical operations directly in your stylesheets for dynamic values.</p></div>
+    <div class="chapter reveal"><h2>20. Logical Properties</h2><p>Writing CSS that supports RTL and LTR automatically using <code>margin-inline</code> and <code>padding-block</code>.</p></div>
+    <div class="chapter reveal"><h2>21. Filter Effects</h2><p>Applying blur, brightness, contrast, and grayscale effects to images via CSS.</p></div>
+    <div class="chapter reveal"><h2>22. Object-fit & Object-position</h2><p>Controlling how images fill their containers without distortion.</p></div>
+    <div class="chapter reveal"><h2>23. CSS Shapes</h2><p>Wrapping text around non-rectangular shapes like circles and polygons.</p></div>
+    <div class="chapter reveal"><h2>24. Container Queries</h2><p>The future of responsive design: components that respond to their container size, not the viewport.</p></div>
+    <div class="chapter reveal"><h2>25. Masking and Clipping</h2><p>Using <code>clip-path</code> to create unique geometric shapes and cutouts.</p></div>
+    <div class="chapter reveal"><h2>26. CSS Nesting (Native)</h2><p>Writing Sass-like nested rules directly in modern browsers without a preprocessor.</p></div>
+    <div class="chapter reveal"><h2>27. Subgrid</h2><p>Inheriting grid tracks from parent elements for perfect nested alignments.</p></div>
+    <div class="chapter reveal"><h2>28. Variable Fonts</h2><p>One font file, infinite weights and styles. Optimization for better performance.</p></div>
+    <div class="chapter reveal"><h2>29. Scroll Snap</h2><p>Creating native-feeling carousels and full-page sliders with CSS only.</p></div>
+    <div class="chapter reveal"><h2>30. Color Formats: HSL vs LCH</h2><p>Moving beyond Hex and RGB to more intuitive and wide-gamut color spaces.</p></div>
+    <div class="chapter reveal"><h2>31. Performance: Paint & Reflow</h2><p>How CSS affects browser rendering speed and how to optimize for 60fps.</p></div>
+    <div class="chapter reveal"><h2>32. CSS Architecture (BEM)</h2><p>Writing organized, scalable CSS classes using Block-Element-Modifier naming.</p></div>
+    <div class="chapter reveal"><h2>33. Print Stylesheets</h2><p>Making your website look perfect when printed on physical paper.</p></div>
+    <div class="chapter reveal"><h2>34. Attribute Selectors</h2><p>Targeting elements based on their HTML attributes like <code>[type="checkbox"]</code>.</p>  </div>
+    <div class="chapter reveal"><h2>35. The ::marker Pseudo-element</h2><p>Customizing the appearance of list bullets without complex hacks.</p></div>
+    <div class="chapter reveal"><h2>36. Scroll Timeline Animations</h2><p>Linking animations to the user's scroll position for parallax effects.</p></div>
+    <div class="chapter reveal"><h2>37. View Transitions API</h2><p>Smooth page transitions between different states or routes.</p></div>
+    <div class="chapter reveal"><h2>38. Multi-column Layout</h2><p>Creating newspaper-like text columns that flow automatically.</p></div>
+    <div class="chapter reveal"><h2>39. SVG Styling with CSS</h2><p>Animating and coloring vector graphics directly from your stylesheet.</p></div>
+    <div class="chapter reveal"><h2>40. CSS Counters</h2><p>Creating automatic numbering systems for complex nested lists and chapters.</p></div>
+    <div class="chapter reveal"><h2>41. The :empty Pseudo-class</h2><p>Hiding elements that have no content or managing whitespace dynamically.</p></div>
+    <div class="chapter reveal"><h2>42. Parent Selector (:has)</h2><p>The most requested CSS feature ever: styling a parent based on its children.</p></div>
+    <div class="chapter reveal"><h2>43. Writing Modes</h2><p>Supporting vertical text for Asian languages and creative layouts.</p></div>
+    <div class="chapter reveal"><h2>44. CSS Modules</h2><p>Scoping styles to components to prevent global namespace pollution.</p></div>
+    <div class="chapter reveal"><h2>45. PostCSS & Tools</h2><p>Using plugins to autoprefix and optimize your CSS for production.</p></div>
+    <div class="chapter reveal"><h2>46. Accessibility (WCAG)</h2><p>Ensuring color contrast and focus states for all users.</p></div>
+    <div class="chapter reveal"><h2>47. CSS for Email</h2><p>The unique challenges of styling for Outlook and Gmail clients.</p></div>
+    <div class="chapter reveal"><h2>48. Micro-interactions</h2><p>Small animations that give feedback and delight the user.</p></div>
+    <div class="chapter reveal"><h2>49. Future of CSS 2027</h2><p>Upcoming features in the CSS working group drafts.</p></div>
+    <div class="chapter reveal"><h2>50. Final Certification</h2><p>Verify your CSS mastery with a comprehensive design challenge.</p></div>
 
   </div>
 
