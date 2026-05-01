@@ -349,6 +349,54 @@
     });
   }
 
+  function initProgressTracking() {
+    const chapters = document.querySelectorAll(".chapter");
+    if (chapters.length === 0) return;
+
+    const pageId = window.location.pathname.split("/").pop() || "home";
+    let progress = JSON.parse(localStorage.getItem("cl_progress") || "{}");
+
+    chapters.forEach((chapter, index) => {
+      const chapterId = `${pageId}_ch${index}`;
+      const isFinished = progress[chapterId];
+
+      const btn = document.createElement("button");
+      btn.className = `cl-progress-btn ${isFinished ? 'finished' : ''}`;
+      btn.innerHTML = isFinished ? '<i class="fa-solid fa-check"></i> Finished' : 'Mark as Finished';
+      
+      chapter.appendChild(btn);
+
+      btn.addEventListener("click", () => {
+        progress = JSON.parse(localStorage.getItem("cl_progress") || "{}");
+        if (progress[chapterId]) {
+          delete progress[chapterId];
+          btn.classList.remove("finished");
+          btn.innerHTML = "Mark as Finished";
+        } else {
+          progress[chapterId] = true;
+          btn.classList.add("finished");
+          btn.innerHTML = '<i class="fa-solid fa-check"></i> Finished';
+          confetti(); // Add a little spark
+        }
+        localStorage.setItem("cl_progress", JSON.stringify(progress));
+      });
+    });
+
+    function confetti() {
+      const colors = ['#2dd4bf', '#a855f7', '#3b82f6'];
+      for (let i = 0; i < 20; i++) {
+        const div = document.createElement("div");
+        div.style = `position:fixed; left:${Math.random()*100}%; top:-10px; width:10px; height:10px; background:${colors[Math.floor(Math.random()*3)]}; z-index:10000; border-radius:50%;`;
+        document.body.appendChild(div);
+        const anim = div.animate([
+          { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+          { transform: `translateY(${window.innerHeight}px) rotate(720deg)`, opacity: 0 }
+        ], { duration: 1000 + Math.random()*2000, easing: 'ease-out' });
+        anim.onfinish = () => div.remove();
+      }
+    }
+  }
+
   function injectSchema() {
     const currentUrl = window.location.href;
     const pageTitle = document.title;
@@ -415,6 +463,7 @@
     injectSchema();
     polishCodeBlocks();
     initAnimations();
+    initProgressTracking();
 
     const btt = document.createElement("button");
     btt.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';

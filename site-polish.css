@@ -388,9 +388,38 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.8s ease-out;
 }
 
-.reveal.active {
+  .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Progress Tracking Button */
+.cl-progress-btn {
+  margin-top: 24px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--cl-line);
+  background: var(--cl-surface);
+  color: var(--cl-muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--cl-transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.cl-progress-btn:hover {
+  border-color: var(--cl-brand);
+  color: var(--cl-brand);
+  background: var(--cl-brand-soft);
+}
+
+.cl-progress-btn.finished {
+  background: var(--cl-success);
+  color: white;
+  border-color: var(--cl-success);
 }
 
 /* Responsive */
