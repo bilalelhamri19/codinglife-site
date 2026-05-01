@@ -233,13 +233,10 @@
           <a href="blog.html">${tr.blog}</a>
         </div>
         <div class="footer-links">
-          <h4>Stay Updated</h4>
-          <p style="font-size: 0.85rem; margin-bottom: 16px; color: #94a3b8;">Join 5,000+ developers for weekly technical insights and project ideas.</p>
-          <form id="cl-newsletter-form" action="https://formspree.io/elhamribilal65@gmail.com" method="POST" style="display: flex; gap: 8px;">
-            <input type="email" name="email" placeholder="Email Address" required style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; outline: none; width: 100%;">
-            <button type="submit" style="background: var(--cl-brand); color: white; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 700; cursor: pointer;">Join</button>
-          </form>
-          <div id="newsletter-status" style="margin-top: 10px; font-size: 0.85rem; display: none;"></div>
+          <h4>${tr.support}</h4>
+          <a href="contact.html">${tr.contactUs}</a>
+          <a href="about.html">${tr.about}</a>
+          <a href="privacy.html">${tr.privacy}</a>
         </div>
       </div>
       <div style="text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;">
