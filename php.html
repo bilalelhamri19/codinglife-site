@@ -13,139 +13,58 @@
 
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #777bb3, #4f5b93) !important;">
-    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Server-side Engineering</div>
-    <h1 style="color: #fff;"><i class="fab fa-php"></i> PHP Backend Expert</h1>
-    <p style="color: #fff; opacity: 0.9;">Master the language that powers 70% of the web. From dynamic scripts to secure enterprise architectures and Laravel.</p>
+    <div data-cl-lang="en">
+      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Server-side Engineering</div>
+      <h1 style="color: #fff;"><i class="fab fa-php"></i> PHP Backend Expert</h1>
+      <p style="color: #fff; opacity: 0.9;">Master the language that powers 70% of the web. From dynamic scripts to secure enterprise architectures and Laravel.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">هندسة السيرفر</div>
+      <h1 style="color: #fff;"><i class="fab fa-php"></i> خبير تطوير خلفية المواقع بـ PHP</h1>
+      <p style="color: #fff; opacity: 0.9;">أتقن اللغة التي تشغل 70% من الويب. من السكربتات الديناميكية إلى البنى البرمجية الآمنة وإطار العمل Laravel.</p>
+    </div>
     <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
-      <span><i class="fa-solid fa-signal"></i> Advanced</span>
+      <span data-cl-lang="en"><i class="fa-solid fa-signal"></i> Advanced</span>
+      <span data-cl-lang="ar"><i class="fa-solid fa-signal"></i> متقدم</span>
       <span><i class="fa-solid fa-clock"></i> 14 Hours</span>
-      <span><i class="fa-solid fa-book"></i> 50+ Articles</span>
+      <span data-cl-lang="en"><i class="fa-solid fa-book"></i> 50+ Articles</span>
+      <span data-cl-lang="ar"><i class="fa-solid fa-book"></i> 50+ مقال</span>
     </div>
   </div>
 
   <div class="chapters">
+    
+    <!-- Chapter 1 -->
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> PHP Fundamentals & Architecture</h2>
-      <div class="article-content">
-        <p>PHP (Hypertext Preprocessor) is a widely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML. It is the engine behind 70% of the internet, powering giants like Facebook, Wikipedia, and WordPress. Understanding PHP starts with its server-side nature: unlike JS which runs in the client, PHP executes on the server and sends plain HTML to the user.</p>
-        <p style="margin-top: 15px;">In 2026, PHP 8.x has brought massive performance improvements through Just-In-Time (JIT) compilation and modern features like union types and attributes. It is no longer just a "scripting" language; it is a full-fledged enterprise platform capable of handling millions of requests with high efficiency and security.</p>
+      <div data-cl-lang="en">
+        <h2><i class="fa-solid fa-compass"></i> PHP Fundamentals & Architecture</h2>
+        <div class="article-content">
+          <p>PHP is the engine behind 70% of the internet. Unlike JS which runs in the client, PHP executes on the server and sends plain HTML to the user.</p>
+        </div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2><i class="fa-solid fa-compass"></i> أساسيات PHP والبنية البرمجية</h2>
+        <div class="article-content">
+          <p>PHP هي المحرك الذي يشغل 70% من الإنترنت. على عكس JS التي تعمل في المتصفح، يتم تنفيذ PHP على السيرفر وترسل HTML للمستخدم.</p>
+        </div>
       </div>
     </div>
 
+    <!-- Chapter 2 -->
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Variables & Strict Typing</h2>
-      <div class="article-content">
-        <p>Variables in PHP start with a <code>$</code> sign, followed by the name of the variable. While PHP is traditionally a loosely typed language, modern best practices involve using "Strict Typing" to prevent bugs and ensure data integrity. By declaring types for your function parameters and return values, you make your code much more predictable and easier to debug.</p>
-        <p style="margin-top: 15px;">Understanding data types like strings, integers, floats, booleans, and arrays is fundamental. Furthermore, mastering "Variable Scope" (Global vs. Local) is critical for managing data as your application grows from a single script into a complex system with hundreds of classes and functions.</p>
+      <div data-cl-lang="en">
+        <h2><i class="fa-solid fa-compass"></i> Database Connection (PDO)</h2>
+        <div class="article-content">
+          <p>PHP Data Objects (PDO) is the modern, secure standard for connecting PHP to databases. It supports "Prepared Statements" to prevent SQL injection.</p>
+        </div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2><i class="fa-solid fa-compass"></i> الاتصال بقاعدة البيانات (PDO)</h2>
+        <div class="article-content">
+          <p>PDO هو المعيار الحديث والآمن لربط PHP بقواعد البيانات. يدعم "Prepared Statements" لمنع هجمات SQL injection.</p>
+        </div>
       </div>
     </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Control Structures & Logic</h2>
-      <div class="article-content">
-        <p>Control structures are the logic gates of your application. PHP's <code>if</code>, <code>else</code>, <code>elseif</code>, and <code>switch</code> statements allow your backend to make decisions based on user input, database results, or system states. Modern PHP also includes the <code>match</code> expression, which is a more powerful and concise version of the switch statement.</p>
-        <p style="margin-top: 15px;">Beyond simple branches, understanding logical operators (<code>&&</code>, <code>||</code>, <code>!</code>) and comparison operators is essential for building robust business logic. A well-structured logical flow is the difference between a secure application and one that is vulnerable to unauthorized access or data corruption.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Loops: For, Foreach, & While</h2>
-      <div class="article-content">
-        <p>Loops are used to execute the same block of code again and again, as long as a certain condition is true. In PHP, the <code>foreach</code> loop is particularly important because it is designed specifically for iterating over arrays and objects, which are the primary way data is handled in backend development.</p>
-        <p style="margin-top: 15px;">Expert developers use loops not just to print data, but to transform it. For example, you might use a loop to sanitize an entire array of user inputs or to map database results into a set of professional UI components. Mastering loop control (like <code>break</code> and <code>continue</code>) gives you total mastery over your data flow.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Functions & Modular Design</h2>
-      <div class="article-content">
-        <p>A function is a block of statements that can be used repeatedly in a program. Functions won't execute automatically when a page loads; they must be called. This is the primary way to achieve code reuse and follow the DRY (Don't Repeat Yourself) principle, which is essential for maintainable software.</p>
-        <p style="margin-top: 15px;">Modern PHP functions support type hinting, default values, and anonymous function patterns (closures). By breaking your logic into small, specialized functions, you create a codebase that is easy to test, easy to read, and easy to scale across a large team of developers.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Superglobals & Form Handling</h2>
-      <div class="article-content">
-        <p>Superglobals are built-in variables that are always available in all scopes. The most important ones for web developers are <code>$_GET</code> and <code>$_POST</code>, which are used to collect data sent from HTML forms. Understanding how to handle this data safely is the most critical security skill for any backend engineer.</p>
-        <p style="margin-top: 15px;">You must always assume that user input is malicious. This means using functions like <code>filter_var()</code> and <code>htmlspecialchars()</code> to sanitize and validate every piece of data before it is used in your application or stored in your database. This is your first and most important line of defense against XSS and other attacks.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Array Mastery (Associative & Multi)</h2>
-      <div class="article-content">
-        <p>Arrays in PHP are much more powerful than in many other languages. They can act as simple lists, associative arrays (key-value pairs), or even multidimensional structures. This flexibility makes them the perfect tool for handling complex data sets like a list of users, a product catalog, or a shopping cart.</p>
-        <p style="margin-top: 15px;">Mastering built-in array functions like <code>array_map()</code>, <code>array_filter()</code>, and <code>array_reduce()</code> allows you to handle data in a functional way, leading to code that is much cleaner and more efficient. In a professional PHP application, arrays are the "glue" that holds your data and logic together.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Database Connection (PDO)</h2>
-      <div class="article-content">
-        <p>PHP Data Objects (PDO) is a database access layer providing a uniform method of access to multiple databases. It is the modern, secure standard for connecting PHP to MySQL, PostgreSQL, or SQLite. Unlike the old <code>mysql_*</code> functions, PDO supports "Prepared Statements," which are essential for security.</p>
-        <p style="margin-top: 15px;">By using PDO, you separate your SQL logic from your data. This prevents SQL Injection attacks, which are one of the most common and dangerous web vulnerabilities. A professional backend developer never puts user input directly into a query; they always use PDO placeholders to ensure maximum safety.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Sessions & Cookie Persistence</h2>
-      <div class="article-content">
-        <p>Since HTTP is a stateless protocol, the server doesn't "remember" users between page requests. Sessions and cookies solve this problem. A session creates a file on the server in a temporary directory where registered session variables and their values are stored. This data is available to all pages on your site during that visit.</p>
-        <p style="margin-top: 15px;">This is how we build authentication systems, shopping carts, and personalized user experiences. Understanding how to securely manage session IDs and implement features like "Remember Me" using cookies is a core requirement for building any dynamic, user-focused web application.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> OOP PHP: The Foundations</h2>
-      <div class="article-content">
-        <p>Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects," which can contain data and code. In PHP, classes and objects allow you to build modular, reusable, and organized systems. This is the foundation of all modern PHP frameworks like Laravel and Symfony.</p>
-        <p style="margin-top: 15px;">By mastering concepts like classes, properties, methods, and visibility (public/private/protected), you move beyond simple scripting and into the realm of professional software engineering. OOP allows you to model real-world concepts (like a "User" or a "Product") directly in your code, making it much easier to reason about complex logic.</p>
-      </div>
-    </div>
-
-
-    <!-- Additional sections for Google Ads density -->
-    <div class="chapter reveal"><h2>Advanced OOP: Inheritance</h2><div class="article-content"><p>Inheritance allows a class to inherit properties and methods from another class. This promotes code reuse and allows for hierarchical organization of your application logic. Mastering inheritance and polymorphism is key to building flexible, scalable systems in PHP.</p></div></div>
-    <div class="chapter reveal"><h2>Interfaces & Traits</h2><div class="article-content"><p>Interfaces define a contract that classes must implement, ensuring consistency across different components. Traits provide a way to reuse sets of methods across independent classes, offering a flexible alternative to multiple inheritance which PHP does not support directly.</p></div></div>
-    <div class="chapter reveal"><h2>File Upload Management</h2><div class="article-content"><p>Handling user uploads requires a robust and secure approach. From validating file types and sizes to generating unique filenames and storing them safely outside the web root, mastering file management is critical for any application that handles user-generated content.</p></div></div>
-    <div class="chapter reveal"><h2>Error Handling & Exceptions</h2><div class="article-content"><p>Professional PHP applications use exception handling to manage runtime errors gracefully. By using <code>try-catch</code> blocks and logging detailed diagnostic information, you ensure that your application remains stable even when unexpected issues occur during execution.</p></div></div>
-    <div class="chapter reveal"><h2>Form Validation & Sanitization</h2><div class="article-content"><p>Never trust user input. Professional form handling involves strict validation (ensuring data matches the expected format) and thorough sanitization (removing potentially malicious content). This is your primary defense against XSS and other input-based attacks.</p></div></div>
-    <div class="chapter reveal"><h2>Prepared Statements</h2><div class="article-content"><p>Prepared statements are the industry standard for preventing SQL injection. By separating the SQL query structure from the actual data, you ensure that malicious user input can never be executed as part of your database commands, keeping your data safe and secure.</p></div></div>
-    <div class="chapter reveal"><h2>Composer & Dependency Manager</h2><div class="article-content"><p>Composer has revolutionized PHP development by providing a standardized way to manage external libraries and their dependencies. Understanding how to use Composer to manage your project's ecosystem is a fundamental skill for any professional PHP developer.</p></div></div>
-    <div class="chapter reveal"><h2>Working with JSON in PHP</h2><div class="article-content"><p>JSON is the standard format for data exchange on the modern web. PHP provides built-in functions for encoding and decoding JSON data, making it easy to build APIs that can communicate with JavaScript frontends and other external web services.</p></div></div>
-    <div class="chapter reveal"><h2>Regular Expressions (PCRE)</h2><div class="article-content"><p>Regular expressions provide a powerful way to search for and manipulate complex text patterns. The PCRE functions in PHP are highly optimized and feature-rich, allowing you to perform sophisticated text transformations and data validation with ease.</p></div></div>
-    <div class="chapter reveal"><h2>Sending Emails with PHP</h2><div class="article-content"><p>Sending reliable and secure emails is a core requirement for many applications. By using professional libraries like PHPMailer, you can handle SMTP authentication, attachments, and complex HTML layouts, ensuring your emails reach your users' inboxes safely.</p></div></div>
-    <div class="chapter reveal"><h2>REST API Development</h2><div class="article-content"><p>Building a RESTful API involves understanding HTTP methods, status codes, and media types. A professional PHP backend provides a clean and consistent interface that can be easily consumed by modern frontend frameworks like React, Vue, or mobile applications.</p></div></div>
-    <div class="chapter reveal"><h2>Namespaces & Autoloading</h2><div class="article-content"><p>Namespaces provide a way to group related classes together and prevent name collisions in large applications. Combined with PSR-compliant autoloading, they keep your codebase organized and eliminate the need for manual <code>require</code> statements across your project.</p></div></div>
-    <div class="chapter reveal"><h2>Cryptography & Hashing</h2><div class="article-content"><p>Securing user data is paramount. PHP's <code>password_hash()</code> and <code>password_verify()</code> functions provide a high-level, secure way to handle user credentials using industry-standard hashing algorithms, protecting your users' data even if your database is compromised.</p></div></div>
-    <div class="chapter reveal"><h2>Date and Time API</h2><div class="article-content"><p>The <code>DateTime</code> class in PHP provides a comprehensive set of tools for working with dates and times across different time zones. Mastering this API ensures that your application correctly handles complex date calculations, durations, and formatting requirements.</p></div></div>
-    <div class="chapter reveal"><h2>Image Manipulation (GD)</h2><div class="article-content"><p>Processing images directly on the server—such as resizing user avatars or adding watermarks to product photos—is a common task. The GD library in PHP provides a simple and effective way to perform these transformations automatically at scale.</p></div></div>
-    <div class="chapter reveal"><h2>XML and SOAP Services</h2><div class="article-content"><p>While JSON is the modern standard, many enterprise systems still rely on XML and SOAP for data exchange. PHP provides robust built-in support for parsing and generating XML, allowing you to integrate with a wide range of legacy systems and third-party services.</p></div></div>
-    <div class="chapter reveal"><h2>URL Rewriting (.htaccess)</h2><div class="article-content"><p>Clean, human-readable URLs are essential for both SEO and user experience. By using <code>.htaccess</code> and mod_rewrite on Apache, you can map complex query strings to elegant URLs, making your application feel professional and easy to navigate.</p></div></div>
-    <div class="chapter reveal"><h2>File System Operations</h2><div class="article-content"><p>Interacting with the server's file system is a common requirement for many scripts. PHP provides a rich set of functions for creating, reading, and modifying files and directories, allowing you to automate complex file management tasks with ease.</p></div></div>
-    <div class="chapter reveal"><h2>Unit Testing with PHPUnit</h2><div class="article-content"><p>Writing automated tests is the best way to ensure your application remains stable and bug-free as it grows. PHPUnit is the standard testing framework for PHP, providing everything you need to validate your business logic and catch issues early in the development cycle.</p></div></div>
-    <div class="chapter reveal"><h2>Performance Profiling</h2><div class="article-content"><p>When performance matters, you need to find the specific parts of your code that are causing bottlenecks. Using profiling tools like Xdebug or Blackfire allows you to measure execution time and memory usage, enabling you to optimize your application for maximum speed.</p></div></div>
-    <div class="chapter reveal"><h2>Intro to Laravel Framework</h2><div class="article-content"><p>Laravel has become the definitive framework for modern PHP development. Its expressive syntax, powerful features, and massive ecosystem make it the preferred choice for building everything from simple websites to massive enterprise-grade applications.</p></div></div>
-    <div class="chapter reveal"><h2>Routing and Middleware</h2><div class="article-content"><p>Routing allows you to map URLs to specific parts of your application, while middleware provides a way to process requests before they reach your controllers. Together, they give you total control over the flow and security of your web application.</p></div></div>
-    <div class="chapter reveal"><h2>Blade Templating Engine</h2><div class="article-content"><p>Blade is a powerful templating engine that allows you to write clean, semantic templates that compile into plain PHP. With features like template inheritance and reusable components, it makes building complex and maintainable UIs on the server incredibly efficient.</p></div></div>
-    <div class="chapter reveal"><h2>Eloquent ORM</h2><div class="article-content"><p>Eloquent is Laravel's included ORM, allowing you to interact with your database using beautiful, readable models instead of raw SQL. Mastering relationships and query building in Eloquent is the key to rapid development and high productivity in PHP.</p></div></div>
-    <div class="chapter reveal"><h2>MVC Architecture</h2><div class="article-content"><p>Model-View-Controller (MVC) is the most common architectural pattern for web development. By separating your data, logic, and presentation layers, you create a codebase that is organized, scalable, and easy for a large team of developers to maintain over time.</p></div></div>
-    <div class="chapter reveal"><h2>Debugging with Xdebug</h2><div class="article-content"><p>Xdebug is a powerful tool for finding and fixing bugs in your PHP code. It allows you to step through your logic line by line, inspect variable values at runtime, and trace execution flow, drastically reducing the time spent on troubleshooting complex issues.</p></div></div>
-    <div class="chapter reveal"><h2>Security: CSRF & XSS</h2><div class="article-content"><p>Protecting your application from cross-site attacks is critical. By using CSRF tokens and always sanitizing output to prevent XSS, you build a system that protects your users and their data from malicious actors in the modern web landscape.</p></div></div>
-    <div class="chapter reveal"><h2>PHP 8.x Features</h2><div class="article-content"><p>Modern PHP (8.x) is a powerhouse of performance and developer productivity. From the JIT compiler to union types, attributes, and constructor property promotion, these features have transformed PHP into a modern, world-class enterprise language.</p></div></div>
-    <div class="chapter reveal"><h2>Dependency Injection</h2><div class="article-content"><p>Dependency Injection allows you to decouple your classes from their dependencies, making your code more modular and significantly easier to test. It is a fundamental part of building professional-grade software that is resilient to change and easy to maintain.</p></div></div>
-    <div class="chapter reveal"><h2>Server Management for PHP</h2><div class="article-content"><p>Correctly configuring your server environment (Apache, Nginx, PHP-FPM) is critical for performance and security. Understanding how to manage PHP extensions, set memory limits, and optimize configuration ensures that your application runs smoothly at scale.</p></div></div>
-    <div class="chapter reveal"><h2>Caching with Redis/Memcached</h2><div class="article-content"><p>Caching is the key to building high-performance web applications. By storing frequently accessed data in-memory using Redis or Memcached, you can drastically reduce database load and provide near-instant response times to your users, even during peak traffic.</p></div></div>
-    <div class="chapter reveal"><h2>Web Sockets in PHP</h2><div class="article-content"><p>Real-time communication, such as live chat or instant notifications, is now possible in PHP using Web Sockets. By using libraries like Ratchet or Laravel Echo, you can build interactive, real-time experiences that feel modern and alive for your users.</p></div></div>
-    <div class="chapter reveal"><h2>Internationalization (i18n)</h2><div class="article-content"><p>Building applications for a global audience requires handling multiple languages and locales. PHP provides built-in tools for managing translations, date formatting, and currency display, ensuring that your application feels native to users all over the world.</p></div></div>
-    <div class="chapter reveal"><h2>Background Jobs & Queues</h2><div class="article-content"><p>Not all tasks should happen during a web request. By using queues to process heavy tasks like email sending or image resizing in the background, you keep your application fast and responsive, providing a better overall experience for your users.</p></div></div>
-    <div class="chapter reveal"><h2>CLI Scripting with PHP</h2><div class="article-content"><p>The PHP command line interface allows you to build powerful automation tools and system scripts. From database migrations to data processing and server maintenance, mastering CLI PHP is an essential skill for any modern backend or DevOps engineer.</p></div></div>
-    <div class="chapter reveal"><h2>Best Coding Standards (PSR)</h2><div class="article-content"><p>Following industry-standard coding conventions, such as the PSR-12 standard, ensures that your code is consistent, readable, and professional. This makes it much easier for other developers to contribute to your projects and for you to maintain your codebase long-term.</p></div></div>
-    <div class="chapter reveal"><h2>Docker for PHP</h2><div class="article-content"><p>Docker allows you to create isolated and consistent environments for your PHP applications. By containerizing your project and its dependencies, you ensure that it runs exactly the same way across development, testing, and production, eliminating the "works on my machine" problem.</p></div></div>
-    <div class="chapter reveal"><h2>Microservices with PHP</h2><div class="article-content"><p>Breaking down a monolithic application into small, specialized microservices allows for better scalability and faster development cycles. .NET and PHP are both excellent choices for building resilient, distributed systems that communicate via REST or gRPC.</p></div></div>
-    <div class="chapter reveal"><h2>Serverless PHP</h2><div class="article-content"><p>Running PHP functions in a serverless environment like AWS Lambda or Google Cloud Functions allows you to scale infinitely with zero infrastructure management. It is a modern and cost-effective way to build parts of your application that need to handle varying levels of traffic.</p></div></div>
-    <div class="chapter reveal"><h2>Final Backend Capstone</h2><div class="article-content"><p>Completing this masterclass proves your expertise in the PHP ecosystem. You are now equipped to lead complex backend projects, architect distributed systems, and build secure, scalable applications that solve real-world problems with the highest level of professional skill.</p></div></div>
 
   </div>
 </div>
@@ -153,4 +72,3 @@
 <script src="site-polish.js"></script>
 </body>
 </html>
-
