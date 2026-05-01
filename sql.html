@@ -24,16 +24,86 @@
   </div>
 
   <div class="chapters">
-    <div class="chapter reveal"><h2>Introduction to SQL</h2><p>Relational databases and why SQL is the industry standard.</p></div>
-    <div class="chapter reveal"><h2>SELECT & FROM</h2><p>The core of every query. Retrieving data from single tables.</p></div>
-    <div class="chapter reveal"><h2>WHERE Clause & Filtering</h2><p>Using operators like AND, OR, IN, and BETWEEN to narrow results.</p></div>
-    <div class="chapter reveal"><h2>ORDER BY & LIMIT</h2><p>Sorting your data and handling pagination at the database level.</p></div>
-    <div class="chapter reveal"><h2>Aggregate Functions</h2><p>Using COUNT, SUM, AVG, MIN, and MAX for data summaries.</p></div>
-    <div class="chapter reveal"><h2>GROUP BY & HAVING</h2><p>Grouping data into categories and filtering those groups.</p></div>
-    <div class="chapter reveal"><h2>INNER JOIN</h2><p>Combining data from two tables based on a related column.</p></div>
-    <div class="chapter reveal"><h2>LEFT & RIGHT JOINS</h2><p>Handling missing relationships and optional data connections.</p></div>
-    <div class="chapter reveal"><h2>Database Schema (DDL)</h2><p>Creating, Altering, and Dropping tables and databases.</p></div>
-    <div class="chapter reveal"><h2>Data Manipulation (DML)</h2><p>Inserting, Updating, and Deleting records safely.</p></div>
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Introduction to SQL & RDBMS</h2>
+      <div class="article-content">
+        <p>SQL (Structured Query Language) is the standard language for dealing with Relational Databases. A relational database defines data in tables with predefined relationships. These relationships are the backbone of modern enterprise software, from banking systems to e-commerce platforms. SQL allows you to create, retrieve, update, and delete data with mathematical precision.</p>
+        <p style="margin-top: 15px;">Understanding the difference between an RDBMS (like MySQL or PostgreSQL) and NoSQL databases is the first step toward becoming a data expert. SQL provides a structured, ACID-compliant way to handle data, ensuring that your transactions are atomic, consistent, isolated, and durable—the gold standard for data integrity.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> SELECT & FROM: The Data Engine</h2>
+      <div class="article-content">
+        <p>The <code>SELECT</code> statement is used to select data from a database. The data returned is stored in a result table, called the result-set. It is the most commonly used command in SQL and the foundation of all data analysis. By specifying only the columns you need, you reduce memory usage and speed up your applications.</p>
+        <p style="margin-top: 15px;">Professional developers avoid using <code>SELECT *</code> in production code. Instead, they explicitly list every column they need. This not only improves performance by reducing the amount of data transferred over the network but also makes the code more robust against changes in the database schema.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> WHERE Clause & Logical Filtering</h2>
+      <div class="article-content">
+        <p>The <code>WHERE</code> clause is used to filter records. It is used to extract only those records that fulfill a specified condition. This is where the power of SQL truly shines—it allows you to sift through millions of rows to find the exact piece of information you need in milliseconds.</p>
+        <p style="margin-top: 15px;">You can combine multiple conditions using logical operators like <code>AND</code>, <code>OR</code>, and <code>NOT</code>. Furthermore, operators like <code>BETWEEN</code>, <code>LIKE</code>, and <code>IN</code> allow for sophisticated pattern matching and range filtering. Mastering the <code>WHERE</code> clause is essential for building efficient search features and data reports.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> ORDER BY & LIMIT (Pagination)</h2>
+      <div class="article-content">
+        <p>The <code>ORDER BY</code> keyword is used to sort the result-set in ascending or descending order. Sorting is critical for user experience—imagine a product list that isn't sorted by price or a blog that isn't sorted by date. SQL handles this sorting at the engine level, which is much faster than sorting in your application code.</p>
+        <p style="margin-top: 15px;">When dealing with large data sets, the <code>LIMIT</code> (or <code>OFFSET</code>) clause is your best friend. It allows you to implement "Pagination," where you only retrieve a small chunk of data (e.g., 20 items) at a time. This keeps your application fast and prevents your server from being overwhelmed by massive result sets.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Aggregate Functions & Statistics</h2>
+      <div class="article-content">
+        <p>SQL isn't just for retrieving raw data; it's also for analyzing it. Aggregate functions like <code>COUNT()</code>, <code>SUM()</code>, <code>AVG()</code>, <code>MIN()</code>, and <code>MAX()</code> allow you to perform calculations on a set of values and return a single value. This is how businesses generate reports, calculate revenue, and monitor user activity.</p>
+        <p style="margin-top: 15px;">Understanding how these functions handle <code>NULL</code> values is a hallmark of an expert. For example, <code>COUNT(*)</code> counts every row, while <code>COUNT(column_name)</code> only counts non-null values. Mastering these nuances ensures that your statistics and reports are always accurate and trustworthy.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> GROUP BY & HAVING Logic</h2>
+      <div class="article-content">
+        <p>The <code>GROUP BY</code> statement groups rows that have the same values into summary rows, like "find the number of customers in each country." It is often used with aggregate functions to provide high-level insights into your data. It is the primary tool for data categorization and summarization.</p>
+        <p style="margin-top: 15px;">When you need to filter the results of a group, you use the <code>HAVING</code> clause instead of <code>WHERE</code>. This is because <code>WHERE</code> filters individual rows *before* they are grouped, while <code>HAVING</code> filters the groups *after* the aggregation has occurred. This distinction is one of the most important concepts in advanced SQL.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> INNER JOIN: Connecting Tables</h2>
+      <div class="article-content">
+        <p>In a relational database, data is spread across multiple tables to avoid redundancy. The <code>INNER JOIN</code> keyword selects records that have matching values in both tables. It is the core of relational logic, allowing you to link a "User" to their "Orders" or a "Post" to its "Comments."</p>
+        <p style="margin-top: 15px;">Understanding how to use aliases (<code>AS</code>) makes your JOIN queries much more readable. By carefully designing your foreign key relationships, you ensure that your data remains consistent and that your queries are as fast as possible, even when connecting multiple tables simultaneously.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> LEFT & RIGHT JOINS (Outer Joins)</h2>
+      <div class="article-content">
+        <p>Sometimes you want to retrieve records even if there isn't a match in the related table. This is where <code>LEFT JOIN</code> and <code>RIGHT JOIN</code> come in. A <code>LEFT JOIN</code> returns all records from the left table, and the matched records from the right table. If there is no match, the result is <code>NULL</code> on the right side.</p>
+        <p style="margin-top: 15px;">This is incredibly useful for finding "orphaned" records (e.g., users who haven't placed any orders) or for building optional features. Mastering the different types of JOINS allows you to handle real-world data scenarios where relationships might be incomplete or optional.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Database Schema (DDL) Design</h2>
+      <div class="article-content">
+        <p>Data Definition Language (DDL) is used to define the database structure or schema. Statements like <code>CREATE</code>, <code>ALTER</code>, and <code>DROP</code> allow you to manage the blueprint of your data. A well-designed schema is the foundation of a high-performance application.</p>
+        <p style="margin-top: 15px;">Professional developers spend significant time in the design phase, choosing the correct data types (e.g., <code>VARCHAR</code> vs <code>TEXT</code>) and defining constraints. A good schema prevents data corruption at the source, ensuring that your application logic stays clean and focused on building features, not fixing data bugs.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Data Manipulation (DML)</h2>
+      <div class="article-content">
+        <p>Data Manipulation Language (DML) is used for managing data within the schema. <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> are the commands you'll use every day to keep your data current. However, with great power comes great responsibility—a single <code>DELETE</code> without a <code>WHERE</code> clause can wipe out an entire database.</p>
+        <p style="margin-top: 15px;">Always use transactions and backups when performing bulk updates. Furthermore, understanding the impact of these operations on your indexes is crucial for maintaining performance. In a professional environment, data safety is the top priority, and DML operations must be performed with extreme care.</p>
+      </div>
+    </div>
+
 
     <!-- Additional sections for density -->
     <div class="chapter reveal"><h2>Subqueries</h2><p>Using queries inside other queries for complex data retrieval.</p></div>

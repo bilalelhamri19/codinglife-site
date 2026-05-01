@@ -24,16 +24,86 @@
   </div>
 
   <div class="chapters">
-    <div class="chapter reveal"><h2>PHP Fundamentals</h2><p>Syntax, tags, and why PHP is the backbone of the web.</p></div>
-    <div class="chapter reveal"><h2>Variables & Data Types</h2><p>Handling strings, integers, and boolean values in PHP.</p></div>
-    <div class="chapter reveal"><h2>Control Structures</h2><p>If statements, switch cases, and logical operators.</p></div>
-    <div class="chapter reveal"><h2>Loops: For, Foreach, While</h2><p>Mastering iteration, especially over associative arrays.</p></div>
-    <div class="chapter reveal"><h2>Functions & Scoping</h2><p>Writing reusable functions and understanding global vs local variables.</p></div>
-    <div class="chapter reveal"><h2>Superglobals ($_GET, $_POST)</h2><p>How to handle user data sent from HTML forms.</p></div>
-    <div class="chapter reveal"><h2>Array Mastery</h2><p>Working with multidimensional and associative arrays effectively.</p></div>
-    <div class="chapter reveal"><h2>Database Connection (PDO)</h2><p>The secure way to connect PHP to MySQL databases.</p></div>
-    <div class="chapter reveal"><h2>Sessions & Cookies</h2><p>Managing user authentication and persistence across pages.</p></div>
-    <div class="chapter reveal"><h2>OOP PHP: The Basics</h2><p>Introduction to Classes, Objects, and Methods.</p></div>
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> PHP Fundamentals & Architecture</h2>
+      <div class="article-content">
+        <p>PHP (Hypertext Preprocessor) is a widely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML. It is the engine behind 70% of the internet, powering giants like Facebook, Wikipedia, and WordPress. Understanding PHP starts with its server-side nature: unlike JS which runs in the client, PHP executes on the server and sends plain HTML to the user.</p>
+        <p style="margin-top: 15px;">In 2026, PHP 8.x has brought massive performance improvements through Just-In-Time (JIT) compilation and modern features like union types and attributes. It is no longer just a "scripting" language; it is a full-fledged enterprise platform capable of handling millions of requests with high efficiency and security.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Variables & Strict Typing</h2>
+      <div class="article-content">
+        <p>Variables in PHP start with a <code>$</code> sign, followed by the name of the variable. While PHP is traditionally a loosely typed language, modern best practices involve using "Strict Typing" to prevent bugs and ensure data integrity. By declaring types for your function parameters and return values, you make your code much more predictable and easier to debug.</p>
+        <p style="margin-top: 15px;">Understanding data types like strings, integers, floats, booleans, and arrays is fundamental. Furthermore, mastering "Variable Scope" (Global vs. Local) is critical for managing data as your application grows from a single script into a complex system with hundreds of classes and functions.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Control Structures & Logic</h2>
+      <div class="article-content">
+        <p>Control structures are the logic gates of your application. PHP's <code>if</code>, <code>else</code>, <code>elseif</code>, and <code>switch</code> statements allow your backend to make decisions based on user input, database results, or system states. Modern PHP also includes the <code>match</code> expression, which is a more powerful and concise version of the switch statement.</p>
+        <p style="margin-top: 15px;">Beyond simple branches, understanding logical operators (<code>&&</code>, <code>||</code>, <code>!</code>) and comparison operators is essential for building robust business logic. A well-structured logical flow is the difference between a secure application and one that is vulnerable to unauthorized access or data corruption.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Loops: For, Foreach, & While</h2>
+      <div class="article-content">
+        <p>Loops are used to execute the same block of code again and again, as long as a certain condition is true. In PHP, the <code>foreach</code> loop is particularly important because it is designed specifically for iterating over arrays and objects, which are the primary way data is handled in backend development.</p>
+        <p style="margin-top: 15px;">Expert developers use loops not just to print data, but to transform it. For example, you might use a loop to sanitize an entire array of user inputs or to map database results into a set of professional UI components. Mastering loop control (like <code>break</code> and <code>continue</code>) gives you total mastery over your data flow.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Functions & Modular Design</h2>
+      <div class="article-content">
+        <p>A function is a block of statements that can be used repeatedly in a program. Functions won't execute automatically when a page loads; they must be called. This is the primary way to achieve code reuse and follow the DRY (Don't Repeat Yourself) principle, which is essential for maintainable software.</p>
+        <p style="margin-top: 15px;">Modern PHP functions support type hinting, default values, and anonymous function patterns (closures). By breaking your logic into small, specialized functions, you create a codebase that is easy to test, easy to read, and easy to scale across a large team of developers.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Superglobals & Form Handling</h2>
+      <div class="article-content">
+        <p>Superglobals are built-in variables that are always available in all scopes. The most important ones for web developers are <code>$_GET</code> and <code>$_POST</code>, which are used to collect data sent from HTML forms. Understanding how to handle this data safely is the most critical security skill for any backend engineer.</p>
+        <p style="margin-top: 15px;">You must always assume that user input is malicious. This means using functions like <code>filter_var()</code> and <code>htmlspecialchars()</code> to sanitize and validate every piece of data before it is used in your application or stored in your database. This is your first and most important line of defense against XSS and other attacks.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Array Mastery (Associative & Multi)</h2>
+      <div class="article-content">
+        <p>Arrays in PHP are much more powerful than in many other languages. They can act as simple lists, associative arrays (key-value pairs), or even multidimensional structures. This flexibility makes them the perfect tool for handling complex data sets like a list of users, a product catalog, or a shopping cart.</p>
+        <p style="margin-top: 15px;">Mastering built-in array functions like <code>array_map()</code>, <code>array_filter()</code>, and <code>array_reduce()</code> allows you to handle data in a functional way, leading to code that is much cleaner and more efficient. In a professional PHP application, arrays are the "glue" that holds your data and logic together.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Database Connection (PDO)</h2>
+      <div class="article-content">
+        <p>PHP Data Objects (PDO) is a database access layer providing a uniform method of access to multiple databases. It is the modern, secure standard for connecting PHP to MySQL, PostgreSQL, or SQLite. Unlike the old <code>mysql_*</code> functions, PDO supports "Prepared Statements," which are essential for security.</p>
+        <p style="margin-top: 15px;">By using PDO, you separate your SQL logic from your data. This prevents SQL Injection attacks, which are one of the most common and dangerous web vulnerabilities. A professional backend developer never puts user input directly into a query; they always use PDO placeholders to ensure maximum safety.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Sessions & Cookie Persistence</h2>
+      <div class="article-content">
+        <p>Since HTTP is a stateless protocol, the server doesn't "remember" users between page requests. Sessions and cookies solve this problem. A session creates a file on the server in a temporary directory where registered session variables and their values are stored. This data is available to all pages on your site during that visit.</p>
+        <p style="margin-top: 15px;">This is how we build authentication systems, shopping carts, and personalized user experiences. Understanding how to securely manage session IDs and implement features like "Remember Me" using cookies is a core requirement for building any dynamic, user-focused web application.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> OOP PHP: The Foundations</h2>
+      <div class="article-content">
+        <p>Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects," which can contain data and code. In PHP, classes and objects allow you to build modular, reusable, and organized systems. This is the foundation of all modern PHP frameworks like Laravel and Symfony.</p>
+        <p style="margin-top: 15px;">By mastering concepts like classes, properties, methods, and visibility (public/private/protected), you move beyond simple scripting and into the realm of professional software engineering. OOP allows you to model real-world concepts (like a "User" or a "Product") directly in your code, making it much easier to reason about complex logic.</p>
+      </div>
+    </div>
+
 
     <!-- Additional sections for Google Ads density -->
     <div class="chapter reveal"><h2>Advanced OOP: Inheritance</h2><p>Reusing code through class hierarchies and polymorphism.</p></div>

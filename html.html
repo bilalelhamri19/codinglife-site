@@ -123,7 +123,8 @@
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> The Evolution of HTML</h2>
       <div class="article-content">
-        <p>HTML has come a long way since 1991. From HTML 2.0 to the "Living Standard" of HTML5, each version added critical capabilities like multimedia and better structure.</p>
+        <p>HTML has come a long way since 1991. From HTML 2.0 to the "Living Standard" of HTML5, each version added critical capabilities like multimedia and better structure. The transition from HTML4 to HTML5 was particularly revolutionary because it moved the web away from proprietary plugins like Flash toward a native, open-standard multimedia experience.</p>
+        <p style="margin-top: 15px;">In the early days, HTML was purely a document formatting language. Today, it is a robust application platform. Features like the <code>&lt;canvas&gt;</code> element, native video support, and local storage have turned browsers into powerful execution environments that rival desktop applications.</p>
       </div>
     </div>
 
@@ -131,7 +132,8 @@
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> ARIA Roles and Accessibility</h2>
       <div class="article-content">
-        <p>ARIA (Accessible Rich Internet Applications) helps users with disabilities. Use <code>role="alert"</code> for important messages and <code>aria-label</code> for icon buttons.</p>
+        <p>ARIA (Accessible Rich Internet Applications) helps users with disabilities. Use <code>role="alert"</code> for important messages and <code>aria-label</code> for icon buttons. Accessibility is a fundamental human right in the digital age, and as developers, it is our responsibility to ensure that our applications are usable by everyone, including those using screen readers or keyboard-only navigation.</p>
+        <p style="margin-top: 15px;">A truly professional application doesn't just look good; it works for everyone. This involves using high contrast colors, logical heading structures, and proper focus management. When you prioritize accessibility, you're not just helping users with disabilities—you're improving the overall user experience for everyone, including those on mobile devices or slow network connections.</p>
       </div>
     </div>
 
@@ -139,7 +141,8 @@
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> Tabular Data vs Layout</h2>
       <div class="article-content">
-        <p>Never use tables for layout. Use them only for data. Use <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, and <code>&lt;tfoot&gt;</code> for complex data sets.</p>
+        <p>Never use tables for layout. Use them only for data. Modern CSS (Flexbox and Grid) is the correct tool for page structure. Tables should be reserved specifically for presenting multidimensional data sets where the relationship between rows and columns is critical for understanding the information.</p>
+        <p style="margin-top: 15px;">When building tables, always use <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, and <code>&lt;tfoot&gt;</code>. This structure allows browsers to repeat the header on every page when printing and helps screen readers navigate the data more efficiently. Remember, a table is not just a visual grid; it is a complex data structure that must be machine-readable.</p>
       </div>
     </div>
 
@@ -147,9 +150,20 @@
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> Video and Audio Integration</h2>
       <div class="article-content">
-        <p>HTML5 provides native <code>&lt;video&gt;</code> and <code>&lt;audio&gt;</code> tags. Support multiple formats like MP4 and WebM for maximum compatibility.</p>
+        <p>HTML5 provides native <code>&lt;video&gt;</code> and <code>&lt;audio&gt;</code> tags. Support multiple formats like MP4 and WebM for maximum compatibility across all major browsers. Native media is significantly more performant than legacy plugins and allows for much better integration with CSS and JavaScript.</p>
+        <p style="margin-top: 15px;">You can easily build custom controls, handle playback events, and even synchronize visuals with your audio tracks using the HTML5 Media API. Always remember to provide text transcripts or captions for your media to ensure that all users can access your content, regardless of their hearing ability or environment.</p>
       </div>
     </div>
+
+    <!-- Chapter 10: Performance -->
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Web Performance & Resource Hinting</h2>
+      <div class="article-content">
+        <p>Performance is a feature. Resource hints like <code>preload</code>, <code>prefetch</code>, and <code>dns-prefetch</code> tell the browser which assets are coming next so it can start downloading them early. This can significantly reduce the "Time to Interactive" and make your site feel lightning fast.</p>
+        <p style="margin-top: 15px;">Furthermore, understanding the Critical Rendering Path—the steps the browser takes to turn HTML, CSS, and JS into pixels on the screen—allows you to optimize your document for the fastest possible load times. Minimizing the number of render-blocking resources is the secret to a high-performance web application.</p>
+      </div>
+    </div>
+
 
     <!-- Chapter 10: Canvas -->
     <div class="chapter reveal">
