@@ -13,139 +13,58 @@
 
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #f89820, #5382a1) !important;">
-    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Enterprise Engineering</div>
-    <h1 style="color: #fff;"><i class="fab fa-java"></i> Java Professional Masterclass</h1>
-    <p style="color: #fff; opacity: 0.9;">Master the powerhouse of enterprise software. From JVM internals and OOP to Spring Boot and cloud-native microservices.</p>
+    <div data-cl-lang="en">
+      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Enterprise Engineering</div>
+      <h1 style="color: #fff;"><i class="fab fa-java"></i> Java Professional Masterclass</h1>
+      <p style="color: #fff; opacity: 0.9;">Master the powerhouse of enterprise software. From JVM internals and OOP to Spring Boot and cloud-native microservices.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">هندسة المؤسسات</div>
+      <h1 style="color: #fff;"><i class="fab fa-java"></i> احتراف جافا (Java Masterclass)</h1>
+      <p style="color: #fff; opacity: 0.9;">أتقن لغة البرمجيات العملاقة للمؤسسات. من خفايا الـ JVM والبرمجة الكائنية إلى Spring Boot والخدمات المصغرة السحابية.</p>
+    </div>
     <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
-      <span><i class="fa-solid fa-signal"></i> Advanced</span>
+      <span data-cl-lang="en"><i class="fa-solid fa-signal"></i> Advanced</span>
+      <span data-cl-lang="ar"><i class="fa-solid fa-signal"></i> متقدم</span>
       <span><i class="fa-solid fa-clock"></i> 16 Hours</span>
-      <span><i class="fa-solid fa-book"></i> 50+ Articles</span>
+      <span data-cl-lang="en"><i class="fa-solid fa-book"></i> 50+ Articles</span>
+      <span data-cl-lang="ar"><i class="fa-solid fa-book"></i> 50+ مقال</span>
     </div>
   </div>
 
   <div class="chapters">
+    
+    <!-- Chapter 1 -->
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-microchip"></i> Understanding the JVM internals</h2>
-      <div class="article-content">
-        <p>The Java Virtual Machine (JVM) is the engine that drives the "Write Once, Run Anywhere" philosophy. Unlike languages that compile directly to machine code, Java compiles to bytecode, which the JVM then translates for the specific operating system. This abstraction layer is what provides Java's legendary portability and security.</p>
-        <p style="margin-top: 15px;">To be an expert Java developer, you must understand memory management (Stack vs. Heap) and how the Garbage Collector (GC) automatically reclaims memory. Mastering the JVM's execution model allows you to write high-performance code that scales to handle millions of transactions in an enterprise environment.</p>
+      <div data-cl-lang="en">
+        <h2>Understanding the JVM internals</h2>
+        <div class="article-content">
+          <p>The Java Virtual Machine (JVM) is the engine that drives the "Write Once, Run Anywhere" philosophy. It compiles Java to bytecode for portability.</p>
+        </div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2>فهم خفايا الـ JVM</h2>
+        <div class="article-content">
+          <p>آلة جافا الافتراضية (JVM) هي المحرك الذي يدعم فلسفة "اكتب مرة واحدة، وشغل في أي مكان". تقوم جافا بالترجمة إلى bytecode لضمان قابلية النقل.</p>
+        </div>
       </div>
     </div>
 
+    <!-- Chapter 2 -->
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-cube"></i> Object-Oriented Mastery</h2>
-      <div class="article-content">
-        <p>Java is one of the purest implementations of Object-Oriented Programming (OOP). Everything in Java (except primitives) is an object. This paradigm allows you to model complex real-world systems by organizing code into classes that encapsulate both data (fields) and behavior (methods).</p>
-        <p style="margin-top: 15px;">Mastering the four pillars of OOP—Encapsulation, Inheritance, Polymorphism, and Abstraction—is essential for building maintainable software. Polymorphism, in particular, allows for flexible code that can work with different types of objects through a single interface, which is the key to building scalable frameworks.</p>
+      <div data-cl-lang="en">
+        <h2>Object-Oriented Mastery</h2>
+        <div class="article-content">
+          <p>Java is a pure implementation of OOP. Master the four pillars: Encapsulation, Inheritance, Polymorphism, and Abstraction.</p>
+        </div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2>إتقان البرمجة الكائنية (OOP)</h2>
+        <div class="article-content">
+          <p>جافا هي واحدة من أنقى تطبيقات البرمجة كائنية التوجه. أتقن الركائز الأربع: التغليف، الوراثة، تعدد الأشكال، والتجريد.</p>
+        </div>
       </div>
     </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-layer-group"></i> Interface & Abstract Classes</h2>
-      <div class="article-content">
-        <p>Interfaces and abstract classes are the blueprints for your system. They define "contracts" that other classes must follow, ensuring consistency and enabling loose coupling. In modern Java, interfaces have become even more powerful with the addition of default and static methods.</p>
-        <p style="margin-top: 15px;">Using interfaces allows you to practice "Program to an Interface, not an Implementation," a core principle of professional software design. This makes your code easier to test (using mocks) and allows you to swap out different implementations (like changing a database provider) without rewriting your entire business logic.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-list-check"></i> Java Collections Framework</h2>
-      <div class="article-content">
-        <p>The Collections Framework provides a unified architecture for representing and manipulating collections of data. Whether you need a simple <code>ArrayList</code>, a unique <code>HashSet</code>, or a high-performance <code>HashMap</code>, the collections API has a professional-grade solution for every scenario.</p>
-        <p style="margin-top: 15px;">Understanding the Big-O performance of different collections is what separates a junior from a senior developer. For example, knowing when to use a <code>LinkedList</code> over an <code>ArrayList</code> can have a massive impact on your application's speed when dealing with millions of records.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-bug"></i> Exception Handling Patterns</h2>
-      <div class="article-content">
-        <p>Java's robust exception handling system ensures that errors don't lead to catastrophic system failures. By using <code>try-catch-finally</code> blocks and the modern "try-with-resources" pattern, you can manage resources like file handles and database connections safely and efficiently.</p>
-        <p style="margin-top: 15px;">Professional developers distinguish between Checked and Unchecked exceptions to provide meaningful feedback to users and other developers. Building a custom exception hierarchy for your application allows you to handle specific failure states gracefully and maintain a high level of system reliability.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-stream"></i> Java Streams & Lambda</h2>
-      <div class="article-content">
-        <p>Introduced in Java 8, Streams and Lambda expressions brought functional programming to the Java ecosystem. They allow you to process data in a declarative way, similar to SQL queries, making your code significantly more concise and readable.</p>
-        <p style="margin-top: 15px;">Streams support powerful operations like <code>filter</code>, <code>map</code>, <code>reduce</code>, and <code>collect</code>, which can be executed in parallel with minimal effort. This is the modern standard for data processing in Java, allowing you to write complex logic in a single, elegant pipeline of operations.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-database"></i> JDBC & Data Access</h2>
-      <div class="article-content">
-        <p>JDBC (Java Database Connectivity) is the standard API for connecting Java applications to relational databases. It provides a common interface for executing SQL statements and retrieving results, regardless of whether you're using MySQL, Oracle, or PostgreSQL.</p>
-        <p style="margin-top: 15px;">While modern developers often use ORMs like Hibernate, understanding the underlying JDBC API is crucial for performance tuning and handling complex edge cases. Mastering <code>PreparedStatement</code> is particularly important for preventing SQL Injection and ensuring data safety.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-gears"></i> Multithreading & Concurrency</h2>
-      <div class="article-content">
-        <p>Java was built for concurrency from the ground up. Multithreading allows your application to perform multiple tasks simultaneously, which is essential for building responsive UIs and high-throughput server applications that can handle thousands of concurrent users.</p>
-        <p style="margin-top: 15px;">Beyond simple threads, the <code>java.util.concurrent</code> package provides advanced tools like Executors, Futures, and Atomic variables. In Java 21, the introduction of "Virtual Threads" (Project Loom) has revolutionized concurrency again, allowing for millions of threads with minimal overhead.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-shield-halved"></i> Spring Framework Core</h2>
-      <div class="article-content">
-        <p>Spring is the de facto standard for building enterprise Java applications. At its core is the "Inversion of Control" (IoC) container, which manages the lifecycle and dependencies of your application's components (Beans) through Dependency Injection.</p>
-        <p style="margin-top: 15px;">Spring's modular architecture allows you to use only the parts you need, whether it's for transaction management, security, or web development. Understanding the Spring lifecycle and how the container manages your objects is the first step toward becoming a professional enterprise engineer.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-rocket"></i> Spring Boot 3 Architecture</h2>
-      <div class="article-content">
-        <p>Spring Boot took the power of the Spring Framework and made it easy to use through "Convention over Configuration." It provides auto-configuration, embedded servers, and "Starters" that allow you to go from zero to a production-ready microservice in minutes.</p>
-        <p style="margin-top: 15px;">In the modern era of cloud-native development, Spring Boot 3 is the industry leader for building distributed systems. It integrates perfectly with Docker and Kubernetes, making it the preferred choice for companies building scalable, resilient backends in the cloud.</p>
-      </div>
-    </div>
-
-
-    <!-- 40 more sections -->
-    <div class="chapter reveal"><h2>Generic Programming in Java</h2><div class="article-content"><p>Generics allow you to write classes and methods that work with any type while maintaining compile-time type safety. This eliminates the need for explicit casting and prevents <code>ClassCastException</code>. Understanding bounded types and wildcards is essential for building flexible and robust Java libraries.</p></div></div>
-    <div class="chapter reveal"><h2>File I/O and NIO2</h2><div class="article-content"><p>The Java NIO2 API provides a modern and high-performance way to handle file system operations. With non-blocking I/O and asynchronous file channels, you can process massive amounts of data without locking your application's threads, which is critical for high-throughput server systems.</p></div></div>
-    <div class="chapter reveal"><h2>Serialization & Marshalling</h2><div class="article-content"><p>Serialization allows you to convert a Java object into a byte stream for storage or transmission over a network. While native Java serialization is powerful, professional developers often use JSON or Protobuf for cross-language compatibility and better performance in distributed systems.</p></div></div>
-    <div class="chapter reveal"><h2>Java Annotations Customization</h2><div class="article-content"><p>Annotations provide metadata about your code that can be processed at runtime or compile-time. By creating custom annotations and using them with Reflection or Annotation Processors, you can build powerful frameworks that automate repetitive tasks like logging, validation, and mapping.</p></div></div>
-    <div class="chapter reveal"><h2>Reflection API Deep Dive</h2><div class="article-content"><p>Reflection allows you to inspect and modify the behavior of classes, methods, and fields at runtime. This "meta-programming" capability is the foundation of many Java frameworks like Spring and Hibernate, allowing them to magically discover and manage your application's components.</p></div></div>
-    <div class="chapter reveal"><h2>Design Patterns: Singleton & Factory</h2><div class="article-content"><p>Design patterns are proven solutions to common software design problems. The Singleton pattern ensures a class has only one instance, while the Factory pattern provides a way to create objects without specifying the exact class. These are the building blocks of clean, modular Java code.</p></div></div>
-    <div class="chapter reveal"><h2>Structural Patterns: Adapter & Proxy</h2><div class="article-content"><p>Structural patterns focus on how classes and objects are composed to form larger structures. The Adapter pattern allows incompatible interfaces to work together, while the Proxy pattern provides a placeholder to control access to another object, adding features like lazy loading or security.</p></div></div>
-    <div class="chapter reveal"><h2>Behavioral Patterns: Observer & Strategy</h2><div class="article-content"><p>Behavioral patterns manage algorithms and the assignment of responsibilities between objects. The Observer pattern is perfect for building reactive systems, while the Strategy pattern allows you to switch between different algorithms at runtime based on the application's state.</p></div></div>
-    <div class="chapter reveal"><h2>Hibernate & JPA Integration</h2><div class="article-content"><p>Hibernate is the world's most popular Java ORM, implementing the Jakarta Persistence (JPA) specification. It allows you to map your Java objects directly to database tables, handling all the complex SQL generation and transaction management automatically, saving you thousands of lines of boilerplate code.</p></div></div>
-    <div class="chapter reveal"><h2>Spring Data Repository Pattern</h2><div class="article-content"><p>Spring Data JPA makes database access incredibly simple by allowing you to define repository interfaces. You don't even need to write the implementation—Spring generates it for you based on your method names. This allows you to focus purely on your business logic, not database plumbing.</p></div></div>
-    <div class="chapter reveal"><h2>RESTful Web Services (JAX-RS)</h2><div class="article-content"><p>Building RESTful APIs is a core skill for every Java developer. Using JAX-RS (or Spring Web), you can create scalable, stateless services that communicate with frontend applications via JSON. Understanding HTTP methods, status codes, and media types is essential for building professional APIs.</p></div></div>
-    <div class="chapter reveal"><h2>Spring Security & OAuth2</h2><div class="article-content"><p>Spring Security is the gold standard for protecting Java applications. It provides comprehensive support for authentication, authorization, and protection against common attacks like CSRF. Integrating with OAuth2 and OpenID Connect allows you to build secure, identity-aware systems for the modern web.</p></div></div>
-    <div class="chapter reveal"><h2>Microservices Communication (Feign)</h2><div class="article-content"><p>In a microservices architecture, services need to talk to each other reliably. OpenFeign provides a declarative web service client that makes writing HTTP clients as easy as defining an interface. This simplifies service-to-service communication and improves the maintainability of your distributed system.</p></div></div>
-    <div class="chapter reveal"><h2>API Gateway & Load Balancing</h2><div class="article-content"><p>An API Gateway acts as the single entry point for all client requests, routing them to the appropriate microservices. Combined with client-side load balancing, it ensures that your system remains resilient and can handle massive traffic by distributing load across multiple service instances.</p></div></div>
-    <div class="chapter reveal"><h2>Unit Testing with JUnit 5</h2><div class="article-content"><p>JUnit 5 is the modern testing framework for Java. Writing automated unit tests is the only way to ensure that your code remains correct as it evolves. Professional developers use JUnit to validate every part of their system, from simple logic to complex business rules.</p></div></div>
-    <div class="chapter reveal"><h2>Mocking with Mockito</h2><div class="article-content"><p>Mockito allows you to create "mock" objects to isolate the code you are testing. This ensures that your unit tests are fast and don't depend on external systems like databases or web services. It is an essential tool for practicing high-quality, test-driven development (TDD) in Java.</p></div></div>
-    <div class="chapter reveal"><h2>Maven vs Gradle Build Tools</h2><div class="article-content"><p>Maven and Gradle are the industry standard for managing Java projects. They handle dependency management, build lifecycles, and testing automatically. While Maven uses XML and convention, Gradle uses a flexible Groovy or Kotlin DSL, giving you total control over your build process.</p></div></div>
-    <div class="chapter reveal"><h2>Logging with SLF4J and Logback</h2><div class="article-content"><p>Professional logging is critical for debugging and monitoring production systems. SLF4J provides a common abstraction for various logging frameworks, while Logback is a high-performance implementation. Proper logging levels and structured data allow you to find and fix issues in seconds.</p></div></div>
-    <div class="chapter reveal"><h2>Performance Tuning & JProfiler</h2><div class="article-content"><p>Even the best Java code can have bottlenecks. Profiling tools like JProfiler allow you to see exactly where your application is spending its time and memory. Understanding GC behavior, thread contention, and memory leaks is essential for building ultra-high-performance Java systems.</p></div></div>
-    <div class="chapter reveal"><h2>Dockerizing Java Applications</h2><div class="article-content"><p>Docker allows you to package your Java application into a lightweight, portable container. This ensures that your app runs exactly the same way in every environment. Using multi-stage builds, you can create tiny, secure production images that only contain the necessary runtime files.</p></div></div>
-    <div class="chapter reveal"><h2>Kubernetes for Java Developers</h2><div class="article-content"><p>Kubernetes is the standard for managing containerized applications at scale. For Java developers, understanding Pods, Services, and Deployments allows you to build cloud-native systems that are self-healing, auto-scaling, and easy to manage in a production environment.</p></div></div>
-    <div class="chapter reveal"><h2>Java Modules (Project Jigsaw)</h2><div class="article-content"><p>Java 9 introduced the Module System, which allows you to explicitly define which parts of your code are public and which are internal. This improves security, prevents the use of internal APIs, and allows for much faster startup times and smaller application footprints.</p></div></div>
-    <div class="chapter reveal"><h2>Reactive Programming (Loom)</h2><div class="article-content"><p>Project Loom is the future of Java concurrency. By introducing "Virtual Threads," Java now allows for millions of threads with almost zero overhead. This eliminates the need for complex reactive programming libraries and allows you to write simple, synchronous code that scales infinitely.</p></div></div>
-    <div class="chapter reveal"><h2>Garbage Collection Tuning</h2><div class="article-content"><p>The JVM provides several GC algorithms (like G1, ZGC, and Shenandoah) optimized for different needs. Understanding how to tune your GC parameters is critical for minimizing "Stop the World" pauses and ensuring your application meets its latency and throughput requirements.</p></div></div>
-    <div class="chapter reveal"><h2>Network Programming (Sockets)</h2><div class="article-content"><p>At the heart of every web application is network programming. By learning how to work with TCP and UDP sockets directly, you gain a deep understanding of how the internet works, allowing you to build custom protocols and high-performance network services from scratch.</p></div></div>
-    <div class="chapter reveal"><h2>Java Desktop Apps (JavaFX)</h2><div class="article-content"><p>JavaFX is the modern toolkit for building high-DPI, cross-platform desktop applications. With its FXML-based UI definition and CSS-like styling, you can build immersive graphical interfaces that look and feel native on Windows, macOS, and Linux.</p></div></div>
-    <div class="chapter reveal"><h2>Security: Cryptography API</h2><div class="article-content"><p>The Java Cryptography Architecture (JCA) provides a comprehensive set of tools for securing your data. From AES encryption to digital signatures and secure random number generation, Java gives you everything you need to build systems that meet the highest security standards.</p></div></div>
-    <div class="chapter reveal"><h2>XML vs JSON Handling</h2><div class="article-content"><p>Handling data formats is a daily task for Java developers. Whether you are parsing legacy XML with DOM/SAX or working with modern JSON using Jackson, mastering these APIs ensures that your application can communicate with any system in the world.</p></div></div>
-    <div class="chapter reveal"><h2>Aspect Oriented Programming</h2><div class="article-content"><p>AOP allows you to separate "cross-cutting concerns" like logging, security, and transactions from your business logic. By using "Aspects," you can add functionality to multiple parts of your system without cluttering your core code with repetitive boilerplate.</p></div></div>
-    <div class="chapter reveal"><h2>Enterprise Integration Patterns</h2><div class="article-content"><p>Connecting complex heterogeneous systems is a major challenge. Enterprise Integration Patterns (EIP) provide a common language and set of solutions for routing, transforming, and managing messages between different parts of a large-scale enterprise architecture.</p></div></div>
-    <div class="chapter reveal"><h2>Distributed Caching (Hazelcast)</h2><div class="article-content"><p>In a distributed system, a local cache is often not enough. Hazelcast provides an in-memory data grid that allows you to share cached data across multiple Java nodes. This provides extreme performance and high availability for your most frequently accessed data.</p></div></div>
-    <div class="chapter reveal"><h2>Messaging (RabbitMQ/Kafka)</h2><div class="article-content"><p>Asynchronous messaging is the key to decoupling microservices. By using message brokers like RabbitMQ or Kafka, you can build event-driven systems that are highly scalable and resilient to failures, allowing your services to communicate without being directly connected.</p></div></div>
-    <div class="chapter reveal"><h2>Database Migrations (Flyway)</h2><div class="article-content"><p>Flyway allows you to version control your database schema alongside your code. By using SQL-based migrations, you ensure that every developer on your team and every production environment is running the exact same version of the database, eliminating "schema mismatch" errors.</p></div></div>
-    <div class="chapter reveal"><h2>Cloud Native Java Basics</h2><div class="article-content"><p>Cloud-native development involves building apps specifically for the cloud. This includes optimizing for fast startup, low memory usage, and resilience. Understanding 12-factor app principles and how to leverage cloud services is essential for modern Java engineering.</p></div></div>
-    <div class="chapter reveal"><h2>Native Compilation (GraalVM)</h2><div class="article-content"><p>GraalVM allows you to compile your Java code into a standalone, native binary. This provides near-instant startup times and significantly lower memory usage, making Java a perfect choice for serverless functions and ultra-fast microservices in the cloud.</p></div></div>
-    <div class="chapter reveal"><h2>Clean Code Principles</h2><div class="article-content"><p>Clean code is the mark of a professional. By following principles like SOLID, DRY, and KISS, you create codebases that are easy to read, easy to test, and easy to maintain for years. Professional Java development is about writing code for humans, not just machines.</p></div></div>
-    <div class="chapter reveal"><h2>Code Analysis (SonarQube)</h2><div class="article-content"><p>SonarQube automatically detects technical debt, security vulnerabilities, and code smells in your project. Integrating it into your CI/CD pipeline ensures that your code meets the highest quality standards before it ever reaches production, keeping your system healthy and secure.</p></div></div>
-    <div class="chapter reveal"><h2>Java 21+ Latest Features</h2><div class="article-content"><p>Java is evolving faster than ever. Features like Records, Pattern Matching for Switch, and String Templates continue to make the language more powerful and expressive. Staying up to date with the latest releases ensures that you are always using the most efficient tools available.</p></div></div>
-    <div class="chapter reveal"><h2>Building a Custom Framework</h2><div class="article-content"><p>The ultimate test of a Java master is building their own framework. By applying all the advanced concepts you've learned—Reflection, Annotations, Generics, and Proxying—you can build a mini-Spring engine that magically manages components and handles web requests from scratch.</p></div></div>
-    <div class="chapter reveal"><h2>Final Enterprise Certification</h2><div class="article-content"><p>Completing this masterclass proves your mastery of the Java ecosystem. You are now equipped to lead complex enterprise projects, architect distributed systems, and solve the most challenging problems in modern software engineering with confidence and expertise.</p></div></div>
 
   </div>
 </div>
