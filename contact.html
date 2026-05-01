@@ -9,88 +9,94 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
-    .contact-form-container {
-      max-width: 600px;
-      margin: 80px auto;
-      padding: 40px;
-      background: var(--cl-surface);
-      border-radius: var(--cl-radius);
-      box-shadow: var(--cl-shadow-lg);
-      border: 1px solid var(--cl-line);
-    }
-    .form-group {
-      margin-bottom: 24px;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 700;
-      color: var(--cl-ink);
-    }
-    .form-group input, .form-group textarea {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--cl-line);
-      border-radius: 8px;
-      background: var(--cl-bg);
-      color: var(--cl-ink);
-      font-family: inherit;
-      outline: none;
-      transition: var(--cl-transition);
-    }
-    .form-group input:focus, .form-group textarea:focus {
-      border-color: var(--cl-brand);
-      box-shadow: 0 0 0 4px var(--cl-brand-soft);
-    }
-    .btn-submit {
-      width: 100%;
-      padding: 16px;
-      background: var(--cl-brand);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: var(--cl-transition);
-    }
-    .btn-submit:hover {
-      background: var(--cl-brand-dark);
-      transform: translateY(-2px);
-    }
+    .contact-form-container { max-width: 600px; margin: 80px auto; padding: 40px; background: var(--cl-surface); border-radius: var(--cl-radius); box-shadow: var(--cl-shadow-lg); border: 1px solid var(--cl-line); }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 700; color: var(--cl-ink); }
+    .form-group input, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--cl-line); border-radius: 8px; background: var(--cl-bg); color: var(--cl-ink); font-family: inherit; outline: none; transition: var(--cl-transition); }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--cl-brand); box-shadow: 0 0 0 4px var(--cl-brand-soft); }
+    .btn-submit { width: 100%; padding: 16px; background: var(--cl-brand); color: white; border: none; border-radius: 8px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: var(--cl-transition); }
+    .btn-submit:hover { background: var(--cl-brand-dark); transform: translateY(-2px); }
   </style>
 </head>
 <body>
 
 <div class="course-container">
   <div class="course-header">
-    <h1><i class="fa-solid fa-paper-plane"></i> Get in Touch</h1>
-    <p>Have questions or ideas? We'd love to hear from you. Send us a message and we'll get back to you within 24 hours.</p>
+    <div data-cl-lang="en">
+      <h1><i class="fa-solid fa-paper-plane"></i> Get in Touch</h1>
+      <p>Have questions or ideas? We'd love to hear from you. Send us a message and we'll get back to you within 24 hours.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-solid fa-paper-plane"></i> تواصل معنا</h1>
+      <p>لديك أسئلة أو أفكار؟ يسعدنا سماع ذلك منك. أرسل لنا رسالة وسنرد عليك في غضون 24 ساعة.</p>
+    </div>
   </div>
 
   <div class="contact-form-container reveal">
-    <form id="contactForm" action="https://formspree.io/f/mrbowawn" method="POST">
+    <form id="contactForm" action="https://formsubmit.co/ajax/codinglife06@gmail.com" method="POST">
       <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="John Doe" required>
+        <div data-cl-lang="en"><label for="name">Full Name</label></div>
+        <div data-cl-lang="ar"><label for="name">الاسم الكامل</label></div>
+        <input type="text" id="name" name="name" placeholder="..." required>
       </div>
       <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="_replyto" placeholder="john@example.com" required>
+        <div data-cl-lang="en"><label for="email">Email Address</label></div>
+        <div data-cl-lang="ar"><label for="email">البريد الإلكتروني</label></div>
+        <input type="email" id="email" name="email" placeholder="..." required>
       </div>
       <div class="form-group">
-        <label for="subject">Subject</label>
-        <input type="text" id="subject" name="subject" placeholder="Course Question" required>
+        <div data-cl-lang="en"><label for="subject">Subject</label></div>
+        <div data-cl-lang="ar"><label for="subject">الموضوع</label></div>
+        <input type="text" id="subject" name="subject" placeholder="..." required>
       </div>
       <div class="form-group">
-        <label for="message">Your Message</label>
-        <textarea id="message" name="message" rows="6" placeholder="How can we help you?" required></textarea>
+        <div data-cl-lang="en"><label for="message">Your Message</label></div>
+        <div data-cl-lang="ar"><label for="message">رسالتك</label></div>
+        <textarea id="message" name="message" rows="6" placeholder="..." required></textarea>
       </div>
-      <button type="submit" class="btn-submit">Send Message <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></button>
+      
+      <button type="submit" class="btn-submit">
+        <span data-cl-lang="en">Send Message <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></span>
+        <span data-cl-lang="ar">إرسال الرسالة <i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i></span>
+      </button>
     </form>
+    <div id="contact-status" style="margin-top: 20px; text-align: center; display: none; font-weight: 700;"></div>
   </div>
 </div>
 
 <script src="site-polish.js"></script>
+<script>
+  // AJAX for Contact Form
+  const form = document.getElementById("contactForm");
+  const status = document.getElementById("contact-status");
+  
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.style.display = "block";
+      status.style.color = "var(--cl-brand)";
+      status.innerHTML = "Sending...";
+      
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (response.ok) {
+          status.style.color = "var(--cl-success)";
+          status.innerHTML = "Message Sent Successfully! ✅";
+          form.reset();
+        } else { throw new Error(); }
+      } catch (err) {
+        status.style.color = "var(--cl-error)";
+        status.innerHTML = "Oops! Error sending message.";
+      }
+    });
+  }
+</script>
 </body>
 </html>
