@@ -75,12 +75,18 @@
       e.preventDefault();
       status.style.display = "block";
       status.style.color = "var(--cl-brand)";
-      status.innerHTML = "Sending...";
-      
+      const lang = localStorage.getItem('cl-lang') || 'en';
+      const msgs = {
+        en: { sending: "Sending...", success: "Message Sent Successfully! ✅", error: "Oops! Error sending message." },
+        ar: { sending: "جاري الإرسال...", success: "تم إرسال الرسالة بنجاح! ✅", error: "عذراً! حدث خطأ في الإرسال." }
+      };
+      const currentMsgs = msgs[lang] || msgs.en;
+
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-      
+
       try {
+        status.innerHTML = currentMsgs.sending;
         const response = await fetch(form.action, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -88,12 +94,12 @@
         });
         if (response.ok) {
           status.style.color = "var(--cl-success)";
-          status.innerHTML = "Message Sent Successfully! ✅";
+          status.innerHTML = currentMsgs.success;
           form.reset();
         } else { throw new Error(); }
       } catch (err) {
         status.style.color = "var(--cl-error)";
-        status.innerHTML = "Oops! Error sending message.";
+        status.innerHTML = currentMsgs.error;
       }
     });
   }
