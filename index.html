@@ -4,267 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coding Life - Elevate Your Future</title>
-  <meta name="description" content="Coding Life - Your premium platform for mastering programming. Expert courses in HTML, CSS, JavaScript, Python, PHP, Java, C#, and more. Start your coding journey today!">
-  <meta name="keywords" content="coding life, learn programming, web development courses, python tutorial, javascript mastery, php backend, java enterprise, c# dotnet, flutter mobile dev, coding roadmap">
-  <meta name="author" content="Coding Life">
-  <link rel="canonical" href="https://codinglife1.vercel.app/">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://codinglife1.vercel.app/">
-  <meta property="og:title" content="Coding Life - Elevate Your Future">
-  <meta property="og:description" content="Premium programming courses, career-focused workshops, and a community dedicated to your growth.">
-  <meta property="og:image" content="https://codinglife1.vercel.app/logo.png">
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://codinglife1.vercel.app/">
-  <meta property="twitter:title" content="Coding Life - Elevate Your Future">
-  <meta property="twitter:description" content="Premium programming courses, career-focused workshops, and a community dedicated to your growth.">
-  <meta property="twitter:image" content="https://codinglife1.vercel.app/logo.png">
-
+  <meta name="description" content="Coding Life - Your premium platform for mastering programming. Start your coding journey today!">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&family=Pacifico&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
-
   <style>
-    :root {
-      --hero-gradient: linear-gradient(135deg, #0f172a 0%, #0f766e 100%);
-    }
-
-    body {
-      font-family: 'Outfit', 'Cairo', sans-serif !important;
-      overflow-x: hidden;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Robust Splash Screen */
-    #splash {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #020617 !important;
-      z-index: 10000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.8s ease-out, visibility 0.8s;
-    }
-
-    .splash-logo {
-      width: 150px !important;
-      height: auto !important;
-      filter: brightness(0) invert(1); /* Force it to be white if it's dark */
-      animation: splash-pulse 2s infinite ease-in-out;
-    }
-
-    .splash-loader {
-      width: 200px;
-      height: 3px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      margin-top: 30px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .splash-loader::after {
-      content: '';
-      position: absolute;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: #2dd4bf;
-      animation: loading 1.5s infinite ease-in-out;
-    }
-
-    @keyframes splash-pulse {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.05); opacity: 1; }
-    }
-
-    @keyframes loading {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    /* Hero Section */
-    .hero-premium {
-      min-height: 100vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      color: white;
-      padding: 120px 24px;
-      overflow: hidden;
-    }
-
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
-    .hero-premium::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 118, 110, 0.8) 100%);
-      z-index: 1;
-    }
-
-    .hero-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      padding: 8px 16px;
-      background: rgba(45, 212, 191, 0.1);
-      border: 1px solid rgba(45, 212, 191, 0.3);
-      border-radius: 99px;
-      color: #2dd4bf;
-      font-weight: 800;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 24px;
-    }
-
-    .hero-premium h1 {
-      font-size: clamp(2.5rem, 8vw, 5.5rem);
-      line-height: 1.1;
-      font-weight: 800;
-      margin: 0 0 32px 0;
-    }
-
-    .hero-premium p {
-      font-size: 1.25rem;
-      color: #94a3b8;
-      max-width: 600px;
-      margin-bottom: 48px;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-glow {
-      padding: 18px 40px;
-      border-radius: 12px;
-      font-weight: 800;
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .btn-main {
-      background: #2dd4bf;
-      color: #020617;
-      box-shadow: 0 0 30px rgba(45, 212, 191, 0.2);
-    }
-
-    .btn-main:hover {
-      background: #5eead4;
-      transform: translateY(-4px);
-      box-shadow: 0 0 50px rgba(45, 212, 191, 0.4);
-    }
-
-    .btn-outline {
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      color: white;
-    }
-
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: white;
-      transform: translateY(-4px);
-    }
-
-    .visual-card {
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 32px;
-      border-radius: 24px;
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-      animation: float 6s infinite ease-in-out;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-
-    .stats-bar {
-      background: #0f172a;
-      padding: 60px 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .stats-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      text-align: center;
-    }
-
-    .stat-item h3 {
-      font-size: 3rem;
-      color: #2dd4bf;
-      margin: 0 0 8px 0;
-      font-weight: 800;
-    }
-
-    .stat-item p {
-      color: #94a3b8;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 1024px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding-top: 60px;
-      }
-      .hero-premium p { margin-inline: auto; }
-      .hero-cta { justify-content: center; }
-      .hero-visual { display: none; }
-    }
+    body { font-family: 'Outfit', 'Cairo', sans-serif !important; overflow-x: hidden; margin: 0; padding: 0; }
+    #splash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #020617 !important; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-out, visibility 0.8s; }
+    .splash-logo { width: 150px !important; filter: brightness(0) invert(1); animation: splash-pulse 2s infinite ease-in-out; }
+    .splash-loader { width: 200px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 30px; overflow: hidden; position: relative; }
+    .splash-loader::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: #2dd4bf; animation: loading 1.5s infinite ease-in-out; }
+    @keyframes splash-pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+    @keyframes loading { 0% { left: -100%; } 100% { left: 100%; } }
+    .hero-premium { min-height: 100vh; position: relative; display: flex; align-items: center; color: white; padding: 120px 24px; overflow: hidden; }
+    .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+    .hero-premium::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 118, 110, 0.8) 100%); z-index: 1; }
+    .hero-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+    .hero-tag { display: inline-block; padding: 8px 16px; background: rgba(45, 212, 191, 0.1); border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 99px; color: #2dd4bf; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
+    .hero-premium h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); line-height: 1.1; font-weight: 800; margin: 0 0 32px 0; }
+    .hero-premium p { font-size: 1.25rem; color: #94a3b8; max-width: 600px; margin-bottom: 48px; }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-glow { padding: 18px 40px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; text-decoration: none; transition: 0.3s; position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 12px; }
+    .btn-main { background: #2dd4bf; color: #020617; box-shadow: 0 0 30px rgba(45, 212, 191, 0.2); }
+    .btn-main:hover { background: #5eead4; transform: translateY(-4px); }
+    .btn-outline { border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); color: white; }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-4px); }
+    .visual-card { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); animation: float 6s infinite ease-in-out; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    @media (max-width: 1024px) { .hero-content { grid-template-columns: 1fr; text-align: center; padding-top: 60px; } .hero-premium p { margin-inline: auto; } .hero-cta { justify-content: center; } .hero-visual { display: none; } }
   </style>
 </head>
 <body>
 
-  <!-- Splash Screen -->
   <div id="splash">
     <img src="logo.png" alt="Logo" class="splash-logo">
     <h1 style="color: white; font-family: 'Pacifico'; margin-top: 20px; font-weight: normal;">Coding Life</h1>
@@ -277,29 +49,27 @@
     </video>
     <div class="hero-content">
       <div class="reveal">
-        <span class="hero-tag">The Elite Dev Community</span>
-        <h1>Code Your Way to <span style="color: #2dd4bf;">Success</span></h1>
-        <p>Master the most in-demand technologies with high-density courses designed for professional growth. Join 5,000+ students worldwide.</p>
-        <div class="hero-cta">
-          <a href="dorous-albarmaja.html" class="btn-glow btn-main">
-            Start Learning <i class="fa-solid fa-rocket"></i>
-          </a>
-          <a href="workshops.html" class="btn-glow btn-outline">
-            Our Workshops <i class="fa-solid fa-laptop-code"></i>
-          </a>
-        </div>
-        <div style="margin-top: 40px; display: flex; align-items: center; gap: 12px; color: #94a3b8; font-weight: 600;">
-          <div style="display: flex; gap: 4px;">
-            <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
-            <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
-            <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
-            <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
-            <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
+        <!-- English Hero -->
+        <div data-cl-lang="en">
+          <span class="hero-tag">The Elite Dev Community</span>
+          <h1>Code Your Way to <span style="color: #2dd4bf;">Success</span></h1>
+          <p>Master the most in-demand technologies with high-density courses designed for professional growth. Join 5,000+ students worldwide.</p>
+          <div class="hero-cta">
+            <a href="dorous-albarmaja.html" class="btn-glow btn-main">Start Learning <i class="fa-solid fa-rocket"></i></a>
+            <a href="workshops.html" class="btn-glow btn-outline">Our Workshops <i class="fa-solid fa-laptop-code"></i></a>
           </div>
-          <span>Trustpilot Rated 4.9/5</span>
+        </div>
+        <!-- Arabic Hero -->
+        <div data-cl-lang="ar">
+          <span class="hero-tag">مجتمع المطورين النخبة</span>
+          <h1>برمج طريقك نحو <span style="color: #2dd4bf;">النجاح</span></h1>
+          <p>أتقن التكنولوجيات الأكثر طلباً مع دورات احترافية مصممة للنمو المهني. انضم إلى أكثر من 5000 طالب حول العالم.</p>
+          <div class="hero-cta">
+            <a href="dorous-albarmaja.html" class="btn-glow btn-main">ابدأ التعلم الآن <i class="fa-solid fa-rocket"></i></a>
+            <a href="workshops.html" class="btn-glow btn-outline">ورشات العمل <i class="fa-solid fa-laptop-code"></i></a>
+          </div>
         </div>
       </div>
-      
       <div class="hero-visual reveal">
         <div class="visual-card">
           <div style="display: flex; gap: 8px; margin-bottom: 24px;">
@@ -320,210 +90,99 @@
     </div>
   </div>
 
-  <div class="stats-bar" style="background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(20px);">
+  <!-- Stats Section -->
+  <section style="padding: 120px 24px; background: #020617; color: white;">
     <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-      <p style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; margin-bottom: 32px;">Master Modern Technologies</p>
-      <div style="display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; opacity: 0.7;">
-        <i class="fa-brands fa-html5" style="font-size: 2.5rem; color: #e34c26;" title="HTML5"></i>
-        <i class="fa-brands fa-css3-alt" style="font-size: 2.5rem; color: #264de4;" title="CSS3"></i>
-        <i class="fa-brands fa-js" style="font-size: 2.5rem; color: #f7df1e;" title="JavaScript"></i>
-        <i class="fa-brands fa-react" style="font-size: 2.5rem; color: #61dafb;" title="React"></i>
-        <i class="fa-brands fa-node-js" style="font-size: 2.5rem; color: #339933;" title="Node.js"></i>
-        <i class="fa-brands fa-python" style="font-size: 2.5rem; color: #3776ab;" title="Python"></i>
-        <i class="fa-brands fa-php" style="font-size: 2.5rem; color: #777bb4;" title="PHP"></i>
-        <i class="fa-brands fa-git-alt" style="font-size: 2.5rem; color: #f05032;" title="Git"></i>
+      <div data-cl-lang="en">
+        <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem;">Our Methodology</span>
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin: 20px 0;">Built for the <span style="color:#2dd4bf;">Next Generation</span></h2>
       </div>
-    </div>
-  </div>
-
-  <!-- Our Methodology Section (UPGRADED PRO LOOK) -->
-  <section style="padding: 120px 24px; background: #020617; color: white; position: relative; overflow: hidden;">
-    <!-- Abstract Background Element -->
-    <div style="position: absolute; top: -10%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(45, 212, 191, 0.05) 0%, transparent 70%); z-index: 0;"></div>
-    
-    <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
-      <div style="text-align: center; margin-bottom: 80px;" class="reveal">
-        <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; display: block; margin-bottom: 12px;">Our Methodology</span>
-        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin: 0; line-height: 1.1;">Built for the <span style="background: linear-gradient(to right, #2dd4bf, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Next Generation</span></h2>
+      <div data-cl-lang="ar">
+        <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem;">منهجيتنا التعليمية</span>
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin: 20px 0;">مصممة لجيل <span style="color:#2dd4bf;">المستقبل</span></h2>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px;">
-        <!-- Card 1 -->
-        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); padding: 50px 40px; border-radius: 32px; backdrop-filter: blur(10px); transition: 0.4s ease;">
-          <div style="width: 64px; height: 64px; border-radius: 20px; background: linear-gradient(135deg, #2dd4bf 0%, #0f766e 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 32px; box-shadow: 0 10px 20px rgba(45, 212, 191, 0.2);">
-            <i class="fa-solid fa-bolt-lightning" style="color: white; font-size: 1.8rem;"></i>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 60px;">
+        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 24px;">
+          <div data-cl-lang="en">
+            <h3 style="color: #2dd4bf; margin-bottom: 16px;">Fast-Track Engineering</h3>
+            <p style="color: #94a3b8; line-height: 1.8;">Skip the theory and focus on practical implementation of production-grade systems.</p>
           </div>
-          <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 16px; color: white;">Fast-Track Engineering</h3>
-          <p style="color: #94a3b8; line-height: 1.8; font-size: 1.05rem;">Our curriculum is engineered for high-velocity learning. We skip the outdated theory and focus on the practical implementation of production-grade systems.</p>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); padding: 50px 40px; border-radius: 32px; backdrop-filter: blur(10px); transition: 0.4s ease;">
-          <div style="width: 64px; height: 64px; border-radius: 20px; background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 32px; box-shadow: 0 10px 20px rgba(168, 85, 247, 0.2);">
-            <i class="fa-solid fa-shield-halved" style="color: white; font-size: 1.8rem;"></i>
-          </div>
-          <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 16px; color: white;">Enterprise Standards</h3>
-          <p style="color: #94a3b8; line-height: 1.8; font-size: 1.05rem;">Learn the exact workflows, security patterns, and testing strategies used by the world's most sophisticated engineering teams at Scale.</p>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); padding: 50px 40px; border-radius: 32px; backdrop-filter: blur(10px); transition: 0.4s ease;">
-          <div style="width: 64px; height: 64px; border-radius: 20px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 32px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);">
-            <i class="fa-solid fa-code-merge" style="color: white; font-size: 1.8rem;"></i>
-          </div>
-          <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 16px; color: white;">Open Collaboration</h3>
-          <p style="color: #94a3b8; line-height: 1.8; font-size: 1.05rem;">Never build in isolation. Join a global community of elite developers to collaborate on real-world open-source projects and expand your network.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Detailed Learning Roadmap Section -->
-  <section style="padding: 100px 24px; background: #020617; border-top: 1px solid rgba(255,255,255,0.05);">
-    <div style="max-width: 1200px; margin: 0 auto;">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
-        <div class="reveal">
-          <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 24px; color: white;">A Proven Path to <span style="color: #2dd4bf;">Mastery</span></h2>
-          <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.8; margin-bottom: 32px;">
-            Learning to code isn't just about syntax; it's about building a mental model of how systems work. Our roadmap is meticulously designed to take you from the very first line of HTML to architecting complex, scalable cloud applications.
-          </p>
-          <div style="display: flex; flex-direction: column; gap: 20px;">
-            <div style="display: flex; gap: 16px;">
-              <div style="color: #2dd4bf; font-weight: 800; font-size: 1.2rem;">01</div>
-              <div>
-                <h4 style="color: white; margin-bottom: 4px;">Foundations of the Web</h4>
-                <p style="color: #64748b; font-size: 0.95rem;">Master the core languages that power every website on the planet: HTML5, CSS3, and modern ES6+ JavaScript.</p>
-              </div>
-            </div>
-            <div style="display: flex; gap: 16px;">
-              <div style="color: #2dd4bf; font-weight: 800; font-size: 1.2rem;">02</div>
-              <div>
-                <h4 style="color: white; margin-bottom: 4px;">Frontend Architecture</h4>
-                <p style="color: #64748b; font-size: 0.95rem;">Dive deep into component-based design with React and Next.js. Learn state management and performance optimization.</p>
-              </div>
-            </div>
-            <div style="display: flex; gap: 16px;">
-              <div style="color: #2dd4bf; font-weight: 800; font-size: 1.2rem;">03</div>
-              <div>
-                <h4 style="color: white; margin-bottom: 4px;">Backend Engineering</h4>
-                <p style="color: #64748b; font-size: 0.95rem;">Build secure, scalable APIs with Node.js, Python, or PHP. Master database design and server-side logic.</p>
-              </div>
-            </div>
+          <div data-cl-lang="ar">
+            <h3 style="color: #2dd4bf; margin-bottom: 16px;">هندسة سريعة المسار</h3>
+            <p style="color: #94a3b8; line-height: 1.8;">تجاوز النظريات المملة وركز على التطبيق العملي للأنظمة البرمجية الحقيقية.</p>
           </div>
         </div>
-        <div class="reveal" style="position: relative;">
-          <div style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); padding: 40px; border-radius: 32px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 50px 100px -20px rgba(0,0,0,0.5);">
-            <h3 style="color: white; margin-bottom: 24px;"><i class="fa-solid fa-terminal" style="color: #2dd4bf; margin-right: 12px;"></i> Why This Matters</h3>
-            <p style="color: #94a3b8; font-size: 1rem; line-height: 1.7; margin-bottom: 20px;">
-              The tech industry evolves every 6 months. Most tutorials only teach you "how" to do something, but they never explain the "why". At Coding Life, we focus on first principles. 
-            </p>
-            <p style="color: #94a3b8; font-size: 1rem; line-height: 1.7;">
-              By understanding the underlying architecture of the web, you become a problem solver, not just a code writer. This is the difference between a junior developer and a senior architect who commands a premium salary.
-            </p>
+        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 24px;">
+          <div data-cl-lang="en">
+            <h3 style="color: #a855f7; margin-bottom: 16px;">Enterprise Standards</h3>
+            <p style="color: #94a3b8; line-height: 1.8;">Learn the security patterns and testing strategies used by elite engineering teams.</p>
+          </div>
+          <div data-cl-lang="ar">
+            <h3 style="color: #a855f7; margin-bottom: 16px;">معايير الشركات الكبرى</h3>
+            <p style="color: #94a3b8; line-height: 1.8;">تعلم أنماط الحماية واختبار البرمجيات المستخدمة في أكبر شركات التكنولوجيا.</p>
+          </div>
+        </div>
+        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 24px;">
+          <div data-cl-lang="en">
+            <h3 style="color: #3b82f6; margin-bottom: 16px;">Open Collaboration</h3>
+            <p style="color: #94a3b8; line-height: 1.8;">Join a global community to collaborate on real-world projects and grow together.</p>
+          </div>
+          <div data-cl-lang="ar">
+            <h3 style="color: #3b82f6; margin-bottom: 16px;">تعاون مفتوح</h3>
+            <p style="color: #94a3b8; line-height: 1.8;">انضم إلى مجتمع عالمي للتعاون في مشاريع حقيقية وتطوير شبكة علاقاتك.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Comprehensive FAQ Section (SEO Booster) -->
+  <!-- FAQ Section -->
   <section style="padding: 100px 24px; background: #0f172a;">
     <div style="max-width: 900px; margin: 0 auto;">
       <div style="text-align: center; margin-bottom: 60px;">
-        <h2 style="font-size: 2.5rem; font-weight: 800; color: white;">Frequently Asked Questions</h2>
-        <p style="color: #64748b; margin-top: 12px;">Everything you need to know about starting your career with Coding Life.</p>
+        <div data-cl-lang="en">
+          <h2 style="font-size: 2.5rem; font-weight: 800; color: white;">Frequently Asked Questions</h2>
+        </div>
+        <div data-cl-lang="ar">
+          <h2 style="font-size: 2.5rem; font-weight: 800; color: white;">الأسئلة الشائعة</h2>
+        </div>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <div class="reveal" style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
-          <h4 style="color: white; margin-bottom: 12px;">Do I need a computer science degree to start?</h4>
-          <p style="color: #94a3b8; line-height: 1.6;">Absolutely not. While a degree can be helpful, the tech industry primarily values skills and projects. Many of the world's most successful developers are self-taught. Our platform is designed to provide you with the practical skills that companies actually look for during the hiring process.</p>
+          <div data-cl-lang="en">
+            <h4 style="color: white; margin-bottom: 12px;">Do I need a degree to start?</h4>
+            <p style="color: #94a3b8;">No. The tech industry values skills and projects above all else.</p>
+          </div>
+          <div data-cl-lang="ar">
+            <h4 style="color: white; margin-bottom: 12px;">هل أحتاج لشهادة جامعية للبدء؟</h4>
+            <p style="color: #94a3b8;">لا. صناعة التكنولوجيا تهتم بالمهارات والمشاريع أكثر من أي شيء آخر.</p>
+          </div>
         </div>
         <div class="reveal" style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
-          <h4 style="color: white; margin-bottom: 12px;">How long does it take to become job-ready?</h4>
-          <p style="color: #94a3b8; line-height: 1.6;">It depends on your dedication, but most students who commit 10-15 hours a week can reach a junior developer level in 6 to 9 months. Our curriculum is optimized to cut out the "noise" and focus on the high-impact skills that will get you hired faster.</p>
-        </div>
-        <div class="reveal" style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
-          <h4 style="color: white; margin-bottom: 12px;">Is there a community I can join?</h4>
-          <p style="color: #94a3b8; line-height: 1.6;">Yes, we believe that community is the secret sauce to success. You can join our global Discord server where thousands of developers share tips, collaborate on projects, and provide support when you're stuck on a bug. Learning alone is hard; learning together is much more efficient.</p>
-        </div>
-        <div class="reveal" style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
-          <h4 style="color: white; margin-bottom: 12px;">What technologies should I start with?</h4>
-          <p style="color: #94a3b8; line-height: 1.6;">For 90% of beginners, we recommend starting with HTML, CSS, and JavaScript. These are the building blocks of the web and allow you to see visual results immediately. Once you have a solid grasp of these, you can branch out into specialized fields like mobile development or data science.</p>
+          <div data-cl-lang="en">
+            <h4 style="color: white; margin-bottom: 12px;">How long does it take?</h4>
+            <p style="color: #94a3b8;">Most students reach job-ready status in 6 to 9 months of consistent effort.</p>
+          </div>
+          <div data-cl-lang="ar">
+            <h4 style="color: white; margin-bottom: 12px;">كم من الوقت يستغرق الأمر؟</h4>
+            <p style="color: #94a3b8;">معظم الطلاب يصلون لمستوى العمل في غضون 6 إلى 9 أشهر من الجهد المستمر.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Deep Technical Resources Guide -->
-  <section style="padding: 100px 24px; background: #020617; border-top: 1px solid rgba(255,255,255,0.05);">
-    <div style="max-width: 1200px; margin: 0 auto;">
-      <div style="text-align: center; margin-bottom: 80px;">
-        <h2 style="font-size: 2.5rem; font-weight: 800; color: white;">Deep Dive into Engineering</h2>
-        <p style="color: #64748b; margin-top: 12px; max-width: 700px; margin-inline: auto;">Explore the architectural principles and technical concepts that make modern software possible. We cover the entire spectrum of software engineering.</p>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
-        <div class="reveal">
-          <h4 style="color: white; border-left: 3px solid #2dd4bf; padding-left: 15px; margin-bottom: 20px;">Scalable Systems</h4>
-          <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7;">Learn how to design applications that can handle millions of users. We cover load balancing, horizontal scaling, caching strategies with Redis, and content delivery networks (CDNs).</p>
-        </div>
-        <div class="reveal">
-          <h4 style="color: white; border-left: 3px solid #a855f7; padding-left: 15px; margin-bottom: 20px;">DevOps & Automation</h4>
-          <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7;">Master the tools of the modern engineer. From Git workflows and Docker containerization to CI/CD pipelines and automated cloud deployments on AWS and Vercel.</p>
-        </div>
-        <div class="reveal">
-          <h4 style="color: white; border-left: 3px solid #3b82f6; padding-left: 15px; margin-bottom: 20px;">Data Management</h4>
-          <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7;">Understanding the data layer is critical. We teach relational databases like PostgreSQL and MySQL, as well as NoSQL solutions like MongoDB and Supabase.</p>
-        </div>
-        <div class="reveal">
-          <h4 style="color: white; border-left: 3px solid #f59e0b; padding-left: 15px; margin-bottom: 20px;">Modern UI/UX</h4>
-          <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7;">A great app must feel intuitive. Learn the principles of accessible design, typography, responsive layouts, and interactive animations with Framer Motion.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA with rich text -->
-  <section style="padding: 120px 24px; background: linear-gradient(180deg, #020617 0%, #0f172a 100%); text-align: center;">
-    <div style="max-width: 800px; margin: 0 auto;" class="reveal">
-      <h2 style="font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; color: white; margin-bottom: 24px;">Your Engineering Career <span style="color: #2dd4bf;">Starts Now</span></h2>
-      <p style="color: #94a3b8; font-size: 1.2rem; line-height: 1.8; margin-bottom: 48px;">
-        Join thousands of ambitious developers who have transformed their lives through code. Our curriculum is designed to be rigorous, rewarding, and relevant to the 2026 tech market. No more generic tutorials—it's time for real engineering.
-      </p>
-      <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-        <a href="dorous-albarmaja.html" class="btn-glow btn-main" style="padding: 20px 50px; font-size: 1.2rem;">Get Started Today</a>
-        <a href="coding.html" class="btn-glow btn-outline" style="padding: 20px 50px; font-size: 1.2rem;">Read the Roadmap</a>
-      </div>
-      <p style="margin-top: 40px; color: #475569; font-size: 0.9rem;">Join 5,000+ developers. Open-source, community-driven, excellence-focused.</p>
     </div>
   </section>
 
   <script src="site-polish.js"></script>
   <script>
-    // Robust Splash Logic
     (function() {
       const splash = document.getElementById('splash');
       if (!splash) return;
-
-      // Immediately hide if already shown
-      if (localStorage.getItem('splashShown')) {
-        splash.style.display = 'none';
-        return;
-      }
-
-      function hideSplash() {
-        splash.style.opacity = '0';
-        setTimeout(() => {
-          splash.style.display = 'none';
-          localStorage.setItem('splashShown', 'true');
-        }, 800);
-      }
-
-      // Hide after load or max 3s timeout
+      if (localStorage.getItem('splashShown')) { splash.style.display = 'none'; return; }
+      function hideSplash() { splash.style.opacity = '0'; setTimeout(() => { splash.style.display = 'none'; localStorage.setItem('splashShown', 'true'); }, 800); }
       window.addEventListener('load', () => setTimeout(hideSplash, 1500));
-      setTimeout(hideSplash, 4000); // Failsafe
+      setTimeout(hideSplash, 4000);
     })();
   </script>
 </body>
