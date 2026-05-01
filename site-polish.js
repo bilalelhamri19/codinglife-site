@@ -258,7 +258,7 @@
       status.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Subscribing...';
 
       try {
-        const response = await fetch("https://formsubmit.co/ajax/elhamribilal65@gmail.com", {
+        const response = await fetch("https://formsubmit.co/ajax/codinglife06@gmail.com", {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ email: email, _subject: "New Subscriber - Coding Life", message: "New subscriber: " + email })
