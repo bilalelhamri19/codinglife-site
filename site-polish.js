@@ -221,7 +221,7 @@
         <div>
           <span class="footer-brand">${CONFIG.brandName}</span>
           <p>${tr.tagline}</p>
-          <div class="social-links">
+          <div class="social-links" style="margin-top: 24px;">
             ${CONFIG.socialLinks.map(s => `<a href="${s.href}"><i class="${s.icon}"></i></a>`).join('')}
           </div>
         </div>
@@ -233,13 +233,15 @@
           <a href="blog.html">${tr.blog}</a>
         </div>
         <div class="footer-links">
-          <h4>${tr.support}</h4>
-          <a href="contact.html">${tr.contactUs}</a>
-          <a href="about.html">${tr.about}</a>
-          <a href="privacy.html">${tr.privacy}</a>
+          <h4>Stay Updated</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 16px; color: #94a3b8;">Join 5,000+ developers for weekly technical insights and project ideas.</p>
+          <div style="display: flex; gap: 8px;">
+            <input type="email" placeholder="Email Address" style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; outline: none; width: 100%;">
+            <button style="background: var(--cl-brand); color: white; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 700; cursor: pointer;">Join</button>
+          </div>
         </div>
       </div>
-      <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;">
+      <div style="text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;">
         &copy; 2026 ${CONFIG.brandName}. ${tr.copy}
       </div>
     `;
@@ -356,6 +358,32 @@
     const pageId = window.location.pathname.split("/").pop() || "home";
     let progress = JSON.parse(localStorage.getItem("cl_progress") || "{}");
 
+    // Create Progress Bar UI
+    const container = document.querySelector(".course-container");
+    if (container) {
+      const progressBarContainer = document.createElement("div");
+      progressBarContainer.className = "cl-course-progress-bar-container";
+      progressBarContainer.innerHTML = `
+        <div class="cl-progress-info">
+          <span>Course Progress</span>
+          <span id="cl-progress-percent">0%</span>
+        </div>
+        <div class="cl-progress-track">
+          <div id="cl-progress-fill" class="cl-progress-fill"></div>
+        </div>
+      `;
+      container.insertBefore(progressBarContainer, container.querySelector(".chapters"));
+    }
+
+    function updateProgressBar() {
+      const finishedCount = Array.from(chapters).filter((_, i) => progress[`${pageId}_ch${i}`]).length;
+      const percent = Math.round((finishedCount / chapters.length) * 100);
+      const fill = document.getElementById("cl-progress-fill");
+      const text = document.getElementById("cl-progress-percent");
+      if (fill) fill.style.width = `${percent}%`;
+      if (text) text.innerText = `${percent}%`;
+    }
+
     chapters.forEach((chapter, index) => {
       const chapterId = `${pageId}_ch${index}`;
       const isFinished = progress[chapterId];
@@ -376,11 +404,14 @@
           progress[chapterId] = true;
           btn.classList.add("finished");
           btn.innerHTML = '<i class="fa-solid fa-check"></i> Finished';
-          confetti(); // Add a little spark
+          confetti();
         }
         localStorage.setItem("cl_progress", JSON.stringify(progress));
+        updateProgressBar();
       });
     });
+
+    updateProgressBar();
 
     function confetti() {
       const colors = ['#2dd4bf', '#a855f7', '#3b82f6'];

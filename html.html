@@ -166,54 +166,27 @@
 
 
     <!-- Chapter 10: Canvas -->
+    <!-- Chapter 11: Canvas -->
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> The Power of Canvas API</h2>
       <div class="article-content">
-        <p>The <code>&lt;canvas&gt;</code> element allows for dynamic, scriptable rendering of 2D shapes and bitmap images. It's the foundation for web gaming.</p>
+        <p>The <code>&lt;canvas&gt;</code> element allows for dynamic, scriptable rendering of 2D shapes and bitmap images. It's the foundation for web gaming, data visualization, and complex image processing directly in the browser. Unlike SVG, which is vector-based and part of the DOM, Canvas is a pixel-based drawing surface.</p>
+        <p style="margin-top: 15px;">By using the Canvas API with JavaScript, you can create interactive charts, real-time photo filters, and even 3D graphics via WebGL. Because it doesn't create DOM nodes for every element drawn, it is incredibly performant for rendering thousands of objects simultaneously.</p>
       </div>
     </div>
 
     <!-- Adding 40 more sections for Google Ads density -->
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Global Attributes</h2>
-      <p>Attributes like <code>class</code>, <code>id</code>, <code>style</code>, and <code>title</code> can be used on almost any element.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Hyperlink Deep Dive</h2>
-      <p>Master <code>href</code>, <code>target</code>, <code>rel="noopener"</code>, and internal page anchoring.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Ordered vs Unordered Lists</h2>
-      <p>When to use <code>&lt;ol&gt;</code> vs <code>&lt;ul&gt;</code> and how to customize numbering styles.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Quotations and Citations</h2>
-      <p>Using <code>&lt;blockquote&gt;</code>, <code>&lt;q&gt;</code>, and <code>&lt;cite&gt;</code> correctly for academic or blog content.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Inline vs Block Elements</h2>
-      <p>Understanding the fundamental difference between elements like <code>&lt;span&gt;</code> and <code>&lt;div&gt;</code>.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Text Formatting Tags</h2>
-      <p>The difference between <code>&lt;b&gt;</code> vs <code>&lt;strong&gt;</code> and <code>&lt;i&gt;</code> vs <code>&lt;em&gt;</code>.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Commenting Your Code</h2>
-      <p>How to use comments effectively for team collaboration without bloating the DOM.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Language and I18n</h2>
-      <p>Setting the <code>lang</code> attribute and handling RTL (Right-to-Left) text direction.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Security: XSS and Iframes</h2>
-      <p>Using the <code>sandbox</code> attribute on iframes to prevent malicious scripts.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Embedding External Scripts</h2>
-      <p>Mastering <code>async</code> vs <code>defer</code> for performance-optimized script loading.</p>
-    </div>
+    <div class="chapter reveal"><h2>Global Attributes Mastery</h2><div class="article-content"><p>Global attributes are attributes that can be used on all HTML elements. Beyond the common <code>class</code> and <code>id</code>, attributes like <code>contenteditable</code> allow users to edit text directly, while <code>spellcheck</code> and <code>draggable</code> provide native interactions. Mastering these attributes allows you to build highly interactive interfaces with minimal custom JavaScript.</p></div></div>
+    <div class="chapter reveal"><h2>Hyperlink Deep Dive</h2><div class="article-content"><p>Hyperlinks are the glue of the web. Professional developers use <code>rel="noopener noreferrer"</code> for security when opening external links and understand the power of anchor tags for deep linking within a single page. Using semantic links with descriptive titles is also a critical part of building an accessible and SEO-friendly document.</p></div></div>
+    <div class="chapter reveal"><h2>Lists & Data Organization</h2><div class="article-content"><p>Ordered and unordered lists are the foundation of content hierarchy. Beyond simple bullet points, <code>&lt;dl&gt;</code> (description lists) are the semantic choice for metadata, FAQs, and glossaries. Proper list nesting ensures that your content remains readable for screen readers and search engine bots alike.</p></div></div>
+    <div class="chapter reveal"><h2>Quotations & Citations</h2><div class="article-content"><p>The <code>&lt;blockquote&gt;</code>, <code>&lt;q&gt;</code>, and <code>&lt;cite&gt;</code> elements are essential for academic, journalistic, and blog content. They provide semantic weight to quoted text and allow browsers and search engines to understand the source of the information, which is a key factor in building content authority and trust.</p></div></div>
+    <div class="chapter reveal"><h2>Inline vs Block Layout</h2><div class="article-content"><p>Understanding the difference between block-level elements (which start on a new line) and inline elements (which only take up necessary width) is fundamental to CSS and layout design. Mastering how tags like <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> interact is the first step toward becoming a layout expert.</p></div></div>
+    <div class="chapter reveal"><h2>Semantic Text Formatting</h2><div class="article-content"><p>There is a critical difference between <code>&lt;b&gt;</code> and <code>&lt;strong&gt;</code>, and <code>&lt;i&gt;</code> and <code>&lt;em&gt;</code>. While they look the same visually, the semantic versions provide extra emphasis that is understood by screen readers and AI crawlers. Professional developers always choose meaning over visual style when writing HTML.</p></div></div>
+    <div class="chapter reveal"><h2>Commenting Your Code</h2><div class="article-content"><p>While invisible to the user, well-structured HTML comments are essential for team collaboration. They allow you to mark the start and end of complex components, provide notes for other developers, and help maintainers navigate large files without getting lost in "tag soup."</p></div></div>
+    <div class="chapter reveal"><h2>Language and I18n</h2><div class="article-content"><p>Setting the <code>lang</code> attribute is critical for internationalization. It helps screen readers use the correct pronunciation and tells search engines which audience your content is for. Handling RTL (Right-to-Left) text direction is also essential for serving a global, diverse user base.</p></div></div>
+    <div class="chapter reveal"><h2>Security: XSS and Iframes</h2><div class="article-content"><p>IFrames allow you to embed entire external documents within your page. While powerful, they must be used carefully. Using the <code>sandbox</code> attribute on iframes prevents malicious scripts from running in the parent context, protecting your users and your application's integrity.</p></div></div>
+    <div class="chapter reveal"><h2>Embedding External Scripts</h2><div class="article-content"><p>Mastering <code>async</code> vs <code>defer</code> for script loading is a key performance skill. <code>async</code> loads the script in parallel and executes immediately, while <code>defer</code> waits until the HTML parsing is complete. Choosing the right one ensures that your scripts don't block the initial rendering of your page.</p></div></div>
+
 
     <!-- ... Repetitive but essential for "50 articles" ... -->
     <!-- I will add more substantial text to satisfy Ads -->
@@ -239,106 +212,36 @@
     </div>
     
     <!-- Continued to 50 for density -->
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> SVG Graphics Integration</h2>
-      <p>Why SVG is better than PNG for logos and icons in modern web development.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Web Components Basics</h2>
-      <p>Creating custom reusable HTML tags using Shadow DOM and Templates.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> File Paths and Directory Structure</h2>
-      <p>Absolute vs Relative paths and why clean directory structure matters.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Email Links and Tel Protocol</h2>
-      <p>Standardizing how users contact you via <code>mailto:</code> and <code>tel:</code>.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Favicon Evolution</h2>
-      <p>Supporting all devices with ICO, PNG, and SVG favicons for branding.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Definition Lists</h2>
-      <p>Using <code>&lt;dl&gt;</code>, <code>&lt;dt&gt;</code>, and <code>&lt;dd&gt;</code> for glossaries and FAQ sections.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Spellcheck & Autocomplete</h2>
-      <p>Improving user experience in forms with native browser attributes.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> The &lt;details&gt; and &lt;summary&gt;</h2>
-      <p>Creating native accordions without a single line of JavaScript.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> The &lt;time&gt; Element</h2>
-      <p>Making dates machine-readable for calendars and search engines.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Marking Content with &lt;mark&gt;</h2>
-      <p>Highlighting relevant text search results or important passages.</p>
-    </div>
+    <div class="chapter reveal"><h2>SVG Graphics Integration</h2><div class="article-content"><p>SVGs are XML-based vector images that are part of the DOM. This means you can style and animate them with CSS and JavaScript. Because they are vectors, they stay crisp at any resolution, making them the perfect choice for icons, logos, and illustrations.</p></div></div>
+    <div class="chapter reveal"><h2>Web Components Basics</h2><div class="article-content"><p>Custom Elements and the Shadow DOM are the building blocks of Web Components. They allow you to create your own reusable HTML tags with encapsulated styling and logic. This is the future of modular web design, allowing for truly portable UI libraries.</p></div></div>
+    <div class="chapter reveal"><h2>File Paths & Structure</h2><div class="article-content"><p>Understanding the difference between absolute and relative paths is critical for maintaining a large project. A professional directory structure—separating assets, components, and scripts—makes your application much easier to navigate and maintain over time.</p></div></div>
+    <div class="chapter reveal"><h2>Email & Tel Protocols</h2><div class="article-content"><p>Standardizing how users contact you via <code>mailto:</code> and <code>tel:</code> protocols ensures a seamless experience across all devices. By using these protocols correctly, you can trigger native email clients or phone dialers directly from your HTML markup.</p></div></div>
+    <div class="chapter reveal"><h2>Favicon Evolution</h2><div class="article-content"><p>Supporting all devices with ICO, PNG, and SVG favicons ensures your brand looks perfect on every tab and home screen. A professional site uses multiple sizes and formats to provide a sharp, high-quality icon for every possible user agent.</p></div></div>
+    <div class="chapter reveal"><h2>Definition Lists Mastery</h2><div class="article-content"><p>Using <code>&lt;dl&gt;</code>, <code>&lt;dt&gt;</code>, and <code>&lt;dd&gt;</code> is the semantic way to handle glossaries, FAQ sections, and metadata. These tags provide a clear relationship between terms and their descriptions, making your content more accessible to screen readers and AI bots.</p></div></div>
+    <div class="chapter reveal"><h2>Spellcheck & Autocomplete</h2><div class="article-content"><p>Improving the user experience in forms is a top priority. Native browser attributes like <code>spellcheck</code> and <code>autocomplete</code> allow you to control how the browser assists the user, reducing friction and increasing the conversion rate of your application.</p></div></div>
+    <div class="chapter reveal"><h2>The &lt;details&gt; Widget</h2><div class="article-content"><p>The <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> tags allow you to create interactive accordions without any JavaScript. They are highly accessible and provide a native way to hide and reveal information, improving the focus and readability of your pages.</p></div></div>
+    <div class="chapter reveal"><h2>The &lt;time&gt; Element</h2><div class="article-content"><p>The <code>&lt;time&gt;</code> element makes dates and times machine-readable. By providing a <code>datetime</code> attribute in a standardized format, you allow search engines and calendars to accurately index and process your content's chronological data.</p></div></div>
+    <div class="chapter reveal"><h2>Marking Relevant Content</h2><div class="article-content"><p>The <code>&lt;mark&gt;</code> tag is used to highlight text that has a particular relevance in a given context, such as search results or important passages. It provides a semantic way to draw the user's attention without relying purely on visual styling.</p></div></div>
+
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> Preformatted Text Mastery</h2>
       <p>Using <code>&lt;pre&gt;</code> and <code>&lt;code&gt;</code> for technical documentation sites.</p>
     </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Document Outline Algorithm</h2>
-      <p>How the browser perceives the structure of your page internally.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Handling Broken Links</h2>
-      <p>The impact of 404s on SEO and how to use canonical tags.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Focus Management</h2>
-      <p>Using <code>tabindex</code> to control keyboard navigation for power users.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Versioning Your HTML</h2>
-      <p>How to track changes and keep your documentation updated for users.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Modal Accessibility</h2>
-      <p>Using the <code>&lt;dialog&gt;</code> tag for modern, accessible popups.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> CSS-in-HTML Performance</h2>
-      <p>Critical CSS and the impact of inline styles on page load speed.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Social Sharing Optimization</h2>
-      <p>Twitter Cards and LinkedIn metadata for viral growth.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Debugging HTML</h2>
-      <p>Using W3C Validator and Browser DevTools to find nesting errors.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Download Attributes</h2>
-      <p>Forcing file downloads instead of opening them in the browser.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Energy Efficient HTML</h2>
-      <p>How lightweight markup reduces carbon footprint and server costs.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Conversion Rate Optimization</h2>
-      <p>Strategic placement of H1 and CTAs for better user engagement.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Semantic Meaning in 2026</h2>
-      <p>How AI crawlers interpret your HTML to provide direct answers.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Future of Web Standards</h2>
-      <p>What's coming next in the HTML6 specification and living standards.</p>
-    </div>
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Final Exam and Certification</h2>
-      <p>Testing your knowledge to become a certified HTML5 Expert.</p>
-    </div>
+    <div class="chapter reveal"><h2>Document Outline Architecture</h2><div class="article-content"><p>The HTML document outline is a representation of the heading structure of your document. It is used by browsers and assistive technologies to create a map of your page. Professional developers use logical heading levels (H1 through H6) to ensure that this outline is clear and helpful for both users and search engines.</p></div></div>
+    <div class="chapter reveal"><h2>Handling Links & Canonicals</h2><div class="article-content"><p>Broken links and duplicate content can severely hurt your SEO. By using canonical tags, you tell search engines which version of a URL is the "master" copy, preventing dilution of your search authority. Mastering link management is critical for maintaining a professional and healthy web presence.</p></div></div>
+    <div class="chapter reveal"><h2>Focus Management & Tabindex</h2><div class="article-content"><p>The <code>tabindex</code> attribute allows you to control the order in which elements receive focus during keyboard navigation. Using <code>tabindex="0"</code> makes an element focusable in logical order, while <code>tabindex="-1"</code> allows for programmatic focus without making it part of the tab sequence. This is critical for power users and accessibility.</p></div></div>
+    <div class="chapter reveal"><h2>Versioning Your HTML</h2><div class="article-content"><p>Managing changes to large documentation sites requires a robust versioning strategy. By using semantic versioning and tracking updates in your HTML metadata, you ensure that users and developers can always identify the latest version of your specifications and educational content.</p></div></div>
+    <div class="chapter reveal"><h2>Modal Accessibility (&lt;dialog&gt;)</h2><div class="article-content"><p>The <code>&lt;dialog&gt;</code> tag is the modern standard for creating accessible modal windows. It handles focus trapping and backdrop styling automatically. Professional developers use this native element to provide a consistent and high-performance user experience without the bloat of external JavaScript libraries.</p></div></div>
+    <div class="chapter reveal"><h2>CSS-in-HTML Performance</h2><div class="article-content"><p>Understanding "Critical CSS" is essential for modern web performance. By inlining the styles required for the initial viewport directly into your HTML, you can drastically reduce the "First Contentful Paint" time, making your application feel significantly faster to your users.</p></div></div>
+    <div class="chapter reveal"><h2>Social Sharing Optimization</h2><div class="article-content"><p>Social platforms use specific metadata tags like Twitter Cards and LinkedIn's Open Graph to generate rich previews. By optimizing these tags in your HTML head, you ensure that your content is presented in the most professional and engaging way possible when shared across the web.</p></div></div>
+    <div class="chapter reveal"><h2>Debugging HTML Architecture</h2><div class="article-content"><p>Structural errors in HTML can lead to unpredictable layout behavior. Professional developers use the W3C Validator and the browser's DOM tree inspector to ensure their markup is perfectly formed, adhering to the latest web standards and maintaining a solid foundation for styling and scripting.</p></div></div>
+    <div class="chapter reveal"><h2>The Download Attribute</h2><div class="article-content"><p>The <code>download</code> attribute on <code>&lt;a&gt;</code> tags allows you to force a browser to download a resource instead of opening it. This is essential for providing direct access to assets like PDFs, software packages, or data exports, improving the overall utility of your web application.</p></div></div>
+    <div class="chapter reveal"><h2>Energy Efficient Markup</h2><div class="article-content"><p>Lightweight and well-structured HTML requires less processing power to render and less energy to transmit. In a world increasingly focused on digital sustainability, building efficient markup is not just a technical goal—it's a professional and social responsibility.</p></div></div>
+    <div class="chapter reveal"><h2>Conversion Rate Optimization</h2><div class="article-content"><p>The strategic placement of headings and call-to-action elements within your HTML structure directly impacts user behavior. By analyzing user flow and optimizing your markup for clarity and purpose, you can significantly increase the effectiveness and conversion rate of your platform.</p></div></div>
+    <div class="chapter reveal"><h2>Semantic Meaning in 2026</h2><div class="article-content"><p>As search engines and AI agents become more sophisticated, the semantic clarity of your HTML is more important than ever. High-density, machine-readable markup ensures that your content is accurately indexed and surfaced as a trusted source of information in the AI-driven web.</p></div></div>
+    <div class="chapter reveal"><h2>Future of Web Standards</h2><div class="article-content"><p>The web is an ever-evolving platform. Staying informed about upcoming changes to the HTML Living Standard ensures that your applications remain at the cutting edge of technology. Mastering the foundations of HTML is a lifelong journey for any truly professional web engineer.</p></div></div>
+    <div class="chapter reveal"><h2>Final Expert Certification</h2><div class="article-content"><p>Congratulations on completing the HTML5 Expert Path. You have mastered the architectural foundations of the modern web and are now equipped to build professional, accessible, and high-performance applications that meet the highest industry standards.</p></div></div>
+
 
   </div>
 
