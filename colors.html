@@ -58,25 +58,34 @@
 
 <div class="course-container" style="max-width: 1200px;">
   <div class="course-header">
-    <h1><i class="fa-solid fa-palette"></i> Palette Generator</h1>
-    <p>Create professional, harmonious color schemes for your next design project.</p>
+    <div data-cl-lang="en">
+      <h1><i class="fa-solid fa-palette"></i> Palette Generator</h1>
+      <p>Create professional, harmonious color schemes for your next design project.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-solid fa-palette"></i> مولد لوحات الألوان</h1>
+      <p>أنشئ مخططات ألوان احترافية ومتناغمة لمشروعك التصميمي القادم.</p>
+    </div>
   </div>
 
   <div class="controls-panel reveal">
     <input type="color" id="baseColor" value="#3b82f6" style="width: 80px; height: 50px; cursor: pointer;">
     <select id="paletteType" style="flex: 1; padding: 12px; border-radius: 8px; border: 1px solid var(--cl-line); background: var(--cl-bg); color: var(--cl-ink);">
-      <option value="monochromatic">Monochromatic</option>
-      <option value="analogous">Analogous</option>
-      <option value="complementary">Complementary</option>
-      <option value="triadic">Triadic</option>
+      <!-- Options will be populated by JS to support localization -->
     </select>
-    <button class="btn-generate" id="generateBtn">Generate New</button>
+    <button class="btn-generate" id="generateBtn">
+      <span data-cl-lang="en">Generate New</span>
+      <span data-cl-lang="ar">توليد جديد</span>
+    </button>
   </div>
 
   <div class="palette-grid" id="paletteGrid"></div>
 </div>
 
-<div id="toast" style="position: fixed; bottom: 20px; right: 20px; background: var(--cl-brand); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 700; transform: translateY(100px); opacity: 0; transition: all 0.3s; z-index: 10000;">Copied!</div>
+<div id="toast" style="position: fixed; bottom: 20px; right: 20px; background: var(--cl-brand); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 700; transform: translateY(100px); opacity: 0; transition: all 0.3s; z-index: 10000;">
+  <span data-cl-lang="en">Copied!</span>
+  <span data-cl-lang="ar">تم النسخ!</span>
+</div>
 
 <script src="site-polish.js"></script>
 <script>
@@ -84,6 +93,41 @@
   const baseColor = document.getElementById('baseColor');
   const paletteType = document.getElementById('paletteType');
   const generateBtn = document.getElementById('generateBtn');
+
+  const options = {
+    en: [
+      { v: 'monochromatic', t: 'Monochromatic' },
+      { v: 'analogous', t: 'Analogous' },
+      { v: 'complementary', t: 'Complementary' },
+      { v: 'triadic', t: 'Triadic' }
+    ],
+    ar: [
+      { v: 'monochromatic', t: 'أحادي اللون' },
+      { v: 'analogous', t: 'متماثل' },
+      { v: 'complementary', t: 'متكامل' },
+      { v: 'triadic', t: 'ثلاثي' }
+    ]
+  };
+
+  function updateOptions() {
+    const lang = localStorage.getItem('cl-lang') || 'en';
+    const currentOptions = options[lang] || options.en;
+    const currentVal = paletteType.value;
+    paletteType.innerHTML = currentOptions.map(o => `<option value="${o.v}" ${o.v === currentVal ? 'selected' : ''}>${o.t}</option>`).join('');
+  }
+
+  // Hook into the site-polish language switch if possible or just check on load
+  updateOptions();
+  window.addEventListener('storage', updateOptions);
+  
+  // Custom observer for lang changes since we use custom logic in site-polish
+  setInterval(() => {
+    const lang = localStorage.getItem('cl-lang') || 'en';
+    if (paletteType.dataset.lastLang !== lang) {
+      paletteType.dataset.lastLang = lang;
+      updateOptions();
+    }
+  }, 500);
 
   function hexToHSL(H) {
     let r = 0, g = 0, b = 0;
