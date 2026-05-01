@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Professional Workflow - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header" style="background: linear-gradient(135deg, #f05032, #000) !important;">
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">DevOps & Collaboration</div>
+    <h1 style="color: #fff;"><i class="fa-brands fa-git-alt"></i> Git Expert Workflow</h1>
+    <p style="color: #fff; opacity: 0.9;">Master the industry-standard version control system. Go beyond commit and push to professional collaboration.</p>
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
+      <span><i class="fa-solid fa-signal"></i> Advanced</span>
+      <span><i class="fa-solid fa-clock"></i> 3 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 12 Chapters</span>
+    </div>
+  </div>
+
+  <div class="chapters">
+    
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-code-branch"></i> Chapter 1: Branching Strategies</h2>
+      <div class="article-content">
+        <p>In a team, everyone can't work on the same branch. Learn <strong>Gitflow</strong> and <strong>GitHub Flow</strong> to manage features, releases, and hotfixes safely.</p>
+        <div style="background: var(--cl-brand-soft); padding: 20px; border-radius: 12px; margin-top: 20px;">
+          <strong>Pro Rule:</strong> Never commit directly to <code>main</code>. Always use feature branches and Pull Requests.
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-magic"></i> Chapter 2: Rebase vs Merge</h2>
+      <div class="article-content">
+        <p>Keep your history clean. Learn when to use <code>git rebase</code> to maintain a linear history and when to use <code>git merge</code> to preserve the context of feature integration.</p>
+        
+        <div class="code-example">
+          <pre>/* Syncing your branch with main using Rebase */
+git checkout feature-branch
+git fetch origin
+git rebase origin/main
+
+/* If conflicts occur */
+git status
+git add [files]
+git rebase --continue</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-box-archive"></i> Chapter 3: The Stash & Cherry-pick</h2>
+      <div class="article-content">
+        <p>Need to switch branches but not ready to commit? <code>git stash</code> is your best friend. Found a bug fix in another branch? <code>git cherry-pick</code> it into yours.</p>
+        
+        <div class="code-example">
+          <pre>/* Save temporary work */
+git stash save "Working on login logic"
+
+/* Switch branches, then come back */
+git stash pop
+
+/* Pick a specific commit from another branch */
+git cherry-pick [commit-hash]</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-trash-can-arrow-up"></i> Chapter 4: Reflog - The Safety Net</h2>
+      <div class="article-content">
+        <p>Deleted a branch by mistake? Messed up a rebase? <code>git reflog</code> keeps a record of every move you made, allowing you to travel back in time to any state.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

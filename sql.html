@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Data Mastery - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header" style="background: linear-gradient(135deg, #336791, #2f5e8e) !important;">
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Data Architecture</div>
+    <h1 style="color: #fff;"><i class="fa-solid fa-database"></i> SQL Relational Mastery</h1>
+    <p style="color: #fff; opacity: 0.9;">Master the language of data. From simple queries to complex analytics and database performance tuning.</p>
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
+      <span><i class="fa-solid fa-signal"></i> Advanced</span>
+      <span><i class="fa-solid fa-clock"></i> 4 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 18 Chapters</span>
+    </div>
+  </div>
+
+  <div class="chapters">
+    
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-diagram-project"></i> Chapter 1: Relational Design (Normalization)</h2>
+      <div class="article-content">
+        <p>Database design is about reducing redundancy. Learn 1NF, 2NF, and 3NF to build scalable and consistent data structures.</p>
+        
+        <div style="background: var(--cl-brand-soft); padding: 20px; border-radius: 12px; margin: 20px 0;">
+          <strong>Pro Rule:</strong> If you find yourself duplicating data in multiple rows, you probably need a new table and a foreign key.
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-link"></i> Chapter 2: Advanced JOIN Strategies</h2>
+      <div class="article-content">
+        <p>JOINs are the heart of SQL. Understanding the difference between <code>LEFT JOIN</code> and <code>INNER JOIN</code> is crucial for accurate reports.</p>
+        
+        <div class="code-example">
+          <pre>/* Find customers who have NEVER placed an order */
+SELECT customers.name, orders.order_id
+FROM customers
+LEFT JOIN orders ON customers.id = orders.customer_id
+WHERE orders.order_id IS NULL;</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-gauge-high"></i> Chapter 3: Query Optimization & Indexing</h2>
+      <div class="article-content">
+        <p>A query that takes 10 seconds is a bug. Learn how Indexes speed up <code>SELECT</code> but can slow down <code>INSERT</code>. Master the <code>EXPLAIN</code> command.</p>
+        
+        <div class="code-example">
+          <pre>/* Create a covering index for performance */
+CREATE INDEX idx_user_login 
+ON users (email, password_hash);
+
+/* Analyze performance */
+EXPLAIN SELECT * FROM users WHERE email = 'test@site.com';</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-window-restore"></i> Chapter 4: Analytical Window Functions</h2>
+      <div class="article-content">
+        <p>Window functions like <code>OVER()</code>, <code>RANK()</code>, and <code>PARTITION BY</code> allow you to perform calculations across a set of rows related to the current row.</p>
+        
+        <div class="code-example">
+          <pre>/* Rank products by sales within each category */
+SELECT 
+  name, 
+  category, 
+  sales,
+  RANK() OVER(PARTITION BY category ORDER BY sales DESC) as rank
+FROM products;</pre>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

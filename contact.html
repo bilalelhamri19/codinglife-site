@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .contact-form-container {
+      max-width: 600px;
+      margin: 80px auto;
+      padding: 40px;
+      background: var(--cl-surface);
+      border-radius: var(--cl-radius);
+      box-shadow: var(--cl-shadow-lg);
+      border: 1px solid var(--cl-line);
+    }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: var(--cl-ink);
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--cl-line);
+      border-radius: 8px;
+      background: var(--cl-bg);
+      color: var(--cl-ink);
+      font-family: inherit;
+      outline: none;
+      transition: var(--cl-transition);
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--cl-brand);
+      box-shadow: 0 0 0 4px var(--cl-brand-soft);
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--cl-brand);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--cl-transition);
+    }
+    .btn-submit:hover {
+      background: var(--cl-brand-dark);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header">
+    <h1><i class="fa-solid fa-paper-plane"></i> Get in Touch</h1>
+    <p>Have questions or ideas? We'd love to hear from you. Send us a message and we'll get back to you within 24 hours.</p>
+  </div>
+
+  <div class="contact-form-container reveal">
+    <form id="contactForm" action="https://formspree.io/f/mrbowawn" method="POST">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="John Doe" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="_replyto" placeholder="john@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Course Question" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="6" placeholder="How can we help you?" required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Message <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></button>
+    </form>
+  </div>
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Mastery - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header" style="background: linear-gradient(135deg, #61dafb, #282c34) !important;">
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #20232a;">Frontend Framework</div>
+    <h1 style="color: #20232a;"><i class="fab fa-react"></i> React Modern Architecture</h1>
+    <p style="color: #20232a; opacity: 0.8;">Master the industry-leading library. Build highly interactive, scalable, and high-performance user interfaces.</p>
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #20232a;">
+      <span><i class="fa-solid fa-signal"></i> Expert</span>
+      <span><i class="fa-solid fa-clock"></i> 8 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 30 Chapters</span>
+    </div>
+  </div>
+
+  <div class="chapters">
+    
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-hook"></i> Chapter 1: Mastering Hooks & Lifecycle</h2>
+      <div class="article-content">
+        <p>Hooks are the heart of functional React. Learn how to manage state and side effects with precision to avoid unnecessary re-renders.</p>
+        
+        <div class="code-example">
+          <pre>/* Pro useEffect with Cleanup */
+useEffect(() => {
+  const socket = connectToWS();
+  
+  return () => {
+    // Critical: Clean up to prevent memory leaks
+    socket.disconnect();
+  };
+}, []); // Empty array means run once on mount</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-gauge-high"></i> Chapter 2: Performance (Memoization)</h2>
+      <div class="article-content">
+        <p>In large apps, performance is key. Use <code>useMemo</code> for expensive calculations and <code>useCallback</code> to prevent children from re-rendering.</p>
+        
+        <div class="code-example">
+          <pre>const expensiveVal = useMemo(() => {
+  return complexCalculation(data);
+}, [data]);
+
+const handleAction = useCallback(() => {
+  doSomething(expensiveVal);
+}, [expensiveVal]);</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-share-nodes"></i> Chapter 3: Advanced State Management</h2>
+      <div class="article-content">
+        <p>When does "Prop Drilling" become a problem? Learn when to use <code>useContext</code> for simple global state and when to reach for tools like <strong>Zustand</strong> or <strong>Redux Toolkit</strong>.</p>
+        <div style="background: var(--cl-brand-soft); padding: 20px; border-radius: 12px; margin-top: 20px;">
+          <strong>Rule of Thumb:</strong> If more than 5 components need the same data, use a global store.
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-server"></i> Chapter 4: React 19 & Server Components</h2>
+      <div class="article-content">
+        <p>The future of React is on the server. Learn how <strong>Server Components</strong> reduce bundle size and improve SEO by rendering on the server first.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

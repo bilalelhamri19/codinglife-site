@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Mastery - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header">
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px;">Logic & Interactivity</div>
+    <h1><i class="fab fa-js"></i> JavaScript Modern Mastery</h1>
+    <p>Go beyond syntax. Master asynchronous logic, functional patterns, and modern browser APIs.</p>
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700;">
+      <span><i class="fa-solid fa-signal"></i> Expert</span>
+      <span><i class="fa-solid fa-clock"></i> 6 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 22 Chapters</span>
+    </div>
+  </div>
+
+  <div class="chapters">
+    
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-clock-rotate-left"></i> Chapter 1: The Power of Async/Await</h2>
+      <div class="article-content">
+        <p>JavaScript is single-threaded, but its non-blocking nature makes it powerful. Learn to handle external data without freezing the UI.</p>
+        
+        <div class="code-example">
+          <pre>/* Pro Data Fetching Pattern */
+async function loadUserData(id) {
+  try {
+    const response = await fetch(`https://api.site.com/users/${id}`);
+    if (!response.ok) throw new Error('User not found');
+    
+    const data = await response.json();
+    updateUI(data);
+  } catch (err) {
+    showError(err.message);
+  } finally {
+    hideLoader();
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-code-branch"></i> Chapter 2: Modern ES6+ Features</h2>
+      <div class="article-content">
+        <p>Clean code is about using the right tools. Destructuring and Spread operators make your code readable and maintainable.</p>
+        
+        <div class="code-example">
+          <pre>const user = { name: 'Bilal', role: 'Lead', skills: ['JS', 'React'] };
+
+/* Destructuring with Default Values */
+const { name, role, country = 'Morocco' } = user;
+
+/* Spread for Immutable Updates */
+const updatedUser = { 
+  ...user, 
+  skills: [...user.skills, 'Node.js'],
+  role: 'Architect'
+};</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-sitemap"></i> Chapter 3: Event Delegation Pattern</h2>
+      <div class="article-content">
+        <p>Don't attach 1,000 listeners to 1,000 buttons. Attach ONE listener to the parent. This is critical for performance and handling dynamic elements.</p>
+        
+        <div class="code-example">
+          <pre>/* Efficient Event Handling */
+const list = document.querySelector('.user-list');
+
+list.addEventListener('click', (e) => {
+  // Check if the clicked element is a delete button
+  const btn = e.target.closest('.delete-btn');
+  if (btn) {
+    const id = btn.dataset.id;
+    removeUser(id);
+  }
+});</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-brain"></i> Chapter 4: Closures & Scope</h2>
+      <div class="article-content">
+        <p>Understand the "Lexical Environment." A closure is the combination of a function bundled together with references to its surrounding state.</p>
+        <div style="background: var(--cl-brand-soft); padding: 20px; border-radius: 12px; margin-top: 20px;">
+          <p><strong>Pro Insight:</strong> Closures allow for private variables and powerful functional patterns like Currying and Memoization.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

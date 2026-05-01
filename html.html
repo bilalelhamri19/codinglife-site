@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Complete Masterclass - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header">
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px;">Core Web Development</div>
+    <h1><i class="fab fa-html5"></i> HTML5 Expert Path</h1>
+    <p>Beyond basic tags. Master the architecture of the modern web with semantic precision and accessibility.</p>
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700;">
+      <span><i class="fa-solid fa-signal"></i> Advanced</span>
+      <span><i class="fa-solid fa-clock"></i> 3 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 15 Chapters</span>
+    </div>
+  </div>
+
+  <div class="chapters">
+    
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Chapter 1: The Semantic Revolution</h2>
+      <div class="article-content">
+        <p>In the professional world, <code>&lt;div&gt;</code> soup is a sign of an amateur. Semantic HTML is about using tags that describe their <strong>content</strong>, not their appearance.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0;">
+          <div style="padding: 16px; background: #fee2e2; border-radius: 8px; color: #991b1b;">
+            <strong style="display: block; margin-bottom: 8px;"><i class="fa-solid fa-xmark"></i> Bad Practice</strong>
+            <code>&lt;div class="header"&gt;...&lt;/div&gt;</code>
+          </div>
+          <div style="padding: 16px; background: #dcfce7; border-radius: 8px; color: #166534;">
+            <strong style="display: block; margin-bottom: 8px;"><i class="fa-solid fa-check"></i> Pro Practice</strong>
+            <code>&lt;header&gt;...&lt;/header&gt;</code>
+          </div>
+        </div>
+
+        <p>Why it matters:
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li><strong>SEO:</strong> Google gives higher weight to content inside semantic tags like <code>&lt;h1&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;main&gt;</code>.</li>
+            <li><strong>Accessibility:</strong> Screen readers use these tags to help blind users navigate the page.</li>
+          </ul>
+        </p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-universal-access"></i> Chapter 2: A11y & ARIA Roles</h2>
+      <div class="article-content">
+        <p>Accessibility (A11y) is not a feature; it's a requirement. If your site isn't accessible, you're losing 15% of your potential audience.</p>
+        
+        <div class="code-example">
+          <pre>&lt;!-- Accessible Icon Button --&gt;
+&lt;button aria-label="Close Menu" title="Close"&gt;
+    &lt;i class="fa-solid fa-xmark" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/button&gt;
+
+&lt;!-- Descriptive Links --&gt;
+&lt;a href="/docs" aria-describedby="doc-info"&gt;Read Docs&lt;/a&gt;
+&lt;p id="doc-info" hidden&gt;Opens a 2MB PDF file in a new tab.&lt;/p&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-bolt"></i> Chapter 3: HTML5 Power APIs</h2>
+      <div class="article-content">
+        <p>HTML5 is more than just markup. It provides powerful APIs that previously required complex plugins.</p>
+        <ul style="margin-top: 20px;">
+          <li style="margin-bottom: 12px; padding: 12px; background: var(--cl-bg); border-radius: 8px;">
+            <strong>Canvas API:</strong> For 2D and 3D graphics and games.
+          </li>
+          <li style="margin-bottom: 12px; padding: 12px; background: var(--cl-bg); border-radius: 8px;">
+            <strong>Drag & Drop:</strong> Native support for dragging elements.
+          </li>
+          <li style="margin-bottom: 12px; padding: 12px; background: var(--cl-bg); border-radius: 8px;">
+            <strong>Web Storage:</strong> <code>localStorage</code> and <code>sessionStorage</code> for saving data in the browser.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-table-columns"></i> Chapter 4: Data Mastery (Tables & Lists)</h2>
+      <div class="article-content">
+        <p>Tables should be used for <strong>tabular data</strong>, never for layout. A pro table uses <code>thead</code>, <code>tbody</code>, and <code>tfoot</code>.</p>
+        
+        <div class="code-example">
+          <pre>&lt;table&gt;
+  &lt;caption&gt;Quarterly Sales Report&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;Product&lt;/th&gt;
+      &lt;th scope="col"&gt;Revenue&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;Premium Path&lt;/th&gt;
+      &lt;td&gt;$12,400&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-vial"></i> Interactive Challenge</h2>
+      <div class="article-content">
+        <p>Try to identify the semantic error in this snippet:</p>
+        <div class="code-example">
+          <pre>&lt;div class="nav"&gt;
+  &lt;div class="item"&gt;Home&lt;/div&gt;
+  &lt;div class="item"&gt;Blog&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <details style="cursor: pointer; padding: 20px; background: var(--cl-brand-soft); border-radius: 12px; margin-top: 20px;">
+          <summary style="font-weight: 800; color: var(--cl-brand);">Reveal Pro Solution</summary>
+          <p style="margin-top: 15px;">A navigation should use the <code>&lt;nav&gt;</code> tag and an unordered list (<code>&lt;ul&gt;</code>) for the items. This is standard for screen readers and search crawlers.</p>
+          <div class="code-example">
+            <pre>&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/blog"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</pre>
+          </div>
+        </details>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

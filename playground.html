@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Playground - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/eclipse.min.css">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .playground-container {
+      max-width: 1400px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    .toolbar {
+      background: var(--cl-surface);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid var(--cl-line);
+      margin-bottom: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      height: 700px;
+    }
+    .panel {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--cl-line);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .panel-header {
+      padding: 12px 16px;
+      background: var(--cl-bg);
+      border-bottom: 1px solid var(--cl-line);
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+    }
+    .CodeMirror { height: 100%; font-size: 16px; }
+    iframe { width: 100%; height: 100%; border: none; background: white; }
+    
+    @media (max-width: 900px) {
+      .editor-grid { grid-template-columns: 1fr; height: 1000px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="playground-container">
+  <div class="course-header" style="margin-bottom: 24px;">
+    <h1><i class="fa-solid fa-flask"></i> Code Playground</h1>
+    <p>Practice HTML, CSS, and JS with instant live preview. Perfect for quick experiments.</p>
+  </div>
+
+  <div class="toolbar reveal">
+    <button id="runBtn" class="theme-toggle" style="padding: 10px 24px; border-radius: 8px;"><i class="fa-solid fa-play"></i> Run Code</button>
+    <button id="copyBtn" class="theme-toggle" style="padding: 10px 24px; border-radius: 8px; background: var(--cl-bg); color: var(--cl-ink);"><i class="fa-solid fa-copy"></i> Copy</button>
+    <select id="templateSelect" style="padding: 10px; border-radius: 8px; border: 1px solid var(--cl-line); background: var(--cl-bg); color: var(--cl-ink);">
+      <option value="basic">Basic HTML Starter</option>
+      <option value="centered">Centered Layout</option>
+      <option value="card">Modern Card</option>
+    </select>
+  </div>
+
+  <div class="editor-grid reveal">
+    <div class="panel">
+      <div class="panel-header"><span>Editor</span><span style="color: var(--cl-brand);">index.html</span></div>
+      <div style="flex: 1;"><textarea id="editor"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header">Live Preview</div>
+      <div style="flex: 1;"><iframe id="preview"></iframe></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+<script src="site-polish.js"></script>
+<script>
+  const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+    lineNumbers: true,
+    mode: "htmlmixed",
+    theme: "eclipse",
+    indentUnit: 2,
+    autofocus: true
+  });
+
+  const templates = {
+    basic: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; padding: 40px; text-align: center; background: #f0f4f8; }
+    h1 { color: #0f766e; }
+  </style>
+</head>
+<body>
+  <h1>Hello Coding Life!</h1>
+  <p>Start editing to see changes.</p>
+</body>
+</html>`,
+    centered: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: #1e293b; color: white; font-family: sans-serif; }
+    .box { padding: 40px; border-radius: 20px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Centered Glassmorphism</h1>
+    <p>This layout is centered using Flexbox.</p>
+  </div>
+</body>
+</html>`,
+    card: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { background: #f8fafc; padding: 50px; font-family: sans-serif; display: flex; justify-content: center; }
+    .card { width: 300px; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .img { height: 150px; background: linear-gradient(45deg, #3b82f6, #8b5cf6); }
+    .content { padding: 20px; }
+    button { width: 100%; padding: 10px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="img"></div>
+    <div class="content">
+      <h3>Premium Card</h3>
+      <p>Clean design for your web projects.</p>
+      <button>Action</button>
+    </div>
+  </div>
+</body>
+</html>`
+  };
+
+  editor.setValue(templates.basic);
+
+  function updatePreview() {
+    const preview = document.getElementById('preview').contentWindow.document;
+    preview.open();
+    preview.write(editor.getValue());
+    preview.close();
+  }
+
+  document.getElementById('runBtn').onclick = updatePreview;
+  document.getElementById('copyBtn').onclick = () => {
+    navigator.clipboard.writeText(editor.getValue());
+    alert('Code copied!');
+  };
+  document.getElementById('templateSelect').onchange = (e) => {
+    editor.setValue(templates[e.target.value]);
+    updatePreview();
+  };
+
+  updatePreview();
+</script>
+</body>
+</html>

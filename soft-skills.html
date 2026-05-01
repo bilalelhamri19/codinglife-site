@@ -1,0 +1,662 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soft Skills Development - Coding Life</title>
+<meta name="description" content="Learn programming easily with Programmer Life. Tutorials, guides, and coding projects for beginners.">
+<meta name="keywords" content="programming, coding, learn to code, web development">
+<link rel="icon" href="logo.png" type="image/jpeg" sizes="32x32">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<!-- Ø¥Ø¶Ø§ÙØ© Ø®Ø· Ù…Ø²Ø®Ø±Ù -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ6Z2QKGHJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TJ6Z2QKGHJ');
+</script>
+
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+  padding-top:70px;
+  background-color:#f8fafc;
+  color:#1e293b;
+  line-height:1.6;
+  font-family:'Cairo',sans-serif;
+}
+a {text-decoration:none; color:inherit;}
+
+/* HEADER - Ù…Ø·Ø§Ø¨Ù‚ Ù„Ù„ÙƒÙˆØ¯ Ø§Ù„Ø£ÙˆÙ„ */
+header {
+  background:white;
+  color:#000;
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  z-index:9999;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+}
+
+/* Ø§Ù„Ù„ÙˆØ¬Ùˆ Ù…Ø¹ ØªÙ†Ø³ÙŠÙ‚Ø§Øª Ù…Ø­Ø³Ù†Ø© - Ù…Ø·Ø§Ø¨Ù‚ Ù„Ù„ÙƒÙˆØ¯ Ø§Ù„Ø£ÙˆÙ„ */
+.logo {
+  display:flex;
+  align-items:center;
+  font-size:1.5rem;
+  color:#0f172a;
+  gap:12px;
+}
+
+.logo img {
+  height:50px !important;
+  width:auto;
+  transition:transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform:scale(1.05);
+}
+
+.logo-text {
+  font-family:'Pacifico', cursive;
+  font-size:1.8rem;
+  font-weight:bold;
+  background:linear-gradient(45deg, #0f172a, #3b82f6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-shadow:2px 2px 4px rgba(0,0,0,0.1);
+  letter-spacing:0.5px;
+}
+
+nav {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:25px;
+}
+
+nav a {
+  color:#000;
+  padding:10px 18px;
+  border-radius:8px;
+  font-weight:bold;
+  transition:.3s;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:1rem;
+  position:relative;
+  overflow:hidden;
+}
+
+nav a:hover {
+  background:#0f172a;
+  color:white;
+  transform:translateY(-2px);
+}
+
+/* ØªØ£Ø«ÙŠØ± Ø²Ø± - Ù…Ø·Ø§Ø¨Ù‚ Ù„Ù„ÙƒÙˆØ¯ Ø§Ù„Ø£ÙˆÙ„ */
+nav a::after {
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:3px;
+  transform:scaleX(0);
+  transition:transform 0.3s ease;
+}
+
+nav a:hover::after {
+  transform:scaleX(1);
+}
+
+/* Ø§Ù„Ø£Ø²Ø±Ø§Ø± Ù„Ù„Ø´Ø§Ø´Ø§Øª Ø§Ù„ØµØºÙŠØ±Ø© - ÙÙ‚Ø· Ø²Ø± Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ© */
+.left-buttons {
+  display:none;
+  gap:8px;
+  align-items:center;
+  justify-content:flex-start;
+  margin-right: 15px;
+}
+
+.left-buttons a {
+  font-size: 1rem;
+  color: #0f172a;
+  background: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.left-buttons a span {
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
+
+.left-buttons a:hover {
+  background: #0f172a;
+  color: white;
+}
+
+/* ARTICLE HEADER - Ù…Ø¹Ø¯Ù„ Ù„ÙŠØ·Ø§Ø¨Ù‚ Ø§Ù„ØªØµÙ…ÙŠÙ… */
+.article-header {        
+  max-width:1200px; 
+  margin:40px auto; 
+  padding:25px 30px; 
+  text-align:center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border:1px solid #e2e8f0;
+}
+.article-header h1 {
+  font-size:2.5rem; 
+  margin-bottom:15px;
+  color:#1e293b;
+}
+.article-header .meta {
+  font-size:1.2rem; 
+  color:#64748b;
+  line-height:1.7;
+}
+
+/* ARTICLE CONTENT - Ù…Ø¹Ø¯Ù„ Ù„ÙŠØ·Ø§Ø¨Ù‚ Ø§Ù„ØªØµÙ…ÙŠÙ… */
+.article-content {
+  max-width:1000px; 
+  margin:0 auto 60px; 
+  background:white; 
+  padding:50px; 
+  border-radius:12px; 
+  box-shadow:0 4px 12px rgba(0,0,0,0.08); 
+  border:1px solid #e2e8f0;
+}
+.article-section {margin-bottom:40px;}
+.article-section h2 { 
+  margin-bottom:20px; 
+  font-size:1.8rem; 
+  border-right:4px solid #0f172a; 
+  padding-right:15px;
+  color:#1e293b;
+}
+.article-section p {
+  font-size:1.1rem; 
+  color:#475569; 
+  margin-bottom:15px; 
+  line-height:1.8;
+}
+
+/* FEATURE CARDS - Ù…Ø¹Ø¯Ù„ Ù„ÙŠØ·Ø§Ø¨Ù‚ ØªØµÙ…ÙŠÙ… Ø§Ù„ÙƒÙˆØ¯ Ø§Ù„Ø£ÙˆÙ„ */
+.workshop-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.feature-card {
+  background: #f8fafc;
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-card:hover {
+  transform:translateY(-5px);
+  border-color:#3b82f6;
+  box-shadow:0 10px 20px rgba(59, 130, 246, 0.1);
+}
+
+.feature-card i {
+  font-size: 2.5rem;
+  color: #0f172a;
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  color: #1e293b;
+}
+
+.feature-card p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* TIPS GRID - Ù…Ø¹Ø¯Ù„ Ù„ÙŠØ·Ø§Ø¨Ù‚ ØªØµÙ…ÙŠÙ… Ø§Ù„ÙƒÙˆØ¯ Ø§Ù„Ø£ÙˆÙ„ */
+.tips-grid {
+  display:grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap:30px; 
+  margin-top:25px;
+}
+.tip-card {
+  background:#fff; 
+  padding:25px; 
+  border-radius:12px; 
+  border:1px solid #e2e8f0; 
+  box-shadow:0 4px 12px rgba(0,0,0,0.08); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  cursor:pointer;
+  position: relative;
+}
+.tip-card:hover {
+  transform: translateY(-5px); 
+  box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
+.tip-card h3 { 
+  margin-bottom:10px; 
+  font-size:1.3rem;
+  color:#1e293b;
+}
+.tip-card p {
+  color:#64748b; 
+  font-size:1rem;
+  line-height:1.7;
+}
+
+/* EXERCISES / SCHEDULE */
+.upcoming-workshops {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 12px;
+  margin: 40px 0;
+  border: 1px solid #e2e8f0;
+}
+
+.workshop-schedule {
+  display: grid;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.schedule-item {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.schedule-item:hover {
+  transform: translateX(5px);
+}
+
+.workshop-info {
+  margin-bottom: 10px;
+}
+
+.workshop-description {
+  color: #475569;
+  line-height: 1.6;
+}
+
+blockquote {
+  background:#f8fafc; 
+  border-left:4px solid #0f172a; 
+  padding:25px; 
+  margin:30px 0; 
+  border-radius:8px; 
+  font-style:italic; 
+  color:#1e293b;
+  border-right: none;
+}
+
+/* FOOTER - Ù…Ø·Ø§Ø¨Ù‚ Ù„Ù„ÙƒÙˆØ¯ Ø§Ù„Ø£ÙˆÙ„ */
+footer {
+  background:#0f172a;
+  color:#cbd5e1;
+  text-align:center;
+  padding:15px 0;
+  font-size:0.85rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #cbd5e1;
+  padding: 5px 0;
+  transition: 0.3s;
+  position: relative;
+  font-weight: 500;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+footer p {
+  font-size:14px;
+  opacity:0.7;
+  margin-top:4px;
+}
+
+.social {
+  margin-bottom:12px;
+}
+
+.social a {
+  margin:0 6px;
+  font-size:1rem;
+}
+
+.social a:hover {transform:translateY(-3px);}
+.social a.fb:hover {color:#1877f2;}
+.social a.yt:hover {color:#ff0000;}
+.social a.ig:hover {color:#e4405f;}
+.social a.ln:hover {color:#0a66c2;}
+.social a.wa:hover {color:#25d366;}
+
+/* Ø§Ù„ØªØ¹Ø¯ÙŠÙ„Ø§Øª Ù„Ù„Ù…ÙˆØ¨Ø§ÙŠÙ„ - Ù…Ø·Ø§Ø¨Ù‚Ø© Ù„Ù„ÙƒÙˆØ¯ Ø§Ù„Ø£ÙˆÙ„ */
+@media (max-width: 768px) {
+  nav {display:none;}
+  .left-buttons {
+    display: flex;
+    margin-left: 10px;
+  }
+  
+  /* ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ù„ÙˆØ¬Ùˆ Ù„Ù„Ù…ÙˆØ¨Ø§ÙŠÙ„ */
+  .logo img {
+    height:40px !important;
+  }
+  .logo-text {
+    font-size:1.4rem;
+  }
+  
+  .article-header h1 {font-size:2rem;}
+  .article-content {
+    margin:30px 15px; 
+    padding:30px 20px;
+  }
+  
+  .workshop-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-links {
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  .footer-links a {
+    font-size: 0.9rem;
+    padding: 4px 0;
+  }
+  
+  footer {
+    padding: 12px 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .workshop-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    gap: 8px;
+  }
+  .logo-text {
+    font-size:1.2rem;
+  }
+  
+  .article-header {
+    padding: 20px;
+    margin: 30px 15px;
+  }
+  
+  .article-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .article-header .meta {
+    font-size: 1rem;
+  }
+  
+  .footer-links {
+    gap: 12px;
+  }
+  
+  .footer-links a {
+    font-size: 0.85rem;
+  }
+  
+  .social a {
+    margin: 0 4px;
+    font-size: 0.9rem;
+  }
+}
+</style>
+  <link rel="stylesheet" href="site-polish.css">
+</head>
+<body>
+
+<header>
+  <!-- Ø§Ù„Ù„ÙˆØ¬Ùˆ ÙˆØ§Ù„Ø§Ø³Ù… Ø§Ù„Ù…Ø²Ø®Ø±Ù - Ù…Ø·Ø§Ø¨Ù‚ Ù„Ù„ÙƒÙˆØ¯ Ø§Ù„Ø£ÙˆÙ„ -->
+  <div class="logo">
+    <img src="logo.png" alt="Coding Life Logo">
+    <span class="logo-text">Coding Life</span>
+  </div>
+
+  <!-- Ø§Ù„Ù‚Ø§Ø¦Ù…Ø© Ù„Ù„ÙƒÙ…Ø¨ÙŠÙˆØªØ± - ÙÙ‚Ø· Ø²Ø± Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ© -->
+  <nav>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  </nav>
+
+  <!-- Ø§Ù„Ø£Ø²Ø±Ø§Ø± Ù„Ù„Ø´Ø§Ø´Ø§Øª Ø§Ù„ØµØºÙŠØ±Ø© - ÙÙ‚Ø· Ø²Ø± Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ© -->
+  <div class="left-buttons">
+    <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+  </div>
+</header>
+
+<section class="article-header">
+  <h1>Soft Skills Development</h1>
+  <p class="meta">Practical guidance to improve communication, teamwork, leadership and productivity â€” essential for both personal growth and career success.</p>
+</section>
+
+<article class="article-content">
+
+  <div class="article-section">
+    <h2>ðŸŒŸ What Are Soft Skills?</h2>
+    <p>Soft skills are personal attributes and interpersonal abilities that determine how well you interact with others, solve problems, and manage yourself. Unlike technical skills, soft skills are transferable across jobs and industries and are crucial for long-term career growth.</p>
+  </div>
+
+  <div class="article-section">
+    <h2>ðŸš€ Why Soft Skills Matter</h2>
+    <p>Employers value candidates who can communicate clearly, work in teams, lead when needed, and manage time effectively. Strong soft skills increase employability, improve workplace relationships, and make learning new technical skills easier.</p>
+    <div class="workshop-features">
+      <div class="feature-card">
+        <i class="fas fa-comments"></i>
+        <h3>Better Communication</h3>
+        <p>Speak and write clearly to share ideas and avoid misunderstandings.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-handshake"></i>
+        <h3>Team Collaboration</h3>
+        <p>Contribute effectively in teams and respect diverse viewpoints.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-brain"></i>
+        <h3>Critical Thinking</h3>
+        <p>Analyze problems, evaluate options, and choose practical solutions.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-user-check"></i>
+        <h3>Leadership</h3>
+        <p>Inspire and guide others while taking responsibility for results.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-stopwatch"></i>
+        <h3>Time Management</h3>
+        <p>Organize tasks, prioritize work, and avoid procrastination.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-heart"></i>
+        <h3>Emotional Intelligence</h3>
+        <p>Understand your emotions and manage relationships with empathy.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-section">
+    <h2>ðŸŽ¯ Top Soft Skills â€” Quick Guide</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <h3>ðŸ—£ Communication</h3>
+        <p>Practice clear speaking: structure your message (purpose, key points, action). Use active listening and ask clarifying questions.</p>
+      </div>
+      <div class="tip-card">
+        <h3>ðŸ¤ Teamwork</h3>
+        <p>Offer help, share credit, and be reliable. Learn to accept feedback and adapt to group roles.</p>
+      </div>
+      <div class="tip-card">
+        <h3>ðŸ§© Problem Solving</h3>
+        <p>Define the problem, brainstorm solutions, test small steps, and adjust. Keep a logical approach and stay calm.</p>
+      </div>
+      <div class="tip-card">
+        <h3>ðŸŽ¯ Leadership</h3>
+        <p>Lead by example, communicate vision, delegate, and support others' growth. Encourage responsibility, not micromanagement.</p>
+      </div>
+      <div class="tip-card">
+        <h3>â° Time Management</h3>
+        <p>Use to-do lists, time-blocking, and set realistic deadlines. Break large tasks into small actionable steps.</p>
+      </div>
+      <div class="tip-card">
+        <h3>ðŸ§  Emotional Intelligence</h3>
+        <p>Recognize emotions, practice empathy, and manage stress. Strong EQ improves teamwork and conflict resolution.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-section">
+    <h2>ðŸ›  Practical Exercises</h2>
+    <div class="upcoming-workshops">
+      <h3>Mini Exercises You Can Do Today</h3>
+      <div class="workshop-schedule">
+        <div class="schedule-item">
+          <div class="workshop-info"><strong>Communication Drill</strong></div>
+          <p class="workshop-description">Explain a technical concept to a non-technical friend in 3 minutes. Focus on clarity and simple examples.</p>
+        </div>
+        <div class="schedule-item">
+          <div class="workshop-info"><strong>Active Listening</strong></div>
+          <p class="workshop-description">In a conversation, repeat the other person's main points back to them before responding. Notice misunderstandings.</p>
+        </div>
+        <div class="schedule-item">
+          <div class="workshop-info"><strong>Problem Breakdown</strong></div>
+          <p class="workshop-description">Pick a small issue you're facing and write 3 possible solutions, then test the easiest one first.</p>
+        </div>
+        <div class="schedule-item">
+          <div class="workshop-info"><strong>Time-Block Practice</strong></div>
+          <p class="workshop-description">Plan your next day in 2-hour blocks. Include short breaks and a clear "end of work" time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-section">
+    <h2>ðŸ’¡ Tips to Develop Soft Skills</h2>
+    <p><strong>1. Practice deliberately:</strong> Set small goals (e.g., give feedback once a week).</p>
+    <p><strong>2. Seek feedback:</strong> Ask peers or mentors where you can improve and act on it.</p>
+    <p><strong>3. Learn from role models:</strong> Observe leaders you admire and copy useful habits.</p>
+    <p><strong>4. Keep a reflection journal:</strong> Note successes and mistakes and what you learned.</p>
+    <p><strong>5. Take short courses or workshops:</strong> Combine theory with practical exercises.</p>
+  </div>
+
+  <blockquote>
+    "Mastering soft skills turns what you know into what you can achieve â€” communicate, collaborate, and lead with confidence."
+  </blockquote>
+
+  <div class="article-section">
+    <h2>ðŸŽ¯ Conclusion</h2>
+    <p>Soft skills are the silent drivers of success â€” they help you convert technical knowledge into real results. Start small, practice often, and seek real-world opportunities to apply what you learn. Over time, these habits will multiply your impact.</p>
+    <p><strong>Ready to start? Choose one exercise above and try it today.</strong></p>
+  </div>
+
+</article>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="contact.html">Contact</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+  
+  <div class="social">
+    <a class="fb" href="https://www.facebook.com/profile.php?id=100087855939787"><i class="fab fa-facebook"></i></a>
+    <a class="yt" href="https://youtube.com/@codinglife-d2l1g?si=w0GBDnTZcBf__fmn"><i class="fab fa-youtube"></i></a>
+    <a class="ig" href="https://www.instagram.com/dayli_marooc10?igsh=MXdidnc0OTh4N3ByeA=="><i class="fab fa-instagram"></i></a>
+    <a class="ln" href="https://linkedin.com/in/coding-life-965996397"><i class="fab fa-linkedin"></i></a>
+    <a class="wa" href="https://wa.me/212693885599?text=Hello! I'd like more info ðŸ‘‹"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <p>Â© 2025 Coding Life - All Rights Reserved</p>
+</footer>
+
+<script>
+// Interaction for tip cards (visual feedback + log)
+document.querySelectorAll('.tip-card').forEach(card => {
+  card.addEventListener('click', function() {
+    const title = this.querySelector('h3').textContent;
+    this.style.transform = 'scale(0.98)';
+    setTimeout(() => {
+      this.style.transform = 'translateY(-5px)';
+    }, 150);
+
+    console.log('Selected soft skill card:', title);
+  });
+});
+</script>
+
+  <script src="site-polish.js"></script>
+</body>
+</html>

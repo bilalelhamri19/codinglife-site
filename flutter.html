@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flutter Masterclass - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header" style="background: linear-gradient(135deg, #02569b, #0175c2) !important;">
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Mobile & Multi-platform</div>
+    <h1 style="color: #fff;"><i class="fa-solid fa-mobile-screen-button"></i> Flutter Expert Development</h1>
+    <p style="color: #fff; opacity: 0.9;">Build beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.</p>
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
+      <span><i class="fa-solid fa-signal"></i> Expert</span>
+      <span><i class="fa-solid fa-clock"></i> 10 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 35 Chapters</span>
+    </div>
+  </div>
+
+  <div class="chapters">
+    
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-cubes"></i> Chapter 1: Deep Dive into Widgets</h2>
+      <div class="article-content">
+        <p>In Flutter, everything is a widget. Learn the difference between <strong>Stateless</strong>, <strong>Stateful</strong>, and the power of <strong>InheritedWidgets</strong> for performance.</p>
+        <div style="background: var(--cl-brand-soft); padding: 20px; border-radius: 12px; margin-top: 20px;">
+          <strong>Pro Tip:</strong> Keep your build methods pure and small. Extract large widget trees into separate classes to optimize re-builds.
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-share-nodes"></i> Chapter 2: Professional State Management</h2>
+      <div class="article-content">
+        <p>Scaling a Flutter app requires a solid state strategy. Compare <strong>Provider</strong>, <strong>Riverpod</strong>, and <strong>BLoC</strong> to choose the right one for your architecture.</p>
+        
+        <div class="code-example">
+          <pre>/* Pro BLoC Pattern Logic */
+class AuthBloc extends Bloc&lt;AuthEvent, AuthState&gt; {
+  AuthBloc() : super(AuthInitial()) {
+    on&lt;LoginRequested&gt;((event, emit) async {
+      emit(AuthLoading());
+      try {
+        final user = await repository.login(event.email, event.pass);
+        emit(AuthSuccess(user));
+      } catch (e) {
+        emit(AuthFailure(e.toString()));
+      }
+    });
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-wind"></i> Chapter 3: Animations & Motion</h2>
+      <div class="article-content">
+        <p>Flutter's animation system is elite. Master <strong>Implicit Animations</strong>, <strong>Hero Widgets</strong>, and <strong>Custom Painters</strong> for a premium user experience.</p>
+        
+        <div class="code-example">
+          <pre>/* Smooth Hero Transition */
+Hero(
+  tag: 'profile-pic-${user.id}',
+  child: CircleAvatar(
+    backgroundImage: NetworkImage(user.avatarUrl),
+  ),
+)</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-bridge"></i> Chapter 4: Method Channels</h2>
+      <div class="article-content">
+        <p>Need access to a native iOS/Android feature that Flutter doesn't support? Use <strong>Method Channels</strong> to communicate directly with Swift or Kotlin code.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

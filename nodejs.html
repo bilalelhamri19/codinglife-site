@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node.js Mastery - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header" style="background: linear-gradient(135deg, #339933, #000) !important;">
+    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Runtime & Infrastructure</div>
+    <h1 style="color: #fff;"><i class="fab fa-node-js"></i> Node.js Scalable Backend</h1>
+    <p style="color: #fff; opacity: 0.9;">Master the asynchronous runtime. Build high-performance, real-time servers and scalable microservices.</p>
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
+      <span><i class="fa-solid fa-signal"></i> Expert</span>
+      <span><i class="fa-solid fa-clock"></i> 6.5 Hours</span>
+      <span><i class="fa-solid fa-book"></i> 25 Chapters</span>
+    </div>
+  </div>
+
+  <div class="chapters">
+    
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-infinity"></i> Chapter 1: The Event Loop & Concurrency</h2>
+      <div class="article-content">
+        <p>Node.js is not multi-threaded like Java, yet it handles thousands of connections. Master the <strong>Event Loop</strong>, Phases, and how <code>libuv</code> handles I/O.</p>
+        <div style="background: var(--cl-brand-soft); padding: 20px; border-radius: 12px; margin-top: 20px;">
+          <strong>Pro Insight:</strong> Never "block" the event loop with heavy calculations (like resizing images) on the main thread. Use Worker Threads or offload to a microservice.
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-route"></i> Chapter 2: Pro Express.js Architecture</h2>
+      <div class="article-content">
+        <p>Middleware is the backbone of Express. Learn how to write custom middleware for logging, authentication, and error handling.</p>
+        
+        <div class="code-example">
+          <pre>/* Pro Error Handling Middleware */
+app.use((err, req, res, next) => {
+  const status = err.statusCode || 500;
+  res.status(status).json({
+    success: false,
+    message: err.message,
+    stack: process.env.NODE_ENV === 'dev' ? err.stack : null
+  });
+});</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-water"></i> Chapter 3: Streams & Large Files</h2>
+      <div class="article-content">
+        <p>If you're reading a 2GB file into memory, your server will crash. Use <strong>Streams</strong> to process data chunk by chunk with minimal memory usage.</p>
+        
+        <div class="code-example">
+          <pre>const fs = require('fs');
+const readStream = fs.createReadStream('./large_video.mp4');
+const writeStream = fs.createWriteStream('./copy.mp4');
+
+readStream.pipe(writeStream);</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-key"></i> Chapter 4: JWT & API Security</h2>
+      <div class="article-content">
+        <p>Secure your REST APIs using <strong>JSON Web Tokens (JWT)</strong>. Learn about Token Expiration, Refresh Tokens, and CORS security headers.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>
