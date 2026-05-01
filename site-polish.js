@@ -34,27 +34,6 @@
         noResults: "No results found for"
       }
     },
-    fr: {
-      dir: "ltr",
-      nav: { home: "Accueil", courses: "Cours", blog: "Blog", contact: "Contact" },
-      footer: {
-        tagline: "Formation premium en programmation pour passer de zéro à professionnel.",
-        platform: "Plateforme",
-        support: "Support",
-        home: "Accueil",
-        allCourses: "Tous les cours",
-        workshops: "Ateliers",
-        blog: "Blog",
-        contactUs: "Contactez-nous",
-        about: "À propos",
-        privacy: "Politique de confidentialité",
-        copy: "Construit avec passion pour les apprenants."
-      },
-      search: {
-        placeholder: "Rechercher des cours, leçons, sujets...",
-        noResults: "Aucun résultat pour"
-      }
-    },
     ar: {
       dir: "rtl",
       nav: { home: "الرئيسية", courses: "الدروس", blog: "المدونة", contact: "التواصل" },
@@ -78,7 +57,7 @@
     }
   };
 
-  const LANG_LABELS = { en: "🇬🇧 EN", fr: "🇫🇷 FR", ar: "🇲🇦 AR" };
+  const LANG_LABELS = { en: "EN", ar: "AR" };
   let currentLang = localStorage.getItem("cl-lang") || "en";
 
   function t() { return TRANSLATIONS[currentLang]; }
@@ -93,9 +72,8 @@
     refreshHeader();
     refreshFooter();
     updateSearchPlaceholder();
-    refreshPageContent(); // Added to refresh main content
+    refreshPageContent(); 
     
-    // Update body class for RTL specific styling if needed
     if (TRANSLATIONS[lang].dir === 'rtl') {
       document.body.classList.add('rtl');
     } else {
@@ -105,11 +83,7 @@
 
   function refreshPageContent() {
     document.querySelectorAll('[data-cl-lang]').forEach(el => {
-      if (el.getAttribute('data-cl-lang') === currentLang) {
-        el.style.display = '';
-      } else {
-        el.style.display = 'none';
-      }
+      el.style.display = (el.getAttribute('data-cl-lang') === currentLang) ? '' : 'none';
     });
   }
 
@@ -145,13 +119,12 @@
           <div class="cl-lang-switcher">
             <button class="cl-lang-btn" id="cl-lang-btn">
               <i class="fa-solid fa-globe"></i>
-              <span>${LANG_LABELS[currentLang]}</span>
+              <span>${currentLang.toUpperCase()}</span>
               <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i>
             </button>
             <div class="cl-lang-dropdown" id="cl-lang-dropdown">
-              <button class="cl-lang-option ${currentLang === 'en' ? 'active' : ''}" data-lang="en">🇬🇧 English</button>
-              <button class="cl-lang-option ${currentLang === 'fr' ? 'active' : ''}" data-lang="fr">🇫🇷 Français</button>
-              <button class="cl-lang-option ${currentLang === 'ar' ? 'active' : ''}" data-lang="ar">🇲🇦 العربية</button>
+              <button class="cl-lang-option ${currentLang === 'en' ? 'active' : ''}" data-lang="en">English</button>
+              <button class="cl-lang-option ${currentLang === 'ar' ? 'active' : ''}" data-lang="ar">العربية</button>
             </div>
           </div>
           <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">

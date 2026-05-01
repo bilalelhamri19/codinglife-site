@@ -44,12 +44,13 @@ html {
 }
 
 body {
-  padding-top: 88px !important;
   background: var(--cl-bg) !important;
   color: var(--cl-ink) !important;
-  font-family: "Cairo", system-ui, -apple-system, sans-serif !important;
+  font-family: "Cairo", "Outfit", system-ui, -apple-system, sans-serif !important;
   line-height: 1.7;
   transition: var(--cl-transition);
+  margin: 0;
+  padding: 0;
 }
 
 /* Typography */
@@ -70,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--cl-surface-glass) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
-  border-bottom: none !important;
+  border-bottom: 1px solid var(--cl-line) !important;
   transition: var(--cl-transition);
 }
 
@@ -97,6 +98,11 @@ h1, h2, h3, h4, h5, h6 {
   height: 48px;
   width: auto;
   filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  transition: var(--cl-transition);
+}
+
+[data-theme="dark"] .cl-brand img {
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(45, 212, 191, 0.3));
 }
 
 .cl-nav {
@@ -143,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Course Reader Specifics */
 .course-container {
   max-width: 900px !important;
-  margin: 40px auto !important;
+  margin: 120px auto 40px !important;
   padding: 0 24px !important;
 }
 
