@@ -349,6 +349,24 @@
     });
   }
 
+  function injectSchema() {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Coding Life",
+        "url": "https://codinglife1.vercel.app/",
+        "logo": "https://codinglife1.vercel.app/logo.png",
+        "description": "Premium programming courses and career-focused workshops.",
+        "sameAs": [
+            "https://github.com/bilalelhamri19"
+        ]
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(schema);
+    document.head.appendChild(script);
+  }
+
   function boot() {
     applyLang(currentLang);
     document.querySelectorAll("header, footer").forEach(el => {
@@ -357,6 +375,7 @@
     createHeader();
     createFooter();
     initSearch();
+    injectSchema();
     polishCodeBlocks();
     initAnimations();
 
