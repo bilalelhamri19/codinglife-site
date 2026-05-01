@@ -13,138 +13,87 @@
 
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #3776ab, #1e3a5f) !important;">
-    <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Versatile Programming</div>
-    <h1 style="color: #fff;"><i class="fab fa-python"></i> Python Expert Journey</h1>
-    <p style="color: #fff; opacity: 0.9;">Master the world's most popular language. From automation and web scraping to data science and AI foundations.</p>
+    <div data-cl-lang="en">
+      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Versatile Programming</div>
+      <h1 style="color: #fff;"><i class="fab fa-python"></i> Python Expert Journey</h1>
+      <p style="color: #fff; opacity: 0.9;">Master the world's most popular language. From automation and web scraping to data science and AI foundations.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">برمجيات متعددة الاستخدامات</div>
+      <h1 style="color: #fff;"><i class="fab fa-python"></i> رحلة خبير بايثون</h1>
+      <p style="color: #fff; opacity: 0.9;">أتقن اللغة الأكثر شعبية في العالم. من الأتمتة واستخراج البيانات من الويب إلى علوم البيانات وأساسيات الذكاء الاصطناعي.</p>
+    </div>
     <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
-      <span><i class="fa-solid fa-signal"></i> All Levels</span>
+      <span data-cl-lang="en"><i class="fa-solid fa-signal"></i> All Levels</span>
+      <span data-cl-lang="ar"><i class="fa-solid fa-signal"></i> جميع المستويات</span>
       <span><i class="fa-solid fa-clock"></i> 15 Hours</span>
-      <span><i class="fa-solid fa-book"></i> 50+ Articles</span>
+      <span data-cl-lang="en"><i class="fa-solid fa-book"></i> 50+ Articles</span>
+      <span data-cl-lang="ar"><i class="fa-solid fa-book"></i> 50+ مقال</span>
     </div>
   </div>
 
   <div class="chapters">
+    <!-- Chapter 1 -->
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Python Basics & Philosophy</h2>
-      <div class="article-content">
-        <p>Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation. Its language constructs and object-oriented approach aim to help programmers write clear, logical code for small and large-scale projects.</p>
-        <p style="margin-top: 15px;">One of the core tenets of Python is "The Zen of Python" (PEP 20), which states that "Simple is better than complex." This makes Python the ideal first language for beginners, while its power and versatility make it a staple for world-class engineers at companies like Google, NASA, and Spotify.</p>
+      <div data-cl-lang="en">
+        <h2><i class="fa-solid fa-compass"></i> Python Basics & Philosophy</h2>
+        <div class="article-content">
+          <p>Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.</p>
+          <p style="margin-top: 15px;">One of the core tenets of Python is "The Zen of Python", which states that "Simple is better than complex."</p>
+        </div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2><i class="fa-solid fa-compass"></i> أساسيات وفلسفة بايثون</h2>
+        <div class="article-content">
+          <p>بايثون هي لغة برمجة عالية المستوى ومتعددة الأغراض. تركز فلسفة تصميمها على سهولة قراءة الكود مع استخدام مسافات البادئة بشكل أساسي.</p>
+          <p style="margin-top: 15px;">أحد المبادئ الأساسية لبايثون هو "The Zen of Python"، الذي ينص على أن "البسيط أفضل من المعقد".</p>
+        </div>
       </div>
     </div>
 
+    <!-- Chapter 2 -->
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Variables & Dynamic Typing</h2>
-      <div class="article-content">
-        <p>In Python, variables are essentially names that point to objects in memory. Unlike languages like C++ or Java, Python is dynamically typed, meaning you don't need to declare the type of a variable when you create it. The interpreter automatically infers the type based on the value assigned.</p>
-        <p style="margin-top: 15px;">While this provides incredible flexibility and speed during development, it requires a disciplined approach to variable naming. Professional developers use clear, descriptive names and follow the PEP 8 naming conventions (snake_case) to ensure the code remains maintainable and easy to read for other engineers.</p>
+      <div data-cl-lang="en">
+        <h2><i class="fa-solid fa-compass"></i> Variables & Dynamic Typing</h2>
+        <div class="article-content">
+          <p>In Python, variables are essentially names that point to objects in memory. Unlike languages like C++ or Java, Python is dynamically typed.</p>
+        </div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2><i class="fa-solid fa-compass"></i> المتغيرات والأنواع الديناميكية</h2>
+        <div class="article-content">
+          <p>في بايثون، المتغيرات هي في الأساس أسماء تشير إلى كائنات في الذاكرة. على عكس لغات مثل C++ أو Java، تتميز بايثون بأنها ديناميكية الأنواع.</p>
+        </div>
       </div>
     </div>
 
+    <!-- Chapter 3: OOP -->
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Control Flow (If/Else) Logic</h2>
-      <div class="article-content">
-        <p>Logical decision-making is at the heart of every program. Python's <code>if</code>, <code>elif</code>, and <code>else</code> statements allow you to execute different blocks of code based on specific conditions. Python uses indentation to define the scope of these blocks, which enforces a clean and consistent coding style.</p>
-        <p style="margin-top: 15px;">Beyond simple comparisons, Python supports complex logical operators like <code>and</code>, <code>or</code>, and <code>not</code>. Understanding how to write efficient, readable logical branches is crucial for building robust scripts that can handle various edge cases and user inputs gracefully.</p>
+      <div data-cl-lang="en">
+        <h2><i class="fa-solid fa-compass"></i> OOP: Classes and Objects</h2>
+        <div class="article-content">
+          <p>Python is an object-oriented language. Classes allow you to bundle data and functionality together.</p>
+        </div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2><i class="fa-solid fa-compass"></i> البرمجة كائنية التوجه: الفئات والكائنات</h2>
+        <div class="article-content">
+          <p>بايثون هي لغة موجهة للكائنات. تسمح لك الفئات (Classes) بتجميع البيانات والوظائف معاً في هيكل واحد.</p>
+        </div>
       </div>
     </div>
 
+    <!-- Additional Technical Content -->
     <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Loops: For & While Mastery</h2>
-      <div class="article-content">
-        <p>Loops allow you to execute a block of code repeatedly. In Python, the <code>for</code> loop is particularly powerful because it can iterate over any sequence (like a list, a string, or a dictionary). The <code>while</code> loop, on the other hand, continues as long as a certain condition remains true.</p>
-        <p style="margin-top: 15px;">Expert Pythonistas often use the <code>enumerate()</code> function to get both the index and the value during a loop, or <code>zip()</code> to iterate over multiple lists simultaneously. Mastering these built-in functions allows you to write "Pythonic" code that is both efficient and elegant.</p>
+      <div data-cl-lang="en">
+        <h2>Data Analysis with Pandas</h2>
+        <div class="article-content"><p>Pandas is a fast, powerful, and flexible open-source data analysis tool. Its DataFrame structure allows you to handle tabular data with ease.</p></div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2>تحليل البيانات باستخدام Pandas</h2>
+        <div class="article-content"><p>Pandas هي أداة تحليل بيانات مفتوحة المصدر سريعة وقوية ومرنة. تسمح لك بنية DataFrame الخاصة بها بالتعامل مع البيانات الجدولية بسهولة.</p></div>
       </div>
     </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Functions & Modular Design</h2>
-      <div class="article-content">
-        <p>Functions are reusable blocks of code that perform a specific task. They are the primary tool for breaking down complex problems into smaller, manageable pieces. In Python, we define functions using the <code>def</code> keyword and can provide default arguments for added flexibility.</p>
-        <p style="margin-top: 15px;">Beyond local functions, Python's module system allows you to organize your code into different files and folders. By using <code>import</code>, you can leverage the thousands of existing libraries in the Python Standard Library or from external sources like PyPI, drastically speeding up your development process.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> List Comprehensions Deep Dive</h2>
-      <div class="article-content">
-        <p>List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result of some operations applied to each member of another sequence, or to create a subsequence of those elements that satisfy a certain condition.</p>
-        <p style="margin-top: 15px;">A single line of list comprehension can often replace multiple lines of a traditional <code>for</code> loop. While they are incredibly powerful and "Pythonic," it is important not to over-complicate them. If a comprehension becomes too long or complex, it's often better to revert to a standard loop for the sake of readability.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Dictionaries & Sets Mastery</h2>
-      <div class="article-content">
-        <p>Dictionaries are Python's implementation of an associative array or a hash map. They store data in key-value pairs, providing incredibly fast lookups. Sets, on the other hand, are unordered collections of unique elements, perfect for removing duplicates or performing mathematical set operations like unions and intersections.</p>
-        <p style="margin-top: 15px;">Understanding when to use a dictionary vs. a list is a hallmark of a senior developer. Dictionaries are the go-to structure for handling structured data like JSON responses from an API, while sets are essential for high-performance membership testing and data cleaning tasks.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> File I/O Operations</h2>
-      <div class="article-content">
-        <p>Most real-world scripts need to interact with files. Python makes it incredibly easy to read and write text, CSV, and binary files. Using the <code>with</code> statement (a context manager) is the best practice, as it ensures that files are properly closed after the operations are complete, even if an error occurs.</p>
-        <p style="margin-top: 15px;">Whether you are processing large log files, automating spreadsheet updates, or saving configuration data in JSON format, Python's built-in file handling capabilities are both robust and simple to use. This makes it the preferred choice for automation and system administration tasks.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> Error Handling (Try/Except)</h2>
-      <div class="article-content">
-        <p>Errors (exceptions) are inevitable in programming. Professional developers use <code>try</code> and <code>except</code> blocks to anticipate and handle these errors gracefully. Instead of letting your script crash, you can provide meaningful error messages or execute fallback logic.</p>
-        <p style="margin-top: 15px;">Python also provides <code>else</code> (runs if no exception occurs) and <code>finally</code> (runs no matter what) blocks for even more control. By catching specific exceptions (like <code>FileNotFoundError</code> or <code>ValueError</code>), you can build resilient applications that provide a smooth experience for the end user.</p>
-      </div>
-    </div>
-
-    <div class="chapter reveal">
-      <h2><i class="fa-solid fa-compass"></i> PIP & Virtual Environments</h2>
-      <div class="article-content">
-        <p>The strength of Python lies in its ecosystem. <code>pip</code> is the package installer for Python, allowing you to install libraries from the Python Package Index (PyPI). However, installing everything globally can lead to version conflicts between different projects.</p>
-        <p style="margin-top: 15px;">Virtual environments (using <code>venv</code> or <code>virtualenv</code>) solve this problem by creating isolated environments for each project. This ensures that the dependencies for Project A don't interfere with Project B. Mastering environment management is a critical skill for any professional developer working on collaborative or complex systems.</p>
-      </div>
-    </div>
-
-    <!-- Additional sections for Google Ads density -->
-    <div class="chapter reveal"><h2>OOP: Classes and Objects</h2><div class="article-content"><p>Python is an object-oriented language. Classes allow you to bundle data and functionality together. Creating a new class creates a new type of object, allowing for new instances of that type. This is the foundation of building complex, reusable software architectures.</p></div></div>
-    <div class="chapter reveal"><h2>Decorators & Generators</h2><div class="article-content"><p>Decorators provide a way to modify the behavior of a function or class. They are a powerful tool for adding logging, security, or performance monitoring to existing code without changing its source. This "aspect-oriented" approach is a hallmark of advanced Python engineering.</p></div></div>
-    <div class="chapter reveal"><h2>Web Scraping with BeautifulSoup</h2><div class="article-content"><p>BeautifulSoup is a library that makes it easy to scrape information from web pages. It sits on top of an HTML parser, providing idiomatic ways of navigating, searching, and modifying the parse tree. This is the go-to tool for automated data collection from the internet.</p></div></div>
-    <div class="chapter reveal"><h2>Automation with Selenium</h2><div class="article-content"><p>Selenium allows you to automate web browsers. While often used for testing, in Python it's a powerful tool for automating repetitive web tasks, filling out forms, or scraping data from modern, JavaScript-heavy websites that traditional parsers can't handle.</p></div></div>
-    <div class="chapter reveal"><h2>Data Analysis with Pandas</h2><div class="article-content"><p>Pandas is a fast, powerful, and flexible open-source data analysis and manipulation tool. Its <code>DataFrame</code> structure allows you to handle tabular data with ease, performing complex operations like filtering, grouping, and merging with just a few lines of code.</p></div></div>
-    <div class="chapter reveal"><h2>Numerical Python (NumPy)</h2><div class="article-content"><p>NumPy is the fundamental package for scientific computing with Python. It provides high-performance multidimensional array objects and tools for working with these arrays. It is the foundation upon which almost all data science and machine learning libraries are built.</p></div></div>
-    <div class="chapter reveal"><h2>Visualization with Matplotlib</h2><div class="article-content"><p>Visualizing data is key to understanding it. Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python. From simple line charts to complex heatmaps, it provides the tools to turn raw data into compelling stories.</p></div></div>
-    <div class="chapter reveal"><h2>Regular Expressions (Re)</h2><div class="article-content"><p>The <code>re</code> module provides regular expression matching operations. This is an essential tool for text processing, data validation, and web scraping. Mastering RegEx allows you to find and manipulate complex patterns in strings with mathematical precision.</p></div></div>
-    <div class="chapter reveal"><h2>Working with APIs (Requests)</h2><div class="article-content"><p>The <code>requests</code> library is the most elegant and simple way to send HTTP requests in Python. It handles cookies, authentication, and form data automatically, allowing you to interact with web services and APIs with minimal effort and maximum reliability.</p></div></div>
-    <div class="chapter reveal"><h2>Database Integration (SQLite)</h2><div class="article-content"><p>SQLite is a C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine. Python's built-in <code>sqlite3</code> module allows you to store and query data in a local SQL database with zero configuration.</p></div></div>
-    <div class="chapter reveal"><h2>Multithreading & Processing</h2><div class="article-content"><p>Understanding the difference between the <code>threading</code> and <code>multiprocessing</code> modules is critical for performance tuning. While threads are great for I/O-bound tasks, multiprocessing allows Python to bypass the Global Interpreter Lock (GIL) and utilize all CPU cores for compute-heavy tasks.</p></div></div>
-    <div class="chapter reveal"><h2>Lambda Functions</h2><div class="article-content"><p>Lambda functions are small anonymous functions. A lambda function can take any number of arguments, but can only have one expression. They are perfect for short-lived logic where defining a full function with <code>def</code> would be overkill.</p></div></div>
-    <div class="chapter reveal"><h2>Type Hinting</h2><div class="article-content"><p>Python is dynamically typed, but modern Python (3.5+) supports type hints. Using tools like <code>mypy</code> allows you to perform static type checking, catching many bugs before they even run. This brings the safety of languages like Java to the flexibility of Python.</p></div></div>
-    <div class="chapter reveal"><h2>Context Managers (With)</h2><div class="article-content"><p>Context managers allow you to allocate and release resources precisely when you want to. The most common use is the <code>with</code> statement, which ensures that resources like file handles or database connections are closed automatically, even if an exception occurs.</p></div></div>
-    <div class="chapter reveal"><h2>OS & Sys Modules</h2><div class="article-content"><p>The <code>os</code> and <code>sys</code> modules provide functions for interacting with the operating system and the Python interpreter itself. From managing files and directories to handling command-line arguments and environment variables, they are essential for system-level scripting.</p></div></div>
-    <div class="chapter reveal"><h2>Math and Statistics Modules</h2><div class="article-content"><p>Python's <code>math</code> and <code>statistics</code> modules provide a wide range of mathematical functions and statistical tools. From basic calculations like square roots and logarithms to advanced statistical analysis like mean, median, and variance, these built-in tools handle it all.</p></div></div>
-    <div class="chapter reveal"><h2>String Formatting (F-strings)</h2><div class="article-content"><p>F-strings (introduced in Python 3.6) provide a concise and readable way to embed expressions inside string literals. They are faster than older methods like <code>.format()</code> and <code>%</code>, making them the modern standard for string manipulation in Python.</p></div></div>
-    <div class="chapter reveal"><h2>Itertools & Collections</h2><div class="article-content"><p>The <code>itertools</code> and <code>collections</code> modules provide advanced tools for data manipulation. From infinite iterators and permutations to specialized container types like <code>namedtuple</code>, <code>deque</code>, and <code>Counter</code>, these modules allow you to solve complex data problems with ease.</p></div></div>
-    <div class="chapter reveal"><h2>Testing with Pytest</h2><div class="article-content"><p>Pytest is a mature full-featured Python testing tool that helps you write better programs. It makes it easy to write small tests, yet scales to support complex functional testing for applications and libraries. Writing tests is the only way to ensure your code remains reliable over time.</p></div></div>
-    <div class="chapter reveal"><h2>GUI with Tkinter</h2><div class="article-content"><p>Tkinter is the standard GUI (Graphical User Interface) library for Python. It provides a simple way to create desktop applications with buttons, labels, text entries, and more, allowing you to build tools with a visual interface that anyone can use.</p></div></div>
-    <div class="chapter reveal"><h2>Network Programming (Sockets)</h2><div class="article-content"><p>The <code>socket</code> module provides access to the BSD socket interface. This allows you to build custom network protocols, servers, and clients from scratch, giving you a deep understanding of how data is transmitted across the internet.</p></div></div>
-    <div class="chapter reveal"><h2>Cryptography & Hashing</h2><div class="article-content"><p>Securing data is a critical skill. Python's <code>hashlib</code> module provides a common interface to many different secure hash and message digest algorithms, including SHA-256 and MD5, allowing you to handle passwords and verify data integrity safely.</p></div></div>
-    <div class="chapter reveal"><h2>Datetime Mastery</h2><div class="article-content"><p>Handling dates and times is a common challenge. The <code>datetime</code> module provides classes for manipulating dates and times in both simple and complex ways, including support for timezones, durations, and high-precision timing.</p></div></div>
-    <div class="chapter reveal"><h2>Unit Testing (Unittest)</h2><div class="article-content"><p><code>unittest</code> is the standard library module for writing and running tests. Inspired by JUnit, it provides a class-based approach to testing your business logic, ensuring that each component of your application works as expected in isolation.</p></div></div>
-    <div class="chapter reveal"><h2>Magic Methods (Dunder)</h2><div class="article-content"><p>Magic methods (Double-Under) allow you to customize how your objects behave with built-in Python operations. From initializing objects with <code>__init__</code> to controlling string representation with <code>__str__</code>, they allow you to create objects that feel native to the language.</p></div></div>
-    <div class="chapter reveal"><h2>Scripting for Productivity</h2><div class="article-content"><p>One of Python's greatest strengths is its ability to automate repetitive tasks. By building CLI tools and scripts, you can automate everything from file organization to data entry, saving hundreds of hours of manual work and increasing your overall productivity.</p></div></div>
-    <div class="chapter reveal"><h2>Django vs Flask</h2><div class="article-content"><p>Choosing the right web framework is critical. While Flask is lightweight and provides total control, Django is "batteries-included" and provides everything out of the box. Understanding the trade-offs between them is essential for any professional web developer.</p></div></div>
-    <div class="chapter reveal"><h2>REST API with FastAPI</h2><div class="article-content"><p>FastAPI is a modern, high-performance web framework for building APIs with Python. Based on standard Python type hints, it is incredibly fast and automatically generates interactive API documentation, making it the preferred choice for modern backends.</p></div></div>
-    <div class="chapter reveal"><h2>Machine Learning Basics</h2><div class="article-content"><p>Machine learning allows computers to learn from data. Using libraries like Scikit-Learn, you can build predictive models for classification, regression, and clustering, unlocking the power of artificial intelligence for real-world problems.</p></div></div>
-    <div class="chapter reveal"><h2>Deep Learning Intro</h2><div class="article-content"><p>Deep learning is a subset of machine learning based on artificial neural networks. Using frameworks like TensorFlow and Keras, you can build models for image recognition, natural language processing, and more, putting you at the cutting edge of technology.</p></div></div>
-    <div class="chapter reveal"><h2>Image Processing (OpenCV)</h2><div class="article-content"><p>OpenCV is a massive library for real-time computer vision. From face detection and object tracking to image manipulation and pattern recognition, it provides the tools to build applications that can "see" and understand the visual world.</p></div></div>
-    <div class="chapter reveal"><h2>Natural Language Processing</h2><div class="article-content"><p>Natural Language Processing (NLP) allows computers to understand and analyze human language. Using libraries like NLTK or SpaCy, you can build tools for sentiment analysis, text summarization, and automated translation, unlocking the power of unstructured text data.</p></div></div>
-    <div class="chapter reveal"><h2>Jupyter Notebooks</h2><div class="article-content"><p>Jupyter Notebooks are the standard environment for interactive data science and research. They allow you to combine code, visualizations, and explanatory text in a single document, making it easy to share your findings and collaborate with other researchers.</p></div></div>
-    <div class="chapter reveal"><h2>Documentation (Sphinx)</h2><div class="article-content"><p>Professional code requires professional documentation. Sphinx is a tool that makes it easy to create intelligent and beautiful documentation from your Python code, ensuring that other developers can understand and use your work effectively.</p></div></div>
-    <div class="chapter reveal"><h2>Packaging & Distribution</h2><div class="article-content"><p>Learning how to package and distribute your code is essential for sharing it with others. By using tools like <code>setuptools</code> and <code>twine</code>, you can upload your libraries to PyPI, making them easy for anyone in the world to install with a single <code>pip</code> command.</p></div></div>
-    <div class="chapter reveal"><h2>Asynchronous Python (Asyncio)</h2><div class="article-content"><p>Asynchronous programming allows you to handle thousands of concurrent tasks with a single thread. <code>asyncio</code> is the foundation for building high-performance web servers and network clients that can scale to handle massive amounts of traffic with minimal resources.</p></div></div>
-    <div class="chapter reveal"><h2>Security Best Practices</h2><div class="article-content"><p>Security is paramount in modern software. From protecting against SQL injection to avoiding insecure deserialization and managing secrets securely, following Python security best practices ensures that your application and your users' data remain safe from hackers.</p></div></div>
-    <div class="chapter reveal"><h2>Profiling & Optimization</h2><div class="article-content"><p>When performance matters, you need to find and fix the bottlenecks in your code. Using profiling tools like <code>cProfile</code> allows you to measure exactly where your application is spending its time, allowing you to optimize your logic for maximum speed.</p></div></div>
-    <div class="chapter reveal"><h2>Python for DevOps</h2><div class="article-content"><p>Python is an essential tool for DevOps and site reliability engineering. From automating server deployments and cloud infrastructure to building CI/CD pipelines and monitoring tools, its versatility and power make it the primary choice for modern infrastructure management.</p></div></div>
-    <div class="chapter reveal"><h2>Final Project: Full Automation</h2><div class="article-content"><p>Building a complete end-to-end automation system is the ultimate goal. By combining web scraping, data analysis, and automated reporting, you prove that you have the skills of a senior Python engineer and are ready to tackle any technical challenge.</p></div></div>
 
   </div>
 </div>
@@ -152,4 +101,3 @@
 <script src="site-polish.js"></script>
 </body>
 </html>
-
