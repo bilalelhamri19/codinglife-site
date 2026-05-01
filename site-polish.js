@@ -235,10 +235,11 @@
         <div class="footer-links">
           <h4>Stay Updated</h4>
           <p style="font-size: 0.85rem; margin-bottom: 16px; color: #94a3b8;">Join 5,000+ developers for weekly technical insights and project ideas.</p>
-          <div style="display: flex; gap: 8px;">
-            <input type="email" placeholder="Email Address" style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; outline: none; width: 100%;">
-            <button style="background: var(--cl-brand); color: white; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 700; cursor: pointer;">Join</button>
-          </div>
+          <form id="cl-newsletter-form" action="https://formspree.io/f/xvgzjpke" method="POST" style="display: flex; gap: 8px;">
+            <input type="email" name="email" placeholder="Email Address" required style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; outline: none; width: 100%;">
+            <button type="submit" style="background: var(--cl-brand); color: white; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 700; cursor: pointer;">Join</button>
+          </form>
+          <div id="newsletter-status" style="margin-top: 10px; font-size: 0.85rem; display: none;"></div>
         </div>
       </div>
       <div style="text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;">
@@ -247,17 +248,54 @@
     `;
   }
 
+  function bindFooterEvents() {
+    const form = document.getElementById("cl-newsletter-form");
+    const status = document.getElementById("newsletter-status");
+    if (!form) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      status.style.display = "block";
+      status.style.color = "var(--cl-brand)";
+      status.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Subscribing...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          status.style.color = "var(--cl-success)";
+          status.innerHTML = '<i class="fa-solid fa-check-circle"></i> Thank you! You are subscribed.';
+          form.reset();
+          setTimeout(() => { status.style.display = "none"; }, 5000);
+        } else {
+          throw new Error();
+        }
+      } catch (err) {
+        status.style.color = "var(--cl-error)";
+        status.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Oops! Something went wrong.';
+      }
+    });
+  }
+
   function createFooter() {
     const footer = document.createElement("footer");
     footer.className = "cl-footer";
     footer.id = "cl-main-footer";
     footer.innerHTML = buildFooterHTML();
     document.body.appendChild(footer);
+    bindFooterEvents();
   }
 
   function refreshFooter() {
     const footer = document.getElementById("cl-main-footer");
-    if (footer) footer.innerHTML = buildFooterHTML();
+    if (footer) {
+      footer.innerHTML = buildFooterHTML();
+      bindFooterEvents();
+    }
   }
 
   function initSearch() {
@@ -495,6 +533,7 @@
     polishCodeBlocks();
     initAnimations();
     initProgressTracking();
+    bindFooterEvents();
 
     const btt = document.createElement("button");
     btt.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
