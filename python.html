@@ -24,16 +24,85 @@
   </div>
 
   <div class="chapters">
-    <div class="chapter reveal"><h2>Python Basics</h2><p>Syntax, indentation, and why Python is the easiest language to read.</p></div>
-    <div class="chapter reveal"><h2>Variables & Dynamic Typing</h2><p>How Python handles data without explicit type declarations.</p></div>
-    <div class="chapter reveal"><h2>Control Flow (If/Else)</h2><p>Logical operations and decision making in your scripts.</p></div>
-    <div class="chapter reveal"><h2>Loops: For & While</h2><p>Iterating over data and the unique <code>enumerate()</code> function.</p></div>
-    <div class="chapter reveal"><h2>Functions & Modules</h2><p>Writing reusable code and importing external libraries.</p></div>
-    <div class="chapter reveal"><h2>List Comprehensions</h2><p>One-liner logic to transform and filter data structures.</p></div>
-    <div class="chapter reveal"><h2>Dictionaries & Sets</h2><p>Mapping data and handling unique collections efficiently.</p></div>
-    <div class="chapter reveal"><h2>File I/O Operations</h2><p>Reading and writing text, CSV, and JSON files directly from Python.</p></div>
-    <div class="chapter reveal"><h2>Error Handling (Try/Except)</h2><p>Catching exceptions and ensuring your script doesn't crash.</p></div>
-    <div class="chapter reveal"><h2>PIP & Virtual Environments</h2><p>Managing dependencies and keeping project environments clean.</p></div>
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Python Basics & Philosophy</h2>
+      <div class="article-content">
+        <p>Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation. Its language constructs and object-oriented approach aim to help programmers write clear, logical code for small and large-scale projects.</p>
+        <p style="margin-top: 15px;">One of the core tenets of Python is "The Zen of Python" (PEP 20), which states that "Simple is better than complex." This makes Python the ideal first language for beginners, while its power and versatility make it a staple for world-class engineers at companies like Google, NASA, and Spotify.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Variables & Dynamic Typing</h2>
+      <div class="article-content">
+        <p>In Python, variables are essentially names that point to objects in memory. Unlike languages like C++ or Java, Python is dynamically typed, meaning you don't need to declare the type of a variable when you create it. The interpreter automatically infers the type based on the value assigned.</p>
+        <p style="margin-top: 15px;">While this provides incredible flexibility and speed during development, it requires a disciplined approach to variable naming. Professional developers use clear, descriptive names and follow the PEP 8 naming conventions (snake_case) to ensure the code remains maintainable and easy to read for other engineers.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Control Flow (If/Else) Logic</h2>
+      <div class="article-content">
+        <p>Logical decision-making is at the heart of every program. Python's <code>if</code>, <code>elif</code>, and <code>else</code> statements allow you to execute different blocks of code based on specific conditions. Python uses indentation to define the scope of these blocks, which enforces a clean and consistent coding style.</p>
+        <p style="margin-top: 15px;">Beyond simple comparisons, Python supports complex logical operators like <code>and</code>, <code>or</code>, and <code>not</code>. Understanding how to write efficient, readable logical branches is crucial for building robust scripts that can handle various edge cases and user inputs gracefully.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Loops: For & While Mastery</h2>
+      <div class="article-content">
+        <p>Loops allow you to execute a block of code repeatedly. In Python, the <code>for</code> loop is particularly powerful because it can iterate over any sequence (like a list, a string, or a dictionary). The <code>while</code> loop, on the other hand, continues as long as a certain condition remains true.</p>
+        <p style="margin-top: 15px;">Expert Pythonistas often use the <code>enumerate()</code> function to get both the index and the value during a loop, or <code>zip()</code> to iterate over multiple lists simultaneously. Mastering these built-in functions allows you to write "Pythonic" code that is both efficient and elegant.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Functions & Modular Design</h2>
+      <div class="article-content">
+        <p>Functions are reusable blocks of code that perform a specific task. They are the primary tool for breaking down complex problems into smaller, manageable pieces. In Python, we define functions using the <code>def</code> keyword and can provide default arguments for added flexibility.</p>
+        <p style="margin-top: 15px;">Beyond local functions, Python's module system allows you to organize your code into different files and folders. By using <code>import</code>, you can leverage the thousands of existing libraries in the Python Standard Library or from external sources like PyPI, drastically speeding up your development process.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> List Comprehensions Deep Dive</h2>
+      <div class="article-content">
+        <p>List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result of some operations applied to each member of another sequence, or to create a subsequence of those elements that satisfy a certain condition.</p>
+        <p style="margin-top: 15px;">A single line of list comprehension can often replace multiple lines of a traditional <code>for</code> loop. While they are incredibly powerful and "Pythonic," it is important not to over-complicate them. If a comprehension becomes too long or complex, it's often better to revert to a standard loop for the sake of readability.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Dictionaries & Sets Mastery</h2>
+      <div class="article-content">
+        <p>Dictionaries are Python's implementation of an associative array or a hash map. They store data in key-value pairs, providing incredibly fast lookups. Sets, on the other hand, are unordered collections of unique elements, perfect for removing duplicates or performing mathematical set operations like unions and intersections.</p>
+        <p style="margin-top: 15px;">Understanding when to use a dictionary vs. a list is a hallmark of a senior developer. Dictionaries are the go-to structure for handling structured data like JSON responses from an API, while sets are essential for high-performance membership testing and data cleaning tasks.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> File I/O Operations</h2>
+      <div class="article-content">
+        <p>Most real-world scripts need to interact with files. Python makes it incredibly easy to read and write text, CSV, and binary files. Using the <code>with</code> statement (a context manager) is the best practice, as it ensures that files are properly closed after the operations are complete, even if an error occurs.</p>
+        <p style="margin-top: 15px;">Whether you are processing large log files, automating spreadsheet updates, or saving configuration data in JSON format, Python's built-in file handling capabilities are both robust and simple to use. This makes it the preferred choice for automation and system administration tasks.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Error Handling (Try/Except)</h2>
+      <div class="article-content">
+        <p>Errors (exceptions) are inevitable in programming. Professional developers use <code>try</code> and <code>except</code> blocks to anticipate and handle these errors gracefully. Instead of letting your script crash, you can provide meaningful error messages or execute fallback logic.</p>
+        <p style="margin-top: 15px;">Python also provides <code>else</code> (runs if no exception occurs) and <code>finally</code> (runs no matter what) blocks for even more control. By catching specific exceptions (like <code>FileNotFoundError</code> or <code>ValueError</code>), you can build resilient applications that provide a smooth experience for the end user.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> PIP & Virtual Environments</h2>
+      <div class="article-content">
+        <p>The strength of Python lies in its ecosystem. <code>pip</code> is the package installer for Python, allowing you to install libraries from the Python Package Index (PyPI). However, installing everything globally can lead to version conflicts between different projects.</p>
+        <p style="margin-top: 15px;">Virtual environments (using <code>venv</code> or <code>virtualenv</code>) solve this problem by creating isolated environments for each project. This ensures that the dependencies for Project A don't interfere with Project B. Mastering environment management is a critical skill for any professional developer working on collaborative or complex systems.</p>
+      </div>
+    </div>
 
     <!-- Additional sections for Google Ads density -->
     <div class="chapter reveal"><h2>OOP: Classes and Objects</h2><p>Encapsulation, Inheritance, and Polymorphism in Pythonic ways.</p></div>

@@ -25,16 +25,86 @@
 
   <div class="chapters">
     
-    <div class="chapter reveal"><h2>JS Fundamentals</h2><p>Variables (let, const), data types, and the dynamic nature of JavaScript.</p></div>
-    <div class="chapter reveal"><h2>Arrow Functions & Scope</h2><p>Understanding lexicial scoping, the 'this' keyword, and modern function syntax.</p></div>
-    <div class="chapter reveal"><h2>DOM Manipulation</h2><p>Selecting elements, event listeners, and creating interactive user interfaces.</p></div>
-    <div class="chapter reveal"><h2>Array Methods Mastery</h2><p>Using map, filter, reduce, and find to handle complex data sets elegantly.</p></div>
-    <div class="chapter reveal"><h2>Asynchronous JS (Promises)</h2><p>Handling API calls and delayed operations without blocking the main thread.</p></div>
-    <div class="chapter reveal"><h2>Async/Await Patterns</h2><p>Writing asynchronous code that looks and behaves like synchronous logic.</p></div>
-    <div class="chapter reveal"><h2>Object Destructuring</h2><p>Clean ways to extract data from objects and arrays in modern ES6+.</p></div>
-    <div class="chapter reveal"><h2>Classes and OOP</h2><p>Understanding prototypes, inheritance, and the class syntax in JavaScript.</p></div>
-    <div class="chapter reveal"><h2>Error Handling</h2><p>Using try/catch blocks and creating custom error classes for robust apps.</p></div>
-    <div class="chapter reveal"><h2>ES Modules</h2><p>Importing and exporting code to build scalable and modular applications.</p></div>
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> JS Fundamentals & Execution</h2>
+      <div class="article-content">
+        <p>JavaScript is a high-level, interpreted programming language that conforms to the ECMAScript specification. It is the core engine of the modern web, allowing for complex interactivity and dynamic content. To truly master JS, you must understand how variables are stored (Stack vs. Heap) and the difference between primitives and reference types.</p>
+        <p style="margin-top: 15px;">In modern JS, we use <code>let</code> and <code>const</code> instead of <code>var</code> to avoid issues with hoisting and scope leakage. A <code>const</code> variable is immutable in its assignment, while <code>let</code> allows for reassignment within its block scope. Understanding these nuances is the first step toward writing predictable, bug-free code.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Arrow Functions & Lexical Scope</h2>
+      <div class="article-content">
+        <p>Arrow functions (introduced in ES6) provide a concise syntax for writing functions. However, they are more than just syntactic sugar. Unlike regular functions, arrow functions do not have their own <code>this</code> context. Instead, they inherit <code>this</code> from the surrounding lexical scope.</p>
+        <p style="margin-top: 15px;">This behavior makes arrow functions particularly useful for callbacks and event listeners where you want to maintain the context of the parent object. Mastering scope (Global, Block, and Function) is essential for managing data flow in large-scale applications.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> DOM Manipulation Mastery</h2>
+      <div class="article-content">
+        <p>The Document Object Model (DOM) is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content. JavaScript is the primary tool used to interact with the DOM, enabling everything from simple button clicks to complex single-page applications.</p>
+        <p style="margin-top: 15px;">Professional developers focus on performance when manipulating the DOM. Instead of constantly reaching into the document with <code>querySelector</code>, we cache references and use techniques like "Event Delegation" to handle multiple interactions efficiently. Understanding the "Critical Rendering Path" ensures your UI remains responsive during updates.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Array Methods Deep Dive</h2>
+      <div class="article-content">
+        <p>Arrays are one of the most powerful data structures in JavaScript. Modern ES6+ methods like <code>map()</code>, <code>filter()</code>, and <code>reduce()</code> allow you to transform and handle data sets in a declarative way. This leads to cleaner, more readable code compared to traditional <code>for</code> loops.</p>
+        <p style="margin-top: 15px;">For example, <code>reduce()</code> is a Swiss Army knife that can transform an array into any other data type—an object, a string, or even a single number. Mastering these functional programming patterns is what separates a junior coder from a senior developer who writes elegant, maintainable logic.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Asynchronous JS & The Event Loop</h2>
+      <div class="article-content">
+        <p>JavaScript is single-threaded, meaning it can only execute one task at a time. However, it handles asynchronous operations (like API calls) using the Event Loop. This allows JS to perform non-blocking I/O, ensuring the user interface doesn't freeze while waiting for data from a server.</p>
+        <p style="margin-top: 15px;">Understanding the difference between the Macro-task queue (setTimouts) and the Micro-task queue (Promises) is critical for debugging complex async flows. When you master the Event Loop, you understand exactly how and when your code will execute in the browser's engine.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Async/Await Patterns</h2>
+      <div class="article-content">
+        <p>Async/Await is a syntax that allows you to write asynchronous code that looks and behaves like synchronous code. It is built on top of Promises and makes error handling much simpler using standard <code>try/catch</code> blocks. It is the industry standard for handling data fetching in modern web development.</p>
+        <p style="margin-top: 15px;">By using <code>await</code>, you effectively "pause" the execution of an async function until a Promise is resolved, without blocking the main thread. this leads to code that is significantly easier to read and maintain than the "callback hell" of the past.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Object Destructuring & Rest</h2>
+      <div class="article-content">
+        <p>Destructuring is a convenient way to extract properties from objects or items from arrays into distinct variables. This leads to much more concise code, especially when dealing with complex API responses or configuration objects. Combine this with the Spread operator (<code>...</code>) for powerful data cloning.</p>
+        <p style="margin-top: 15px;">Professional developers use destructuring in function parameters to provide clear, named arguments. This self-documents the code and makes it much harder to pass incorrect data types into your logic. It is a fundamental pattern in modern frameworks like React and Vue.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Classes and OOP in JS</h2>
+      <div class="article-content">
+        <p>While JavaScript is primarily a prototype-based language, the <code>class</code> syntax (introduced in ES6) provides a familiar way to implement Object-Oriented Programming (OOP). Classes allow for better code organization through encapsulation, inheritance, and polymorphism.</p>
+        <p style="margin-top: 15px;">Understanding how the <code>constructor</code> works and how to use <code>extends</code> for inheritance is crucial for building scalable applications. Even though it looks like classes in Java or C#, JS classes are still based on prototypes under the hood—a concept every expert must grasp.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> Error Handling & Robustness</h2>
+      <div class="article-content">
+        <p>No code is perfect. Professional developers assume things will fail and use <code>try/catch/finally</code> blocks to handle errors gracefully. This prevents the entire application from crashing when an API is down or a user provides invalid input.</p>
+        <p style="margin-top: 15px;">Creating custom error classes allows you to provide specific feedback for different failure states. For example, you might have a <code>ValidationError</code> for form issues and a <code>NetworkError</code> for server problems. This level of detail is what makes an application "production-ready."</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-compass"></i> ES Modules & Modern Architecture</h2>
+      <div class="article-content">
+        <p>Modular code is maintainable code. ES Modules (<code>import</code> and <code>export</code>) allow you to break your application into small, reusable files. This prevents global namespace pollution and makes it easier for build tools like Vite or Webpack to optimize your code.</p>
+        <p style="margin-top: 15px;">By using default and named exports, you can explicitly define the public API of your modules. This creates clear boundaries between different parts of your system, making it much easier to test, debug, and scale as your project grows.</p>
+      </div>
+    </div>
+
 
     <!-- 40 more for density -->
     <div class="chapter reveal"><h2>Closure and HOF</h2><p>Understanding functions that return functions and how scope is preserved.</p></div>

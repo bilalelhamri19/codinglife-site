@@ -27,44 +27,92 @@
     
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> The Box Model Deep Dive</h2>
-      <p>Understanding Content, Padding, Border, and Margin is the foundation of all CSS layouts. Learn how <code>box-sizing: border-box</code> changes the game.</p>
+      <div class="article-content">
+        <p>Understanding Content, Padding, Border, and Margin is the absolute foundation of all CSS layouts. Every element in HTML is essentially a rectangular box. By default, the width and height you set only apply to the content area, which can lead to unexpected layout shifts when you add padding or borders.</p>
+        <p style="margin-top: 15px;">Professional developers use <code>box-sizing: border-box</code> to include padding and borders in the element's total width and height. This makes layout calculations much more predictable. Without this setting, adding a 10px padding to a 100% width element would cause an overflow, breaking your responsive design. Mastering the box model is the first step toward pixel-perfect precision.</p>
+        <div class="code-example">
+          <pre>/* The Universal Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}</pre>
+        </div>
+      </div>
     </div>
+
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> Flexbox Fundamentals</h2>
-      <p>Master <code>justify-content</code>, <code>align-items</code>, and the power of <code>flex-grow</code> for responsive rows and columns.</p>
+      <div class="article-content">
+        <p>Flexbox (Flexible Box Layout) revolutionized how we align elements in a single dimension—either a row or a column. Before Flexbox, developers had to rely on floats and table layouts, which were fragile and difficult to maintain. Flexbox provides a more efficient way to lay out, align, and distribute space among items in a container, even when their size is unknown or dynamic.</p>
+        <p style="margin-top: 15px;">Mastering <code>justify-content</code> for main-axis alignment and <code>align-items</code> for cross-axis alignment is crucial. Additionally, the <code>flex-grow</code> property allows items to expand to fill available space, making it easy to create complex headers and navbars that adapt to any screen size. Flexbox is the go-to tool for UI components like cards, menus, and buttons.</p>
+      </div>
     </div>
+
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> CSS Grid Layout</h2>
-      <p>The ultimate tool for 2D layouts. Define tracks, areas, and learn how to build complex dashboard structures with minimal code.</p>
+      <div class="article-content">
+        <p>While Flexbox is one-dimensional, CSS Grid is a two-dimensional layout system. It allows you to create complex layouts with rows and columns simultaneously. It is the ultimate tool for building complete page structures, dashboards, and magazine-style grids with minimal code. Grid allows you to define tracks, areas, and gaps, giving you total control over the spatial relationship between elements.</p>
+        <p style="margin-top: 15px;">One of the most powerful features of Grid is <code>grid-template-areas</code>, which lets you "draw" your layout using text-based strings. This makes your CSS highly readable and easy to modify. Combine this with the <code>fr</code> (fractional) unit, and you have a system that is inherently responsive without the need for complex percentage calculations.</p>
+      </div>
     </div>
+
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> Custom Properties (Variables)</h2>
-      <p>How to use <code>--variable-name</code> to create themeable and maintainable design systems across large applications.</p>
+      <div class="article-content">
+        <p>CSS Variables, or Custom Properties, allow you to store values and reuse them throughout your stylesheet. This is a game-changer for maintainability. Instead of hunting down every instance of a specific color, you can simply change the variable value in one place. Variables are defined using the <code>--variable-name</code> syntax and accessed using the <code>var()</code> function.</p>
+        <p style="margin-top: 15px;">Beyond simple colors, variables can store spacing values, font sizes, and even complex animation timings. They are scoped to the element they are defined in, meaning you can have global variables in <code>:root</code> and override them in specific components. This is the foundation of modern design systems and dark mode implementations.</p>
+      </div>
     </div>
+
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> Advanced Animations & Transitions</h2>
-      <p>Go beyond simple hover effects. Master <code>@keyframes</code> and cubic-bezier timing functions for premium UX.</p>
+      <div class="article-content">
+        <p>Premium user experiences are often defined by their motion design. CSS provides two main tools for this: <code>transitions</code> for simple state changes and <code>@keyframes</code> for more complex, multi-step animations. A well-placed transition can make a button feel "tactile," while a sophisticated keyframe animation can guide a user's attention to critical information.</p>
+        <p style="margin-top: 15px;">To achieve professional results, avoid using default "linear" timing. Instead, use <code>cubic-bezier</code> functions to create natural, lifelike movement. Furthermore, focus on animating "cheap" properties like <code>transform</code> and <code>opacity</code> to ensure smooth 60fps performance without causing expensive layout repaints.</p>
+      </div>
     </div>
+
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> Responsive Design & Media Queries</h2>
-      <p>Building for every screen size using mobile-first approach and <code>clamp()</code> for fluid typography.</p>
+      <div class="article-content">
+        <p>In 2026, building for the web means building for every screen size, from watches to ultra-wide monitors. Responsive design is no longer an "extra"—it's a requirement. The mobile-first approach is the standard: you write your base styles for small screens and then use media queries to add complexity as the screen size increases.</p>
+        <p style="margin-top: 15px;">Modern CSS functions like <code>clamp()</code>, <code>min()</code>, and <code>max()</code> have made responsive design even easier. For example, <code>font-size: clamp(1rem, 5vw, 2.5rem);</code> allows your text to scale fluidly between a minimum and maximum size based on the viewport width, eliminating the need for dozens of specific media queries.</p>
+      </div>
     </div>
+
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> Glassmorphism & Modern Blurs</h2>
-      <p>Using <code>backdrop-filter</code> and semi-transparent colors to create the trending frosted glass aesthetic.</p>
+      <div class="article-content">
+        <p>The "frosted glass" look, or glassmorphism, is one of the most trending aesthetics in modern UI design. It's achieved using the <code>backdrop-filter</code> property combined with semi-transparent background colors and subtle borders. This creates a sense of depth and hierarchy, making elements look like they are floating above the content.</p>
+        <p style="margin-top: 15px;">To make glassmorphism look "PRO," you must focus on the details. Use a very light, white border to simulate the edge of the glass, and ensure there is enough contrast behind the element to maintain readability. When used correctly, it adds a layer of sophistication and "premium" feel to any application.</p>
+      </div>
     </div>
+
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> CSS Selectors Mastery</h2>
-      <p>From basic classes to complex pseudo-classes like <code>:nth-child</code>, <code>:has()</code>, and <code>:where()</code>.</p>
+      <div class="article-content">
+        <p>Being a CSS expert means knowing exactly how to target elements without adding unnecessary classes to your HTML. From basic classes to complex pseudo-classes like <code>:nth-child</code>, <code>:has()</code>, and <code>:where()</code>, your selector strategy determines how clean and maintainable your codebase will be.</p>
+        <p style="margin-top: 15px;">The new <code>:has()</code> selector is particularly powerful—it allows you to style a parent element based on its children, something that was previously impossible without JavaScript. Understanding specificity and how the cascade works is the difference between writing "hacky" CSS and writing a professional design system.</p>
+      </div>
     </div>
+
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> Professional Typography</h2>
-      <p>Handling web fonts, letter spacing, line height, and the vertical rhythm of your content.</p>
+      <div class="article-content">
+        <p>Typography is 90% of web design. Professional CSS developers don't just set a font family; they control the vertical rhythm of the page. This involves managing line-height (leading), letter-spacing (tracking), and font-weight to ensure maximum legibility across all devices.</p>
+        <p style="margin-top: 15px;">Using relative units like <code>rem</code> and <code>em</code> for font sizes ensures that your layout respects the user's browser settings. Furthermore, variable fonts allow you to load a single font file and have infinite control over its weight, width, and slant, significantly improving performance while giving you total creative freedom.</p>
+      </div>
     </div>
+
     <div class="chapter reveal">
       <h2><i class="fa-solid fa-compass"></i> Gradient Systems</h2>
-      <p>Linear, radial, and conic gradients. How to layer multiple backgrounds for complex visual depth.</p>
+      <div class="article-content">
+        <p>Gradients add depth and vibrance to a design. CSS supports linear, radial, and conic gradients, allowing for everything from subtle background transitions to complex abstract patterns. Layering multiple backgrounds using comma-separated values allows for even more sophisticated visual effects without using heavy images.</p>
+        <p style="margin-top: 15px;">When designing gradients, avoid "dead zones" (grayish colors in the middle of a transition). Instead, use HSL or LCH color spaces to ensure your colors stay vibrant throughout the entire range. Gradients are perfect for hero sections, buttons, and decorative elements that need to "pop" on the screen.</p>
+      </div>
     </div>
+
 
     <!-- Additional sections for density -->
     <div class="chapter reveal"><h2>CSS Specificity & Cascade</h2><p>Solving conflicts using the weight of selectors and understanding !important risks.</p></div>
