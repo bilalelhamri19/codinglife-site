@@ -336,40 +336,48 @@
     </div>
   </div>
 
-  <section style="padding: 100px 24px; background: #020617; color: white;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-      <div style="text-align: center; margin-bottom: 80px;">
-        <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem;">Our Methodology</span>
-        <h2 style="font-size: clamp(2rem, 5vw, 3.5rem); margin-top: 15px; font-weight: 800;">Built for the Next Generation</h2>
+  <!-- Our Methodology Section (UPGRADED PRO LOOK) -->
+  <section style="padding: 120px 24px; background: #020617; color: white; position: relative; overflow: hidden;">
+    <!-- Abstract Background Element -->
+    <div style="position: absolute; top: -10%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(45, 212, 191, 0.05) 0%, transparent 70%); z-index: 0;"></div>
+    
+    <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+      <div style="text-align: center; margin-bottom: 80px;" class="reveal">
+        <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; display: block; margin-bottom: 12px;">Our Methodology</span>
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin: 0; line-height: 1.1;">Built for the <span style="background: linear-gradient(to right, #2dd4bf, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Next Generation</span></h2>
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px;">
-        <div class="reveal" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 40px; border-radius: 24px;">
-          <div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(45, 212, 191, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 30px;">
-            <i class="fa-solid fa-bolt" style="color: #2dd4bf; font-size: 1.4rem;"></i>
+        <!-- Card 1 -->
+        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); padding: 50px 40px; border-radius: 32px; backdrop-filter: blur(10px); transition: 0.4s ease;">
+          <div style="width: 64px; height: 64px; border-radius: 20px; background: linear-gradient(135deg, #2dd4bf 0%, #0f766e 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 32px; box-shadow: 0 10px 20px rgba(45, 212, 191, 0.2);">
+            <i class="fa-solid fa-bolt-lightning" style="color: white; font-size: 1.8rem;"></i>
           </div>
-          <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Fast-Track Learning</h3>
-          <p style="color: #94a3b8; line-height: 1.6;">Our curriculum focuses on practical implementation. Skip the theory and start building production-ready apps today.</p>
+          <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 16px; color: white;">Fast-Track Engineering</h3>
+          <p style="color: #94a3b8; line-height: 1.8; font-size: 1.05rem;">Our curriculum is engineered for high-velocity learning. We skip the outdated theory and focus on the practical implementation of production-grade systems.</p>
         </div>
 
-        <div class="reveal" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 40px; border-radius: 24px;">
-          <div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(168, 85, 247, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 30px;">
-            <i class="fa-solid fa-briefcase" style="color: #a855f7; font-size: 1.4rem;"></i>
+        <!-- Card 2 -->
+        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); padding: 50px 40px; border-radius: 32px; backdrop-filter: blur(10px); transition: 0.4s ease;">
+          <div style="width: 64px; height: 64px; border-radius: 20px; background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 32px; box-shadow: 0 10px 20px rgba(168, 85, 247, 0.2);">
+            <i class="fa-solid fa-shield-halved" style="color: white; font-size: 1.8rem;"></i>
           </div>
-          <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Career Ready</h3>
-          <p style="color: #94a3b8; line-height: 1.6;">We don't just teach code; we teach the industry. Learn the workflows used by top engineering teams at Google and Netflix.</p>
+          <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 16px; color: white;">Enterprise Standards</h3>
+          <p style="color: #94a3b8; line-height: 1.8; font-size: 1.05rem;">Learn the exact workflows, security patterns, and testing strategies used by the world's most sophisticated engineering teams at Scale.</p>
         </div>
 
-        <div class="reveal" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 40px; border-radius: 24px;">
-          <div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(59, 130, 246, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 30px;">
-            <i class="fa-solid fa-users" style="color: #3b82f6; font-size: 1.4rem;"></i>
+        <!-- Card 3 -->
+        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); padding: 50px 40px; border-radius: 32px; backdrop-filter: blur(10px); transition: 0.4s ease;">
+          <div style="width: 64px; height: 64px; border-radius: 20px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 32px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);">
+            <i class="fa-solid fa-code-merge" style="color: white; font-size: 1.8rem;"></i>
           </div>
-          <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Active Community</h3>
-          <p style="color: #94a3b8; line-height: 1.6;">Never learn alone. Join our private Discord to collaborate on open-source projects and get 24/7 technical help.</p>
+          <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 16px; color: white;">Open Collaboration</h3>
+          <p style="color: #94a3b8; line-height: 1.8; font-size: 1.05rem;">Never build in isolation. Join a global community of elite developers to collaborate on real-world open-source projects and expand your network.</p>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- Detailed Learning Roadmap Section -->
   <section style="padding: 100px 24px; background: #020617; border-top: 1px solid rgba(255,255,255,0.05);">
