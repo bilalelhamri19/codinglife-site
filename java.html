@@ -24,16 +24,86 @@
   </div>
 
   <div class="chapters">
-    <div class="chapter reveal"><h2><i class="fa-solid fa-microchip"></i> Understanding the JVM</h2><p>How the Java Virtual Machine manages memory, garbage collection, and bytecode execution.</p></div>
-    <div class="chapter reveal"><h2><i class="fa-solid fa-cube"></i> Object-Oriented Mastery</h2><p>Deep dive into Classes, Objects, Inheritance, and the power of Polymorphism.</p></div>
-    <div class="chapter reveal"><h2><i class="fa-solid fa-layer-group"></i> Interface & Abstract Classes</h2><p>Designing flexible and decoupled architectures for large-scale enterprise systems.</p></div>
-    <div class="chapter reveal"><h2><i class="fa-solid fa-list-check"></i> Java Collections Framework</h2><p>Mastering Lists, Sets, and Maps for efficient data storage and retrieval.</p></div>
-    <div class="chapter reveal"><h2><i class="fa-solid fa-bug"></i> Exception Handling Patterns</h2><p>Using Try-Catch-Finally and custom exceptions to build resilient applications.</p></div>
-    <div class="chapter reveal"><h2><i class="fa-solid fa-stream"></i> Java Streams & Lambda</h2><p>Modern functional programming in Java for clean and declarative data processing.</p></div>
-    <div class="chapter reveal"><h2><i class="fa-solid fa-database"></i> JDBC & Data Access</h2><p>Connecting to relational databases and executing secure SQL queries from Java.</p></div>
-    <div class="chapter reveal"><h2><i class="fa-solid fa-gears"></i> Multithreading & Concurrency</h2><p>Building high-performance apps with threads, executors, and synchronization.</p></div>
-    <div class="chapter reveal"><h2><i class="fa-solid fa-shield-halved"></i> Spring Framework Core</h2><p>Dependency Injection (DI) and Aspect-Oriented Programming (AOP) fundamentals.</p></div>
-    <div class="chapter reveal"><h2><i class="fa-solid fa-rocket"></i> Spring Boot 3 Architecture</h2><p>Building production-ready microservices with auto-configuration and starters.</p></div>
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-microchip"></i> Understanding the JVM internals</h2>
+      <div class="article-content">
+        <p>The Java Virtual Machine (JVM) is the engine that drives the "Write Once, Run Anywhere" philosophy. Unlike languages that compile directly to machine code, Java compiles to bytecode, which the JVM then translates for the specific operating system. This abstraction layer is what provides Java's legendary portability and security.</p>
+        <p style="margin-top: 15px;">To be an expert Java developer, you must understand memory management (Stack vs. Heap) and how the Garbage Collector (GC) automatically reclaims memory. Mastering the JVM's execution model allows you to write high-performance code that scales to handle millions of transactions in an enterprise environment.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-cube"></i> Object-Oriented Mastery</h2>
+      <div class="article-content">
+        <p>Java is one of the purest implementations of Object-Oriented Programming (OOP). Everything in Java (except primitives) is an object. This paradigm allows you to model complex real-world systems by organizing code into classes that encapsulate both data (fields) and behavior (methods).</p>
+        <p style="margin-top: 15px;">Mastering the four pillars of OOP—Encapsulation, Inheritance, Polymorphism, and Abstraction—is essential for building maintainable software. Polymorphism, in particular, allows for flexible code that can work with different types of objects through a single interface, which is the key to building scalable frameworks.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-layer-group"></i> Interface & Abstract Classes</h2>
+      <div class="article-content">
+        <p>Interfaces and abstract classes are the blueprints for your system. They define "contracts" that other classes must follow, ensuring consistency and enabling loose coupling. In modern Java, interfaces have become even more powerful with the addition of default and static methods.</p>
+        <p style="margin-top: 15px;">Using interfaces allows you to practice "Program to an Interface, not an Implementation," a core principle of professional software design. This makes your code easier to test (using mocks) and allows you to swap out different implementations (like changing a database provider) without rewriting your entire business logic.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-list-check"></i> Java Collections Framework</h2>
+      <div class="article-content">
+        <p>The Collections Framework provides a unified architecture for representing and manipulating collections of data. Whether you need a simple <code>ArrayList</code>, a unique <code>HashSet</code>, or a high-performance <code>HashMap</code>, the collections API has a professional-grade solution for every scenario.</p>
+        <p style="margin-top: 15px;">Understanding the Big-O performance of different collections is what separates a junior from a senior developer. For example, knowing when to use a <code>LinkedList</code> over an <code>ArrayList</code> can have a massive impact on your application's speed when dealing with millions of records.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-bug"></i> Exception Handling Patterns</h2>
+      <div class="article-content">
+        <p>Java's robust exception handling system ensures that errors don't lead to catastrophic system failures. By using <code>try-catch-finally</code> blocks and the modern "try-with-resources" pattern, you can manage resources like file handles and database connections safely and efficiently.</p>
+        <p style="margin-top: 15px;">Professional developers distinguish between Checked and Unchecked exceptions to provide meaningful feedback to users and other developers. Building a custom exception hierarchy for your application allows you to handle specific failure states gracefully and maintain a high level of system reliability.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-stream"></i> Java Streams & Lambda</h2>
+      <div class="article-content">
+        <p>Introduced in Java 8, Streams and Lambda expressions brought functional programming to the Java ecosystem. They allow you to process data in a declarative way, similar to SQL queries, making your code significantly more concise and readable.</p>
+        <p style="margin-top: 15px;">Streams support powerful operations like <code>filter</code>, <code>map</code>, <code>reduce</code>, and <code>collect</code>, which can be executed in parallel with minimal effort. This is the modern standard for data processing in Java, allowing you to write complex logic in a single, elegant pipeline of operations.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-database"></i> JDBC & Data Access</h2>
+      <div class="article-content">
+        <p>JDBC (Java Database Connectivity) is the standard API for connecting Java applications to relational databases. It provides a common interface for executing SQL statements and retrieving results, regardless of whether you're using MySQL, Oracle, or PostgreSQL.</p>
+        <p style="margin-top: 15px;">While modern developers often use ORMs like Hibernate, understanding the underlying JDBC API is crucial for performance tuning and handling complex edge cases. Mastering <code>PreparedStatement</code> is particularly important for preventing SQL Injection and ensuring data safety.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-gears"></i> Multithreading & Concurrency</h2>
+      <div class="article-content">
+        <p>Java was built for concurrency from the ground up. Multithreading allows your application to perform multiple tasks simultaneously, which is essential for building responsive UIs and high-throughput server applications that can handle thousands of concurrent users.</p>
+        <p style="margin-top: 15px;">Beyond simple threads, the <code>java.util.concurrent</code> package provides advanced tools like Executors, Futures, and Atomic variables. In Java 21, the introduction of "Virtual Threads" (Project Loom) has revolutionized concurrency again, allowing for millions of threads with minimal overhead.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-shield-halved"></i> Spring Framework Core</h2>
+      <div class="article-content">
+        <p>Spring is the de facto standard for building enterprise Java applications. At its core is the "Inversion of Control" (IoC) container, which manages the lifecycle and dependencies of your application's components (Beans) through Dependency Injection.</p>
+        <p style="margin-top: 15px;">Spring's modular architecture allows you to use only the parts you need, whether it's for transaction management, security, or web development. Understanding the Spring lifecycle and how the container manages your objects is the first step toward becoming a professional enterprise engineer.</p>
+      </div>
+    </div>
+
+    <div class="chapter reveal">
+      <h2><i class="fa-solid fa-rocket"></i> Spring Boot 3 Architecture</h2>
+      <div class="article-content">
+        <p>Spring Boot took the power of the Spring Framework and made it easy to use through "Convention over Configuration." It provides auto-configuration, embedded servers, and "Starters" that allow you to go from zero to a production-ready microservice in minutes.</p>
+        <p style="margin-top: 15px;">In the modern era of cloud-native development, Spring Boot 3 is the industry leader for building distributed systems. It integrates perfectly with Docker and Kubernetes, making it the preferred choice for companies building scalable, resilient backends in the cloud.</p>
+      </div>
+    </div>
+
 
     <!-- 40 more sections -->
     <div class="chapter reveal"><h2>Generic Programming in Java</h2><p>Creating type-safe reusable classes and methods with Generics.</p></div>
