@@ -530,7 +530,6 @@
     injectSchema();
     polishCodeBlocks();
     initAnimations();
-    initProgressTracking();
     bindFooterEvents();
 
     const btt = document.createElement("button");
