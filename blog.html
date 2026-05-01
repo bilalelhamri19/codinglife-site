@@ -13,59 +13,83 @@
 
 <div class="course-container" style="max-width: 1200px;">
   <div class="course-header">
-    <h1><i class="fa-solid fa-newspaper"></i> The Coding Life Blog</h1>
-    <p>Practical articles for learning programming, improving focus, and growing like a professional developer.</p>
+    <div data-cl-lang="en">
+      <h1><i class="fa-solid fa-newspaper"></i> The Coding Life Blog</h1>
+      <p>Practical articles for learning programming, improving focus, and growing like a professional developer.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-solid fa-newspaper"></i> مدونة كودينج لايف</h1>
+      <p>مقالات عملية لتعلم البرمجة، تحسين التركيز، والنمو كمطور محترف.</p>
+    </div>
   </div>
 
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 32px; margin-bottom: 60px;">
     
+    <!-- Motivation -->
     <div class="card reveal" onclick="window.location.href='motivation.html'">
       <img src="mind-body.jpg" alt="Motivation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
-      <h3>Starting Your Self-Development Journey</h3>
-      <p>Important steps to develop yourself and reach your goals gradually with a growth mindset.</p>
-      <a href="motivation.html" style="color: var(--cl-brand); font-weight: 700; display: inline-block; margin-top: 12px;">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+      <div data-cl-lang="en">
+        <h3>Starting Your Self-Development Journey</h3>
+        <p>Important steps to develop yourself and reach your goals gradually with a growth mindset.</p>
+        <a href="motivation.html" style="color: var(--cl-brand); font-weight: 700; display: inline-block; margin-top: 12px;">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div data-cl-lang="ar">
+        <h3>بدء رحلة التطوير الذاتي</h3>
+        <p>خطوات مهمة لتطوير نفسك والوصول إلى أهدافك تدريجياً بعقلية النمو.</p>
+        <a href="motivation.html" style="color: var(--cl-brand); font-weight: 700; display: inline-block; margin-top: 12px;">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></a>
+      </div>
     </div>
 
+    <!-- Coding -->
     <div class="card reveal" onclick="window.location.href='coding.html'">
       <img src="HTMLandCSS.jpg" alt="Coding" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
-      <h3>Learning Programming From Scratch</h3>
-      <p>A clear roadmap to become a professional programmer step by step, from zero to your first job.</p>
-      <a href="coding.html" style="color: var(--cl-brand); font-weight: 700; display: inline-block; margin-top: 12px;">Read Article <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-
-    <div class="card reveal" onclick="window.location.href='productivity.html'">
-      <img src="exercise.jpg" alt="Productivity" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
-      <h3>Boosting Your Daily Productivity</h3>
-      <p>Practical tips to work smarter, save time, and eliminate distractions in your daily routine.</p>
-      <a href="productivity.html" style="color: var(--cl-brand); font-weight: 700; display: inline-block; margin-top: 12px;">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+      <div data-cl-lang="en">
+        <h3>Learning Programming From Scratch</h3>
+        <p>A clear roadmap to become a professional programmer step by step, from zero to your first job.</p>
+        <a href="coding.html" style="color: var(--cl-brand); font-weight: 700; display: inline-block; margin-top: 12px;">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div data-cl-lang="ar">
+        <h3>تعلم البرمجة من الصفر</h3>
+        <p>خارطة طريق واضحة لتصبح مبرمجاً محترفاً خطوة بخطوة، من الصفر إلى أول وظيفة لك.</p>
+        <a href="coding.html" style="color: var(--cl-brand); font-weight: 700; display: inline-block; margin-top: 12px;">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></a>
+      </div>
     </div>
 
   </div>
 
   <!-- Developer Tools Section -->
   <div style="background: var(--cl-surface); padding: 60px 40px; border-radius: var(--cl-radius); border: 1px solid var(--cl-line); margin-bottom: 60px;">
-    <h2 style="text-align: center; margin-bottom: 40px;">Developer Toolbelt</h2>
+    <div data-cl-lang="en"><h2 style="text-align: center; margin-bottom: 40px;">Developer Toolbelt</h2></div>
+    <div data-cl-lang="ar"><h2 style="text-align: center; margin-bottom: 40px;">أدوات المطورين</h2></div>
+    
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
       
       <div class="reveal" style="text-align: center; padding: 24px; background: var(--cl-bg); border-radius: 12px;">
         <i class="fas fa-code" style="font-size: 2.5rem; color: var(--cl-brand); margin-bottom: 16px; display: block;"></i>
-        <h3>Code Formatter</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 20px;">Format and beautify your code with our professional playground.</p>
-        <a href="playground.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px;">Use Tool</a>
-      </div>
-
-      <div class="reveal" style="text-align: center; padding: 24px; background: var(--cl-bg); border-radius: 12px;">
-        <i class="fas fa-palette" style="font-size: 2.5rem; color: var(--cl-accent); margin-bottom: 16px; display: block;"></i>
-        <h3>Palette Generator</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 20px;">Create beautiful color schemes for your next web projects.</p>
-        <a href="colors.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px;">Use Tool</a>
+        <div data-cl-lang="en">
+          <h3>Code Formatter</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px;">Format and beautify your code with our professional playground.</p>
+          <a href="playground.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Use Tool</a>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>منسق الكود</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px;">قم بتنسيق وتجميل الكود الخاص بك في بيئة احترافية.</p>
+          <a href="playground.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">استخدم الأداة</a>
+        </div>
       </div>
 
       <div class="reveal" style="text-align: center; padding: 24px; background: var(--cl-bg); border-radius: 12px;">
         <i class="fas fa-calculator" style="font-size: 2.5rem; color: #0369a1; margin-bottom: 16px; display: block;"></i>
-        <h3>CSS Converter</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 20px;">Convert between PX, REM, and EM units quickly and easily.</p>
-        <a href="css-converter.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px;">Use Tool</a>
+        <div data-cl-lang="en">
+          <h3>CSS Converter</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px;">Convert between PX, REM, and EM units quickly and easily.</p>
+          <a href="css-converter.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Use Tool</a>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>محول CSS</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px;">حول بين وحدات PX و REM و EM بسرعة وسهولة.</p>
+          <a href="css-converter.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">استخدم الأداة</a>
+        </div>
       </div>
 
     </div>
