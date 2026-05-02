@@ -11,53 +11,52 @@
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 40px;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
     .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateX(10px);
       border-color: var(--cl-brand);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
-    .lesson-media {
-      width: 100%;
-      height: 250px;
-      position: relative;
-    }
-    .lesson-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .lesson-icon-overlay {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.9);
-      width: 50px;
-      height: 50px;
+    .lesson-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(227, 79, 38, 0.1);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #e34f26;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
-    .lesson-content {
-      padding: 30px;
+    .lesson-info {
+      flex-grow: 1;
     }
-    .lesson-content h3 {
-      font-size: 1.6rem;
+    .lesson-info h3 {
+      font-size: 1.5rem;
       color: var(--cl-brand);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      margin-top: 0;
     }
-    .lesson-content p {
+    .lesson-info p {
       line-height: 1.8;
       color: var(--cl-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .lesson-card {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -67,65 +66,70 @@
   <div class="course-header" style="background: linear-gradient(135deg, #e34f26, #f06529) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-html5"></i> HTML5 Expert Mastery</h1>
-      <p>70 unique modules covering semantic architecture and advanced Web APIs.</p>
+      <p>A focused curriculum of 20 high-density modules covering semantic architecture and advanced Web APIs.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-html5"></i> إتقان HTML5 للمحترفين</h1>
-      <p>70 وحدة فريدة تغطي المعمارية الدلالية وواجهات برمجة تطبيقات الويب المتقدمة.</p>
+      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي المعمارية الدلالية وواجهات برمجة تطبيقات الويب المتقدمة.</p>
     </div>
   </div>
 
   <div class="chapters" id="htmlLessons">
-    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const htmlLessons = [
-    { t_en: "The Browser Rendering Pipeline", icon: "fa-gears", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", t_ar: "خط أنابيب رندر المتصفح", d_en: "The browser's rendering engine transforms HTML and CSS into visual pixels through a multi-step process including DOM construction, CSSOM creation, and layout painting. We explore how to optimize this 'Critical Rendering Path' to achieve faster page loads and smoother user interactions. Understanding these internals allows you to build high-performance web applications that provide a premium experience across all devices.", d_ar: "يقوم محرك رندر المتصفح بتحويل HTML و CSS إلى بكسلات مرئية من خلال عملية متعددة الخطوات تشمل بناء الـ DOM وإنشاء الـ CSSOM ورسم التخطيط. نستكشف كيفية تحسين 'مسار الرندر الحرج' لتحقيق تحميل أسرع للصفحة وتفاعلات أكثر سلاسة. يتيح لك فهم هذه الخفايا بناء تطبيقات ويب عالية الأداء توفر تجربة ممتازة." },
-    { t_en: "Semantic HTML & SEO Architecture", icon: "fa-sitemap", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", t_ar: "الـ HTML الدلالي ومعمارية الـ SEO", d_en: "Semantic HTML uses meaningful tags like <article>, <section>, and <aside> to describe the content's purpose to browsers and search engines. We delve into how proper semantic structure improves Accessibility (a11y) and SEO rankings by providing a clear hierarchy for screen readers and web crawlers. This module teaches you how to build professional, future-proof web architectures that are easy to maintain and highly discoverable on the internet.", d_ar: "تستخدم الـ HTML الدلالية وسومًا ذات معنى مثل <article> و <section> لوصف غرض المحتوى للمتصفحات ومحركات البحث. نتعمق في كيفية قيام الهيكل الدلالي الصحيح بتحسين إمكانية الوصول (a11y) وتصنيفات الـ SEO من خلال توفير تسلسل هرمي واضح. يعلمك هذا القسم كيفية بناء معماريات ويب احترافية وجاهزة للمستقبل." },
-    { t_en: "Web Workers & Background Processing", icon: "fa-microchip", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80", t_ar: "الـ Web Workers والمعالجة الخلفية", d_en: "Web Workers allow you to run heavy JavaScript computations in the background, preventing the UI thread from freezing. We explore how to communicate between the main thread and workers using the Message API and how to leverage this for complex data processing or real-time graphics. Mastering this API is essential for building modern web applications that handle massive workloads without compromising the user's interactive experience.", d_ar: "تسمح لك الـ Web Workers بتشغيل حسابات جافا سكريبت الثقيلة في الخلفية، مما يمنع تجمد خيط واجهة المستخدم. نستكشف كيفية التواصل بين الخيط الرئيسي والعمال باستخدام Message API وكيفية الاستفادة من ذلك لمعالجة البيانات المعقدة. إتقان هذه الواجهة أمر ضروري لبناء تطبيقات ويب حديثة تتعامل مع أعباء عمل ضخمة." }
+    { t_en: "The Browser Rendering Pipeline", icon: "fa-gears", t_ar: "خط أنابيب رندر المتصفح", d_en: "The browser's rendering engine transforms HTML and CSS into pixels through a multi-step process: DOM construction, CSSOM creation, and layout painting. We explore how to optimize this 'Critical Rendering Path' to achieve faster page loads and smoother interactions. Understanding these internals is essential for building high-performance web applications that provide a premium experience on any device.", d_ar: "يقوم محرك رندر المتصفح بتحويل HTML و CSS إلى بكسلات من خلال عملية متعددة الخطوات: بناء الـ DOM، إنشاء الـ CSSOM، ورسم التخطيط. نستكشف كيفية تحسين 'مسار الرندر الحرج' لتحقيق تحميل أسرع للصفحة وتفاعلات أكثر سلاسة. فهم هذه الخفايا ضروري لبناء تطبيقات ويب عالية الأداء توفر تجربة ممتازة على أي جهاز." },
+    { t_en: "Semantic HTML & SEO Architecture", icon: "fa-sitemap", t_ar: "الـ HTML الدلالي ومعمارية الـ SEO", d_en: "Semantic HTML uses meaningful tags like <article> and <section> to describe content purpose to browsers and search engines. We delve into how proper semantic structure improves Accessibility (a11y) and SEO rankings by providing a clear hierarchy for screen readers and crawlers. This module teaches you how to build professional, future-proof web architectures that are easy to maintain and discoverable.", d_ar: "تستخدم الـ HTML الدلالية وسوماً ذات معنى مثل <article> و <section> لوصف غرض المحتوى للمتصفحات ومحركات البحث. نتعمق في كيفية قيام الهيكل الدلالي الصحيح بتحسين إمكانية الوصول (a11y) وتصنيفات الـ SEO من خلال توفير تسلسل هرمي واضح. يعلمك هذا القسم كيفية بناء معماريات ويب احترافية وجاهزة للمستقبل." },
+    { t_en: "Web Workers & Background Execution", icon: "fa-microchip", t_ar: "الـ Web Workers والتنفيذ الخلفي", d_en: "Web Workers allow you to run heavy JavaScript computations in the background, preventing the UI thread from freezing. We explore how to communicate between the main thread and workers using the Message API and how to leverage this for complex data processing or real-time graphics. Mastering this API is essential for building modern web applications that handle massive workloads without compromising interactivity.", d_ar: "تسمح لك الـ Web Workers بتشغيل حسابات جافا سكريبت الثقيلة في الخلفية، مما يمنع تجمد خيط واجهة المستخدم. نستكشف كيفية التواصل بين الخيط الرئيسي والعمال باستخدام Message API وكيفية الاستفادة من ذلك لمعالجة البيانات المعقدة أو الرسومات في الوقت الحقيقي. إتقان هذه الواجهة ضروري لبناء تطبيقات ويب حديثة." },
+    { t_en: "IndexedDB: Modern Offline Storage", icon: "fa-database", t_ar: "IndexedDB: التخزين الحديث دون اتصال", d_en: "IndexedDB is a powerful, low-level API for client-side storage of large amounts of structured data. We explore how to use transactions, object stores, and indexes to build robust offline-first web applications. Mastering IndexedDB allows you to store complex data sets locally, enabling seamless user experiences even during network interruptions in modern Progressive Web Apps (PWAs).", d_ar: "IndexedDB هي واجهة برمجة تطبيقات قوية منخفضة المستوى لتخزين كميات كبيرة من البيانات المهيكلة لدى العميل. نستكشف كيفية استخدام المعاملات ومخازن الكائنات والفهارس لبناء تطبيقات ويب قوية تعمل دون اتصال. يتيح لك إتقان IndexedDB تخزين مجموعات البيانات المعقدة محلياً، مما يضمن تجربة مستخدم سلسة." }
+  ];
+
+  const extraHtml = [
+    { t_en: "Web Components Architecture", t_ar: "معمارية مكونات الويب", icon: "fa-puzzle-piece" },
+    { t_en: "Canvas API & Visual Rendering", t_ar: "واجهة Canvas والرندر المرئي", icon: "fa-paintbrush" },
+    { t_en: "Accessibility (ARIA) Best Practices", t_ar: "أفضل ممارسات إمكانية الوصول (ARIA)", icon: "fa-universal-access" },
+    { t_en: "Web Cryptography & Security APIs", t_ar: "تشفير الويب وواجهات الأمان", icon: "fa-shield-halved" },
+    { t_en: "Shadow DOM & Logic Encapsulation", t_ar: "الـ Shadow DOM وتغليف المنطق", icon: "fa-umbrella" },
+    { t_en: "Advanced SVG Manipulation", t_ar: "التلاعب المتقدم بـ SVG", icon: "fa-shapes" },
+    { t_en: "Geolocation & Browser Sensors", t_ar: "تحديد الموقع ومستشعرات المتصفح", icon: "fa-location-dot" },
+    { t_en: "Web Storage: Local vs Session", t_ar: "تخزين الويب: محلي مقابل جلسة", icon: "fa-hard-drive" },
+    { t_en: "Performance: Preload & Prefetch", t_ar: "الأداء: التحميل المسبق والجلب المسبق", icon: "fa-gauge-high" },
+    { t_en: "Service Workers for PWA Support", t_ar: "الـ Service Workers لدعم الـ PWA", icon: "fa-bolt" },
+    { t_en: "Responsive Images & Video API", t_ar: "الصور المستجيبة وواجهة الفيديو", icon: "fa-film" },
+    { t_en: "Form Validation & Advanced Inputs", t_ar: "تحقق النماذج والمدخلات المتقدمة", icon: "fa-check-double" },
+    { t_en: "Managing Technical Debt in HTML", t_ar: "إدارة الديون التقنية في HTML", icon: "fa-trash-can" },
+    { t_en: "The Future of HTML6 & Web APIs", t_ar: "مستقبل HTML6 وواجهات الويب", icon: "fa-award" },
+    { t_en: "Auditing & Web Performance Metrics", t_ar: "التدقيق ومقاييس أداء الويب", icon: "fa-list-check" },
+    { t_en: "Becoming a Senior Web Architect", t_ar: "كيف تصبح معماري ويب أول", icon: "fa-star" }
   ];
 
   const chaptersContainer = document.getElementById('htmlLessons');
   
-  htmlLessons.forEach(lesson => renderCard(lesson));
+  htmlLessons.forEach(l => render(l));
+  extraHtml.forEach(l => render({
+    icon: l.icon,
+    t_en: l.t_en,
+    t_ar: l.t_ar,
+    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional web foundation engineering. We focus on architectural best practices, clean code standards, and web-specific optimization for large-scale production environments. By mastering ${l.t_en}, you ensure your web foundations are robust, accessible, and meet the highest industry quality standards for modern software development.`,
+    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة أساسيات الويب الاحترافية. نركز على أفضل الممارسات المعمارية، معايير الكود النظيف، وتحسينات الويب لبيئات الإنتاج الضخمة. من خلال إتقان ${l.t_ar}، تضمن أن أساسيات الويب الخاصة بك قوية، قابلة للوصول، وتلبي أعلى معايير الجودة في الصناعة.`
+  }));
 
-  const extraHtml = [
-    { t_en: "Offline Storage with IndexedDB", t_ar: "التخزين دون اتصال بـ IndexedDB", icon: "fa-database", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Web Components Architecture", t_ar: "معمارية مكونات الويب", icon: "fa-puzzle-piece", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Canvas API & Visual Rendering", t_ar: "واجهة Canvas والرندر المرئي", icon: "fa-paintbrush", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Accessibility & ARIA Mastery", t_ar: "إمكانية الوصول وإتقان ARIA", icon: "fa-universal-access", img: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=800&q=80" }
-  ];
-
-  for (let i = 0; i < 67; i++) {
-    const topic = extraHtml[i % extraHtml.length];
-    renderCard({
-      t_en: `${topic.t_en} - Foundations Module ${i + 4}`,
-      d_en: `In this specialized web engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into architectural best practices, clean code standards, and web-specific optimization. By mastering ${topic.t_en}, you ensure your web structures are robust, scalable, and highly maintainable in modern production environments using the latest industry standards.`,
-      t_ar: `${topic.t_ar} - وحدة التأسيس ${i + 4}`,
-      d_ar: `في هذه الوحدة المتخصصة في هندسة الويب، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل الممارسات المعمارية، معايير الكود النظيف، وتحسينات الويب. من خلال إتقان ${topic.t_ar}، تضمن أن هياكل الويب الخاصة بك قوية وقابلة للتوسع وسهلة الصيانة في بيئات الإنتاج الحديثة.`,
-      icon: topic.icon || "fa-code",
-      img: topic.img
-    });
-  }
-
-  function renderCard(item) {
+  function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
-        <img src="${item.img}" alt="${item.t_en}">
-      </div>
-      <div class="lesson-content">
+      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+      <div class="lesson-info">
         <div data-cl-lang="en">
-          <h3>${item.t_en}</h3>
-          <p>${item.d_en}</p>
+          <h3>${lesson.t_en}</h3>
+          <p>${lesson.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>${item.t_ar}</h3>
-          <p>${item.d_ar}</p>
+          <h3>${lesson.t_ar}</h3>
+          <p>${lesson.d_ar}</p>
         </div>
       </div>
     `;

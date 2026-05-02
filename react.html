@@ -11,54 +11,52 @@
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 40px;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
     .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateX(10px);
       border-color: var(--cl-brand);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
-    .lesson-media {
-      width: 100%;
-      height: 250px;
-      position: relative;
-    }
-    .lesson-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .lesson-icon-overlay {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.9);
-      width: 50px;
-      height: 50px;
+    .lesson-icon {
+      width: 60px;
+      height: 60px;
+      background: #20232a;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #61dafb;
-      background: #20232a;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
-    .lesson-content {
-      padding: 30px;
+    .lesson-info {
+      flex-grow: 1;
     }
-    .lesson-content h3 {
-      font-size: 1.6rem;
+    .lesson-info h3 {
+      font-size: 1.5rem;
       color: var(--cl-brand);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      margin-top: 0;
     }
-    .lesson-content p {
+    .lesson-info p {
       line-height: 1.8;
       color: var(--cl-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .lesson-card {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -68,65 +66,70 @@
   <div class="course-header" style="background: linear-gradient(135deg, #61dafb, #20232a) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-react"></i> React Professional Architecture</h1>
-      <p>70 unique modules covering modern React 18, Hooks, and Next.js 14 engineering.</p>
+      <p>A focused curriculum of 20 high-density modules covering modern React 18, Hooks, and Next.js 14 engineering.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-react"></i> معمارية ريـاكت الاحترافية</h1>
-      <p>70 وحدة فريدة تغطي ريـاكت 18، الـ Hooks، وهندسة Next.js 14 الحديثة.</p>
+      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي ريـاكت 18، الـ Hooks، وهندسة Next.js 14 الحديثة.</p>
     </div>
   </div>
 
   <div class="chapters" id="reactLessons">
-    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const reactLessons = [
-    { t_en: "Reconciliation & Fiber Architecture", icon: "fa-diagram-project", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", t_ar: "خوارزمية الـ Reconciliation ومعمارية Fiber", d_en: "React uses a sophisticated algorithm called Reconciliation to determine which parts of the UI need to change. Under the hood, React Fiber allows the rendering process to be broken into chunks and prioritized, enabling features like concurrent rendering and suspense. Mastering Fiber architecture is essential for building highly interactive interfaces that remain smooth even during complex data transitions and large-scale state updates.", d_ar: "تستخدم ريـاكت خوارزمية متطورة تسمى Reconciliation لتحديد أجزاء واجهة المستخدم التي تحتاج إلى تغيير. في الخلفية، تسمح معمارية React Fiber بتقسيم عملية الرندر إلى أجزاء وترتيب أولوياتها، مما يتيح ميزات مثل الرندر المتزامن والـ suspense. إتقان معمارية Fiber أمر ضروري لبناء واجهات تفاعلية تظل سلسة." },
-    { t_en: "Custom Hooks & Logic Encapsulation", icon: "fa-anchor", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80", t_ar: "الـ Hooks المخصصة وتغليف المنطق", d_en: "Custom Hooks allow you to extract component logic into reusable functions, keeping your UI components clean and focused. We explore how to leverage built-in hooks like useEffect and useMemo within custom functions to handle complex operations like data fetching, form validation, and synchronization. This module teaches you how to build a scalable and maintainable frontend architecture by promoting code reuse across your entire application.", d_ar: "تسمح لك الـ Hooks المخصصة باستخراج منطق المكونات إلى وظائف قابلة لإعادة الاستخدام، مما يحافظ على نظافة مكونات واجهة المستخدم الخاصة بك. نستكشف كيفية الاستفادة من الـ hooks المدمجة مثل useEffect و useMemo داخل وظائف مخصصة للتعامل مع العمليات المعقدة مثل جلب البيانات. يعلمك هذا القسم كيفية بناء معمارية واجهة أمامية قابلة للتوسع." },
-    { t_en: "Next.js App Router & Server Components", icon: "fa-route", img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80", t_ar: "الـ App Router في Next.js ومكونات السيرفر", d_en: "Next.js 14 introduces a revolutionary routing system based on React Server Components (RSC). We explore the benefits of rendering on the server by default, reducing client-side JavaScript and improving Time to Interactive (TTI). This lesson covers the App Router architecture, nested layouts, and how to use Server Actions to handle data mutations directly on the server without the need for manual API route management.", d_ar: "يقدم Next.js 14 نظام توجيه ثوري يعتمد على مكونات ريـاكت للسيرفر (RSC). نستكشف فوائد الرندر على السيرفر افتراضيًا، مما يقلل من حجم ملفات جافا سكريبت لدى العميل ويحسن وقت التفاعل (TTI). يغطي هذا الدرس معمارية App Router، التخطيطات المتداخلة، وكيفية استخدام Server Actions للتعامل مع تغييرات البيانات مباشرة على السيرفر." }
+    { t_en: "Reconciliation & Fiber Architecture", icon: "fa-diagram-project", t_ar: "خوارزمية الـ Reconciliation ومعمارية Fiber", d_en: "React uses a sophisticated algorithm called Reconciliation to determine which parts of the UI need to change. Under the hood, React Fiber allows the rendering process to be broken into prioritized chunks, enabling concurrent rendering and suspense. Mastering Fiber architecture is essential for building highly interactive interfaces that remain smooth during complex state transitions and large-scale data updates.", d_ar: "تستخدم ريـاكت خوارزمية متطورة تسمى Reconciliation لتحديد أجزاء واجهة المستخدم التي تحتاج إلى تغيير. في الخلفية، تسمح معمارية React Fiber بتقسيم عملية الرندر إلى أجزاء وترتيب أولوياتها، مما يتيح ميزات مثل الرندر المتزامن والـ suspense. إتقان معمارية Fiber أمر ضروري لبناء واجهات تفاعلية تظل سلسة." },
+    { t_en: "The Hook Rules & Custom Logic Encapsulation", icon: "fa-anchor", t_ar: "قواعد الـ Hooks وتغليف المنطق المخصص", d_en: "Hooks allow you to extract component logic into reusable functions, keeping your UI clean and focused. We explore the internal mechanism of hook state persistence and how to design custom hooks for complex tasks like data fetching or synchronization. Mastering these rules ensures your functional components follow best practices for maintainability and scalability in large frontend projects.", d_ar: "تسمح لك الـ Hooks باستخراج منطق المكونات إلى وظائف قابلة لإعادة الاستخدام، مما يحافظ على نظافة واجهة المستخدم. نستكشف الآلية الداخلية لاستمرار حالة الـ hook وكيفية تصميم hooks مخصصة للمهام المعقدة مثل جلب البيانات. يضمن إتقان هذه القواعد أن تتبع مكوناتك الوظيفية أفضل الممارسات للصيانة." },
+    { t_en: "Next.js App Router & Server Components", icon: "fa-route", t_ar: "الـ App Router في Next.js ومكونات السيرفر", d_en: "Next.js 14 introduces a revolutionary system based on React Server Components (RSC). We explore the benefits of server-side rendering by default, reducing client-side JavaScript and improving Time to Interactive (TTI). This lesson covers nested layouts, server actions, and how to optimize data fetching directly on the server without manual API route management.", d_ar: "يقدم Next.js 14 نظاماً ثورياً يعتمد على مكونات ريـاكت للسيرفر (RSC). نستكشف فوائد الرندر على السيرفر افتراضياً، مما يقلل من جافا سكريبت العميل ويحسن وقت التفاعل. يغطي هذا الدرس التخطيطات المتداخلة، و server actions، وكيفية تحسين جلب البيانات مباشرة على السيرفر." },
+    { t_en: "State Management with Zustand & Signals", icon: "fa-gears", t_ar: "إدارة الحالة باستخدام Zustand و Signals", d_en: "Modern React state management has evolved beyond Redux toward simpler, more performant solutions like Zustand and Signals. We explore how to manage global state with minimal boilerplate and maximum performance. Mastering these libraries ensures your application remains fast and responsive by preventing unnecessary re-renders in large-scale UI components.", d_ar: "تطورت إدارة الحالة في ريـاكت الحديثة لتبتعد عن Redux نحو حلول أبسط وأكثر أداءً مثل Zustand و Signals. نستكشف كيفية إدارة الحالة العالمية بأقل قدر من الأكواد الروتينية وأقصى أداء. يضمن إتقان هذه المكتبات بقاء تطبيقك سريعاً ومستجيباً من خلال منع عمليات إعادة الرندر غير الضرورية." }
+  ];
+
+  const extraReact = [
+    { t_en: "Performance Tuning & Memoization", t_ar: "تحسين الأداء والـ Memoization", icon: "fa-gauge-high" },
+    { t_en: "Design Systems with Radix & Tailwind", t_ar: "أنظمة التصميم بـ Radix و Tailwind", icon: "fa-puzzle-piece" },
+    { t_en: "Zod & Type-safe Form Management", t_ar: "إدارة النماذج آمنة النوع بـ Zod", icon: "fa-shield-halved" },
+    { t_en: "Testing with Vitest & Testing Library", t_ar: "الاختبار بـ Vitest و Testing Library", icon: "fa-vial" },
+    { t_en: "Advanced Animation with Framer Motion", t_ar: "الرسوم المتحركة المتقدمة بـ Framer Motion", icon: "fa-film" },
+    { t_en: "Micro-frontends & Module Federation", t_ar: "الواجهات المصغرة (Micro-frontends)", icon: "fa-network-wired" },
+    { t_en: "Accessibility (a11y) Best Practices", t_ar: "أفضل ممارسات إمكانية الوصول (a11y)", icon: "fa-universal-access" },
+    { t_en: "Modern Suspense & Error Boundaries", t_ar: "الـ Suspense وحدود الأخطاء الحديثة", icon: "fa-triangle-exclamation" },
+    { t_en: "Managing Large Frontend Architectures", t_ar: "إدارة معماريات الواجهات الأمامية الضخمة", icon: "fa-building-columns" },
+    { t_en: "Real-time Data with React Query", t_ar: "البيانات في الوقت الحقيقي بـ React Query", icon: "fa-arrows-rotate" },
+    { t_en: "Securing Frontend Applications", t_ar: "تأمين تطبيقات الواجهة الأمامية", icon: "fa-user-shield" },
+    { t_en: "React for Native Mobile (Overview)", t_ar: "ريـاكت للموبايل (نظرة عامة)", icon: "fa-mobile-screen" },
+    { t_en: "The Future of React & Compiler", t_ar: "مستقبل ريـاكت ومترجم React Compiler", icon: "fa-bolt" },
+    { t_en: "Building Professional Component Libraries", t_ar: "بناء مكتبات مكونات احترافية", icon: "fa-book" },
+    { t_en: "Scaling Design with CSS Variables", t_ar: "توسيع التصميم باستخدام متغيرات CSS", icon: "fa-palette" },
+    { t_en: "Becoming a Senior React Architect", t_ar: "كيف تصبح معماري ريـاكت أول", icon: "fa-award" }
   ];
 
   const chaptersContainer = document.getElementById('reactLessons');
   
-  reactLessons.forEach(lesson => renderCard(lesson));
+  reactLessons.forEach(l => render(l));
+  extraReact.forEach(l => render({
+    icon: l.icon,
+    t_en: l.t_en,
+    t_ar: l.t_ar,
+    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional React frontend engineering. We focus on component-level optimization, state synchronization patterns, and scalable project structures. By mastering ${l.t_en}, you ensure your React applications are robust, performant, and meet the highest industry quality standards for large-scale production environments.`,
+    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة ريـاكت الاحترافية. نركز على تحسين مستوى المكونات، أنماط مزامنة الحالة، وهياكل المشاريع القابلة للتوسع. من خلال إتقان ${l.t_ar}، تضمن أن تطبيقات ريـاكت الخاصة بك قوية وذات أداء عالٍ وتلبي أعلى معايير الجودة في الصناعة.`
+  }));
 
-  const extraReact = [
-    { t_en: "State Management with Zustand", t_ar: "إدارة الحالة باستخدام Zustand", icon: "fa-gears", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Zod & React Hook Form", t_ar: "تأمين النماذج بـ Zod و Hook Form", icon: "fa-shield-halved", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Design Systems with Radix UI", t_ar: "بناء أنظمة التصميم بـ Radix UI", icon: "fa-puzzle-piece", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Performance & Code Splitting", t_ar: "الأداء وتقسيم الكود", icon: "fa-gauge-high", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" }
-  ];
-
-  for (let i = 0; i < 67; i++) {
-    const topic = extraReact[i % extraReact.length];
-    renderCard({
-      t_en: `${topic.t_en} - Arch Module ${i + 4}`,
-      d_en: `In this specialized React engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into component lifecycle, state synchronization, and scalable frontend architecture. By mastering ${topic.t_en}, you ensure your React applications are robust, responsive, and highly maintainable in large-scale production environments using the latest industry standards.`,
-      t_ar: `${topic.t_ar} - الوحدة المعمارية ${i + 4}`,
-      d_ar: `في هذه الوحدة المتخصصة في هندسة ريـاكت، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول دورة حياة المكونات، مزامنة الحالة، ومعمارية الواجهة الأمامية القابلة للتوسع. من خلال إتقان ${topic.t_ar}، تضمن أن تطبيقات ريـاكت الخاصة بك قوية ومستجيبة وسهلة الصيانة في بيئات الإنتاج الضخمة باستخدام أحدث معايير الصناعة.`,
-      icon: topic.icon,
-      img: topic.img
-    });
-  }
-
-  function renderCard(item) {
+  function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
-        <img src="${item.img}" alt="${item.t_en}">
-      </div>
-      <div class="lesson-content">
+      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+      <div class="lesson-info">
         <div data-cl-lang="en">
-          <h3>${item.t_en}</h3>
-          <p>${item.d_en}</p>
+          <h3>${lesson.t_en}</h3>
+          <p>${lesson.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>${item.t_ar}</h3>
-          <p>${item.d_ar}</p>
+          <h3>${lesson.t_ar}</h3>
+          <p>${lesson.d_ar}</p>
         </div>
       </div>
     `;

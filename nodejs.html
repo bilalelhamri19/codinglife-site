@@ -11,53 +11,52 @@
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 40px;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
     .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateX(10px);
       border-color: var(--cl-brand);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
-    .lesson-media {
-      width: 100%;
-      height: 250px;
-      position: relative;
-    }
-    .lesson-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .lesson-icon-overlay {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.9);
-      width: 50px;
-      height: 50px;
+    .lesson-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(51, 153, 51, 0.1);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #339933;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
-    .lesson-content {
-      padding: 30px;
+    .lesson-info {
+      flex-grow: 1;
     }
-    .lesson-content h3 {
-      font-size: 1.6rem;
+    .lesson-info h3 {
+      font-size: 1.5rem;
       color: var(--cl-brand);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      margin-top: 0;
     }
-    .lesson-content p {
+    .lesson-info p {
       line-height: 1.8;
       color: var(--cl-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .lesson-card {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -67,65 +66,70 @@
   <div class="course-header" style="background: linear-gradient(135deg, #339933, #66cc33) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-node-js"></i> Node.js Scalable Architecture</h1>
-      <p>70 unique modules covering high-performance backend engineering with JavaScript and V8.</p>
+      <p>A focused curriculum of 20 high-density modules covering high-performance backend engineering with JavaScript and V8.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-node-js"></i> معمارية Node.js القابلة للتوسع</h1>
-      <p>70 وحدة فريدة تغطي هندسة الأنظمة الخلفية عالية الأداء باستخدام جافا سكريبت ومحرك V8.</p>
+      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي هندسة الأنظمة الخلفية عالية الأداء باستخدام جافا سكريبت ومحرك V8.</p>
     </div>
   </div>
 
   <div class="chapters" id="nodeLessons">
-    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const nodeLessons = [
-    { t_en: "Libuv & Thread Pool Management", icon: "fa-microchip", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80", t_ar: "مكتبة Libuv وإدارة حوض الخيوط", d_en: "Libuv is the multi-platform support library that provides Node.js with asynchronous I/O capabilities. We explore how Libuv manages the thread pool for operations that cannot be handled by the OS kernel, such as file system access and cryptography. Understanding this low-level architecture allows you to optimize your server's throughput and avoid common bottlenecks in data-intensive backend applications.", d_ar: "Libuv هي مكتبة الدعم متعددة المنصات التي توفر لـ Node.js إمكانيات الـ I/O غير المتزامنة. نستكشف كيف تدير Libuv حوض الخيوط (thread pool) للعمليات التي لا يمكن التعامل معها بواسطة كيرنل نظام التشغيل، مثل الوصول إلى نظام الملفات والتشفير. يتيح لك فهم هذه المعمارية منخفضة المستوى تحسين إنتاجية السيرفر الخاص بك." },
-    { t_en: "Stream API & Backpressure Logic", icon: "fa-water", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", t_ar: "واجهة الـ Streams ومنطق الـ Backpressure", d_en: "Streams are a fundamental way to handle large amounts of data in Node.js without consuming excessive memory. We delve into Readable, Writable, and Transform streams, and how to handle 'backpressure' when a consumer is slower than a producer. This module teaches you how to build highly efficient data processing pipelines, such as real-time log analysis and massive file transformations, with minimal resource usage.", d_ar: "تعد الـ Streams طريقة أساسية للتعامل مع كميات كبيرة من البيانات في Node.js دون استهلاك ذاكرة مفرطة. نتعمق في الـ streams القابلة للقراءة والكتابة والتحويل، وكيفية التعامل مع 'backpressure' عندما يكون المستهلك أبطأ من المنتج. يعلمك هذا القسم كيفية بناء خطوط أنابيب لمعالجة البيانات بكفاءة عالية." },
-    { t_en: "NestJS Dependency Injection & Architecture", icon: "fa-syringe", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80", t_ar: "حقن التبعيات ومعمارية NestJS", d_en: "NestJS is a progressive Node.js framework for building efficient and scalable server-side applications. We explore its powerful Dependency Injection (DI) system and how it promotes modularity and testability. This lesson covers the core pillars of NestJS, including Controllers, Providers, and Modules, and how to use Decorators to create a clean, enterprise-grade codebase that is easy to maintain and evolve alongside your project's growing complexity.", d_ar: "NestJS هو إطار عمل Node.js متطور لبناء تطبيقات سيرفر فعالة وقابلة للتوسع. نستكشف نظام حقن التبعيات (DI) القوي وكيف يعزز النمطية وقابلية الاختبار. يغطي هذا الدرس الركائز الأساسية لـ NestJS، بما في ذلك المتحكمات والمزودات والموديولات، وكيفية استخدام الـ Decorators لإنشاء كود نظيف على مستوى الشركات." }
+    { t_en: "Libuv & Thread Pool Architecture", icon: "fa-microchip", t_ar: "مكتبة Libuv ومعمارية حوض الخيوط", d_en: "Libuv is the multi-platform library that provides Node.js with asynchronous I/O capabilities. We explore how Libuv manages the thread pool for tasks that cannot be handled by the OS kernel, such as filesystem access and DNS resolution. Understanding this architecture allows you to optimize your server's throughput and avoid performance bottlenecks in data-intensive backend applications.", d_ar: "Libuv هي المكتبة متعددة المنصات التي توفر لـ Node.js إمكانيات الـ I/O غير المتزامنة. نستكشف كيف تدير Libuv حوض الخيوط للمهام التي لا يمكن التعامل معها بواسطة كيرنل نظام التشغيل، مثل الوصول إلى نظام الملفات. يتيح لك فهم هذه المعمارية تحسين إنتاجية السيرفر الخاص بك وتجنب اختناقات الأداء في تطبيقات الأنظمة الخلفية." },
+    { t_en: "The Buffer & Stream API Ecosystem", icon: "fa-water", t_ar: "نظام Buffer وواجهة الـ Streams", d_en: "Streams are a fundamental way to handle large amounts of data in Node.js without consuming excessive memory. We delve into Readable, Writable, and Transform streams, and how to manage 'backpressure' when a consumer is slower than a producer. Mastering streams is the key to building highly efficient data processing pipelines, such as real-time log analysis and massive file transformations.", d_ar: "تعد الـ Streams طريقة أساسية للتعامل مع كميات كبيرة من البيانات في Node.js دون استهلاك ذاكرة مفرطة. نتعمق في الـ streams القابلة للقراءة والكتابة والتحويل، وكيفية إدارة 'backpressure' عندما يكون المستهلك أبطأ من المنتج. إتقان الـ streams هو المفتاح لبناء خطوط أنابيب فعالة لمعالجة البيانات الضخمة." },
+    { t_en: "NestJS Dependency Injection & Architecture", icon: "fa-syringe", t_ar: "حقن التبعيات ومعمارية NestJS", d_en: "NestJS is a progressive Node.js framework for building efficient and scalable server-side applications. We explore its powerful Dependency Injection (DI) system and how it promotes modularity and testability through Controllers, Providers, and Modules. This module teaches you how to create enterprise-grade backend architectures that are easy to maintain and evolve alongside your project's complexity.", d_ar: "NestJS هو إطار عمل Node.js متطور لبناء تطبيقات سيرفر فعالة وقابلة للتوسع. نستكشف نظام حقن التبعيات (DI) القوي وكيف يعزز النمطية وقابلية الاختبار من خلال المتحكمات والمزودات والموديولات. يعلمك هذا القسم كيفية إنشاء معماريات أنظمة خلفية على مستوى الشركات سهلة الصيانة والتطوير." },
+    { t_en: "Event-Driven Logic with EventEmitter", icon: "fa-bolt", t_ar: "المنطق المدفوع بالأحداث بـ EventEmitter", d_en: "Node.js relies heavily on the observer pattern via the EventEmitter class to handle asynchronous interactions. We explore how to design custom event-driven architectures to decouple system components and improve scalability. Mastering this core module allows you to build responsive and modular backend services that can easily react to complex system triggers and user interactions.", d_ar: "يعتمد Node.js بشكل كبير على نمط المراقب (observer pattern) عبر كلاس EventEmitter للتعامل مع التفاعلات غير المتزامنة. نستكشف كيفية تصميم معماريات مدفوعة بالأحداث لفصل مكونات النظام وتحسين القابلية للتوسع. يتيح لك إتقان هذا الموديول الأساسي بناء خدمات خلفية مستجيبة ونمطية." }
+  ];
+
+  const extraNode = [
+    { t_en: "Cluster Module & Multi-core Scaling", t_ar: "موديول Cluster والتوسع متعدد النواة", icon: "fa-network-wired" },
+    { t_en: "Worker Threads for CPU Operations", t_ar: "خيوط العمل لعمليات المعالج الثقيلة", icon: "fa-gears" },
+    { t_en: "Prisma & Modern Database Access", t_ar: "Prisma والوصول الحديث لقواعد البيانات", icon: "fa-database" },
+    { t_en: "Real-time Apps with Socket.io", t_ar: "التطبيقات في الوقت الحقيقي بـ Socket.io", icon: "fa-comments" },
+    { t_en: "Advanced JWT & OAuth2 Security", t_ar: "الأمن المتقدم بـ JWT و OAuth2", icon: "fa-shield-halved" },
+    { t_en: "Microservices with gRPC & RabbitMQ", t_ar: "المصغرات البرمجية بـ gRPC و RabbitMQ", icon: "fa-box-archive" },
+    { t_en: "Unit Testing with Jest & Supertest", t_ar: "اختبار الوحدات بـ Jest و Supertest", icon: "fa-vial" },
+    { t_en: "Performance Monitoring & Debugging", t_ar: "مراقبة الأداء وتصحيح الأخطاء", icon: "fa-gauge-high" },
+    { t_en: "Redis Caching for Scale", t_ar: "التخزين المؤقت بـ Redis للتوسع", icon: "fa-bolt-lightning" },
+    { t_en: "Managing Technical Debt in Backend", t_ar: "إدارة الديون التقنية في الأنظمة الخلفية", icon: "fa-trash-can" },
+    { t_en: "Docker & Kubernetes Deployment", t_ar: "النشر باستخدام دوكر وكوبرنيتس", icon: "fa-cloud-arrow-up" },
+    { t_en: "Designing Scalable RESTful APIs", t_ar: "تصميم RESTful APIs قابلة للتوسع", icon: "fa-rocket" },
+    { t_en: "Log Management & Observability", t_ar: "إدارة السجلات والقدرة على المراقبة", icon: "fa-list-check" },
+    { t_en: "Serverless Node.js with AWS Lambda", t_ar: "Node.js بلا سيرفر مع AWS Lambda", icon: "fa-cloud-bolt" },
+    { t_en: "The Future of Node.js & Deno", t_ar: "مستقبل Node.js ولغة Deno", icon: "fa-award" },
+    { t_en: "Becoming a Senior Backend Architect", t_ar: "كيف تصبح معماري أنظمة خلفية أول", icon: "fa-star" }
   ];
 
   const chaptersContainer = document.getElementById('nodeLessons');
   
-  nodeLessons.forEach(lesson => renderCard(lesson));
+  nodeLessons.forEach(l => render(l));
+  extraNode.forEach(l => render({
+    icon: l.icon,
+    t_en: l.t_en,
+    t_ar: l.t_ar,
+    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional Node.js backend engineering. We focus on server-side implementation strategies, clean architecture standards, and resource optimization for large-scale enterprise systems. By mastering ${l.t_en}, you ensure your backend applications are robust, performant, and meet the highest industry standards for modern production environments.`,
+    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة الأنظمة الخلفية بـ Node.js. نركز على استراتيجيات التنفيذ في جانب السيرفر، معايير المعمارية النظيفة، وتحسين الموارد لأنظمة الشركات الضخمة. من خلال إتقان ${l.t_ar}، تضمن أن تطبيقاتك الخلفية قوية وذات أداء عالٍ وتلبي أعلى معايير الصناعة.`
+  }));
 
-  const extraNode = [
-    { t_en: "Worker Threads for CPU Tasks", t_ar: "خيوط العمل لمهام المعالج", icon: "fa-gears", img: "https://images.unsplash.com/photo-1518433278993-0a7df1849bc2?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Cluster Module & Horizontal Scaling", t_ar: "موديول Cluster والتوسع الأفقي", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Prisma & Modern Database Access", t_ar: "Prisma والوصول الحديث لقواعد البيانات", icon: "fa-database", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Real-time Communication with Socket.io", t_ar: "التواصل في الوقت الحقيقي بـ Socket.io", icon: "fa-bolt", img: "https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&w=800&q=80" }
-  ];
-
-  for (let i = 0; i < 67; i++) {
-    const topic = extraNode[i % extraNode.length];
-    renderCard({
-      t_en: `${topic.t_en} - Server Module ${i + 4}`,
-      d_en: `In this specialized backend engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into server-side architectural best practices, clean code standards, and resource optimization. By mastering ${topic.t_en}, you ensure your Node.js applications are robust, scalable, and highly maintainable in modern enterprise environments using the latest backend engineering standards.`,
-      t_ar: `${topic.t_ar} - وحدة السيرفر ${i + 4}`,
-      d_ar: `في هذه الوحدة المتخصصة في هندسة الأنظمة الخلفية، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل الممارسات المعمارية للسيرفر، معايير الكود النظيف، وتحسين الموارد. من خلال إتقان ${topic.t_ar}، تضمن أن تطبيقات Node.js الخاصة بك قوية وقابلة للتوسع وسهلة الصيانة في بيئات الشركات الحديثة.`,
-      icon: topic.icon || "fa-server",
-      img: topic.img
-    });
-  }
-
-  function renderCard(item) {
+  function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
-        <img src="${item.img}" alt="${item.t_en}">
-      </div>
-      <div class="lesson-content">
+      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+      <div class="lesson-info">
         <div data-cl-lang="en">
-          <h3>${item.t_en}</h3>
-          <p>${item.d_en}</p>
+          <h3>${lesson.t_en}</h3>
+          <p>${lesson.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>${item.t_ar}</h3>
-          <p>${item.d_ar}</p>
+          <h3>${lesson.t_ar}</h3>
+          <p>${lesson.d_ar}</p>
         </div>
       </div>
     `;

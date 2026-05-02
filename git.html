@@ -11,53 +11,52 @@
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 40px;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
     .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateX(10px);
       border-color: var(--cl-brand);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
-    .lesson-media {
-      width: 100%;
-      height: 250px;
-      position: relative;
-    }
-    .lesson-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .lesson-icon-overlay {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.9);
-      width: 50px;
-      height: 50px;
+    .lesson-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(240, 80, 50, 0.1);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #f05032;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
-    .lesson-content {
-      padding: 30px;
+    .lesson-info {
+      flex-grow: 1;
     }
-    .lesson-content h3 {
-      font-size: 1.6rem;
+    .lesson-info h3 {
+      font-size: 1.5rem;
       color: var(--cl-brand);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      margin-top: 0;
     }
-    .lesson-content p {
+    .lesson-info p {
       line-height: 1.8;
       color: var(--cl-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .lesson-card {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -67,65 +66,70 @@
   <div class="course-header" style="background: linear-gradient(135deg, #f05032, #f14e32) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-git-alt"></i> Git & Version Control</h1>
-      <p>70 unique modules covering professional collaboration and DevOps plumbing.</p>
+      <p>A focused curriculum of 20 high-density modules covering professional collaboration and DevOps plumbing.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-git-alt"></i> إتقان Git والتحكم في الإصدارات</h1>
-      <p>70 وحدة فريدة تغطي التعاون الاحترافي وأساسيات الـ DevOps.</p>
+      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي التعاون الاحترافي وأساسيات الـ DevOps.</p>
     </div>
   </div>
 
   <div class="chapters" id="gitLessons">
-    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const gitLessons = [
-    { t_en: "Content-Addressable Storage Architecture", icon: "fa-database", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80", t_ar: "معمارية التخزين القابلة للعنونة بالمحتوى", d_en: "Git is not just a version control system; it is a content-addressable filesystem. We explore how Git uses SHA-1 hashing to identify blobs, trees, and commits based on their content rather than filenames. Understanding this underlying data structure is essential for debugging complex repository states and mastering Git's powerful 'plumbing' commands that interact directly with the object database.", d_ar: "إن Git ليس مجرد نظام للتحكم في الإصدارات؛ إنه نظام ملفات قابل للعنونة بالمحتوى. نستكشف كيف يستخدم Git هاش SHA-1 لتحديد الـ blobs والـ trees والـ commits بناءً على محتواها بدلاً من أسماء الملفات. فهم بنية البيانات الأساسية هذه أمر ضروري لتصحيح حالات المستودع المعقدة وإتقان أوامر Git 'السباكة' القوية." },
-    { t_en: "Interactive Rebase & History Rewriting", icon: "fa-code-merge", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", t_ar: "الـ Rebase التفاعلي وإعادة كتابة التاريخ", d_en: "Interactive rebase (git rebase -i) allows you to clean up your commit history by squashing, reordering, or editing previous commits. We discuss the golden rule of rebasing: never rebase public branches. This module teaches you how to maintain a linear and professional project history, making it easier for teammates to review your work and for automated tools to track feature evolution across the codebase.", d_ar: "يتيح لك الـ rebase التفاعلي (git rebase -i) تنظيف تاريخ التزاماتك عن طريق دمجها أو إعادة ترتيبها أو تعديلها. نناقش القاعدة الذهبية للـ rebase: لا تقم أبدًا بإعادة التأسيس على الفروع العامة. يعلمك هذا القسم كيفية الحفاظ على تاريخ مشروع خطي واحترافي، مما يسهل على زملائك مراجعة عملك." },
-    { t_en: "The Reflog: Git's Safety Net", icon: "fa-clock-rotate-left", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80", t_ar: "الـ Reflog: شبكة الأمان في Git", d_en: "The reference log (reflog) tracks every change to the tip of your branches, allowing you to recover 'lost' commits after an accidental hard reset or a failed rebase. We explore how to navigate the reflog to find the exact SHA of a previous state and restore your project to that point. This module ensures you never lose work again, providing the confidence to experiment with advanced Git commands safely.", d_ar: "يتتبع سجل المراجع (reflog) كل تغيير يطرأ على قمة فروعك، مما يتيح لك استعادة التزاماتك 'المفقودة' بعد إعادة تعيين قاسية أو rebase فاشل. نستكشف كيفية التنقل في الـ reflog للعثور على SHA الدقيق لحالة سابقة واستعادة مشروعك إلى تلك النقطة. يضمن لك هذا القسم عدم فقدان عملك أبدًا." }
+    { t_en: "Content-Addressable Storage Architecture", icon: "fa-database", t_ar: "معمارية التخزين القابلة للعنونة بالمحتوى", d_en: "Git is a content-addressable filesystem that uses SHA-1 hashing to identify data objects based on their content. We explore how Git stores blobs, trees, and commits in the object database to ensure data integrity and efficient storage. Understanding this underlying structure is essential for debugging repository states and mastering advanced plumbing commands.", d_ar: "إن Git هو نظام ملفات قابل للعنونة بالمحتوى يستخدم هاش SHA-1 لتحديد كائنات البيانات بناءً على محتواها. نستكشف كيف يخزن Git الـ blobs والـ trees والـ commits في قاعدة بيانات الكائنات لضمان سلامة البيانات والتخزين الفعال. فهم هذه البنية الأساسية ضروري لتصحيح حالات المستودع وإتقان أوامر السباكة المتقدمة." },
+    { t_en: "The Git Index & Staging Area Logic", icon: "fa-layer-group", t_ar: "منطق فهرس Git ومنطقة الإعداد", d_en: "The Index, also known as the Staging Area, acts as a buffer between the working directory and the commit history. We analyze how 'git add' updates the index and how 'git commit' captures its state into a permanent object. Mastering the index allows you to control exactly what changes are included in each commit, promoting a clean and logical project history.", d_ar: "يعمل الفهرس، المعروف أيضاً بمنطقة الإعداد (Staging Area)، كعازل بين دليل العمل وتاريخ الالتزامات. نقوم بتحليل كيف يقوم 'git add' بتحديث الفهرس وكيف يلتقط 'git commit' حالته في كائن دائم. يتيح لك إتقان الفهرس التحكم الدقيق في التغييرات التي يتم تضمينها في كل التزام، مما يعزز تاريخ مشروع نظيف ومنطقي." },
+    { t_en: "Interactive Rebase & History Sanitization", icon: "fa-code-merge", t_ar: "الـ Rebase التفاعلي وتطهير التاريخ", d_en: "Interactive rebase (git rebase -i) is a powerful tool for cleaning up your commit history before merging into a main branch. We explore how to squash, edit, and reorder commits to create a professional and readable narrative of your technical progress. This module highlights the importance of maintaining a high-quality commit log for effective team collaboration and code reviews.", d_ar: "يعد الـ rebase التفاعلي (git rebase -i) أداة قوية لتنظيف تاريخ الالتزامات قبل الدمج في الفرع الرئيسي. نستكشف كيفية دمج وتعديل وإعادة ترتيب الالتزامات لإنشاء سرد احترافي وقابل للقراءة لتقدمك التقني. يسلط هذا القسم الضوء على أهمية الحفاظ على سجل التزامات عالي الجودة للتعاون الفعال بين الفريق." },
+    { t_en: "Reflog: Git's Advanced Safety Net", icon: "fa-clock-rotate-left", t_ar: "الـ Reflog: شبكة الأمان المتقدمة في Git", d_en: "The reference log (reflog) tracks every change to the branch pointers, providing a way to recover 'lost' work after accidental resets or failed merges. We explore how to navigate the reflog to find specific points in time and restore your project state with confidence. Mastering the reflog gives you the security to experiment with advanced Git commands without the fear of permanent data loss.", d_ar: "يتتبع سجل المراجع (reflog) كل تغيير يطرأ على مؤشرات الفروع، مما يوفر طريقة لاستعادة العمل 'المفقود' بعد عمليات إعادة التعيين العارضة أو عمليات الدمج الفاشلة. نستكشف كيفية التنقل في الـ reflog للعثور على نقاط زمنية محددة واستعادة حالة مشروعك بثقة. يمنحك إتقان الـ reflog الأمان لتجربة أوامر Git المتقدمة." }
+  ];
+
+  const extraGit = [
+    { t_en: "Git Hooks & Automation Workflows", t_ar: "الـ Git Hooks وسير عمل الأتمتة", icon: "fa-anchor" },
+    { t_en: "Submodule Architecture & Management", t_ar: "معمارية وإدارة الفروع الفرعية", icon: "fa-folder-tree" },
+    { t_en: "Handling Large Files with Git LFS", t_ar: "التعامل مع الملفات الضخمة بـ Git LFS", icon: "fa-file-zipper" },
+    { t_en: "Advanced Merging & Conflict Resolution", t_ar: "الدمج المتقدم وحل النزاعات", icon: "fa-triangle-exclamation" },
+    { t_en: "Git Flow vs Trunk-Based Development", t_ar: "نماذج التفرع: Git Flow مقابل Trunk", icon: "fa-code-branch" },
+    { t_en: "Remote Protocol Security (SSH/HTTPS)", t_ar: "أمن بروتوكولات الاتصال عن بعد", icon: "fa-shield-halved" },
+    { t_en: "Cherry-picking & Patching Strategies", t_ar: "استراتيجيات الـ Cherry-picking والترقيع", icon: "fa-hand-pointer" },
+    { t_en: "Garbage Collection & Repo Pruning", t_ar: "جمع المهملات وتطهير المستودع", icon: "fa-broom" },
+    { t_en: "Git Attributes & Filter-Repo Tools", t_ar: "خصائص Git وأدوات تصفية المستودع", icon: "fa-filter" },
+    { t_en: "Auditing History for Security Leaks", t_ar: "تدقيق التاريخ بحثاً عن تسريبات أمنية", icon: "fa-user-shield" },
+    { t_en: "Worktree: Multi-branch Development", t_ar: "مساحات العمل: تطوير فروع متعددة", icon: "fa-laptop-code" },
+    { t_en: "GitHub Actions & CI/CD Integration", t_ar: "تكامل GitHub Actions والـ CI/CD", icon: "fa-rocket" },
+    { t_en: "Managing Large Monorepos", t_ar: "إدارة المستودعات الموحدة (Monorepos)", icon: "fa-building-columns" },
+    { t_en: "The Philosophy of Version Control", t_ar: "فلسفة التحكم في الإصدارات", icon: "fa-brain" },
+    { t_en: "Plumbing vs Porcelain Commands", t_ar: "أوامر السباكة مقابل أوامر البورسلين", icon: "fa-faucet" },
+    { t_en: "Becoming a Git Power User", t_ar: "كيف تصبح مستخدماً خارقاً لـ Git", icon: "fa-award" }
   ];
 
   const chaptersContainer = document.getElementById('gitLessons');
   
-  gitLessons.forEach(lesson => renderCard(lesson));
+  gitLessons.forEach(l => render(l));
+  extraGit.forEach(l => render({
+    icon: l.icon,
+    t_en: l.t_en,
+    t_ar: l.t_ar,
+    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional version control engineering. We focus on real-world collaboration patterns, clean history standards, and DevOps-level repository optimization. By mastering ${l.t_en}, you ensure your project workflows are robust, scalable, and meet the highest industry standards for modern software engineering teams.`,
+    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة التحكم في الإصدارات الاحترافية. نركز على أنماط التعاون في العالم الحقيقي، معايير التاريخ النظيف، وتحسين المستودعات على مستوى الـ DevOps. من خلال إتقان ${l.t_ar}، تضمن أن سير عمل مشروعك قوي وقابل للتوسع ويلبي أعلى معايير الصناعة.`
+  }));
 
-  const extraGit = [
-    { t_en: "Git Hooks & Automation", t_ar: "الـ Git Hooks والأتمتة", icon: "fa-anchor", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Managing Large Files with LFS", t_ar: "إدارة الملفات الكبيرة بـ LFS", icon: "fa-file-zipper", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Submodule Architecture", t_ar: "معمارية الفروع الفرعية (Submodules)", icon: "fa-folder-tree", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Advanced Merging Strategies", t_ar: "استراتيجيات الدمج المتقدمة", icon: "fa-shuffle", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" }
-  ];
-
-  for (let i = 0; i < 67; i++) {
-    const topic = extraGit[i % extraGit.length];
-    renderCard({
-      t_en: `${topic.t_en} - Pro Module ${i + 4}`,
-      d_en: `In this specialized version control module, we focus on the professional implementation of ${topic.t_en}. This session provides deep technical insights into project management best practices, clean history standards, and DevOps-level optimization. By mastering ${topic.t_en}, you ensure your project repositories are robust, scalable, and highly maintainable in complex collaborative environments using Git best practices.`,
-      t_ar: `${topic.t_ar} - الوحدة الاحترافية ${i + 4}`,
-      d_ar: `في هذه الوحدة المتخصصة في التحكم في الإصدارات، نركز على التنفيذ الاحترافي لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل ممارسات إدارة المشاريع، معايير التاريخ النظيف، وتحسينات مستوى الـ DevOps. من خلال إتقان ${topic.t_ar}، تضمن أن مستودعات مشروعك قوية وقابلة للتوسع وسهلة الصيانة في بيئات التعاون المعقدة.`,
-      icon: topic.icon || "fa-code",
-      img: topic.img
-    });
-  }
-
-  function renderCard(item) {
+  function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
-        <img src="${item.img}" alt="${item.t_en}">
-      </div>
-      <div class="lesson-content">
+      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+      <div class="lesson-info">
         <div data-cl-lang="en">
-          <h3>${item.t_en}</h3>
-          <p>${item.d_en}</p>
+          <h3>${lesson.t_en}</h3>
+          <p>${lesson.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>${item.t_ar}</h3>
-          <p>${item.d_ar}</p>
+          <h3>${lesson.t_ar}</h3>
+          <p>${lesson.d_ar}</p>
         </div>
       </div>
     `;

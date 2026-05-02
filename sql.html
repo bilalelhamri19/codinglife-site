@@ -11,53 +11,52 @@
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 40px;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
     .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateX(10px);
       border-color: var(--cl-brand);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
-    .lesson-media {
-      width: 100%;
-      height: 250px;
-      position: relative;
-    }
-    .lesson-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .lesson-icon-overlay {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.9);
-      width: 50px;
-      height: 50px;
+    .lesson-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(51, 103, 145, 0.1);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #336791;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
-    .lesson-content {
-      padding: 30px;
+    .lesson-info {
+      flex-grow: 1;
     }
-    .lesson-content h3 {
-      font-size: 1.6rem;
+    .lesson-info h3 {
+      font-size: 1.5rem;
       color: var(--cl-brand);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      margin-top: 0;
     }
-    .lesson-content p {
+    .lesson-info p {
       line-height: 1.8;
       color: var(--cl-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .lesson-card {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -66,66 +65,71 @@
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #336791, #2f5e85) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fas fa-database"></i> SQL Expert Mastery</h1>
-      <p>70 unique modules covering relational modeling, query optimization, and enterprise data architecture.</p>
+      <h1><i class="fas fa-database"></i> SQL Database Engineering</h1>
+      <p>A focused curriculum of 20 high-density modules covering relational modeling, query optimization, and enterprise data architecture.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fas fa-database"></i> إتقان SQL للمحترفين</h1>
-      <p>70 وحدة فريدة تغطي النمذجة العلائقية، تحسين الاستعلامات، ومعمارية بيانات الشركات.</p>
+      <h1><i class="fas fa-database"></i> هندسة قواعد بيانات SQL</h1>
+      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي النمذجة العلائقية، تحسين الاستعلامات، ومعمارية بيانات الشركات.</p>
     </div>
   </div>
 
   <div class="chapters" id="sqlLessons">
-    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const sqlLessons = [
-    { t_en: "ACID Properties & Transaction Isolation", icon: "fa-shield-heart", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80", t_ar: "خصائص ACID وعزل المعاملات", d_en: "The ACID properties (Atomicity, Consistency, Isolation, Durability) are the foundation of reliable database transactions. We explore how various isolation levels, such as Read Committed and Serializable, prevent concurrency issues like dirty reads and phantom rows. Understanding these concepts is critical for building financial systems and enterprise applications where data integrity is the highest priority.", d_ar: "خصائص ACID (الذرية، الاتساق، العزل، المتانة) هي أساس معاملات قواعد البيانات الموثوقة. نستكشف كيف تمنع مستويات العزل المختلفة مشاكل التزامن مثل القراءات المتسخة والصفوف الوهمية. فهم هذه المفاهيم أمر بالغ الأهمية لبناء الأنظمة المالية وتطبيقات الشركات حيث تكون سلامة البيانات هي الأولوية القصوى." },
-    { t_en: "Advanced Indexing: B-Tree & Hash Internals", icon: "fa-magnifying-glass-chart", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80", t_ar: "الفهرسة المتقدمة: خفايا الـ B-Tree والـ Hash", d_en: "Indexes are the key to high-performance data retrieval in SQL databases. We analyze the technical implementation of B-Tree and Hash indexes and discuss how to choose the right indexing strategy for various query patterns. This module teaches you how to identify slow queries, optimize them using covering indexes, and manage the trade-offs between read performance and write overhead in large-scale databases.", d_ar: "الفهارس هي المفتاح لاسترداد البيانات عالي الأداء في قواعد بيانات SQL. نقوم بتحليل التنفيذ التقني لفهارس B-Tree و Hash ونناقش كيفية اختيار استراتيجية الفهرسة الصحيحة لأنماط الاستعلام المختلفة. يعلمك هذا القسم كيفية تحديد الاستعلامات البطيئة وتحسينها باستخدام الفهارس المغطاة." },
-    { t_en: "Query Optimization & Execution Plans", icon: "fa-stethoscope", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80", t_ar: "تحسين الاستعلامات وخطط التنفيذ", d_en: "The query optimizer determines the most efficient way to execute an SQL statement. We explore how to analyze execution plans (EXPLAIN) to identify performance bottlenecks like sequential scans or inefficient joins. This lesson covers advanced tuning techniques, including join reordering, predicate pushdown, and statistics management, ensuring your database remains responsive even when handling massive datasets with complex relational logic.", d_ar: "يحدد محسن الاستعلامات الطريقة الأكثر كفاءة لتنفيذ جملة SQL. نستكشف كيفية تحليل خطط التنفيذ (EXPLAIN) لتحديد اختناقات الأداء مثل المسح المتسلسل أو عمليات الدمج غير الفعالة. يغطي هذا الدرس تقنيات الضبط المتقدمة، بما في ذلك إعادة ترتيب الدمج وإدارة الإحصائيات." }
+    { t_en: "ACID Properties & Transaction Isolation", icon: "fa-shield-heart", t_ar: "خصائص ACID وعزل المعاملات", d_en: "The ACID properties (Atomicity, Consistency, Isolation, Durability) ensure database reliability. We explore how various isolation levels, such as Read Committed and Serializable, prevent concurrency issues like dirty reads and phantom rows. Understanding these concepts is critical for building financial systems and enterprise applications where data integrity is the highest priority.", d_ar: "تضمن خصائص ACID (الذرية، الاتساق، العزل، المتانة) موثوقية قاعدة البيانات. نستكشف كيف تمنع مستويات العزل المختلفة مشاكل التزامن مثل القراءات المتسخة والصفوف الوهمية. فهم هذه المفاهيم أمر بالغ الأهمية لبناء الأنظمة المالية وتطبيقات الشركات حيث تكون سلامة البيانات هي الأولوية القصوى." },
+    { t_en: "Advanced Indexing: B-Tree & Hash Internals", icon: "fa-magnifying-glass-chart", t_ar: "الفهرسة المتقدمة: خفايا الـ B-Tree والـ Hash", d_en: "Indexes are the key to high-performance data retrieval. We analyze the technical implementation of B-Tree and Hash indexes and discuss how to choose the right indexing strategy for various query patterns. This module teaches you how to identify slow queries, optimize them using covering indexes, and manage the trade-offs between read performance and write overhead in large-scale databases.", d_ar: "الفهارس هي المفتاح لاسترداد البيانات عالي الأداء. نقوم بتحليل التنفيذ التقني لفهارس B-Tree و Hash ونناقش كيفية اختيار استراتيجية الفهرسة الصحيحة لأنماط الاستعلام المختلفة. يعلمك هذا القسم كيفية تحديد الاستعلامات البطيئة وتحسينها باستخدام الفهارس المغطاة." },
+    { t_en: "Query Optimization & Execution Plans", icon: "fa-stethoscope", t_ar: "تحسين الاستعلامات وخطط التنفيذ", d_en: "The query optimizer determines the most efficient way to execute an SQL statement. We explore how to analyze execution plans (EXPLAIN) to identify bottlenecks like sequential scans or inefficient joins. This lesson covers advanced tuning techniques, including join reordering and statistics management, ensuring your database remains responsive even when handling massive datasets with complex logic.", d_ar: "يحدد محسن الاستعلامات الطريقة الأكثر كفاءة لتنفيذ جملة SQL. نستكشف كيفية تحليل خطط التنفيذ (EXPLAIN) لتحديد الاختناقات مثل المسح المتسلسل أو عمليات الدمج غير الفعالة. يغطي هذا الدرس تقنيات الضبط المتقدمة، بما في ذلك إعادة ترتيب الدمج وإدارة الإحصائيات، مما يضمن استجابة قاعدة البيانات." },
+    { t_en: "Normal Forms & Relational Schema Design", icon: "fa-diagram-successor", t_ar: "نماذج التطبيع وتصميم المخططات العلائقية", d_en: "Normalization is the process of organizing data to minimize redundancy and dependency. We explore the first three normal forms (1NF, 2NF, 3NF) and Boyce-Codd Normal Form (BCNF) to build robust and maintainable schemas. Mastering schema design is fundamental for ensuring your database can scale and evolve alongside complex business requirements without introducing data anomalies.", d_ar: "التطبيع (Normalization) هو عملية تنظيم البيانات لتقليل التكرار والتبعية. نستكشف النماذج الطبيعية الثلاثة الأولى و Boyse-Codd لبناء مخططات قوية وسهلة الصيانة. إتقان تصميم المخططات أساسي لضمان قدرة قاعدة البيانات الخاصة بك على التوسع والتطور مع متطلبات العمل المعقدة." }
+  ];
+
+  const extraSql = [
+    { t_en: "Window Functions for Advanced Analytics", t_ar: "دوال النافذة للتحليلات المتقدمة", icon: "fa-table-columns" },
+    { t_en: "Common Table Expressions (CTEs)", t_ar: "تعبيرات الجدول الشائعة (CTEs)", icon: "fa-code-fork" },
+    { t_en: "Database Sharding & Scaling Patterns", t_ar: "أنماط تقسيم وتوسيع قواعد البيانات", icon: "fa-boxes-stacked" },
+    { t_en: "Temporal Tables & History Tracking", t_ar: "الجداول الزمنية وتتبع التاريخ", icon: "fa-clock-rotate-left" },
+    { t_en: "JSON Support in Relational Databases", t_ar: "دعم JSON في قواعد البيانات العلائقية", icon: "fa-file-code" },
+    { t_en: "Stored Procedures & Trigger Logic", t_ar: "الإجراءات المخزنة ومنطق الـ Triggers", icon: "fa-bolt" },
+    { t_en: "Database Auditing & Compliance", t_ar: "تدقيق قواعد البيانات والامتثال", icon: "fa-user-shield" },
+    { t_en: "Replication & High Availability", t_ar: "النسخ الاحتياطي والتوافر العالي", icon: "fa-clone" },
+    { t_en: "Managing Technical Debt in SQL", t_ar: "إدارة الديون التقنية في SQL", icon: "fa-trash-can" },
+    { t_en: "Full-Text Search Engineering", t_ar: "هندسة البحث في النصوص الكاملة", icon: "fa-magnifying-glass" },
+    { t_en: "Data Warehousing Fundamentals", t_ar: "أساسيات مستودعات البيانات", icon: "fa-warehouse" },
+    { t_en: "Security: SQL Injection Prevention", t_ar: "الأمن: منع حقن SQL", icon: "fa-shield-halved" },
+    { t_en: "ETL Processes & Data Integration", t_ar: "عمليات ETL وتكامل البيانات", icon: "fa-shuffle" },
+    { t_en: "The Future of SQL & NoSQL Hybrid", t_ar: "مستقبل SQL والأنظمة الهجينة", icon: "fa-award" },
+    { t_en: "Becoming a Senior Database Architect", t_ar: "كيف تصبح معماري قواعد بيانات أول", icon: "fa-star" },
+    { t_en: "Optimizing Write-Heavy Workloads", t_ar: "تحسين أعباء العمل كثيفة الكتابة", icon: "fa-pencil" }
   ];
 
   const chaptersContainer = document.getElementById('sqlLessons');
   
-  sqlLessons.forEach(lesson => renderCard(lesson));
+  sqlLessons.forEach(l => render(l));
+  extraSql.forEach(l => render({
+    icon: l.icon,
+    t_en: l.t_en,
+    t_ar: l.t_ar,
+    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional database engineering. We focus on schema optimization, query performance standards, and scalable data architecture for large-scale enterprise systems. By mastering ${l.t_en}, you ensure your SQL architectures are robust, performant, and meet the highest industry standards for modern production environments.`,
+    ar_d: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة قواعد البيانات الاحترافية. نركز على تحسين المخططات، معايير أداء الاستعلامات، ومعمارية البيانات القابلة للتوسع لأنظمة الشركات الضخمة. من خلال إتقان ${l.t_ar}، تضمن أن معماريات SQL الخاصة بك قوية وذات أداء عالٍ وتلبي أعلى معايير الصناعة.`
+  }));
 
-  const extraSql = [
-    { t_en: "Window Functions for Analytics", t_ar: "دوال النافذة (Window Functions) للتحليلات", icon: "fa-table-columns", img: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Database Sharding & Scaling", t_ar: "تقسيم قواعد البيانات (Sharding) والتوسع", icon: "fa-boxes-stacked", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Normal Forms & Schema Design", t_ar: "نماذج التطبيع (Normal Forms) وتصميم المخططات", icon: "fa-diagram-successor", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Temporal Tables & History Tracking", t_ar: "الجداول الزمنية وتتبع التاريخ", icon: "fa-clock-rotate-left", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" }
-  ];
-
-  for (let i = 0; i < 67; i++) {
-    const topic = extraSql[i % extraSql.length];
-    renderCard({
-      t_en: `${topic.t_en} - DB Module ${i + 4}`,
-      d_en: `In this specialized database engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into data modeling best practices, relational integrity, and query-level optimization. By mastering ${topic.t_en}, you ensure your SQL architectures are robust, scalable, and highly maintainable in complex production environments using the latest industry standards.`,
-      t_ar: `${topic.t_ar} - وحدة قواعد البيانات ${i + 4}`,
-      d_ar: `في هذه الوحدة المتخصصة في هندسة قواعد البيانات، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل ممارسات نمذجة البيانات، السلامة العلائقية، وتحسين مستوى الاستعلامات. من خلال إتقان ${topic.t_ar}، تضمن أن معماريات SQL الخاصة بك قوية وقابلة للتوسع وسهلة الصيانة في بيئات الإنتاج المعقدة.`,
-      icon: topic.icon || "fa-database",
-      img: topic.img
-    });
-  }
-
-  function renderCard(item) {
+  function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
-        <img src="${item.img}" alt="${item.t_en}">
-      </div>
-      <div class="lesson-content">
+      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+      <div class="lesson-info">
         <div data-cl-lang="en">
-          <h3>${item.t_en}</h3>
-          <p>${item.d_en}</p>
+          <h3>${lesson.t_en}</h3>
+          <p>${lesson.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>${item.t_ar}</h3>
-          <p>${item.d_ar}</p>
+          <h3>${lesson.t_ar}</h3>
+          <p>${lesson.d_ar || lesson.ar_d}</p>
         </div>
       </div>
     `;

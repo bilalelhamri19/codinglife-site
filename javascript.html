@@ -11,54 +11,52 @@
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 40px;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
     .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateX(10px);
       border-color: var(--cl-brand);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
-    .lesson-media {
-      width: 100%;
-      height: 250px;
-      position: relative;
-    }
-    .lesson-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .lesson-icon-overlay {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.9);
-      width: 50px;
-      height: 50px;
+    .lesson-icon {
+      width: 60px;
+      height: 60px;
+      background: #323330;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #f7df1e;
-      background: #323330;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
-    .lesson-content {
-      padding: 30px;
+    .lesson-info {
+      flex-grow: 1;
     }
-    .lesson-content h3 {
-      font-size: 1.6rem;
+    .lesson-info h3 {
+      font-size: 1.5rem;
       color: var(--cl-brand);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      margin-top: 0;
     }
-    .lesson-content p {
+    .lesson-info p {
       line-height: 1.8;
       color: var(--cl-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .lesson-card {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -68,65 +66,70 @@
   <div class="course-header" style="background: linear-gradient(135deg, #f7df1e, #323330) !important;">
     <div data-cl-lang="en">
       <h1 style="color: #323330;"><i class="fab fa-js"></i> JavaScript Expert Deep Dive</h1>
-      <p style="color: #323330;">70 unique, non-numbered modules covering engine internals and modern frontend engineering.</p>
+      <p style="color: #323330;">A focused curriculum of 20 high-density modules covering engine internals and modern frontend engineering.</p>
     </div>
     <div data-cl-lang="ar">
       <h1 style="color: #323330;"><i class="fab fa-js"></i> تعمق في JavaScript للمحترفين</h1>
-      <p style="color: #323330;">70 وحدة فريدة غير مرقمة تغطي ميكانيكا المحركات وهندسة الواجهات الأمامية الحديثة.</p>
+      <p style="color: #323330;">منهج مركز يضم 20 وحدة عالية الكثافة تغطي ميكانيكا المحركات وهندسة الواجهات الأمامية الحديثة.</p>
     </div>
   </div>
 
   <div class="chapters" id="jsLessons">
-    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const jsLessons = [
-    { t_en: "V8 Engine: JIT & Ignition", icon: "fa-engine", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", t_ar: "محرك V8: الـ JIT والـ Ignition", d_en: "The V8 engine powers Chrome and Node.js using a complex pipeline of JIT compilation and interpretation. We explore how Ignition generates bytecode and how TurboFan optimizes frequently called functions into machine code. Understanding this process allows you to write JavaScript that is 'engine-friendly', ensuring maximum execution speed and efficient memory usage in high-load web applications.", d_ar: "يعمل محرك V8 على تشغيل Chrome و Node.js باستخدام خط أنابيب معقد من ترجمة JIT والتفسير. نستكشف كيف يقوم Ignition بإنشاء bytecode وكيف يقوم TurboFan بتحسين الوظائف المتكررة إلى كود آلة. يتيح لك فهم هذه العملية كتابة JavaScript 'صديق للمحرك'، مما يضمن أقصى سرعة تنفيذ واستخدام فعال للذاكرة." },
-    { t_en: "The Event Loop & Task Queues", icon: "fa-arrows-spin", img: "https://images.unsplash.com/photo-1518433278993-0a7df1849bc2?auto=format&fit=crop&w=800&q=80", t_ar: "حلقة الأحداث وطوابير المهام", d_en: "JavaScript is single-threaded but handles asynchronous operations via the Event Loop and various task queues. We delve into the difference between Macrotasks (like timers) and Microtasks (like Promises), and how the browser prioritizes them during the rendering lifecycle. Mastering the event loop is the key to preventing UI jank and building smooth, responsive user experiences that handle complex async logic effortlessly.", d_ar: "لغة JavaScript أحادية الخيط ولكنها تتعامل مع العمليات غير المتزامنة عبر حلقة الأحداث وطوابير المهام المختلفة. نتعمق في الفرق بين Macrotasks (مثل المؤقتات) و Microtasks (مثل الـ Promises)، وكيفية ترتيب أولويات المتصفح لها. إتقان حلقة الأحداث هو المفتاح لمنع تعليق واجهة المستخدم وبناء تجارب مستخدم سلسة." },
-    { t_en: "Prototypal Inheritance Deep Dive", icon: "fa-dna", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80", t_ar: "تعمق في الوراثة القائمة على النماذج", d_en: "Unlike class-based languages, JavaScript uses prototypes for inheritance, creating a chain that objects follow to find properties and methods. We explore how __proto__ and the prototype property work under the hood, and how modern ES6 classes are simply syntactic sugar over this mechanism. This module gives you the technical depth to manage complex object relationships and optimize memory by sharing methods across instances.", d_ar: "على عكس اللغات القائمة على الكلاسات، تستخدم JavaScript النماذج (prototypes) للوراثة، مما يخلق سلسلة تتبعها الكائنات للعثور على الخصائص. نستكشف كيف يعمل __proto__ وخاصية prototype، وكيف أن كلاسات ES6 الحديثة هي مجرد 'سكر لغوي' لهذه الآلية. يمنحك هذا القسم العمق التقني لإدارة علاقات الكائنات المعقدة." }
+    { t_en: "V8 Engine Architecture & JIT", icon: "fa-engine", t_ar: "معمارية محرك V8 والـ JIT", d_en: "The V8 engine powers modern JavaScript by using a complex pipeline of JIT compilation and interpretation. We explore how the Ignition interpreter generates bytecode and how TurboFan optimizes functions into native machine code. Understanding these internals allows you to write high-performance code that maximizes execution speed and efficient memory usage across browsers and servers.", d_ar: "يعمل محرك V8 على تشغيل JavaScript الحديثة باستخدام خط أنابيب معقد من ترجمة JIT والتفسير. نستكشف كيف يقوم مفسر Ignition بإنشاء bytecode وكيف يقوم TurboFan بتحسين الوظائف إلى كود آلة أصلي. يتيح لك فهم هذه الخفايا كتابة كود عالي الأداء يزيد من سرعة التنفيذ واستخدام الذاكرة بكفاءة." },
+    { t_en: "Event Loop & Task Queue Priority", icon: "fa-arrows-spin", t_ar: "حلقة الأحداث وأولويات طوابير المهام", d_en: "JavaScript's single-threaded nature is managed through the Event Loop and task queues. We delve into the difference between Macrotasks (timers) and Microtasks (Promises), and how the browser prioritizes them during the rendering lifecycle. Mastering this architecture is essential for preventing UI blocking and building smooth, responsive user experiences that handle complex async logic seamlessly.", d_ar: "تتم إدارة طبيعة JavaScript أحادية الخيط من خلال حلقة الأحداث وطوابير المهام. نتعمق في الفرق بين الـ Macrotasks (المؤقتات) والـ Microtasks (الوعود)، وكيفية ترتيب أولويات المتصفح لها أثناء دورة حياة الرندر. إتقان هذه المعمارية ضروري لمنع حظر واجهة المستخدم وبناء تجارب مستخدم سلسة ومستجيبة." },
+    { t_en: "Prototypal Inheritance & Memory Scopes", icon: "fa-dna", t_ar: "الوراثة القائمة على النماذج ونطاقات الذاكرة", d_en: "JavaScript uses prototypes for inheritance, creating a chain that objects follow to resolve properties. We explore how the internal prototype link works and how modern ES6 classes provide syntactic sugar over this mechanism. Understanding scopes and closures allows you to manage memory effectively and share methods across instances to reduce memory footprint in large applications.", d_ar: "تستخدم JavaScript النماذج للوراثة، مما يخلق سلسلة تتبعها الكائنات لحل الخصائص. نستكشف كيف يعمل رابط النموذج الداخلي وكيف توفر كلاسات ES6 الحديثة غطاءً لغوياً لهذه الآلية. فهم النطاقات (scopes) والـ closures يتيح لك إدارة الذاكرة بفعالية ومشاركة الأساليب عبر المثيلات لتقليل استهلاك الذاكرة." },
+    { t_en: "Asynchronous Patterns & Async/Await", icon: "fa-bolt", t_ar: "الأنماط غير المتزامنة وصيغة Async/Await", d_en: "Modern JavaScript relies on Promises and async/await syntax to handle asynchronous operations cleanly. We explore error handling strategies, parallel execution with Promise.all, and how to avoid 'callback hell'. Mastering these patterns is fundamental for building reliable web services and interactive user interfaces that interact with network resources without compromising the user experience.", d_ar: "تعتمد JavaScript الحديثة على الوعود (Promises) وصيغة async/await للتعامل مع العمليات غير المتزامنة بشكل نظيف. نستكشف استراتيجيات معالجة الأخطاء، والتنفيذ المتوازي باستخدام Promise.all، وكيفية تجنب 'جحيم النداءات'. إتقان هذه الأنماط أساسي لبناء خدمات ويب موثوقة وواجهات مستخدم تفاعلية." }
+  ];
+
+  const extraJs = [
+    { t_en: "Closures & Functional Logic", t_ar: "الـ Closures والمنطق الوظيفي", icon: "fa-box-archive" },
+    { t_en: "Web Workers & Parallelism", t_ar: "الـ Web Workers والتوازي", icon: "fa-microchip" },
+    { t_en: "Proxy & Reflect Metadata", t_ar: "الـ Proxy والبيانات الوصفية", icon: "fa-user-secret" },
+    { t_en: "Module Systems: ESM vs CJS", t_ar: "أنظمة الوحدات: ESM مقابل CJS", icon: "fa-box-open" },
+    { t_en: "Advanced DOM Manipulation", t_ar: "التلاعب المتقدم بالـ DOM", icon: "fa-sitemap" },
+    { t_en: "Web Cryptography & Security", t_ar: "تشفير الويب والأمان", icon: "fa-shield-check" },
+    { t_en: "Performance & Code Splitting", t_ar: "الأداء وتقسيم الكود", icon: "fa-gauge-high" },
+    { t_en: "Design Patterns in JavaScript", t_ar: "أنماط التصميم في جافا سكريبت", icon: "fa-gem" },
+    { t_en: "Canvas & WebGL Graphics", t_ar: "رسومات Canvas و WebGL", icon: "fa-paintbrush" },
+    { t_en: "Service Workers & PWA Logic", t_ar: "الـ Service Workers ومنطق الـ PWA", icon: "fa-cloud-bolt" },
+    { t_en: "Maintaining Large JS Projects", t_ar: "صيانة مشاريع JS الضخمة", icon: "fa-building-columns" },
+    { t_en: "Functional Reactive Patterns", t_ar: "الأنماط الوظيفية التفاعلية", icon: "fa-gears" },
+    { t_en: "Real-time Communication (WebRTC)", t_ar: "الاتصال في الوقت الحقيقي (WebRTC)", icon: "fa-headset" },
+    { t_en: "Managing Browser State", t_ar: "إدارة حالة المتصفح", icon: "fa-database" },
+    { t_en: "The Future of TC39 & JS", t_ar: "مستقبل TC39 ولغة جافا سكريبت", icon: "fa-award" },
+    { t_en: "Becoming a Senior JS Engineer", t_ar: "كيف تصبح مهندس جافا سكريبت أول", icon: "fa-star" }
   ];
 
   const chaptersContainer = document.getElementById('jsLessons');
   
-  jsLessons.forEach(lesson => renderCard(lesson));
+  jsLessons.forEach(l => render(l));
+  extraJs.forEach(l => render({
+    icon: l.icon,
+    t_en: l.t_en,
+    t_ar: l.t_ar,
+    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional JavaScript engineering. We focus on runtime behavior, clean code standards, and engine-level optimization for modern web environments. By mastering ${l.t_en}, you ensure your JavaScript applications are robust, scalable, and highly maintainable across both browser and server platforms using industrial standards.`,
+    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة JavaScript الاحترافية. نركز على سلوك وقت التشغيل، معايير الكود النظيف، وتحسينات مستوى المحرك لبيئات الويب الحديثة. من خلال إتقان ${l.t_ar}، تضمن أن تطبيقات JavaScript الخاصة بك قوية وقابلة للتوسع وسهلة الصيانة عبر المتصفح والسيرفر.`
+  }));
 
-  const extraJs = [
-    { t_en: "Web Workers & Parallelism", t_ar: "الـ Web Workers والتوازي", icon: "fa-microchip", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Closures & Memory Scopes", t_ar: "الـ Closures ونطاقات الذاكرة", icon: "fa-box-archive", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Advanced Proxy & Reflect", t_ar: "الـ Proxy والـ Reflect المتقدم", icon: "fa-user-secret", img: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Functional Programming Patterns", t_ar: "أنماط البرمجة الوظيفية", icon: "fa-function", icon_class: "fa-solid fa-code", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" }
-  ];
-
-  for (let i = 0; i < 67; i++) {
-    const topic = extraJs[i % extraJs.length];
-    renderCard({
-      t_en: `${topic.t_en} - Expert Module ${i + 4}`,
-      d_en: `In this specialized JavaScript engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into runtime behavior, clean code standards, and engine-level optimization. By mastering ${topic.t_en}, you ensure your JavaScript applications are robust, scalable, and highly maintainable across both browser and server environments using modern ESNext standards.`,
-      t_ar: `${topic.t_ar} - الوحدة المتقدمة ${i + 4}`,
-      d_ar: `في هذه الوحدة المتخصصة في هندسة JavaScript، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول سلوك وقت التشغيل، معايير الكود النظيف، وتحسينات مستوى المحرك. من خلال إتقان ${topic.t_ar}، تضمن أن تطبيقات JavaScript الخاصة بك قوية وقابلة للتوسع وسهلة الصيانة عبر بيئات المتصفح والسيرفر باستخدام معايير ESNext الحديثة.`,
-      icon: topic.icon || "fa-code",
-      img: topic.img
-    });
-  }
-
-  function renderCard(item) {
+  function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
-        <img src="${item.img}" alt="${item.t_en}">
-      </div>
-      <div class="lesson-content">
+      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+      <div class="lesson-info">
         <div data-cl-lang="en">
-          <h3>${item.t_en}</h3>
-          <p>${item.d_en}</p>
+          <h3>${lesson.t_en}</h3>
+          <p>${lesson.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>${item.t_ar}</h3>
-          <p>${item.d_ar}</p>
+          <h3>${lesson.t_ar}</h3>
+          <p>${lesson.d_ar}</p>
         </div>
       </div>
     `;

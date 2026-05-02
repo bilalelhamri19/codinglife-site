@@ -11,53 +11,52 @@
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 40px;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
     .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateX(10px);
       border-color: var(--cl-brand);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
-    .lesson-media {
-      width: 100%;
-      height: 250px;
-      position: relative;
-    }
-    .lesson-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .lesson-icon-overlay {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.9);
-      width: 50px;
-      height: 50px;
+    .lesson-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(2, 86, 155, 0.1);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #02569b;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
-    .lesson-content {
-      padding: 30px;
+    .lesson-info {
+      flex-grow: 1;
     }
-    .lesson-content h3 {
-      font-size: 1.6rem;
+    .lesson-info h3 {
+      font-size: 1.5rem;
       color: var(--cl-brand);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      margin-top: 0;
     }
-    .lesson-content p {
+    .lesson-info p {
       line-height: 1.8;
       color: var(--cl-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .lesson-card {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -67,68 +66,70 @@
   <div class="course-header" style="background: linear-gradient(135deg, #02569b, #0175c2) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-google"></i> Flutter Expert Mastery</h1>
-      <p>70 visually rich modules covering every aspect of high-performance mobile engineering.</p>
+      <p>A focused curriculum of 20 high-density modules covering every aspect of high-performance mobile engineering.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-google"></i> إتقان فلاتر للمحترفين</h1>
-      <p>70 وحدة غنية بالوسائط تغطي كل جانب من جوانب هندسة الموبايل عالية الأداء.</p>
+      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي كل جانب من جوانب هندسة الموبايل عالية الأداء.</p>
     </div>
   </div>
 
   <div class="chapters" id="flutterLessons">
-    <!-- LESSONS INJECTED VIA SCRIPT -->
+    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const flutterLessons = [
-    { t_en: "Skia Rendering Engine Internals", icon: "fa-paint-roller", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", t_ar: "خفايا محرك الرندر Skia", d_en: "Skia is the secret behind Flutter's high-performance graphics, rendering every pixel directly on the screen. We explore how Flutter bypasses platform-specific widgets to achieve consistent 60/120 FPS across iOS and Android. Understanding Skia allows you to optimize complex animations and build visually stunning user interfaces with custom shaders and painting logic.", d_ar: "Skia هو السر وراء رسومات فلاتر عالية الأداء، حيث يقوم برسم كل بكسل مباشرة على الشاشة. نستكشف كيف يتجاوز فلاتر الودجت الخاصة بالمنصة لتحقيق 60/120 إطار في الثانية بشكل متسق عبر iOS و Android. يتيح لك فهم Skia تحسين الرسوم المتحركة المعقدة وبناء واجهات مستخدم مذهلة." },
-    { t_en: "Dart Event Loop & Isolate Communication", icon: "fa-arrows-spin", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80", t_ar: "حلقة أحداث Dart والتواصل بين الـ Isolates", d_en: "Dart handles asynchronous operations through an Event Loop, ensuring your app remains responsive during I/O tasks. For heavy computations, we use Isolates, which have their own memory heap and run in parallel. This module teaches you how to manage multi-threading in Flutter to handle massive data processing without ever freezing the user interface.", d_ar: "تتعامل لغة Dart مع العمليات غير المتزامنة من خلال حلقة الأحداث، مما يضمن بقاء تطبيقك مستجيبًا. للحسابات الثقيلة، نستخدم الـ Isolates التي تمتلك ذاكرتها الخاصة وتعمل بالتوازي. يعلمك هذا القسم كيفية إدارة تعدد الخيوط في فلاتر لمعالجة البيانات الضخمة دون تجميد واجهة المستخدم." },
-    { t_en: "Advanced Riverpod State Management", icon: "fa-water", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80", t_ar: "إدارة الحالة المتقدمة بـ Riverpod", d_en: "Riverpod provides a compile-safe and highly testable way to manage application state in Flutter. We explore advanced patterns like AsyncNotifier and StateProvider to synchronize server data and local UI states seamlessly. Mastering Riverpod ensures your business logic is decoupled from the UI, making your codebase scalable and easy to maintain across large engineering teams.", d_ar: "يوفر Riverpod طريقة آمنة وقابلة للاختبار لإدارة حالة التطبيق في فلاتر. نستكشف الأنماط المتقدمة مثل AsyncNotifier و StateProvider لمزامنة بيانات السيرفر وحالات واجهة المستخدم المحلية بسلاسة. يضمن إتقان Riverpod فصل منطق الأعمال عن واجهة المستخدم، مما يجعل كودك قابلاً للتوسع." },
-    { t_en: "Clean Architecture for Mobile", icon: "fa-building-columns", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80", t_ar: "المعمارية النظيفة للموبايل", d_en: "Clean Architecture organizes your Flutter app into layers: Domain, Data, and Presentation. This separation of concerns allows you to swap out databases or UI frameworks without touching your core business logic. We focus on implementing repositories, use cases, and entities to create a robust system that is easy to test and evolves alongside your project's growing complexity.", d_ar: "تنظم المعمارية النظيفة تطبيق فلاتر الخاص بك إلى طبقات: النطاق، البيانات، والعرض. يتيح هذا الفصل للمصالح استبدال قواعد البيانات أو أطر واجهة المستخدم دون المساس بمنطق الأعمال الأساسي. نركز على تنفيذ المستودعات وحالات الاستخدام لإنشاء نظام قوي يسهل اختباره وتطويره." }
+    { t_en: "Skia Rendering Engine Internals", icon: "fa-paint-roller", t_ar: "خفايا محرك الرندر Skia", d_en: "Skia is the core graphics engine that enables Flutter to render every pixel directly on the screen at 60/120 FPS. We explore how Flutter bypasses platform-specific widgets to achieve visual consistency across iOS and Android. Understanding Skia's pipeline is fundamental for optimizing complex animations and building high-performance, visually stunning mobile interfaces.", d_ar: "محرك Skia هو المحرك الرسومي الأساسي الذي يتيح لـ فلاتر رندر كل بكسل مباشرة على الشاشة بـ 60/120 إطار في الثانية. نستكشف كيف يتجاوز فلاتر الودجت الخاصة بالمنصة لتحقيق اتساق بصري. فهم خط أنابيب Skia أمر أساسي لتحسين الرسوم المتحركة وبناء واجهات موبايل مذهلة وعالية الأداء." },
+    { t_en: "Dart Event Loop & Concurrency", icon: "fa-arrows-spin", t_ar: "حلقة أحداث Dart والتزامن", d_en: "Dart handles asynchronous operations through an Event Loop, ensuring application responsiveness during heavy I/O tasks. We delve into Isolates, which provide true parallel execution by running on separate threads with their own memory heap. This module teaches you how to manage background processing to prevent UI jank in data-intensive Flutter applications.", d_ar: "تتعامل لغة Dart مع العمليات غير المتزامنة من خلال حلقة أحداث، مما يضمن استجابة التطبيق. نتعمق في الـ Isolates، التي توفر تنفيذاً متوازياً حقيقياً من خلال العمل على خيوط منفصلة بذاكرتها الخاصة. يعلمك هذا القسم كيفية إدارة المعالجة الخلفية لمنع تعليق واجهة المستخدم في تطبيقات فلاتر." },
+    { t_en: "Widget Tree & Rendering Pipeline", icon: "fa-sitemap", t_ar: "شجرة الودجت وخط أنابيب الرندر", d_en: "Flutter builds its UI through three distinct trees: Widget, Element, and RenderObject. We analyze how changes in the widget tree trigger updates in the rendering pipeline and how to optimize re-renders using constant constructors and keys. Mastering this internal architecture is the key to building smooth and efficient layouts that scale with project complexity.", d_ar: "يبني فلاتر واجهته من خلال ثلاث أشجار: الودجت، العنصر، وكائن الرندر. نقوم بتحليل كيف تؤدي التغييرات في شجرة الودجت إلى تحديثات في خط أنابيب الرندر وكيفية تحسين إعادة الرندر. إتقان هذه المعمارية هو المفتاح لبناء تخطيطات سلسة وفعالة تتطور مع تعقيد المشروع." },
+    { t_en: "State Management with Riverpod", icon: "fa-water", t_ar: "إدارة الحالة باستخدام Riverpod", d_en: "Riverpod is a modern and reactive state management library that provides compile-safe access to application logic. We explore advanced patterns like AsyncNotifier for handling server data and synchronization across multiple screens. This module ensures your state management is decoupled, testable, and scalable for large-scale enterprise Flutter projects.", d_ar: "Riverpod هي مكتبة حديثة وتفاعلية لإدارة الحالة توفر وصولاً آمناً لمنطق التطبيق. نستكشف الأنماط المتقدمة مثل AsyncNotifier للتعامل مع بيانات السيرفر والمزامنة عبر شاشات متعددة. يضمن هذا القسم أن إدارة الحالة لديك مفصولة وقابلة للاختبار والتوسع لمشاريع فلاتر الكبيرة." }
+  ];
+
+  const extraFlutter = [
+    { t_en: "Clean Architecture Design", t_ar: "تصميم المعمارية النظيفة", icon: "fa-building-columns" },
+    { t_en: "Native Platform Channels", t_ar: "قنوات المنصة الأصلية", icon: "fa-bridge" },
+    { t_en: "Dependency Injection Patterns", t_ar: "أنماط حقن التبعيات", icon: "fa-syringe" },
+    { t_en: "Performance Profiling & Tuning", t_ar: "تحليل وتحسين الأداء", icon: "fa-gauge-high" },
+    { t_en: "Advanced Flutter Animations", t_ar: "رسوم فلاتر المتحركة المتقدمة", icon: "fa-film" },
+    { t_en: "Testing: Unit, Widget & Integration", t_ar: "الاختبارات: وحدة، ودجت، وتكامل", icon: "fa-vial" },
+    { t_en: "CI/CD for Flutter Apps", t_ar: "التكامل والنشر المستمر لفلاتر", icon: "fa-rocket" },
+    { t_en: "Secure Storage & API Security", t_ar: "التخزين الآمن وأمن الـ API", icon: "fa-shield-halved" },
+    { t_en: "Custom Painters & Shaders", t_ar: "الرسم المخصص والـ Shaders", icon: "fa-paintbrush" },
+    { t_en: "Navigation 2.0 (Router API)", t_ar: "التنقل 2.0 (Router API)", icon: "fa-route" },
+    { t_en: "Handling Large Data Sets", t_ar: "التعامل مع مجموعات البيانات الضخمة", icon: "fa-database" },
+    { t_en: "Adaptive & Responsive Layouts", t_ar: "التخطيطات المتكيفة والمستجيبة", icon: "fa-desktop" },
+    { t_en: "Localization & i18n Strategy", t_ar: "استراتيجية التعريب والتدويل", icon: "fa-language" },
+    { t_en: "Managing Technical Debt", t_ar: "إدارة الديون التقنية", icon: "fa-trash-can" },
+    { t_en: "Flutter Web & Desktop Internals", t_ar: "خفايا فلاتر للويب وسطح المكتب", icon: "fa-laptop-code" },
+    { t_en: "The Future of Flutter Engineering", t_ar: "مستقبل هندسة فلاتر", icon: "fa-award" }
   ];
 
   const chaptersContainer = document.getElementById('flutterLessons');
   
-  flutterLessons.forEach(lesson => {
-    renderCard(lesson);
-  });
+  flutterLessons.forEach(l => render(l));
+  extraFlutter.forEach(l => render({
+    icon: l.icon,
+    t_en: l.t_en,
+    t_ar: l.t_ar,
+    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional mobile engineering. We focus on real-world implementation strategies, clean code standards, and performance optimization for large-scale apps. By mastering ${l.t_en}, you ensure your Flutter applications are robust, scalable, and meet the highest industry quality standards for production environments.`,
+    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة الموبايل الاحترافية. نركز على استراتيجيات التنفيذ في العالم الحقيقي، معايير الكود النظيف، وتحسين الأداء للتطبيقات الضخمة. من خلال إتقان ${l.t_ar}، تضمن أن تطبيقات فلاتر الخاصة بك قوية وقابلة للتوسع وتلبي أعلى معايير الجودة في الصناعة.`
+  }));
 
-  const flutterExtra = [
-    { t_en: "Native Platform Channels", t_ar: "قنوات المنصة الأصلية", icon: "fa-bridge", img: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Animations & Motion Design", t_ar: "الرسوم المتحركة وتصميم الحركة", icon: "fa-film", img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Dependency Injection with GetIt", t_ar: "حقن التبعيات بـ GetIt", icon: "fa-syringe", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Unit & Widget Testing", t_ar: "اختبار الوحدات والودجت", icon: "fa-vial", img: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=800&q=80" }
-  ];
-
-  for (let i = 0; i < 66; i++) {
-    const topic = flutterExtra[i % flutterExtra.length];
-    renderCard({
-      t_en: `${topic.t_en} - Module ${i + 5}`,
-      d_en: `In this specialized Flutter engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into architectural best practices, clean code standards, and mobile-specific optimization. By mastering ${topic.t_en}, you ensure your apps are robust, scalable, and highly maintainable in large-scale production environments across iOS and Android.`,
-      t_ar: `${topic.t_ar} - الوحدة ${i + 5}`,
-      d_ar: `في هذه الوحدة المتخصصة في هندسة فلاتر، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل الممارسات المعمارية، معايير الكود النظيف، والتحسينات الخاصة بالموبايل. من خلال إتقان ${topic.t_ar}، تضمن أن تطبيقاتك قوية وقابلة للتوسع وسهلة الصيانة في بيئات الإنتاج الضخمة عبر iOS و Android.`,
-      icon: topic.icon,
-      img: topic.img
-    });
-  }
-
-  function renderCard(item) {
+  function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
-        <img src="${item.img}" alt="${item.t_en}">
-      </div>
-      <div class="lesson-content">
+      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+      <div class="lesson-info">
         <div data-cl-lang="en">
-          <h3>${item.t_en}</h3>
-          <p>${item.d_en}</p>
+          <h3>${lesson.t_en}</h3>
+          <p>${lesson.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>${item.t_ar}</h3>
-          <p>${item.d_ar}</p>
+          <h3>${lesson.t_ar}</h3>
+          <p>${lesson.d_ar}</p>
         </div>
       </div>
     `;

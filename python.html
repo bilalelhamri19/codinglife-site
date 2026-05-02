@@ -11,53 +11,52 @@
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 40px;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
     .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateX(10px);
       border-color: var(--cl-brand);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
-    .lesson-media {
-      width: 100%;
-      height: 250px;
-      position: relative;
-    }
-    .lesson-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .lesson-icon-overlay {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.9);
-      width: 50px;
-      height: 50px;
+    .lesson-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(55, 118, 171, 0.1);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #3776ab;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
-    .lesson-content {
-      padding: 30px;
+    .lesson-info {
+      flex-grow: 1;
     }
-    .lesson-content h3 {
-      font-size: 1.6rem;
+    .lesson-info h3 {
+      font-size: 1.5rem;
       color: var(--cl-brand);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      margin-top: 0;
     }
-    .lesson-content p {
+    .lesson-info p {
       line-height: 1.8;
       color: var(--cl-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .lesson-card {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -67,65 +66,70 @@
   <div class="course-header" style="background: linear-gradient(135deg, #3776ab, #ffd343) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-python"></i> Python Expert Mastery</h1>
-      <p>70 unique, non-numbered modules covering scripting, data science, and AI engineering.</p>
+      <p>A focused curriculum of 20 high-density modules covering scripting, data science, and AI engineering.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-python"></i> إتقان بايثون للمحترفين</h1>
-      <p>70 وحدة فريدة غير مرقمة تغطي البرمجة، علوم البيانات، وهندسة الذكاء الاصطناعي.</p>
+      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي البرمجة، علوم البيانات، وهندسة الذكاء الاصطناعي.</p>
     </div>
   </div>
 
   <div class="chapters" id="pythonLessons">
-    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const pythonLessons = [
-    { t_en: "CPython Memory Management", icon: "fa-memory", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80", t_ar: "إدارة الذاكرة في CPython", d_en: "CPython uses reference counting and a cyclic garbage collector to manage memory. We explore how Python handles object allocation in the private heap and how the Global Interpreter Lock (GIL) impacts thread-safe memory access. Mastering memory management is critical for optimizing high-performance data processing and preventing memory leaks in long-running backend scripts.", d_ar: "يستخدم CPython عد المراجع وجامع المهملات الدوري لإدارة الذاكرة. نستكشف كيف يتعامل بايثون مع تخصيص الكائنات في الـ heap الخاص وكيف يؤثر قفل المفسر العالمي (GIL) على الوصول الآمن للذاكرة. إتقان إدارة الذاكرة أمر بالغ الأهمية لتحسين معالجة البيانات ومنع تسريبات الذاكرة." },
-    { t_en: "AsyncIO & Event Loop Architecture", icon: "fa-bolt-lightning", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", t_ar: "معمارية AsyncIO وحلقة الأحداث", d_en: "AsyncIO enables concurrent programming in Python using async/await syntax. We delve into how the event loop schedules tasks and handles I/O-bound operations without blocking the main execution thread. This module teaches you how to build highly responsive networking tools, web scrapers, and API servers that can handle thousands of simultaneous connections with minimal overhead.", d_ar: "تتيح AsyncIO البرمجة المتزامنة في بايثون باستخدام صيغة async/await. نتعمق في كيفية قيام حلقة الأحداث بجدولة المهام والتعامل مع عمليات الـ I/O دون حظر خيط التنفيذ الرئيسي. يعلمك هذا القسم كيفية بناء أدوات شبكية مستجيبة وسيرفرات API يمكنها التعامل مع آلاف الاتصالات المتزامنة." },
-    { t_en: "Metaprogramming & Metaclasses", icon: "fa-code", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", t_ar: "البرمجة الوصفية والـ Metaclasses", d_en: "Metaprogramming allows you to write code that generates or modifies other code at runtime. We explore Metaclasses, which are the 'classes of classes', and how they can be used to enforce API standards and automate repetitive boilerplate. Mastering these advanced concepts gives you the power to build complex frameworks and libraries like Django or SQLAlchemy from the ground up.", d_ar: "تتيح لك البرمجة الوصفية كتابة كود يقوم بإنشاء أو تعديل كود آخر أثناء التشغيل. نستكشف الـ Metaclasses، وهي 'كلاسات الكلاسات'، وكيف يمكن استخدامها لفرض معايير الـ API وأتمتة الأكواد المتكررة. إتقان هذه المفاهيم يمنحك القدرة على بناء أطر عمل ومكتبات معقدة مثل Django." }
+    { t_en: "CPython Internals & Memory Management", icon: "fa-memory", t_ar: "خفايا CPython وإدارة الذاكرة", d_en: "CPython manages memory using reference counting and a cyclic garbage collector. We explore how Python allocates objects in the private heap and how the Global Interpreter Lock (GIL) affects thread execution and memory safety. Understanding these internals is essential for optimizing high-performance data scripts and preventing memory leaks in large-scale backend systems.", d_ar: "يدير CPython الذاكرة باستخدام عد المراجع وجامع المهملات الدوري. نستكشف كيف يخصص بايثون الكائنات في الـ heap الخاص وكيف يؤثر قفل المفسر العالمي (GIL) على تنفيذ الخيوط وسلامة الذاكرة. فهم هذه الخفايا ضروري لتحسين اسكربتات البيانات عالية الأداء ومنع تسريبات الذاكرة." },
+    { t_en: "AsyncIO & Non-blocking Architecture", icon: "fa-bolt-lightning", t_ar: "معمارية AsyncIO والأنظمة غير المحظورة", d_en: "AsyncIO enables concurrent programming in Python using async/await syntax and an event loop. We delve into task scheduling and how to handle I/O-bound operations without blocking the main thread. This module teaches you how to build highly responsive networking tools and API servers that can handle thousands of simultaneous connections with minimal resource overhead.", d_ar: "تتيح AsyncIO البرمجة المتزامنة في بايثون باستخدام صيغة async/await وحلقة أحداث. نتعمق في جدولة المهام وكيفية التعامل مع عمليات الـ I/O دون حظر الخيط الرئيسي. يعلمك هذا القسم كيفية بناء أدوات شبكية وسيرفرات API مستجيبة للغاية يمكنها التعامل مع آلاف الاتصالات المتزامنة." },
+    { t_en: "Metaprogramming & Custom Metaclasses", icon: "fa-code", t_ar: "البرمجة الوصفية والـ Metaclasses المخصصة", d_en: "Metaprogramming allows code to modify its own structure at runtime through metaclasses and decorators. We explore how to enforce API standards and automate repetitive tasks by creating 'classes of classes'. Mastering these advanced concepts empowers you to build sophisticated frameworks and libraries that provide clean and expressive interfaces for other developers.", d_ar: "تسمح البرمجة الوصفية للكود بتعديل هيكله الخاص أثناء التشغيل من خلال الـ metaclasses والـ decorators. نستكشف كيفية فرض معايير الـ API وأتمتة المهام المتكررة عن طريق إنشاء 'كلاسات الكلاسات'. إتقان هذه المفاهيم يمنحك القدرة على بناء أطر عمل ومكتبات متطورة توفر واجهات نظيفة ومعبرة." },
+    { t_en: "Data Engineering with Vectorized NumPy", icon: "fa-table-list", t_ar: "هندسة البيانات باستخدام NumPy الموجه", d_en: "NumPy provides high-performance multidimensional arrays and vectorized operations that are essential for data science. We analyze how NumPy bypasses Python's slow loops by using contiguous memory blocks and optimized C routines. This module ensures you can process massive datasets with mathematical precision and speed, forming the foundation for modern machine learning pipelines.", d_ar: "يوفر NumPy مصفوفات متعددة الأبعاد عالية الأداء وعمليات موجهة ضرورية لعلوم البيانات. نقوم بتحليل كيف يتجاوز NumPy حلقات بايثون البطيئة باستخدام كتل ذاكرة متجاورة وروتينات C محسنة. يضمن هذا القسم قدرتك على معالجة مجموعات البيانات الضخمة بدقة رياضية وسرعة عالية." }
+  ];
+
+  const extraPython = [
+    { t_en: "Deep Learning with PyTorch", t_ar: "التعلم العميق باستخدام PyTorch", icon: "fa-brain" },
+    { t_en: "High-Performance APIs with FastAPI", t_ar: "APIs عالية الأداء بـ FastAPI", icon: "fa-rocket" },
+    { t_en: "Network Automation & Scripting", t_ar: "أتمتة الشبكات والاسكربتات", icon: "fa-network-wired" },
+    { t_en: "Unit Testing & Quality Assurance", t_ar: "اختبار الوحدات وضمان الجودة", icon: "fa-vial" },
+    { t_en: "Web Scraping & Data Extraction", t_ar: "كشط الويب واستخراج البيانات", icon: "fa-robot" },
+    { t_en: "Model Deployment & Cloud Ops", t_ar: "نشر النماذج والعمليات السحابية", icon: "fa-cloud-arrow-up" },
+    { t_en: "Secure Coding & Secret Management", t_ar: "البرمجة الآمنة وإدارة الأسرار", icon: "fa-shield-check" },
+    { t_en: "Advanced Functional Patterns", t_ar: "الأنماط الوظيفية المتقدمة", icon: "fa-gears" },
+    { t_en: "Profiling & Performance Tuning", t_ar: "تحليل وتحسين الأداء", icon: "fa-gauge-high" },
+    { t_en: "Maintaining Large Python Codebases", t_ar: "صيانة قواعد كود بايثون الضخمة", icon: "fa-building-columns" },
+    { t_en: "Concurrency: Threading vs Processing", t_ar: "التزامن: الخيوط مقابل العمليات", icon: "fa-arrows-spin" },
+    { t_en: "CLI Development with Click/Typer", t_ar: "تطوير واجهة الأوامر بـ Click", icon: "fa-terminal" },
+    { t_en: "Database Integration Patterns", t_ar: "أنماط التكامل مع قواعد البيانات", icon: "fa-database" },
+    { t_en: "Regular Expressions & Pattern Matching", t_ar: "التعبيرات النمطية ومطابقة الأنماط", icon: "fa-magnifying-glass" },
+    { t_en: "The Future of Python Performance", t_ar: "مستقبل أداء لغة بايثون", icon: "fa-bolt" },
+    { t_en: "Becoming a Senior Python Architect", t_ar: "كيف تصبح معماري بايثون أول", icon: "fa-award" }
   ];
 
   const chaptersContainer = document.getElementById('pythonLessons');
   
-  pythonLessons.forEach(lesson => renderCard(lesson));
+  pythonLessons.forEach(l => render(l));
+  extraPython.forEach(l => render({
+    icon: l.icon,
+    t_en: l.t_en,
+    t_ar: l.t_ar,
+    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional Python engineering. We focus on real-world implementation strategies, clean code standards, and performance optimization for large-scale enterprise environments. By mastering ${l.t_en}, you ensure your Python solutions are robust, scalable, and meet the highest industry quality standards for automation and AI.`,
+    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة بايثون الاحترافية. نركز على استراتيجيات التنفيذ في العالم الحقيقي، معايير الكود النظيف، وتحسين الأداء لبيئات الشركات الضخمة. من خلال إتقان ${l.t_ar}، تضمن أن حلول بايثون الخاصة بك قوية وقابلة للتوسع وتلبي أعلى معايير الجودة في الصناعة.`
+  }));
 
-  const extraPython = [
-    { t_en: "Data Engineering with Pandas", t_ar: "هندسة البيانات باستخدام Pandas", icon: "fa-table-list", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Deep Learning with PyTorch", t_ar: "التعلم العميق باستخدام PyTorch", icon: "fa-brain", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "FastAPI High-Performance APIs", t_ar: "بناء APIs عالية الأداء بـ FastAPI", icon: "fa-rocket", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Automation with Selenium", t_ar: "الأتمتة باستخدام Selenium", icon: "fa-robot", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" }
-  ];
-
-  for (let i = 0; i < 67; i++) {
-    const topic = extraPython[i % extraPython.length];
-    renderCard({
-      t_en: `${topic.t_en} - Specialized Module ${i + 4}`,
-      d_en: `In this advanced Python engineering module, we focus on the professional implementation of ${topic.t_en}. This session provides deep technical insights into architectural best practices, clean code standards, and domain-specific optimization. By mastering ${topic.t_en}, you ensure your Python solutions are scalable, robust, and highly maintainable in modern enterprise environments and AI ecosystems.`,
-      t_ar: `${topic.t_ar} - الوحدة المتخصصة ${i + 4}`,
-      d_ar: `في هذه الوحدة المتقدمة في هندسة بايثون، نركز على التنفيذ الاحترافي لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل الممارسات المعمارية، معايير الكود النظيف، والتحسينات الخاصة بالمجال. من خلال إتقان ${topic.t_ar}، تضمن أن حلول بايثون الخاصة بك قابلة للتوسع وقوية وسهلة الصيانة في بيئات الشركات الحديثة وأنظمة الذكاء الاصطناعي.`,
-      icon: topic.icon,
-      img: topic.img
-    });
-  }
-
-  function renderCard(item) {
+  function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
-        <img src="${item.img}" alt="${item.t_en}">
-      </div>
-      <div class="lesson-content">
+      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+      <div class="lesson-info">
         <div data-cl-lang="en">
-          <h3>${item.t_en}</h3>
-          <p>${item.d_en}</p>
+          <h3>${lesson.t_en}</h3>
+          <p>${lesson.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>${item.t_ar}</h3>
-          <p>${item.d_ar}</p>
+          <h3>${lesson.t_ar}</h3>
+          <p>${lesson.d_ar}</p>
         </div>
       </div>
     `;

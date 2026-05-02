@@ -11,53 +11,52 @@
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 40px;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
     .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateX(10px);
       border-color: var(--cl-brand);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
-    .lesson-media {
-      width: 100%;
-      height: 250px;
-      position: relative;
-    }
-    .lesson-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .lesson-icon-overlay {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.9);
-      width: 50px;
-      height: 50px;
+    .lesson-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(81, 43, 212, 0.1);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #512bd4;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
-    .lesson-content {
-      padding: 30px;
+    .lesson-info {
+      flex-grow: 1;
     }
-    .lesson-content h3 {
-      font-size: 1.6rem;
+    .lesson-info h3 {
+      font-size: 1.5rem;
       color: var(--cl-brand);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      margin-top: 0;
     }
-    .lesson-content p {
+    .lesson-info p {
       line-height: 1.8;
       color: var(--cl-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .lesson-card {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -67,65 +66,70 @@
   <div class="course-header" style="background: linear-gradient(135deg, #178600, #512bd4) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-microsoft"></i> C# & .NET Masterclass</h1>
-      <p>70 unique, high-density modules covering enterprise systems, Unity, and cloud architecture.</p>
+      <p>A focused curriculum of 20 high-density modules covering enterprise systems, Unity, and cloud architecture.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-microsoft"></i> ماستر كلاس C# و .NET</h1>
-      <p>70 وحدة فريدة عالية الكثافة تغطي أنظمة الشركات، Unity، والمعمارية السحابية.</p>
+      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي أنظمة الشركات، Unity، والمعمارية السحابية.</p>
     </div>
   </div>
 
   <div class="chapters" id="csharpLessons">
-    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const csharpLessons = [
-    { t_en: "CLR & JIT Compiler Internals", icon: "fa-gears", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80", t_ar: "خفايا الـ CLR ومترجم الـ JIT", d_en: "The Common Language Runtime (CLR) is the execution engine for .NET applications, providing services like garbage collection and type safety. We explore how the Just-In-Time (JIT) compiler translates Intermediate Language (IL) code into native machine instructions at runtime for optimal performance. Understanding these internals is essential for fine-tuning application startup times and memory footprints in large-scale server environments.", d_ar: "الـ Common Language Runtime (CLR) هو محرك التنفيذ لتطبيقات .NET، حيث يوفر خدمات مثل جمع المهملات وسلامة النوع. نستكشف كيف يقوم مترجم Just-In-Time (JIT) بترجمة كود اللغة الوسيطة (IL) إلى تعليمات الآلة الأصلية عند التشغيل للحصول على أفضل أداء. فهم هذه الخفايا ضروري لتحسين أوقات بدء تشغيل التطبيق." },
-    { t_en: "LINQ Architecture & Deferred Execution", icon: "fa-filter", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80", t_ar: "معمارية LINQ والتنفيذ المؤجل", d_en: "Language Integrated Query (LINQ) provides a powerful way to query various data sources using C# syntax. We delve into the difference between 'IEnumerable' and 'IQueryable', and how deferred execution allows for efficient query building before execution. This module teaches you how to optimize database communication in Entity Framework Core by understanding how LINQ expressions are translated into optimized SQL statements.", d_ar: "توفر LINQ طريقة قوية للاستعلام عن مصادر البيانات المختلفة باستخدام صيغة C#. نتعمق في الفرق بين 'IEnumerable' و 'IQueryable'، وكيف يسمح التنفيذ المؤجل ببناء استعلام فعال قبل التنفيذ. يعلمك هذا القسم كيفية تحسين التواصل مع قاعدة البيانات في Entity Framework Core من خلال فهم كيفية ترجمة تعبيرات LINQ." },
-    { t_en: "Asynchronous Programming with Tasks", icon: "fa-bolt", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", t_ar: "البرمجة غير المتزامنة مع الـ Tasks", d_en: "Async/Await in C# allows for high-performance non-blocking operations, which is critical for scalable web services. We explore how the Task-based Asynchronous Pattern (TAP) works and how to manage the synchronization context to avoid deadlocks. This lesson provides the technical depth needed to build responsive desktop applications and high-throughput APIs that can handle thousands of concurrent requests with ease.", d_ar: "تتيح صيغة Async/Await في C# إجراء عمليات غير محظورة عالية الأداء، وهو أمر بالغ الأهمية لخدمات الويب القابلة للتوسع. نستكشف كيف يعمل النمط غير المتزامن المعتمد على المهام (TAP) وكيفية إدارة سياق المزامنة لتجنب الجمود. يوفر هذا الدرس العمق التقني اللازم لبناء تطبيقات سطح مكتب مستجيبة و APIs عالية الإنتاجية." }
+    { t_en: "CLR & JIT Compiler Architecture", icon: "fa-gears", t_ar: "معمارية الـ CLR ومترجم الـ JIT", d_en: "The Common Language Runtime (CLR) is the heart of .NET, managing memory through structured segments like the Heap and Stack. We explore how the Just-In-Time (JIT) compiler translates Intermediate Language (IL) code into native machine instructions at runtime for optimal performance. Understanding these internals is essential for fine-tuning application startup times and memory usage in large-scale server environments.", d_ar: "يعد الـ CLR هو محرك التنفيذ لتطبيقات .NET، حيث يدير الذاكرة من خلال شرائح منظمة. نستكشف كيف يقوم مترجم Just-In-Time (JIT) بترجمة كود اللغة الوسيطة (IL) إلى تعليمات الآلة الأصلية عند التشغيل للحصول على أفضل أداء. فهم هذه الخفايا ضروري لتحسين أوقات بدء تشغيل التطبيق واستهلاك الذاكرة في بيئات السيرفر الضخمة." },
+    { t_en: "LINQ Architecture & Deferred Execution", icon: "fa-filter", t_ar: "معمارية LINQ والتنفيذ المؤجل", d_en: "Language Integrated Query (LINQ) provides a powerful way to query various data sources using C# syntax. We delve into the difference between IEnumerable and IQueryable, and how deferred execution allows for efficient query building before execution. This module teaches you how to optimize database communication in Entity Framework Core by understanding how LINQ expressions are translated into optimized SQL.", d_ar: "توفر LINQ طريقة قوية للاستعلام عن مصادر البيانات المختلفة باستخدام صيغة C#. نتعمق في الفرق بين IEnumerable و IQueryable، وكيف يسمح التنفيذ المؤجل ببناء استعلامات فعالة قبل التنفيذ. يعلمك هذا القسم كيفية تحسين التواصل مع قاعدة البيانات في Entity Framework Core من خلال فهم ترجمة تعبيرات LINQ." },
+    { t_en: "Asynchronous Programming with Tasks", icon: "fa-bolt", t_ar: "البرمجة غير المتزامنة مع الـ Tasks", d_en: "Async/Await in C# allows for high-performance non-blocking operations, which is critical for scalable web services. We explore how the Task-based Asynchronous Pattern (TAP) works and how to manage the synchronization context to avoid deadlocks. This lesson provides the technical depth needed to build responsive desktop applications and high-throughput APIs that can handle thousands of concurrent requests.", d_ar: "تتيح صيغة Async/Await في C# إجراء عمليات غير محظورة عالية الأداء، وهو أمر بالغ الأهمية لخدمات الويب القابلة للتوسع. نستكشف كيف يعمل النمط غير المتزامن المعتمد على المهام (TAP) وكيفية إدارة سياق المزامنة لتجنب الجمود. يوفر هذا الدرس العمق التقني اللازم لبناء تطبيقات مستجيبة و APIs عالية الإنتاجية." },
+    { t_en: "Advanced Memory Management & Structs", icon: "fa-microchip", t_ar: "إدارة الذاكرة المتقدمة والـ Structs", d_en: "C# provides precise control over memory allocation through value types (Structs) and reference types (Classes). We analyze how the Garbage Collector (GC) manages generations and how to use 'ref', 'out', and 'Span<T>' to minimize allocations in performance-critical scenarios. Mastering these low-level features is essential for building game engines, real-time systems, and high-performance financial applications.", d_ar: "توفر C# تحكماً دقيقاً في تخصيص الذاكرة من خلال أنواع القيم (Structs) وأنواع المراجع (Classes). نقوم بتحليل كيف يدير جامع المهملات الأجيال وكيفية استخدام 'ref' و 'Span<T>' لتقليل التخصيص في السيناريوهات التي تتطلب أداءً عالياً. إتقان هذه الميزات ضروري لبناء محركات الألعاب والأنظمة عالية الأداء." }
+  ];
+
+  const extraCsharp = [
+    { t_en: "ASP.NET Core Middleware Pipeline", t_ar: "خط أنابيب Middleware في ASP.NET Core", icon: "fa-code-branch" },
+    { t_en: "Unity ECS for High Performance", t_ar: "معمارية ECS في Unity للأداء العالي", icon: "fa-gamepad" },
+    { t_en: "Microservices with gRPC & .NET", t_ar: "المصغرات البرمجية بـ gRPC و .NET", icon: "fa-network-wired" },
+    { t_en: "Dependency Injection Internals", t_ar: "خفايا حقن التبعيات", icon: "fa-syringe" },
+    { t_en: "Entity Framework Performance Tuning", t_ar: "تحسين أداء Entity Framework", icon: "fa-database" },
+    { t_en: "C# 12: Modern Syntax & Features", t_ar: "C# 12: الميزات والصيغ الحديثة", icon: "fa-bolt-lightning" },
+    { t_en: "Reflection & Attribute Engineering", t_ar: "هندسة الـ Reflection والـ Attributes", icon: "fa-at" },
+    { t_en: "Unit Testing with xUnit & Moq", t_ar: "اختبار الوحدات بـ xUnit و Moq", icon: "fa-vial" },
+    { t_en: "Design Patterns in .NET Ecosystem", t_ar: "أنماط التصميم في بيئة .NET", icon: "fa-gem" },
+    { t_en: "Azure Cloud Native Development", t_ar: "التطوير السحابي الأصيل على Azure", icon: "fa-cloud-bolt" },
+    { t_en: "Secure Coding & Identity Management", t_ar: "البرمجة الآمنة وإدارة الهوية", icon: "fa-user-shield" },
+    { t_en: "Managing Large Enterprise Codebases", t_ar: "إدارة قواعد كود الشركات الضخمة", icon: "fa-building-columns" },
+    { t_en: "SignalR: Real-time Communication", t_ar: "الاتصال في الوقت الحقيقي بـ SignalR", icon: "fa-comments" },
+    { t_en: "The Future of .NET & MAUI", t_ar: "مستقبل .NET وتقنية MAUI", icon: "fa-award" },
+    { t_en: "Regular Expressions & String Perf", t_ar: "التعبيرات النمطية وأداء النصوص", icon: "fa-magnifying-glass" },
+    { t_en: "Becoming a Senior .NET Architect", t_ar: "كيف تصبح معماري .NET أول", icon: "fa-star" }
   ];
 
   const chaptersContainer = document.getElementById('csharpLessons');
   
-  csharpLessons.forEach(lesson => renderCard(lesson));
+  csharpLessons.forEach(l => render(l));
+  extraCsharp.forEach(l => render({
+    icon: l.icon,
+    t_en: l.t_en,
+    t_ar: l.t_ar,
+    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional C# and .NET engineering. We focus on enterprise-level implementation strategies, clean architecture standards, and resource optimization for high-performance systems. By mastering ${l.t_en}, you ensure your .NET solutions are robust, scalable, and meet the highest industry standards for modern corporate environments.`,
+    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة C# و .NET الاحترافية. نركز على استراتيجيات التنفيذ على مستوى الشركات، معايير المعمارية النظيفة، وتحسين الموارد للأنظمة عالية الأداء. من خلال إتقان ${l.t_ar}، تضمن أن حلول .NET الخاصة بك قوية وقابلة للتوسع وتلبي أعلى معايير الصناعة.`
+  }));
 
-  const extraCsharp = [
-    { t_en: "ASP.NET Core Middleware Pipeline", t_ar: "خط أنابيب Middleware في ASP.NET Core", icon: "fa-code-branch", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Unity ECS for High Performance", t_ar: "معمارية ECS في Unity للأداء العالي", icon: "fa-gamepad", img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Microservices with gRPC & .NET", t_ar: "المصغرات البرمجية بـ gRPC و .NET", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Azure Cloud Native Development", t_ar: "التطوير السحابي الأصيل على Azure", icon: "fa-cloud-bolt", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" }
-  ];
-
-  for (let i = 0; i < 67; i++) {
-    const topic = extraCsharp[i % extraCsharp.length];
-    renderCard({
-      t_en: `${topic.t_en} - Enterprise Module ${i + 4}`,
-      d_en: `In this specialized C# and .NET engineering session, we focus on the professional implementation of ${topic.t_en}. This module provides deep technical insights into architectural design patterns, enterprise code standards, and resource optimization. By mastering ${topic.t_en}, you ensure your software solutions are robust, scalable, and highly maintainable in modern enterprise environments using the latest industrial standards.`,
-      t_ar: `${topic.t_ar} - وحدة الشركات ${i + 4}`,
-      d_ar: `في هذه الجلسة المتخصصة في هندسة C# و .NET، نركز على التنفيذ الاحترافي لـ ${topic.t_ar}. توفر هذه الوحدة رؤى تقنية عميقة حول أنماط التصميم المعماري، معايير كود الشركات، وتحسين الموارد. من خلال إتقان ${topic.t_ar}، تضمن أن حلولك البرمجية قوية وقابلة للتوسع وسهلة الصيانة في بيئات الشركات الحديثة باستخدام أحدث معايير الصناعة.`,
-      icon: topic.icon || "fa-code",
-      img: topic.img
-    });
-  }
-
-  function renderCard(item) {
+  function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
-        <img src="${item.img}" alt="${item.t_en}">
-      </div>
-      <div class="lesson-content">
+      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+      <div class="lesson-info">
         <div data-cl-lang="en">
-          <h3>${item.t_en}</h3>
-          <p>${item.d_en}</p>
+          <h3>${lesson.t_en}</h3>
+          <p>${lesson.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>${item.t_ar}</h3>
-          <p>${item.d_ar}</p>
+          <h3>${lesson.t_ar}</h3>
+          <p>${lesson.d_ar}</p>
         </div>
       </div>
     `;

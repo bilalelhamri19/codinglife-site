@@ -11,53 +11,52 @@
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 40px;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
     .lesson-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateX(10px);
       border-color: var(--cl-brand);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
-    .lesson-media {
-      width: 100%;
-      height: 250px;
-      position: relative;
-    }
-    .lesson-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .lesson-icon-overlay {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.9);
-      width: 50px;
-      height: 50px;
+    .lesson-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(38, 77, 228, 0.1);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #264de4;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
-    .lesson-content {
-      padding: 30px;
+    .lesson-info {
+      flex-grow: 1;
     }
-    .lesson-content h3 {
-      font-size: 1.6rem;
+    .lesson-info h3 {
+      font-size: 1.5rem;
       color: var(--cl-brand);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      margin-top: 0;
     }
-    .lesson-content p {
+    .lesson-info p {
       line-height: 1.8;
       color: var(--cl-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .lesson-card {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -67,65 +66,70 @@
   <div class="course-header" style="background: linear-gradient(135deg, #264de4, #2965f1) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-css3-alt"></i> CSS3 Expert Mastery</h1>
-      <p>70 unique modules covering advanced layouts, animations, and visual engineering.</p>
+      <p>A focused curriculum of 20 high-density modules covering advanced layouts, animations, and visual engineering.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-css3-alt"></i> إتقان CSS3 للمحترفين</h1>
-      <p>70 وحدة فريدة تغطي التخطيطات المتقدمة، الرسوم المتحركة، والهندسة المرئية.</p>
+      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي التخطيطات المتقدمة، الرسوم المتحركة، والهندسة المرئية.</p>
     </div>
   </div>
 
   <div class="chapters" id="cssLessons">
-    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const cssLessons = [
-    { t_en: "The CSSOM & Rendering Engine", icon: "fa-gears", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", t_ar: "الـ CSSOM ومحرك الرندر", d_en: "The CSS Object Model (CSSOM) is a set of APIs allowing the manipulation of CSS from JavaScript. We explore how the browser combines the DOM and CSSOM to create the Render Tree, which is then used to compute the layout of every visible element. Understanding this process is vital for optimizing performance, as it allows you to minimize reflows and repaints during complex UI animations and transitions.", d_ar: "الـ CSS Object Model (CSSOM) هو مجموعة من واجهات برمجة التطبيقات التي تتيح التلاعب بـ CSS من جافا سكريبت. نستكشف كيف يجمع المتصفح بين الـ DOM والـ CSSOM لإنشاء شجرة الرندر (Render Tree)، والتي تُستخدم بعد ذلك لحساب تخطيط كل عنصر مرئي. فهم هذه العملية حيوي لتحسين الأداء وتقليل عمليات إعادة الرسم (repaints)." },
-    { t_en: "Flexbox Architecture Mastery", icon: "fa-layer-group", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", t_ar: "إتقان معمارية Flexbox", d_en: "Flexbox provides a highly efficient way to distribute space and align items within a container, even when their size is unknown. We delve into advanced properties like flex-grow, flex-shrink, and flex-basis, and how they interact with the main and cross axes. Mastering Flexbox allows you to build responsive and fluid layouts that adapt seamlessly to any screen size without the need for complex float-based hacks.", d_ar: "يوفر Flexbox طريقة فعالة للغاية لتوزيع المساحة ومحاذاة العناصر داخل الحاوية، حتى عندما يكون حجمها غير معروف. نتعمق في الخصائص المتقدمة مثل flex-grow و flex-shrink وكيفية تفاعلها مع المحاور الرئيسية والعرضية. يتيح لك إتقان Flexbox بناء تخطيطات مستجيبة وسلسة تتكيف مع أي حجم شاشة." },
-    { t_en: "CSS Grid: Complex Layout Systems", icon: "fa-border-all", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80", t_ar: "CSS Grid: أنظمة التخطيط المعقدة", d_en: "CSS Grid is a two-dimensional layout system that allows you to build complex web structures with ease. We explore grid-template-areas, fractional units (fr), and the power of the minmax() function for creating dynamic and robust designs. This module teaches you how to move beyond simple rows and columns to create intricate, professional layouts that were previously only possible with heavy JavaScript frameworks or rigid table structures.", d_ar: "CSS Grid هو نظام تخطيط ثنائي الأبعاد يتيح لك بناء هياكل ويب معقدة بسهولة. نستكشف مناطق قوالب الشبكة، الوحدات الكسرية (fr)، وقوة وظيفة minmax() لإنشاء تصميمات ديناميكية وقوية. يعلمك هذا القسم كيفية الانتقال إلى ما هو أبعد من الصفوف والأعمدة البسيطة لإنشاء تخطيطات احترافية معقدة." }
+    { t_en: "The CSSOM & Rendering Engine", icon: "fa-gears", t_ar: "الـ CSSOM ومحرك الرندر", d_en: "The CSS Object Model (CSSOM) is a set of APIs that allow for the manipulation of CSS from JavaScript. We explore how the browser combines the DOM and CSSOM to create the Render Tree, which is then used to compute the layout of visible elements. Understanding this process is vital for optimizing performance, as it allows you to minimize reflows and repaints during complex UI animations and transitions.", d_ar: "الـ CSS Object Model (CSSOM) هو مجموعة من واجهات برمجة التطبيقات التي تتيح التلاعب بـ CSS من جافا سكريبت. نستكشف كيف يجمع المتصفح بين الـ DOM والـ CSSOM لإنشاء شجرة الرندر (Render Tree)، والتي تُستخدم بعد ذلك لحساب تخطيط كل عنصر مرئي. فهم هذه العملية حيوي لتحسين الأداء وتقليل عمليات إعادة الرسم (repaints)." },
+    { t_en: "Flexbox Architecture Mastery", icon: "fa-layer-group", t_ar: "إتقان معمارية Flexbox", d_en: "Flexbox provides a highly efficient way to distribute space and align items within a container, even when their size is unknown. We delve into advanced properties like flex-grow, flex-shrink, and flex-basis, and how they interact with the main and cross axes. Mastering Flexbox allows you to build responsive and fluid layouts that adapt seamlessly to any screen size without the need for complex hacks.", d_ar: "يوفر Flexbox طريقة فعالة للغاية لتوزيع المساحة ومحاذاة العناصر داخل الحاوية، حتى عندما يكون حجمها غير معروف. نتعمق في الخصائص المتقدمة مثل flex-grow و flex-shrink وكيفية تفاعلها مع المحاور الرئيسية والعرضية. يتيح لك إتقان Flexbox بناء تخطيطات مستجيبة وسلسة تتكيف مع أي حجم شاشة دون الحاجة لحلول معقدة." },
+    { t_en: "CSS Grid: Complex Layout Systems", icon: "fa-border-all", t_ar: "CSS Grid: أنظمة التخطيط المعقدة", d_en: "CSS Grid is a two-dimensional layout system that allows you to build complex web structures with ease. We explore grid-template-areas, fractional units (fr), and the power of the minmax() function for creating dynamic and robust designs. This module teaches you how to move beyond simple rows and columns to create intricate, professional layouts that provide a structured and maintainable design system.", d_ar: "CSS Grid هو نظام تخطيط ثنائي الأبعاد يتيح لك بناء هياكل ويب معقدة بسهولة. نستكشف مناطق قوالب الشبكة، الوحدات الكسرية (fr)، وقوة وظيفة minmax() لإنشاء تصميمات ديناميكية وقوية. يعلمك هذا القسم كيفية الانتقال إلى ما هو أبعد من الصفوف والأعمدة البسيطة لإنشاء تخطيطات احترافية معقدة توفر نظام تصميم منظماً." },
+    { t_en: "Advanced CSS Variables & Design Tokens", icon: "fa-sliders", t_ar: "متغيرات CSS المتقدمة و Design Tokens", d_en: "CSS Custom Properties (Variables) allow you to store specific values and reuse them throughout your stylesheet. We explore how to implement design tokens for theming and how to use JavaScript to manipulate variables at runtime for dynamic UI changes. Mastering variables is essential for building scalable design systems that maintain visual consistency across large-scale web applications and platforms.", d_ar: "تسمح خصائص CSS المخصصة (المتغيرات) بتخزين قيم محددة وإعادة استخدامها في جميع أنحاء ورقة الأنماط. نستكشف كيفية تنفيذ Design Tokens لتغيير السمات وكيفية استخدام جافا سكريبت للتلاعب بالمتغيرات أثناء التشغيل. إتقان المتغيرات أساسي لبناء أنظمة تصميم قابلة للتوسع تحافظ على الاتساق المرئي." }
+  ];
+
+  const extraCss = [
+    { t_en: "Modern Container Queries", t_ar: "استعلامات الحاوية الحديثة", icon: "fa-box" },
+    { t_en: "GPU Accelerated Animations", t_ar: "الرسوم المتحركة المسرعة بـ GPU", icon: "fa-gauge-high" },
+    { t_en: "Visual Effects with Mix-Blend-Mode", t_ar: "التأثيرات المرئية بـ Mix-Blend-Mode", icon: "fa-wand-magic-sparkles" },
+    { t_en: "CSS Architecture: BEM & Utility-First", t_ar: "معمارية CSS: BEM والمنفعة أولاً", icon: "fa-sitemap" },
+    { t_en: "Dark Mode & Color Schemes", t_ar: "الوضع الليلي وأنظمة الألوان", icon: "fa-moon" },
+    { t_en: "Typography Engineering & Variable Fonts", t_ar: "هندسة الخطوط والخطوط المتغيرة", icon: "fa-font" },
+    { t_en: "Advanced Pseudo-classes & Elements", t_ar: "الفئات والعناصر الوهمية المتقدمة", icon: "fa-flask" },
+    { t_en: "Layout: Subgrid & Aspect-ratio", t_ar: "التخطيط: Subgrid ونسبة العرض للارتفاع", icon: "fa-object-group" },
+    { t_en: "Maintaining Scalable Stylesheets", t_ar: "صيانة أوراق الأنماط القابلة للتوسع", icon: "fa-building-columns" },
+    { t_en: "CSS for Print & Accessibility", t_ar: "CSS للطباعة وإمكانية الوصول", icon: "fa-print" },
+    { t_en: "PostCSS & CSS Preprocessors", t_ar: "PostCSS ومعالجات CSS المسبقة", icon: "fa-gears" },
+    { t_en: "Logical Properties for RTL Layouts", t_ar: "الخصائص المنطقية لتخطيطات RTL", icon: "fa-language" },
+    { t_en: "Handling Browser Compatibility", t_ar: "التعامل مع توافق المتصفحات", icon: "fa-window-maximize" },
+    { t_en: "Managing Technical Debt in CSS", t_ar: "إدارة الديون التقنية في CSS", icon: "fa-trash-can" },
+    { t_en: "The Future of CSS4 & New Specs", t_ar: "مستقبل CSS4 والمواصفات الجديدة", icon: "fa-award" },
+    { t_en: "Becoming a Senior Visual Engineer", t_ar: "كيف تصبح مهندس مرئي أول", icon: "fa-star" }
   ];
 
   const chaptersContainer = document.getElementById('cssLessons');
   
-  cssLessons.forEach(lesson => renderCard(lesson));
+  cssLessons.forEach(l => render(l));
+  extraCss.forEach(l => render({
+    icon: l.icon,
+    t_en: l.t_en,
+    t_ar: l.t_ar,
+    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional visual engineering with CSS. We focus on architectural best practices, rendering optimization, and scalable styling standards for large-scale production environments. By mastering ${l.t_en}, you ensure your UI architectures are robust, maintainable, and meet the highest industry visual standards for modern web development.`,
+    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في الهندسة المرئية الاحترافية باستخدام CSS. نركز على أفضل الممارسات المعمارية، تحسين الرندر، ومعايير التنسيق القابلة للتوسع لبيئات الإنتاج الضخمة. من خلال إتقان ${l.t_ar}، تضمن أن معماريات واجهة المستخدم الخاصة بك قوية وسهلة الصيانة وتلبي أعلى المعايير المرئية.`
+  }));
 
-  const extraCss = [
-    { t_en: "Modern Container Queries", t_ar: "استعلامات الحاوية الحديثة (Container Queries)", icon: "fa-box", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Advanced CSS Variables (Tokens)", t_ar: "متغيرات CSS المتقدمة (Design Tokens)", icon: "fa-sliders", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "GPU Accelerated Animations", t_ar: "الرسوم المتحركة المسرعة بواسطة المعالج الرسومي", icon: "fa-gauge-high", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
-    { t_en: "Visual Effects with Mix-Blend-Mode", t_ar: "التأثيرات المرئية باستخدام Mix-Blend-Mode", icon: "fa-wand-magic-sparkles", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" }
-  ];
-
-  for (let i = 0; i < 67; i++) {
-    const topic = extraCss[i % extraCss.length];
-    renderCard({
-      t_en: `${topic.t_en} - Style Module ${i + 4}`,
-      d_en: `In this specialized visual engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into styling best practices, visual consistency, and browser-level optimization. By mastering ${topic.t_en}, you ensure your CSS architectures are robust, scalable, and highly maintainable in modern production environments using the latest industry standards.`,
-      t_ar: `${topic.t_ar} - وحدة التصميم ${i + 4}`,
-      d_ar: `في هذه الوحدة المتخصصة في الهندسة المرئية، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل ممارسات التنسيق، الاتساق المرئي، وتحسينات مستوى المتصفح. من خلال إتقان ${topic.t_ar}، تضمن أن معماريات CSS الخاصة بك قوية وقابلة للتوسع وسهلة الصيانة في بيئات الإنتاج الحديثة.`,
-      icon: topic.icon || "fa-palette",
-      img: topic.img
-    });
-  }
-
-  function renderCard(item) {
+  function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
-        <img src="${item.img}" alt="${item.t_en}">
-      </div>
-      <div class="lesson-content">
+      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+      <div class="lesson-info">
         <div data-cl-lang="en">
-          <h3>${item.t_en}</h3>
-          <p>${item.d_en}</p>
+          <h3>${lesson.t_en}</h3>
+          <p>${lesson.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>${item.t_ar}</h3>
-          <p>${item.d_ar}</p>
+          <h3>${lesson.t_ar}</h3>
+          <p>${lesson.d_ar}</p>
         </div>
       </div>
     `;
