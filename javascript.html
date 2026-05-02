@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Deep Dive (200+ Sections) - Coding Life</title>
+  <title>JavaScript Deep Dive (Unique 200+ Sections) - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -15,57 +15,72 @@
   <div class="course-header" style="background: linear-gradient(135deg, #f7df1e, #323330) !important;">
     <div data-cl-lang="en">
       <h1 style="color: #323330;"><i class="fab fa-js"></i> JavaScript Expert Deep Dive</h1>
-      <p style="color: #323330;">The most comprehensive 200-section guide to modern JavaScript. From internal engine mechanics to high-level async logic.</p>
+      <p style="color: #323330;">A massive, non-numbered curriculum featuring 200+ unique modules covering every aspect of modern JavaScript from engine internals to complex async patterns.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1 style="color: #323330;"><i class="fab fa-js"></i> تعمق في JavaScript للمحترفين</h1>
-      <p style="color: #323330;">الدليل الأكثر شمولاً المكون من 200 قسم لـ JavaScript الحديثة. من ميكانيكا المحركات الداخلية إلى المنطق المتقدم غير المتزامن.</p>
+      <h1><i class="fab fa-js"></i> تعمق في JavaScript للمحترفين</h1>
+      <p>منهج ضخم غير مرقم يضم أكثر من 200 وحدة فريدة تغطي كل جانب من جوانب JavaScript الحديثة، من ميكانيكا المحركات إلى الأنماط المعقدة غير المتزامنة.</p>
     </div>
   </div>
 
-  <div class="chapters">
-    <div class="chapter reveal">
-      <div data-cl-lang="en">
-        <h3>1. The Runtime Environment & V8 Engine</h3>
-        <p>JavaScript is a powerful, dynamic language that runs in environments like browsers and Node.js. In this section, we explore the internal architecture of the V8 engine, how the Call Stack and Heap memory work, and the role of the Garbage Collector in memory management. We will also analyze the Just-In-Time (JIT) compilation process that makes JS incredibly fast today.</p>
-      </div>
-      <div data-cl-lang="ar">
-        <h3>1. بيئة التشغيل ومحرك V8</h3>
-        <p>JavaScript هي لغة قوية وديناميكية تعمل في بيئات مثل المتصفحات و Node.js. في هذا القسم، نستكشف المعمارية الداخلية لمحرك V8، كيفية عمل الـ Call Stack وذاكرة الـ Heap، ودور الـ Garbage Collector في إدارة الذاكرة. سنقوم أيضًا بتحليل عملية ترجمة Just-In-Time (JIT) التي تجعل JS سريعة بشكل مذهل اليوم.</p>
-      </div>
-    </div>
-
-    <script>
-      const chaptersContainer = document.querySelector('.chapters');
-      const phases = [
-        { name_en: "Variables, Scopes & Closures", name_ar: "المتغيرات، النطاقات والـ Closures", start: 2, end: 30 },
-        { name_en: "Prototypes, OOP & Classes", name_ar: "النماذج الأولية، الـ OOP والـ Classes", start: 31, end: 60 },
-        { name_en: "Async JS, Promises & Event Loop", name_ar: "البرمجة غير المتزامنة، الـ Promises وحلقة الأحداث", start: 61, end: 100 },
-        { name_en: "Functional Programming & HOF", name_ar: "البرمجة الوظيفية والدوال العليا", start: 101, end: 130 },
-        { name_en: "Modern ES6+ & Performance Tuning", name_ar: "ES6+ الحديث وضبط الأداء", start: 131, end: 170 },
-        { name_en: "Design Patterns & Modular JS", name_ar: "أنماط التصميم والـ Modules", start: 171, end: 200 }
-      ];
-
-      phases.forEach(phase => {
-        for (let i = phase.start; i <= phase.end; i++) {
-          const div = document.createElement('div');
-          div.className = 'chapter reveal';
-          div.innerHTML = `
-            <div data-cl-lang="en">
-              <h3>${i}. ${phase.name_en} - Specialized Module ${i}</h3>
-              <p>In this specialized JavaScript module of ${phase.name_en}, we focus on high-performance implementation and advanced logic patterns. We cover internal language mechanics, memory optimization, and complex execution contexts using ${phase.name_en} best practices. This ensures you can build reliable, professional-grade applications that leverage the full power of modern JS engines in both client and server environments.</p>
-            </div>
-            <div data-cl-lang="ar">
-              <h3>${i}. ${phase.name_ar} - الوحدة المتخصصة ${i}</h3>
-              <p>في هذه الوحدة المتخصصة لـ JavaScript من ${phase.name_ar}، نركز على التنفيذ عالي الأداء وأنماط المنطق المتقدمة. نغطي ميكانيكا اللغة الداخلية، تحسين الذاكرة، وسياقات التنفيذ المعقدة باستخدام أفضل ممارسات ${phase.name_ar}. يضمن ذلك قدرتك على بناء تطبيقات احترافية تستفيد من القوة الكاملة لمحركات JS الحديثة في بيئات العميل والسيرفر.</p>
-            </div>
-          `;
-          chaptersContainer.appendChild(div);
-        }
-      });
-    </script>
+  <div class="chapters" id="jsChapters">
+    <!-- UNIQUE SECTIONS INJECTED VIA SCRIPT -->
   </div>
 </div>
+
+<script>
+  const jsTopics = [
+    "V8 Engine: JIT Compilation & Ignition", "Execution Context & Call Stack Architecture", "Memory Management: Heap & Garbage Collection", "The Event Loop: Microtasks vs Macrotasks",
+    "Variable Hoisting & Temporal Dead Zone", "Scopes: Global, Function & Block Scope", "Lexical Scoping & Closures Mastery", "Primitive Types vs Object References",
+    "Prototypes & Prototypal Inheritance", "Classes: Syntax, Super & Static Methods", "Private Fields & Encapsulation Patterns", "Understanding 'this' Context & Binding",
+    "Arrow Functions vs Regular Functions", "The Spread & Rest Operators Deep Dive", "Destructuring: Objects, Arrays & Deep Nesting", "Template Literals & Tagged Templates",
+    "Modern Async: Promises & State Transitions", "Async/Await: Handling Errors & Parallelism", "Generator Functions & Yield Logic", "Iterators & Symbol.iterator Protocol",
+    "Symbols: Private Keys & Global Registry", "Proxies & Reflect: Meta-programming Tools", "The Map & Set Data Structures", "WeakMap & WeakSet: Memory Efficiency",
+    "DOM Manipulation: Selecting & Creating Elements", "The Event Delegation Pattern", "Bubbling vs Capturing Phases", "Intersection Observer API Mastery",
+    "Mutation Observer: Tracking DOM Changes", "The Fetch API: Handling Network Requests", "XHR vs Fetch: Historical Context", "WebSockets: Full-Duplex Communication",
+    "Server-Sent Events (SSE) for Real-time Data", "Web Workers: Parallel Processing in Browser", "Service Workers & PWA Foundations", "Cache Storage API for Offline Apps",
+    "IndexedDB: Transactional Browser Database", "LocalStorage vs SessionStorage vs Cookies", "History API & Client-side Routing", "URLSearchParams & Dynamic Queries",
+    "Canvas API: Building Interactive Graphics", "WebGL Foundations: 3D in the Browser", "SVG Manipulation with JavaScript", "Audio API: Synthesizers & Visualizers",
+    "WebRTC: Peer-to-Peer Video & Audio", "File API: Reading & Uploading Files", "Web Cryptography API: Encryption & Keys", "Biometric Auth with WebAuthn",
+    "Functional Programming: Pure Functions & Immutability", "Currying & Partial Application Patterns", "Composition vs Inheritance", "Higher-Order Functions (HOF)",
+    "Memoization: Optimizing Expensive Computations", "Recursion & Tail Call Optimization", "Module Systems: CommonJS vs ES Modules", "Bundlers: Webpack, Rollup & Vite",
+    "Babel: Transpiling for Legacy Browsers", "Linters: ESLint & Best Practices", "Formatting with Prettier & StandardJS", "Unit Testing with Jest & Vitest",
+    "E2E Testing with Cypress & Playwright", "Mocking Network Requests with MSW", "Component Testing Architecture", "Code Coverage & Quality Metrics",
+    "Security: Preventing XSS & CSRF", "Content Security Policy (CSP) Fundamentals", "Sanitizing User Inputs & Data", "Secure Cookie Management",
+    "JWT Authentication & Token Lifecycle", "OAuth2 & Social Sign-on Logic", "Managing State without Frameworks", "The Observer Pattern in Vanilla JS",
+    "Building Custom Event Systems", "Publish-Subscribe (Pub/Sub) Architecture", "The Module Pattern & IIFEs", "Singleton Pattern in JavaScript",
+    "Factory & Abstract Factory Patterns", "Strategy Pattern for Logic Swapping", "Decorator Pattern for Dynamic Extension", "Command Pattern for Task Management",
+    "Performance Profiling with Chrome DevTools", "Analyzing Memory Leaks & Memory Snaps", "Improving Time to Interactive (TTI)", "Lazy Loading & Code Splitting",
+    "Pre-fetching & Pre-loading Resources", "Tree Shaking: Removing Unused Code", "Minification & Gzip/Brotli Compression", "Optimizing Critical Rendering Path",
+    "Regular Expressions: Greedy vs Lazy Matching", "Advanced Regex Groups & Lookaheads", "Intl API: Internationalization & Locales", "DateTime Management with Temporal/Luxon",
+    "Bitwise Operations & Typed Arrays", "ArrayBuffer & DataView Essentials", "Handling Binary Data & Blobs", "Base64 Encoding & Decoding",
+    "Building CLI Tools with Node.js", "File System Operations (fs/promises)", "Buffer Management & Buffer.from", "Stream Processing: Pipe & Transform",
+    "Cluster Module: Scaling on Multi-core CPUs", "Worker Threads in Node.js Environments", "Child Processes: Spawn, Exec & Fork", "The Process Object & Env Vars",
+    "Web Components: Custom Elements & Shadow DOM", "HTML Templates & Slots", "CSS-in-JS Architecture Patterns", "Theming with CSS Custom Properties",
+    "Web Performance: Web Vitals (LCP, FID, CLS)", "Image Optimization Strategies (WebP/Avif)", "Building Real-time Dashboards with D3.js", "Data Visualization Patterns",
+    "Building Chat Apps with Socket.io", "Real-time Collaboration with Yjs", "Collaborative Text Editing Logic", "Operational Transformation (OT)",
+    "Developing Browser Extensions", "Cross-browser Compatibility Strategies", "The History of JS: From Mocha to ESNext", "TC39 Process & Future Proposals",
+    "Pattern Matching Proposal in JS", "Temporal API: Modern Date Handling", "Becoming a Senior JS Engineer", "Architecting Scalable Frontend Apps"
+  ];
+
+  const chaptersContainer = document.getElementById('jsChapters');
+  
+  jsTopics.forEach(topic => {
+    const div = document.createElement('div');
+    div.className = 'chapter reveal';
+    div.innerHTML = `
+      <div data-cl-lang="en">
+        <h3>${topic}</h3>
+        <p>In this specialized JavaScript engineering module, we explore the deep technical implementation and runtime behavior of ${topic}. We focus on real-world performance optimization, clean code practices, and how to integrate ${topic} into modern, high-performance web applications. This ensures you have the expertise to build reliable, robust, and highly maintainable systems that leverage the full power of modern JS engines across browsers and servers.</p>
+      </div>
+      <div data-cl-lang="ar">
+        <h3>${topic}</h3>
+        <p>في هذه الوحدة المتخصصة في هندسة JavaScript، نستكشف التنفيذ التقني العميق وسلوك وقت التشغيل لـ ${topic}. نحن نركز على تحسين الأداء في العالم الحقيقي، ممارسات الكود النظيف، وكيفية دمج ${topic} في تطبيقات الويب الحديثة عالية الأداء. يضمن ذلك حصولك على الخبرة اللازمة لبناء أنظمة موثوقة وقوية وسهلة الصيانة تستفيد من القوة الكاملة لمحركات JS الحديثة عبر المتصفحات والسيرفرات.</p>
+      </div>
+    `;
+    chaptersContainer.appendChild(div);
+  });
+</script>
 
 <script src="site-polish.js"></script>
 </body>

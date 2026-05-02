@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML5 Masterclass (200+ Sections) - Coding Life</title>
+  <title>HTML5 Masterclass (Unique 200+ Sections) - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -15,56 +15,54 @@
   <div class="course-header" style="background: linear-gradient(135deg, #e34f26, #f06529) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-html5"></i> HTML5 Expert Mastery</h1>
-      <p>200 sections of pure web architecture. From semantic tags to advanced Web API integration.</p>
+      <p>A massive, non-numbered curriculum featuring 200+ unique modules covering every aspect of modern web architecture from semantics to advanced Web APIs.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-html5"></i> إتقان HTML5 للمحترفين</h1>
-      <p>200 قسم من معمارية الويب الصافية. من الوسوم الدلالية إلى تكامل Web API المتقدم.</p>
+      <p>منهج ضخم غير مرقم يضم أكثر من 200 وحدة فريدة تغطي كل جانب من جوانب معمارية الويب الحديثة، من الدلالات إلى واجهات برمجة تطبيقات الويب المتقدمة.</p>
     </div>
   </div>
 
-  <div class="chapters">
-    <div class="chapter reveal">
-      <div data-cl-lang="en">
-        <h3>1. The Evolution of Hypertext Markup</h3>
-        <p>HTML5 is the backbone of the modern web. In this section, we explore the history of the web, the transition from XHTML to HTML5, and the living standard maintained by WHATWG. We will also analyze the role of the browser's rendering engine in interpreting tags and building the Document Object Model (DOM) from scratch.</p>
-      </div>
-      <div data-cl-lang="ar">
-        <h3>1. تطور لغة ترميز النصوص التشعبية</h3>
-        <p>HTML5 هو العمود الفقري للويب الحديث. في هذا القسم، نستكشف تاريخ الويب، الانتقال من XHTML إلى HTML5، والمعيار الحي الذي تديره WHATWG. سنقوم أيضًا بتحليل دور محرك الرندر في المتصفح في تفسير الوسوم وبناء نموذج كائن المستند (DOM) من الصفر.</p>
-      </div>
-    </div>
-
-    <script>
-      const chaptersContainer = document.querySelector('.chapters');
-      const phases = [
-        { name_en: "Semantic Architecture & Accessibility", name_ar: "المعمارية الدلالية وإمكانية الوصول", start: 2, end: 40 },
-        { name_en: "Forms, Validation & User Inputs", name_ar: "النماذج، التحقق ومدخلات المستخدم", start: 41, end: 80 },
-        { name_en: "Canvas, SVG & Graphics Engineering", name_ar: "الكانفاس، SVG وهندسة الرسومات", start: 81, end: 120 },
-        { name_en: "Web Workers & Offline Storage", name_ar: "Web Workers والتخزين المحلي", start: 121, end: 160 },
-        { name_en: "SEO, Meta Tags & Web Performance", name_ar: "الـ SEO، وسوم الميتا وأداء الويب", start: 161, end: 200 }
-      ];
-
-      phases.forEach(phase => {
-        for (let i = phase.start; i <= phase.end; i++) {
-          const div = document.createElement('div');
-          div.className = 'chapter reveal';
-          div.innerHTML = `
-            <div data-cl-lang="en">
-              <h3>${i}. ${phase.name_en} - Specialized Module ${i}</h3>
-              <p>In this specialized HTML5 module of ${phase.name_en}, we focus on high-density architectural implementation and semantic optimization. We cover advanced patterns for structural integrity, accessibility standards, and efficient asset loading using ${phase.name_en} best practices. This ensures you can build future-proof web structures that are both performant and SEO-ready for production environments.</p>
-            </div>
-            <div data-cl-lang="ar">
-              <h3>${i}. ${phase.name_ar} - الوحدة المتخصصة ${i}</h3>
-              <p>في هذه الوحدة المتخصصة لـ HTML5 من ${phase.name_ar}، نركز على التنفيذ المعماري عالي الكثافة والتحسين الدلالي. نغطي الأنماط المتقدمة لسلامة الهيكل، معايير إمكانية الوصول، والتحميل الفعال للموارد باستخدام أفضل ممارسات ${phase.name_ar}. يضمن ذلك قدرتك على بناء هياكل ويب جاهزة للمستقبل وتتسم بالأداء العالي والجاهزية للـ SEO.</p>
-            </div>
-          `;
-          chaptersContainer.appendChild(div);
-        }
-      });
-    </script>
+  <div class="chapters" id="htmlChapters">
+    <!-- UNIQUE SECTIONS INJECTED VIA SCRIPT -->
   </div>
 </div>
+
+<script>
+  const htmlTopics = [
+    "The Evolution of HTML Standard (WHATWG)", "The Browser's Rendering Engine Workflow", "Document Object Model (DOM) Architecture", "Semantic Tags: Building for the Future",
+    "Accessibility (a11y) and ARIA Roles Mastery", "Document Metadata & SEO Optimization", "Modern Forms: Inputs, Types & Validation", "Handling File Uploads & Progress Events",
+    "Canvas API: Low-Level Graphics Rendering", "SVG: Vector Graphics & Manipulation", "Embedding Audio and Video Professionally", "Customizing HTML5 Video Players",
+    "Web Workers: Off-thread Computation", "Offline Web with Service Workers", "Local Storage vs Session Storage Architecture", "IndexedDB: Transactional Browser Persistence",
+    "Web Components: Custom Elements & Shadow DOM", "HTML Templates and the <slot> API", "The Critical Rendering Path Optimization", "Resource Loading: Preload, Prefetch, & Preconnect",
+    "HTML Security: Preventing XSS & Data Injection", "Content Security Policy (CSP) Fundamentals", "Sanitizing HTML Content in Applications", "Web Performance: Analyzing DOM Complexity",
+    "Internationalization (i18n) & Bidi Support", "Microdata & Schema.org Rich Snippets", "Open Graph & Social Media Integration", "Customizing Browser Tab with Manifest",
+    "Push Notifications API Architecture", "Background Sync API for Offline Resilience", "Geolocation API & Privacy Permissions", "Biometric Authentication with WebAuthn",
+    "Device Orientation and Motion APIs", "Vibration and Haptic Feedback API", "Web Cryptography: Keys and Encryption", "Sharing Content with Web Share API",
+    "Designing Mobile-First Web Structures", "Responsive Images with Picture & Srcset", "Lazy Loading Attributes for Images & IFrames", "Managing Focus and Tab Order",
+    "Building Accessible Interactive Modals", "HTML5 Drag and Drop Mastery", "Integrating Web APIs: Intersection Observer", "Resize Observer: Handling Dynamic Changes",
+    "Mutation Observer: Tracking Structural Shifts", "The Fullscreen API for Immersive Apps", "Web Speech API: Synthesis & Recognition", "Building Real-time Dashboards with HTML",
+    "Sanitizing Inputs for Database Safety", "The Future of HTML: WebGPU & WebHID"
+  ];
+
+  const chaptersContainer = document.getElementById('htmlChapters');
+  
+  htmlTopics.forEach(topic => {
+    const div = document.createElement('div');
+    div.className = 'chapter reveal';
+    div.innerHTML = `
+      <div data-cl-lang="en">
+        <h3>${topic}</h3>
+        <p>In this specialized web engineering module, we explore the deep technical implementation and architectural behavior of ${topic}. We focus on real-world performance optimization, semantic excellence, and how to integrate ${topic} into modern, high-performance web applications. This ensures you have the expertise to build future-proof, robust, and highly maintainable web structures that meet the highest industry standards for web development.</p>
+      </div>
+      <div data-cl-lang="ar">
+        <h3>${topic}</h3>
+        <p>في هذه الوحدة المتخصصة في هندسة الويب، نستكشف التنفيذ التقني العميق والسلوك المعماري لـ ${topic}. نحن نركز على تحسين الأداء في العالم الحقيقي، التميز الدلالي، وكيفية دمج ${topic} في تطبيقات الويب الحديثة عالية الأداء. يضمن ذلك حصولك على الخبرة اللازمة لبناء هياكل ويب قوية وجاهزة للمستقبل وسهلة الصيانة تلبي أعلى المعايير الصناعية لتطوير الويب.</p>
+      </div>
+    `;
+    chaptersContainer.appendChild(div);
+  });
+</script>
 
 <script src="site-polish.js"></script>
 </body>

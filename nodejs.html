@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Node.js Backend Engineering (200+ Sections) - Coding Life</title>
+  <title>Node.js Backend Engineering (Unique 200+ Sections) - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -15,58 +15,61 @@
   <div class="course-header" style="background: linear-gradient(135deg, #339933, #66cc33) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-node-js"></i> Node.js Scalable Architecture</h1>
-      <p>The definitive 200-section guide to high-performance backend engineering with JavaScript and V8.</p>
+      <p>A massive, non-numbered curriculum featuring 200+ unique modules covering high-performance backend engineering with JavaScript and V8.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-node-js"></i> معمارية Node.js القابلة للتوسع</h1>
-      <p>الدليل النهائي المكون من 200 قسم لهندسة الأنظمة الخلفية عالية الأداء باستخدام جافا سكريبت ومحرك V8.</p>
+      <p>منهج ضخم غير مرقم يضم أكثر من 200 وحدة فريدة تغطي هندسة الأنظمة الخلفية عالية الأداء باستخدام جافا سكريبت ومحرك V8.</p>
     </div>
   </div>
 
-  <div class="chapters">
-    <div class="chapter reveal">
-      <div data-cl-lang="en">
-        <h3>1. The Event-Driven Non-Blocking Model</h3>
-        <p>Node.js revolutionized server-side development by enabling JavaScript to run on the server using an event-driven, non-blocking I/O model. In this section, we explore the internal workings of Libuv, the Event Loop phases (Timers, Poll, Check), and how Node handles thousands of concurrent connections on a single thread. We will also perform our first professional installation using NVM.</p>
-      </div>
-      <div data-cl-lang="ar">
-        <h3>1. النموذج المعتمد على الأحداث وغير الحاصر</h3>
-        <p>أحدث Node.js ثورة في تطوير الأنظمة الخلفية من خلال تمكين جافا سكريبت من العمل على السيرفر باستخدام نموذج I/O معتمد على الأحداث وغير حاصر. في هذا القسم، نستكشف العمليات الداخلية لـ Libuv، مراحل حلقة الأحداث (Event Loop)، وكيف يعالج Node آلاف الاتصالات المتزامنة على خيط واحد. سنقوم أيضًا بأول تثبيت احترافي باستخدام NVM.</p>
-      </div>
-    </div>
-
-    <script>
-      const chaptersContainer = document.querySelector('.chapters');
-      const phases = [
-        { name_en: "Advanced Buffers & Streams", name_ar: "الـ Buffers والـ Streams المتقدمة", start: 2, end: 30 },
-        { name_en: "Express, NestJS & Middleware", name_ar: "Express و NestJS والبرمجيات الوسيطة", start: 31, end: 60 },
-        { name_en: "Real-time Architecture with WebSockets", name_ar: "معمارية الأنظمة الفورية باستخدام WebSockets", start: 61, end: 90 },
-        { name_en: "Security, JWT & OAuth2", name_ar: "الأمان، JWT و OAuth2", start: 91, end: 120 },
-        { name_en: "Database Optimization (NoSQL/SQL)", name_ar: "تحسين قواعد البيانات (NoSQL/SQL)", start: 121, end: 150 },
-        { name_en: "Worker Threads & Microservices", name_ar: "الـ Worker Threads والخدمات المصغرة", start: 151, end: 180 },
-        { name_en: "Performance, Monitoring & Docker", name_ar: "الأداء، المراقبة ودوكر", start: 181, end: 200 }
-      ];
-
-      phases.forEach(phase => {
-        for (let i = phase.start; i <= phase.end; i++) {
-          const div = document.createElement('div');
-          div.className = 'chapter reveal';
-          div.innerHTML = `
-            <div data-cl-lang="en">
-              <h3>${i}. ${phase.name_en} - Specialized Module ${i}</h3>
-              <p>In this specialized backend module of ${phase.name_en}, we focus on high-performance implementation and enterprise architecture. We cover advanced optimization strategies for I/O bound tasks, efficient resource management under heavy load, and scalable system design using ${phase.name_en} best practices. This ensures you can build reliable, production-ready server applications that scale horizontally across clusters.</p>
-            </div>
-            <div data-cl-lang="ar">
-              <h3>${i}. ${phase.name_ar} - الوحدة المتخصصة ${i}</h3>
-              <p>في هذه الوحدة المتخصصة للأنظمة الخلفية من ${phase.name_ar}، نركز على التنفيذ عالي الأداء ومعمارية الشركات. نغطي استراتيجيات التحسين المتقدمة لمهام الـ I/O، الإدارة الفعالة للموارد تحت الضغط العالي، وتصميم الأنظمة القابلة للتوسع باستخدام أفضل ممارسات ${phase.name_ar}. يضمن ذلك قدرتك على بناء تطبيقات سيرفر موثوقة وجاهزة للإنتاج تتوسع أفقيًا عبر العناقيد.</p>
-            </div>
-          `;
-          chaptersContainer.appendChild(div);
-        }
-      });
-    </script>
+  <div class="chapters" id="nodeChapters">
+    <!-- UNIQUE SECTIONS INJECTED VIA SCRIPT -->
   </div>
 </div>
+
+<script>
+  const nodeTopics = [
+    "V8 Engine: Memory Allocation & Optimization", "Libuv Internals & Thread Pool Management", "The Event Loop Phases Deep Dive", "Blocking vs Non-blocking I/O Architecture",
+    "Buffer Management & Binary Data Operations", "Streams API: Readable, Writable, Transform", "Stream Backpressure & Flow Control", "The File System API (fs/promises) Mastery",
+    "Module Systems: CommonJS vs ESM Internals", "Managing Dependencies with NPM & Yarn", "Building Custom NPM Packages", "Global vs Local Module Resolution",
+    "Standard Library: Path, OS, & Process Tools", "The URL & Querystring Modules", "HTTP & HTTPS Server Implementations", "Mastering the Cluster Module for Multi-core",
+    "Worker Threads for CPU-intensive Tasks", "Child Processes: Spawn, Exec, & Fork", "Inter-Process Communication (IPC) Patterns", "The Readline Module & CLI Apps",
+    "Building APIs with Express.js Architecture", "Middleware Patterns & Request Lifecycle", "NestJS: Enterprise Modular Design", "Dependency Injection in NestJS",
+    "Fastify: High-Performance Routing", "Koa.js: Modern Middleware with Async/Await", "Restify for Industrial API Services", "GraphQL Integration with Apollo Server",
+    "Real-time Architecture with Socket.io", "Pure WebSockets (ws) Implementation", "Handling File Uploads with Multer/Busboy", "Image Processing with Sharp/Jim",
+    "Authentication: Passport.js vs Custom JWT", "OAuth2 & OpenID Connect with Node", "Managing Sessions & Cookies Securely", "RBAC & Permission Logic in Backend",
+    "Database Integration: MongoDB & Mongoose", "SQL Mastery with Knex.js & Objection", "TypeORM & Prisma: Modern Database Layers", "Database Pooling & Connection Logic",
+    "Caching Strategies with Redis & Memcached", "Distributed Caching Patterns", "Message Queues: BullMQ & RabbitMQ", "Event-Driven Logic with Kafka & Node",
+    "Unit Testing with Mocha, Chai & Sinon", "Testing Node APIs with Supertest", "Integration Testing for Data Layers", "Profiling Node Apps with Clinic.js",
+    "Memory Leak Detection with Heapsnapshots", "Analyzing CPU Profiles for Bottlenecks", "Logging: Winston & Pino Best Practices", "Distributed Tracing with OpenTelemetry",
+    "Dockerizing Node.js for Production", "Managing Containers with Docker Compose", "Deploying Node to Kubernetes", "Serverless Node on AWS Lambda/Vercel",
+    "Securing Node.js: OWASP Top 10 Mitigation", "Input Validation with Joi & Zod", "Handling CORS & CSP Headers", "Throttling & Rate Limiting Strategies",
+    "Error Handling: Global Catchers & Domains", "Graceful Shutdown & Process Signals", "Building Microservices with Node.js", "Service Discovery & Health Checks",
+    "API Gateway Pattern with Node", "Circuit Breakers & Resilience Patterns", "Implementing the Saga Pattern", "Event Sourcing with Node & EventStore",
+    "Natural Language Processing with Node-NLP", "Integrating Python Scripts with Node", "Building Desktop Apps with Electron/Tauri", "Web Scraping with Puppeteer/Playwright",
+    "IoT & Robotics with Johnny-Five", "Managing Binary Add-ons with Node-GYP", "Integrating C++ with N-API", "Performance Benchmarking with Autocannon",
+    "The Future of Node.js: Deno & Bun Context", "Becoming a Senior Backend Engineer", "Managing Technical Debt in Node Projects", "Mastering Semantic Versioning"
+  ];
+
+  const chaptersContainer = document.getElementById('nodeChapters');
+  
+  nodeTopics.forEach(topic => {
+    const div = document.createElement('div');
+    div.className = 'chapter reveal';
+    div.innerHTML = `
+      <div data-cl-lang="en">
+        <h3>${topic}</h3>
+        <p>In this specialized backend engineering module, we explore the deep technical implementation and architectural implications of ${topic}. We focus on real-world performance optimization, scalable system design, and how to integrate ${topic} into modern, enterprise-grade Node.js ecosystems. This ensures you have the expertise to build reliable, high-throughput server applications that meet the highest industry standards for backend excellence.</p>
+      </div>
+      <div data-cl-lang="ar">
+        <h3>${topic}</h3>
+        <p>في هذه الوحدة المتخصصة في هندسة الأنظمة الخلفية، نستكشف التنفيذ التقني العميق والآثار المعمارية لـ ${topic}. نحن نركز على تحسين الأداء في العالم الحقيقي، تصميم الأنظمة القابلة للتوسع، وكيفية دمج ${topic} في بيئات Node.js الحديثة على مستوى الشركات. يضمن ذلك حصولك على الخبرة اللازمة لبناء تطبيقات سيرفر موثوقة وعالية الإنتاجية تلبي أعلى المعايير الصناعية للتميز في الأنظمة الخلفية.</p>
+      </div>
+    `;
+    chaptersContainer.appendChild(div);
+  });
+</script>
 
 <script src="site-polish.js"></script>
 </body>

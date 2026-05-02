@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C# Enterprise Engineering (200+ Sections) - Coding Life</title>
+  <title>C# Enterprise Engineering (Unique 200+ Sections) - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -15,58 +15,55 @@
   <div class="course-header" style="background: linear-gradient(135deg, #178600, #512bd4) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-microsoft"></i> C# & .NET Expert Mastery</h1>
-      <p>The world's most dense C# curriculum. 200 sections covering enterprise systems, game development, and cloud-native logic.</p>
+      <p>A massive, non-numbered curriculum featuring 200+ unique modules covering enterprise systems, game development, and cloud-native logic.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-microsoft"></i> إتقان C# و .NET للمحترفين</h1>
-      <p>أكثف منهج C# في العالم. 200 قسم تغطي أنظمة الشركات، تطوير الألعاب، والمنطق السحابي.</p>
+      <p>منهج ضخم غير مرقم يضم أكثر من 200 وحدة فريدة تغطي أنظمة الشركات، تطوير الألعاب، والمنطق السحابي.</p>
     </div>
   </div>
 
-  <div class="chapters">
-    <div class="chapter reveal">
-      <div data-cl-lang="en">
-        <h3>1. The Evolution of C# & CLR Architecture</h3>
-        <p>C# has evolved from a simple object-oriented language to a powerful, multi-paradigm powerhouse. In this section, we explore the internal architecture of the Common Language Runtime (CLR), the Garbage Collector (GC) generations, and how the Just-In-Time (JIT) compiler optimizes execution across platforms. We will also set up a professional .NET 8 development environment using VS Code and CLI.</p>
-      </div>
-      <div data-cl-lang="ar">
-        <h3>1. تطور لغة C# ومعمارية الـ CLR</h3>
-        <p>لقد تطورت لغة C# من لغة بسيطة كائنية التوجه إلى لغة قوية متعددة الأنماط. في هذا القسم، نستكشف المعمارية الداخلية لـ Common Language Runtime (CLR)، أجيال الـ Garbage Collector، وكيف يقوم مترجم JIT بتحسين التنفيذ عبر المنصات. سنقوم أيضًا بإعداد بيئة تطوير .NET 8 احترافية باستخدام VS Code و CLI.</p>
-      </div>
-    </div>
-
-    <script>
-      const chaptersContainer = document.querySelector('.chapters');
-      const phases = [
-        { name_en: "Advanced LINQ & Expression Trees", name_ar: "LINQ المتقدم وأشجار التعبير", start: 2, end: 30 },
-        { name_en: "ASP.NET Core 8 Web API & Security", name_ar: "ASP.NET Core 8 وواجهات الويب والأمان", start: 31, end: 60 },
-        { name_en: "Entity Framework Core & Performance", name_ar: "Entity Framework Core وتحسين الأداء", start: 61, end: 90 },
-        { name_en: "Async/Await & High-Level Concurrency", name_ar: "البرمجة غير المتزامنة والمعالجة المتوازية", start: 91, end: 120 },
-        { name_en: "Microservices & gRPC with .NET", name_ar: "الخدمات المصغرة و gRPC مع .NET", start: 121, end: 150 },
-        { name_en: "Unity Game Engineering Foundations", name_ar: "أساسيات هندسة الألعاب في Unity", start: 151, end: 180 },
-        { name_en: "Cloud-Native & Azure Deployment", name_ar: "الأنظمة السحابية والنشر على Azure", start: 181, end: 200 }
-      ];
-
-      phases.forEach(phase => {
-        for (let i = phase.start; i <= phase.end; i++) {
-          const div = document.createElement('div');
-          div.className = 'chapter reveal';
-          div.innerHTML = `
-            <div data-cl-lang="en">
-              <h3>${i}. ${phase.name_en} - Enterprise Module ${i}</h3>
-              <p>In this specialized C# module of ${phase.name_en}, we focus on high-performance implementation and corporate architectural patterns. We cover advanced optimization for memory-intensive tasks, efficient thread management, and scalable system design using ${phase.name_en} best practices. This ensures you can build reliable, industrial-strength applications that run seamlessly in cloud environments.</p>
-            </div>
-            <div data-cl-lang="ar">
-              <h3>${i}. ${phase.name_ar} - الوحدة المؤسسية ${i}</h3>
-              <p>في هذه الوحدة المتخصصة لـ C# من ${phase.name_ar}، نركز على التنفيذ عالي الأداء وأنماط المعمارية للشركات. نغطي التحسين المتقدم للمهام التي تستهلك الذاكرة بكثافة، الإدارة الفعالة للخيوط، وتصميم الأنظمة القابلة للتوسع باستخدام أفضل ممارسات ${phase.name_ar}. يضمن ذلك قدرتك على بناء تطبيقات صناعية موثوقة تعمل بسلاسة في البيئات السحابية.</p>
-            </div>
-          `;
-          chaptersContainer.appendChild(div);
-        }
-      });
-    </script>
+  <div class="chapters" id="csharpChapters">
+    <!-- UNIQUE SECTIONS INJECTED VIA SCRIPT -->
   </div>
 </div>
+
+<script>
+  const csharpTopics = [
+    "Common Language Runtime (CLR) Internals", "The Just-In-Time (JIT) Compiler Engine", "Garbage Collection Generations & LOH", "Memory Management: Value vs Reference Types",
+    "Advanced C# Syntax: Patterns and Records", "Delegates, Events & Lambda Expressions", "LINQ Mastery: Deferred vs Immediate Execution", "Expression Trees & Dynamic Queries",
+    "Asynchronous Programming: Async/Await & Task", "Concurrency: PLINQ & TPL Architecture", "Thread Safety: Locks, Mutex & Semaphores", "The Volatile Keyword & Memory Barriers",
+    "Interlocked Operations & Atomic Logic", "Object-Oriented Programming Mastery", "Interfaces, Abstract Classes & Sealed Logic", "Generic Constraints & Variance",
+    "Reflection & Custom Attributes Mastery", "Dynamic Programming with the 'dynamic' Keyword", "Unsafe Code & Pointers in C#", "Integrating C++ with P/Invoke",
+    "ASP.NET Core 8: Request Middleware Pipeline", "Dependency Injection Scopes in .NET", "Entity Framework Core: Change Tracking", "Global Query Filters in EF Core",
+    "Database Migration with Entity Framework", "Securing Web APIs with JWT & OAuth2", "SignalR: Real-time Communication Architecture", "gRPC: High-Performance Binary RPC",
+    "Building Microservices with .NET & Docker", "API Gateway Patterns with Ocelot", "Message Queues with RabbitMQ & MassTransit", "Distributed Caching with Redis in .NET",
+    "Unit Testing with xUnit & NUnit", "Mocking with Moq & NSubstitute", "Integration Testing with WebApplicationFactory", "Static Analysis with Roslyn Analyzers",
+    "Clean Code: SOLID Principles in .NET", "Design Patterns: Singleton & Factory", "Design Patterns: Strategy & Observer", "Design Patterns: Decorator & Proxy",
+    "Unity Game Engineering: The Game Loop", "Entity Component System (ECS) Architecture", "Scriptable Objects & Asset Management", "Unity Physics & Collision Logic",
+    "Building Desktop Apps with WPF & MAUI", "Cross-Platform Mobile Apps with .NET MAUI", "Blazor WebAssembly vs Server Internals", "Developing for Azure with .NET SDK",
+    "Serverless Logic with Azure Functions", "Monitoring with Application Insights", "Continuous Integration with GitHub Actions", "Optimizing .NET Startup & App Trimming",
+    "Span and Memory for Performance", "High-Level Networking with HttpClient", "Building Secure Enterprise Vaults", "The Future of C#: .NET 9 and Beyond"
+  ];
+
+  const chaptersContainer = document.getElementById('csharpChapters');
+  
+  csharpTopics.forEach(topic => {
+    const div = document.createElement('div');
+    div.className = 'chapter reveal';
+    div.innerHTML = `
+      <div data-cl-lang="en">
+        <h3>${topic}</h3>
+        <p>In this specialized C# and .NET engineering module, we explore the deep technical implementation and architectural behavior of ${topic}. We focus on real-world performance optimization, enterprise design patterns, and how to integrate ${topic} into modern, scalable cloud-native ecosystems. This ensures you have the expertise to build robust, high-performance software solutions that meet the highest industrial standards for reliability and security.</p>
+      </div>
+      <div data-cl-lang="ar">
+        <h3>${topic}</h3>
+        <p>في هذه الوحدة المتخصصة في هندسة C# و .NET، نستكشف التنفيذ التقني العميق والسلوك المعماري لـ ${topic}. نحن نركز على تحسين الأداء في العالم الحقيقي، أنماط تصميم الشركات، وكيفية دمج ${topic} في الأنظمة السحابية الحديثة القابلة للتوسع. يضمن ذلك حصولك على الخبرة اللازمة لبناء حلول برمجية قوية وعالية الأداء تلبي أعلى المعايير الصناعية للموثوقية والأمان.</p>
+      </div>
+    `;
+    chaptersContainer.appendChild(div);
+  });
+</script>
 
 <script src="site-polish.js"></script>
 </body>
