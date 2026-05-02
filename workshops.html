@@ -1,73 +1,222 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workshops - Coding Life</title>
+  <title>Practical Workshops - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .workshop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+    .workshop-card {
+      background: var(--cl-surface);
+      border-radius: 20px;
+      border: 1px solid var(--cl-line);
+      padding: 32px;
+      transition: var(--cl-transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .workshop-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--cl-shadow-lg);
+      border-color: var(--cl-brand);
+    }
+    .workshop-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      align-self: flex-start;
+    }
+    .badge-live { background: #fee2e2; color: #dc2626; }
+    .badge-demand { background: #f0fdf4; color: #16a34a; }
+    .badge-free { background: #eff6ff; color: #2563eb; }
+
+    .workshop-icon {
+      font-size: 2.5rem;
+      color: var(--cl-brand);
+      margin-bottom: 8px;
+    }
+    .workshop-card h3 {
+      font-size: 1.5rem;
+      color: var(--cl-ink);
+      margin: 0;
+    }
+    .workshop-card p {
+      color: var(--cl-muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    .workshop-footer {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid var(--cl-line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .workshop-btn {
+      color: var(--cl-brand);
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+    .request-section {
+      background: var(--cl-surface);
+      border: 2px dashed var(--cl-brand);
+      padding: 60px 40px;
+      border-radius: 24px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+  </style>
 </head>
 <body>
 
 <div class="course-container" style="max-width: 1200px;">
-  <div class="course-header">
+  <div class="course-header" style="background: linear-gradient(135deg, #115e59, #0f766e) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fa-solid fa-laptop-code"></i> Learning Workshops</h1>
-      <p>Explore our community workshops. These are self-paced and community-driven learning resources for everyone.</p>
+      <h1><i class="fa-solid fa-laptop-code"></i> Engineering Workshops</h1>
+      <p>Practical, deep-dive sessions to master advanced concepts and career strategies.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fa-solid fa-laptop-code"></i> ورشات عمل تعليمية</h1>
-      <p>استكشف ورشات عمل المجتمع. موارد تعليمية يقودها المجتمع ومتاحة للجميع.</p>
+      <h1><i class="fa-solid fa-laptop-code"></i> ورشات عمل هندسية</h1>
+      <p>جلسات عملية ومعمقة لإتقان المفاهيم المتقدمة واستراتيجيات المسار المهني.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-solid fa-laptop-code"></i> Ateliers d'Ingénierie</h1>
+      <p>Des sessions pratiques et approfondies pour maîtriser les concepts avancés.</p>
     </div>
   </div>
 
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 32px; margin-bottom: 60px;">
+  <div class="workshop-grid">
     
     <!-- Git -->
-    <div class="card reveal">
+    <div class="workshop-card reveal">
+      <div class="workshop-badge badge-live">Live Soon</div>
+      <i class="fab fa-github workshop-icon"></i>
       <div data-cl-lang="en">
-        <div style="padding: 4px 12px; background: #fee2e2; color: #dc2626; border-radius: 4px; font-size: 0.8rem; font-weight: 800; display: inline-block; margin-bottom: 16px;">LIVE SOON</div>
-        <h3>Mastering Git & GitHub</h3>
-        <p>Learn to collaborate like a pro. Branching strategies, pull requests, and resolving merge conflicts.</p>
+        <h3>Mastering Git Workflow</h3>
+        <p>Learn branching strategies (GitFlow), advanced merging, and professional pull request management.</p>
       </div>
       <div data-cl-lang="ar">
-        <div style="padding: 4px 12px; background: #fee2e2; color: #dc2626; border-radius: 4px; font-size: 0.8rem; font-weight: 800; display: inline-block; margin-bottom: 16px;">قريباً مباشر</div>
-        <h3>احتراف Git و GitHub</h3>
-        <p>تعلم التعاون كالمحترفين. استراتيجيات الفروع، طلبات السحب، وحل نزاعات الدمج.</p>
+        <h3>احتراف مسار عمل Git</h3>
+        <p>تعلم استراتيجيات الفروع، الدمج المتقدم، وإدارة طلبات السحب الاحترافية.</p>
+      </div>
+      <div data-cl-lang="fr">
+        <h3>Maîtrise du Workflow Git</h3>
+        <p>Apprenez les stratégies de branching, le merge avancé et la gestion des Pull Requests.</p>
+      </div>
+      <div class="workshop-footer">
+        <span style="color: var(--cl-muted); font-size: 0.85rem;"><i class="far fa-clock"></i> 4 Hours</span>
+        <a href="#" class="workshop-btn">Notify Me <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
 
     <!-- UI/UX -->
-    <div class="card reveal">
+    <div class="workshop-card reveal">
+      <div class="workshop-badge badge-demand">On Demand</div>
+      <i class="fas fa-wand-magic-sparkles workshop-icon"></i>
       <div data-cl-lang="en">
-        <div style="padding: 4px 12px; background: #f0fdf4; color: #16a34a; border-radius: 4px; font-size: 0.8rem; font-weight: 800; display: inline-block; margin-bottom: 16px;">ON DEMAND</div>
-        <h3>UI/UX for Developers</h3>
-        <p>Learn the fundamentals of typography, color theory, and user-centric design principles.</p>
+        <h3>UI/UX for Engineers</h3>
+        <p>Design principles for developers: visual hierarchy, typography, and building user-centric interfaces.</p>
       </div>
       <div data-cl-lang="ar">
-        <div style="padding: 4px 12px; background: #f0fdf4; color: #16a34a; border-radius: 4px; font-size: 0.8rem; font-weight: 800; display: inline-block; margin-bottom: 16px;">عند الطلب</div>
-        <h3>واجهة وتجربة المستخدم للمطورين</h3>
-        <p>تعلم أساسيات الخطوط، نظرية الألوان، ومبادئ التصميم التي تركز على المستخدم.</p>
+        <h3>UI/UX للمهندسين</h3>
+        <p>مبادئ التصميم للمطورين: التسلسل الهرمي البصري، الخطوط، وبناء واجهات تركز على المستخدم.</p>
+      </div>
+      <div data-cl-lang="fr">
+        <h3>UI/UX pour Ingénieurs</h3>
+        <p>Principes de design : hiérarchie visuelle, typographie et interfaces centrées utilisateur.</p>
+      </div>
+      <div class="workshop-footer">
+        <span style="color: var(--cl-muted); font-size: 0.85rem;"><i class="far fa-clock"></i> 6 Hours</span>
+        <a href="#" class="workshop-btn">Watch Now <i class="fas fa-play-circle"></i></a>
       </div>
     </div>
 
-    <!-- Freelancing -->
-    <div class="card reveal">
+    <!-- Cloud -->
+    <div class="workshop-card reveal">
+      <div class="workshop-badge badge-free">Free Session</div>
+      <i class="fas fa-cloud workshop-icon"></i>
       <div data-cl-lang="en">
-        <div style="padding: 4px 12px; background: #eff6ff; color: #2563eb; border-radius: 4px; font-size: 0.8rem; font-weight: 800; display: inline-block; margin-bottom: 16px;">FREE SESSION</div>
-        <h3>Freelancing Secrets</h3>
-        <p>How to find your first client on Upwork and LinkedIn. Professional communication tips.</p>
+        <h3>Cloud Foundations</h3>
+        <p>Introduction to AWS and Azure: Deploying your first scalable application to the cloud.</p>
       </div>
       <div data-cl-lang="ar">
-        <div style="padding: 4px 12px; background: #eff6ff; color: #2563eb; border-radius: 4px; font-size: 0.8rem; font-weight: 800; display: inline-block; margin-bottom: 16px;">جلسة مجانية</div>
-        <h3>أسرار العمل الحر (Freelancing)</h3>
-        <p>كيف تجد أول عميل لك على Upwork و LinkedIn. نصائح التواصل الاحترافي.</p>
+        <h3>أساسيات الحوسبة السحابية</h3>
+        <p>مقدمة في AWS و Azure: نشر أول تطبيق قابل للتوسع على السحابة.</p>
+      </div>
+      <div data-cl-lang="fr">
+        <h3>Bases du Cloud</h3>
+        <p>Introduction à AWS et Azure : Déployez votre première application scalable sur le cloud.</p>
+      </div>
+      <div class="workshop-footer">
+        <span style="color: var(--cl-muted); font-size: 0.85rem;"><i class="far fa-clock"></i> 2 Hours</span>
+        <a href="#" class="workshop-btn">Register <i class="fas fa-user-plus"></i></a>
+      </div>
+    </div>
+
+    <!-- AI -->
+    <div class="workshop-card reveal">
+      <div class="workshop-badge badge-live">Next Week</div>
+      <i class="fas fa-robot workshop-icon"></i>
+      <div data-cl-lang="en">
+        <h3>AI-Powered Development</h3>
+        <p>Learn how to use LLMs and AI tools to 10x your coding productivity and solve complex problems.</p>
+      </div>
+      <div data-cl-lang="ar">
+        <h3>التطوير المدعوم بالذكاء الاصطناعي</h3>
+        <p>تعلم كيف تستخدم أدوات الذكاء الاصطناعي لمضاعفة إنتاجيتك في البرمجة وحل المشكلات المعقدة.</p>
+      </div>
+      <div data-cl-lang="fr">
+        <h3>Développement avec l'IA</h3>
+        <p>Apprenez à utiliser les outils d'IA pour décupler votre productivité et résoudre des problèmes.</p>
+      </div>
+      <div class="workshop-footer">
+        <span style="color: var(--cl-muted); font-size: 0.85rem;"><i class="far fa-clock"></i> 3 Hours</span>
+        <a href="#" class="workshop-btn">Join Live <i class="fas fa-broadcast-tower"></i></a>
       </div>
     </div>
 
   </div>
+
+  <div class="request-section reveal">
+    <div data-cl-lang="en">
+      <h2>Have a specific topic in mind?</h2>
+      <p style="color: var(--cl-muted); margin-bottom: 24px;">Suggest a workshop topic and I'll consider building a session around it.</p>
+      <a href="contact.html" class="btn-glow btn-main" style="text-decoration: none; padding: 12px 30px;">Request a Topic</a>
+    </div>
+    <div data-cl-lang="ar">
+      <h2>هل لديك موضوع محدد في ذهنك؟</h2>
+      <p style="color: var(--cl-muted); margin-bottom: 24px;">اقترح موضوعاً لورشة عمل وسأقوم ببناء جلسة حوله.</p>
+      <a href="contact.html" class="btn-glow btn-main" style="text-decoration: none; padding: 12px 30px;">اقترح موضوعاً</a>
+    </div>
+    <div data-cl-lang="fr">
+      <h2>Un sujet spécifique en tête ?</h2>
+      <p style="color: var(--cl-muted); margin-bottom: 24px;">Suggérez un sujet d'atelier et je créerai une session dédiée.</p>
+      <a href="contact.html" class="btn-glow btn-main" style="text-decoration: none; padding: 12px 30px;">Suggérer un sujet</a>
+    </div>
+  </div>
+
 </div>
 
 <script src="site-polish.js"></script>
