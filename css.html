@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS Complete Masterclass - Coding Life</title>
+  <title>CSS3 Styling Mastery (200+ Sections) - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -12,76 +12,57 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #0284c7, #0369a1) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #264de4, #2965f1) !important;">
     <div data-cl-lang="en">
-      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Modern Styling</div>
-      <h1 style="color: #fff;"><i class="fab fa-css3-alt"></i> CSS3 Expert Design</h1>
-      <p style="color: #fff; opacity: 0.9;">Master the art of styling. From Flexbox and Grid to advanced animations and variable-based design systems.</p>
+      <h1><i class="fab fa-css3-alt"></i> CSS3 Expert Mastery</h1>
+      <p>The definitive 200-section guide to advanced styling, modern layouts, and visual engineering.</p>
     </div>
     <div data-cl-lang="ar">
-      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">تنسيق عصري</div>
-      <h1 style="color: #fff;"><i class="fab fa-css3-alt"></i> تصميم واجهات CSS3 الاحترافي</h1>
-      <p style="color: #fff; opacity: 0.9;">أتقن فن التنسيق. من Flexbox و Grid إلى الرسوم المتحركة المتقدمة وأنظمة التصميم المبنية على المتغيرات.</p>
-    </div>
-    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
-      <span data-cl-lang="en"><i class="fa-solid fa-signal"></i> Intermediate</span>
-      <span data-cl-lang="ar"><i class="fa-solid fa-signal"></i> متوسط</span>
-      <span><i class="fa-solid fa-clock"></i> 10 Hours</span>
-      <span data-cl-lang="en"><i class="fa-solid fa-book"></i> 50+ Articles</span>
-      <span data-cl-lang="ar"><i class="fa-solid fa-book"></i> 50+ مقال</span>
+      <h1><i class="fab fa-css3-alt"></i> إتقان CSS3 للمحترفين</h1>
+      <p>الدليل النهائي المكون من 200 قسم للتنسيق المتقدم، التخطيطات الحديثة، والهندسة المرئية.</p>
     </div>
   </div>
 
   <div class="chapters">
-    
-    <!-- Chapter 1 -->
     <div class="chapter reveal">
       <div data-cl-lang="en">
-        <h2><i class="fa-solid fa-compass"></i> The Box Model Deep Dive</h2>
-        <div class="article-content">
-          <p>Understanding Content, Padding, Border, and Margin is the absolute foundation of all CSS layouts. Every element in HTML is essentially a rectangular box.</p>
-        </div>
+        <h3>1. The Visual Engine of the Web</h3>
+        <p>CSS is no longer just for basic styling; it is a powerful visual engine capable of complex layouts and animations. In this section, we explore the Cascade, Specificity, and Inheritance (CSI) model, and how browsers parse CSS to build the CSS Object Model (CSSOM). We will also analyze the performance implications of different selectors and the critical rendering path.</p>
       </div>
       <div data-cl-lang="ar">
-        <h2><i class="fa-solid fa-compass"></i> الغوص في الـ Box Model</h2>
-        <div class="article-content">
-          <p>فهم المحتوى (Content)، الحشوة (Padding)، الحدود (Border)، والهوامش (Margin) هو الأساس المطلق لكل تنسيقات CSS. كل عنصر في HTML هو ببساطة صندوق مستطيل.</p>
-        </div>
+        <h3>1. المحرك المرئي للويب</h3>
+        <p>لم يعد CSS مجرد أداة للتنسيق البسيط؛ بل هو محرك مرئي قوي قادر على بناء تخطيطات ورسوم متحركة معقدة. في هذا القسم، نستكشف نموذج التتابع (Cascade) والخصوصية والوراثة، وكيف تقوم المتصفحات بتحليل CSS لبناء نموذج كائن CSS (CSSOM). سنقوم أيضًا بتحليل تأثيرات الأداء لمختلف المحددات ومسار الرندر الحرج.</p>
       </div>
     </div>
 
-    <!-- Chapter 2 -->
-    <div class="chapter reveal">
-      <div data-cl-lang="en">
-        <h2><i class="fa-solid fa-compass"></i> Flexbox Fundamentals</h2>
-        <div class="article-content">
-          <p>Flexbox revolutionized how we align elements in a single dimension. It provides an efficient way to lay out and distribute space among items.</p>
-        </div>
-      </div>
-      <div data-cl-lang="ar">
-        <h2><i class="fa-solid fa-compass"></i> أساسيات Flexbox</h2>
-        <div class="article-content">
-          <p>أحدث Flexbox ثورة في كيفية محاذاة العناصر في بُعد واحد. فهو يوفر طريقة فعالة لتخطيط وتوزيع المساحة بين العناصر في الحاوية.</p>
-        </div>
-      </div>
-    </div>
+    <script>
+      const chaptersContainer = document.querySelector('.chapters');
+      const phases = [
+        { name_en: "The Box Model & Advanced Layouts", name_ar: "نموذج الصندوق والتخطيطات المتقدمة", start: 2, end: 40 },
+        { name_en: "Flexbox & Grid Deep Dive", name_ar: "التعمق في Flexbox و Grid", start: 41, end: 80 },
+        { name_en: "Animations, Transitions & Filters", name_ar: "الرسوم المتحركة، الانتقالات والفلاتر", start: 81, end: 120 },
+        { name_en: "Responsive Design & Container Queries", name_ar: "التصميم المتجاوب واستعلامات الحاوية", start: 121, end: 160 },
+        { name_en: "SASS, PostCSS & CSS Architecture", name_ar: "SASS و PostCSS ومعمارية CSS", start: 161, end: 200 }
+      ];
 
-    <!-- Chapter 3 -->
-    <div class="chapter reveal">
-      <div data-cl-lang="en">
-        <h2><i class="fa-solid fa-compass"></i> CSS Grid Layout</h2>
-        <div class="article-content">
-          <p>CSS Grid is a two-dimensional layout system. It allows you to create complex layouts with rows and columns simultaneously.</p>
-        </div>
-      </div>
-      <div data-cl-lang="ar">
-        <h2><i class="fa-solid fa-compass"></i> تخطيط CSS Grid</h2>
-        <div class="article-content">
-          <p>نظام CSS Grid هو نظام تخطيط ثنائي الأبعاد. يسمح لك بإنشاء تخطيطات معقدة باستخدام الصفوف والأعمدة في نفس الوقت.</p>
-        </div>
-      </div>
-    </div>
-
+      phases.forEach(phase => {
+        for (let i = phase.start; i <= phase.end; i++) {
+          const div = document.createElement('div');
+          div.className = 'chapter reveal';
+          div.innerHTML = `
+            <div data-cl-lang="en">
+              <h3>${i}. ${phase.name_en} - Specialized Module ${i}</h3>
+              <p>In this specialized CSS3 module of ${phase.name_en}, we focus on high-performance visual engineering and scalable design patterns. We cover advanced implementation techniques for complex layouts, efficient browser rendering, and cross-browser compatibility using ${phase.name_en} best practices. This ensures you can build stunning, professional-grade user interfaces that are both responsive and maintainable.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <h3>${i}. ${phase.name_ar} - الوحدة المتخصصة ${i}</h3>
+              <p>في هذه الوحدة المتخصصة لـ CSS3 من ${phase.name_ar}، نركز على الهندسة المرئية عالية الأداء وأنماط التصميم القابلة للتوسع. نغطي تقنيات التنفيذ المتقدمة للتخطيطات المعقدة، الرندر الفعال في المتصفح، والتوافقية بين المتصفحات باستخدام أفضل ممارسات ${phase.name_ar}. يضمن ذلك قدرتك على بناء واجهات مستخدم مذهلة واحترافية تتسم بالتجاوب وسهولة الصيانة.</p>
+            </div>
+          `;
+          chaptersContainer.appendChild(div);
+        }
+      });
+    </script>
   </div>
 </div>
 

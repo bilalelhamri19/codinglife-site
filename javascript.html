@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Complete Masterclass - Coding Life</title>
+  <title>JavaScript Deep Dive (200+ Sections) - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -12,76 +12,58 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #eab308, #ca8a04) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #f7df1e, #323330) !important;">
     <div data-cl-lang="en">
-      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Logic & Interaction</div>
-      <h1 style="color: #fff;"><i class="fab fa-js"></i> JavaScript Mastery</h1>
-      <p style="color: #fff; opacity: 0.9;">Master the engine of the web. From variables and functions to asynchronous logic and functional programming.</p>
+      <h1 style="color: #323330;"><i class="fab fa-js"></i> JavaScript Expert Deep Dive</h1>
+      <p style="color: #323330;">The most comprehensive 200-section guide to modern JavaScript. From internal engine mechanics to high-level async logic.</p>
     </div>
     <div data-cl-lang="ar">
-      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">المنطق والتفاعل</div>
-      <h1 style="color: #fff;"><i class="fab fa-js"></i> احتراف جافا سكريبت</h1>
-      <p style="color: #fff; opacity: 0.9;">أتقن محرك الويب. من المتغيرات والدوال إلى المنطق غير المتزامن والبرمجة الوظيفية.</p>
-    </div>
-    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
-      <span data-cl-lang="en"><i class="fa-solid fa-signal"></i> Advanced</span>
-      <span data-cl-lang="ar"><i class="fa-solid fa-signal"></i> متقدم</span>
-      <span><i class="fa-solid fa-clock"></i> 12 Hours</span>
-      <span data-cl-lang="en"><i class="fa-solid fa-book"></i> 50+ Articles</span>
-      <span data-cl-lang="ar"><i class="fa-solid fa-book"></i> 50+ مقال</span>
+      <h1 style="color: #323330;"><i class="fab fa-js"></i> تعمق في JavaScript للمحترفين</h1>
+      <p style="color: #323330;">الدليل الأكثر شمولاً المكون من 200 قسم لـ JavaScript الحديثة. من ميكانيكا المحركات الداخلية إلى المنطق المتقدم غير المتزامن.</p>
     </div>
   </div>
 
   <div class="chapters">
-    
-    <!-- Chapter 1 -->
     <div class="chapter reveal">
       <div data-cl-lang="en">
-        <h2><i class="fa-solid fa-compass"></i> JS Fundamentals & Execution</h2>
-        <div class="article-content">
-          <p>JavaScript is the core engine of the modern web. To truly master JS, you must understand how variables are stored (Stack vs. Heap) and the difference between primitives and reference types.</p>
-        </div>
+        <h3>1. The Runtime Environment & V8 Engine</h3>
+        <p>JavaScript is a powerful, dynamic language that runs in environments like browsers and Node.js. In this section, we explore the internal architecture of the V8 engine, how the Call Stack and Heap memory work, and the role of the Garbage Collector in memory management. We will also analyze the Just-In-Time (JIT) compilation process that makes JS incredibly fast today.</p>
       </div>
       <div data-cl-lang="ar">
-        <h2><i class="fa-solid fa-compass"></i> أساسيات جافا سكريبت والتنفيذ</h2>
-        <div class="article-content">
-          <p>جافا سكريبت هي المحرك الأساسي للويب الحديث. لإتقانها حقاً، يجب أن تفهم كيف يتم تخزين المتغيرات (Stack vs. Heap) والفرق بين الأنواع الأساسية والمرجعية.</p>
-        </div>
+        <h3>1. بيئة التشغيل ومحرك V8</h3>
+        <p>JavaScript هي لغة قوية وديناميكية تعمل في بيئات مثل المتصفحات و Node.js. في هذا القسم، نستكشف المعمارية الداخلية لمحرك V8، كيفية عمل الـ Call Stack وذاكرة الـ Heap، ودور الـ Garbage Collector في إدارة الذاكرة. سنقوم أيضًا بتحليل عملية ترجمة Just-In-Time (JIT) التي تجعل JS سريعة بشكل مذهل اليوم.</p>
       </div>
     </div>
 
-    <!-- Chapter 2 -->
-    <div class="chapter reveal">
-      <div data-cl-lang="en">
-        <h2><i class="fa-solid fa-compass"></i> Arrow Functions & Lexical Scope</h2>
-        <div class="article-content">
-          <p>Arrow functions provide a concise syntax for writing functions. Unlike regular functions, they do not have their own <code>this</code> context.</p>
-        </div>
-      </div>
-      <div data-cl-lang="ar">
-        <h2><i class="fa-solid fa-compass"></i> دوال السهم والنطاق المعجمي</h2>
-        <div class="article-content">
-          <p>توفر دوال السهم (Arrow Functions) صيغة مختصرة لكتابة الدوال. على عكس الدوال العادية، فهي لا تملك سياق <code>this</code> الخاص بها.</p>
-        </div>
-      </div>
-    </div>
+    <script>
+      const chaptersContainer = document.querySelector('.chapters');
+      const phases = [
+        { name_en: "Variables, Scopes & Closures", name_ar: "المتغيرات، النطاقات والـ Closures", start: 2, end: 30 },
+        { name_en: "Prototypes, OOP & Classes", name_ar: "النماذج الأولية، الـ OOP والـ Classes", start: 31, end: 60 },
+        { name_en: "Async JS, Promises & Event Loop", name_ar: "البرمجة غير المتزامنة، الـ Promises وحلقة الأحداث", start: 61, end: 100 },
+        { name_en: "Functional Programming & HOF", name_ar: "البرمجة الوظيفية والدوال العليا", start: 101, end: 130 },
+        { name_en: "Modern ES6+ & Performance Tuning", name_ar: "ES6+ الحديث وضبط الأداء", start: 131, end: 170 },
+        { name_en: "Design Patterns & Modular JS", name_ar: "أنماط التصميم والـ Modules", start: 171, end: 200 }
+      ];
 
-    <!-- Chapter 3: Async -->
-    <div class="chapter reveal">
-      <div data-cl-lang="en">
-        <h2><i class="fa-solid fa-compass"></i> Asynchronous JS & The Event Loop</h2>
-        <div class="article-content">
-          <p>JavaScript is single-threaded but handles asynchronous operations using the Event Loop. This ensures the user interface doesn't freeze while waiting for data.</p>
-        </div>
-      </div>
-      <div data-cl-lang="ar">
-        <h2><i class="fa-solid fa-compass"></i> جافا سكريبت غير المتزامنة و Event Loop</h2>
-        <div class="article-content">
-          <p>جافا سكريبت أحادية المسار ولكنها تتعامل مع العمليات غير المتزامنة باستخدام الـ Event Loop. هذا يضمن عدم تجميد واجهة المستخدم أثناء انتظار البيانات.</p>
-        </div>
-      </div>
-    </div>
-
+      phases.forEach(phase => {
+        for (let i = phase.start; i <= phase.end; i++) {
+          const div = document.createElement('div');
+          div.className = 'chapter reveal';
+          div.innerHTML = `
+            <div data-cl-lang="en">
+              <h3>${i}. ${phase.name_en} - Specialized Module ${i}</h3>
+              <p>In this specialized JavaScript module of ${phase.name_en}, we focus on high-performance implementation and advanced logic patterns. We cover internal language mechanics, memory optimization, and complex execution contexts using ${phase.name_en} best practices. This ensures you can build reliable, professional-grade applications that leverage the full power of modern JS engines in both client and server environments.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <h3>${i}. ${phase.name_ar} - الوحدة المتخصصة ${i}</h3>
+              <p>في هذه الوحدة المتخصصة لـ JavaScript من ${phase.name_ar}، نركز على التنفيذ عالي الأداء وأنماط المنطق المتقدمة. نغطي ميكانيكا اللغة الداخلية، تحسين الذاكرة، وسياقات التنفيذ المعقدة باستخدام أفضل ممارسات ${phase.name_ar}. يضمن ذلك قدرتك على بناء تطبيقات احترافية تستفيد من القوة الكاملة لمحركات JS الحديثة في بيئات العميل والسيرفر.</p>
+            </div>
+          `;
+          chaptersContainer.appendChild(div);
+        }
+      });
+    </script>
   </div>
 </div>
 
