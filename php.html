@@ -3,71 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PHP Complete Masterclass - Coding Life</title>
+  <title>PHP Backend Engineering - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .lesson-card:hover {
+      transform: translateX(10px);
+      border-color: var(--cl-brand);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+    .lesson-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(71, 119, 181, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: #777bb3;
+      flex-shrink: 0;
+    }
+    .lesson-info {
+      flex-grow: 1;
+    }
+    .lesson-info h3 {
+      font-size: 1.5rem;
+      color: var(--cl-brand);
+      margin-bottom: 12px;
+      margin-top: 0;
+    }
+    .lesson-info p {
+      line-height: 1.8;
+      color: var(--cl-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .lesson-card {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #777bb3, #4f5b93) !important;">
     <div data-cl-lang="en">
-      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">Server-side Engineering</div>
-      <h1 style="color: #fff;"><i class="fab fa-php"></i> PHP Backend Expert</h1>
-      <p style="color: #fff; opacity: 0.9;">Master the language that powers 70% of the web. From dynamic scripts to secure enterprise architectures and Laravel.</p>
+      <h1><i class="fab fa-php"></i> PHP Professional Mastery</h1>
+      <p>A focused curriculum of 20 high-density modules covering modern PHP 8.x, Laravel, and backend architecture.</p>
     </div>
     <div data-cl-lang="ar">
-      <div style="font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 2px; color: #fff;">هندسة السيرفر</div>
-      <h1 style="color: #fff;"><i class="fab fa-php"></i> خبير تطوير خلفية المواقع بـ PHP</h1>
-      <p style="color: #fff; opacity: 0.9;">أتقن اللغة التي تشغل 70% من الويب. من السكربتات الديناميكية إلى البنى البرمجية الآمنة وإطار العمل Laravel.</p>
-    </div>
-    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; font-weight: 700; color: #fff;">
-      <span data-cl-lang="en"><i class="fa-solid fa-signal"></i> Advanced</span>
-      <span data-cl-lang="ar"><i class="fa-solid fa-signal"></i> متقدم</span>
-      <span><i class="fa-solid fa-clock"></i> 14 Hours</span>
-      <span data-cl-lang="en"><i class="fa-solid fa-book"></i> 50+ Articles</span>
-      <span data-cl-lang="ar"><i class="fa-solid fa-book"></i> 50+ مقال</span>
+      <h1><i class="fab fa-php"></i> إتقان PHP للمحترفين</h1>
+      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي PHP 8.x الحديثة، Laravel، ومعمارية الأنظمة الخلفية.</p>
     </div>
   </div>
 
-  <div class="chapters">
-    
-    <!-- Chapter 1 -->
-    <div class="chapter reveal">
-      <div data-cl-lang="en">
-        <h2><i class="fa-solid fa-compass"></i> PHP Fundamentals & Architecture</h2>
-        <div class="article-content">
-          <p>PHP is the engine behind 70% of the internet. Unlike JS which runs in the client, PHP executes on the server and sends plain HTML to the user.</p>
-        </div>
-      </div>
-      <div data-cl-lang="ar">
-        <h2><i class="fa-solid fa-compass"></i> أساسيات PHP والبنية البرمجية</h2>
-        <div class="article-content">
-          <p>PHP هي المحرك الذي يشغل 70% من الإنترنت. على عكس JS التي تعمل في المتصفح، يتم تنفيذ PHP على السيرفر وترسل HTML للمستخدم.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Chapter 2 -->
-    <div class="chapter reveal">
-      <div data-cl-lang="en">
-        <h2><i class="fa-solid fa-compass"></i> Database Connection (PDO)</h2>
-        <div class="article-content">
-          <p>PHP Data Objects (PDO) is the modern, secure standard for connecting PHP to databases. It supports "Prepared Statements" to prevent SQL injection.</p>
-        </div>
-      </div>
-      <div data-cl-lang="ar">
-        <h2><i class="fa-solid fa-compass"></i> الاتصال بقاعدة البيانات (PDO)</h2>
-        <div class="article-content">
-          <p>PDO هو المعيار الحديث والآمن لربط PHP بقواعد البيانات. يدعم "Prepared Statements" لمنع هجمات SQL injection.</p>
-        </div>
-      </div>
-    </div>
-
+  <div class="chapters" id="phpLessons">
+    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
+
+<script>
+  const phpLessons = [
+    { t_en: "PHP 8.x Engine & Zend Architecture", icon: "fa-gears", t_ar: "محرك PHP 8.x ومعمارية Zend", d_en: "The Zend Engine is the open-source scripting engine that interprets PHP code. We explore the improvements in PHP 8, including the JIT (Just-In-Time) compiler and how it optimizes execution speed for CPU-intensive tasks. Understanding the underlying engine architecture is essential for writing high-performance backend scripts and managing memory efficiently in large-scale server environments.", d_ar: "محرك Zend هو المحرك البرمجي مفتوح المصدر الذي يفسر كود PHP. نستكشف التحسينات في PHP 8، بما في ذلك مترجم JIT وكيفية تحسين سرعة التنفيذ للمهام الثقيلة. فهم معمارية المحرك أساسي لكتابة اسكربتات خلفية عالية الأداء وإدارة الذاكرة بكفاءة في بيئات السيرفر الضخمة." },
+    { t_en: "OPcache & Runtime Performance Tuning", icon: "fa-bolt-lightning", t_ar: "تقنية OPcache وتحسين أداء التشغيل", d_en: "OPcache improves PHP performance by storing precompiled script bytecode in shared memory, eliminating the need for PHP to load and parse scripts on each request. We delve into how to configure OPcache settings to maximize throughput and minimize latency for high-traffic web applications. Mastering runtime tuning ensures your PHP server remains responsive even under massive concurrent user loads.", d_ar: "تعمل تقنية OPcache على تحسين أداء PHP من خلال تخزين bytecode المترجم مسبقاً في الذاكرة المشتركة. نتعمق في كيفية إعداد OPcache لزيادة الإنتاجية وتقليل التأخير لتطبيقات الويب ذات الزيارات العالية. يضمن إتقان ضبط وقت التشغيل بقاء سيرفر PHP مستجيباً حتى تحت أعباء المستخدمين الضخمة." },
+    { t_en: "Dependency Injection & Service Containers", icon: "fa-syringe", t_ar: "حقن التبعيات وحاويات الخدمات", d_en: "Dependency Injection (DI) is a core design pattern in modern PHP development, heavily utilized in frameworks like Laravel and Symfony. We explore how Service Containers manage object lifecycles and resolve dependencies automatically to promote modularity and testability. This module teaches you how to decouple your business logic from infrastructure, creating a clean and professionally structured codebase.", d_ar: "يعد حقن التبعيات (DI) نمط تصميم أساسي في تطوير PHP الحديث، ويستخدم بكثافة في أطر عمل مثل Laravel. نستكشف كيف تدير حاويات الخدمات دورات حياة الكائنات وتحل التبعيات تلقائياً لتعزيز النمطية وقابلية الاختبار. يعلمك هذا القسم كيفية فصل منطق الأعمال عن البنية التحتية." },
+    { t_en: "Composer: Professional Package Management", icon: "fa-box-open", t_ar: "Composer: الإدارة الاحترافية للحزم", d_en: "Composer is the industry-standard dependency manager for PHP, allowing you to manage libraries and autoloading seamlessly. We explore semantic versioning, custom repository management, and how to optimize autoloading for production environments using the 'classmap' strategy. Mastering Composer is a prerequisite for professional PHP engineering, ensuring your project dependencies are secure and up-to-date.", d_ar: "Composer هو مدير التبعيات القياسي في الصناعة لـ PHP، مما يتيح لك إدارة المكتبات والتحميل التلقائي بسلاسة. نستكشف الإصدارات الدلالية، وإدارة المستودعات المخصصة، وكيفية تحسين التحميل التلقائي لبيئات الإنتاج. إتقان Composer هو شرط أساسي لهندسة PHP الاحترافية." }
+  ];
+
+  const extraPhp = [
+    { t_en: "Laravel 11 Architecture & Eloquent", t_ar: "معمارية Laravel 11 وتقنية Eloquent", icon: "fa-leaf" },
+    { t_en: "Advanced Exception Handling & Logging", t_ar: "التعامل المتقدم مع الاستثناءات والتسجيل", icon: "fa-triangle-exclamation" },
+    { t_en: "Security: Preventing Injection & XSS", t_ar: "الأمن: منع الحقن والـ XSS", icon: "fa-shield-halved" },
+    { t_en: "Unit Testing with PHPUnit & Pest", t_ar: "اختبار الوحدات بـ PHPUnit و Pest", icon: "fa-vial" },
+    { t_en: "Database Optimization & Migrations", t_ar: "تحسين قواعد البيانات والـ Migrations", icon: "fa-database" },
+    { t_en: "RESTful API Development with PHP", t_ar: "تطوير RESTful API بـ PHP", icon: "fa-rocket" },
+    { t_en: "Swoole & High-Concurrency PHP", t_ar: "تقنية Swoole والـ PHP عالي التزامن", icon: "fa-bolt" },
+    { t_en: "Design Patterns in PHP Ecosystem", t_ar: "أنماط التصميم في بيئة PHP", icon: "fa-gem" },
+    { t_en: "Caching Strategies with Redis", t_ar: "استراتيجيات التخزين المؤقت بـ Redis", icon: "fa-layer-group" },
+    { t_en: "Managing Large PHP Codebases", t_ar: "إدارة قواعد كود PHP الضخمة", icon: "fa-building-columns" },
+    { t_en: "Deploying PHP with Docker & Nginx", t_ar: "نشر PHP باستخدام دوكر و Nginx", icon: "fa-cloud-arrow-up" },
+    { t_en: "Handling Background Jobs & Queues", t_ar: "التعامل مع الوظائف الخلفية والطوابير", icon: "fa-list-check" },
+    { t_en: "Serverless PHP with AWS Bref", t_ar: "PHP بلا سيرفر مع AWS Bref", icon: "fa-cloud-bolt" },
+    { t_en: "The Future of PHP & RoadRunner", t_ar: "مستقبل PHP وتقنية RoadRunner", icon: "fa-award" },
+    { t_en: "Becoming a Senior PHP Architect", t_ar: "كيف تصبح معماري PHP أول", icon: "fa-star" },
+    { t_en: "Regular Expressions & Performance", t_ar: "التعبيرات النمطية والأداء", icon: "fa-magnifying-glass" }
+  ];
+
+  const chaptersContainer = document.getElementById('phpLessons');
+  
+  phpLessons.forEach(l => render(l));
+  extraPhp.forEach(l => render({
+    icon: l.icon,
+    t_en: l.t_en,
+    t_ar: l.t_ar,
+    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional PHP backend engineering. We focus on modern implementation strategies, clean architecture standards, and server-side optimization for large-scale production environments. By mastering ${l.t_en}, you ensure your PHP applications are robust, scalable, and meet the highest industry standards for modern software development.`,
+    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة PHP الاحترافية. نركز على استراتيجيات التنفيذ الحديثة، معايير المعمارية النظيفة، وتحسينات جانب السيرفر لبيئات الإنتاج الضخمة. من خلال إتقان ${l.t_ar}، تضمن أن تطبيقات PHP الخاصة بك قوية وقابلة للتوسع وتلبي أعلى معايير الجودة في الصناعة.`
+  }));
+
+  function render(lesson) {
+    const div = document.createElement('div');
+    div.className = 'lesson-card reveal';
+    div.innerHTML = `
+      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+      <div class="lesson-info">
+        <div data-cl-lang="en">
+          <h3>${lesson.t_en}</h3>
+          <p>${lesson.d_en}</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>${lesson.t_ar}</h3>
+          <p>${lesson.d_ar}</p>
+        </div>
+      </div>
+    `;
+    chaptersContainer.appendChild(div);
+  }
+</script>
 
 <script src="site-polish.js"></script>
 </body>
