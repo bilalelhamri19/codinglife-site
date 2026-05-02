@@ -386,6 +386,47 @@
     });
   }
 
+  function injectSchema() {
+    const currentUrl = window.location.href;
+    const pageTitle = document.title;
+    const schemas = [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Coding Life",
+        "url": "https://codinglife1.vercel.app/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://codinglife1.vercel.app/dorous-albarmaja.html?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Coding Life",
+        "url": "https://codinglife1.vercel.app/",
+        "logo": "https://codinglife1.vercel.app/logo.png",
+        "description": "Premium programming courses and career-focused workshops.",
+        "sameAs": ["https://github.com/bilalelhamri19"]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://codinglife1.vercel.app/" },
+          { "@type": "ListItem", "position": 2, "name": pageTitle, "item": currentUrl }
+        ]
+      }
+    ];
+    schemas.forEach(schema => {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(schema);
+      document.head.appendChild(script);
+    });
+  }
+
   function boot() {
     applyLang(currentLang);
     document.querySelectorAll("header, footer").forEach(el => {
