@@ -15,70 +15,65 @@
   <div class="course-header" style="background: linear-gradient(135deg, #339933, #000) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-node-js"></i> Node.js Scalable Architecture</h1>
-      <p>Master high-performance backend engineering. From the V8 engine and event loop to Express and Microservices.</p>
+      <p>Master high-performance backend engineering. From V8 engine to Microservices.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-node-js"></i> معمارية Node.js القابلة للتوسع</h1>
-      <p>أتقن هندسة الأنظمة الخلفية عالية الأداء. من محرك V8 و Event Loop إلى Express والخدمات المصغرة.</p>
+      <p>أتقن هندسة الأنظمة الخلفية عالية الأداء. من محرك V8 إلى الخدمات المصغرة.</p>
     </div>
   </div>
 
   <div class="chapters">
-    <div class="chapter reveal">
-      <div data-cl-lang="en"><h2>Understanding the V8 Engine</h2><p>How Google's engine compiles JavaScript into machine code for extreme performance.</p></div>
-      <div data-cl-lang="ar"><h2>فهم محرك V8</h2><p>كيف يقوم محرك جوجل بترجمة JavaScript إلى لغة الآلة للحصول على أداء فائق.</p></div>
-    </div>
-
-    <div class="chapter reveal">
-      <div data-cl-lang="en"><h2>The Non-blocking Event Loop</h2><p>Mastering the concurrency model that allows Node to handle thousands of connections.</p></div>
-      <div data-cl-lang="ar"><h2>حلقة الأحداث غير المتوقفة (Event Loop)</h2><p>إتقان نموذج التزامن الذي يسمح لـ Node بالتعامل مع آلاف الاتصالات في وقت واحد.</p></div>
-    </div>
-
-    <div class="chapter reveal">
-      <div data-cl-lang="en"><h2>Node Package Manager (NPM)</h2><p>Managing dependencies, scripts, and the package-lock system effectively.</p></div>
-      <div data-cl-lang="ar"><h2>مدير الحزم NPM</h2><p>إدارة التبعيات، السكربتات، ونظام package-lock بفعالية.</p></div>
-    </div>
-
-    <div class="chapter reveal">
-      <div data-cl-lang="en"><h2>Express.js Framework Fundamentals</h2><p>Building robust APIs with routing, middleware, and request handling.</p></div>
-      <div data-cl-lang="ar"><h2>أساسيات إطار عمل Express.js</h2><p>بناء برمجيات APIs قوية مع التوجيه، والـ middleware، ومعالجة الطلبات.</p></div>
-    </div>
-
-    <div class="chapter reveal">
-      <div data-cl-lang="en"><h2>MongoDB & Mongoose Integration</h2><p>Designing NoSQL schemas and performing fast CRUD operations.</p></div>
-      <div data-cl-lang="ar"><h2>تكامل MongoDB و Mongoose</h2><p>تصميم مخططات NoSQL وإجراء عمليات CRUD سريعة.</p></div>
-    </div>
-
-    <div class="chapter reveal">
-      <div data-cl-lang="en"><h2>JWT Authentication & Security</h2><p>Securing your backend with stateless tokens and password hashing.</p></div>
-      <div data-cl-lang="ar"><h2>المصادقة بـ JWT والحماية</h2><p>تأمين النظام الخلفي باستخدام التوكنز وتشفير كلمات المرور.</p></div>
-    </div>
-
-    <div class="chapter reveal">
-      <div data-cl-lang="en"><h2>Real-time with Socket.io</h2><p>Building chat apps and live notifications using web sockets.</p></div>
-      <div data-cl-lang="ar"><h2>الأنظمة الفورية مع Socket.io</h2><p>بناء تطبيقات الدردشة والإشعارات المباشرة باستخدام الـ web sockets.</p></div>
-    </div>
-
-    <div class="chapter reveal">
-      <div data-cl-lang="en"><h2>Caching with Redis</h2><p>Implementing an in-memory layer to reduce database bottlenecks.</p></div>
-      <div data-cl-lang="ar"><h2>التخزين المؤقت باستخدام Redis</h2><p>تطبيق طبقة ذاكرة مؤقتة لتقليل الضغط على قواعد البيانات.</p></div>
-    </div>
-
-    <div class="chapter reveal">
-      <div data-cl-lang="en"><h2>Microservices Architecture</h2><p>Breaking a monolith into independent, scalable Node services.</p></div>
-      <div data-cl-lang="ar"><h2>معمارية الخدمات المصغرة (Microservices)</h2><p>تقسيم النظام الضخم إلى خدمات Node مستقلة وقابلة للتوسع.</p></div>
-    </div>
-
-    <div class="chapter reveal">
-      <div data-cl-lang="en"><h2>Dockerizing Node Apps</h2><p>Containerizing your backend for consistent deployment anywhere.</p></div>
-      <div data-cl-lang="ar"><h2>استخدام Docker مع Node</h2><p>وضع نظامك الخلفي في حاويات لضمان ثبات النشر في أي مكان.</p></div>
-    </div>
-
-    <div class="chapter reveal">
-      <div data-cl-lang="en"><h2>Final Backend Certification</h2><p>Verify your Node.js expertise with a production-ready system.</p></div>
-      <div data-cl-lang="ar"><h2>شهادة الأنظمة الخلفية النهائية</h2><p>تحقق من خبرتك في Node.js من خلال بناء نظام كامل جاهز للإنتاج.</p></div>
-    </div>
-
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>V8 Engine Internals</h2><p>Compiling JS to machine code performance.</p></div><div data-cl-lang="ar"><h2>خبايا محرك V8</h2><p>ترجمة JavaScript إلى أداء لغة الآلة.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Non-blocking Event Loop</h2><p>Node's unique concurrency model.</p></div><div data-cl-lang="ar"><h2>الـ Event Loop غير المتوقفة</h2><p>نموذج التزامن الفريد في Node.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>NPM Package Mastery</h2><p>Dependencies and script management.</p></div><div data-cl-lang="ar"><h2>إتقان حزم NPM</h2><p>إدارة التبعيات والسكربتات بفعالية.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Express.js Fundamentals</h2><p>Routing, middleware, and request flow.</p></div><div data-cl-lang="ar"><h2>أساسيات Express.js</h2><p>التوجيه، والـ middleware، وتدفق الطلبات.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>MongoDB & Mongoose</h2><p>NoSQL schemas and CRUD operations.</p></div><div data-cl-lang="ar"><h2>قواعد MongoDB و Mongoose</h2><p>مخططات NoSQL وعمليات CRUD.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>JWT & Backend Security</h2><p>Stateless tokens and password hashing.</p></div><div data-cl-lang="ar"><h2>أمن الـ JWT والخلفية</h2><p>التوكنز وتشفير كلمات المرور.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Socket.io Real-time</h2><p>Chat apps and live notifications.</p></div><div data-cl-lang="ar"><h2>الأنظمة الفورية بـ Socket.io</h2><p>تطبيقات الدردشة والإشعارات الحية.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>File Streams Mastery</h2><p>Efficient large file handling.</p></div><div data-cl-lang="ar"><h2>إتقان الـ File Streams</h2><p>التعامل الكفء مع الملفات الضخمة.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Debugging Node Apps</h2><p>Chrome DevTools and VS Code tricks.</p></div><div data-cl-lang="ar"><h2>تصحيح أخطاء Node</h2><p>حيل Chrome DevTools و VS Code.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Worker Threads</h2><p>Offloading CPU-intensive tasks.</p></div><div data-cl-lang="ar"><h2>الـ Worker Threads</h2><p>تفريغ المهام المكثفة للمعالج.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>RESTful API Design</h2><p>Status codes and resource naming.</p></div><div data-cl-lang="ar"><h2>تصميم RESTful API</h2><p>أكواد الحالة وتسمية الموارد.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Custom Middlewares</h2><p>Logging and error handling logic.</p></div><div data-cl-lang="ar"><h2>الـ Middlewares المخصصة</h2><p>منطق التسجيل ومعالجة الأخطاء.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Environment Config</h2><p>Managing secret keys with .env.</p></div><div data-cl-lang="ar"><h2>تكوين البيئة (.env)</h2><p>إدارة مفاتيح الأسرار بملفات .env.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Async Control Flow</h2><p>Moving beyond callbacks to Async/Await.</p></div><div data-cl-lang="ar"><h2>التحكم في التدفق غير المتزامن</h2><p>الانتقال من الـ callbacks إلى Async/Await.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Unit Testing (Vitest)</h2><p>Ensuring reliable backend logic.</p></div><div data-cl-lang="ar"><h2>اختبار الوحدات بـ Vitest</h2><p>ضمان موثوقية منطق النظام الخلفي.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Database Indexing</h2><p>Query performance and compound indexes.</p></div><div data-cl-lang="ar"><h2>فهرسة قواعد البيانات</h2><p>أداء الاستعلامات والفهارس المركبة.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Server-side Rendering</h2><p>SEO and performance rendering.</p></div><div data-cl-lang="ar"><h2>الرندرة على السيرفر (SSR)</h2><p>الرندرة لغرض الـ SEO والأداء.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Redis Caching Mastery</h2><p>Reducing database bottlenecks.</p></div><div data-cl-lang="ar"><h2>إتقان التخزين بـ Redis</h2><p>تقليل اختناقات قواعد البيانات.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Multer File Uploads</h2><p>Securely storing server documents.</p></div><div data-cl-lang="ar"><h2>رفع الملفات بـ Multer</h2><p>تخزين المستندات على السيرفر بأمان.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Validation (Zod/Joi)</h2><p>Data integrity before business logic.</p></div><div data-cl-lang="ar"><h2>التحقق من البيانات (Zod/Joi)</h2><p>سلامة البيانات قبل منطق الأعمال.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>PM2 Scaling Logic</h2><p>Production uptime and cluster mode.</p></div><div data-cl-lang="ar"><h2>منطق التوسع بـ PM2</h2><p>استمرارية الإنتاج ووضع الـ Cluster.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Microservices Patterns</h2><p>Breaking monoliths into Node services.</p></div><div data-cl-lang="ar"><h2>أنماط الخدمات المصغرة</h2><p>تقسيم الأنظمة الكبيرة لخدمات Node.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Dockerizing Node.js</h2><p>Consistent backend containerization.</p></div><div data-cl-lang="ar"><h2>استخدام Docker مع Node.js</h2><p>وضع النظام الخلفي في حاويات ثابتة.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>NestJS Enterprise Intro</h2><p>TypeScript and decorator-based apps.</p></div><div data-cl-lang="ar"><h2>مقدمة NestJS للمؤسسات</h2><p>تطبيقات TypeScript القائمة على الوسوم.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>GraphQL Integration</h2><p>Modern query language data fetching.</p></div><div data-cl-lang="ar"><h2>تكامل GraphQL</h2><p>جلب البيانات بلغة استعلام حديثة.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Security: CORS & Helmet</h2><p>Protecting from cross-origin attacks.</p></div><div data-cl-lang="ar"><h2>الأمان: CORS و Helmet</h2><p>الحماية من هجمات عبر المصادر.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Rate Limiting Logic</h2><p>Preventing DDoS and brute-force.</p></div><div data-cl-lang="ar"><h2>منطق تحديد معدل الطلبات</h2><p>منع هجمات الـ DDoS والـ Brute-force.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Gzip Compression</h2><p>Reducing payload and response time.</p></div><div data-cl-lang="ar"><h2>ضغط Gzip</h2><p>تقليل حجم البيانات ووقت الاستجابة.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Structured Logging</h2><p>Winston and Pino for production.</p></div><div data-cl-lang="ar"><h2>التسجيل المنظم (Logging)</h2><p>استخدام Winston و Pino للإنتاج.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>CI/CD with GitHub Actions</h2><p>Automated backend deployment.</p></div><div data-cl-lang="ar"><h2>الـ CI/CD عبر GitHub Actions</h2><p>نشر النظام الخلفي بشكل تلقائي.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Knex SQL Migrations</h2><p>Schema changes versioning.</p></div><div data-cl-lang="ar"><h2>هجرات Knex SQL</h2><p>إصدارات تغييرات مخطط البيانات.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Serverless Node.js</h2><p>AWS Lambda and Vercel Edge.</p></div><div data-cl-lang="ar"><h2>الـ Serverless مع Node.js</h2><p>استخدام AWS Lambda و Vercel Edge.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Crypto Module Encryption</h2><p>Handling native data safety.</p></div><div data-cl-lang="ar"><h2>تشفير Crypto</h2><p>التعامل مع سلامة البيانات برمجياً.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Buffering & Encoding</h2><p>Binary and UTF-8 strings mastery.</p></div><div data-cl-lang="ar"><h2>الـ Buffering والترميز</h2><p>إتقان سلاسل البايت ونصوص UTF-8.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Load Balancing Logic</h2><p>Traffic distribution across instances.</p></div><div data-cl-lang="ar"><h2>منطق موازنة الحمل</h2><p>توزيع الزيارات عبر عدة مثيلات.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Event Emitters Pattern</h2><p>Reactive systems with Node core.</p></div><div data-cl-lang="ar"><h2>نمط Event Emitters</h2><p>أنظمة تفاعلية بجوهر Node.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Cluster Module Performance</h2><p>Multi-core CPU utilization.</p></div><div data-cl-lang="ar"><h2>أداء الـ Cluster Module</h2><p>استغلال المعالجات متعددة الأنوية.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>DNS & Net Modules</h2><p>Low-level custom protocols.</p></div><div data-cl-lang="ar"><h2>موديولات DNS و Net</h2><p>بروتوكولات مخصصة منخفضة المستوى.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>HTTP/2 Multiplexing</h2><p>Faster web app connections.</p></div><div data-cl-lang="ar"><h2>تقنية HTTP/2</h2><p>اتصالات تطبيقات ويب أسرع.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Memory Profiling</h2><p>Fixing long-process memory leaks.</p></div><div data-cl-lang="ar"><h2>تحليل الذاكرة (Profiling)</h2><p>إصلاح تسريبات الذاكرة الطويلة.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>TypeScript in Node</h2><p>Static types for enterprise dev.</p></div><div data-cl-lang="ar"><h2>TypeScript في Node</h2><p>الأنواع الثابتة لتطوير الشركات.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Building CLI Tools</h2><p>Commander.js terminal utilities.</p></div><div data-cl-lang="ar"><h2>بناء أدوات الـ CLI</h2><p>أدوات التيرمينال بـ Commander.js.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Graceful Shutdown</h2><p>Proper connection termination.</p></div><div data-cl-lang="ar"><h2>الإغلاق الآمن (Graceful)</h2><p>إنهاء الاتصالات بشكل صحيح.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Swagger Documentation</h2><p>Automatic API interactive docs.</p></div><div data-cl-lang="ar"><h2>توثيق Swagger</h2><p>توثيق تفاعلي تلقائي للـ API.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Cross-platform Node Dev</h2><p>Handling Windows/Linux path diffs.</p></div><div data-cl-lang="ar"><h2>تطوير Node عبر المنصات</h2><p>التعامل مع اختلافات المسارات.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Buffers vs Strings Perf.</h2><p>High-throughput data formats.</p></div><div data-cl-lang="ar"><h2>أداء الـ Buffers مقابل النصوص</h2><p>تنسيقات البيانات عالية السرعة.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Prometheus Monitoring</h2><p>Real-time CPU and RAM health.</p></div><div data-cl-lang="ar"><h2>المراقبة بـ Prometheus</h2><p>صحة المعالج والذاكرة في الوقت الحقيقي.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Deno & Bun Future</h2><p>Exploring modern JS runtimes.</p></div><div data-cl-lang="ar"><h2>مستقبل Deno و Bun</h2><p>استكشاف محركات تشغيل JS الحديثة.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Legacy Code Polyfills</h2><p>Maintaining old Node systems.</p></div><div data-cl-lang="ar"><h2>دعم الأنظمة القديمة</h2><p>صيانة أنظمة Node القديمة والبوليفيلز.</p></div></div>
+    <div class="chapter reveal"><div data-cl-lang="en"><h2>Final Backend Certification</h2><p>Production-ready system verification.</p></div><div data-cl-lang="ar"><h2>شهادة الأنظمة الخلفية</h2><p>التحقق من نظام كامل جاهز للإنتاج.</p></div></div>
   </div>
 </div>
 
