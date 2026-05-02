@@ -70,39 +70,6 @@
       align-items: center;
       gap: 8px;
     }
-    .newsletter-section {
-      background: linear-gradient(135deg, var(--cl-brand), var(--cl-brand-dark));
-      padding: 60px 40px;
-      border-radius: 24px;
-      text-align: center;
-      color: white;
-      margin-bottom: 60px;
-    }
-    .newsletter-input {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 12px 20px;
-      border-radius: 12px;
-      color: white;
-      width: 100%;
-      max-width: 300px;
-      margin-right: 12px;
-      outline: none;
-    }
-    .newsletter-btn {
-      background: white;
-      color: var(--cl-brand);
-      padding: 12px 24px;
-      border-radius: 12px;
-      border: none;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--cl-transition);
-    }
-    .newsletter-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
   </style>
 </head>
 <body>
@@ -217,34 +184,52 @@
       </div>
     </div>
 
-  </div>
+    <!-- Article 5: Mental Health -->
+    <div class="blog-card reveal" onclick="window.location.href='mental_health.html'">
+      <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Mental Health" class="blog-img">
+      <div class="blog-body">
+        <span class="blog-category">Well-being</span>
+        <div data-cl-lang="en">
+          <h3>Mental Health in Tech</h3>
+          <p>Managing burnout and stress in a fast-paced engineering environment.</p>
+          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>الصحة العقلية في البرمجة</h3>
+          <p>إدارة الاحتراق النفسي والتوتر في بيئة هندسية متسارعة.</p>
+          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Santé Mentale et Tech</h3>
+          <p>Gérer le burnout et le stress dans un environnement d'ingénierie rapide.</p>
+          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </div>
 
-  <!-- Newsletter Section -->
-  <div class="newsletter-section reveal">
-    <div data-cl-lang="en">
-      <h2>Subscribe to our Newsletter</h2>
-      <p style="margin-bottom: 24px;">Get the latest coding tips and articles directly in your inbox.</p>
-      <div>
-        <input type="email" placeholder="Enter your email" class="newsletter-input">
-        <button class="newsletter-btn">Subscribe Now</button>
+    <!-- Article 6: Design -->
+    <div class="blog-card reveal" onclick="window.location.href='colors.html'">
+      <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=600&q=80" alt="Design" class="blog-img">
+      <div class="blog-body">
+        <span class="blog-category">Design</span>
+        <div data-cl-lang="en">
+          <h3>Design for Developers</h3>
+          <p>Basic UI/UX principles to make your applications look professional.</p>
+          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>التصميم للمطورين</h3>
+          <p>مبادئ UI/UX الأساسية لجعل تطبيقاتك تبدو احترافية.</p>
+          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Design pour Développeurs</h3>
+          <p>Principes de base UI/UX pour rendre vos applications professionnelles.</p>
+          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
       </div>
     </div>
-    <div data-cl-lang="ar">
-      <h2>اشترك في نشرتنا الإخبارية</h2>
-      <p style="margin-bottom: 24px;">احصل على أحدث نصائح البرمجة والمقالات مباشرة في بريدك الوارد.</p>
-      <div>
-        <input type="email" placeholder="أدخل بريدك الإلكتروني" class="newsletter-input" dir="rtl">
-        <button class="newsletter-btn">اشترك الآن</button>
-      </div>
-    </div>
-    <div data-cl-lang="fr">
-      <h2>Abonnez-vous à la Newsletter</h2>
-      <p style="margin-bottom: 24px;">Recevez les derniers conseils et articles directement dans votre boîte mail.</p>
-      <div>
-        <input type="email" placeholder="Votre email" class="newsletter-input">
-        <button class="newsletter-btn">S'abonner</button>
-      </div>
-    </div>
+
   </div>
 
   <!-- Tools Section -->
