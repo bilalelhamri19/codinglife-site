@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML5 Masterclass - Coding Life</title>
+  <title>Cours Complet HTML - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -17,24 +17,29 @@
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
       display: flex;
+      flex-direction: column;
       gap: 20px;
-      align-items: flex-start;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
     }
     .lesson-card:hover {
-      transform: translateX(10px);
+      transform: translateY(-5px);
       border-color: var(--cl-brand);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      box-shadow: var(--cl-shadow-lg);
     }
     .lesson-icon {
       width: 60px;
       height: 60px;
-      background: rgba(227, 79, 38, 0.1);
+      background: var(--cl-brand-soft);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      color: #e34f26;
+      color: var(--cl-brand);
       flex-shrink: 0;
     }
     .lesson-info {
@@ -46,16 +51,53 @@
       margin-bottom: 12px;
       margin-top: 0;
     }
-    .lesson-info p {
+    .lesson-content {
       line-height: 1.8;
       color: var(--cl-muted);
       font-size: 1.05rem;
-      margin: 0;
     }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .badge-modern { background: #e0f2fe; color: #0369a1; }
+    .badge-important { background: #fee2e2; color: #b91c1c; }
+    .badge-pro { background: #fef3c7; color: #b45309; }
+
+    .code-block {
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 15px 0;
+      border: 1px solid #30363d;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .checklist li i.fa-check { color: var(--cl-success); }
+    .checklist li i.fa-xmark { color: var(--cl-error); }
+
     @media (max-width: 768px) {
-      .lesson-card {
+      .lesson-header {
         flex-direction: column;
-        gap: 15px;
+        align-items: flex-start;
       }
     }
   </style>
@@ -65,76 +107,237 @@
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #e34f26, #f06529) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-html5"></i> HTML5 Expert Mastery</h1>
-      <p>A focused curriculum of 20 high-density modules covering semantic architecture and advanced Web APIs.</p>
+      <h1><i class="fab fa-html5"></i> HTML5 Mastery</h1>
+      <p>A comprehensive 20-module guide to becoming a professional web developer.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-html5"></i> إتقان HTML5 للمحترفين</h1>
-      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي المعمارية الدلالية وواجهات برمجة تطبيقات الويب المتقدمة.</p>
+      <h1><i class="fab fa-html5"></i> احتراف HTML5</h1>
+      <p>دليل شامل من 20 وحدة لتصبح مطور ويب محترفاً.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fab fa-html5"></i> Maîtrise HTML5</h1>
+      <p>Un guide complet de 20 modules pour devenir un développeur web professionnel.</p>
     </div>
   </div>
 
   <div class="chapters" id="htmlLessons">
-    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- Lessons will be injected here -->
   </div>
 </div>
 
 <script>
   const htmlLessons = [
-    { t_en: "The Browser Rendering Pipeline", icon: "fa-gears", t_ar: "خط أنابيب رندر المتصفح", d_en: "The browser's rendering engine transforms HTML and CSS into pixels through a multi-step process: DOM construction, CSSOM creation, and layout painting. We explore how to optimize this 'Critical Rendering Path' to achieve faster page loads and smoother interactions. Understanding these internals is essential for building high-performance web applications that provide a premium experience on any device.", d_ar: "يقوم محرك رندر المتصفح بتحويل HTML و CSS إلى بكسلات من خلال عملية متعددة الخطوات: بناء الـ DOM، إنشاء الـ CSSOM، ورسم التخطيط. نستكشف كيفية تحسين 'مسار الرندر الحرج' لتحقيق تحميل أسرع للصفحة وتفاعلات أكثر سلاسة. فهم هذه الخفايا ضروري لبناء تطبيقات ويب عالية الأداء توفر تجربة ممتازة على أي جهاز." },
-    { t_en: "Semantic HTML & SEO Architecture", icon: "fa-sitemap", t_ar: "الـ HTML الدلالي ومعمارية الـ SEO", d_en: "Semantic HTML uses meaningful tags like <article> and <section> to describe content purpose to browsers and search engines. We delve into how proper semantic structure improves Accessibility (a11y) and SEO rankings by providing a clear hierarchy for screen readers and crawlers. This module teaches you how to build professional, future-proof web architectures that are easy to maintain and discoverable.", d_ar: "تستخدم الـ HTML الدلالية وسوماً ذات معنى مثل <article> و <section> لوصف غرض المحتوى للمتصفحات ومحركات البحث. نتعمق في كيفية قيام الهيكل الدلالي الصحيح بتحسين إمكانية الوصول (a11y) وتصنيفات الـ SEO من خلال توفير تسلسل هرمي واضح. يعلمك هذا القسم كيفية بناء معماريات ويب احترافية وجاهزة للمستقبل." },
-    { t_en: "Web Workers & Background Execution", icon: "fa-microchip", t_ar: "الـ Web Workers والتنفيذ الخلفي", d_en: "Web Workers allow you to run heavy JavaScript computations in the background, preventing the UI thread from freezing. We explore how to communicate between the main thread and workers using the Message API and how to leverage this for complex data processing or real-time graphics. Mastering this API is essential for building modern web applications that handle massive workloads without compromising interactivity.", d_ar: "تسمح لك الـ Web Workers بتشغيل حسابات جافا سكريبت الثقيلة في الخلفية، مما يمنع تجمد خيط واجهة المستخدم. نستكشف كيفية التواصل بين الخيط الرئيسي والعمال باستخدام Message API وكيفية الاستفادة من ذلك لمعالجة البيانات المعقدة أو الرسومات في الوقت الحقيقي. إتقان هذه الواجهة ضروري لبناء تطبيقات ويب حديثة." },
-    { t_en: "IndexedDB: Modern Offline Storage", icon: "fa-database", t_ar: "IndexedDB: التخزين الحديث دون اتصال", d_en: "IndexedDB is a powerful, low-level API for client-side storage of large amounts of structured data. We explore how to use transactions, object stores, and indexes to build robust offline-first web applications. Mastering IndexedDB allows you to store complex data sets locally, enabling seamless user experiences even during network interruptions in modern Progressive Web Apps (PWAs).", d_ar: "IndexedDB هي واجهة برمجة تطبيقات قوية منخفضة المستوى لتخزين كميات كبيرة من البيانات المهيكلة لدى العميل. نستكشف كيفية استخدام المعاملات ومخازن الكائنات والفهارس لبناء تطبيقات ويب قوية تعمل دون اتصال. يتيح لك إتقان IndexedDB تخزين مجموعات البيانات المعقدة محلياً، مما يضمن تجربة مستخدم سلسة." }
-  ];
-
-  const extraHtml = [
-    { t_en: "Web Components Architecture", t_ar: "معمارية مكونات الويب", icon: "fa-puzzle-piece" },
-    { t_en: "Canvas API & Visual Rendering", t_ar: "واجهة Canvas والرندر المرئي", icon: "fa-paintbrush" },
-    { t_en: "Accessibility (ARIA) Best Practices", t_ar: "أفضل ممارسات إمكانية الوصول (ARIA)", icon: "fa-universal-access" },
-    { t_en: "Web Cryptography & Security APIs", t_ar: "تشفير الويب وواجهات الأمان", icon: "fa-shield-halved" },
-    { t_en: "Shadow DOM & Logic Encapsulation", t_ar: "الـ Shadow DOM وتغليف المنطق", icon: "fa-umbrella" },
-    { t_en: "Advanced SVG Manipulation", t_ar: "التلاعب المتقدم بـ SVG", icon: "fa-shapes" },
-    { t_en: "Geolocation & Browser Sensors", t_ar: "تحديد الموقع ومستشعرات المتصفح", icon: "fa-location-dot" },
-    { t_en: "Web Storage: Local vs Session", t_ar: "تخزين الويب: محلي مقابل جلسة", icon: "fa-hard-drive" },
-    { t_en: "Performance: Preload & Prefetch", t_ar: "الأداء: التحميل المسبق والجلب المسبق", icon: "fa-gauge-high" },
-    { t_en: "Service Workers for PWA Support", t_ar: "الـ Service Workers لدعم الـ PWA", icon: "fa-bolt" },
-    { t_en: "Responsive Images & Video API", t_ar: "الصور المستجيبة وواجهة الفيديو", icon: "fa-film" },
-    { t_en: "Form Validation & Advanced Inputs", t_ar: "تحقق النماذج والمدخلات المتقدمة", icon: "fa-check-double" },
-    { t_en: "Managing Technical Debt in HTML", t_ar: "إدارة الديون التقنية في HTML", icon: "fa-trash-can" },
-    { t_en: "The Future of HTML6 & Web APIs", t_ar: "مستقبل HTML6 وواجهات الويب", icon: "fa-award" },
-    { t_en: "Auditing & Web Performance Metrics", t_ar: "التدقيق ومقاييس أداء الويب", icon: "fa-list-check" },
-    { t_en: "Becoming a Senior Web Architect", t_ar: "كيف تصبح معماري ويب أول", icon: "fa-star" }
+    {
+      icon: "fa-book-open",
+      t_fr: "1. Qu’est-ce que HTML ?",
+      d_fr: "HTML (HyperText Markup Language) est le langage standard utilisé pour créer des pages web. Ce n’est pas un langage de programmation, mais un langage de structuration.<br><br>👉 <b>Il sert à définir :</b> les titres, les paragraphes, les images, les liens et la structure générale.",
+      t_en: "1. What is HTML?",
+      d_en: "HTML (HyperText Markup Language) is the standard language for creating web pages. It is not a programming language, but a structural language.<br><br>👉 <b>It defines:</b> titles, paragraphs, images, links, and general structure.",
+      t_ar: "1. ما هو HTML؟",
+      d_ar: "HTML (HyperText Markup Language) هي اللغة القياسية المستخدمة لإنشاء صفحات الويب. إنها ليست لغة برمجة، بل لغة هيكلية.<br><br>👉 <b>تُستخدم لتعريف:</b> العناوين، الفقرات، الصور، الروابط والهيكل العام."
+    },
+    {
+      icon: "fa-layer-group",
+      t_fr: "2. Structure de base d’une page HTML",
+      code: `<!DOCTYPE html>\n<html lang="fr">\n<head>\n    <meta charset="UTF-8">\n    <title>Mon site</title>\n</head>\n<body>\n    <h1>Bienvenue</h1>\n    <p>Ceci est ma première page</p>\n</body>\n</html>`,
+      d_fr: "<b>Explication :</b><br>• <code>&lt;!DOCTYPE html&gt;</code> → HTML5<br>• <code>&lt;html&gt;</code> → racine<br>• <code>&lt;head&gt;</code> → configuration<br>• <code>&lt;body&gt;</code> → contenu visible",
+      t_en: "2. Basic Structure of an HTML Page",
+      d_en: "<b>Explanation:</b><br>• <code>&lt;!DOCTYPE html&gt;</code> → HTML5<br>• <code>&lt;html&gt;</code> → Root<br>• <code>&lt;head&gt;</code> → Config<br>• <code>&lt;body&gt;</code> → Visible content",
+      t_ar: "2. الهيكل الأساسي لصفحة HTML",
+      d_ar: "<b>شرح:</b><br>• <code>&lt;!DOCTYPE html&gt;</code> ← إصدار HTML5<br>• <code>&lt;html&gt;</code> ← الجذر<br>• <code>&lt;head&gt;</code> ← الإعدادات<br>• <code>&lt;body&gt;</code> ← المحتوى المرئي"
+    },
+    {
+      icon: "fa-tags",
+      t_fr: "3. Les balises (Tags)",
+      d_fr: "Une balise est un élément HTML : <code>&lt;p&gt;Texte&lt;/p&gt;</code><br><br><b>Types :</b><br>• Balise ouvrante : <code>&lt;p&gt;</code><br>• Balise fermante : <code>&lt;/p&gt;</code><br><br><b>Balises auto-fermantes :</b><br><code>&lt;br&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;input&gt;</code>",
+      t_en: "3. Tags",
+      d_en: "A tag is an HTML element: <code>&lt;p&gt;Text&lt;/p&gt;</code><br><br><b>Types:</b><br>• Opening tag: <code>&lt;p&gt;</code><br>• Closing tag: <code>&lt;/p&gt;</code><br><br><b>Self-closing tags:</b><br><code>&lt;br&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;input&gt;</code>",
+      t_ar: "3. الوسوم (Tags)",
+      d_ar: "الوسم هو عنصر HTML: <code>&lt;p&gt;نص&lt;/p&gt;</code><br><br><b>الأنواع:</b><br>• وسم الفتح: <code>&lt;p&gt;</code><br>• وسم الإغلاق: <code>&lt;/p&gt;</code><br><br><b>الوسوم ذاتية الإغلاق:</b><br><code>&lt;br&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;input&gt;</code>"
+    },
+    {
+      icon: "fa-star",
+      t_fr: "4. Les balises essentielles",
+      d_fr: "<b>🔹 Titres :</b> <code>&lt;h1&gt;</code> à <code>&lt;h6&gt;</code><br><b>🔹 Texte :</b> <code>&lt;p&gt;</code> (Paragraphe), <code>&lt;strong&gt;</code> (Gras), <code>&lt;em&gt;</code> (Italique)<br><b>🔹 Liens :</b> <code>&lt;a href=\"url\"&gt;</code><br><b>🔹 Images :</b> <code>&lt;img src=\"img.jpg\" alt=\"desc\"&gt;</code><br><b>🔹 Sauts :</b> <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code> (ligne horizontale)",
+      t_en: "4. Essential Tags",
+      d_en: "<b>🔹 Headings:</b> <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code><br><b>🔹 Text:</b> <code>&lt;p&gt;</code> (Paragraph), <code>&lt;strong&gt;</code> (Bold), <code>&lt;em&gt;</code> (Italic)<br><b>🔹 Links:</b> <code>&lt;a href=\"url\"&gt;</code><br><b>🔹 Images:</b> <code>&lt;img src=\"img.jpg\" alt=\"desc\"&gt;</code><br><b>🔹 Breaks:</b> <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code> (Horizontal line)",
+      t_ar: "4. الوسوم الأساسية",
+      d_ar: "<b>🔹 العناوين:</b> من <code>&lt;h1&gt;</code> إلى <code>&lt;h6&gt;</code><br><b>🔹 النصوص:</b> <code>&lt;p&gt;</code> (فقرة)، <code>&lt;strong&gt;</code> (عريض)، <code>&lt;em&gt;</code> (مائل)<br><b>🔹 الروابط:</b> <code>&lt;a href=\"url\"&gt;</code><br><b>🔹 الصور:</b> <code>&lt;img src=\"img.jpg\" alt=\"desc\"&gt;</code><br><b>🔹 الفواصل:</b> <code>&lt;br&gt;</code>، <code>&lt;hr&gt;</code> (خط أفقي)"
+    },
+    {
+      icon: "fa-list-ul",
+      t_fr: "5. Les listes",
+      d_fr: "<b>Liste non ordonnée :</b><br><code>&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</code><br><br><b>Liste ordonnée :</b><br><code>&lt;ol&gt;&lt;li&gt;Étape 1&lt;/li&gt;&lt;/ol&gt;</code>",
+      t_en: "5. Lists",
+      d_en: "<b>Unordered List:</b><br><code>&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</code><br><br><b>Ordered List:</b><br><code>&lt;ol&gt;&lt;li&gt;Step 1&lt;/li&gt;&lt;/ol&gt;</code>",
+      t_ar: "5. القوائم",
+      d_ar: "<b>قائمة غير مرتبة:</b><br><code>&lt;ul&gt;&lt;li&gt;عنصر&lt;/li&gt;&lt;/ul&gt;</code><br><br><b>قائمة مرتبة:</b><br><code>&lt;ol&gt;&lt;li&gt;خطوة 1&lt;/li&gt;&lt;/ol&gt;</code>"
+    },
+    {
+      icon: "fa-table",
+      t_fr: "6. Les tableaux",
+      code: `<table border="1">\n  <tr>\n    <th>Nom</th>\n    <th>Âge</th>\n  </tr>\n  <tr>\n    <td>Ali</td>\n    <td>20</td>\n  </tr>\n</table>`,
+      t_en: "6. Tables",
+      t_ar: "6. الجداول"
+    },
+    {
+      icon: "fa-wpforms",
+      t_fr: "7. Les formulaires",
+      code: `<form>\n  <input type="text" placeholder="Nom">\n  <input type="email">\n  <input type="password">\n  <button>Envoyer</button>\n</form>`,
+      d_fr: "<b>Types d’inputs :</b> text, email, password, checkbox, radio, file.",
+      t_en: "7. Forms",
+      d_en: "<b>Input types:</b> text, email, password, checkbox, radio, file.",
+      t_ar: "7. النماذج",
+      d_ar: "<b>أنواع المدخلات:</b> نص، بريد إلكتروني، كلمة مرور، صندوق اختيار، زر خيار، ملف."
+    },
+    {
+      icon: "fa-fingerprint",
+      t_fr: "8. Les attributs",
+      d_fr: "Exemple : <code>&lt;a href=\"url\" target=\"_blank\"&gt;Lien&lt;/a&gt;</code><br><br><b>Attributs communs :</b> href, src, alt, class, id.",
+      t_en: "8. Attributes",
+      d_en: "Example: <code>&lt;a href=\"url\" target=\"_blank\"&gt;Link&lt;/a&gt;</code><br><br><b>Common attributes:</b> href, src, alt, class, id.",
+      t_ar: "8. السمات (Attributes)",
+      d_ar: "مثال: <code>&lt;a href=\"url\" target=\"_blank\"&gt;رابط&lt;/a&gt;</code><br><br><b>سمات شائعة:</b> href, src, alt, class, id."
+    },
+    {
+      icon: "fa-cubes",
+      t_fr: "9. HTML5 (structure moderne)",
+      badge: "badge-modern",
+      code: `<header>Header</header>\n<nav>Menu</nav>\n<main>\n  <section>Section</section>\n  <article>Article</article>\n</main>\n<footer>Footer</footer>`,
+      t_en: "9. HTML5 (Modern Structure)",
+      t_ar: "9. HTML5 (الهيكل الحديث)"
+    },
+    {
+      icon: "fa-brain",
+      t_fr: "10. Sémantique (IMPORTANT)",
+      badge: "badge-important",
+      d_fr: "HTML moderne = lisible + logique<br><br>❌ Mauvais : <code>&lt;div&gt;</code> pour tout.<br>✅ Bon : <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>.",
+      t_en: "10. Semantics (IMPORTANT)",
+      d_en: "Modern HTML = readable + logical<br><br>❌ Bad: Using <code>&lt;div&gt;</code> for everything.<br>✅ Good: Using <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>.",
+      t_ar: "10. الدلالية (هام جداً)",
+      d_ar: "HTML الحديث = مقروء + منطقي<br><br>❌ سيء: استخدام <code>&lt;div&gt;</code> لكل شيء.<br>✅ جيد: استخدام <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>."
+    },
+    {
+      icon: "fa-video",
+      t_fr: "11. Balises avancées",
+      d_fr: "<b>🔹 Div et Span :</b> <code>&lt;div&gt;</code> (Bloc), <code>&lt;span&gt;</code> (Inline)<br><b>🔹 Vidéo :</b> <code>&lt;video controls&gt;</code><br><b>🔹 Audio :</b> <code>&lt;audio controls&gt;</code>",
+      t_en: "11. Advanced Tags",
+      d_en: "<b>🔹 Div & Span:</b> <code>&lt;div&gt;</code> (Block), <code>&lt;span&gt;</code> (Inline)<br><b>🔹 Video:</b> <code>&lt;video controls&gt;</code><br><b>🔹 Audio:</b> <code>&lt;audio controls&gt;</code>",
+      t_ar: "11. وسوم متقدمة",
+      d_ar: "<b>🔹 Div و Span:</b> <code>&lt;div&gt;</code> (كتلة)، <code>&lt;span&gt;</code> (سطري)<br><b>🔹 الفيديو:</b> <code>&lt;video controls&gt;</code><br><b>🔹 الصوت:</b> <code>&lt;audio controls&gt;</code>"
+    },
+    {
+      icon: "fa-search",
+      t_fr: "12. SEO (Search Engine Optimization)",
+      d_fr: "Pour Google :<br><code>&lt;meta name=\"description\" content=\"...\"&gt;</code><br><code>&lt;meta name=\"keywords\" content=\"...\"&gt;</code>",
+      t_en: "12. SEO",
+      d_en: "For Google optimization:<br><code>&lt;meta name=\"description\" content=\"...\"&gt;</code>",
+      t_ar: "12. تحسين محركات البحث (SEO)",
+      d_ar: "من أجل جوجل:<br><code>&lt;meta name=\"description\" content=\"...\"&gt;</code>"
+    },
+    {
+      icon: "fa-mobile-screen",
+      t_fr: "13. Responsive (Mobile)",
+      d_fr: "Indispensable pour l'affichage mobile :<br><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt;</code>",
+      t_en: "13. Responsive (Mobile)",
+      d_en: "Essential for mobile display:<br><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt;</code>",
+      t_ar: "13. التجاوب (الموبايل)",
+      d_ar: "ضروري للعرض على الهواتف:<br><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt;</code>"
+    },
+    {
+      icon: "fa-project-diagram",
+      t_fr: "14. Projet complet (mini site)",
+      code: `<!DOCTYPE html>\n<html lang="fr">\n<head>\n  <meta charset="UTF-8">\n  <title>Mon Portfolio</title>\n</head>\n<body>\n<header><h1>Mon site</h1></header>\n<nav><a href="#">Accueil</a></nav>\n<section><h2>À propos</h2><p>Je suis développeur</p></section>\n<footer><p>© 2026</p></footer>\n</body>\n</html>`,
+      t_en: "14. Complete Project",
+      t_ar: "14. مشروع كامل"
+    },
+    {
+      icon: "fa-triangle-exclamation",
+      t_fr: "15. Erreurs à éviter",
+      d_fr: `<ul class="checklist">\n  <li><i class="fas fa-xmark"></i> Oublier fermer les balises</li>\n  <li><i class="fas fa-xmark"></i> Mauvaise structure</li>\n  <li><i class="fas fa-xmark"></i> Trop de &lt;div&gt;</li>\n  <li><i class="fas fa-xmark"></i> Pas de alt pour les images</li>\n</ul>`,
+      t_en: "15. Errors to Avoid",
+      d_en: `<ul class="checklist">\n  <li><i class="fas fa-xmark"></i> Forgetting to close tags</li>\n  <li><i class="fas fa-xmark"></i> Poor structure</li>\n  <li><i class="fas fa-xmark"></i> Excessive &lt;div&gt; usage</li>\n  <li><i class="fas fa-xmark"></i> Missing alt text for images</li>\n</ul>`,
+      t_ar: "15. أخطاء يجب تجنبها",
+      d_ar: `<ul class="checklist">\n  <li><i class="fas fa-xmark"></i> نسيان إغلاق الوسوم</li>\n  <li><i class="fas fa-xmark"></i> هيكلية سيئة</li>\n  <li><i class="fas fa-xmark"></i> كثرة استخدام &lt;div&gt;</li>\n  <li><i class="fas fa-xmark"></i> عدم وضع alt للصور</li>\n</ul>`
+    },
+    {
+      icon: "fa-check-circle",
+      t_fr: "16. Bonnes pratiques",
+      d_fr: `<ul class="checklist">\n  <li><i class="fas fa-check"></i> Indentation propre</li>\n  <li><i class="fas fa-check"></i> Code lisible</li>\n  <li><i class="fas fa-check"></i> Utiliser HTML5</li>\n  <li><i class="fas fa-check"></i> Séparer HTML / CSS / JS</li>\n</ul>`,
+      t_en: "16. Best Practices",
+      d_en: `<ul class="checklist">\n  <li><i class="fas fa-check"></i> Clean indentation</li>\n  <li><i class="fas fa-check"></i> Readable code</li>\n  <li><i class="fas fa-check"></i> Use HTML5</li>\n  <li><i class="fas fa-check"></i> Separate HTML/CSS/JS</li>\n</ul>`,
+      t_ar: "16. أفضل الممارسات",
+      d_ar: `<ul class="checklist">\n  <li><i class="fas fa-check"></i> إزاحة (Indentation) نظيفة</li>\n  <li><i class="fas fa-check"></i> كود مقروء</li>\n  <li><i class="fas fa-check"></i> استخدام HTML5</li>\n  <li><i class="fas fa-check"></i> فصل HTML / CSS / JS</li>\n</ul>`
+    },
+    {
+      icon: "fa-tools",
+      t_fr: "17. Outils recommandés",
+      d_fr: "• VS Code<br>• Live Server<br>• Chrome DevTools",
+      t_en: "17. Recommended Tools",
+      d_en: "• VS Code<br>• Live Server<br>• Chrome DevTools",
+      t_ar: "17. أدوات موصى بها",
+      d_ar: "• VS Code<br>• Live Server<br>• Chrome DevTools"
+    },
+    {
+      icon: "fa-road",
+      t_fr: "18. Roadmap après HTML",
+      d_fr: "1. CSS (Flexbox + Grid)<br>2. JavaScript<br>3. Git / GitHub<br>4. Frameworks (React)",
+      t_en: "18. Roadmap after HTML",
+      d_en: "1. CSS (Flexbox + Grid)<br>2. JavaScript<br>3. Git / GitHub<br>4. Frameworks (React)",
+      t_ar: "18. خارطة الطريق بعد HTML",
+      d_ar: "1. CSS (Flexbox + Grid)<br>2. JavaScript<br>3. Git / GitHub<br>4. Frameworks (React)"
+    },
+    {
+      icon: "fa-rocket",
+      t_fr: "19. Niveau PRO",
+      badge: "badge-pro",
+      d_fr: "• Reproduire des sites (clone)<br>• Créer un portfolio<br>• Faire des projets réels<br>• Comprendre le DOM",
+      t_en: "19. PRO Level",
+      d_en: "• Reproduce websites (clones)<br>• Create a portfolio<br>• Real projects<br>• Understand the DOM",
+      t_ar: "19. مستوى المحترفين",
+      d_ar: "• تقليد المواقع (Clone)<br>• إنشاء ملف أعمال (Portfolio)<br>• مشاريع حقيقية<br>• فهم الـ DOM"
+    },
+    {
+      icon: "fa-dumbbell",
+      t_fr: "20. Exercice pour toi",
+      d_fr: "Crée une page avec :<br>• Un titre<br>• Une image<br>• Une liste<br>• Un formulaire",
+      t_en: "20. Exercise for you",
+      d_en: "Create a page with:<br>• A title<br>• An image<br>• A list<br>• A form",
+      t_ar: "20. تمرين لك",
+      d_ar: "أنشئ صفحة تحتوي على:<br>• عنوان<br>• صورة<br>• قائمة<br>• نموذج"
+    }
   ];
 
   const chaptersContainer = document.getElementById('htmlLessons');
   
-  htmlLessons.forEach(l => render(l));
-  extraHtml.forEach(l => render({
-    icon: l.icon,
-    t_en: l.t_en,
-    t_ar: l.t_ar,
-    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional web foundation engineering. We focus on architectural best practices, clean code standards, and web-specific optimization for large-scale production environments. By mastering ${l.t_en}, you ensure your web foundations are robust, accessible, and meet the highest industry quality standards for modern software development.`,
-    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة أساسيات الويب الاحترافية. نركز على أفضل الممارسات المعمارية، معايير الكود النظيف، وتحسينات الويب لبيئات الإنتاج الضخمة. من خلال إتقان ${l.t_ar}، تضمن أن أساسيات الويب الخاصة بك قوية، قابلة للوصول، وتلبي أعلى معايير الجودة في الصناعة.`
-  }));
-
   function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
     div.innerHTML = `
-      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
-      <div class="lesson-info">
-        <div data-cl-lang="en">
-          <h3>${lesson.t_en}</h3>
-          <p>${lesson.d_en}</p>
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
         </div>
-        <div data-cl-lang="ar">
-          <h3>${lesson.t_ar}</h3>
-          <p>${lesson.d_ar}</p>
-        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
       </div>
     `;
     chaptersContainer.appendChild(div);
   }
+
+  htmlLessons.forEach(l => render(l));
 </script>
 
 <script src="site-polish.js"></script>
