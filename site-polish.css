@@ -102,7 +102,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 [data-theme="dark"] .cl-brand img {
-  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(45, 212, 191, 0.3));
+  filter: drop-shadow(0 0 12px rgba(45, 212, 191, 0.4));
 }
 
 .cl-nav {
