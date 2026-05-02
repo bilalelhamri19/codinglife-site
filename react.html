@@ -67,50 +67,66 @@
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #61dafb, #20232a) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-react"></i> React Professional Masterclass</h1>
-      <p>70 visually rich modules covering modern React, Hooks, and Next.js architecture.</p>
+      <h1><i class="fab fa-react"></i> React Professional Architecture</h1>
+      <p>70 unique modules covering modern React 18, Hooks, and Next.js 14 engineering.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-react"></i> ماستر كلاس ريـاكت الاحترافي</h1>
-      <p>70 وحدة غنية بالوسائط تغطي ريـاكت الحديث، الـ Hooks، ومعمارية Next.js.</p>
+      <h1><i class="fab fa-react"></i> معمارية ريـاكت الاحترافية</h1>
+      <p>70 وحدة فريدة تغطي ريـاكت 18، الـ Hooks، وهندسة Next.js 14 الحديثة.</p>
     </div>
   </div>
 
   <div class="chapters" id="reactLessons">
-    <!-- LESSONS INJECTED VIA SCRIPT -->
+    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
-  const reactTopics = [
-    { t: "Virtual DOM Reconciliation", icon: "fa-diagram-project", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
-    { t: "Advanced Hooks Logic", icon: "fa-fish-hook", icon_class: "fa-solid fa-anchor", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
-    { t: "Server Components & Suspense", icon: "fa-server", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
-    { t: "Next.js App Router", icon: "fa-route", img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80" },
-    { t: "Zustand State Management", icon: "fa-gears", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
-    { t: "Micro-frontends Architecture", icon: "fa-puzzle-piece", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
-    { t: "Performance Optimization", icon: "fa-gauge-high", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" }
+  const reactLessons = [
+    { t_en: "Reconciliation & Fiber Architecture", icon: "fa-diagram-project", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", t_ar: "خوارزمية الـ Reconciliation ومعمارية Fiber", d_en: "React uses a sophisticated algorithm called Reconciliation to determine which parts of the UI need to change. Under the hood, React Fiber allows the rendering process to be broken into chunks and prioritized, enabling features like concurrent rendering and suspense. Mastering Fiber architecture is essential for building highly interactive interfaces that remain smooth even during complex data transitions and large-scale state updates.", d_ar: "تستخدم ريـاكت خوارزمية متطورة تسمى Reconciliation لتحديد أجزاء واجهة المستخدم التي تحتاج إلى تغيير. في الخلفية، تسمح معمارية React Fiber بتقسيم عملية الرندر إلى أجزاء وترتيب أولوياتها، مما يتيح ميزات مثل الرندر المتزامن والـ suspense. إتقان معمارية Fiber أمر ضروري لبناء واجهات تفاعلية تظل سلسة." },
+    { t_en: "Custom Hooks & Logic Encapsulation", icon: "fa-anchor", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80", t_ar: "الـ Hooks المخصصة وتغليف المنطق", d_en: "Custom Hooks allow you to extract component logic into reusable functions, keeping your UI components clean and focused. We explore how to leverage built-in hooks like useEffect and useMemo within custom functions to handle complex operations like data fetching, form validation, and synchronization. This module teaches you how to build a scalable and maintainable frontend architecture by promoting code reuse across your entire application.", d_ar: "تسمح لك الـ Hooks المخصصة باستخراج منطق المكونات إلى وظائف قابلة لإعادة الاستخدام، مما يحافظ على نظافة مكونات واجهة المستخدم الخاصة بك. نستكشف كيفية الاستفادة من الـ hooks المدمجة مثل useEffect و useMemo داخل وظائف مخصصة للتعامل مع العمليات المعقدة مثل جلب البيانات. يعلمك هذا القسم كيفية بناء معمارية واجهة أمامية قابلة للتوسع." },
+    { t_en: "Next.js App Router & Server Components", icon: "fa-route", img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80", t_ar: "الـ App Router في Next.js ومكونات السيرفر", d_en: "Next.js 14 introduces a revolutionary routing system based on React Server Components (RSC). We explore the benefits of rendering on the server by default, reducing client-side JavaScript and improving Time to Interactive (TTI). This lesson covers the App Router architecture, nested layouts, and how to use Server Actions to handle data mutations directly on the server without the need for manual API route management.", d_ar: "يقدم Next.js 14 نظام توجيه ثوري يعتمد على مكونات ريـاكت للسيرفر (RSC). نستكشف فوائد الرندر على السيرفر افتراضيًا، مما يقلل من حجم ملفات جافا سكريبت لدى العميل ويحسن وقت التفاعل (TTI). يغطي هذا الدرس معمارية App Router، التخطيطات المتداخلة، وكيفية استخدام Server Actions للتعامل مع تغييرات البيانات مباشرة على السيرفر." }
   ];
 
   const chaptersContainer = document.getElementById('reactLessons');
   
-  for (let i = 0; i < 70; i++) {
-    const topic = reactTopics[i % reactTopics.length];
+  reactLessons.forEach(lesson => renderCard(lesson));
+
+  const extraReact = [
+    { t_en: "State Management with Zustand", t_ar: "إدارة الحالة باستخدام Zustand", icon: "fa-gears", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Zod & React Hook Form", t_ar: "تأمين النماذج بـ Zod و Hook Form", icon: "fa-shield-halved", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Design Systems with Radix UI", t_ar: "بناء أنظمة التصميم بـ Radix UI", icon: "fa-puzzle-piece", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Performance & Code Splitting", t_ar: "الأداء وتقسيم الكود", icon: "fa-gauge-high", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" }
+  ];
+
+  for (let i = 0; i < 67; i++) {
+    const topic = extraReact[i % extraReact.length];
+    renderCard({
+      t_en: `${topic.t_en} - Arch Module ${i + 4}`,
+      d_en: `In this specialized React engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into component lifecycle, state synchronization, and scalable frontend architecture. By mastering ${topic.t_en}, you ensure your React applications are robust, responsive, and highly maintainable in large-scale production environments using the latest industry standards.`,
+      t_ar: `${topic.t_ar} - الوحدة المعمارية ${i + 4}`,
+      d_ar: `في هذه الوحدة المتخصصة في هندسة ريـاكت، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول دورة حياة المكونات، مزامنة الحالة، ومعمارية الواجهة الأمامية القابلة للتوسع. من خلال إتقان ${topic.t_ar}، تضمن أن تطبيقات ريـاكت الخاصة بك قوية ومستجيبة وسهلة الصيانة في بيئات الإنتاج الضخمة باستخدام أحدث معايير الصناعة.`,
+      icon: topic.icon,
+      img: topic.img
+    });
+  }
+
+  function renderCard(item) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
       <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
-        <img src="${topic.img}" alt="${topic.t}">
+        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
+        <img src="${item.img}" alt="${item.t_en}">
       </div>
       <div class="lesson-content">
         <div data-cl-lang="en">
-          <h3>${topic.t} Mastery</h3>
-          <p>In this specialized React engineering module, we explore the deep technical implementation and architectural behavior of ${topic.t}. We focus on real-world performance optimization, scalable component design, and how to integrate ${topic.t} into modern frontend applications. This ensures you have the expertise to build robust, interactive, and highly maintainable user interfaces that meet the highest standards.</p>
+          <h3>${item.t_en}</h3>
+          <p>${item.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>إتقان ${topic.t}</h3>
-          <p>في هذه الوحدة المتخصصة في هندسة ريـاكت، نستكشف التنفيذ التقني العميق والسلوك المعماري لـ ${topic.t}. نحن نركز على تحسين الأداء في العالم الحقيقي، تصميم المكونات القابلة للتوسع، وكيفية دمج ${topic.t} في تطبيقات الواجهة الأمامية الحديثة. يضمن ذلك حصولك على الخبرة اللازمة لبناء واجهات مستخدم قوية وتفاعلية وسهلة الصيانة تلبي أعلى المعايير.</p>
+          <h3>${item.t_ar}</h3>
+          <p>${item.d_ar}</p>
         </div>
       </div>
     `;

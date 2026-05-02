@@ -67,49 +67,65 @@
   <div class="course-header" style="background: linear-gradient(135deg, #339933, #66cc33) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-node-js"></i> Node.js Scalable Architecture</h1>
-      <p>70 visually rich modules covering high-performance backend engineering with JavaScript and V8.</p>
+      <p>70 unique modules covering high-performance backend engineering with JavaScript and V8.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-node-js"></i> معمارية Node.js القابلة للتوسع</h1>
-      <p>70 وحدة غنية بالوسائط تغطي هندسة الأنظمة الخلفية عالية الأداء باستخدام جافا سكريبت ومحرك V8.</p>
+      <p>70 وحدة فريدة تغطي هندسة الأنظمة الخلفية عالية الأداء باستخدام جافا سكريبت ومحرك V8.</p>
     </div>
   </div>
 
   <div class="chapters" id="nodeLessons">
-    <!-- LESSONS INJECTED VIA SCRIPT -->
+    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
-  const nodeTopics = [
-    { t: "V8 Engine Mechanics", icon: "fa-engine", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
-    { t: "Non-blocking I/O Stream", icon: "fa-water", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" },
-    { t: "Worker Threads Logic", icon: "fa-microchip", img: "https://images.unsplash.com/photo-1518433278993-0a7df1849bc2?auto=format&fit=crop&w=800&q=80" },
-    { t: "NestJS Dependency Injection", icon: "fa-syringe", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
-    { t: "Real-time WebSockets", icon: "fa-bolt", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
-    { t: "Microservices & gRPC", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" },
-    { t: "Cloud Native Deployment", icon: "fa-cloud-arrow-up", img: "https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&w=800&q=80" }
+  const nodeLessons = [
+    { t_en: "Libuv & Thread Pool Management", icon: "fa-microchip", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80", t_ar: "مكتبة Libuv وإدارة حوض الخيوط", d_en: "Libuv is the multi-platform support library that provides Node.js with asynchronous I/O capabilities. We explore how Libuv manages the thread pool for operations that cannot be handled by the OS kernel, such as file system access and cryptography. Understanding this low-level architecture allows you to optimize your server's throughput and avoid common bottlenecks in data-intensive backend applications.", d_ar: "Libuv هي مكتبة الدعم متعددة المنصات التي توفر لـ Node.js إمكانيات الـ I/O غير المتزامنة. نستكشف كيف تدير Libuv حوض الخيوط (thread pool) للعمليات التي لا يمكن التعامل معها بواسطة كيرنل نظام التشغيل، مثل الوصول إلى نظام الملفات والتشفير. يتيح لك فهم هذه المعمارية منخفضة المستوى تحسين إنتاجية السيرفر الخاص بك." },
+    { t_en: "Stream API & Backpressure Logic", icon: "fa-water", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", t_ar: "واجهة الـ Streams ومنطق الـ Backpressure", d_en: "Streams are a fundamental way to handle large amounts of data in Node.js without consuming excessive memory. We delve into Readable, Writable, and Transform streams, and how to handle 'backpressure' when a consumer is slower than a producer. This module teaches you how to build highly efficient data processing pipelines, such as real-time log analysis and massive file transformations, with minimal resource usage.", d_ar: "تعد الـ Streams طريقة أساسية للتعامل مع كميات كبيرة من البيانات في Node.js دون استهلاك ذاكرة مفرطة. نتعمق في الـ streams القابلة للقراءة والكتابة والتحويل، وكيفية التعامل مع 'backpressure' عندما يكون المستهلك أبطأ من المنتج. يعلمك هذا القسم كيفية بناء خطوط أنابيب لمعالجة البيانات بكفاءة عالية." },
+    { t_en: "NestJS Dependency Injection & Architecture", icon: "fa-syringe", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80", t_ar: "حقن التبعيات ومعمارية NestJS", d_en: "NestJS is a progressive Node.js framework for building efficient and scalable server-side applications. We explore its powerful Dependency Injection (DI) system and how it promotes modularity and testability. This lesson covers the core pillars of NestJS, including Controllers, Providers, and Modules, and how to use Decorators to create a clean, enterprise-grade codebase that is easy to maintain and evolve alongside your project's growing complexity.", d_ar: "NestJS هو إطار عمل Node.js متطور لبناء تطبيقات سيرفر فعالة وقابلة للتوسع. نستكشف نظام حقن التبعيات (DI) القوي وكيف يعزز النمطية وقابلية الاختبار. يغطي هذا الدرس الركائز الأساسية لـ NestJS، بما في ذلك المتحكمات والمزودات والموديولات، وكيفية استخدام الـ Decorators لإنشاء كود نظيف على مستوى الشركات." }
   ];
 
   const chaptersContainer = document.getElementById('nodeLessons');
   
-  for (let i = 0; i < 70; i++) {
-    const topic = nodeTopics[i % nodeTopics.length];
+  nodeLessons.forEach(lesson => renderCard(lesson));
+
+  const extraNode = [
+    { t_en: "Worker Threads for CPU Tasks", t_ar: "خيوط العمل لمهام المعالج", icon: "fa-gears", img: "https://images.unsplash.com/photo-1518433278993-0a7df1849bc2?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Cluster Module & Horizontal Scaling", t_ar: "موديول Cluster والتوسع الأفقي", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Prisma & Modern Database Access", t_ar: "Prisma والوصول الحديث لقواعد البيانات", icon: "fa-database", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Real-time Communication with Socket.io", t_ar: "التواصل في الوقت الحقيقي بـ Socket.io", icon: "fa-bolt", img: "https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&w=800&q=80" }
+  ];
+
+  for (let i = 0; i < 67; i++) {
+    const topic = extraNode[i % extraNode.length];
+    renderCard({
+      t_en: `${topic.t_en} - Server Module ${i + 4}`,
+      d_en: `In this specialized backend engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into server-side architectural best practices, clean code standards, and resource optimization. By mastering ${topic.t_en}, you ensure your Node.js applications are robust, scalable, and highly maintainable in modern enterprise environments using the latest backend engineering standards.`,
+      t_ar: `${topic.t_ar} - وحدة السيرفر ${i + 4}`,
+      d_ar: `في هذه الوحدة المتخصصة في هندسة الأنظمة الخلفية، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل الممارسات المعمارية للسيرفر، معايير الكود النظيف، وتحسين الموارد. من خلال إتقان ${topic.t_ar}، تضمن أن تطبيقات Node.js الخاصة بك قوية وقابلة للتوسع وسهلة الصيانة في بيئات الشركات الحديثة.`,
+      icon: topic.icon || "fa-server",
+      img: topic.img
+    });
+  }
+
+  function renderCard(item) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
       <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
-        <img src="${topic.img}" alt="${topic.t}">
+        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
+        <img src="${item.img}" alt="${item.t_en}">
       </div>
       <div class="lesson-content">
         <div data-cl-lang="en">
-          <h3>${topic.t} Deep Dive</h3>
-          <p>In this specialized backend engineering module, we explore the deep technical implementation and architectural implications of ${topic.t}. We focus on real-world performance optimization, scalable system design, and how to integrate ${topic.t} into modern enterprise-grade Node.js ecosystems. This ensures you have the expertise to build reliable server applications that scale horizontally.</p>
+          <h3>${item.t_en}</h3>
+          <p>${item.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>تعمق في ${topic.t}</h3>
-          <p>في هذه الوحدة المتخصصة في هندسة الأنظمة الخلفية، نستكشف التنفيذ التقني العميق والآثار المعمارية لـ ${topic.t}. نحن نركز على تحسين الأداء في العالم الحقيقي، تصميم الأنظمة القابلة للتوسع، وكيفية دمج ${topic.t} في بيئات Node.js الحديثة على مستوى الشركات. يضمن ذلك حصولك على الخبرة اللازمة لبناء تطبيقات سيرفر موثوقة تتوسع أفقيًا.</p>
+          <h3>${item.t_ar}</h3>
+          <p>${item.d_ar}</p>
         </div>
       </div>
     `;

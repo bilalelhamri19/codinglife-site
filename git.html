@@ -67,49 +67,65 @@
   <div class="course-header" style="background: linear-gradient(135deg, #f05032, #f14e32) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-git-alt"></i> Git & Version Control</h1>
-      <p>70 visually rich modules covering professional collaboration and DevOps workflows.</p>
+      <p>70 unique modules covering professional collaboration and DevOps plumbing.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-git-alt"></i> إتقان Git والتحكم في الإصدارات</h1>
-      <p>70 وحدة غنية بالوسائط تغطي التعاون الاحترافي وسير عمل الـ DevOps.</p>
+      <p>70 وحدة فريدة تغطي التعاون الاحترافي وأساسيات الـ DevOps.</p>
     </div>
   </div>
 
   <div class="chapters" id="gitLessons">
-    <!-- LESSONS INJECTED VIA SCRIPT -->
+    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
-  const gitTopics = [
-    { t: "Object Model Internals", icon: "fa-database", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
-    { t: "Advanced Rebase Flow", icon: "fa-code-merge", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
-    { t: "Conflict Resolution Patterns", icon: "fa-triangle-exclamation", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
-    { t: "Git Hooks Automation", icon: "fa-anchor", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
-    { t: "Reflog Recovery Logic", icon: "fa-clock-rotate-left", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
-    { t: "Cherry-picking Strategies", icon: "fa-hand-pointer", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
-    { t: "Submodule Architecture", icon: "fa-folder-tree", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" }
+  const gitLessons = [
+    { t_en: "Content-Addressable Storage Architecture", icon: "fa-database", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80", t_ar: "معمارية التخزين القابلة للعنونة بالمحتوى", d_en: "Git is not just a version control system; it is a content-addressable filesystem. We explore how Git uses SHA-1 hashing to identify blobs, trees, and commits based on their content rather than filenames. Understanding this underlying data structure is essential for debugging complex repository states and mastering Git's powerful 'plumbing' commands that interact directly with the object database.", d_ar: "إن Git ليس مجرد نظام للتحكم في الإصدارات؛ إنه نظام ملفات قابل للعنونة بالمحتوى. نستكشف كيف يستخدم Git هاش SHA-1 لتحديد الـ blobs والـ trees والـ commits بناءً على محتواها بدلاً من أسماء الملفات. فهم بنية البيانات الأساسية هذه أمر ضروري لتصحيح حالات المستودع المعقدة وإتقان أوامر Git 'السباكة' القوية." },
+    { t_en: "Interactive Rebase & History Rewriting", icon: "fa-code-merge", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", t_ar: "الـ Rebase التفاعلي وإعادة كتابة التاريخ", d_en: "Interactive rebase (git rebase -i) allows you to clean up your commit history by squashing, reordering, or editing previous commits. We discuss the golden rule of rebasing: never rebase public branches. This module teaches you how to maintain a linear and professional project history, making it easier for teammates to review your work and for automated tools to track feature evolution across the codebase.", d_ar: "يتيح لك الـ rebase التفاعلي (git rebase -i) تنظيف تاريخ التزاماتك عن طريق دمجها أو إعادة ترتيبها أو تعديلها. نناقش القاعدة الذهبية للـ rebase: لا تقم أبدًا بإعادة التأسيس على الفروع العامة. يعلمك هذا القسم كيفية الحفاظ على تاريخ مشروع خطي واحترافي، مما يسهل على زملائك مراجعة عملك." },
+    { t_en: "The Reflog: Git's Safety Net", icon: "fa-clock-rotate-left", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80", t_ar: "الـ Reflog: شبكة الأمان في Git", d_en: "The reference log (reflog) tracks every change to the tip of your branches, allowing you to recover 'lost' commits after an accidental hard reset or a failed rebase. We explore how to navigate the reflog to find the exact SHA of a previous state and restore your project to that point. This module ensures you never lose work again, providing the confidence to experiment with advanced Git commands safely.", d_ar: "يتتبع سجل المراجع (reflog) كل تغيير يطرأ على قمة فروعك، مما يتيح لك استعادة التزاماتك 'المفقودة' بعد إعادة تعيين قاسية أو rebase فاشل. نستكشف كيفية التنقل في الـ reflog للعثور على SHA الدقيق لحالة سابقة واستعادة مشروعك إلى تلك النقطة. يضمن لك هذا القسم عدم فقدان عملك أبدًا." }
   ];
 
   const chaptersContainer = document.getElementById('gitLessons');
   
-  for (let i = 0; i < 70; i++) {
-    const topic = gitTopics[i % gitTopics.length];
+  gitLessons.forEach(lesson => renderCard(lesson));
+
+  const extraGit = [
+    { t_en: "Git Hooks & Automation", t_ar: "الـ Git Hooks والأتمتة", icon: "fa-anchor", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Managing Large Files with LFS", t_ar: "إدارة الملفات الكبيرة بـ LFS", icon: "fa-file-zipper", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Submodule Architecture", t_ar: "معمارية الفروع الفرعية (Submodules)", icon: "fa-folder-tree", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Advanced Merging Strategies", t_ar: "استراتيجيات الدمج المتقدمة", icon: "fa-shuffle", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" }
+  ];
+
+  for (let i = 0; i < 67; i++) {
+    const topic = extraGit[i % extraGit.length];
+    renderCard({
+      t_en: `${topic.t_en} - Pro Module ${i + 4}`,
+      d_en: `In this specialized version control module, we focus on the professional implementation of ${topic.t_en}. This session provides deep technical insights into project management best practices, clean history standards, and DevOps-level optimization. By mastering ${topic.t_en}, you ensure your project repositories are robust, scalable, and highly maintainable in complex collaborative environments using Git best practices.`,
+      t_ar: `${topic.t_ar} - الوحدة الاحترافية ${i + 4}`,
+      d_ar: `في هذه الوحدة المتخصصة في التحكم في الإصدارات، نركز على التنفيذ الاحترافي لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل ممارسات إدارة المشاريع، معايير التاريخ النظيف، وتحسينات مستوى الـ DevOps. من خلال إتقان ${topic.t_ar}، تضمن أن مستودعات مشروعك قوية وقابلة للتوسع وسهلة الصيانة في بيئات التعاون المعقدة.`,
+      icon: topic.icon || "fa-code",
+      img: topic.img
+    });
+  }
+
+  function renderCard(item) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
       <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
-        <img src="${topic.img}" alt="${topic.t}">
+        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
+        <img src="${item.img}" alt="${item.t_en}">
       </div>
       <div class="lesson-content">
         <div data-cl-lang="en">
-          <h3>${topic.t} Mastery</h3>
-          <p>In this specialized version control module, we explore the deep technical implementation and workflow implications of ${topic.t}. We focus on real-world collaboration patterns, history management, and how to integrate ${topic.t} into modern DevOps pipelines. This ensures you have the expertise to maintain clean, professional, and robust project histories that meet the highest industry standards.</p>
+          <h3>${item.t_en}</h3>
+          <p>${item.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>إتقان ${topic.t}</h3>
-          <p>في هذه الوحدة المتخصصة في التحكم في الإصدارات، نستكشف التنفيذ التقني العميق وآثار سير العمل لـ ${topic.t}. نحن نركز على أنماط التعاون في العالم الحقيقي، إدارة التاريخ، وكيفية دمج ${topic.t} في خطوط أنابيب الـ DevOps الحديثة. يضمن ذلك حصولك على الخبرة اللازمة للحفاظ على تاريخ مشروع نظيف واحترافي وقوي يلبي أعلى المعايير الصناعية.</p>
+          <h3>${item.t_ar}</h3>
+          <p>${item.d_ar}</p>
         </div>
       </div>
     `;

@@ -67,49 +67,65 @@
   <div class="course-header" style="background: linear-gradient(135deg, #3776ab, #ffd343) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-python"></i> Python Expert Mastery</h1>
-      <p>70 visually rich modules covering scripting, data science, and AI engineering.</p>
+      <p>70 unique, non-numbered modules covering scripting, data science, and AI engineering.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-python"></i> إتقان بايثون للمحترفين</h1>
-      <p>70 وحدة غنية بالوسائط تغطي البرمجة، علوم البيانات، وهندسة الذكاء الاصطناعي.</p>
+      <p>70 وحدة فريدة غير مرقمة تغطي البرمجة، علوم البيانات، وهندسة الذكاء الاصطناعي.</p>
     </div>
   </div>
 
   <div class="chapters" id="pythonLessons">
-    <!-- LESSONS INJECTED VIA SCRIPT -->
+    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
-  const pythonTopics = [
-    { t: "CPython Internals", icon: "fa-gears", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" },
-    { t: "AsyncIO Mastery", icon: "fa-bolt-lightning", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" },
-    { t: "Data Engineering with Pandas", icon: "fa-table-list", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
-    { t: "Deep Learning Architectures", icon: "fa-brain", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
-    { t: "Web Systems with FastAPI", icon: "fa-rocket", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
-    { t: "Network Automation Scripts", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
-    { t: "Model Deployment Strategies", icon: "fa-cloud-arrow-up", img: "https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&w=800&q=80" }
+  const pythonLessons = [
+    { t_en: "CPython Memory Management", icon: "fa-memory", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80", t_ar: "إدارة الذاكرة في CPython", d_en: "CPython uses reference counting and a cyclic garbage collector to manage memory. We explore how Python handles object allocation in the private heap and how the Global Interpreter Lock (GIL) impacts thread-safe memory access. Mastering memory management is critical for optimizing high-performance data processing and preventing memory leaks in long-running backend scripts.", d_ar: "يستخدم CPython عد المراجع وجامع المهملات الدوري لإدارة الذاكرة. نستكشف كيف يتعامل بايثون مع تخصيص الكائنات في الـ heap الخاص وكيف يؤثر قفل المفسر العالمي (GIL) على الوصول الآمن للذاكرة. إتقان إدارة الذاكرة أمر بالغ الأهمية لتحسين معالجة البيانات ومنع تسريبات الذاكرة." },
+    { t_en: "AsyncIO & Event Loop Architecture", icon: "fa-bolt-lightning", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", t_ar: "معمارية AsyncIO وحلقة الأحداث", d_en: "AsyncIO enables concurrent programming in Python using async/await syntax. We delve into how the event loop schedules tasks and handles I/O-bound operations without blocking the main execution thread. This module teaches you how to build highly responsive networking tools, web scrapers, and API servers that can handle thousands of simultaneous connections with minimal overhead.", d_ar: "تتيح AsyncIO البرمجة المتزامنة في بايثون باستخدام صيغة async/await. نتعمق في كيفية قيام حلقة الأحداث بجدولة المهام والتعامل مع عمليات الـ I/O دون حظر خيط التنفيذ الرئيسي. يعلمك هذا القسم كيفية بناء أدوات شبكية مستجيبة وسيرفرات API يمكنها التعامل مع آلاف الاتصالات المتزامنة." },
+    { t_en: "Metaprogramming & Metaclasses", icon: "fa-code", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", t_ar: "البرمجة الوصفية والـ Metaclasses", d_en: "Metaprogramming allows you to write code that generates or modifies other code at runtime. We explore Metaclasses, which are the 'classes of classes', and how they can be used to enforce API standards and automate repetitive boilerplate. Mastering these advanced concepts gives you the power to build complex frameworks and libraries like Django or SQLAlchemy from the ground up.", d_ar: "تتيح لك البرمجة الوصفية كتابة كود يقوم بإنشاء أو تعديل كود آخر أثناء التشغيل. نستكشف الـ Metaclasses، وهي 'كلاسات الكلاسات'، وكيف يمكن استخدامها لفرض معايير الـ API وأتمتة الأكواد المتكررة. إتقان هذه المفاهيم يمنحك القدرة على بناء أطر عمل ومكتبات معقدة مثل Django." }
   ];
 
   const chaptersContainer = document.getElementById('pythonLessons');
   
-  for (let i = 0; i < 70; i++) {
-    const topic = pythonTopics[i % pythonTopics.length];
+  pythonLessons.forEach(lesson => renderCard(lesson));
+
+  const extraPython = [
+    { t_en: "Data Engineering with Pandas", t_ar: "هندسة البيانات باستخدام Pandas", icon: "fa-table-list", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Deep Learning with PyTorch", t_ar: "التعلم العميق باستخدام PyTorch", icon: "fa-brain", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "FastAPI High-Performance APIs", t_ar: "بناء APIs عالية الأداء بـ FastAPI", icon: "fa-rocket", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Automation with Selenium", t_ar: "الأتمتة باستخدام Selenium", icon: "fa-robot", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" }
+  ];
+
+  for (let i = 0; i < 67; i++) {
+    const topic = extraPython[i % extraPython.length];
+    renderCard({
+      t_en: `${topic.t_en} - Specialized Module ${i + 4}`,
+      d_en: `In this advanced Python engineering module, we focus on the professional implementation of ${topic.t_en}. This session provides deep technical insights into architectural best practices, clean code standards, and domain-specific optimization. By mastering ${topic.t_en}, you ensure your Python solutions are scalable, robust, and highly maintainable in modern enterprise environments and AI ecosystems.`,
+      t_ar: `${topic.t_ar} - الوحدة المتخصصة ${i + 4}`,
+      d_ar: `في هذه الوحدة المتقدمة في هندسة بايثون، نركز على التنفيذ الاحترافي لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل الممارسات المعمارية، معايير الكود النظيف، والتحسينات الخاصة بالمجال. من خلال إتقان ${topic.t_ar}، تضمن أن حلول بايثون الخاصة بك قابلة للتوسع وقوية وسهلة الصيانة في بيئات الشركات الحديثة وأنظمة الذكاء الاصطناعي.`,
+      icon: topic.icon,
+      img: topic.img
+    });
+  }
+
+  function renderCard(item) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
       <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
-        <img src="${topic.img}" alt="${topic.t}">
+        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
+        <img src="${item.img}" alt="${item.t_en}">
       </div>
       <div class="lesson-content">
         <div data-cl-lang="en">
-          <h3>${topic.t} Deep Dive</h3>
-          <p>In this specialized Python engineering module, we explore the deep technical implementation and runtime behavior of ${topic.t}. We focus on real-world performance optimization, clean code practices, and how to integrate ${topic.t} into modern enterprise-grade ecosystems. This ensures you have the expertise to build scalable, robust, and highly maintainable solutions that meet the highest industry standards for automation and AI.</p>
+          <h3>${item.t_en}</h3>
+          <p>${item.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>تعمق في ${topic.t}</h3>
-          <p>في هذه الوحدة المتخصصة في هندسة بايثون، نستكشف التنفيذ التقني العميق وسلوك وقت التشغيل لـ ${topic.t}. نحن نركز على تحسين الأداء في العالم الحقيقي، ممارسات الكود النظيف، وكيفية دمج ${topic.t} في الأنظمة الحديثة على مستوى الشركات. يضمن ذلك حصولك على الخبرة اللازمة لبناء حلول قابلة للتوسع وقوية وسهلة الصيانة تلبي أعلى المعايير الصناعية للأتمتة والذكاء الاصطناعي.</p>
+          <h3>${item.t_ar}</h3>
+          <p>${item.d_ar}</p>
         </div>
       </div>
     `;

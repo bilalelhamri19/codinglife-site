@@ -81,35 +81,54 @@
 </div>
 
 <script>
-  const flutterTopics = [
-    { t: "Skia Rendering Engine", icon: "fa-paint-roller", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" },
-    { t: "Dart Event Loop", icon: "fa-arrows-spin", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
-    { t: "The Widget Tree Architecture", icon: "fa-sitemap", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
-    { t: "Advanced Riverpod State", icon: "fa-water", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
-    { t: "Clean Architecture Design", icon: "fa-building-columns", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" },
-    { t: "Native Platform Channels", icon: "fa-bridge", img: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80" },
-    { t: "Animations & Motion Design", icon: "fa-film", img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80" }
+  const flutterLessons = [
+    { t_en: "Skia Rendering Engine Internals", icon: "fa-paint-roller", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", t_ar: "خفايا محرك الرندر Skia", d_en: "Skia is the secret behind Flutter's high-performance graphics, rendering every pixel directly on the screen. We explore how Flutter bypasses platform-specific widgets to achieve consistent 60/120 FPS across iOS and Android. Understanding Skia allows you to optimize complex animations and build visually stunning user interfaces with custom shaders and painting logic.", d_ar: "Skia هو السر وراء رسومات فلاتر عالية الأداء، حيث يقوم برسم كل بكسل مباشرة على الشاشة. نستكشف كيف يتجاوز فلاتر الودجت الخاصة بالمنصة لتحقيق 60/120 إطار في الثانية بشكل متسق عبر iOS و Android. يتيح لك فهم Skia تحسين الرسوم المتحركة المعقدة وبناء واجهات مستخدم مذهلة." },
+    { t_en: "Dart Event Loop & Isolate Communication", icon: "fa-arrows-spin", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80", t_ar: "حلقة أحداث Dart والتواصل بين الـ Isolates", d_en: "Dart handles asynchronous operations through an Event Loop, ensuring your app remains responsive during I/O tasks. For heavy computations, we use Isolates, which have their own memory heap and run in parallel. This module teaches you how to manage multi-threading in Flutter to handle massive data processing without ever freezing the user interface.", d_ar: "تتعامل لغة Dart مع العمليات غير المتزامنة من خلال حلقة الأحداث، مما يضمن بقاء تطبيقك مستجيبًا. للحسابات الثقيلة، نستخدم الـ Isolates التي تمتلك ذاكرتها الخاصة وتعمل بالتوازي. يعلمك هذا القسم كيفية إدارة تعدد الخيوط في فلاتر لمعالجة البيانات الضخمة دون تجميد واجهة المستخدم." },
+    { t_en: "Advanced Riverpod State Management", icon: "fa-water", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80", t_ar: "إدارة الحالة المتقدمة بـ Riverpod", d_en: "Riverpod provides a compile-safe and highly testable way to manage application state in Flutter. We explore advanced patterns like AsyncNotifier and StateProvider to synchronize server data and local UI states seamlessly. Mastering Riverpod ensures your business logic is decoupled from the UI, making your codebase scalable and easy to maintain across large engineering teams.", d_ar: "يوفر Riverpod طريقة آمنة وقابلة للاختبار لإدارة حالة التطبيق في فلاتر. نستكشف الأنماط المتقدمة مثل AsyncNotifier و StateProvider لمزامنة بيانات السيرفر وحالات واجهة المستخدم المحلية بسلاسة. يضمن إتقان Riverpod فصل منطق الأعمال عن واجهة المستخدم، مما يجعل كودك قابلاً للتوسع." },
+    { t_en: "Clean Architecture for Mobile", icon: "fa-building-columns", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80", t_ar: "المعمارية النظيفة للموبايل", d_en: "Clean Architecture organizes your Flutter app into layers: Domain, Data, and Presentation. This separation of concerns allows you to swap out databases or UI frameworks without touching your core business logic. We focus on implementing repositories, use cases, and entities to create a robust system that is easy to test and evolves alongside your project's growing complexity.", d_ar: "تنظم المعمارية النظيفة تطبيق فلاتر الخاص بك إلى طبقات: النطاق، البيانات، والعرض. يتيح هذا الفصل للمصالح استبدال قواعد البيانات أو أطر واجهة المستخدم دون المساس بمنطق الأعمال الأساسي. نركز على تنفيذ المستودعات وحالات الاستخدام لإنشاء نظام قوي يسهل اختباره وتطويره." }
   ];
 
   const chaptersContainer = document.getElementById('flutterLessons');
   
-  for (let i = 0; i < 70; i++) {
-    const topic = flutterTopics[i % flutterTopics.length];
+  flutterLessons.forEach(lesson => {
+    renderCard(lesson);
+  });
+
+  const flutterExtra = [
+    { t_en: "Native Platform Channels", t_ar: "قنوات المنصة الأصلية", icon: "fa-bridge", img: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Animations & Motion Design", t_ar: "الرسوم المتحركة وتصميم الحركة", icon: "fa-film", img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Dependency Injection with GetIt", t_ar: "حقن التبعيات بـ GetIt", icon: "fa-syringe", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Unit & Widget Testing", t_ar: "اختبار الوحدات والودجت", icon: "fa-vial", img: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=800&q=80" }
+  ];
+
+  for (let i = 0; i < 66; i++) {
+    const topic = flutterExtra[i % flutterExtra.length];
+    renderCard({
+      t_en: `${topic.t_en} - Module ${i + 5}`,
+      d_en: `In this specialized Flutter engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into architectural best practices, clean code standards, and mobile-specific optimization. By mastering ${topic.t_en}, you ensure your apps are robust, scalable, and highly maintainable in large-scale production environments across iOS and Android.`,
+      t_ar: `${topic.t_ar} - الوحدة ${i + 5}`,
+      d_ar: `في هذه الوحدة المتخصصة في هندسة فلاتر، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل الممارسات المعمارية، معايير الكود النظيف، والتحسينات الخاصة بالموبايل. من خلال إتقان ${topic.t_ar}، تضمن أن تطبيقاتك قوية وقابلة للتوسع وسهلة الصيانة في بيئات الإنتاج الضخمة عبر iOS و Android.`,
+      icon: topic.icon,
+      img: topic.img
+    });
+  }
+
+  function renderCard(item) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
       <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
-        <img src="${topic.img}" alt="${topic.t}">
+        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
+        <img src="${item.img}" alt="${item.t_en}">
       </div>
       <div class="lesson-content">
         <div data-cl-lang="en">
-          <h3>${topic.t} Mastery</h3>
-          <p>In this specialized mobile engineering module, we explore the deep technical implementation of ${topic.t} within the Flutter ecosystem. We focus on real-world performance optimization, clean code practices, and how to integrate ${topic.t} into large-scale production applications. This ensures you have the expertise to build responsive, robust, and highly maintainable native apps that meet the highest industry standards for iOS and Android.</p>
+          <h3>${item.t_en}</h3>
+          <p>${item.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>إتقان ${topic.t}</h3>
-          <p>في هذه الوحدة المتخصصة في هندسة الموبايل، نستكشف التنفيذ التقني العميق لـ ${topic.t} داخل نظام فلاتر البيئي. نحن نركز على تحسين الأداء في العالم الحقيقي، ممارسات الكود النظيف، وكيفية دمج ${topic.t} في تطبيقات الإنتاج الضخمة. يضمن ذلك حصولك على الخبرة اللازمة لبناء تطبيقات أصلية مستجيبة وقوية وسهلة الصيانة تلبي أعلى المعايير الصناعية لـ iOS و Android.</p>
+          <h3>${item.t_ar}</h3>
+          <p>${item.d_ar}</p>
         </div>
       </div>
     `;

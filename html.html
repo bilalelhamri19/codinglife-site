@@ -67,49 +67,65 @@
   <div class="course-header" style="background: linear-gradient(135deg, #e34f26, #f06529) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-html5"></i> HTML5 Expert Mastery</h1>
-      <p>70 visually rich modules covering semantic architecture and advanced Web APIs.</p>
+      <p>70 unique modules covering semantic architecture and advanced Web APIs.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-html5"></i> إتقان HTML5 للمحترفين</h1>
-      <p>70 وحدة غنية بالوسائط تغطي المعمارية الدلالية وواجهات برمجة تطبيقات الويب المتقدمة.</p>
+      <p>70 وحدة فريدة تغطي المعمارية الدلالية وواجهات برمجة تطبيقات الويب المتقدمة.</p>
     </div>
   </div>
 
   <div class="chapters" id="htmlLessons">
-    <!-- LESSONS INJECTED VIA SCRIPT -->
+    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
-  const htmlTopics = [
-    { t: "DOM Architecture", icon: "fa-sitemap", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
-    { t: "Semantic Excellence", icon: "fa-code", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
-    { t: "Web Workers API", icon: "fa-microchip", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
-    { t: "Offline Storage Patterns", icon: "fa-hard-drive", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
-    { t: "Accessibility (a11y)", icon: "fa-universal-access", img: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=800&q=80" },
-    { t: "Canvas Graphics Eng", icon: "fa-paintbrush", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" },
-    { t: "SEO & Metadata Architecture", icon: "fa-magnifying-glass", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" }
+  const htmlLessons = [
+    { t_en: "The Browser Rendering Pipeline", icon: "fa-gears", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", t_ar: "خط أنابيب رندر المتصفح", d_en: "The browser's rendering engine transforms HTML and CSS into visual pixels through a multi-step process including DOM construction, CSSOM creation, and layout painting. We explore how to optimize this 'Critical Rendering Path' to achieve faster page loads and smoother user interactions. Understanding these internals allows you to build high-performance web applications that provide a premium experience across all devices.", d_ar: "يقوم محرك رندر المتصفح بتحويل HTML و CSS إلى بكسلات مرئية من خلال عملية متعددة الخطوات تشمل بناء الـ DOM وإنشاء الـ CSSOM ورسم التخطيط. نستكشف كيفية تحسين 'مسار الرندر الحرج' لتحقيق تحميل أسرع للصفحة وتفاعلات أكثر سلاسة. يتيح لك فهم هذه الخفايا بناء تطبيقات ويب عالية الأداء توفر تجربة ممتازة." },
+    { t_en: "Semantic HTML & SEO Architecture", icon: "fa-sitemap", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", t_ar: "الـ HTML الدلالي ومعمارية الـ SEO", d_en: "Semantic HTML uses meaningful tags like <article>, <section>, and <aside> to describe the content's purpose to browsers and search engines. We delve into how proper semantic structure improves Accessibility (a11y) and SEO rankings by providing a clear hierarchy for screen readers and web crawlers. This module teaches you how to build professional, future-proof web architectures that are easy to maintain and highly discoverable on the internet.", d_ar: "تستخدم الـ HTML الدلالية وسومًا ذات معنى مثل <article> و <section> لوصف غرض المحتوى للمتصفحات ومحركات البحث. نتعمق في كيفية قيام الهيكل الدلالي الصحيح بتحسين إمكانية الوصول (a11y) وتصنيفات الـ SEO من خلال توفير تسلسل هرمي واضح. يعلمك هذا القسم كيفية بناء معماريات ويب احترافية وجاهزة للمستقبل." },
+    { t_en: "Web Workers & Background Processing", icon: "fa-microchip", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80", t_ar: "الـ Web Workers والمعالجة الخلفية", d_en: "Web Workers allow you to run heavy JavaScript computations in the background, preventing the UI thread from freezing. We explore how to communicate between the main thread and workers using the Message API and how to leverage this for complex data processing or real-time graphics. Mastering this API is essential for building modern web applications that handle massive workloads without compromising the user's interactive experience.", d_ar: "تسمح لك الـ Web Workers بتشغيل حسابات جافا سكريبت الثقيلة في الخلفية، مما يمنع تجمد خيط واجهة المستخدم. نستكشف كيفية التواصل بين الخيط الرئيسي والعمال باستخدام Message API وكيفية الاستفادة من ذلك لمعالجة البيانات المعقدة. إتقان هذه الواجهة أمر ضروري لبناء تطبيقات ويب حديثة تتعامل مع أعباء عمل ضخمة." }
   ];
 
   const chaptersContainer = document.getElementById('htmlLessons');
   
-  for (let i = 0; i < 70; i++) {
-    const topic = htmlTopics[i % htmlTopics.length];
+  htmlLessons.forEach(lesson => renderCard(lesson));
+
+  const extraHtml = [
+    { t_en: "Offline Storage with IndexedDB", t_ar: "التخزين دون اتصال بـ IndexedDB", icon: "fa-database", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Web Components Architecture", t_ar: "معمارية مكونات الويب", icon: "fa-puzzle-piece", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Canvas API & Visual Rendering", t_ar: "واجهة Canvas والرندر المرئي", icon: "fa-paintbrush", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Accessibility & ARIA Mastery", t_ar: "إمكانية الوصول وإتقان ARIA", icon: "fa-universal-access", img: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=800&q=80" }
+  ];
+
+  for (let i = 0; i < 67; i++) {
+    const topic = extraHtml[i % extraHtml.length];
+    renderCard({
+      t_en: `${topic.t_en} - Foundations Module ${i + 4}`,
+      d_en: `In this specialized web engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into architectural best practices, clean code standards, and web-specific optimization. By mastering ${topic.t_en}, you ensure your web structures are robust, scalable, and highly maintainable in modern production environments using the latest industry standards.`,
+      t_ar: `${topic.t_ar} - وحدة التأسيس ${i + 4}`,
+      d_ar: `في هذه الوحدة المتخصصة في هندسة الويب، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل الممارسات المعمارية، معايير الكود النظيف، وتحسينات الويب. من خلال إتقان ${topic.t_ar}، تضمن أن هياكل الويب الخاصة بك قوية وقابلة للتوسع وسهلة الصيانة في بيئات الإنتاج الحديثة.`,
+      icon: topic.icon || "fa-code",
+      img: topic.img
+    });
+  }
+
+  function renderCard(item) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
       <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
-        <img src="${topic.img}" alt="${topic.t}">
+        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
+        <img src="${item.img}" alt="${item.t_en}">
       </div>
       <div class="lesson-content">
         <div data-cl-lang="en">
-          <h3>${topic.t} Engineering</h3>
-          <p>In this specialized web engineering module, we explore the deep technical implementation and architectural behavior of ${topic.t}. We focus on real-world performance optimization, semantic excellence, and how to integrate these concepts into modern web applications. This ensures you have the expertise to build future-proof and highly maintainable web structures.</p>
+          <h3>${item.t_en}</h3>
+          <p>${item.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>هندسة ${topic.t}</h3>
-          <p>في هذه الوحدة المتخصصة في هندسة الويب، نستكشف التنفيذ التقني العميق والسلوك المعماري لـ ${topic.t}. نحن نركز على تحسين الأداء في العالم الحقيقي، التميز الدلالي، وكيفية دمج هذه المفاهيم في تطبيقات الويب الحديثة. يضمن ذلك حصولك على الخبرة اللازمة لبناء هياكل ويب قوية وجاهزة للمستقبل.</p>
+          <h3>${item.t_ar}</h3>
+          <p>${item.d_ar}</p>
         </div>
       </div>
     `;

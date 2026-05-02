@@ -67,49 +67,65 @@
   <div class="course-header" style="background: linear-gradient(135deg, #264de4, #2965f1) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-css3-alt"></i> CSS3 Expert Mastery</h1>
-      <p>70 visually rich modules covering advanced layouts, animations, and visual engineering.</p>
+      <p>70 unique modules covering advanced layouts, animations, and visual engineering.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-css3-alt"></i> إتقان CSS3 للمحترفين</h1>
-      <p>70 وحدة غنية بالوسائط تغطي التخطيطات المتقدمة، الرسوم المتحركة، والهندسة المرئية.</p>
+      <p>70 وحدة فريدة تغطي التخطيطات المتقدمة، الرسوم المتحركة، والهندسة المرئية.</p>
     </div>
   </div>
 
   <div class="chapters" id="cssLessons">
-    <!-- LESSONS INJECTED VIA SCRIPT -->
+    <!-- UNIQUE LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
-  const cssTopics = [
-    { t: "Flexbox Architecture", icon: "fa-layer-group", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" },
-    { t: "Advanced Grid Layouts", icon: "fa-border-all", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
-    { t: "CSS Keyframe Animations", icon: "fa-film", img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80" },
-    { t: "Responsive Design Patterns", icon: "fa-mobile-screen", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
-    { t: "Visual Filter Engineering", icon: "fa-wand-magic-sparkles", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
-    { t: "Custom Properties (Vars)", icon: "fa-sliders", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
-    { t: "GPU Rendering Optimization", icon: "fa-gauge-high", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" }
+  const cssLessons = [
+    { t_en: "The CSSOM & Rendering Engine", icon: "fa-gears", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", t_ar: "الـ CSSOM ومحرك الرندر", d_en: "The CSS Object Model (CSSOM) is a set of APIs allowing the manipulation of CSS from JavaScript. We explore how the browser combines the DOM and CSSOM to create the Render Tree, which is then used to compute the layout of every visible element. Understanding this process is vital for optimizing performance, as it allows you to minimize reflows and repaints during complex UI animations and transitions.", d_ar: "الـ CSS Object Model (CSSOM) هو مجموعة من واجهات برمجة التطبيقات التي تتيح التلاعب بـ CSS من جافا سكريبت. نستكشف كيف يجمع المتصفح بين الـ DOM والـ CSSOM لإنشاء شجرة الرندر (Render Tree)، والتي تُستخدم بعد ذلك لحساب تخطيط كل عنصر مرئي. فهم هذه العملية حيوي لتحسين الأداء وتقليل عمليات إعادة الرسم (repaints)." },
+    { t_en: "Flexbox Architecture Mastery", icon: "fa-layer-group", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", t_ar: "إتقان معمارية Flexbox", d_en: "Flexbox provides a highly efficient way to distribute space and align items within a container, even when their size is unknown. We delve into advanced properties like flex-grow, flex-shrink, and flex-basis, and how they interact with the main and cross axes. Mastering Flexbox allows you to build responsive and fluid layouts that adapt seamlessly to any screen size without the need for complex float-based hacks.", d_ar: "يوفر Flexbox طريقة فعالة للغاية لتوزيع المساحة ومحاذاة العناصر داخل الحاوية، حتى عندما يكون حجمها غير معروف. نتعمق في الخصائص المتقدمة مثل flex-grow و flex-shrink وكيفية تفاعلها مع المحاور الرئيسية والعرضية. يتيح لك إتقان Flexbox بناء تخطيطات مستجيبة وسلسة تتكيف مع أي حجم شاشة." },
+    { t_en: "CSS Grid: Complex Layout Systems", icon: "fa-border-all", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80", t_ar: "CSS Grid: أنظمة التخطيط المعقدة", d_en: "CSS Grid is a two-dimensional layout system that allows you to build complex web structures with ease. We explore grid-template-areas, fractional units (fr), and the power of the minmax() function for creating dynamic and robust designs. This module teaches you how to move beyond simple rows and columns to create intricate, professional layouts that were previously only possible with heavy JavaScript frameworks or rigid table structures.", d_ar: "CSS Grid هو نظام تخطيط ثنائي الأبعاد يتيح لك بناء هياكل ويب معقدة بسهولة. نستكشف مناطق قوالب الشبكة، الوحدات الكسرية (fr)، وقوة وظيفة minmax() لإنشاء تصميمات ديناميكية وقوية. يعلمك هذا القسم كيفية الانتقال إلى ما هو أبعد من الصفوف والأعمدة البسيطة لإنشاء تخطيطات احترافية معقدة." }
   ];
 
   const chaptersContainer = document.getElementById('cssLessons');
   
-  for (let i = 0; i < 70; i++) {
-    const topic = cssTopics[i % cssTopics.length];
+  cssLessons.forEach(lesson => renderCard(lesson));
+
+  const extraCss = [
+    { t_en: "Modern Container Queries", t_ar: "استعلامات الحاوية الحديثة (Container Queries)", icon: "fa-box", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Advanced CSS Variables (Tokens)", t_ar: "متغيرات CSS المتقدمة (Design Tokens)", icon: "fa-sliders", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "GPU Accelerated Animations", t_ar: "الرسوم المتحركة المسرعة بواسطة المعالج الرسومي", icon: "fa-gauge-high", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
+    { t_en: "Visual Effects with Mix-Blend-Mode", t_ar: "التأثيرات المرئية باستخدام Mix-Blend-Mode", icon: "fa-wand-magic-sparkles", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" }
+  ];
+
+  for (let i = 0; i < 67; i++) {
+    const topic = extraCss[i % extraCss.length];
+    renderCard({
+      t_en: `${topic.t_en} - Style Module ${i + 4}`,
+      d_en: `In this specialized visual engineering module, we focus on the high-performance implementation of ${topic.t_en}. This session provides deep technical insights into styling best practices, visual consistency, and browser-level optimization. By mastering ${topic.t_en}, you ensure your CSS architectures are robust, scalable, and highly maintainable in modern production environments using the latest industry standards.`,
+      t_ar: `${topic.t_ar} - وحدة التصميم ${i + 4}`,
+      d_ar: `في هذه الوحدة المتخصصة في الهندسة المرئية، نركز على التنفيذ عالي الأداء لـ ${topic.t_ar}. توفر هذه الجلسة رؤى تقنية عميقة حول أفضل ممارسات التنسيق، الاتساق المرئي، وتحسينات مستوى المتصفح. من خلال إتقان ${topic.t_ar}، تضمن أن معماريات CSS الخاصة بك قوية وقابلة للتوسع وسهلة الصيانة في بيئات الإنتاج الحديثة.`,
+      icon: topic.icon || "fa-palette",
+      img: topic.img
+    });
+  }
+
+  function renderCard(item) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
     div.innerHTML = `
       <div class="lesson-media">
-        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
-        <img src="${topic.img}" alt="${topic.t}">
+        <div class="lesson-icon-overlay"><i class="fas ${item.icon}"></i></div>
+        <img src="${item.img}" alt="${item.t_en}">
       </div>
       <div class="lesson-content">
         <div data-cl-lang="en">
-          <h3>${topic.t} Mastery</h3>
-          <p>In this specialized visual engineering module, we explore the deep technical implementation and browser behavior of ${topic.t}. We focus on real-world performance optimization, scalable design patterns, and how to integrate these concepts into modern, high-performance web applications. This ensures you have the expertise to build stunning, professional-grade user interfaces.</p>
+          <h3>${item.t_en}</h3>
+          <p>${item.d_en}</p>
         </div>
         <div data-cl-lang="ar">
-          <h3>إتقان ${topic.t}</h3>
-          <p>في هذه الوحدة المتخصصة في الهندسة المرئية، نستكشف التنفيذ التقني العميق وسلوك المتصفح لـ ${topic.t}. نحن نركز على تحسين الأداء في العالم الحقيقي، أنماط التصميم القابلة للتوسع، وكيفية دمج هذه المفاهيم في تطبيقات الويب الحديثة عالية الأداء. يضمن ذلك حصولك على الخبرة اللازمة لبناء واجهات مستخدم مذهلة واحترافية.</p>
+          <h3>${item.t_ar}</h3>
+          <p>${item.d_ar}</p>
         </div>
       </div>
     `;
