@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Node.js Backend Engineering - Coding Life</title>
+  <title>Cours Complet Node.js - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -17,24 +17,29 @@
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
       display: flex;
+      flex-direction: column;
       gap: 20px;
-      align-items: flex-start;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
     }
     .lesson-card:hover {
-      transform: translateX(10px);
+      transform: translateY(-5px);
       border-color: var(--cl-brand);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      box-shadow: var(--cl-shadow-lg);
     }
     .lesson-icon {
       width: 60px;
       height: 60px;
-      background: rgba(51, 153, 51, 0.1);
+      background: #68a06322;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      color: #339933;
+      color: #68a063;
       flex-shrink: 0;
     }
     .lesson-info {
@@ -46,16 +51,40 @@
       margin-bottom: 12px;
       margin-top: 0;
     }
-    .lesson-info p {
+    .lesson-content {
       line-height: 1.8;
       color: var(--cl-muted);
       font-size: 1.05rem;
-      margin: 0;
     }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .badge-modern { background: #e0f2fe; color: #0369a1; }
+    .badge-important { background: #fee2e2; color: #b91c1c; }
+    .badge-pro { background: #fef3c7; color: #b45309; }
+
+    .code-block {
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 15px 0;
+      border: 1px solid #30363d;
+    }
+
     @media (max-width: 768px) {
-      .lesson-card {
+      .lesson-header {
         flex-direction: column;
-        gap: 15px;
+        align-items: flex-start;
       }
     }
   </style>
@@ -63,78 +92,100 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #339933, #66cc33) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #333333, #68a063) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-node-js"></i> Node.js Scalable Architecture</h1>
-      <p>A focused curriculum of 20 high-density modules covering high-performance backend engineering with JavaScript and V8.</p>
+      <h1><i class="fab fa-node-js"></i> Node.js Backend Mastery</h1>
+      <p>Build scalable server-side applications using JavaScript on the V8 engine.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-node-js"></i> معمارية Node.js القابلة للتوسع</h1>
-      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي هندسة الأنظمة الخلفية عالية الأداء باستخدام جافا سكريبت ومحرك V8.</p>
+      <h1><i class="fab fa-node-js"></i> إتقان Node.js</h1>
+      <p>بناء تطبيقات سيرفر قابلة للتوسع باستخدام جافا سكريبت على محرك V8.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fab fa-node-js"></i> Maîtrise Node.js</h1>
+      <p>Créez des applications côté serveur évolutives en utilisant JavaScript.</p>
     </div>
   </div>
 
   <div class="chapters" id="nodeLessons">
-    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- Lessons will be injected here -->
   </div>
 </div>
 
 <script>
   const nodeLessons = [
-    { t_en: "Libuv & Thread Pool Architecture", icon: "fa-microchip", t_ar: "مكتبة Libuv ومعمارية حوض الخيوط", d_en: "Libuv is the multi-platform library that provides Node.js with asynchronous I/O capabilities. We explore how Libuv manages the thread pool for tasks that cannot be handled by the OS kernel, such as filesystem access and DNS resolution. Understanding this architecture allows you to optimize your server's throughput and avoid performance bottlenecks in data-intensive backend applications.", d_ar: "Libuv هي المكتبة متعددة المنصات التي توفر لـ Node.js إمكانيات الـ I/O غير المتزامنة. نستكشف كيف تدير Libuv حوض الخيوط للمهام التي لا يمكن التعامل معها بواسطة كيرنل نظام التشغيل، مثل الوصول إلى نظام الملفات. يتيح لك فهم هذه المعمارية تحسين إنتاجية السيرفر الخاص بك وتجنب اختناقات الأداء في تطبيقات الأنظمة الخلفية." },
-    { t_en: "The Buffer & Stream API Ecosystem", icon: "fa-water", t_ar: "نظام Buffer وواجهة الـ Streams", d_en: "Streams are a fundamental way to handle large amounts of data in Node.js without consuming excessive memory. We delve into Readable, Writable, and Transform streams, and how to manage 'backpressure' when a consumer is slower than a producer. Mastering streams is the key to building highly efficient data processing pipelines, such as real-time log analysis and massive file transformations.", d_ar: "تعد الـ Streams طريقة أساسية للتعامل مع كميات كبيرة من البيانات في Node.js دون استهلاك ذاكرة مفرطة. نتعمق في الـ streams القابلة للقراءة والكتابة والتحويل، وكيفية إدارة 'backpressure' عندما يكون المستهلك أبطأ من المنتج. إتقان الـ streams هو المفتاح لبناء خطوط أنابيب فعالة لمعالجة البيانات الضخمة." },
-    { t_en: "NestJS Dependency Injection & Architecture", icon: "fa-syringe", t_ar: "حقن التبعيات ومعمارية NestJS", d_en: "NestJS is a progressive Node.js framework for building efficient and scalable server-side applications. We explore its powerful Dependency Injection (DI) system and how it promotes modularity and testability through Controllers, Providers, and Modules. This module teaches you how to create enterprise-grade backend architectures that are easy to maintain and evolve alongside your project's complexity.", d_ar: "NestJS هو إطار عمل Node.js متطور لبناء تطبيقات سيرفر فعالة وقابلة للتوسع. نستكشف نظام حقن التبعيات (DI) القوي وكيف يعزز النمطية وقابلية الاختبار من خلال المتحكمات والمزودات والموديولات. يعلمك هذا القسم كيفية إنشاء معماريات أنظمة خلفية على مستوى الشركات سهلة الصيانة والتطوير." },
-    { t_en: "Event-Driven Logic with EventEmitter", icon: "fa-bolt", t_ar: "المنطق المدفوع بالأحداث بـ EventEmitter", d_en: "Node.js relies heavily on the observer pattern via the EventEmitter class to handle asynchronous interactions. We explore how to design custom event-driven architectures to decouple system components and improve scalability. Mastering this core module allows you to build responsive and modular backend services that can easily react to complex system triggers and user interactions.", d_ar: "يعتمد Node.js بشكل كبير على نمط المراقب (observer pattern) عبر كلاس EventEmitter للتعامل مع التفاعلات غير المتزامنة. نستكشف كيفية تصميم معماريات مدفوعة بالأحداث لفصل مكونات النظام وتحسين القابلية للتوسع. يتيح لك إتقان هذا الموديول الأساسي بناء خدمات خلفية مستجيبة ونمطية." }
-  ];
-
-  const extraNode = [
-    { t_en: "Cluster Module & Multi-core Scaling", t_ar: "موديول Cluster والتوسع متعدد النواة", icon: "fa-network-wired" },
-    { t_en: "Worker Threads for CPU Operations", t_ar: "خيوط العمل لعمليات المعالج الثقيلة", icon: "fa-gears" },
-    { t_en: "Prisma & Modern Database Access", t_ar: "Prisma والوصول الحديث لقواعد البيانات", icon: "fa-database" },
-    { t_en: "Real-time Apps with Socket.io", t_ar: "التطبيقات في الوقت الحقيقي بـ Socket.io", icon: "fa-comments" },
-    { t_en: "Advanced JWT & OAuth2 Security", t_ar: "الأمن المتقدم بـ JWT و OAuth2", icon: "fa-shield-halved" },
-    { t_en: "Microservices with gRPC & RabbitMQ", t_ar: "المصغرات البرمجية بـ gRPC و RabbitMQ", icon: "fa-box-archive" },
-    { t_en: "Unit Testing with Jest & Supertest", t_ar: "اختبار الوحدات بـ Jest و Supertest", icon: "fa-vial" },
-    { t_en: "Performance Monitoring & Debugging", t_ar: "مراقبة الأداء وتصحيح الأخطاء", icon: "fa-gauge-high" },
-    { t_en: "Redis Caching for Scale", t_ar: "التخزين المؤقت بـ Redis للتوسع", icon: "fa-bolt-lightning" },
-    { t_en: "Managing Technical Debt in Backend", t_ar: "إدارة الديون التقنية في الأنظمة الخلفية", icon: "fa-trash-can" },
-    { t_en: "Docker & Kubernetes Deployment", t_ar: "النشر باستخدام دوكر وكوبرنيتس", icon: "fa-cloud-arrow-up" },
-    { t_en: "Designing Scalable RESTful APIs", t_ar: "تصميم RESTful APIs قابلة للتوسع", icon: "fa-rocket" },
-    { t_en: "Log Management & Observability", t_ar: "إدارة السجلات والقدرة على المراقبة", icon: "fa-list-check" },
-    { t_en: "Serverless Node.js with AWS Lambda", t_ar: "Node.js بلا سيرفر مع AWS Lambda", icon: "fa-cloud-bolt" },
-    { t_en: "The Future of Node.js & Deno", t_ar: "مستقبل Node.js ولغة Deno", icon: "fa-award" },
-    { t_en: "Becoming a Senior Backend Architect", t_ar: "كيف تصبح معماري أنظمة خلفية أول", icon: "fa-star" }
+    {
+      icon: "fa-server",
+      t_fr: "1. Qu’est-ce que Node.js ?",
+      d_fr: "Node.js est un environnement d'exécution JavaScript côté serveur basé sur le moteur V8 de Chrome.",
+      t_en: "1. What is Node.js?",
+      d_en: "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine for server-side execution.",
+      t_ar: "1. ما هو Node.js؟",
+      d_ar: "Node.js هي بيئة تشغيل جافا سكريبت من جهة الخادم تعتمد على محرك V8."
+    },
+    {
+      icon: "fa-cube",
+      t_fr: "2. NPM & Modules",
+      code: `npm install express`,
+      d_fr: "Utilisez NPM pour gérer les paquets et bibliothèques de votre projet.",
+      t_en: "2. NPM & Modules",
+      d_en: "Use NPM (Node Package Manager) to manage project dependencies and libraries.",
+      t_ar: "2. NPM والوحدات",
+      d_ar: "استخدام NPM لإدارة مكتبات المشروع."
+    },
+    {
+      icon: "fa-bolt",
+      t_fr: "3. Express.js",
+      badge: "badge-important",
+      code: `const express = require('express');\nconst app = express();`,
+      d_fr: "Le framework le plus populaire pour créer des APIs et des serveurs web avec Node.",
+      t_en: "3. Express.js",
+      d_en: "The most popular framework for building APIs and web servers with Node.js.",
+      t_ar: "3. Express.js",
+      d_ar: "أشهر إطار عمل لبناء الـ APIs وسيرفرات الويب."
+    },
+    {
+      icon: "fa-file-code",
+      t_fr: "4. File System (fs)",
+      code: `const fs = require('fs');\nfs.writeFileSync('test.txt', 'Salut');`,
+      d_fr: "Apprenez à lire et écrire des fichiers directement sur le serveur.",
+      t_en: "4. File System (fs)",
+      d_en: "Learn how to read and write files directly on the server's filesystem.",
+      t_ar: "4. نظام الملفات",
+      d_ar: "تعلم كيفية القراءة والكتابة في الملفات على السيرفر."
+    }
   ];
 
   const chaptersContainer = document.getElementById('nodeLessons');
   
-  nodeLessons.forEach(l => render(l));
-  extraNode.forEach(l => render({
-    icon: l.icon,
-    t_en: l.t_en,
-    t_ar: l.t_ar,
-    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional Node.js backend engineering. We focus on server-side implementation strategies, clean architecture standards, and resource optimization for large-scale enterprise systems. By mastering ${l.t_en}, you ensure your backend applications are robust, performant, and meet the highest industry standards for modern production environments.`,
-    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة الأنظمة الخلفية بـ Node.js. نركز على استراتيجيات التنفيذ في جانب السيرفر، معايير المعمارية النظيفة، وتحسين الموارد لأنظمة الشركات الضخمة. من خلال إتقان ${l.t_ar}، تضمن أن تطبيقاتك الخلفية قوية وذات أداء عالٍ وتلبي أعلى معايير الصناعة.`
-  }));
-
   function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
     div.innerHTML = `
-      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
-      <div class="lesson-info">
-        <div data-cl-lang="en">
-          <h3>${lesson.t_en}</h3>
-          <p>${lesson.d_en}</p>
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
         </div>
-        <div data-cl-lang="ar">
-          <h3>${lesson.t_ar}</h3>
-          <p>${lesson.d_ar}</p>
-        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
       </div>
     `;
     chaptersContainer.appendChild(div);
   }
+
+  nodeLessons.forEach(l => render(l));
 </script>
 
 <script src="site-polish.js"></script>
