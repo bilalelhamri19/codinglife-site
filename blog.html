@@ -1,94 +1,295 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Insights & Articles - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+    .blog-card {
+      background: var(--cl-surface);
+      border-radius: 16px;
+      border: 1px solid var(--cl-line);
+      overflow: hidden;
+      transition: var(--cl-transition);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--cl-shadow-lg);
+      border-color: var(--cl-brand);
+    }
+    .blog-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .blog-body {
+      padding: 24px;
+      flex-grow: 1;
+    }
+    .blog-category {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      background: var(--cl-brand-soft);
+      color: var(--cl-brand);
+    }
+    .blog-body h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: var(--cl-ink);
+    }
+    .blog-body p {
+      font-size: 0.95rem;
+      color: var(--cl-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .read-more {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--cl-brand);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .newsletter-section {
+      background: linear-gradient(135deg, var(--cl-brand), var(--cl-brand-dark));
+      padding: 60px 40px;
+      border-radius: 24px;
+      text-align: center;
+      color: white;
+      margin-bottom: 60px;
+    }
+    .newsletter-input {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 12px 20px;
+      border-radius: 12px;
+      color: white;
+      width: 100%;
+      max-width: 300px;
+      margin-right: 12px;
+      outline: none;
+    }
+    .newsletter-btn {
+      background: white;
+      color: var(--cl-brand);
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--cl-transition);
+    }
+    .newsletter-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
 
 <div class="course-container" style="max-width: 1200px;">
-  <div class="course-header">
+  <div class="course-header" style="background: linear-gradient(135deg, #0f172a, #1e293b) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fa-solid fa-newspaper"></i> The Coding Life Blog</h1>
-      <p>Practical articles for learning programming, improving focus, and growing like a professional developer.</p>
+      <h1><i class="fa-solid fa-newspaper"></i> The Developer's Mindset</h1>
+      <p>Master the art of coding, productivity, and professional growth.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fa-solid fa-newspaper"></i> مدونة كودينج لايف</h1>
-      <p>مقالات عملية لتعلم البرمجة، تحسين التركيز، والنمو كمطور محترف.</p>
+      <h1><i class="fa-solid fa-newspaper"></i> عقلية المطور</h1>
+      <p>احترف فن البرمجة، الإنتاجية، والنمو المهني.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-solid fa-newspaper"></i> L'Esprit du Développeur</h1>
+      <p>Maîtrisez l'art du code, la productivité et la croissance professionnelle.</p>
     </div>
   </div>
 
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 32px; margin-bottom: 60px;">
+  <div class="blog-grid">
     
-    <!-- Motivation -->
-    <div class="card reveal" onclick="window.location.href='motivation.html'">
-      <img src="mind-body.jpg" alt="Motivation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
-      <div data-cl-lang="en">
-        <h3>Starting Your Self-Development Journey</h3>
-        <p>Important steps to develop yourself and reach your goals gradually with a growth mindset.</p>
-        <a href="motivation.html" style="color: var(--cl-brand); font-weight: 700; display: inline-block; margin-top: 12px;">Read Article <i class="fa-solid fa-arrow-right"></i></a>
-      </div>
-      <div data-cl-lang="ar">
-        <h3>بدء رحلة التطوير الذاتي</h3>
-        <p>خطوات مهمة لتطوير نفسك والوصول إلى أهدافك تدريجياً بعقلية النمو.</p>
-        <a href="motivation.html" style="color: var(--cl-brand); font-weight: 700; display: inline-block; margin-top: 12px;">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></a>
+    <!-- Article 1: Motivation -->
+    <div class="blog-card reveal" onclick="window.location.href='motivation.html'">
+      <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80" alt="Motivation" class="blog-img">
+      <div class="blog-body">
+        <span class="blog-category">Growth</span>
+        <div data-cl-lang="en">
+          <h3>The Self-Development Journey</h3>
+          <p>Important steps to reach your goals gradually with a growth mindset.</p>
+          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>رحلة التطوير الذاتي</h3>
+          <p>خطوات مهمة للوصول إلى أهدافك تدريجياً بعقلية النمو.</p>
+          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Le Voyage du Développement</h3>
+          <p>Étapes clés pour atteindre vos objectifs avec un état d'esprit de croissance.</p>
+          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
       </div>
     </div>
 
-    <!-- Coding -->
-    <div class="card reveal" onclick="window.location.href='coding.html'">
-      <img src="HTMLandCSS.jpg" alt="Coding" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
-      <div data-cl-lang="en">
-        <h3>Learning Programming From Scratch</h3>
-        <p>A clear roadmap to become a professional programmer step by step, from zero to your first job.</p>
-        <a href="coding.html" style="color: var(--cl-brand); font-weight: 700; display: inline-block; margin-top: 12px;">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+    <!-- Article 2: Focus -->
+    <div class="blog-card reveal">
+      <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=600&q=80" alt="Focus" class="blog-img">
+      <div class="blog-body">
+        <span class="blog-category">Productivity</span>
+        <div data-cl-lang="en">
+          <h3>Deep Work for Coders</h3>
+          <p>How to stay focused for hours in an era of constant notifications.</p>
+          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>العمل العميق للمبرمجين</h3>
+          <p>كيف تحافظ على تركيزك لساعات في عصر التنبيهات المستمرة.</p>
+          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Deep Work pour Codeurs</h3>
+          <p>Comment rester concentré pendant des heures à l'ère des notifications.</p>
+          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
       </div>
-      <div data-cl-lang="ar">
-        <h3>تعلم البرمجة من الصفر</h3>
-        <p>خارطة طريق واضحة لتصبح مبرمجاً محترفاً خطوة بخطوة، من الصفر إلى أول وظيفة لك.</p>
-        <a href="coding.html" style="color: var(--cl-brand); font-weight: 700; display: inline-block; margin-top: 12px;">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></a>
+    </div>
+
+    <!-- Article 3: Clean Code -->
+    <div class="blog-card reveal">
+      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=600&q=80" alt="Clean Code" class="blog-img">
+      <div class="blog-body">
+        <span class="blog-category">Technical</span>
+        <div data-cl-lang="en">
+          <h3>The Art of Clean Code</h3>
+          <p>Why writing readable code is more important than writing clever code.</p>
+          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>فن الكود النظيف</h3>
+          <p>لماذا تعتبر كتابة كود مقروء أهم من كتابة كود ذكي.</p>
+          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>L'Art du Code Propre</h3>
+          <p>Pourquoi écrire du code lisible est plus important que du code malin.</p>
+          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 4: Soft Skills -->
+    <div class="blog-card reveal">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80" alt="Soft Skills" class="blog-img">
+      <div class="blog-body">
+        <span class="blog-category">Career</span>
+        <div data-cl-lang="en">
+          <h3>Developer Soft Skills</h3>
+          <p>Communication and empathy: The secret weapons of senior engineers.</p>
+          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>المهارات الناعمة للمطور</h3>
+          <p>التواصل والتعاطف: الأسلحة السرية لكبار المهندسين.</p>
+          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Soft Skills du Développeur</h3>
+          <p>Communication et empathie : Les armes secrètes des ingénieurs seniors.</p>
+          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
       </div>
     </div>
 
   </div>
 
-  <!-- Developer Tools Section -->
-  <div style="background: var(--cl-surface); padding: 60px 40px; border-radius: var(--cl-radius); border: 1px solid var(--cl-line); margin-bottom: 60px;">
-    <div data-cl-lang="en"><h2 style="text-align: center; margin-bottom: 40px;">Developer Toolbelt</h2></div>
-    <div data-cl-lang="ar"><h2 style="text-align: center; margin-bottom: 40px;">أدوات المطورين</h2></div>
+  <!-- Newsletter Section -->
+  <div class="newsletter-section reveal">
+    <div data-cl-lang="en">
+      <h2>Subscribe to our Newsletter</h2>
+      <p style="margin-bottom: 24px;">Get the latest coding tips and articles directly in your inbox.</p>
+      <div>
+        <input type="email" placeholder="Enter your email" class="newsletter-input">
+        <button class="newsletter-btn">Subscribe Now</button>
+      </div>
+    </div>
+    <div data-cl-lang="ar">
+      <h2>اشترك في نشرتنا الإخبارية</h2>
+      <p style="margin-bottom: 24px;">احصل على أحدث نصائح البرمجة والمقالات مباشرة في بريدك الوارد.</p>
+      <div>
+        <input type="email" placeholder="أدخل بريدك الإلكتروني" class="newsletter-input" dir="rtl">
+        <button class="newsletter-btn">اشترك الآن</button>
+      </div>
+    </div>
+    <div data-cl-lang="fr">
+      <h2>Abonnez-vous à la Newsletter</h2>
+      <p style="margin-bottom: 24px;">Recevez les derniers conseils et articles directement dans votre boîte mail.</p>
+      <div>
+        <input type="email" placeholder="Votre email" class="newsletter-input">
+        <button class="newsletter-btn">S'abonner</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tools Section -->
+  <div style="background: var(--cl-surface); padding: 60px 40px; border-radius: 24px; border: 1px solid var(--cl-line); margin-bottom: 60px;">
+    <div data-cl-lang="en"><h2 style="text-align: center; margin-bottom: 40px;">Essential Tools</h2></div>
+    <div data-cl-lang="ar"><h2 style="text-align: center; margin-bottom: 40px;">أدوات أساسية</h2></div>
+    <div data-cl-lang="fr"><h2 style="text-align: center; margin-bottom: 40px;">Outils Essentiels</h2></div>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
       
-      <div class="reveal" style="text-align: center; padding: 24px; background: var(--cl-bg); border-radius: 12px;">
+      <div class="reveal" style="text-align: center; padding: 24px; background: var(--cl-bg); border-radius: 16px;">
         <i class="fas fa-code" style="font-size: 2.5rem; color: var(--cl-brand); margin-bottom: 16px; display: block;"></i>
         <div data-cl-lang="en">
-          <h3>Code Formatter</h3>
-          <p style="font-size: 0.9rem; margin-bottom: 20px;">Format and beautify your code with our professional playground.</p>
-          <a href="playground.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Use Tool</a>
+          <h3>Playground</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px;">Code, test and share your HTML/CSS/JS snippets instantly.</p>
+          <a href="playground.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Open Playground</a>
         </div>
         <div data-cl-lang="ar">
-          <h3>منسق الكود</h3>
-          <p style="font-size: 0.9rem; margin-bottom: 20px;">قم بتنسيق وتجميل الكود الخاص بك في بيئة احترافية.</p>
-          <a href="playground.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">استخدم الأداة</a>
+          <h3>ساحة اللعب</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px;">برمج، اختبر وشارك مقتطفات الكود الخاصة بك فوراً.</p>
+          <a href="playground.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">افتح ساحة اللعب</a>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Playground</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px;">Codez, testez et partagez vos snippets HTML/CSS/JS.</p>
+          <a href="playground.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Ouvrir</a>
         </div>
       </div>
 
-      <div class="reveal" style="text-align: center; padding: 24px; background: var(--cl-bg); border-radius: 12px;">
+      <div class="reveal" style="text-align: center; padding: 24px; background: var(--cl-bg); border-radius: 16px;">
         <i class="fas fa-calculator" style="font-size: 2.5rem; color: #0369a1; margin-bottom: 16px; display: block;"></i>
         <div data-cl-lang="en">
-          <h3>CSS Converter</h3>
-          <p style="font-size: 0.9rem; margin-bottom: 20px;">Convert between PX, REM, and EM units quickly and easily.</p>
-          <a href="css-converter.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Use Tool</a>
+          <h3>Converter</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px;">Professional CSS unit converter for modern web design.</p>
+          <a href="css-converter.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Use Converter</a>
         </div>
         <div data-cl-lang="ar">
-          <h3>محول CSS</h3>
-          <p style="font-size: 0.9rem; margin-bottom: 20px;">حول بين وحدات PX و REM و EM بسرعة وسهولة.</p>
-          <a href="css-converter.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">استخدم الأداة</a>
+          <h3>المحول</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px;">محول وحدات CSS احترافي لتصميم الويب الحديث.</p>
+          <a href="css-converter.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">استخدم المحول</a>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Convertisseur</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px;">Convertisseur d'unités CSS professionnel pour le web.</p>
+          <a href="css-converter.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Ouvrir</a>
         </div>
       </div>
 
