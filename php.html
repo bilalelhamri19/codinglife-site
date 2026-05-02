@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PHP Backend Engineering - Coding Life</title>
+  <title>Cours Complet PHP - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -17,18 +17,23 @@
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
       display: flex;
+      flex-direction: column;
       gap: 20px;
-      align-items: flex-start;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
     }
     .lesson-card:hover {
-      transform: translateX(10px);
+      transform: translateY(-5px);
       border-color: var(--cl-brand);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      box-shadow: var(--cl-shadow-lg);
     }
     .lesson-icon {
       width: 60px;
       height: 60px;
-      background: rgba(71, 119, 181, 0.1);
+      background: #777bb322;
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -46,16 +51,40 @@
       margin-bottom: 12px;
       margin-top: 0;
     }
-    .lesson-info p {
+    .lesson-content {
       line-height: 1.8;
       color: var(--cl-muted);
       font-size: 1.05rem;
-      margin: 0;
     }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .badge-modern { background: #e0f2fe; color: #0369a1; }
+    .badge-important { background: #fee2e2; color: #b91c1c; }
+    .badge-pro { background: #fef3c7; color: #b45309; }
+
+    .code-block {
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 15px 0;
+      border: 1px solid #30363d;
+    }
+
     @media (max-width: 768px) {
-      .lesson-card {
+      .lesson-header {
         flex-direction: column;
-        gap: 15px;
+        align-items: flex-start;
       }
     }
   </style>
@@ -65,76 +94,178 @@
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #777bb3, #4f5b93) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-php"></i> PHP Professional Mastery</h1>
-      <p>A focused curriculum of 20 high-density modules covering modern PHP 8.x, Laravel, and backend architecture.</p>
+      <h1><i class="fab fa-php"></i> PHP Backend Mastery</h1>
+      <p>Master server-side programming and dynamic web development with PHP.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-php"></i> إتقان PHP للمحترفين</h1>
-      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي PHP 8.x الحديثة، Laravel، ومعمارية الأنظمة الخلفية.</p>
+      <h1><i class="fab fa-php"></i> إتقان PHP</h1>
+      <p>احترف برمجة السيرفر وتطوير الويب الديناميكي باستخدام PHP.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fab fa-php"></i> Maîtrise PHP</h1>
+      <p>Maîtrisez la programmation côté serveur et le développement web dynamique.</p>
     </div>
   </div>
 
   <div class="chapters" id="phpLessons">
-    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- Lessons will be injected here -->
   </div>
 </div>
 
 <script>
   const phpLessons = [
-    { t_en: "PHP 8.x Engine & Zend Architecture", icon: "fa-gears", t_ar: "محرك PHP 8.x ومعمارية Zend", d_en: "The Zend Engine is the open-source scripting engine that interprets PHP code. We explore the improvements in PHP 8, including the JIT (Just-In-Time) compiler and how it optimizes execution speed for CPU-intensive tasks. Understanding the underlying engine architecture is essential for writing high-performance backend scripts and managing memory efficiently in large-scale server environments.", d_ar: "محرك Zend هو المحرك البرمجي مفتوح المصدر الذي يفسر كود PHP. نستكشف التحسينات في PHP 8، بما في ذلك مترجم JIT وكيفية تحسين سرعة التنفيذ للمهام الثقيلة. فهم معمارية المحرك أساسي لكتابة اسكربتات خلفية عالية الأداء وإدارة الذاكرة بكفاءة في بيئات السيرفر الضخمة." },
-    { t_en: "OPcache & Runtime Performance Tuning", icon: "fa-bolt-lightning", t_ar: "تقنية OPcache وتحسين أداء التشغيل", d_en: "OPcache improves PHP performance by storing precompiled script bytecode in shared memory, eliminating the need for PHP to load and parse scripts on each request. We delve into how to configure OPcache settings to maximize throughput and minimize latency for high-traffic web applications. Mastering runtime tuning ensures your PHP server remains responsive even under massive concurrent user loads.", d_ar: "تعمل تقنية OPcache على تحسين أداء PHP من خلال تخزين bytecode المترجم مسبقاً في الذاكرة المشتركة. نتعمق في كيفية إعداد OPcache لزيادة الإنتاجية وتقليل التأخير لتطبيقات الويب ذات الزيارات العالية. يضمن إتقان ضبط وقت التشغيل بقاء سيرفر PHP مستجيباً حتى تحت أعباء المستخدمين الضخمة." },
-    { t_en: "Dependency Injection & Service Containers", icon: "fa-syringe", t_ar: "حقن التبعيات وحاويات الخدمات", d_en: "Dependency Injection (DI) is a core design pattern in modern PHP development, heavily utilized in frameworks like Laravel and Symfony. We explore how Service Containers manage object lifecycles and resolve dependencies automatically to promote modularity and testability. This module teaches you how to decouple your business logic from infrastructure, creating a clean and professionally structured codebase.", d_ar: "يعد حقن التبعيات (DI) نمط تصميم أساسي في تطوير PHP الحديث، ويستخدم بكثافة في أطر عمل مثل Laravel. نستكشف كيف تدير حاويات الخدمات دورات حياة الكائنات وتحل التبعيات تلقائياً لتعزيز النمطية وقابلية الاختبار. يعلمك هذا القسم كيفية فصل منطق الأعمال عن البنية التحتية." },
-    { t_en: "Composer: Professional Package Management", icon: "fa-box-open", t_ar: "Composer: الإدارة الاحترافية للحزم", d_en: "Composer is the industry-standard dependency manager for PHP, allowing you to manage libraries and autoloading seamlessly. We explore semantic versioning, custom repository management, and how to optimize autoloading for production environments using the 'classmap' strategy. Mastering Composer is a prerequisite for professional PHP engineering, ensuring your project dependencies are secure and up-to-date.", d_ar: "Composer هو مدير التبعيات القياسي في الصناعة لـ PHP، مما يتيح لك إدارة المكتبات والتحميل التلقائي بسلاسة. نستكشف الإصدارات الدلالية، وإدارة المستودعات المخصصة، وكيفية تحسين التحميل التلقائي لبيئات الإنتاج. إتقان Composer هو شرط أساسي لهندسة PHP الاحترافية." }
-  ];
-
-  const extraPhp = [
-    { t_en: "Laravel 11 Architecture & Eloquent", t_ar: "معمارية Laravel 11 وتقنية Eloquent", icon: "fa-leaf" },
-    { t_en: "Advanced Exception Handling & Logging", t_ar: "التعامل المتقدم مع الاستثناءات والتسجيل", icon: "fa-triangle-exclamation" },
-    { t_en: "Security: Preventing Injection & XSS", t_ar: "الأمن: منع الحقن والـ XSS", icon: "fa-shield-halved" },
-    { t_en: "Unit Testing with PHPUnit & Pest", t_ar: "اختبار الوحدات بـ PHPUnit و Pest", icon: "fa-vial" },
-    { t_en: "Database Optimization & Migrations", t_ar: "تحسين قواعد البيانات والـ Migrations", icon: "fa-database" },
-    { t_en: "RESTful API Development with PHP", t_ar: "تطوير RESTful API بـ PHP", icon: "fa-rocket" },
-    { t_en: "Swoole & High-Concurrency PHP", t_ar: "تقنية Swoole والـ PHP عالي التزامن", icon: "fa-bolt" },
-    { t_en: "Design Patterns in PHP Ecosystem", t_ar: "أنماط التصميم في بيئة PHP", icon: "fa-gem" },
-    { t_en: "Caching Strategies with Redis", t_ar: "استراتيجيات التخزين المؤقت بـ Redis", icon: "fa-layer-group" },
-    { t_en: "Managing Large PHP Codebases", t_ar: "إدارة قواعد كود PHP الضخمة", icon: "fa-building-columns" },
-    { t_en: "Deploying PHP with Docker & Nginx", t_ar: "نشر PHP باستخدام دوكر و Nginx", icon: "fa-cloud-arrow-up" },
-    { t_en: "Handling Background Jobs & Queues", t_ar: "التعامل مع الوظائف الخلفية والطوابير", icon: "fa-list-check" },
-    { t_en: "Serverless PHP with AWS Bref", t_ar: "PHP بلا سيرفر مع AWS Bref", icon: "fa-cloud-bolt" },
-    { t_en: "The Future of PHP & RoadRunner", t_ar: "مستقبل PHP وتقنية RoadRunner", icon: "fa-award" },
-    { t_en: "Becoming a Senior PHP Architect", t_ar: "كيف تصبح معماري PHP أول", icon: "fa-star" },
-    { t_en: "Regular Expressions & Performance", t_ar: "التعبيرات النمطية والأداء", icon: "fa-magnifying-glass" }
+    {
+      icon: "fa-server",
+      t_fr: "1. Qu’est-ce que PHP ?",
+      d_fr: "PHP (Hypertext Preprocessor) est un langage de script côté serveur utilisé pour créer des sites dynamiques.",
+      t_en: "1. What is PHP?",
+      d_en: "PHP is a server-side scripting language used to create dynamic websites.",
+      t_ar: "1. ما هو PHP؟",
+      d_ar: "PHP هي لغة برمجة نصية من جهة الخادم تُستخدم لإنشاء مواقع ديناميكية."
+    },
+    {
+      icon: "fa-code",
+      t_fr: "2. Syntaxe de base",
+      code: `<?php\necho "Bonjour";\n?>`,
+      d_fr: "Le code PHP est entouré par les balises <code>&lt;?php ... ?&gt;</code>.",
+      t_en: "2. Basic Syntax",
+      d_en: "PHP code is wrapped in <code>&lt;?php ... ?&gt;</code> tags.",
+      t_ar: "2. الأساسيات",
+      d_ar: "كود PHP يتم وضعه داخل وسوم <code>&lt;?php ... ?&gt;</code>."
+    },
+    {
+      icon: "fa-vial",
+      t_fr: "3. Variables & Constantes",
+      code: `$nom = "Ali";\ndefine("SITE", "Coding Life");`,
+      d_fr: "En PHP, les variables commencent par un signe dollar <code>$</code>.",
+      t_en: "3. Variables & Constants",
+      d_en: "In PHP, variables start with a dollar sign <code>$</code>.",
+      t_ar: "3. المتغيرات والثوابت",
+      d_ar: "في PHP، تبدأ المتغيرات بعلامة الدولار <code>$</code>."
+    },
+    {
+      icon: "fa-database",
+      t_fr: "4. Types de données",
+      d_fr: "Chaînes de caractères, entiers, booléens, tableaux et objets.",
+      t_en: "4. Data Types",
+      d_en: "Strings, integers, booleans, arrays, and objects.",
+      t_ar: "4. أنواع البيانات",
+      d_ar: "النصوص، الأرقام، القيم المنطقية، المصفوفات والكائنات."
+    },
+    {
+      icon: "fa-list",
+      t_fr: "5. Tableaux (Arrays)",
+      code: `$fruits = ["Pomme", "Banane"];\necho $fruits[0];`,
+      d_fr: "PHP supporte les tableaux indexés et associatifs (clé => valeur).",
+      t_en: "5. Arrays",
+      d_en: "PHP supports indexed and associative arrays (key => value).",
+      t_ar: "5. المصفوفات",
+      d_ar: "تدعم PHP المصفوفات المفهرسة والمترابطة."
+    },
+    {
+      icon: "fa-gears",
+      t_fr: "6. Fonctions",
+      code: `function saluer($nom) {\n  return "Bonjour " . $nom;\n}`,
+      d_fr: "Créez vos propres fonctions pour réutiliser votre code.",
+      t_en: "6. Functions",
+      d_en: "Create your own functions to reuse code throughout your app.",
+      t_ar: "6. الدوال",
+      d_ar: "أنشئ دوالك الخاصة لإعادة استخدام الكود."
+    },
+    {
+      icon: "fa-wpforms",
+      t_fr: "7. Gestion des Formulaires",
+      badge: "badge-important",
+      code: `$_POST["nom"];\n$_GET["id"];`,
+      d_fr: "Récupérer des données envoyées via les méthodes GET et POST.",
+      t_en: "7. Form Handling",
+      d_en: "Retrieve data sent via GET and POST methods.",
+      t_ar: "7. التعامل مع النماذج",
+      d_ar: "استقبال البيانات المرسلة عبر طرق GET و POST."
+    },
+    {
+      icon: "fa-database",
+      t_fr: "8. Connexion MySQL (PDO)",
+      badge: "badge-pro",
+      code: `$pdo = new PDO("mysql:host=localhost;dbname=test", "user", "pass");`,
+      d_fr: "Connectez votre application à une base de données MySQL avec PDO.",
+      t_en: "8. MySQL Connection (PDO)",
+      d_en: "Connect your app to a MySQL database using PDO safely.",
+      t_ar: "8. الاتصال بقاعدة البيانات",
+      d_ar: "ربط تطبيقك بقاعدة بيانات MySQL باستخدام PDO."
+    },
+    {
+      icon: "fa-shield",
+      t_fr: "9. Sécurité PHP",
+      badge: "badge-important",
+      d_fr: "Évitez les injections SQL en utilisant des requêtes préparées.",
+      t_en: "9. PHP Security",
+      d_en: "Avoid SQL injections by using prepared statements.",
+      t_ar: "9. أمن PHP",
+      d_ar: "تجنب هجمات SQL injection باستخدام الاستعلامات المحضرة."
+    },
+    {
+      icon: "fa-cookie",
+      t_fr: "10. Sessions & Cookies",
+      code: `session_start();\n$_SESSION["user"] = "Ali";`,
+      d_fr: "Gérer l'authentification des utilisateurs avec les sessions.",
+      t_en: "10. Sessions & Cookies",
+      d_en: "Manage user authentication using PHP sessions.",
+      t_ar: "10. الجلسات والكوكيز",
+      d_ar: "إدارة مصادقة المستخدمين باستخدام الجلسات."
+    },
+    {
+      icon: "fa-dna",
+      t_fr: "11. POO en PHP",
+      badge: "badge-pro",
+      code: `class User {\n  public $nom;\n}`,
+      d_fr: "Utilisez les classes et objets pour structurer votre backend.",
+      t_en: "11. OOP in PHP",
+      d_en: "Use classes and objects to structure your backend code.",
+      t_ar: "11. البرمجة الكائنية",
+      d_ar: "استخدام الكلاسات والكائنات لتنظيم الكود."
+    },
+    {
+      icon: "fa-check-double",
+      t_fr: "12. Bonnes pratiques",
+      d_fr: "Suivez les standards PSR et gardez votre code propre.",
+      t_en: "12. Best Practices",
+      d_en: "Follow PSR standards and keep your code clean.",
+      t_ar: "12. أفضل الممارسات",
+      d_ar: "اتبع معايير PSR وحافظ على نظافة الكود."
+    }
   ];
 
   const chaptersContainer = document.getElementById('phpLessons');
   
-  phpLessons.forEach(l => render(l));
-  extraPhp.forEach(l => render({
-    icon: l.icon,
-    t_en: l.t_en,
-    t_ar: l.t_ar,
-    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional PHP backend engineering. We focus on modern implementation strategies, clean architecture standards, and server-side optimization for large-scale production environments. By mastering ${l.t_en}, you ensure your PHP applications are robust, scalable, and meet the highest industry standards for modern software development.`,
-    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة PHP الاحترافية. نركز على استراتيجيات التنفيذ الحديثة، معايير المعمارية النظيفة، وتحسينات جانب السيرفر لبيئات الإنتاج الضخمة. من خلال إتقان ${l.t_ar}، تضمن أن تطبيقات PHP الخاصة بك قوية وقابلة للتوسع وتلبي أعلى معايير الجودة في الصناعة.`
-  }));
-
   function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
     div.innerHTML = `
-      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
-      <div class="lesson-info">
-        <div data-cl-lang="en">
-          <h3>${lesson.t_en}</h3>
-          <p>${lesson.d_en}</p>
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
         </div>
-        <div data-cl-lang="ar">
-          <h3>${lesson.t_ar}</h3>
-          <p>${lesson.d_ar}</p>
-        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
       </div>
     `;
     chaptersContainer.appendChild(div);
   }
+
+  phpLessons.forEach(l => render(l));
 </script>
 
 <script src="site-polish.js"></script>

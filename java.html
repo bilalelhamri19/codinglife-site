@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Java Professional Masterclass - Coding Life</title>
+  <title>Cours Complet Java - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -17,24 +17,29 @@
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
       display: flex;
+      flex-direction: column;
       gap: 20px;
-      align-items: flex-start;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
     }
     .lesson-card:hover {
-      transform: translateX(10px);
+      transform: translateY(-5px);
       border-color: var(--cl-brand);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      box-shadow: var(--cl-shadow-lg);
     }
     .lesson-icon {
       width: 60px;
       height: 60px;
-      background: rgba(248, 152, 32, 0.1);
+      background: #ed8b0022;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      color: var(--cl-brand);
+      color: #ed8b00;
       flex-shrink: 0;
     }
     .lesson-info {
@@ -46,16 +51,40 @@
       margin-bottom: 12px;
       margin-top: 0;
     }
-    .lesson-info p {
+    .lesson-content {
       line-height: 1.8;
       color: var(--cl-muted);
       font-size: 1.05rem;
-      margin: 0;
     }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .badge-modern { background: #e0f2fe; color: #0369a1; }
+    .badge-important { background: #fee2e2; color: #b91c1c; }
+    .badge-pro { background: #fef3c7; color: #b45309; }
+
+    .code-block {
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 15px 0;
+      border: 1px solid #30363d;
+    }
+
     @media (max-width: 768px) {
-      .lesson-card {
+      .lesson-header {
         flex-direction: column;
-        gap: 15px;
+        align-items: flex-start;
       }
     }
   </style>
@@ -63,187 +92,131 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #f89820, #5382a1) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #ed8b00, #5382a1) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-java"></i> Java Professional Path</h1>
-      <p>A focused curriculum of 20 high-density modules covering enterprise logic and modern engineering.</p>
+      <h1><i class="fab fa-java"></i> Java Enterprise Mastery</h1>
+      <p>Build robust, scalable, and secure enterprise applications with Java.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-java"></i> مسار جافا الاحترافي</h1>
-      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي منطق الشركات والهندسة الحديثة.</p>
+      <h1><i class="fab fa-java"></i> إتقان Java</h1>
+      <p>بناء تطبيقات مؤسسية قوية وقابلة للتوسع وآمنة باستخدام جافا.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fab fa-java"></i> Maîtrise Java</h1>
+      <p>Créez des applications d'entreprise robustes, évolutives et sécurisées.</p>
     </div>
   </div>
 
   <div class="chapters" id="javaLessons">
-    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- Lessons will be injected here -->
   </div>
 </div>
 
 <script>
   const javaLessons = [
     {
-      icon: "fa-microchip",
-      en_t: "JVM Architecture & Memory Management",
-      en_d: "The Java Virtual Machine (JVM) is the heart of the ecosystem, managing memory through structured segments like the Heap and Stack. We explore how the Young and Old generations facilitate efficient object allocation and garbage collection. Understanding these internals is crucial for optimizing enterprise application performance and ensuring system stability under high-load production environments.",
-      ar_t: "معمارية JVM وإدارة الذاكرة",
-      ar_d: "تعد آلة جافا الافتراضية (JVM) قلب النظام البيئي، حيث تدير الذاكرة من خلال شرائح منظمة مثل الـ Heap والـ Stack. نستكشف كيف تسهل الأجيال الشابة والقديمة تخصيص الكائنات وجمع المهملات بكفاءة. فهم هذه الخفايا أمر بالغ الأهمية لتحسين أداء تطبيقات الشركات وضمان استقرار النظام تحت ضغط العمل العالي."
+      icon: "fa-rocket",
+      t_fr: "1. Pourquoi Java ?",
+      d_fr: "Java est l'un des langages les plus populaires au monde, connu pour sa devise 'Write Once, Run Anywhere'.",
+      t_en: "1. Why Java?",
+      d_en: "Java is one of the most popular languages, known for its 'Write Once, Run Anywhere' philosophy.",
+      t_ar: "1. لماذا جافا؟",
+      d_ar: "جافا هي واحدة من أكثر اللغات شعبية، وتشتهر بشعار 'اكتب مرة واحدة، وشغل في أي مكان'."
     },
     {
-      icon: "fa-recycle",
-      en_t: "Advanced Garbage Collection Strategies",
-      en_d: "Java's automatic memory management relies on sophisticated Garbage Collection (GC) algorithms like G1 and ZGC. We delve into tuning these collectors to minimize pause times and maximize throughput for latency-sensitive applications. This module teaches you how to balance memory overhead and CPU cycles to maintain a highly responsive server environment.",
-      ar_t: "استراتيجيات جمع المهملات المتقدمة",
-      ar_d: "تعتمد إدارة الذاكرة التلقائية في جافا على خوارزميات معقدة لجمع المهملات مثل G1 و ZGC. نتعمق في ضبط هذه المجمعات لتقليل أوقات التوقف وزيادة الإنتاجية للتطبيقات الحساسة للتأخير. يعلمك هذا القسم كيفية موازنة استهلاك الذاكرة ودورات المعالج للحفاظ على بيئة سيرفر مستجيبة للغاية."
-    },
-    {
-      icon: "fa-cube",
-      en_t: "OOP Pillars & Scalable System Design",
-      en_d: "Object-Oriented Programming (OOP) in Java is built on Encapsulation, Inheritance, Polymorphism, and Abstraction. These principles enable developers to create modular and reusable codebases that can evolve with complex business requirements. We focus on designing robust architectures that hide implementation details while providing flexible interfaces for long-term maintainability.",
-      ar_t: "ركائز الـ OOP وتصميم الأنظمة القابلة للتوسع",
-      ar_d: "تعتمد البرمجة كائنية التوجه (OOP) في جافا على التغليف، الوراثة، تعدد الأشكال، والتجريد. تتيح هذه المبادئ للمطورين إنشاء قواعد كود نمطية وقابلة لإعادة الاستخدام يمكنها التطور مع متطلبات العمل المعقدة. نركز على تصميم معماريات قوية تخفي تفاصيل التنفيذ وتوفر واجهات مرنة للصيانة طويلة الأمد."
-    },
-    {
-      icon: "fa-layer-group",
-      en_t: "Mastering the Collections Framework",
-      en_d: "The Collections Framework provides high-performance data structures like ArrayList, HashSet, and ConcurrentHashMap. We analyze the time complexity of various operations and discuss when to use specialized collections for thread-safe access. This knowledge ensures you always select the most efficient structure for managing large datasets in professional Java projects.",
-      ar_t: "إتقان إطار عمل المجموعات",
-      ar_d: "يوفر إطار عمل المجموعات هياكل بيانات عالية الأداء مثل ArrayList و HashSet و ConcurrentHashMap. نقوم بتحليل تعقيد الوقت لمختلف العمليات ونناقش متى نستخدم مجموعات متخصصة للوصول الآمن من قبل خيوط متعددة. تضمن هذه المعرفة اختيارك دائمًا للهيكل الأكثر كفاءة لإدارة مجموعات البيانات الضخمة."
-    },
-    {
-      icon: "fa-bolt",
-      en_t: "Functional Programming with Streams API",
-      en_d: "Introduced in Java 8, the Streams API enables declarative data processing using functional operations like filter, map, and reduce. We explore pipeline architecture and lazy evaluation to optimize data transformations across large collections. This module transforms your coding style, making it more readable and efficient by leveraging modern functional paradigms.",
-      ar_t: "البرمجة الوظيفية باستخدام Streams API",
-      ar_d: "تتيح واجهة Streams API معالجة البيانات التصريحية باستخدام عمليات وظيفية مثل التصفية والتحويل والتقليل. نستكشف معمارية خط الأنابيب والتقييم الكسول لتحسين تحويلات البيانات عبر المجموعات الكبيرة. يغير هذا القسم أسلوبك في البرمجة، مما يجعله أكثر قابلية للقراءة وكفاءة من خلال الاستفادة من النماذج الوظيفية الحديثة."
-    },
-    {
-      icon: "fa-network-wired",
-      en_t: "Concurrency & Virtual Threads (Java 21)",
-      en_d: "Virtual Threads represent a major shift in Java's concurrency model, allowing millions of lightweight threads to run concurrently. We discuss how Project Loom eliminates the overhead of platform threads, enabling high-throughput server applications. Mastering virtual threads is essential for building modern, scalable backend services that can handle massive concurrent user bases.",
-      ar_t: "التزامن والخيوط الافتراضية (Java 21)",
-      ar_d: "تمثل الخيوط الافتراضية تحولاً جذرياً في نموذج التزامن في جافا، مما يسمح لملايين الخيوط الخفيفة بالعمل في وقت واحد. نناقش كيف يزيل مشروع Loom أعباء خيوط المنصة، مما يتيح تطبيقات سيرفر عالية الإنتاجية. إتقان الخيوط الافتراضية ضروري لبناء خدمات خلفية حديثة وقابلة للتوسع."
-    },
-    {
-      icon: "fa-shield-halved",
-      en_t: "Exception Handling & Robustness",
-      en_d: "Professional exception handling goes beyond simple try-catch blocks; it involves designing resilient error recovery strategies and custom exception hierarchies. We explore best practices for logging, resource management with try-with-resources, and preventing common pitfalls like silent failures. This ensures your applications remain stable and provide meaningful feedback even during unexpected runtime errors.",
-      ar_t: "التعامل مع الاستثناءات وقوة النظام",
-      ar_d: "يتجاوز التعامل الاحترافي مع الاستثناءات مجرد كتل try-catch البسيطة؛ بل يتضمن تصميم استراتيجيات مرنة لاستعادة الأخطاء وتسلسلات هرمية مخصصة للاستثناءات. نستكشف أفضل الممارسات للتسجيل، وإدارة الموارد، ومنع الأخطاء الشائعة مثل الفشل الصامت. يضمن ذلك بقاء تطبيقاتك مستقرة وتوفر ردود فعل مفيدة."
-    },
-    {
-      icon: "fa-dna",
-      en_t: "Generics & Compile-Time Type Safety",
-      en_d: "Generics allow for type-safe operations on diverse data types, reducing the risk of ClassCastExceptions at runtime. We explore wildcards, type erasure, and bounded type parameters to build flexible yet robust API interfaces. Mastering generics is a prerequisite for creating professional libraries and frameworks that prioritize safety and developer productivity in Java ecosystems.",
-      ar_t: "الأنواع العامة (Generics) وسلامة النوع",
-      ar_d: "تتيح الـ Generics إجراء عمليات آمنة النوع على أنواع بيانات متنوعة، مما يقلل من مخاطر أخطاء وقت التشغيل. نستكشف الرموز البرية (wildcards)، ومسح النوع، ومعلمات النوع المحدودة لبناء واجهات API مرنة وقوية. إتقان الـ generics هو شرط أساسي لإنشاء مكتبات وأطر عمل احترافية تعطي الأولوية للسلامة وإنتاجية المطور."
-    },
-    {
-      icon: "fa-magnifying-glass",
-      en_t: "Reflection API & Dynamic Programming",
-      en_d: "The Reflection API enables Java programs to inspect and modify their own internal structure at runtime. We discuss how frameworks like Spring use reflection for dependency injection and how to leverage it for building dynamic tools. This module highlights the power and performance trade-offs of reflection, ensuring you use it responsibly in advanced architectural scenarios.",
-      ar_t: "واجهة Reflection والبرمجة الديناميكية",
-      ar_d: "تتيح واجهة Reflection لبرامج جافا فحص وتعديل هيكلها الداخلي أثناء التشغيل. نناقش كيف تستخدم أطر عمل مثل Spring هذه الواجهة لحقن التبعيات وكيفية الاستفادة منها لبناء أدوات ديناميكية. يسلط هذا القسم الضوء على القوة ومقايضات الأداء، مما يضمن استخدامها بمسؤولية في السيناريوهات المعمارية المتقدمة."
-    },
-    {
-      icon: "fa-file-code",
-      en_t: "Input/Output & NIO.2 Filesystem",
-      en_d: "Java's NIO.2 (Non-blocking I/O) provides a modern approach to filesystem operations and asynchronous data processing. We explore Path, Files, and WatchService APIs for high-performance file management and directory monitoring. This knowledge is essential for building efficient data-driven applications that interact with the local filesystem or network resources without blocking execution.",
-      ar_t: "المدخلات والمخرجات ونظام ملفات NIO.2",
-      ar_d: "يوفر NIO.2 في جافا نهجاً حديثاً لعمليات نظام الملفات ومعالجة البيانات غير المتزامنة. نستكشف واجهات Path و Files و WatchService لإدارة الملفات عالية الأداء ومراقبة المجلدات. هذه المعرفة ضرورية لبناء تطبيقات فعالة تعتمد على البيانات وتتفاعل مع نظام الملفات المحلي أو موارد الشبكة دون حظر التنفيذ."
-    },
-    {
-      icon: "fa-gem",
-      en_t: "Advanced Design Patterns (Singleton/Factory)",
-      en_d: "Design patterns are proven solutions to common software design problems. We analyze the technical implementation of patterns like Singleton for shared resources and Factory for object creation decoupling. This module teaches you how to apply these patterns to create a clean, maintainable, and professionally structured codebase that follows industry-standard architectural principles.",
-      ar_t: "أنماط التصميم المتقدمة (Singleton/Factory)",
-      ar_d: "أنماط التصميم هي حلول مثبتة لمشاكل تصميم البرمجيات الشائعة. نقوم بتحليل التنفيذ التقني لأنماط مثل Singleton للموارد المشتركة و Factory لفصل إنشاء الكائنات. يعلمك هذا القسم كيفية تطبيق هذه الأنماط لإنشاء قاعدة كود نظيفة ومنظمة باحترافية تتبع المبادئ المعمارية القياسية في الصناعة."
-    },
-    {
-      icon: "fa-leaf",
-      en_t: "Spring Boot 3 & IoC Fundamentals",
-      en_d: "Spring Boot simplifies the creation of stand-alone, production-grade Spring-based applications. We explore Inversion of Control (IoC) and Dependency Injection (DI) as the core pillars of the Spring ecosystem. Mastering Spring Boot allows you to build powerful enterprise microservices with minimal configuration, focusing on business logic rather than infrastructure boilerplate.",
-      ar_t: "سبرينج بوت 3 وأساسيات الـ IoC",
-      ar_d: "يبسط سبرينج بوت إنشاء تطبيقات قائمة على سبرينج ومستعدة للإنتاج. نستكشف عكس التحكم (IoC) وحقن التبعيات (DI) كركائز أساسية لنظام سبرينج البيئي. يتيح لك إتقان سبرينج بوت بناء خدمات مصغرة قوية للشركات بأقل قدر من الإعدادات، والتركيز على منطق الأعمال بدلاً من الأكواد الروتينية للبنية التحتية."
+      icon: "fa-code",
+      t_fr: "2. Syntaxe de base",
+      code: `public class Main {\n  public static void main(String[] args) {\n    System.out.println("Hello");\n  }\n}`,
+      d_fr: "Tout code Java doit être à l'intérieur d'une classe.",
+      t_en: "2. Basic Syntax",
+      d_en: "All Java code must be inside a class structure.",
+      t_ar: "2. الأساسيات",
+      d_ar: "كل كود جافا يجب أن يكون داخل كلاس."
     },
     {
       icon: "fa-vial",
-      en_t: "Unit Testing with JUnit 5 & Mockito",
-      en_d: "Quality assurance in Java is achieved through comprehensive unit testing using JUnit 5 and mocking frameworks like Mockito. We discuss the TDD (Test Driven Development) approach and how to isolate components for effective testing. This ensures your code is reliable, free of regressions, and meets the rigorous quality standards required for professional software engineering roles.",
-      ar_t: "اختبار الوحدات بـ JUnit 5 و Mockito",
-      ar_d: "يتم ضمان الجودة في جافا من خلال اختبارات وحدات شاملة باستخدام JUnit 5 وأطر المحاكاة مثل Mockito. نناقش نهج التطوير المدفوع بالاختبار (TDD) وكيفية عزل المكونات للاختبار الفعال. يضمن ذلك أن كودك موثوق، وخالٍ من الأخطاء المتكررة، ويلبي معايير الجودة الصارمة المطلوبة في هندسة البرمجيات."
+      t_fr: "3. Variables & Types",
+      code: `int age = 25;\nString nom = "Ali";\ndouble pi = 3.14;`,
+      d_fr: "Java est un langage fortement typé. Vous devez déclarer le type de chaque variable.",
+      t_en: "3. Variables & Types",
+      d_en: "Java is strongly typed. You must declare the type of every variable.",
+      t_ar: "3. المتغيرات والأنواع",
+      d_ar: "جافا لغة صارمة في أنواع البيانات، يجب تحديد نوع كل متغير."
     },
     {
-      icon: "fa-database",
-      en_t: "Persistence with JPA & Hibernate",
-      en_d: "Java Persistence API (JPA) and Hibernate provide a powerful way to map Java objects to relational databases. We explore entity lifecycles, lazy loading, and JPQL for efficient data querying. This module ensures you can manage complex data relationships and optimize database interactions, which is a critical skill for developing robust and data-intensive enterprise-level backend systems.",
-      ar_t: "استمرارية البيانات مع JPA و Hibernate",
-      ar_d: "توفر واجهة JPA و Hibernate طريقة قوية لربط كائنات جافا بقواعد البيانات العلائقية. نستكشف دورات حياة الكيانات، والتحميل الكسول (lazy loading)، و JPQL للاستعلام الفعال عن البيانات. يضمن هذا القسم قدرتك على إدارة علاقات البيانات المعقدة وتحسين التفاعلات مع قاعدة البيانات، وهي مهارة بالغة الأهمية للأنظمة الخلفية."
+      icon: "fa-dna",
+      t_fr: "4. POO (Classes & Objets)",
+      badge: "badge-important",
+      code: `User user = new User();\nuser.setNom("Ali");`,
+      d_fr: "Java est centré sur les objets. Apprenez à créer des classes et à instancier des objets.",
+      t_en: "4. OOP (Classes & Objects)",
+      d_en: "Java is object-centric. Learn to create classes and instantiate objects.",
+      t_ar: "4. البرمجة الكائنية",
+      d_ar: "جافا تعتمد على الكائنات بشكل كامل."
     },
     {
-      icon: "fa-rocket",
-      en_t: "RESTful API Design & Best Practices",
-      en_d: "Building scalable web services requires a deep understanding of RESTful architectural principles. We discuss how to design intuitive API endpoints, manage HTTP status codes, and ensure secure communication using JWT and OAuth2. This lesson prepares you to develop professional-grade APIs that can be easily consumed by diverse frontend and mobile clients in a distributed system.",
-      ar_t: "تصميم RESTful API وأفضل الممارسات",
-      ar_d: "يتطلب بناء خدمات ويب قابلة للتوسع فهماً عميقاً لمبادئ معمارية RESTful. نناقش كيفية تصميم نقاط نهاية API بديهية، وإدارة أكواد حالة HTTP، وضمان التواصل الآمن باستخدام JWT و OAuth2. يهيئك هذا الدرس لتطوير APIs احترافية يمكن استهلاكها بسهولة من قبل مختلف عملاء الواجهة الأمامية والموبايل."
+      icon: "fa-shield",
+      t_fr: "5. Encapsulation",
+      badge: "badge-pro",
+      code: `private String secret;\npublic String getSecret() { return secret; }`,
+      d_fr: "Protégez vos données en utilisant les modificateurs d'accès (private, public).",
+      t_en: "5. Encapsulation",
+      d_en: "Protect your data using access modifiers like private and public.",
+      t_ar: "5. التغليف",
+      d_ar: "حماية بياناتك باستخدام مغيرات الوصول."
     },
     {
-      icon: "fa-box-open",
-      en_t: "Maven Build Lifecycle & Dependencies",
-      en_d: "Apache Maven is the industry-standard tool for managing Java project builds and dependencies. We explore the build lifecycle, POM configuration, and repository management to automate the development process. Mastering Maven ensures your projects are portable, consistent, and easy to build across different environments and continuous integration (CI) pipelines.",
-      ar_t: "دورة حياة بناء ميفن والتبعيات",
-      ar_d: "Apache Maven هو الأداة القياسية في الصناعة لإدارة بناء مشاريع جافا وتبعياتها. نستكشف دورة حياة البناء، وتكوين POM، وإدارة المستودعات لأتمتة عملية التطوير. يضمن إتقان ميفن أن مشاريعك قابلة للنقل ومتسقة وسهلة البناء عبر البيئات المختلفة وخطوط أنابيب التكامل المستمر (CI)."
+      icon: "fa-list",
+      t_fr: "6. Collections (ArrayList)",
+      code: `ArrayList<String> liste = new ArrayList<>();\nliste.add("Java");`,
+      d_fr: "Utilisez le framework Collections pour gérer des listes de données dynamiques.",
+      t_en: "6. Collections (ArrayList)",
+      d_en: "Use the Collections framework to manage dynamic lists of data.",
+      t_ar: "6. المجموعات",
+      d_ar: "استخدام إطار عمل المجموعات لإدارة البيانات الديناميكية."
     },
     {
-      icon: "fa-docker",
-      en_t: "Dockerizing Java Applications",
-      en_d: "Containerization allows Java applications to run consistently across any environment. We explore how to build efficient Docker images, manage multi-stage builds, and optimize the JVM for container resource limits. This knowledge is essential for modern DevOps workflows, enabling seamless deployment and orchestration of your Java microservices in the cloud.",
-      ar_t: "تحويل تطبيقات جافا إلى حاويات دوكر",
-      ar_d: "تسمح الحاويات لتطبيقات جافا بالعمل بشكل متسق عبر أي بيئة. نستكشف كيفية بناء صور دوكر فعالة، وإدارة البناء متعدد المراحل، وتحسين JVM لحدود موارد الحاويات. هذه المعرفة ضرورية لسير عمل الـ DevOps الحديثة، مما يتيح النشر السلس وتنسيق خدمات جافا المصغرة الخاصة بك في السحابة."
-    },
-    {
-      icon: "fa-at",
-      en_t: "Annotations & Custom Metadata",
-      en_d: "Annotations provide a way to add metadata to Java code, which can be processed at compile-time or runtime. We explore how to create custom annotations and use annotation processors to automate repetitive tasks. This module highlights the power of metadata-driven development, which is widely used in modern frameworks to provide declarative configuration and enhance code readability.",
-      ar_t: "التوضيحات (Annotations) والبيانات الوصفية",
-      ar_d: "توفر التوضيحات طريقة لإضافة بيانات وصفية لكود جافا، والتي يمكن معالجتها وقت الترجمة أو وقت التشغيل. نستكشف كيفية إنشاء توضيحات مخصصة واستخدام معالجات التوضيحات لأتمتة المهام المتكررة. يسلط هذا القسم الضوء على قوة التطوير المدفوع بالبيانات الوصفية، والمستخدم على نطاق واسع في أطر العمل الحديثة."
-    },
-    {
-      icon: "fa-shield-check",
-      icon_class: "fa-solid fa-user-shield",
-      en_t: "Java Security & Secure Coding",
-      en_d: "Security is a paramount concern in enterprise software engineering. We discuss Java's security architecture, including the Security Manager, encryption APIs, and best practices for preventing common vulnerabilities like SQL injection and cross-site scripting. This module ensures you build robust and secure applications that protect sensitive data and meet rigorous industrial security standards.",
-      ar_t: "أمن جافا والبرمجة الآمنة",
-      ar_d: "يعد الأمن مصدر قلق بالغ في هندسة برمجيات الشركات. نناقش معمارية أمن جافا، بما في ذلك مدير الأمن، وواجهات برمجة تطبيقات التشفير، وأفضل الممارسات لمنع الثغرات الشائعة مثل حقن SQL. يضمن هذا القسم أنك تبني تطبيقات قوية وآمنة تحمي البيانات الحساسة وتلبي معايير الأمن الصناعية الصارمة."
-    },
-    {
-      icon: "fa-award",
-      en_t: "Becoming a Senior Java Engineer",
-      en_d: "Moving toward a senior role requires mastering not just the syntax, but also high-level architectural patterns, technical leadership, and system performance tuning. We discuss the career path for Java developers, focusing on continuous learning, contribution to open source, and the ability to design complex distributed systems that solve real-world problems at scale.",
-      ar_t: "كيف تصبح مهندس جافا أول (Senior)",
-      ar_d: "يتطلب الانتقال إلى دور 'Senior' إتقان ليس فقط القواعد، ولكن أيضاً الأنماط المعمارية عالية المستوى، والقيادة التقنية، وضبط أداء النظام. نناقش المسار الوظيفي لمطوري جافا، مع التركيز على التعلم المستمر، والمساهمة في المصادر المفتوحة، والقدرة على تصميم أنظمة موزعة معقدة تحل مشاكل العالم الحقيقي."
+      icon: "fa-triangle-exclamation",
+      t_fr: "7. Gestion des Exceptions",
+      code: `try {\n  // code\n} catch (Exception e) { ... }`,
+      d_fr: "Gérez les erreurs proprement avec try, catch et finally.",
+      t_en: "7. Exception Handling",
+      d_en: "Handle errors gracefully using try, catch, and finally blocks.",
+      t_ar: "7. معالجة الاستثناءات",
+      d_ar: "التعامل مع الأخطاء بشكل احترافي."
     }
   ];
 
   const chaptersContainer = document.getElementById('javaLessons');
   
-  javaLessons.forEach(lesson => {
+  function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
     div.innerHTML = `
-      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
-      <div class="lesson-info">
-        <div data-cl-lang="en">
-          <h3>${lesson.en_t}</h3>
-          <p>${lesson.en_d}</p>
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
         </div>
-        <div data-cl-lang="ar">
-          <h3>${lesson.ar_t}</h3>
-          <p>${lesson.ar_d}</p>
-        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
       </div>
     `;
     chaptersContainer.appendChild(div);
-  });
+  }
+
+  javaLessons.forEach(l => render(l));
 </script>
 
 <script src="site-polish.js"></script>

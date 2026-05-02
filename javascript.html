@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Deep Dive - Coding Life</title>
+  <title>Cours Complet JavaScript - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -17,18 +17,23 @@
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
       display: flex;
+      flex-direction: column;
       gap: 20px;
-      align-items: flex-start;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
     }
     .lesson-card:hover {
-      transform: translateX(10px);
+      transform: translateY(-5px);
       border-color: var(--cl-brand);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      box-shadow: var(--cl-shadow-lg);
     }
     .lesson-icon {
       width: 60px;
       height: 60px;
-      background: #323330;
+      background: #f7df1e22;
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -46,16 +51,40 @@
       margin-bottom: 12px;
       margin-top: 0;
     }
-    .lesson-info p {
+    .lesson-content {
       line-height: 1.8;
       color: var(--cl-muted);
       font-size: 1.05rem;
-      margin: 0;
     }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .badge-modern { background: #e0f2fe; color: #0369a1; }
+    .badge-important { background: #fee2e2; color: #b91c1c; }
+    .badge-pro { background: #fef3c7; color: #b45309; }
+
+    .code-block {
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 15px 0;
+      border: 1px solid #30363d;
+    }
+
     @media (max-width: 768px) {
-      .lesson-card {
+      .lesson-header {
         flex-direction: column;
-        gap: 15px;
+        align-items: flex-start;
       }
     }
   </style>
@@ -63,78 +92,256 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #f7df1e, #323330) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #f7df1e, #e5c300) !important;">
     <div data-cl-lang="en">
-      <h1 style="color: #323330;"><i class="fab fa-js"></i> JavaScript Expert Deep Dive</h1>
-      <p style="color: #323330;">A focused curriculum of 20 high-density modules covering engine internals and modern frontend engineering.</p>
+      <h1 style="color: #323330;"><i class="fab fa-js"></i> JavaScript Mastery</h1>
+      <p style="color: #323330;">The ultimate guide to building interactive and dynamic web applications.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1 style="color: #323330;"><i class="fab fa-js"></i> تعمق في JavaScript للمحترفين</h1>
-      <p style="color: #323330;">منهج مركز يضم 20 وحدة عالية الكثافة تغطي ميكانيكا المحركات وهندسة الواجهات الأمامية الحديثة.</p>
+      <h1 style="color: #323330;"><i class="fab fa-js"></i> إتقان JavaScript</h1>
+      <p style="color: #323330;">الدليل الشامل لبناء تطبيقات ويب تفاعلية وديناميكية.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fab fa-js"></i> Maîtrise JavaScript</h1>
+      <p>Le guide ultime pour créer des applications web interactives et dynamiques.</p>
     </div>
   </div>
 
   <div class="chapters" id="jsLessons">
-    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- Lessons will be injected here -->
   </div>
 </div>
 
 <script>
   const jsLessons = [
-    { t_en: "V8 Engine Architecture & JIT", icon: "fa-engine", t_ar: "معمارية محرك V8 والـ JIT", d_en: "The V8 engine powers modern JavaScript by using a complex pipeline of JIT compilation and interpretation. We explore how the Ignition interpreter generates bytecode and how TurboFan optimizes functions into native machine code. Understanding these internals allows you to write high-performance code that maximizes execution speed and efficient memory usage across browsers and servers.", d_ar: "يعمل محرك V8 على تشغيل JavaScript الحديثة باستخدام خط أنابيب معقد من ترجمة JIT والتفسير. نستكشف كيف يقوم مفسر Ignition بإنشاء bytecode وكيف يقوم TurboFan بتحسين الوظائف إلى كود آلة أصلي. يتيح لك فهم هذه الخفايا كتابة كود عالي الأداء يزيد من سرعة التنفيذ واستخدام الذاكرة بكفاءة." },
-    { t_en: "Event Loop & Task Queue Priority", icon: "fa-arrows-spin", t_ar: "حلقة الأحداث وأولويات طوابير المهام", d_en: "JavaScript's single-threaded nature is managed through the Event Loop and task queues. We delve into the difference between Macrotasks (timers) and Microtasks (Promises), and how the browser prioritizes them during the rendering lifecycle. Mastering this architecture is essential for preventing UI blocking and building smooth, responsive user experiences that handle complex async logic seamlessly.", d_ar: "تتم إدارة طبيعة JavaScript أحادية الخيط من خلال حلقة الأحداث وطوابير المهام. نتعمق في الفرق بين الـ Macrotasks (المؤقتات) والـ Microtasks (الوعود)، وكيفية ترتيب أولويات المتصفح لها أثناء دورة حياة الرندر. إتقان هذه المعمارية ضروري لمنع حظر واجهة المستخدم وبناء تجارب مستخدم سلسة ومستجيبة." },
-    { t_en: "Prototypal Inheritance & Memory Scopes", icon: "fa-dna", t_ar: "الوراثة القائمة على النماذج ونطاقات الذاكرة", d_en: "JavaScript uses prototypes for inheritance, creating a chain that objects follow to resolve properties. We explore how the internal prototype link works and how modern ES6 classes provide syntactic sugar over this mechanism. Understanding scopes and closures allows you to manage memory effectively and share methods across instances to reduce memory footprint in large applications.", d_ar: "تستخدم JavaScript النماذج للوراثة، مما يخلق سلسلة تتبعها الكائنات لحل الخصائص. نستكشف كيف يعمل رابط النموذج الداخلي وكيف توفر كلاسات ES6 الحديثة غطاءً لغوياً لهذه الآلية. فهم النطاقات (scopes) والـ closures يتيح لك إدارة الذاكرة بفعالية ومشاركة الأساليب عبر المثيلات لتقليل استهلاك الذاكرة." },
-    { t_en: "Asynchronous Patterns & Async/Await", icon: "fa-bolt", t_ar: "الأنماط غير المتزامنة وصيغة Async/Await", d_en: "Modern JavaScript relies on Promises and async/await syntax to handle asynchronous operations cleanly. We explore error handling strategies, parallel execution with Promise.all, and how to avoid 'callback hell'. Mastering these patterns is fundamental for building reliable web services and interactive user interfaces that interact with network resources without compromising the user experience.", d_ar: "تعتمد JavaScript الحديثة على الوعود (Promises) وصيغة async/await للتعامل مع العمليات غير المتزامنة بشكل نظيف. نستكشف استراتيجيات معالجة الأخطاء، والتنفيذ المتوازي باستخدام Promise.all، وكيفية تجنب 'جحيم النداءات'. إتقان هذه الأنماط أساسي لبناء خدمات ويب موثوقة وواجهات مستخدم تفاعلية." }
-  ];
-
-  const extraJs = [
-    { t_en: "Closures & Functional Logic", t_ar: "الـ Closures والمنطق الوظيفي", icon: "fa-box-archive" },
-    { t_en: "Web Workers & Parallelism", t_ar: "الـ Web Workers والتوازي", icon: "fa-microchip" },
-    { t_en: "Proxy & Reflect Metadata", t_ar: "الـ Proxy والبيانات الوصفية", icon: "fa-user-secret" },
-    { t_en: "Module Systems: ESM vs CJS", t_ar: "أنظمة الوحدات: ESM مقابل CJS", icon: "fa-box-open" },
-    { t_en: "Advanced DOM Manipulation", t_ar: "التلاعب المتقدم بالـ DOM", icon: "fa-sitemap" },
-    { t_en: "Web Cryptography & Security", t_ar: "تشفير الويب والأمان", icon: "fa-shield-check" },
-    { t_en: "Performance & Code Splitting", t_ar: "الأداء وتقسيم الكود", icon: "fa-gauge-high" },
-    { t_en: "Design Patterns in JavaScript", t_ar: "أنماط التصميم في جافا سكريبت", icon: "fa-gem" },
-    { t_en: "Canvas & WebGL Graphics", t_ar: "رسومات Canvas و WebGL", icon: "fa-paintbrush" },
-    { t_en: "Service Workers & PWA Logic", t_ar: "الـ Service Workers ومنطق الـ PWA", icon: "fa-cloud-bolt" },
-    { t_en: "Maintaining Large JS Projects", t_ar: "صيانة مشاريع JS الضخمة", icon: "fa-building-columns" },
-    { t_en: "Functional Reactive Patterns", t_ar: "الأنماط الوظيفية التفاعلية", icon: "fa-gears" },
-    { t_en: "Real-time Communication (WebRTC)", t_ar: "الاتصال في الوقت الحقيقي (WebRTC)", icon: "fa-headset" },
-    { t_en: "Managing Browser State", t_ar: "إدارة حالة المتصفح", icon: "fa-database" },
-    { t_en: "The Future of TC39 & JS", t_ar: "مستقبل TC39 ولغة جافا سكريبت", icon: "fa-award" },
-    { t_en: "Becoming a Senior JS Engineer", t_ar: "كيف تصبح مهندس جافا سكريبت أول", icon: "fa-star" }
+    {
+      icon: "fa-rocket",
+      t_fr: "1. Introduction à JavaScript",
+      d_fr: "JavaScript est le langage de programmation du Web. Il permet de rendre les pages interactives.",
+      t_en: "1. Introduction to JavaScript",
+      d_en: "JavaScript is the programming language of the Web. It makes web pages interactive.",
+      t_ar: "1. مقدمة في جافا سكريبت",
+      d_ar: "جافا سكريبت هي لغة البرمجة الخاصة بالويب، وتستخدم لجعل الصفحات تفاعلية."
+    },
+    {
+      icon: "fa-vial",
+      t_fr: "2. Variables (let, const)",
+      code: `let nom = "Ali";\nconst age = 25;`,
+      d_fr: "Utilisez <code>let</code> pour les variables qui changent et <code>const</code> pour les constantes.",
+      t_en: "2. Variables (let, const)",
+      d_en: "Use <code>let</code> for variables that change and <code>const</code> for constants.",
+      t_ar: "2. المتغيرات",
+      d_ar: "استخدم <code>let</code> للمتغيرات التي تتغير و <code>const</code> للثوابت."
+    },
+    {
+      icon: "fa-database",
+      t_fr: "3. Types de données",
+      d_fr: "Strings, Numbers, Booleans, Null, Undefined et Objects.",
+      t_en: "3. Data Types",
+      d_en: "Strings, Numbers, Booleans, Null, Undefined, and Objects.",
+      t_ar: "3. أنواع البيانات",
+      d_ar: "النصوص، الأرقام، القيم المنطقية، والكائنات."
+    },
+    {
+      icon: "fa-bolt",
+      t_fr: "4. Opérateurs",
+      code: `let total = 10 + 5;\nlet isAdult = age >= 18;`,
+      d_fr: "Arithmétiques (+, -), Comparaison (==, ===) et Logiques (&&, ||).",
+      t_en: "4. Operators",
+      d_en: "Arithmetic (+, -), Comparison (==, ===), and Logical (&&, ||).",
+      t_ar: "4. العمليات",
+      d_ar: "العمليات الحسابية، المقارنة، والعمليات المنطقية."
+    },
+    {
+      icon: "fa-gears",
+      t_fr: "5. Fonctions",
+      code: `function saluer(nom) {\n  return "Bonjour " + nom;\n}`,
+      d_fr: "Blocs de code réutilisables qui effectuent une tâche précise.",
+      t_en: "5. Functions",
+      d_en: "Reusable blocks of code that perform a specific task.",
+      t_ar: "5. الدوال",
+      d_ar: "كتل برمجية قابلة لإعادة الاستخدام تؤدي مهمة محددة."
+    },
+    {
+      icon: "fa-list",
+      t_fr: "6. Tableaux (Arrays)",
+      code: `let fruits = ["Pomme", "Banane"];\nfruits.push("Orange");`,
+      d_fr: "Stocker plusieurs valeurs dans une seule variable.",
+      t_en: "6. Arrays",
+      d_en: "Store multiple values in a single variable.",
+      t_ar: "6. المصفوفات",
+      d_ar: "تخزين قيم متعددة في متغير واحد."
+    },
+    {
+      icon: "fa-cube",
+      t_fr: "7. Objets",
+      code: `let user = {\n  nom: "Ali",\n  age: 20\n};`,
+      d_fr: "Stocker des collections de données structurées.",
+      t_en: "7. Objects",
+      d_en: "Store collections of structured data.",
+      t_ar: "7. الكائنات",
+      d_ar: "تخزين مجموعات من البيانات المهيكلة."
+    },
+    {
+      icon: "fa-rotate",
+      t_fr: "8. Boucles (Loops)",
+      code: `for (let i = 0; i < 5; i++) {\n  console.log(i);\n}`,
+      d_fr: "Répéter une action plusieurs fois (for, while).",
+      t_en: "8. Loops",
+      d_en: "Repeat an action multiple times (for, while).",
+      t_ar: "8. الحلقات التكرارية",
+      d_ar: "تكرار إجراء معين عدة مرات."
+    },
+    {
+      icon: "fa-sitemap",
+      t_fr: "9. DOM Manipulation",
+      badge: "badge-important",
+      code: `document.getElementById("titre").innerText = "Salut";`,
+      d_fr: "Modifier le contenu et le style HTML avec JavaScript.",
+      t_en: "9. DOM Manipulation",
+      d_en: "Modify HTML content and style using JavaScript.",
+      t_ar: "9. التحكم في DOM",
+      d_ar: "تغيير محتوى وتنسيق HTML باستخدام جافا سكريبت."
+    },
+    {
+      icon: "fa-mouse",
+      t_fr: "10. Événements (Events)",
+      code: `btn.addEventListener("click", () => {\n  alert("Cliqué !");\n});`,
+      d_fr: "Réagir aux actions de l'utilisateur (clic, survol, saisie).",
+      t_en: "10. Events",
+      d_en: "React to user actions (click, hover, input).",
+      t_ar: "10. الأحداث",
+      d_ar: "التفاعل مع إجراءات المستخدم مثل الضغط."
+    },
+    {
+      icon: "fa-code-branch",
+      t_fr: "11. ES6+ (Arrow Functions)",
+      badge: "badge-modern",
+      code: `const addition = (a, b) => a + b;`,
+      d_fr: "Syntaxe moderne de JavaScript pour un code plus court.",
+      t_en: "11. ES6+ Features",
+      d_en: "Modern JavaScript syntax for shorter and cleaner code.",
+      t_ar: "11. ميزات ES6 الحديثة",
+      d_ar: "طريقة كتابة حديثة لجعل الكود أقصر وأنظف."
+    },
+    {
+      icon: "fa-cloud-arrow-down",
+      t_fr: "12. Promises & Async/Await",
+      badge: "badge-pro",
+      code: `async function getData() {\n  let res = await fetch(url);\n}`,
+      d_fr: "Gérer les opérations asynchrones (API, timers) proprement.",
+      t_en: "12. Async/Await",
+      d_en: "Handle asynchronous operations (APIs, timers) cleanly.",
+      t_ar: "12. العمليات غير المتزامنة",
+      d_ar: "التعامل مع العمليات التي تأخذ وقتاً مثل جلب البيانات."
+    },
+    {
+      icon: "fa-globe",
+      t_fr: "13. Fetch API",
+      d_fr: "Récupérer des données depuis un serveur ou une API.",
+      t_en: "13. Fetch API",
+      d_en: "Retrieve data from a server or an external API.",
+      t_ar: "13. Fetch API",
+      d_ar: "جلب البيانات من سيرفر أو واجهة برمجة تطبيقات."
+    },
+    {
+      icon: "fa-shield",
+      t_fr: "14. Error Handling",
+      code: `try {\n  // code\n} catch (err) {\n  console.error(err);\n}`,
+      d_fr: "Utiliser try/catch pour éviter que le site ne plante.",
+      t_en: "14. Error Handling",
+      d_en: "Use try/catch to prevent the application from crashing.",
+      t_ar: "14. معالجة الأخطاء",
+      d_ar: "استخدام try/catch لمنع توقف التطبيق عند حدوث خطأ."
+    },
+    {
+      icon: "fa-hard-drive",
+      t_fr: "15. LocalStorage",
+      d_fr: "Sauvegarder des données dans le navigateur de l'utilisateur.",
+      t_en: "15. LocalStorage",
+      d_en: "Save data in the user's browser persistently.",
+      t_ar: "15. التخزين المحلي",
+      d_ar: "حفظ البيانات في متصفح المستخدم بشكل دائم."
+    },
+    {
+      icon: "fa-dna",
+      t_fr: "16. Classes & OOP",
+      badge: "badge-pro",
+      code: `class User {\n  constructor(nom) { this.nom = nom; }\n}`,
+      d_fr: "Programmation Orientée Objet en JavaScript.",
+      t_en: "16. Classes & OOP",
+      d_en: "Object-Oriented Programming in JavaScript.",
+      t_ar: "16. الأصناف والبرمجة الكائنية",
+      d_ar: "البرمجة الكائنية التوجه في جافا سكريبت."
+    },
+    {
+      icon: "fa-puzzle-piece",
+      t_fr: "17. Modules",
+      d_fr: "Séparer le code en plusieurs fichiers (import/export).",
+      t_en: "17. Modules",
+      d_en: "Split code into multiple files (import/export).",
+      t_ar: "17. الوحدات (Modules)",
+      d_ar: "تقسيم الكود إلى ملفات متعددة."
+    },
+    {
+      icon: "fa-check-double",
+      t_fr: "18. Bonnes pratiques",
+      d_fr: "Nommer les variables clairement, éviter le code dupliqué.",
+      t_en: "18. Best Practices",
+      d_en: "Clear variable naming and avoiding code duplication.",
+      t_ar: "18. أفضل الممارسات",
+      d_ar: "تسمية المتغيرات بوضوح وتجنب تكرار الكود."
+    },
+    {
+      icon: "fa-star",
+      t_fr: "19. Debugging",
+      d_fr: "Utiliser console.log() et les outils de développement Chrome.",
+      t_en: "19. Debugging",
+      d_en: "Using console.log() and Chrome DevTools to fix issues.",
+      t_ar: "19. تصحيح الأخطاء",
+      d_ar: "استخدام console.log وأدوات المطور لإصلاح المشاكل."
+    },
+    {
+      icon: "fa-road",
+      t_fr: "20. Roadmap",
+      d_fr: "Apprenez React, Vue ou Node.js après avoir maîtrisé JS.",
+      t_en: "20. Roadmap",
+      d_en: "Learn React, Vue, or Node.js after mastering JS.",
+      t_ar: "20. خارطة الطريق",
+      d_ar: "تعلم React أو Vue أو Node.js بعد إتقان الأساسيات."
+    }
   ];
 
   const chaptersContainer = document.getElementById('jsLessons');
   
-  jsLessons.forEach(l => render(l));
-  extraJs.forEach(l => render({
-    icon: l.icon,
-    t_en: l.t_en,
-    t_ar: l.t_ar,
-    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional JavaScript engineering. We focus on runtime behavior, clean code standards, and engine-level optimization for modern web environments. By mastering ${l.t_en}, you ensure your JavaScript applications are robust, scalable, and highly maintainable across both browser and server platforms using industrial standards.`,
-    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة JavaScript الاحترافية. نركز على سلوك وقت التشغيل، معايير الكود النظيف، وتحسينات مستوى المحرك لبيئات الويب الحديثة. من خلال إتقان ${l.t_ar}، تضمن أن تطبيقات JavaScript الخاصة بك قوية وقابلة للتوسع وسهلة الصيانة عبر المتصفح والسيرفر.`
-  }));
-
   function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
     div.innerHTML = `
-      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
-      <div class="lesson-info">
-        <div data-cl-lang="en">
-          <h3>${lesson.t_en}</h3>
-          <p>${lesson.d_en}</p>
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
         </div>
-        <div data-cl-lang="ar">
-          <h3>${lesson.t_ar}</h3>
-          <p>${lesson.d_ar}</p>
-        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
       </div>
     `;
     chaptersContainer.appendChild(div);
   }
+
+  jsLessons.forEach(l => render(l));
 </script>
 
 <script src="site-polish.js"></script>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C# Enterprise Engineering - Coding Life</title>
+  <title>Cours Complet C# - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
@@ -17,24 +17,29 @@
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
       display: flex;
+      flex-direction: column;
       gap: 20px;
-      align-items: flex-start;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
     }
     .lesson-card:hover {
-      transform: translateX(10px);
+      transform: translateY(-5px);
       border-color: var(--cl-brand);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      box-shadow: var(--cl-shadow-lg);
     }
     .lesson-icon {
       width: 60px;
       height: 60px;
-      background: rgba(81, 43, 212, 0.1);
+      background: #a179dc22;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      color: #512bd4;
+      color: #a179dc;
       flex-shrink: 0;
     }
     .lesson-info {
@@ -46,16 +51,40 @@
       margin-bottom: 12px;
       margin-top: 0;
     }
-    .lesson-info p {
+    .lesson-content {
       line-height: 1.8;
       color: var(--cl-muted);
       font-size: 1.05rem;
-      margin: 0;
     }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .badge-modern { background: #e0f2fe; color: #0369a1; }
+    .badge-important { background: #fee2e2; color: #b91c1c; }
+    .badge-pro { background: #fef3c7; color: #b45309; }
+
+    .code-block {
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 15px 0;
+      border: 1px solid #30363d;
+    }
+
     @media (max-width: 768px) {
-      .lesson-card {
+      .lesson-header {
         flex-direction: column;
-        gap: 15px;
+        align-items: flex-start;
       }
     }
   </style>
@@ -63,78 +92,110 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #178600, #512bd4) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #a179dc, #68217a) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-microsoft"></i> C# & .NET Masterclass</h1>
-      <p>A focused curriculum of 20 high-density modules covering enterprise systems, Unity, and cloud architecture.</p>
+      <h1><i class="fab fa-microsoft"></i> C# & .NET Mastery</h1>
+      <p>Build powerful desktop, web, and game applications with C# and the .NET framework.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-microsoft"></i> ماستر كلاس C# و .NET</h1>
-      <p>منهج مركز يضم 20 وحدة عالية الكثافة تغطي أنظمة الشركات، Unity، والمعمارية السحابية.</p>
+      <h1><i class="fab fa-microsoft"></i> إتقان C#</h1>
+      <p>بناء تطبيقات سطح مكتب وويب وألعاب قوية باستخدام C# وإطار عمل .NET.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fab fa-microsoft"></i> Maîtrise C#</h1>
+      <p>Créez des applications bureau, web et jeux puissantes avec C# et .NET.</p>
     </div>
   </div>
 
   <div class="chapters" id="csharpLessons">
-    <!-- 20 UNIQUE LESSONS INJECTED VIA SCRIPT -->
+    <!-- Lessons will be injected here -->
   </div>
 </div>
 
 <script>
   const csharpLessons = [
-    { t_en: "CLR & JIT Compiler Architecture", icon: "fa-gears", t_ar: "معمارية الـ CLR ومترجم الـ JIT", d_en: "The Common Language Runtime (CLR) is the heart of .NET, managing memory through structured segments like the Heap and Stack. We explore how the Just-In-Time (JIT) compiler translates Intermediate Language (IL) code into native machine instructions at runtime for optimal performance. Understanding these internals is essential for fine-tuning application startup times and memory usage in large-scale server environments.", d_ar: "يعد الـ CLR هو محرك التنفيذ لتطبيقات .NET، حيث يدير الذاكرة من خلال شرائح منظمة. نستكشف كيف يقوم مترجم Just-In-Time (JIT) بترجمة كود اللغة الوسيطة (IL) إلى تعليمات الآلة الأصلية عند التشغيل للحصول على أفضل أداء. فهم هذه الخفايا ضروري لتحسين أوقات بدء تشغيل التطبيق واستهلاك الذاكرة في بيئات السيرفر الضخمة." },
-    { t_en: "LINQ Architecture & Deferred Execution", icon: "fa-filter", t_ar: "معمارية LINQ والتنفيذ المؤجل", d_en: "Language Integrated Query (LINQ) provides a powerful way to query various data sources using C# syntax. We delve into the difference between IEnumerable and IQueryable, and how deferred execution allows for efficient query building before execution. This module teaches you how to optimize database communication in Entity Framework Core by understanding how LINQ expressions are translated into optimized SQL.", d_ar: "توفر LINQ طريقة قوية للاستعلام عن مصادر البيانات المختلفة باستخدام صيغة C#. نتعمق في الفرق بين IEnumerable و IQueryable، وكيف يسمح التنفيذ المؤجل ببناء استعلامات فعالة قبل التنفيذ. يعلمك هذا القسم كيفية تحسين التواصل مع قاعدة البيانات في Entity Framework Core من خلال فهم ترجمة تعبيرات LINQ." },
-    { t_en: "Asynchronous Programming with Tasks", icon: "fa-bolt", t_ar: "البرمجة غير المتزامنة مع الـ Tasks", d_en: "Async/Await in C# allows for high-performance non-blocking operations, which is critical for scalable web services. We explore how the Task-based Asynchronous Pattern (TAP) works and how to manage the synchronization context to avoid deadlocks. This lesson provides the technical depth needed to build responsive desktop applications and high-throughput APIs that can handle thousands of concurrent requests.", d_ar: "تتيح صيغة Async/Await في C# إجراء عمليات غير محظورة عالية الأداء، وهو أمر بالغ الأهمية لخدمات الويب القابلة للتوسع. نستكشف كيف يعمل النمط غير المتزامن المعتمد على المهام (TAP) وكيفية إدارة سياق المزامنة لتجنب الجمود. يوفر هذا الدرس العمق التقني اللازم لبناء تطبيقات مستجيبة و APIs عالية الإنتاجية." },
-    { t_en: "Advanced Memory Management & Structs", icon: "fa-microchip", t_ar: "إدارة الذاكرة المتقدمة والـ Structs", d_en: "C# provides precise control over memory allocation through value types (Structs) and reference types (Classes). We analyze how the Garbage Collector (GC) manages generations and how to use 'ref', 'out', and 'Span<T>' to minimize allocations in performance-critical scenarios. Mastering these low-level features is essential for building game engines, real-time systems, and high-performance financial applications.", d_ar: "توفر C# تحكماً دقيقاً في تخصيص الذاكرة من خلال أنواع القيم (Structs) وأنواع المراجع (Classes). نقوم بتحليل كيف يدير جامع المهملات الأجيال وكيفية استخدام 'ref' و 'Span<T>' لتقليل التخصيص في السيناريوهات التي تتطلب أداءً عالياً. إتقان هذه الميزات ضروري لبناء محركات الألعاب والأنظمة عالية الأداء." }
-  ];
-
-  const extraCsharp = [
-    { t_en: "ASP.NET Core Middleware Pipeline", t_ar: "خط أنابيب Middleware في ASP.NET Core", icon: "fa-code-branch" },
-    { t_en: "Unity ECS for High Performance", t_ar: "معمارية ECS في Unity للأداء العالي", icon: "fa-gamepad" },
-    { t_en: "Microservices with gRPC & .NET", t_ar: "المصغرات البرمجية بـ gRPC و .NET", icon: "fa-network-wired" },
-    { t_en: "Dependency Injection Internals", t_ar: "خفايا حقن التبعيات", icon: "fa-syringe" },
-    { t_en: "Entity Framework Performance Tuning", t_ar: "تحسين أداء Entity Framework", icon: "fa-database" },
-    { t_en: "C# 12: Modern Syntax & Features", t_ar: "C# 12: الميزات والصيغ الحديثة", icon: "fa-bolt-lightning" },
-    { t_en: "Reflection & Attribute Engineering", t_ar: "هندسة الـ Reflection والـ Attributes", icon: "fa-at" },
-    { t_en: "Unit Testing with xUnit & Moq", t_ar: "اختبار الوحدات بـ xUnit و Moq", icon: "fa-vial" },
-    { t_en: "Design Patterns in .NET Ecosystem", t_ar: "أنماط التصميم في بيئة .NET", icon: "fa-gem" },
-    { t_en: "Azure Cloud Native Development", t_ar: "التطوير السحابي الأصيل على Azure", icon: "fa-cloud-bolt" },
-    { t_en: "Secure Coding & Identity Management", t_ar: "البرمجة الآمنة وإدارة الهوية", icon: "fa-user-shield" },
-    { t_en: "Managing Large Enterprise Codebases", t_ar: "إدارة قواعد كود الشركات الضخمة", icon: "fa-building-columns" },
-    { t_en: "SignalR: Real-time Communication", t_ar: "الاتصال في الوقت الحقيقي بـ SignalR", icon: "fa-comments" },
-    { t_en: "The Future of .NET & MAUI", t_ar: "مستقبل .NET وتقنية MAUI", icon: "fa-award" },
-    { t_en: "Regular Expressions & String Perf", t_ar: "التعبيرات النمطية وأداء النصوص", icon: "fa-magnifying-glass" },
-    { t_en: "Becoming a Senior .NET Architect", t_ar: "كيف تصبح معماري .NET أول", icon: "fa-star" }
+    {
+      icon: "fa-rocket",
+      t_fr: "1. Qu’est-ce que C# ?",
+      d_fr: "C# est un langage moderne et puissant développé par Microsoft, idéal pour le développement .NET et Unity.",
+      t_en: "1. What is C#?",
+      d_en: "C# is a modern, powerful language developed by Microsoft, ideal for .NET and Unity development.",
+      t_ar: "1. ما هو C#؟",
+      d_ar: "C# هي لغة حديثة وقوية طورتها مايكروسوفت، مثالية لتطوير .NET وألعاب Unity."
+    },
+    {
+      icon: "fa-code",
+      t_fr: "2. Syntaxe de base",
+      code: `using System;\nclass Program {\n  static void Main() {\n    Console.WriteLine("Hello");\n  }\n}`,
+      d_fr: "C# utilise une syntaxe proche du C++ et Java, avec une structure orientée objet.",
+      t_en: "2. Basic Syntax",
+      d_en: "C# uses a syntax close to C++ and Java, with a strong object-oriented structure.",
+      t_ar: "2. الأساسيات",
+      d_ar: "تستخدم C# بناء جملة قريباً من C++ وجافا."
+    },
+    {
+      icon: "fa-vial",
+      t_fr: "3. Variables & Types",
+      code: `int score = 100;\nstring nom = "Ali";\nbool isReady = true;`,
+      d_fr: "C# est un langage à typage fort, garantissant la sécurité du code.",
+      t_en: "3. Variables & Types",
+      d_en: "C# is a strongly typed language, ensuring code safety and robustness.",
+      t_ar: "3. المتغيرات والأنواع",
+      d_ar: "C# لغة صارمة في أنواع البيانات لضمان قوة الكود."
+    },
+    {
+      icon: "fa-dna",
+      t_fr: "4. POO & Classes",
+      badge: "badge-important",
+      code: `class Player {\n  public string Name { get; set; }\n}`,
+      d_fr: "Maîtrisez les classes, les objets et les propriétés pour structurer vos apps.",
+      t_en: "4. OOP & Classes",
+      d_en: "Master classes, objects, and properties to structure your applications.",
+      t_ar: "4. البرمجة الكائنية",
+      d_ar: "إتقان الكلاسات والكائنات لتنظيم تطبيقاتك."
+    },
+    {
+      icon: "fa-gamepad",
+      t_fr: "5. C# pour Unity",
+      badge: "badge-pro",
+      d_fr: "Apprenez les bases du scripting pour le développement de jeux vidéo.",
+      t_en: "5. C# for Unity",
+      d_en: "Learn the basics of scripting for game development in Unity.",
+      t_ar: "5. C# لبرمجة الألعاب",
+      d_ar: "تعلم أساسيات البرمجة لتطوير الألعاب في Unity."
+    }
   ];
 
   const chaptersContainer = document.getElementById('csharpLessons');
   
-  csharpLessons.forEach(l => render(l));
-  extraCsharp.forEach(l => render({
-    icon: l.icon,
-    t_en: l.t_en,
-    t_ar: l.t_ar,
-    d_en: `This specialized module on ${l.t_en} provides deep technical insights into professional C# and .NET engineering. We focus on enterprise-level implementation strategies, clean architecture standards, and resource optimization for high-performance systems. By mastering ${l.t_en}, you ensure your .NET solutions are robust, scalable, and meet the highest industry standards for modern corporate environments.`,
-    d_ar: `توفر هذه الوحدة المتخصصة حول ${l.t_ar} رؤى تقنية عميقة في هندسة C# و .NET الاحترافية. نركز على استراتيجيات التنفيذ على مستوى الشركات، معايير المعمارية النظيفة، وتحسين الموارد للأنظمة عالية الأداء. من خلال إتقان ${l.t_ar}، تضمن أن حلول .NET الخاصة بك قوية وقابلة للتوسع وتلبي أعلى معايير الصناعة.`
-  }));
-
   function render(lesson) {
     const div = document.createElement('div');
     div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
     div.innerHTML = `
-      <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
-      <div class="lesson-info">
-        <div data-cl-lang="en">
-          <h3>${lesson.t_en}</h3>
-          <p>${lesson.d_en}</p>
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
         </div>
-        <div data-cl-lang="ar">
-          <h3>${lesson.t_ar}</h3>
-          <p>${lesson.d_ar}</p>
-        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
       </div>
     `;
     chaptersContainer.appendChild(div);
   }
+
+  csharpLessons.forEach(l => render(l));
 </script>
 
 <script src="site-polish.js"></script>
