@@ -1,78 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boost Daily Productivity - Coding Life</title>
+  <title>Productivity Mastery - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .productivity-hero {
+      background: linear-gradient(135deg, #065f46, #064e3b) !important;
+    }
+    .concept-card {
+      background: var(--cl-surface);
+      border-radius: 20px;
+      border: 1px solid var(--cl-line);
+      padding: 30px;
+      margin-bottom: 30px;
+      transition: var(--cl-transition);
+    }
+    .concept-card:hover {
+      border-color: var(--cl-brand);
+      box-shadow: var(--cl-shadow-md);
+    }
+    .concept-icon {
+      font-size: 2rem;
+      color: var(--cl-brand);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .tip-box {
+      background: var(--cl-brand-soft);
+      border-left: 4px solid var(--cl-brand);
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
 
-<div class="course-container">
-  <div class="course-header">
+<div class="course-container" style="max-width: 1000px;">
+  <div class="course-header productivity-hero">
     <div data-cl-lang="en">
-      <h1><i class="fa-solid fa-bolt"></i> Productivity Mastery</h1>
-      <p>Practical ways to increase your daily output and work smarter, not harder. Master your time and focus.</p>
+      <h1><i class="fa-solid fa-gauge-high"></i> Productivity Mastery</h1>
+      <p>Practical systems to optimize your time, sharpen your focus, and achieve 10x output.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fa-solid fa-bolt"></i> إتقان الإنتاجية</h1>
-      <p>طرق عملية لزيادة إنتاجك اليومي والعمل بذكاء أكبر وليس بجهد أكبر. أتقن وقتك وتركيزك.</p>
+      <h1><i class="fa-solid fa-gauge-high"></i> إتقان الإنتاجية</h1>
+      <p>أنظمة عملية لتحسين وقتك، شحذ تركيزك، وتحقيق إنتاجية مضاعفة 10 مرات.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-solid fa-gauge-high"></i> Maîtrise de la Productivité</h1>
+      <p>Des systèmes pratiques pour optimiser votre temps et décupler vos résultats.</p>
     </div>
   </div>
 
   <div class="chapters">
-    <!-- Chapter 1 -->
-    <div class="chapter reveal">
+    
+    <!-- Concept 1: 80/20 -->
+    <div class="concept-card reveal">
+      <i class="fas fa-chart-pie concept-icon"></i>
       <div data-cl-lang="en">
-        <h2>The 80/20 Rule</h2>
-        <div class="article-content">
-          <p>The Pareto Principle states that 80% of your results come from 20% of your efforts. Identify high-impact tasks and prioritize them.</p>
+        <h2>The Pareto Principle (80/20)</h2>
+        <p>80% of your results come from 20% of your actions. Most of what we do is "busy work" that doesn't move the needle.</p>
+        <div class="tip-box">
+          <strong>Strategy:</strong> List your tasks for the week. Identify the top 2 tasks that contribute most to your long-term goals. Do them first.
         </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>قاعدة 80/20</h2>
-        <div class="article-content">
-          <p>ينص مبدأ باريتو على أن 80% من نتائجك تأتي من 20% من مجهوداتك. حدد المهام ذات التأثير العالي وأعطها الأولوية.</p>
+      <div data-cl-lang="ar" style="text-align: right;">
+        <h2>مبدأ باريتو (80/20)</h2>
+        <p>80% من نتائجك تأتي من 20% من أفعالك. معظم ما نفعله هو مجرد "شغل شاغل" لا يغير الكثير.</p>
+        <div class="tip-box">
+          <strong>الاستراتيجية:</strong> اكتب قائمة مهامك للأسبوع. حدد أهم مهمتين تساهمان أكثر في أهدافك طويلة المدى. ابدأ بهما أولاً.
+        </div>
+      </div>
+      <div data-cl-lang="fr">
+        <h2>Le Principe de Pareto (80/20)</h2>
+        <p>80% de vos résultats proviennent de 20% de vos actions. Identifiez les tâches à fort impact.</p>
+        <div class="tip-box">
+          <strong>Stratégie :</strong> Identifiez les 2 tâches prioritaires de votre semaine et traitez-les en premier.
         </div>
       </div>
     </div>
 
-    <!-- Chapter 2 -->
-    <div class="chapter reveal">
+    <!-- Concept 2: Deep Work -->
+    <div class="concept-card reveal">
+      <i class="fas fa-brain concept-icon" style="color: #8b5cf6;"></i>
       <div data-cl-lang="en">
-        <h2>Deep Work</h2>
-        <div class="article-content">
-          <p>Schedule blocks of 90 minutes for "Deep Work" where you turn off all notifications. This is where real progress is made.</p>
+        <h2>Deep Work Philosophy</h2>
+        <p>The ability to focus without distraction on a cognitively demanding task. In a world of notifications, deep work is a superpower.</p>
+        <div class="tip-box">
+          <strong>Execution:</strong> Block 90-120 minutes of "monk mode" daily. No phone, no email, no social media. Just pure output.
         </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>العمل العميق (Deep Work)</h2>
-        <div class="article-content">
-          <p>خصص فترات زمنية مدتها 90 دقيقة لـ "العمل العميق" حيث تقوم بإيقاف جميع التنبيهات. هنا يتم إحراز التقدم الحقيقي.</p>
+      <div data-cl-lang="ar" style="text-align: right;">
+        <h2>فلسفة العمل العميق</h2>
+        <p>القدرة على التركيز بدون تشتت في مهمة تتطلب جهداً ذهنياً عالياً. في عالم التنبيهات، العمل العميق هو قوة خارقة.</p>
+        <div class="tip-box">
+          <strong>التنفيذ:</strong> خصص 90-120 دقيقة يومياً لـ "وضع الراهب". لا هاتف، لا بريد، لا تواصل اجتماعي. فقط إنتاج خالص.
+        </div>
+      </div>
+      <div data-cl-lang="fr">
+        <h2>La Philosophie du Deep Work</h2>
+        <p>La capacité de se concentrer sans distraction sur une tâche exigeante. C'est un super-pouvoir moderne.</p>
+        <div class="tip-box">
+          <strong>Exécution :</strong> Bloquez 90-120 min par jour en "mode moine". Pas de téléphone, pas d'e-mails.
         </div>
       </div>
     </div>
 
-    <!-- Chapter 3 -->
-    <div class="chapter reveal">
+    <!-- Concept 3: Eisenhower Matrix -->
+    <div class="concept-card reveal">
+      <i class="fas fa-layer-group concept-icon" style="color: #3b82f6;"></i>
       <div data-cl-lang="en">
-        <h2>Eliminate Distractions</h2>
-        <div class="article-content">
-          <p>Your phone is the biggest enemy of productivity. Keep it in another room or use focus modes to stay in the flow state.</p>
+        <h2>The Priority Matrix</h2>
+        <p>Categorize tasks by Urgency and Importance. Don't let urgent but unimportant tasks (like emails) steal your time from important but non-urgent tasks (like learning).</p>
+        <div class="tip-box">
+          <strong>Rule:</strong> Spend most of your time in the "Important / Not Urgent" quadrant. This is where growth happens.
         </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>القضاء على المشتتات</h2>
-        <div class="article-content">
-          <p>هاتفك هو العدو الأكبر للإنتاجية. ابقه في غرفة أخرى أو استخدم أوضاع التركيز لتبقى في حالة الاستغراق (Flow state).</p>
+      <div data-cl-lang="ar" style="text-align: right;">
+        <h2>مصفوفة الأولويات</h2>
+        <p>صنف المهام حسب الاستعجال والأهمية. لا تدع المهام العاجلة ولكن غير المهمة (مثل الإيميلات) تسرق وقتك من المهام المهمة ولكن غير العاجلة (مثل التعلم).</p>
+        <div class="tip-box">
+          <strong>القاعدة:</strong> اقضِ معظم وقتك في مربع "مهم / غير عاجل". هذا هو المكان الذي يحدث فيه النمو.
+        </div>
+      </div>
+      <div data-cl-lang="fr">
+        <h2>La Matrice d'Eisenhower</h2>
+        <p>Catégorisez vos tâches par urgence et importance. Ne laissez pas l'urgent voler le temps de l'important.</p>
+        <div class="tip-box">
+          <strong>Règle :</strong> Passez l'essentiel de votre temps dans le quadrant "Important / Non Urgent".
+        </div>
+      </div>
+    </div>
+
+    <!-- Concept 4: Pomodoro & Habits -->
+    <div class="concept-card reveal">
+      <i class="fas fa-stopwatch concept-icon" style="color: #ef4444;"></i>
+      <div data-cl-lang="en">
+        <h2>Micro-Systems: Pomodoro & 2-Min Rule</h2>
+        <p>Use the Pomodoro technique (25 min work / 5 min break) to beat procrastination. Use the 2-minute rule (if it takes less than 2 mins, do it now) to clear small friction.</p>
+        <div class="tip-box">
+          <strong>Habit:</strong> Start small. Consistency over intensity. A 1% improvement every day leads to massive results in a year.
+        </div>
+      </div>
+      <div data-cl-lang="ar" style="text-align: right;">
+        <h2>الأنظمة المصغرة: بومودورو وقاعدة الدقيقتين</h2>
+        <p>استخدم تقنية بومودورو (25 دقيقة عمل / 5 دقائق راحة) للتغلب على التسويف. استخدم قاعدة الدقيقتين (إذا كان الأمر يستغرق أقل من دقيقتين، افعله الآن) لإزالة الاحتكاك الصغير.</p>
+        <div class="tip-box">
+          <strong>العادة:</strong> ابدأ صغيراً. الاستمرارية أهم من الكثافة. تحسن بنسبة 1% كل يوم يؤدي لنتائج هائلة في عام.
+        </div>
+      </div>
+      <div data-cl-lang="fr">
+        <h2>Micro-Systèmes : Pomodoro & Règle des 2 Min</h2>
+        <p>Utilisez la technique Pomodoro pour vaincre la procrastination. Appliquez la règle des 2 minutes pour les petites tâches.</p>
+        <div class="tip-box">
+          <strong>Habitude :</strong> Visez 1% d'amélioration chaque jour. La constance bat l'intensité.
         </div>
       </div>
     </div>
 
   </div>
+
+  <div style="text-align: center; margin-top: 40px; padding: 40px; background: var(--cl-surface); border-radius: 20px; border: 1px solid var(--cl-line);">
+    <div data-cl-lang="en">
+      <h3>Ready to optimize your workflow?</h3>
+      <p style="color: var(--cl-muted); margin-bottom: 24px;">Apply one of these principles today and track your progress.</p>
+      <a href="blog.html" class="theme-toggle" style="text-decoration: none; padding: 12px 30px; display: inline-block; border-radius: 12px;">Back to Blog</a>
+    </div>
+    <div data-cl-lang="ar">
+      <h3>هل أنت مستعد لتحسين مسار عملك؟</h3>
+      <p style="color: var(--cl-muted); margin-bottom: 24px;">طبق أحد هذه المبادئ اليوم وتتبع تقدمك.</p>
+      <a href="blog.html" class="theme-toggle" style="text-decoration: none; padding: 12px 30px; display: inline-block; border-radius: 12px;">العودة للمدونة</a>
+    </div>
+    <div data-cl-lang="fr">
+      <h3>Prêt à optimiser votre workflow ?</h3>
+      <p style="color: var(--cl-muted); margin-bottom: 24px;">Appliquez l'un de ces principes dès aujourd'hui.</p>
+      <a href="blog.html" class="theme-toggle" style="text-decoration: none; padding: 12px 30px; display: inline-block; border-radius: 12px;">Retour au Blog</a>
+    </div>
+  </div>
+
 </div>
 
 <script src="site-polish.js"></script>
