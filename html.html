@@ -130,181 +130,190 @@
     {
       icon: "fa-book-open",
       t_fr: "1. Qu’est-ce que HTML ?",
-      d_fr: "HTML (HyperText Markup Language) est le langage standard utilisé pour créer des pages web. Ce n’est pas un langage de programmation, mais un langage de structuration.<br><br>👉 <b>Il sert à définir :</b> les titres, les paragraphes, les images, les liens et la structure générale.",
+      d_fr: "HTML (HyperText Markup Language) est le langage standard utilisé pour créer des pages web.",
       t_en: "1. What is HTML?",
-      d_en: "HTML (HyperText Markup Language) is the standard language for creating web pages. It is not a programming language, but a structural language.<br><br>👉 <b>It defines:</b> titles, paragraphs, images, links, and general structure.",
+      d_en: "HTML (HyperText Markup Language) is the standard language for creating web pages.",
       t_ar: "1. ما هو HTML؟",
-      d_ar: "HTML (HyperText Markup Language) هي اللغة القياسية المستخدمة لإنشاء صفحات الويب. إنها ليست لغة برمجة، بل لغة هيكلية.<br><br>👉 <b>تُستخدم لتعريف:</b> العناوين، الفقرات، الصور، الروابط والهيكل العام."
+      d_ar: "HTML هي اللغة القياسية المستخدمة لإنشاء صفحات الويب."
     },
     {
       icon: "fa-layer-group",
-      t_fr: "2. Structure de base d’une page HTML",
-      code: `<!DOCTYPE html>\n<html lang="fr">\n<head>\n    <meta charset="UTF-8">\n    <title>Mon site</title>\n</head>\n<body>\n    <h1>Bienvenue</h1>\n    <p>Ceci est ma première page</p>\n</body>\n</html>`,
-      d_fr: "<b>Explication :</b><br>• <code>&lt;!DOCTYPE html&gt;</code> → HTML5<br>• <code>&lt;html&gt;</code> → racine<br>• <code>&lt;head&gt;</code> → configuration<br>• <code>&lt;body&gt;</code> → contenu visible",
-      t_en: "2. Basic Structure of an HTML Page",
-      d_en: "<b>Explanation:</b><br>• <code>&lt;!DOCTYPE html&gt;</code> → HTML5<br>• <code>&lt;html&gt;</code> → Root<br>• <code>&lt;head&gt;</code> → Config<br>• <code>&lt;body&gt;</code> → Visible content",
-      t_ar: "2. الهيكل الأساسي لصفحة HTML",
-      d_ar: "<b>شرح:</b><br>• <code>&lt;!DOCTYPE html&gt;</code> ← إصدار HTML5<br>• <code>&lt;html&gt;</code> ← الجذر<br>• <code>&lt;head&gt;</code> ← الإعدادات<br>• <code>&lt;body&gt;</code> ← المحتوى المرئي"
+      t_fr: "2. Structure de base",
+      code: `<!DOCTYPE html>\n<html lang="fr">\n<head>\n    <meta charset="UTF-8">\n    <title>Mon site</title>\n</head>\n<body>\n    <h1>Bienvenue</h1>\n</body>\n</html>`,
+      d_fr: "Tout document HTML commence par cette structure fondamentale.",
+      t_en: "2. Basic Structure",
+      d_en: "Every HTML document starts with this fundamental structure.",
+      t_ar: "2. الهيكل الأساسي",
+      d_ar: "كل مستند HTML يبدأ بهذا الهيكل الأساسي."
     },
     {
       icon: "fa-tags",
       t_fr: "3. Les balises (Tags)",
-      d_fr: "Une balise est un élément HTML : <code>&lt;p&gt;Texte&lt;/p&gt;</code><br><br><b>Types :</b><br>• Balise ouvrante : <code>&lt;p&gt;</code><br>• Balise fermante : <code>&lt;/p&gt;</code><br><br><b>Balises auto-fermantes :</b><br><code>&lt;br&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;input&gt;</code>",
+      d_fr: "Les balises entourent le contenu : &lt;p&gt;Texte&lt;/p&gt;.",
       t_en: "3. Tags",
-      d_en: "A tag is an HTML element: <code>&lt;p&gt;Text&lt;/p&gt;</code><br><br><b>Types:</b><br>• Opening tag: <code>&lt;p&gt;</code><br>• Closing tag: <code>&lt;/p&gt;</code><br><br><b>Self-closing tags:</b><br><code>&lt;br&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;input&gt;</code>",
-      t_ar: "3. الوسوم (Tags)",
-      d_ar: "الوسم هو عنصر HTML: <code>&lt;p&gt;نص&lt;/p&gt;</code><br><br><b>الأنواع:</b><br>• وسم الفتح: <code>&lt;p&gt;</code><br>• وسم الإغلاق: <code>&lt;/p&gt;</code><br><br><b>الوسوم ذاتية الإغلاق:</b><br><code>&lt;br&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;input&gt;</code>"
+      d_en: "Tags surround the content: &lt;p&gt;Text&lt;/p&gt;.",
+      t_ar: "3. الوسوم",
+      d_ar: "الوسوم تحيط بالمحتوى: &lt;p&gt;نص&lt;/p&gt;."
     },
     {
       icon: "fa-star",
       t_fr: "4. Les balises essentielles",
-      d_fr: "<b>🔹 Titres :</b> <code>&lt;h1&gt;</code> à <code>&lt;h6&gt;</code><br><b>🔹 Texte :</b> <code>&lt;p&gt;</code> (Paragraphe), <code>&lt;strong&gt;</code> (Gras), <code>&lt;em&gt;</code> (Italique)<br><b>🔹 Liens :</b> <code>&lt;a href=\"url\"&gt;</code><br><b>🔹 Images :</b> <code>&lt;img src=\"img.jpg\" alt=\"desc\"&gt;</code><br><b>🔹 Sauts :</b> <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code> (ligne horizontale)",
+      d_fr: "Titres (h1-h6), paragraphes (p), liens (a) et images (img).",
       t_en: "4. Essential Tags",
-      d_en: "<b>🔹 Headings:</b> <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code><br><b>🔹 Text:</b> <code>&lt;p&gt;</code> (Paragraph), <code>&lt;strong&gt;</code> (Bold), <code>&lt;em&gt;</code> (Italic)<br><b>🔹 Links:</b> <code>&lt;a href=\"url\"&gt;</code><br><b>🔹 Images:</b> <code>&lt;img src=\"img.jpg\" alt=\"desc\"&gt;</code><br><b>🔹 Breaks:</b> <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code> (Horizontal line)",
+      d_en: "Headings (h1-h6), paragraphs (p), links (a), and images (img).",
       t_ar: "4. الوسوم الأساسية",
-      d_ar: "<b>🔹 العناوين:</b> من <code>&lt;h1&gt;</code> إلى <code>&lt;h6&gt;</code><br><b>🔹 النصوص:</b> <code>&lt;p&gt;</code> (فقرة)، <code>&lt;strong&gt;</code> (عريض)، <code>&lt;em&gt;</code> (مائل)<br><b>🔹 الروابط:</b> <code>&lt;a href=\"url\"&gt;</code><br><b>🔹 الصور:</b> <code>&lt;img src=\"img.jpg\" alt=\"desc\"&gt;</code><br><b>🔹 الفواصل:</b> <code>&lt;br&gt;</code>، <code>&lt;hr&gt;</code> (خط أفقي)"
+      d_ar: "العناوين، الفقرات، الروابط والصور."
     },
     {
       icon: "fa-list-ul",
       t_fr: "5. Les listes",
-      d_fr: "<b>Liste non ordonnée :</b><br><code>&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</code><br><br><b>Liste ordonnée :</b><br><code>&lt;ol&gt;&lt;li&gt;Étape 1&lt;/li&gt;&lt;/ol&gt;</code>",
+      d_fr: "Listes à puces (ul) ou listes numérotées (ol).",
       t_en: "5. Lists",
-      d_en: "<b>Unordered List:</b><br><code>&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</code><br><br><b>Ordered List:</b><br><code>&lt;ol&gt;&lt;li&gt;Step 1&lt;/li&gt;&lt;/ol&gt;</code>",
+      d_en: "Bulleted lists (ul) or numbered lists (ol).",
       t_ar: "5. القوائم",
-      d_ar: "<b>قائمة غير مرتبة:</b><br><code>&lt;ul&gt;&lt;li&gt;عنصر&lt;/li&gt;&lt;/ul&gt;</code><br><br><b>قائمة مرتبة:</b><br><code>&lt;ol&gt;&lt;li&gt;خطوة 1&lt;/li&gt;&lt;/ol&gt;</code>"
+      d_ar: "قوائم نقطية (ul) أو قوائم مرقمة (ol)."
     },
     {
       icon: "fa-table",
       t_fr: "6. Les tableaux",
-      code: `<table border="1">\n  <tr>\n    <th>Nom</th>\n    <th>Âge</th>\n  </tr>\n  <tr>\n    <td>Ali</td>\n    <td>20</td>\n  </tr>\n</table>`,
+      code: `<table border=\"1\">\n  <tr>\n    <th>Nom</th>\n    <th>Âge</th>\n  </tr>\n  <tr>\n    <td>Ali</td>\n    <td>20</td>\n  </tr>\n</table>`,
+      d_fr: "Utilisez table, tr, th, et td pour organiser des données.",
       t_en: "6. Tables",
-      t_ar: "6. الجداول"
+      d_en: "Use table, tr, th, and td to organize data.",
+      t_ar: "6. الجداول",
+      d_ar: "استخدام الجداول لتنظيم البيانات."
     },
     {
       icon: "fa-wpforms",
       t_fr: "7. Les formulaires",
-      code: `<form>\n  <input type="text" placeholder="Nom">\n  <input type="email">\n  <input type="password">\n  <button>Envoyer</button>\n</form>`,
-      d_fr: "<b>Types d’inputs :</b> text, email, password, checkbox, radio, file.",
+      code: `<form>\n  <input type=\"text\" placeholder=\"Nom\">\n  <button>Envoyer</button>\n</form>`,
+      d_fr: "Collecter des données utilisateur avec inputs et boutons.",
       t_en: "7. Forms",
-      d_en: "<b>Input types:</b> text, email, password, checkbox, radio, file.",
+      d_en: "Collect user data using inputs and buttons.",
       t_ar: "7. النماذج",
-      d_ar: "<b>أنواع المدخلات:</b> نص، بريد إلكتروني، كلمة مرور، صندوق اختيار، زر خيار، ملف."
+      d_ar: "جمع بيانات المستخدم باستخدام المدخلات والأزرار."
     },
     {
       icon: "fa-fingerprint",
       t_fr: "8. Les attributs",
-      d_fr: "Exemple : <code>&lt;a href=\"url\" target=\"_blank\"&gt;Lien&lt;/a&gt;</code><br><br><b>Attributs communs :</b> href, src, alt, class, id.",
+      d_fr: "Ajouter des infos aux balises : href, src, alt, class, id.",
       t_en: "8. Attributes",
-      d_en: "Example: <code>&lt;a href=\"url\" target=\"_blank\"&gt;Link&lt;/a&gt;</code><br><br><b>Common attributes:</b> href, src, alt, class, id.",
-      t_ar: "8. السمات (Attributes)",
-      d_ar: "مثال: <code>&lt;a href=\"url\" target=\"_blank\"&gt;رابط&lt;/a&gt;</code><br><br><b>سمات شائعة:</b> href, src, alt, class, id."
+      d_en: "Add info to tags: href, src, alt, class, id.",
+      t_ar: "8. السمات",
+      d_ar: "إضافة معلومات للوسوم: href, src, alt, id."
     },
     {
       icon: "fa-cubes",
-      t_fr: "9. HTML5 (structure moderne)",
+      t_fr: "9. HTML5 (Structure)",
       badge: "badge-modern",
-      code: `<header>Header</header>\n<nav>Menu</nav>\n<main>\n  <section>Section</section>\n  <article>Article</article>\n</main>\n<footer>Footer</footer>`,
-      t_en: "9. HTML5 (Modern Structure)",
-      t_ar: "9. HTML5 (الهيكل الحديث)"
+      code: `<header></header><nav></nav><main></main><footer></footer>`,
+      d_fr: "Utiliser les balises sémantiques modernes pour le layout.",
+      t_en: "9. HTML5 Structure",
+      d_en: "Use modern semantic tags for your page layout.",
+      t_ar: "9. هيكل HTML5",
+      d_ar: "استخدام الوسوم الدلالية الحديثة لتخطيط الصفحة."
     },
     {
       icon: "fa-brain",
-      t_fr: "10. Sémantique (IMPORTANT)",
+      t_fr: "10. Sémantique",
       badge: "badge-important",
-      d_fr: "HTML moderne = lisible + logique<br><br>❌ Mauvais : <code>&lt;div&gt;</code> pour tout.<br>✅ Bon : <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>.",
-      t_en: "10. Semantics (IMPORTANT)",
-      d_en: "Modern HTML = readable + logical<br><br>❌ Bad: Using <code>&lt;div&gt;</code> for everything.<br>✅ Good: Using <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>.",
-      t_ar: "10. الدلالية (هام جداً)",
-      d_ar: "HTML الحديث = مقروء + منطقي<br><br>❌ سيء: استخدام <code>&lt;div&gt;</code> لكل شيء.<br>✅ جيد: استخدام <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>."
+      d_fr: "Rendre le code compréhensible pour les moteurs de recherche.",
+      t_en: "10. Semantics",
+      d_en: "Make your code understandable for search engines.",
+      t_ar: "10. الدلالية",
+      d_ar: "جعل الكود مفهوماً لمحركات البحث."
     },
     {
       icon: "fa-video",
       t_fr: "11. Balises avancées",
-      d_fr: "<b>🔹 Div et Span :</b> <code>&lt;div&gt;</code> (Bloc), <code>&lt;span&gt;</code> (Inline)<br><b>🔹 Vidéo :</b> <code>&lt;video controls&gt;</code><br><b>🔹 Audio :</b> <code>&lt;audio controls&gt;</code>",
+      d_fr: "Intégrer du contenu multimédia : vidéo, audio, div, span.",
       t_en: "11. Advanced Tags",
-      d_en: "<b>🔹 Div & Span:</b> <code>&lt;div&gt;</code> (Block), <code>&lt;span&gt;</code> (Inline)<br><b>🔹 Video:</b> <code>&lt;video controls&gt;</code><br><b>🔹 Audio:</b> <code>&lt;audio controls&gt;</code>",
+      d_en: "Integrate multimedia: video, audio, div, span.",
       t_ar: "11. وسوم متقدمة",
-      d_ar: "<b>🔹 Div و Span:</b> <code>&lt;div&gt;</code> (كتلة)، <code>&lt;span&gt;</code> (سطري)<br><b>🔹 الفيديو:</b> <code>&lt;video controls&gt;</code><br><b>🔹 الصوت:</b> <code>&lt;audio controls&gt;</code>"
+      d_ar: "دمج الوسائط المتعددة: فيديو وصوت."
     },
     {
       icon: "fa-search",
-      t_fr: "12. SEO (Search Engine Optimization)",
-      d_fr: "Pour Google :<br><code>&lt;meta name=\"description\" content=\"...\"&gt;</code><br><code>&lt;meta name=\"keywords\" content=\"...\"&gt;</code>",
+      t_fr: "12. SEO",
+      d_fr: "Optimiser le site pour Google avec les balises méta.",
       t_en: "12. SEO",
-      d_en: "For Google optimization:<br><code>&lt;meta name=\"description\" content=\"...\"&gt;</code>",
-      t_ar: "12. تحسين محركات البحث (SEO)",
-      d_ar: "من أجل جوجل:<br><code>&lt;meta name=\"description\" content=\"...\"&gt;</code>"
+      d_en: "Optimize your site for Google using meta tags.",
+      t_ar: "12. SEO",
+      d_ar: "تحسين الموقع لمحركات البحث."
     },
     {
       icon: "fa-mobile-screen",
       t_fr: "13. Responsive (Mobile)",
-      d_fr: "Indispensable pour l'affichage mobile :<br><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt;</code>",
+      d_fr: "Utiliser la balise viewport pour adapter l'affichage mobile.",
       t_en: "13. Responsive (Mobile)",
-      d_en: "Essential for mobile display:<br><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt;</code>",
-      t_ar: "13. التجاوب (الموبايل)",
-      d_ar: "ضروري للعرض على الهواتف:<br><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt;</code>"
+      d_en: "Use the viewport tag to adapt for mobile displays.",
+      t_ar: "13. التجاوب",
+      d_ar: "تكييف العرض مع الهواتف الذكية."
     },
     {
       icon: "fa-project-diagram",
-      t_fr: "14. Projet complet (mini site)",
-      code: `<!DOCTYPE html>\n<html lang="fr">\n<head>\n  <meta charset="UTF-8">\n  <title>Mon Portfolio</title>\n</head>\n<body>\n<header><h1>Mon site</h1></header>\n<nav><a href="#">Accueil</a></nav>\n<section><h2>À propos</h2><p>Je suis développeur</p></section>\n<footer><p>© 2026</p></footer>\n</body>\n</html>`,
+      t_fr: "14. Projet complet",
+      code: `<!DOCTYPE html>\n<html>\n<body>\n  <header><h1>Portfolio</h1></header>\n</body>\n</html>`,
+      d_fr: "Créer un mini-site complet avec header, nav et footer.",
       t_en: "14. Complete Project",
-      t_ar: "14. مشروع كامل"
+      d_en: "Build a mini-site with header, nav, and footer.",
+      t_ar: "14. مشروع كامل",
+      d_ar: "بناء موقع مصغر متكامل."
     },
     {
       icon: "fa-triangle-exclamation",
       t_fr: "15. Erreurs à éviter",
-      d_fr: `<ul class="checklist">\n  <li><i class="fas fa-xmark"></i> Oublier fermer les balises</li>\n  <li><i class="fas fa-xmark"></i> Mauvaise structure</li>\n  <li><i class="fas fa-xmark"></i> Trop de &lt;div&gt;</li>\n  <li><i class="fas fa-xmark"></i> Pas de alt pour les images</li>\n</ul>`,
+      d_fr: "Oublier de fermer les balises ou manquer d'alt pour les images.",
       t_en: "15. Errors to Avoid",
-      d_en: `<ul class="checklist">\n  <li><i class="fas fa-xmark"></i> Forgetting to close tags</li>\n  <li><i class="fas fa-xmark"></i> Poor structure</li>\n  <li><i class="fas fa-xmark"></i> Excessive &lt;div&gt; usage</li>\n  <li><i class="fas fa-xmark"></i> Missing alt text for images</li>\n</ul>`,
-      t_ar: "15. أخطاء يجب تجنبها",
-      d_ar: `<ul class="checklist">\n  <li><i class="fas fa-xmark"></i> نسيان إغلاق الوسوم</li>\n  <li><i class="fas fa-xmark"></i> هيكلية سيئة</li>\n  <li><i class="fas fa-xmark"></i> كثرة استخدام &lt;div&gt;</li>\n  <li><i class="fas fa-xmark"></i> عدم وضع alt للصور</li>\n</ul>`
+      d_en: "Forgetting to close tags or missing image alt text.",
+      t_ar: "15. أخطاء شائعة",
+      d_ar: "نسيان إغلاق الوسوم أو نقص وصف الصور."
     },
     {
       icon: "fa-check-circle",
       t_fr: "16. Bonnes pratiques",
-      d_fr: `<ul class="checklist">\n  <li><i class="fas fa-check"></i> Indentation propre</li>\n  <li><i class="fas fa-check"></i> Code lisible</li>\n  <li><i class="fas fa-check"></i> Utiliser HTML5</li>\n  <li><i class="fas fa-check"></i> Séparer HTML / CSS / JS</li>\n</ul>`,
+      d_fr: "Indentation propre et séparation HTML/CSS.",
       t_en: "16. Best Practices",
-      d_en: `<ul class="checklist">\n  <li><i class="fas fa-check"></i> Clean indentation</li>\n  <li><i class="fas fa-check"></i> Readable code</li>\n  <li><i class="fas fa-check"></i> Use HTML5</li>\n  <li><i class="fas fa-check"></i> Separate HTML/CSS/JS</li>\n</ul>`,
+      d_en: "Clean indentation and separating HTML/CSS.",
       t_ar: "16. أفضل الممارسات",
-      d_ar: `<ul class="checklist">\n  <li><i class="fas fa-check"></i> إزاحة (Indentation) نظيفة</li>\n  <li><i class="fas fa-check"></i> كود مقروء</li>\n  <li><i class="fas fa-check"></i> استخدام HTML5</li>\n  <li><i class="fas fa-check"></i> فصل HTML / CSS / JS</li>\n</ul>`
+      d_ar: "تنظيم الكود وفصل HTML عن CSS."
     },
     {
       icon: "fa-tools",
       t_fr: "17. Outils recommandés",
-      d_fr: "• VS Code<br>• Live Server<br>• Chrome DevTools",
+      d_fr: "Utiliser VS Code et Chrome DevTools.",
       t_en: "17. Recommended Tools",
-      d_en: "• VS Code<br>• Live Server<br>• Chrome DevTools",
+      d_en: "Use VS Code and Chrome DevTools.",
       t_ar: "17. أدوات موصى بها",
-      d_ar: "• VS Code<br>• Live Server<br>• Chrome DevTools"
+      d_ar: "استخدام VS Code وأدوات المطور."
     },
     {
       icon: "fa-road",
-      t_fr: "18. Roadmap après HTML",
-      d_fr: "1. CSS (Flexbox + Grid)<br>2. JavaScript<br>3. Git / GitHub<br>4. Frameworks (React)",
-      t_en: "18. Roadmap after HTML",
-      d_en: "1. CSS (Flexbox + Grid)<br>2. JavaScript<br>3. Git / GitHub<br>4. Frameworks (React)",
-      t_ar: "18. خارطة الطريق بعد HTML",
-      d_ar: "1. CSS (Flexbox + Grid)<br>2. JavaScript<br>3. Git / GitHub<br>4. Frameworks (React)"
+      t_fr: "18. Roadmap",
+      d_fr: "Après HTML, apprenez CSS et JavaScript.",
+      t_en: "18. Roadmap",
+      d_en: "After HTML, learn CSS and JavaScript.",
+      t_ar: "18. خارطة الطريق",
+      d_ar: "بعد HTML، تعلم CSS وجافا سكريبت."
     },
     {
       icon: "fa-rocket",
       t_fr: "19. Niveau PRO",
       badge: "badge-pro",
-      d_fr: "• Reproduire des sites (clone)<br>• Créer un portfolio<br>• Faire des projets réels<br>• Comprendre le DOM",
+      d_fr: "Cloner des sites réels et créer un portfolio.",
       t_en: "19. PRO Level",
-      d_en: "• Reproduce websites (clones)<br>• Create a portfolio<br>• Real projects<br>• Understand the DOM",
+      d_en: "Clone real websites and build a portfolio.",
       t_ar: "19. مستوى المحترفين",
-      d_ar: "• تقليد المواقع (Clone)<br>• إنشاء ملف أعمال (Portfolio)<br>• مشاريع حقيقية<br>• فهم الـ DOM"
+      d_ar: "تقليد مواقع حقيقية وبناء ملف أعمال."
     },
     {
       icon: "fa-dumbbell",
-      t_fr: "20. Exercice pour toi",
-      d_fr: "Crée une page avec :<br>• Un titre<br>• Une image<br>• Une liste<br>• Un formulaire",
-      t_en: "20. Exercise for you",
-      d_en: "Create a page with:<br>• A title<br>• An image<br>• A list<br>• A form",
-      t_ar: "20. تمرين لك",
-      d_ar: "أنشئ صفحة تحتوي على:<br>• عنوان<br>• صورة<br>• قائمة<br>• نموذج"
+      t_fr: "20. Exercice",
+      d_fr: "Créez une page avec titre, image et formulaire.",
+      t_en: "20. Exercise",
+      d_en: "Create a page with a title, image, and form.",
+      t_ar: "20. تمرين",
+      d_ar: "أنشئ صفحة تحتوي على عنوان وصورة ونموذج."
     }
   ];
 
