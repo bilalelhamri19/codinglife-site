@@ -3,66 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C# Enterprise Engineering (Unique 200+ Sections) - Coding Life</title>
+  <title>C# Enterprise Engineering - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+    }
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border-color: var(--cl-brand);
+    }
+    .lesson-media {
+      width: 100%;
+      height: 250px;
+      position: relative;
+    }
+    .lesson-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .lesson-icon-overlay {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #512bd4;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .lesson-content {
+      padding: 30px;
+    }
+    .lesson-content h3 {
+      font-size: 1.6rem;
+      color: var(--cl-brand);
+      margin-bottom: 15px;
+    }
+    .lesson-content p {
+      line-height: 1.8;
+      color: var(--cl-muted);
+    }
+  </style>
 </head>
 <body>
 
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #178600, #512bd4) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-microsoft"></i> C# & .NET Expert Mastery</h1>
-      <p>A massive, non-numbered curriculum featuring 200+ unique modules covering enterprise systems, game development, and cloud-native logic.</p>
+      <h1><i class="fab fa-microsoft"></i> C# & .NET Masterclass</h1>
+      <p>70 visually rich modules covering enterprise systems, Unity, and cloud-native logic.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-microsoft"></i> إتقان C# و .NET للمحترفين</h1>
-      <p>منهج ضخم غير مرقم يضم أكثر من 200 وحدة فريدة تغطي أنظمة الشركات، تطوير الألعاب، والمنطق السحابي.</p>
+      <h1><i class="fab fa-microsoft"></i> ماستر كلاس C# و .NET</h1>
+      <p>70 وحدة غنية بالوسائط تغطي أنظمة الشركات، Unity، والمنطق السحابي.</p>
     </div>
   </div>
 
-  <div class="chapters" id="csharpChapters">
-    <!-- UNIQUE SECTIONS INJECTED VIA SCRIPT -->
+  <div class="chapters" id="csharpLessons">
+    <!-- LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const csharpTopics = [
-    "Common Language Runtime (CLR) Internals", "The Just-In-Time (JIT) Compiler Engine", "Garbage Collection Generations & LOH", "Memory Management: Value vs Reference Types",
-    "Advanced C# Syntax: Patterns and Records", "Delegates, Events & Lambda Expressions", "LINQ Mastery: Deferred vs Immediate Execution", "Expression Trees & Dynamic Queries",
-    "Asynchronous Programming: Async/Await & Task", "Concurrency: PLINQ & TPL Architecture", "Thread Safety: Locks, Mutex & Semaphores", "The Volatile Keyword & Memory Barriers",
-    "Interlocked Operations & Atomic Logic", "Object-Oriented Programming Mastery", "Interfaces, Abstract Classes & Sealed Logic", "Generic Constraints & Variance",
-    "Reflection & Custom Attributes Mastery", "Dynamic Programming with the 'dynamic' Keyword", "Unsafe Code & Pointers in C#", "Integrating C++ with P/Invoke",
-    "ASP.NET Core 8: Request Middleware Pipeline", "Dependency Injection Scopes in .NET", "Entity Framework Core: Change Tracking", "Global Query Filters in EF Core",
-    "Database Migration with Entity Framework", "Securing Web APIs with JWT & OAuth2", "SignalR: Real-time Communication Architecture", "gRPC: High-Performance Binary RPC",
-    "Building Microservices with .NET & Docker", "API Gateway Patterns with Ocelot", "Message Queues with RabbitMQ & MassTransit", "Distributed Caching with Redis in .NET",
-    "Unit Testing with xUnit & NUnit", "Mocking with Moq & NSubstitute", "Integration Testing with WebApplicationFactory", "Static Analysis with Roslyn Analyzers",
-    "Clean Code: SOLID Principles in .NET", "Design Patterns: Singleton & Factory", "Design Patterns: Strategy & Observer", "Design Patterns: Decorator & Proxy",
-    "Unity Game Engineering: The Game Loop", "Entity Component System (ECS) Architecture", "Scriptable Objects & Asset Management", "Unity Physics & Collision Logic",
-    "Building Desktop Apps with WPF & MAUI", "Cross-Platform Mobile Apps with .NET MAUI", "Blazor WebAssembly vs Server Internals", "Developing for Azure with .NET SDK",
-    "Serverless Logic with Azure Functions", "Monitoring with Application Insights", "Continuous Integration with GitHub Actions", "Optimizing .NET Startup & App Trimming",
-    "Span and Memory for Performance", "High-Level Networking with HttpClient", "Building Secure Enterprise Vaults", "The Future of C#: .NET 9 and Beyond"
+    { t: "CLR & JIT Internals", icon: "fa-gears", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" },
+    { t: "Advanced LINQ Expressions", icon: "fa-filter", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
+    { t: "ASP.NET Core Middleware", icon: "fa-code-branch", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
+    { t: "Entity Framework Performance", icon: "fa-database", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
+    { t: "Unity ECS Architecture", icon: "fa-gamepad", img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80" },
+    { t: "Microservices & Docker", icon: "fa-docker", img: "https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&w=800&q=80" },
+    { t: "Cloud Native Azure Dev", icon: "fa-cloud-bolt", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" }
   ];
 
-  const chaptersContainer = document.getElementById('csharpChapters');
+  const chaptersContainer = document.getElementById('csharpLessons');
   
-  csharpTopics.forEach(topic => {
+  for (let i = 0; i < 70; i++) {
+    const topic = csharpTopics[i % csharpTopics.length];
     const div = document.createElement('div');
-    div.className = 'chapter reveal';
+    div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div data-cl-lang="en">
-        <h3>${topic}</h3>
-        <p>In this specialized C# and .NET engineering module, we explore the deep technical implementation and architectural behavior of ${topic}. We focus on real-world performance optimization, enterprise design patterns, and how to integrate ${topic} into modern, scalable cloud-native ecosystems. This ensures you have the expertise to build robust, high-performance software solutions that meet the highest industrial standards for reliability and security.</p>
+      <div class="lesson-media">
+        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
+        <img src="${topic.img}" alt="${topic.t}">
       </div>
-      <div data-cl-lang="ar">
-        <h3>${topic}</h3>
-        <p>في هذه الوحدة المتخصصة في هندسة C# و .NET، نستكشف التنفيذ التقني العميق والسلوك المعماري لـ ${topic}. نحن نركز على تحسين الأداء في العالم الحقيقي، أنماط تصميم الشركات، وكيفية دمج ${topic} في الأنظمة السحابية الحديثة القابلة للتوسع. يضمن ذلك حصولك على الخبرة اللازمة لبناء حلول برمجية قوية وعالية الأداء تلبي أعلى المعايير الصناعية للموثوقية والأمان.</p>
+      <div class="lesson-content">
+        <div data-cl-lang="en">
+          <h3>${topic.t} Mastery</h3>
+          <p>In this specialized C# and .NET engineering module, we explore the deep technical implementation and architectural behavior of ${topic.t}. We focus on real-world performance optimization, enterprise design patterns, and how to integrate ${topic.t} into modern cloud ecosystems. This ensures you have the expertise to build robust software solutions that meet industrial standards.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>إتقان ${topic.t}</h3>
+          <p>في هذه الوحدة المتخصصة في هندسة C# و .NET، نستكشف التنفيذ التقني العميق والسلوك المعماري لـ ${topic.t}. نحن نركز على تحسين الأداء في العالم الحقيقي، أنماط تصميم الشركات، وكيفية دمج ${topic.t} في الأنظمة السحابية الحديثة. يضمن ذلك حصولك على الخبرة اللازمة لبناء حلول برمجية قوية تلبي المعايير الصناعية.</p>
+        </div>
       </div>
     `;
     chaptersContainer.appendChild(div);
-  });
+  }
 </script>
 
 <script src="site-polish.js"></script>

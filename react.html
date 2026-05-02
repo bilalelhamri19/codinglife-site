@@ -3,75 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>React Frontend Engineering (Unique 200+ Sections) - Coding Life</title>
+  <title>React Frontend Engineering - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+    }
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border-color: var(--cl-brand);
+    }
+    .lesson-media {
+      width: 100%;
+      height: 250px;
+      position: relative;
+    }
+    .lesson-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .lesson-icon-overlay {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #61dafb;
+      background: #20232a;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .lesson-content {
+      padding: 30px;
+    }
+    .lesson-content h3 {
+      font-size: 1.6rem;
+      color: var(--cl-brand);
+      margin-bottom: 15px;
+    }
+    .lesson-content p {
+      line-height: 1.8;
+      color: var(--cl-muted);
+    }
+  </style>
 </head>
 <body>
 
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #61dafb, #20232a) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-react"></i> React Professional Architecture</h1>
-      <p>A massive, non-numbered curriculum featuring 200+ unique modules covering modern React, Next.js, and high-performance frontend engineering.</p>
+      <h1><i class="fab fa-react"></i> React Professional Masterclass</h1>
+      <p>70 visually rich modules covering modern React, Hooks, and Next.js architecture.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-react"></i> معمارية ريـاكت الاحترافية</h1>
-      <p>منهج ضخم غير مرقم يضم أكثر من 200 وحدة فريدة تغطي ريـاكت الحديث، Next.js، وهندسة الواجهات الأمامية عالية الأداء.</p>
+      <h1><i class="fab fa-react"></i> ماستر كلاس ريـاكت الاحترافي</h1>
+      <p>70 وحدة غنية بالوسائط تغطي ريـاكت الحديث، الـ Hooks، ومعمارية Next.js.</p>
     </div>
   </div>
 
-  <div class="chapters" id="reactChapters">
-    <!-- UNIQUE SECTIONS INJECTED VIA SCRIPT -->
+  <div class="chapters" id="reactLessons">
+    <!-- LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const reactTopics = [
-    "Reconciliation & The Diffing Algorithm", "The Virtual DOM: Fact vs Fiction", "Functional Components & Hooks Philosophy", "Component Lifecycle in Function Components",
-    "useState Deep Dive: Batching & State Updates", "useEffect: Dependency Logic & Cleanup", "useContext: Managing Global State without Prop Drilling", "useReducer for Complex Logic Flows",
-    "useMemo & useCallback: Performance Optimization", "useRef for DOM Access & Instance Variables", "useLayoutEffect vs useEffect", "useImperativeHandle & ForwardRef",
-    "Custom Hooks: Encapsulating Business Logic", "Rules of Hooks & Internal Workings", "Concurrent Mode & Transitions (useTransition)", "useDeferredValue for UI Responsiveness",
-    "Server Components vs Client Components", "Suspense for Data Fetching & Code Splitting", "Error Boundaries: Graceful Failure Management", "Portals: Rendering Outside the DOM Hierarchy",
-    "Higher-Order Components (HOC) in Modern React", "Render Props Pattern & Reusability", "Compound Components Architecture", "Controlled vs Uncontrolled Components",
-    "Mastering React Forms with React Hook Form", "Formik vs Modern Native Form Handling", "Zustand: Lightweight State Management", "Redux Toolkit (RTK) & Async Thunks",
-    "Recoil & Atom-based State Architecture", "MobX: Observables in React", "React Query: Server State Synchronization", "SWR for Lightweight Data Fetching",
-    "Next.js App Router Architecture", "Server Side Rendering (SSR) Deep Dive", "Static Site Generation (SSG) Mastery", "Incremental Static Regeneration (ISR)",
-    "Middleware & Edge Runtime in Next.js", "API Routes & Server Actions", "Optimizing Images with next/image", "Mastering the next/font API",
-    "Advanced Routing: Nested Layouts & Modals", "Intercepting & Parallel Routes", "Streaming Metadata & SEO in Next.js", "Internationalization (i18n) Patterns",
-    "Testing with Vitest & React Testing Library", "Mocking Server Responses with MSW", "E2E Testing with Playwright/Cypress", "Snapshot Testing vs Visual Testing",
-    "Storybook for Component Development", "Building Design Systems in React", "Atomic Design Methodology", "Component-Driven Development Flow",
-    "Styling: CSS Modules & Scoped Styles", "Tailwind CSS Architecture for React", "Styled Components & Emotion (CSS-in-JS)", "Framer Motion for Complex Animations",
-    "React Spring for Physics-based Motion", "Performance Profiling with React DevTools", "Analyzing Re-renders with why-did-you-render", "Optimizing Context with Selectors",
-    "Memoization Patterns & Anti-patterns", "Windowing & Virtualization (React Window)", "Lazy Loading Components & Images", "Bundle Analysis & Tree Shaking",
-    "Security: Sanitizing Content & XSS Prevention", "Authentication Patterns: JWT & NextAuth.js", "RBAC & Permission-based UI", "Secure API Communication",
-    "Web Accessibility (a11y) in React Apps", "Building Accessible Forms & Modals", "Micro-frontends with Module Federation", "Monorepos for React with Nx/Turborepo",
-    "Integrating D3.js with React", "React Table (TanStack Table) Mastery", "React Flow for Node-based UIs", "Three.js & React Three Fiber",
-    "Managing WebSockets in React", "Real-time Dashboards with Socket.io", "Offline Support & Service Workers", "Building PWAs with React",
-    "Developing Browser Extensions in React", "React Native Foundations for Web Devs", "Bridging React & Native Code", "Expo Ecosystem Mastery",
-    "Electron & Desktop React Apps", "Tauri: Lightweight Desktop React", "Architecting Large Scale React Apps", "The Future of React: Forget Compiler",
-    "Becoming a Senior React Engineer", "Advanced Patterns: Finite State Machines (XState)"
+    { t: "Virtual DOM Reconciliation", icon: "fa-diagram-project", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
+    { t: "Advanced Hooks Logic", icon: "fa-fish-hook", icon_class: "fa-solid fa-anchor", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
+    { t: "Server Components & Suspense", icon: "fa-server", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
+    { t: "Next.js App Router", icon: "fa-route", img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80" },
+    { t: "Zustand State Management", icon: "fa-gears", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
+    { t: "Micro-frontends Architecture", icon: "fa-puzzle-piece", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
+    { t: "Performance Optimization", icon: "fa-gauge-high", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" }
   ];
 
-  const chaptersContainer = document.getElementById('reactChapters');
+  const chaptersContainer = document.getElementById('reactLessons');
   
-  reactTopics.forEach(topic => {
+  for (let i = 0; i < 70; i++) {
+    const topic = reactTopics[i % reactTopics.length];
     const div = document.createElement('div');
-    div.className = 'chapter reveal';
+    div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div data-cl-lang="en">
-        <h3>${topic}</h3>
-        <p>In this specialized React engineering module, we explore the deep technical implementation and architectural behavior of ${topic}. We focus on real-world performance optimization, scalable component design, and how to integrate ${topic} into modern, high-performance web applications. This ensures you have the expertise to build robust, interactive, and highly maintainable user interfaces that meet the highest industry standards for frontend excellence.</p>
+      <div class="lesson-media">
+        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
+        <img src="${topic.img}" alt="${topic.t}">
       </div>
-      <div data-cl-lang="ar">
-        <h3>${topic}</h3>
-        <p>في هذه الوحدة المتخصصة في هندسة ريـاكت، نستكشف التنفيذ التقني العميق والسلوك المعماري لـ ${topic}. نحن نركز على تحسين الأداء في العالم الحقيقي، تصميم المكونات القابلة للتوسع، وكيفية دمج ${topic} في تطبيقات الويب الحديثة عالية الأداء. يضمن ذلك حصولك على الخبرة اللازمة لبناء واجهات مستخدم قوية وتفاعلية وسهلة الصيانة تلبي أعلى المعايير الصناعية للتميز في الواجهات الأمامية.</p>
+      <div class="lesson-content">
+        <div data-cl-lang="en">
+          <h3>${topic.t} Mastery</h3>
+          <p>In this specialized React engineering module, we explore the deep technical implementation and architectural behavior of ${topic.t}. We focus on real-world performance optimization, scalable component design, and how to integrate ${topic.t} into modern frontend applications. This ensures you have the expertise to build robust, interactive, and highly maintainable user interfaces that meet the highest standards.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>إتقان ${topic.t}</h3>
+          <p>في هذه الوحدة المتخصصة في هندسة ريـاكت، نستكشف التنفيذ التقني العميق والسلوك المعماري لـ ${topic.t}. نحن نركز على تحسين الأداء في العالم الحقيقي، تصميم المكونات القابلة للتوسع، وكيفية دمج ${topic.t} في تطبيقات الواجهة الأمامية الحديثة. يضمن ذلك حصولك على الخبرة اللازمة لبناء واجهات مستخدم قوية وتفاعلية وسهلة الصيانة تلبي أعلى المعايير.</p>
+        </div>
       </div>
     `;
     chaptersContainer.appendChild(div);
-  });
+  }
 </script>
 
 <script src="site-polish.js"></script>

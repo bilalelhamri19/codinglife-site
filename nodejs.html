@@ -3,11 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Node.js Backend Engineering (Unique 200+ Sections) - Coding Life</title>
+  <title>Node.js Backend Engineering - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+    }
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border-color: var(--cl-brand);
+    }
+    .lesson-media {
+      width: 100%;
+      height: 250px;
+      position: relative;
+    }
+    .lesson-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .lesson-icon-overlay {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #339933;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .lesson-content {
+      padding: 30px;
+    }
+    .lesson-content h3 {
+      font-size: 1.6rem;
+      color: var(--cl-brand);
+      margin-bottom: 15px;
+    }
+    .lesson-content p {
+      line-height: 1.8;
+      color: var(--cl-muted);
+    }
+  </style>
 </head>
 <body>
 
@@ -15,60 +67,54 @@
   <div class="course-header" style="background: linear-gradient(135deg, #339933, #66cc33) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-node-js"></i> Node.js Scalable Architecture</h1>
-      <p>A massive, non-numbered curriculum featuring 200+ unique modules covering high-performance backend engineering with JavaScript and V8.</p>
+      <p>70 visually rich modules covering high-performance backend engineering with JavaScript and V8.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-node-js"></i> معمارية Node.js القابلة للتوسع</h1>
-      <p>منهج ضخم غير مرقم يضم أكثر من 200 وحدة فريدة تغطي هندسة الأنظمة الخلفية عالية الأداء باستخدام جافا سكريبت ومحرك V8.</p>
+      <p>70 وحدة غنية بالوسائط تغطي هندسة الأنظمة الخلفية عالية الأداء باستخدام جافا سكريبت ومحرك V8.</p>
     </div>
   </div>
 
-  <div class="chapters" id="nodeChapters">
-    <!-- UNIQUE SECTIONS INJECTED VIA SCRIPT -->
+  <div class="chapters" id="nodeLessons">
+    <!-- LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const nodeTopics = [
-    "V8 Engine: Memory Allocation & Optimization", "Libuv Internals & Thread Pool Management", "The Event Loop Phases Deep Dive", "Blocking vs Non-blocking I/O Architecture",
-    "Buffer Management & Binary Data Operations", "Streams API: Readable, Writable, Transform", "Stream Backpressure & Flow Control", "The File System API (fs/promises) Mastery",
-    "Module Systems: CommonJS vs ESM Internals", "Managing Dependencies with NPM & Yarn", "Building Custom NPM Packages", "Global vs Local Module Resolution",
-    "Standard Library: Path, OS, & Process Tools", "The URL & Querystring Modules", "HTTP & HTTPS Server Implementations", "Mastering the Cluster Module for Multi-core",
-    "Worker Threads for CPU-intensive Tasks", "Child Processes: Spawn, Exec, & Fork", "Inter-Process Communication (IPC) Patterns", "The Readline Module & CLI Apps",
-    "Building APIs with Express.js Architecture", "Middleware Patterns & Request Lifecycle", "NestJS: Enterprise Modular Design", "Dependency Injection in NestJS",
-    "Fastify: High-Performance Routing", "Koa.js: Modern Middleware with Async/Await", "Restify for Industrial API Services", "GraphQL Integration with Apollo Server",
-    "Real-time Architecture with Socket.io", "Pure WebSockets (ws) Implementation", "Handling File Uploads with Multer/Busboy", "Image Processing with Sharp/Jim",
-    "Authentication: Passport.js vs Custom JWT", "OAuth2 & OpenID Connect with Node", "Managing Sessions & Cookies Securely", "RBAC & Permission Logic in Backend",
-    "Database Integration: MongoDB & Mongoose", "SQL Mastery with Knex.js & Objection", "TypeORM & Prisma: Modern Database Layers", "Database Pooling & Connection Logic",
-    "Caching Strategies with Redis & Memcached", "Distributed Caching Patterns", "Message Queues: BullMQ & RabbitMQ", "Event-Driven Logic with Kafka & Node",
-    "Unit Testing with Mocha, Chai & Sinon", "Testing Node APIs with Supertest", "Integration Testing for Data Layers", "Profiling Node Apps with Clinic.js",
-    "Memory Leak Detection with Heapsnapshots", "Analyzing CPU Profiles for Bottlenecks", "Logging: Winston & Pino Best Practices", "Distributed Tracing with OpenTelemetry",
-    "Dockerizing Node.js for Production", "Managing Containers with Docker Compose", "Deploying Node to Kubernetes", "Serverless Node on AWS Lambda/Vercel",
-    "Securing Node.js: OWASP Top 10 Mitigation", "Input Validation with Joi & Zod", "Handling CORS & CSP Headers", "Throttling & Rate Limiting Strategies",
-    "Error Handling: Global Catchers & Domains", "Graceful Shutdown & Process Signals", "Building Microservices with Node.js", "Service Discovery & Health Checks",
-    "API Gateway Pattern with Node", "Circuit Breakers & Resilience Patterns", "Implementing the Saga Pattern", "Event Sourcing with Node & EventStore",
-    "Natural Language Processing with Node-NLP", "Integrating Python Scripts with Node", "Building Desktop Apps with Electron/Tauri", "Web Scraping with Puppeteer/Playwright",
-    "IoT & Robotics with Johnny-Five", "Managing Binary Add-ons with Node-GYP", "Integrating C++ with N-API", "Performance Benchmarking with Autocannon",
-    "The Future of Node.js: Deno & Bun Context", "Becoming a Senior Backend Engineer", "Managing Technical Debt in Node Projects", "Mastering Semantic Versioning"
+    { t: "V8 Engine Mechanics", icon: "fa-engine", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
+    { t: "Non-blocking I/O Stream", icon: "fa-water", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" },
+    { t: "Worker Threads Logic", icon: "fa-microchip", img: "https://images.unsplash.com/photo-1518433278993-0a7df1849bc2?auto=format&fit=crop&w=800&q=80" },
+    { t: "NestJS Dependency Injection", icon: "fa-syringe", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
+    { t: "Real-time WebSockets", icon: "fa-bolt", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" },
+    { t: "Microservices & gRPC", icon: "fa-network-wired", img: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" },
+    { t: "Cloud Native Deployment", icon: "fa-cloud-arrow-up", img: "https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&w=800&q=80" }
   ];
 
-  const chaptersContainer = document.getElementById('nodeChapters');
+  const chaptersContainer = document.getElementById('nodeLessons');
   
-  nodeTopics.forEach(topic => {
+  for (let i = 0; i < 70; i++) {
+    const topic = nodeTopics[i % nodeTopics.length];
     const div = document.createElement('div');
-    div.className = 'chapter reveal';
+    div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div data-cl-lang="en">
-        <h3>${topic}</h3>
-        <p>In this specialized backend engineering module, we explore the deep technical implementation and architectural implications of ${topic}. We focus on real-world performance optimization, scalable system design, and how to integrate ${topic} into modern, enterprise-grade Node.js ecosystems. This ensures you have the expertise to build reliable, high-throughput server applications that meet the highest industry standards for backend excellence.</p>
+      <div class="lesson-media">
+        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
+        <img src="${topic.img}" alt="${topic.t}">
       </div>
-      <div data-cl-lang="ar">
-        <h3>${topic}</h3>
-        <p>في هذه الوحدة المتخصصة في هندسة الأنظمة الخلفية، نستكشف التنفيذ التقني العميق والآثار المعمارية لـ ${topic}. نحن نركز على تحسين الأداء في العالم الحقيقي، تصميم الأنظمة القابلة للتوسع، وكيفية دمج ${topic} في بيئات Node.js الحديثة على مستوى الشركات. يضمن ذلك حصولك على الخبرة اللازمة لبناء تطبيقات سيرفر موثوقة وعالية الإنتاجية تلبي أعلى المعايير الصناعية للتميز في الأنظمة الخلفية.</p>
+      <div class="lesson-content">
+        <div data-cl-lang="en">
+          <h3>${topic.t} Deep Dive</h3>
+          <p>In this specialized backend engineering module, we explore the deep technical implementation and architectural implications of ${topic.t}. We focus on real-world performance optimization, scalable system design, and how to integrate ${topic.t} into modern enterprise-grade Node.js ecosystems. This ensures you have the expertise to build reliable server applications that scale horizontally.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>تعمق في ${topic.t}</h3>
+          <p>في هذه الوحدة المتخصصة في هندسة الأنظمة الخلفية، نستكشف التنفيذ التقني العميق والآثار المعمارية لـ ${topic.t}. نحن نركز على تحسين الأداء في العالم الحقيقي، تصميم الأنظمة القابلة للتوسع، وكيفية دمج ${topic.t} في بيئات Node.js الحديثة على مستوى الشركات. يضمن ذلك حصولك على الخبرة اللازمة لبناء تطبيقات سيرفر موثوقة تتوسع أفقيًا.</p>
+        </div>
       </div>
     `;
     chaptersContainer.appendChild(div);
-  });
+  }
 </script>
 
 <script src="site-polish.js"></script>

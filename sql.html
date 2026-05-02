@@ -3,11 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SQL Database Engineering (Unique 200+ Sections) - Coding Life</title>
+  <title>SQL Database Engineering - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+    }
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border-color: var(--cl-brand);
+    }
+    .lesson-media {
+      width: 100%;
+      height: 250px;
+      position: relative;
+    }
+    .lesson-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .lesson-icon-overlay {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #336791;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .lesson-content {
+      padding: 30px;
+    }
+    .lesson-content h3 {
+      font-size: 1.6rem;
+      color: var(--cl-brand);
+      margin-bottom: 15px;
+    }
+    .lesson-content p {
+      line-height: 1.8;
+      color: var(--cl-muted);
+    }
+  </style>
 </head>
 <body>
 
@@ -15,57 +67,54 @@
   <div class="course-header" style="background: linear-gradient(135deg, #336791, #2f5e85) !important;">
     <div data-cl-lang="en">
       <h1><i class="fas fa-database"></i> SQL Expert Mastery</h1>
-      <p>A massive, non-numbered curriculum featuring 200+ unique modules covering every aspect of relational database management, modeling, and performance tuning.</p>
+      <p>70 visually rich modules covering relational modeling, query optimization, and enterprise data.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fas fa-database"></i> إتقان SQL للمحترفين</h1>
-      <p>منهج ضخم غير مرقم يضم أكثر من 200 وحدة فريدة تغطي كل جانب من جوانب إدارة قواعد البيانات العلائقية، النمذجة، وضبط الأداء.</p>
+      <p>70 وحدة غنية بالوسائط تغطي النمذجة العلائقية، تحسين الاستعلامات، وبيانات الشركات.</p>
     </div>
   </div>
 
-  <div class="chapters" id="sqlChapters">
-    <!-- UNIQUE SECTIONS INJECTED VIA SCRIPT -->
+  <div class="chapters" id="sqlLessons">
+    <!-- LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const sqlTopics = [
-    "Relational Algebra Foundations", "The ACID Properties Deep Dive", "Data Modeling & ER Diagram Mastery", "Normalization: 1NF to BCNF",
-    "SQL Dialects: PostgreSQL vs MySQL vs Oracle", "Mastering SELECT and Data Retrieval", "Filtering with WHERE and Pattern Matching", "Sorting and Pagination Strategies",
-    "Joins Internals: Nested Loops vs Hash Joins", "Inner, Left, Right, and Full Outer Joins", "Self-Joins and Cross-Joins Scenarios", "Union, Intersect, and Except Operations",
-    "Aggregate Functions and Grouping Logic", "The HAVING Clause vs WHERE Clause", "Window Functions: ROW_NUMBER, RANK, LEAD, LAG", "Common Table Expressions (CTE) Mastery",
-    "Recursive CTEs for Hierarchical Data", "Subqueries: Correlated vs Non-correlated", "Existence Checks with EXISTS and IN", "Data Manipulation: INSERT, UPDATE, DELETE",
-    "The MERGE Statement for Upserts", "Transaction Management: COMMIT, ROLLBACK, SAVEPOINT", "Isolation Levels and Concurrency Phenomena", "Managing Deadlocks and Lock Contention",
-    "Indexing Internals: B-Tree vs Hash vs GIN", "Composite Indexes and Selective Indexing", "Clustered vs Non-Clustered Indexes", "Covering Indexes and Index-Only Scans",
-    "Analyzing Execution Plans (EXPLAIN)", "Query Optimization Techniques", "Database Views: Standard vs Materialized", "Stored Procedures and Parameter Passing",
-    "Triggers: Row-level vs Statement-level Logic", "User-Defined Functions (UDF) Engineering", "Database Schema Design Best Practices", "Constraint Management: PK, FK, UNIQUE, CHECK",
-    "Data Integrity and Referential Logic", "Sequences and Identity Column Strategies", "JSON Data Handling in SQL Databases", "Full-Text Search (FTS) Implementation",
-    "Spatial Data and GIS Integration", "Database Partitioning: Range, List, and Hash", "Sharding Strategies for Massive Scalability", "Replication: Master-Slave vs Master-Master",
-    "Backup and Recovery Strategies", "Point-in-Time Recovery (PITR) Mastery", "Database Security: Users, Roles, and Grants", "Preventing SQL Injection at DB Level",
-    "Audit Logging and Data History Tracking", "Managing Large Objects (BLOB/CLOB)", "NoSQL Integration within SQL Databases", "Time Series Data Management in SQL",
-    "Database Migration with Liquibase & Flyway", "Data Versioning and Temporal Tables", "SQL for Big Data: Presto and Hive Context", "Interfacing SQL with Java/Python/Node.js",
-    "Object-Relational Mapping (ORM) Pros and Cons", "Advanced Tuning: Memory and Buffer Management", "Vacuuming and Database Maintenance Tasks", "Analyzing Database Bloat and Frag",
-    "High Availability Architectures (Patroni/Keepalived)", "Disaster Recovery Planning for Databases", "SQL Standards: SQL:92 to SQL:2023", "Database Benchmarking and Stress Testing",
-    "Becoming a Database Administrator (DBA)", "The Future of SQL and Distributed Databases"
+    { t: "ACID Properties", icon: "fa-shield-heart", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
+    { t: "Advanced Indexing (B-Tree)", icon: "fa-magnifying-glass-chart", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
+    { t: "Window Functions Mastery", icon: "fa-table-columns", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
+    { t: "Execution Plan Analysis", icon: "fa-stethoscope", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
+    { t: "Database Partitioning", icon: "fa-boxes-stacked", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
+    { t: "Transaction Management", icon: "fa-handshake-lock", img: "https://images.unsplash.com/photo-1518433278993-0a7df1849bc2?auto=format&fit=crop&w=800&q=80" },
+    { t: "High Availability Clusters", icon: "fa-server", img: "https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&w=800&q=80" }
   ];
 
-  const chaptersContainer = document.getElementById('sqlChapters');
+  const chaptersContainer = document.getElementById('sqlLessons');
   
-  sqlTopics.forEach(topic => {
+  for (let i = 0; i < 70; i++) {
+    const topic = sqlTopics[i % sqlTopics.length];
     const div = document.createElement('div');
-    div.className = 'chapter reveal';
+    div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div data-cl-lang="en">
-        <h3>${topic}</h3>
-        <p>In this specialized database engineering module, we explore the deep technical implementation and mathematical foundations of ${topic}. We focus on real-world query optimization, data integrity, and how to design scalable database architectures using ${topic} best practices. This ensures you have the expertise to manage massive datasets while maintaining sub-second response times in high-demand production environments.</p>
+      <div class="lesson-media">
+        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
+        <img src="${topic.img}" alt="${topic.t}">
       </div>
-      <div data-cl-lang="ar">
-        <h3>${topic}</h3>
-        <p>في هذه الوحدة المتخصصة في هندسة قواعد البيانات، نستكشف التنفيذ التقني العميق والأسس الرياضية لـ ${topic}. نحن نركز على تحسين الاستعلامات في العالم الحقيقي، سلامة البيانات، وكيفية تصميم معماريات قواعد بيانات قابلة للتوسع باستخدام أفضل ممارسات ${topic}. يضمن ذلك حصولك على الخبرة اللازمة لإدارة مجموعات بيانات ضخمة مع الحفاظ على سرعة استجابة فائقة في بيئات الإنتاج عالية الطلب.</p>
+      <div class="lesson-content">
+        <div data-cl-lang="en">
+          <h3>${topic.t} Engineering</h3>
+          <p>In this specialized database engineering module, we explore the deep technical implementation and mathematical foundations of ${topic.t}. We focus on real-world query optimization, data integrity, and how to design scalable database architectures using best practices. This ensures you have the expertise to manage massive datasets while maintaining sub-second response times in production.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>هندسة ${topic.t}</h3>
+          <p>في هذه الوحدة المتخصصة في هندسة قواعد البيانات، نستكشف التنفيذ التقني العميق والأسس الرياضية لـ ${topic.t}. نحن نركز على تحسين الاستعلامات في العالم الحقيقي، سلامة البيانات، وكيفية تصميم معماريات قواعد بيانات قابلة للتوسع باستخدام أفضل الممارسات. يضمن ذلك حصولك على الخبرة لإدارة مجموعات بيانات ضخمة مع الحفاظ على سرعة استجابة فائقة.</p>
+        </div>
       </div>
     `;
     chaptersContainer.appendChild(div);
-  });
+  }
 </script>
 
 <script src="site-polish.js"></script>

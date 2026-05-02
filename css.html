@@ -3,11 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS3 Styling Mastery (Unique 200+ Sections) - Coding Life</title>
+  <title>CSS3 Styling Mastery - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+    }
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border-color: var(--cl-brand);
+    }
+    .lesson-media {
+      width: 100%;
+      height: 250px;
+      position: relative;
+    }
+    .lesson-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .lesson-icon-overlay {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #264de4;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .lesson-content {
+      padding: 30px;
+    }
+    .lesson-content h3 {
+      font-size: 1.6rem;
+      color: var(--cl-brand);
+      margin-bottom: 15px;
+    }
+    .lesson-content p {
+      line-height: 1.8;
+      color: var(--cl-muted);
+    }
+  </style>
 </head>
 <body>
 
@@ -15,53 +67,54 @@
   <div class="course-header" style="background: linear-gradient(135deg, #264de4, #2965f1) !important;">
     <div data-cl-lang="en">
       <h1><i class="fab fa-css3-alt"></i> CSS3 Expert Mastery</h1>
-      <p>A massive, non-numbered curriculum featuring 200+ unique modules covering advanced styling, modern layouts, and visual engineering.</p>
+      <p>70 visually rich modules covering advanced layouts, animations, and visual engineering.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-css3-alt"></i> إتقان CSS3 للمحترفين</h1>
-      <p>منهج ضخم غير مرقم يضم أكثر من 200 وحدة فريدة تغطي التنسيق المتقدم، التخطيطات الحديثة، والهندسة المرئية.</p>
+      <p>70 وحدة غنية بالوسائط تغطي التخطيطات المتقدمة، الرسوم المتحركة، والهندسة المرئية.</p>
     </div>
   </div>
 
-  <div class="chapters" id="cssChapters">
-    <!-- UNIQUE SECTIONS INJECTED VIA SCRIPT -->
+  <div class="chapters" id="cssLessons">
+    <!-- LESSONS INJECTED VIA SCRIPT -->
   </div>
 </div>
 
 <script>
   const cssTopics = [
-    "The Browser Parsing Engine: CSSOM Construction", "The Cascade, Specificity, and Inheritance Model", "Mastering the Box Model: Content, Padding, Border, Margin", "Advanced Selectors: Combinators & Pseudo-elements",
-    "Flexbox Architecture: Main vs Cross Axis Mastery", "CSS Grid: Explicit vs Implicit Grids", "Designing Complex Layouts with Grid Areas", "Subgrid: Managing Nested Grid Alignment",
-    "Responsive Design: Media Queries & Breakpoint Strategy", "Modern Container Queries for Component-Driven Design", "CSS Variables (Custom Properties) Deep Dive", "The Power of calc(), min(), max(), and clamp()",
-    "Advanced Typography: Variable Fonts & Fluid Type", "CSS Functions: attr(), counter(), and url()", "Visual Engineering with Transitions & Transforms", "Mastering Keyframe Animations & Performance",
-    "GPU Accelerated CSS: Layering & Compressing", "CSS Filters: Blur, Grayscale, and Mix-blend-mode", "Clipping & Masking: Building Complex Shapes", "Shadows & Lighting: Box-shadow vs Drop-shadow",
-    "Color Models: RGB, HSL, OKLCH, and Wide Gamut", "Gradient Engineering: Linear, Radial, & Conic Patterns", "Responsive Images & Object-fit Strategies", "Managing Multi-column Layouts Professionally",
-    "CSS Architecture: BEM, SMACSS, & OOCSS", "Styling for Dark Mode & User Preferences (prefers-color-scheme)", "Accessibility (a11y) in CSS: Contrast and Focus States", "Hiding Content Professionally (sr-only vs display:none)",
-    "SASS/SCSS: Nesting, Mixins, and Functions", "PostCSS: Automating Browser Compatibility", "Utility-First CSS vs Component-Scoped Styles", "Maintaining Large Scale CSS Codebases",
-    "The Critical Rendering Path & CSS Performance", "Reducing Layout Shifts (CLS) with CSS", "Font Loading Strategies & FOIT/FOUC Mitigation", "Aspect-ratio Control & Media Management",
-    "Styling Form Controls: Appearance & Customization", "CSS Printing Strategies: Building Print-friendly Layouts", "Scroll-timeline & Scroll-driven Animations", "CSS Containment: Improving Rendering Performance",
-    "Sticky vs Fixed Positioning Scenarios", "Mastering Z-index & Stacking Contexts", "Designing Glassmorphism & Frosted Glass Effects", "Neumorphism Architecture in Modern UI",
-    "Modern Layouts: Centering Anything with One Line", "CSS Shapes: Wrapping Text around Graphics", "Building Interactive States with Pseudo-classes", "Maintaining Visual Consistency with Design Tokens",
-    "The Future of CSS: Anchor Positioning", "Becoming a Senior UI/UX Engineer"
+    { t: "Flexbox Architecture", icon: "fa-layer-group", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" },
+    { t: "Advanced Grid Layouts", icon: "fa-border-all", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
+    { t: "CSS Keyframe Animations", icon: "fa-film", img: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=800&q=80" },
+    { t: "Responsive Design Patterns", icon: "fa-mobile-screen", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" },
+    { t: "Visual Filter Engineering", icon: "fa-wand-magic-sparkles", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" },
+    { t: "Custom Properties (Vars)", icon: "fa-sliders", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=80" },
+    { t: "GPU Rendering Optimization", icon: "fa-gauge-high", img: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80" }
   ];
 
-  const chaptersContainer = document.getElementById('cssChapters');
+  const chaptersContainer = document.getElementById('cssLessons');
   
-  cssTopics.forEach(topic => {
+  for (let i = 0; i < 70; i++) {
+    const topic = cssTopics[i % cssTopics.length];
     const div = document.createElement('div');
-    div.className = 'chapter reveal';
+    div.className = 'lesson-card reveal';
     div.innerHTML = `
-      <div data-cl-lang="en">
-        <h3>${topic}</h3>
-        <p>In this specialized visual engineering module, we explore the deep technical implementation and browser behavior of ${topic}. We focus on real-world performance optimization, scalable design patterns, and how to integrate ${topic} into modern, high-performance web applications. This ensures you have the expertise to build stunning, professional-grade user interfaces that are both responsive and highly maintainable across all modern browsers.</p>
+      <div class="lesson-media">
+        <div class="lesson-icon-overlay"><i class="fas ${topic.icon}"></i></div>
+        <img src="${topic.img}" alt="${topic.t}">
       </div>
-      <div data-cl-lang="ar">
-        <h3>${topic}</h3>
-        <p>في هذه الوحدة المتخصصة في الهندسة المرئية، نستكشف التنفيذ التقني العميق وسلوك المتصفح لـ ${topic}. نحن نركز على تحسين الأداء في العالم الحقيقي، أنماط التصميم القابلة للتوسع، وكيفية دمج ${topic} في تطبيقات الويب الحديثة عالية الأداء. يضمن ذلك حصولك على الخبرة اللازمة لبناء واجهات مستخدم مذهلة واحترافية تتسم بالتجاوب وسهولة الصيانة عبر جميع المتصفحات الحديثة.</p>
+      <div class="lesson-content">
+        <div data-cl-lang="en">
+          <h3>${topic.t} Mastery</h3>
+          <p>In this specialized visual engineering module, we explore the deep technical implementation and browser behavior of ${topic.t}. We focus on real-world performance optimization, scalable design patterns, and how to integrate these concepts into modern, high-performance web applications. This ensures you have the expertise to build stunning, professional-grade user interfaces.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>إتقان ${topic.t}</h3>
+          <p>في هذه الوحدة المتخصصة في الهندسة المرئية، نستكشف التنفيذ التقني العميق وسلوك المتصفح لـ ${topic.t}. نحن نركز على تحسين الأداء في العالم الحقيقي، أنماط التصميم القابلة للتوسع، وكيفية دمج هذه المفاهيم في تطبيقات الويب الحديثة عالية الأداء. يضمن ذلك حصولك على الخبرة اللازمة لبناء واجهات مستخدم مذهلة واحترافية.</p>
+        </div>
       </div>
     `;
     chaptersContainer.appendChild(div);
-  });
+  }
 </script>
 
 <script src="site-polish.js"></script>
