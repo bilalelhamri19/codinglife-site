@@ -9,6 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
+    .course-grid {
+      display: grid;
+      /* Use auto-fill instead of auto-fit to prevent cards from stretching too much */
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 24px;
+    }
+    .course-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
     .course-card img {
       width: 100%;
       height: 200px;
@@ -16,6 +28,21 @@
       border-radius: 8px;
       margin-bottom: 16px;
       border-bottom: 1px solid var(--cl-line);
+    }
+    .course-card-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .course-card h3 {
+      margin-bottom: 12px;
+      color: var(--cl-brand);
+    }
+    .course-card p {
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      color: var(--cl-muted);
+      flex-grow: 1;
     }
     .section-title {
       margin-bottom: 32px;
@@ -45,36 +72,39 @@
     <div data-cl-lang="en"><h2 class="section-title">Web Development Foundations</h2></div>
     <div data-cl-lang="ar"><h2 class="section-title">أساسيات تطوير الويب</h2></div>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
-      
+    <div class="course-grid">
       <!-- HTML -->
       <div class="course-card">
         <img src="html_1773625722791.jpg" alt="HTML">
-        <div data-cl-lang="en"><h3>HTML5 Masterclass</h3><p>The foundation of the web.</p><a href="html.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>احتراف HTML5</h3><p>أساس الويب والوسوم الدلالية.</p><a href="html.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>HTML5 Masterclass</h3><p>The foundation of the web.</p><a href="html.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>احتراف HTML5</h3><p>أساس الويب والوسوم الدلالية.</p><a href="html.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
       <!-- CSS -->
       <div class="course-card">
         <img src="css.webp" alt="CSS">
-        <div data-cl-lang="en"><h3>CSS3 Styling</h3><p>Master design and layouts.</p><a href="css.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>تصميم CSS3</h3><p>أتقن التصميم والواجهات المتجاوبة.</p><a href="css.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>CSS3 Styling</h3><p>Master design and layouts.</p><a href="css.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>تصميم CSS3</h3><p>أتقن التصميم والواجهات المتجاوبة.</p><a href="css.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
       <!-- JS -->
       <div class="course-card">
         <img src="js.webp" alt="JS">
-        <div data-cl-lang="en"><h3>JS Deep Dive</h3><p>Logic and async mastery.</p><a href="javascript.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>تعمق في JavaScript</h3><p>المنطق والميزات التفاعلية.</p><a href="javascript.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>JS Deep Dive</h3><p>Logic and async mastery.</p><a href="javascript.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>تعمق في JavaScript</h3><p>المنطق والميزات التفاعلية.</p><a href="javascript.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
       <!-- React -->
       <div class="course-card">
         <img src="react.jpg" alt="React">
-        <div data-cl-lang="en"><h3>React Modern</h3><p>Component-based architecture.</p><a href="react.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>React الحديث</h3><p>أتقن الـ Hooks والمعمارية الحديثة.</p><a href="react.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>React Modern</h3><p>Component-based architecture.</p><a href="react.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>React الحديث</h3><p>أتقن الـ Hooks والمعمارية الحديثة.</p><a href="react.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
     </div>
   </div>
 
@@ -83,15 +113,15 @@
     <div data-cl-lang="en"><h2 class="section-title">Mobile App Development</h2></div>
     <div data-cl-lang="ar"><h2 class="section-title">تطوير تطبيقات الموبايل</h2></div>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
-      
+    <div class="course-grid">
       <!-- Flutter -->
       <div class="course-card">
         <img src="flutter_1773625721928.jpg" alt="Flutter">
-        <div data-cl-lang="en"><h3>Flutter Mastery</h3><p>Cross-platform mobile apps.</p><a href="flutter.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>إتقان Flutter</h3><p>ابنِ تطبيقات أصلية للموبايل.</p><a href="flutter.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>Flutter Mastery</h3><p>Cross-platform mobile apps.</p><a href="flutter.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>إتقان Flutter</h3><p>ابنِ تطبيقات أصلية للموبايل.</p><a href="flutter.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
     </div>
   </div>
 
@@ -100,57 +130,63 @@
     <div data-cl-lang="en"><h2 class="section-title">Backend & Enterprise Systems</h2></div>
     <div data-cl-lang="ar"><h2 class="section-title">الأنظمة الخلفية وقواعد البيانات</h2></div>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
-      
+    <div class="course-grid">
       <!-- Java -->
       <div class="course-card">
         <img src="java_1773625722332.jpg" alt="Java">
-        <div data-cl-lang="en"><h3>Java Enterprise</h3><p>Spring Boot and JVM.</p><a href="java.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>جافا للمؤسسات</h3><p>Spring Boot وخفايا الـ JVM.</p><a href="java.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>Java Enterprise</h3><p>Spring Boot and JVM.</p><a href="java.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>جافا للمؤسسات</h3><p>Spring Boot وخفايا الـ JVM.</p><a href="java.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
       <!-- Node.js -->
       <div class="course-card">
         <img src="nodejs.jpg" alt="Node">
-        <div data-cl-lang="en"><h3>Node.js Scalable</h3><p>High-performance backend.</p><a href="nodejs.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>Node.js المتقدم</h3><p>خوادم عالية الأداء بـ JS.</p><a href="nodejs.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>Node.js Scalable</h3><p>High-performance backend.</p><a href="nodejs.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>Node.js المتقدم</h3><p>خوادم عالية الأداء بـ JS.</p><a href="nodejs.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
       <!-- PHP -->
       <div class="course-card">
         <img src="php_1773625721504.jpg" alt="PHP">
-        <div data-cl-lang="en"><h3>PHP Professional</h3><p>Web backend and OOP.</p><a href="php.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>احتراف PHP</h3><p>البرمجة الخلفية وأنماط الـ OOP.</p><a href="php.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>PHP Professional</h3><p>Web backend and OOP.</p><a href="php.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>احتراف PHP</h3><p>البرمجة الخلفية وأنماط الـ OOP.</p><a href="php.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
       <!-- Python -->
       <div class="course-card">
         <img src="python.jpg" alt="Python">
-        <div data-cl-lang="en"><h3>Python Expert</h3><p>Automation and AI.</p><a href="python.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>خبير بايثون</h3><p>الأتمتة وعلوم البيانات.</p><a href="python.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>Python Expert</h3><p>Automation and AI.</p><a href="python.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>خبير بايثون</h3><p>الأتمتة وعلوم البيانات.</p><a href="python.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
       <!-- SQL -->
       <div class="course-card">
         <img src="sql_1773625722189.jpg" alt="SQL">
-        <div data-cl-lang="en"><h3>SQL Databases</h3><p>Relational data mastery.</p><a href="sql.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>قواعد بيانات SQL</h3><p>إدارة البيانات العلائقية.</p><a href="sql.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>SQL Databases</h3><p>Relational data mastery.</p><a href="sql.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>قواعد بيانات SQL</h3><p>إدارة البيانات العلائقية.</p><a href="sql.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
       <!-- C# -->
       <div class="course-card">
         <img src="csharp_1773625721941.jpg" alt="C#">
-        <div data-cl-lang="en"><h3>C# & .NET</h3><p>Enterprise and Unity.</p><a href="csharp.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>C# و .NET</h3><p>برمجيات الشركات وتطوير الألعاب.</p><a href="csharp.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>C# & .NET</h3><p>Enterprise and Unity.</p><a href="csharp.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>C# و .NET</h3><p>برمجيات الشركات وتطوير الألعاب.</p><a href="csharp.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
       <!-- Git -->
       <div class="course-card">
         <img src="git_1773625722186.jpg" alt="Git">
-        <div data-cl-lang="en"><h3>Git Professional</h3><p>Version control mastery.</p><a href="git.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>احتراف Git</h3><p>أتقن التحكم في الإصدارات.</p><a href="git.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>Git Professional</h3><p>Version control mastery.</p><a href="git.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>احتراف Git</h3><p>أتقن التحكم في الإصدارات.</p><a href="git.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
     </div>
   </div>
 
@@ -159,29 +195,31 @@
     <div data-cl-lang="en"><h2 class="section-title">Personal Growth & Roadmaps</h2></div>
     <div data-cl-lang="ar"><h2 class="section-title">النمو المهني وخرائط الطريق</h2></div>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
-      
+    <div class="course-grid">
       <!-- Coding Roadmap -->
       <div class="course-card">
         <img src="كيف تبدأ تعلم البرمجة من الصفر.jpg" alt="Roadmap">
-        <div data-cl-lang="en"><h3>Coding Roadmap</h3><p>Zero to Hero path.</p><a href="coding.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">View Path</a></div>
-        <div data-cl-lang="ar"><h3>خارطة طريق البرمجة</h3><p>طريقك من الصفر للاحتراف.</p><a href="coding.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">عرض الطريق</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>Coding Roadmap</h3><p>Zero to Hero path.</p><a href="coding.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">View Path</a></div>
+          <div data-cl-lang="ar"><h3>خارطة طريق البرمجة</h3><p>طريقك من الصفر للاحتراف.</p><a href="coding.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">عرض الطريق</a></div>
+        </div>
       </div>
-
       <!-- Productivity -->
       <div class="course-card">
         <img src="طرق زيادة الإنتاجية اليومية.jpg" alt="Productivity">
-        <div data-cl-lang="en"><h3>Productivity</h3><p>Focus and time management.</p><a href="productivity.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
-        <div data-cl-lang="ar"><h3>الإنتاجية</h3><p>أتقن وقتك وتركيزك.</p><a href="productivity.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>Productivity</h3><p>Focus and time management.</p><a href="productivity.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Start Learning</a></div>
+          <div data-cl-lang="ar"><h3>الإنتاجية</h3><p>أتقن وقتك وتركيزك.</p><a href="productivity.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">ابدأ التعلم</a></div>
+        </div>
       </div>
-
       <!-- Mental Health -->
       <div class="course-card">
         <img src="صحة العقل.jpg" alt="Mental Health">
-        <div data-cl-lang="en"><h3>Mental Health</h3><p>Balance for engineers.</p><a href="mental_health.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">Explore</a></div>
-        <div data-cl-lang="ar"><h3>الصحة النفسية</h3><p>التوازن النفسي للمبرمجين.</p><a href="mental_health.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: 16px; border-radius: 8px; display: block; text-align: center;">استكشف</a></div>
+        <div class="course-card-content">
+          <div data-cl-lang="en"><h3>Mental Health</h3><p>Balance for engineers.</p><a href="mental_health.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">Explore</a></div>
+          <div data-cl-lang="ar"><h3>الصحة النفسية</h3><p>التوازن النفسي للمبرمجين.</p><a href="mental_health.html" class="theme-toggle" style="width: 100%; text-decoration: none; margin-top: auto; border-radius: 8px; display: block; text-align: center;">استكشف</a></div>
+        </div>
       </div>
-
     </div>
   </div>
 
