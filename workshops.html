@@ -11,9 +11,20 @@
   <style>
     .workshop-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 32px;
       margin-bottom: 60px;
+    }
+    @media (max-width: 1024px) {
+      .workshop-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .workshop-card { padding: 20px; }
+      .workshop-card h3 { font-size: 1.2rem; }
+      .workshop-card p { font-size: 0.9rem; }
+    }
+    @media (max-width: 480px) {
+      .workshop-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .workshop-card { padding: 16px; }
+      .workshop-icon { font-size: 1.8rem; }
     }
     .workshop-card {
       background: var(--cl-surface);
