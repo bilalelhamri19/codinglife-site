@@ -529,6 +529,7 @@
     injectSchema();
     polishCodeBlocks();
     initAnimations();
+    initProgressTracking(); // Added this call
     bindFooterEvents();
     refreshPageContent();
 
