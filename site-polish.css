@@ -331,40 +331,37 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Footer */
 .cl-footer {
-  background: #020617 !important;
+  background: #0f172a !important;
   color: #94a3b8 !important;
-  padding: 20px 24px !important; /* Ultra-slim padding */
-  margin-top: 40px !important;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 60px 24px !important;
+  margin-top: 80px !important;
 }
 
 .footer-inner {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 20px; /* Compact gap */
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
 }
 
 .footer-brand {
   font-family: "Pacifico", cursive;
-  font-size: 1.2rem; /* Smaller brand */
+  font-size: 1.5rem;
   color: white !important;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   display: block;
 }
 
 .footer-links h4 {
   color: white;
-  margin-bottom: 10px;
-  font-size: 0.9rem;
+  margin-bottom: 20px;
 }
 
 .footer-links a {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   color: #94a3b8 !important;
-  font-size: 0.85rem;
   transition: var(--cl-transition);
 }
 
