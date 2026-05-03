@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiments & Dev Tools - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .tool-card {
+      text-align: center;
+      padding: 40px;
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      background: var(--cl-surface);
+      transition: var(--cl-transition);
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+    .tool-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--cl-brand);
+      box-shadow: var(--cl-shadow-lg);
+    }
+    .tool-icon {
+      font-size: 3.5rem;
+      color: var(--cl-brand);
+      margin-bottom: 24px;
+    }
+    .tool-card h2 { color: var(--cl-ink); margin-bottom: 12px; }
+    .tool-card p { color: var(--cl-muted); font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header" style="background: linear-gradient(135deg, var(--cl-brand), #0d9488) !important;">
+    <div data-cl-lang="en">
+      <h1><i class="fas fa-flask"></i> Experiments & Tools</h1>
+      <p>Interactive playgrounds and developer utilities to sharpen your skills.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fas fa-flask"></i> المختبر والأدوات</h1>
+      <p>تجارب تفاعلية وأدوات برمجية لمساعدتك في رحلة التعلم.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fas fa-flask"></i> Expériences & Outils</h1>
+      <p>Terrains de jeu interactifs et utilitaires pour développeurs.</p>
+    </div>
+  </div>
+
+  <div class="tool-grid">
+    <a href="playground.html" class="tool-card reveal">
+      <i class="fas fa-laptop-code tool-icon"></i>
+      <div data-cl-lang="en">
+        <h2>Code Playground</h2>
+        <p>Write HTML, CSS, and JS with a live preview. Perfect for testing ideas quickly.</p>
+      </div>
+      <div data-cl-lang="ar">
+        <h2>مختبر الكود</h2>
+        <p>اكتب HTML و CSS و JS مع معاينة مباشرة. مثالي لتجربة الأفكار بسرعة.</p>
+      </div>
+    </a>
+
+    <a href="calculator.html" class="tool-card reveal">
+      <i class="fas fa-calculator tool-icon"></i>
+      <div data-cl-lang="en">
+        <h2>Scientific Calculator</h2>
+        <p>A powerful calculator for complex math and developer calculations.</p>
+      </div>
+      <div data-cl-lang="ar">
+        <h2>آلة حاسبة علمية</h2>
+        <p>آلة حاسبة قوية للحسابات المعقدة والعمليات الرياضية البرمجية.</p>
+      </div>
+    </a>
+
+    <a href="css-converter.html" class="tool-card reveal">
+      <i class="fas fa-exchange-alt tool-icon"></i>
+      <div data-cl-lang="en">
+        <h2>Unit Converter</h2>
+        <p>Convert PX to REM, EM, and other CSS units instantly.</p>
+      </div>
+      <div data-cl-lang="ar">
+        <h2>محول الوحدات</h2>
+        <p>حول PX إلى REM و EM ووحدات CSS الأخرى بشكل فوري.</p>
+      </div>
+    </a>
+
+    <a href="colors.html" class="tool-card reveal">
+      <i class="fas fa-palette tool-icon"></i>
+      <div data-cl-lang="en">
+        <h2>Color Palette</h2>
+        <p>Generate and test beautiful color schemes for your projects.</p>
+      </div>
+      <div data-cl-lang="ar">
+        <h2>لوحة الألوان</h2>
+        <p>قم بتوليد وتجربة مجموعات ألوان رائعة لمشاريعك.</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Calculator - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .calc-container {
+      max-width: 400px;
+      margin: 120px auto 40px;
+      padding: 24px;
+      background: var(--cl-surface);
+      border-radius: 30px;
+      box-shadow: var(--cl-shadow-lg);
+      border: 1px solid var(--cl-line);
+    }
+    .calc-display {
+      width: 100%;
+      height: 80px;
+      background: #0f172a;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      padding: 0 20px;
+      color: #2dd4bf;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+    .calc-history { font-size: 0.8rem; color: #64748b; margin-bottom: 4px; }
+    .calc-current { font-size: 2rem; font-weight: 700; }
+    
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .calc-btn {
+      height: 60px;
+      border-radius: 15px;
+      border: none;
+      background: var(--cl-bg);
+      color: var(--cl-ink);
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .calc-btn:hover { background: var(--cl-brand-soft); color: var(--cl-brand); transform: scale(1.05); }
+    .calc-btn.op { background: var(--cl-brand-soft); color: var(--cl-brand); }
+    .calc-btn.equal { background: var(--cl-brand); color: white; grid-column: span 2; }
+    .calc-btn.clear { color: #ef4444; }
+    
+    .scientific-panel {
+      grid-template-columns: repeat(5, 1fr);
+      margin-bottom: 12px;
+      display: none;
+    }
+    .scientific-panel.show { display: grid; }
+    .toggle-sci {
+      background: none;
+      border: 1px solid var(--cl-line);
+      color: var(--cl-muted);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calc-container">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <h3 style="margin: 0; font-size: 1.1rem;">Calculator</h3>
+    <button class="toggle-sci" onclick="toggleSci()">Scientific Mode</button>
+  </div>
+  
+  <div class="calc-display">
+    <div class="calc-history" id="history"></div>
+    <div class="calc-current" id="display">0</div>
+  </div>
+
+  <div class="calc-grid scientific-panel" id="sci-panel">
+    <button class="calc-btn op" onclick="append('Math.sin(')">sin</button>
+    <button class="calc-btn op" onclick="append('Math.cos(')">cos</button>
+    <button class="calc-btn op" onclick="append('Math.tan(')">tan</button>
+    <button class="calc-btn op" onclick="append('Math.PI')">π</button>
+    <button class="calc-btn op" onclick="append('Math.log10(')">log</button>
+  </div>
+
+  <div class="calc-grid">
+    <button class="calc-btn clear" onclick="clearDisplay()">C</button>
+    <button class="calc-btn op" onclick="append('(')">(</button>
+    <button class="calc-btn op" onclick="append(')')">)</button>
+    <button class="calc-btn op" onclick="append('/')">/</button>
+
+    <button class="calc-btn" onclick="append('7')">7</button>
+    <button class="calc-btn" onclick="append('8')">8</button>
+    <button class="calc-btn" onclick="append('9')">9</button>
+    <button class="calc-btn op" onclick="append('*')">×</button>
+
+    <button class="calc-btn" onclick="append('4')">4</button>
+    <button class="calc-btn" onclick="append('5')">5</button>
+    <button class="calc-btn" onclick="append('6')">6</button>
+    <button class="calc-btn op" onclick="append('-')">-</button>
+
+    <button class="calc-btn" onclick="append('1')">1</button>
+    <button class="calc-btn" onclick="append('2')">2</button>
+    <button class="calc-btn" onclick="append('3')">3</button>
+    <button class="calc-btn op" onclick="append('+')">+</button>
+
+    <button class="calc-btn" onclick="append('0')">0</button>
+    <button class="calc-btn" onclick="append('.')">.</button>
+    <button class="calc-btn equal" onclick="calculate()">=</button>
+  </div>
+</div>
+
+<script>
+  let display = document.getElementById('display');
+  let history = document.getElementById('history');
+
+  function append(val) {
+    if (display.innerText === '0' && !isNaN(val)) {
+      display.innerText = val;
+    } else {
+      display.innerText += val;
+    }
+  }
+
+  function clearDisplay() {
+    display.innerText = '0';
+    history.innerText = '';
+  }
+
+  function calculate() {
+    try {
+      let expression = display.innerText;
+      history.innerText = expression;
+      // Safety check: only allow math functions and numbers
+      let result = eval(expression);
+      display.innerText = result;
+    } catch (e) {
+      display.innerText = 'Error';
+    }
+  }
+
+  function toggleSci() {
+    document.getElementById('sci-panel').classList.toggle('show');
+  }
+</script>
+
+<script src="site-polish.js"></script>
+</body>
+</html>
