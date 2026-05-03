@@ -5,10 +5,10 @@
     brandName: "Coding Life",
     logoPath: "logo.png",
     socialLinks: [
-      { href: "https://facebook.com", icon: "fab fa-facebook-f" },
-      { href: "https://youtube.com", icon: "fab fa-youtube" },
-      { href: "https://instagram.com", icon: "fab fa-instagram" },
-      { href: "https://linkedin.com", icon: "fab fa-linkedin-in" }
+      { href: "https://www.facebook.com/profile.php?id=100087855939787", icon: "fab fa-facebook-f" },
+      { href: "https://www.instagram.com/codinglife_1?igsh=eXU4ZHZ4MWY5dXR6", icon: "fab fa-instagram" },
+      { href: "https://youtube.com/@codinglife-d2l1g?si=MyyMZK9QRau3E9jk", icon: "fab fa-youtube" },
+      { href: "https://www.linkedin.com/in/coding-life-965996397?utm_source=share_via&utm_content=profile&utm_medium=member_android", icon: "fab fa-linkedin-in" }
     ]
   };
 
