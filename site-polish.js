@@ -208,26 +208,25 @@
       <div class="footer-inner">
         <div>
           <span class="footer-brand">${CONFIG.brandName}</span>
-          <p>${tr.tagline}</p>
-          <div class="social-links" style="margin-top: 24px;">
+          <p style="font-size: 0.9rem; max-width: 300px; line-height: 1.6;">${tr.tagline}</p>
+          <div class="social-links" style="margin-top: 20px;">
             ${CONFIG.socialLinks.map(s => `<a href="${s.href}"><i class="${s.icon}"></i></a>`).join('')}
           </div>
         </div>
         <div class="footer-links">
-          <h4>${tr.platform}</h4>
+          <h4 style="font-size: 1rem; margin-bottom: 15px;">${tr.platform}</h4>
           <a href="index.html">${tr.home}</a>
           <a href="dorous-albarmaja.html">${tr.allCourses}</a>
           <a href="workshops.html">${tr.workshops}</a>
-          <a href="blog.html">${tr.blog}</a>
         </div>
         <div class="footer-links">
-          <h4>${tr.support}</h4>
+          <h4 style="font-size: 1rem; margin-bottom: 15px;">${tr.support}</h4>
           <a href="contact.html">${tr.contactUs}</a>
           <a href="about.html">${tr.about}</a>
           <a href="privacy.html">${tr.privacy}</a>
         </div>
       </div>
-      <div style="text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;">
+      <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; color: #64748b;">
         &copy; 2026 ${CONFIG.brandName}. ${tr.copy}
       </div>
     `;

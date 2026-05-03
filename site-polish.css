@@ -331,18 +331,19 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Footer */
 .cl-footer {
-  background: #0f172a !important;
+  background: #020617 !important; /* Slightly darker for better contrast */
   color: #94a3b8 !important;
-  padding: 60px 24px !important;
-  margin-top: 80px !important;
+  padding: 40px 24px !important; /* Reduced padding */
+  margin-top: 60px !important;
+  border-top: 1px solid rgba(255,255,255,0.05);
 }
 
 .footer-inner {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 30px;
 }
 
 .footer-brand {
