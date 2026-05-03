@@ -6,7 +6,7 @@
   <title>Cours Complet Flutter - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
@@ -115,52 +115,164 @@
 <script>
   const flutterLessons = [
     {
-      icon: "fa-mobile",
-      t_fr: "1. Qu’est-ce que Flutter ?",
-      d_fr: "Flutter est le framework de Google pour créer des interfaces magnifiques en utilisant le langage Dart.",
+      icon: "fa-question-circle",
+      badge: "badge-modern",
+      t_fr: "1. Qu'est-ce que Flutter ?",
+      d_fr: "Flutter est un framework créé par Google qui vous permet de développer des applications pour Android, iOS, Web et Desktop avec un seul code source. Le langage utilisé est Dart.",
       t_en: "1. What is Flutter?",
-      d_en: "Flutter is Google's framework for building beautiful UIs using the Dart language.",
+      d_en: "Flutter is a framework created by Google that allows you to develop applications for Android, iOS, Web, and Desktop from a single codebase. It uses the Dart language.",
       t_ar: "1. ما هو Flutter؟",
-      d_ar: "Flutter هو إطار عمل من جوجل لبناء واجهات مستخدم جميلة باستخدام لغة Dart."
+      d_ar: "فلاتر هو إطار عمل من إنشاء جوجل يتيح لك تطوير تطبيقات للأندرويد، iOS، الويب وسطح المكتب من قاعدة كود واحدة. اللغة المستخدمة هي Dart."
+    },
+    {
+      icon: "fa-download",
+      badge: "badge-important",
+      t_fr: "2. Installation",
+      d_fr: "Téléchargez le Flutter SDK sur flutter.dev, ajoutez-le au PATH, et installez Android Studio avec les plugins Flutter et Dart.",
+      code: "flutter doctor",
+      t_en: "2. Installation",
+      d_en: "Download the Flutter SDK from flutter.dev, add it to your PATH, and install Android Studio with Flutter and Dart plugins.",
+      t_ar: "2. التثبيت",
+      d_ar: "قم بتحميل Flutter SDK من flutter.dev، وأضفه إلى المسار (PATH)، وقم بتثبيت Android Studio مع إضافات Flutter و Dart."
+    },
+    {
+      icon: "fa-rocket",
+      badge: "badge-modern",
+      t_fr: "3. Première Application",
+      d_fr: "Créez votre premier projet avec 'flutter create' et modifiez le fichier main.dart.",
+      code: "import 'package:flutter/material.dart';\n\nvoid main() => runApp(MyApp());\n\nclass MyApp extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      home: Scaffold(\n        appBar: AppBar(title: Text('Hello World')),\n        body: Center(child: Text('Bonjour! 👋')),\n      ),\n    );\n  }\n}",
+      t_en: "3. First Application",
+      d_en: "Create your first project with 'flutter create' and modify the main.dart file.",
+      t_ar: "3. أول تطبيق",
+      d_ar: "أنشئ مشروعك الأول باستخدام 'flutter create' وقم بتعديل ملف main.dart."
     },
     {
       icon: "fa-cubes",
-      t_fr: "2. Les Widgets",
-      code: `Widget build(BuildContext context) {\n  return Text("Salut");\n}`,
-      d_fr: "Dans Flutter, tout est un Widget. Ce sont les composants visuels de votre app.",
-      t_en: "2. Widgets",
-      d_en: "In Flutter, everything is a Widget. They are the visual building blocks of your app.",
-      t_ar: "2. الـ Widgets",
-      d_ar: "في Flutter، كل شيء هو Widget. هي اللبنات الأساسية لتطبيقك."
-    },
-    {
-      icon: "fa-toggle-off",
-      t_fr: "3. Stateless vs Stateful",
       badge: "badge-important",
-      d_fr: "Apprenez la différence entre les widgets qui ne changent pas et ceux avec un état dynamique.",
-      t_en: "3. Stateless vs Stateful",
-      d_en: "Learn the difference between static widgets and those with dynamic state.",
-      t_ar: "3. Stateless مقابل Stateful",
-      d_ar: "تعلم الفرق بين الـ Widgets الثابتة وتلك التي تحتوي على حالة ديناميكية."
+      t_fr: "4. Les Widgets — La Base",
+      d_fr: "Dans Flutter, tout est un Widget ! Les StatelessWidget ne changent pas, tandis que les StatefulWidget sont dynamiques.",
+      t_en: "4. Widgets — The Foundation",
+      d_en: "In Flutter, everything is a Widget! StatelessWidget remains static, while StatefulWidget is dynamic.",
+      t_ar: "4. الـ Widgets — الأساس",
+      d_ar: "في فلاتر، كل شيء هو Widget! الـ StatelessWidget لا يتغير، بينما الـ StatefulWidget ديناميكي."
     },
     {
-      icon: "fa-layer-group",
-      t_fr: "4. Layouts (Row & Column)",
-      code: `Column(\n  children: [Text("A"), Text("B")],\n)`,
-      d_fr: "Organisez vos widgets horizontalement ou verticalement.",
-      t_en: "4. Layouts (Row & Column)",
-      d_en: "Organize your widgets horizontally or vertically using layouts.",
-      t_ar: "4. التخطيطات",
-      d_ar: "تنظيم الـ Widgets أفقياً أو عمودياً."
+      icon: "fa-paint-brush",
+      badge: "badge-pro",
+      t_fr: "5. Les Widgets Essentiels",
+      d_fr: "Maîtrisez les composants de base : Text, Container, Row (horizontal), Column (vertical), Image, Bouton et TextField.",
+      code: "Column(\n  children: [\n    Text('Ligne 1'),\n    Row(children: [Icon(Icons.star), Text('Etoile')]),\n    ElevatedButton(onPressed: () {}, child: Text('Cliquez')),\n  ],\n)",
+      t_en: "5. Essential Widgets",
+      d_en: "Master basic components: Text, Container, Row (horizontal), Column (vertical), Image, Button, and TextField.",
+      t_ar: "5. الـ Widgets الأساسية",
+      d_ar: "أتقن المكونات الأساسية: Text، Container، Row (أفقي)، Column (عمودي)، Image، Button و TextField."
     },
     {
-      icon: "fa-bolt",
-      t_fr: "5. Hot Reload",
-      d_fr: "Gagnez du temps en voyant vos changements instantanément sans redémarrer l'app.",
-      t_en: "5. Hot Reload",
-      d_en: "Save time by seeing your changes instantly without restarting the app.",
-      t_ar: "5. Hot Reload",
-      d_ar: "وفر الوقت برؤية تغييراتك فوراً دون إعادة تشغيل التطبيق."
+      icon: "fa-sync",
+      badge: "badge-important",
+      t_fr: "6. StatefulWidget & setState",
+      d_fr: "Utilisez setState() pour informer Flutter qu'il doit mettre à jour l'interface utilisateur quand les données changent.",
+      code: "setState(() {\n  count++;\n});",
+      t_en: "6. StatefulWidget & setState",
+      d_en: "Use setState() to notify Flutter that it needs to update the UI when data changes.",
+      t_ar: "6. StatefulWidget و setState",
+      d_ar: "استخدم setState() لإبلاغ فلاتر بضرورة تحديث واجهة المستخدم عند تغير البيانات."
+    },
+    {
+      icon: "fa-map-signs",
+      badge: "badge-pro",
+      t_fr: "7. Navigation",
+      d_fr: "Passez d'un écran à l'autre en utilisant Navigator.push() pour avancer et Navigator.pop() pour revenir.",
+      code: "Navigator.push(\n  context,\n  MaterialPageRoute(builder: (context) => DetailScreen()),\n);",
+      t_en: "7. Navigation",
+      d_en: "Move between screens using Navigator.push() to move forward and Navigator.pop() to return.",
+      t_ar: "7. التنقل (Navigation)",
+      d_ar: "انتقل بين الشاشات باستخدام Navigator.push() للذهاب و Navigator.pop() للعودة."
+    },
+    {
+      icon: "fa-list",
+      badge: "badge-modern",
+      t_fr: "8. ListView",
+      d_fr: "Affichez des listes d'éléments de manière performante avec ListView.builder.",
+      code: "ListView.builder(\n  itemCount: 10,\n  itemBuilder: (context, index) => ListTile(title: Text('Item $index')),\n)",
+      t_en: "8. ListView",
+      d_en: "Display lists of items efficiently using ListView.builder.",
+      t_ar: "8. ListView",
+      d_ar: "اعرض قوائم العناصر بكفاءة باستخدام ListView.builder."
+    },
+    {
+      icon: "fa-globe",
+      badge: "badge-pro",
+      t_fr: "9. HTTP & API",
+      d_fr: "Récupérez des données depuis Internet en utilisant le package http et jsonDecode.",
+      code: "final response = await http.get(Uri.parse(url));\nvar data = jsonDecode(response.body);",
+      t_en: "9. HTTP & API",
+      d_en: "Fetch data from the internet using the http package and jsonDecode.",
+      t_ar: "9. HTTP و API",
+      d_ar: "جلب البيانات من الإنترنت باستخدام حزمة http و jsonDecode."
+    },
+    {
+      icon: "fa-project-diagram",
+      badge: "badge-important",
+      t_fr: "10. Gestion d'État — Provider",
+      d_fr: "Le Provider permet de partager des données entre plusieurs écrans sans passer par les constructeurs.",
+      code: "class CounterProvider extends ChangeNotifier {\n  int count = 0;\n  void increment() { count++; notifyListeners(); }\n}",
+      t_en: "10. State Management — Provider",
+      d_en: "Provider allows data sharing across multiple screens without constructor passing.",
+      t_ar: "10. إدارة الحالة — Provider",
+      d_ar: "يسمح Provider بمشاركة البيانات عبر شاشات متعددة دون تمريرها عبر المنشئات."
+    },
+    {
+      icon: "fa-database",
+      badge: "badge-pro",
+      t_fr: "11. Stockage Local",
+      d_fr: "Sauvegardez des petites données comme des préférences utilisateur avec SharedPreferences.",
+      code: "final prefs = await SharedPreferences.getInstance();\nawait prefs.setString('key', 'value');",
+      t_en: "11. Local Storage",
+      d_en: "Save small data like user preferences using SharedPreferences.",
+      t_ar: "11. التخزين المحلي",
+      d_ar: "حفظ البيانات الصغيرة مثل تفضيلات المستخدم باستخدام SharedPreferences."
+    },
+    {
+      icon: "fa-palette",
+      badge: "badge-modern",
+      t_fr: "12. Thème & Couleurs",
+      d_fr: "Personnalisez l'apparence globale de votre application avec ThemeData.",
+      code: "MaterialApp(\n  theme: ThemeData(primarySwatch: Colors.blue),\n)",
+      t_en: "12. Themes & Colors",
+      d_en: "Customize the global appearance of your application with ThemeData.",
+      t_ar: "12. الثيمات والألوان",
+      d_ar: "خصص المظهر العام لتطبيقك باستخدام ThemeData."
+    },
+    {
+      icon: "fa-folder-open",
+      badge: "badge-pro",
+      t_fr: "13. Structure du Projet",
+      d_fr: "Organisez votre code en dossiers : screens, widgets, models, services et providers.",
+      t_en: "13. Project Structure",
+      d_en: "Organize your code into folders: screens, widgets, models, services, and providers.",
+      t_ar: "13. هيكلة المشروع",
+      d_ar: "نظم كودك في مجلدات: screens، widgets، models، services و providers."
+    },
+    {
+      icon: "fa-lightbulb",
+      badge: "badge-modern",
+      t_fr: "14. Conseils de Pro",
+      d_fr: "Utilisez 'hot reload' pour voir les changements, 'const' pour la performance et 'final' pour l'immuabilité.",
+      t_en: "14. Pro Tips",
+      d_en: "Use 'hot reload' for instant changes, 'const' for performance, and 'final' for immutability.",
+      t_ar: "14. نصائح للمحترفين",
+      d_ar: "استخدم 'hot reload' لرؤية التغييرات فوراً، 'const' للأداء و 'final' للثبات."
+    },
+    {
+      icon: "fa-road",
+      badge: "badge-pro",
+      t_fr: "15. Feuille de Route",
+      d_fr: "Apprenez dans l'ordre : Dart -> Widgets -> Navigation -> API -> Provider -> Firebase.",
+      t_en: "15. Roadmap",
+      d_en: "Learn in order: Dart -> Widgets -> Navigation -> API -> Provider -> Firebase.",
+      t_ar: "15. خارطة الطريق",
+      d_ar: "تعلم بالترتيب: Dart -> Widgets -> Navigation -> API -> Provider -> Firebase."
     }
   ];
 
