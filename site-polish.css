@@ -331,10 +331,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Footer */
 .cl-footer {
-  background: #020617 !important; /* Slightly darker for better contrast */
+  background: #020617 !important;
   color: #94a3b8 !important;
-  padding: 40px 24px !important; /* Reduced padding */
-  margin-top: 60px !important;
+  padding: 20px 24px !important; /* Ultra-slim padding */
+  margin-top: 40px !important;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
 
@@ -343,26 +343,28 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 30px;
+  gap: 20px; /* Compact gap */
 }
 
 .footer-brand {
   font-family: "Pacifico", cursive;
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* Smaller brand */
   color: white !important;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   display: block;
 }
 
 .footer-links h4 {
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
 }
 
 .footer-links a {
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   color: #94a3b8 !important;
+  font-size: 0.85rem;
   transition: var(--cl-transition);
 }
 
