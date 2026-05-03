@@ -6,7 +6,7 @@
   <title>Cours Complet React - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
@@ -92,18 +92,18 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #20232a, #61dafb) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #61dafb, #21a1f1) !important; color: #000 !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-react"></i> React Frontend Mastery</h1>
-      <p>Master component-based architecture and build powerful user interfaces.</p>
+      <h1><i class="fab fa-react"></i> React Modern Mastery</h1>
+      <p>Master component architecture, Hooks, and building high-performance SPAs.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-react"></i> إتقان React</h1>
-      <p>احترف المعمارية القائمة على المكونات وبناء واجهات مستخدم قوية.</p>
+      <h1><i class="fab fa-react"></i> إتقان React الحديث</h1>
+      <p>أتقن هندسة المكونات، الـ Hooks، وبناء تطبيقات الصفحة الواحدة عالية الأداء.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1><i class="fab fa-react"></i> Maîtrise React</h1>
-      <p>Maîtrisez l'architecture par composants et créez des interfaces utilisateur puissantes.</p>
+      <h1><i class="fab fa-react"></i> Maîtrise de React Moderne</h1>
+      <p>Maîtrisez l'architecture des composants, les Hooks et la création de SPAs performantes.</p>
     </div>
   </div>
 
@@ -115,64 +115,112 @@
 <script>
   const reactLessons = [
     {
-      icon: "fa-atom",
-      t_fr: "1. Qu’est-ce que React ?",
+      icon: "fa-info-circle",
+      badge: "badge-modern",
+      t_fr: "1. Qu'est-ce que React ?",
       d_fr: "React est une bibliothèque JavaScript pour créer des interfaces utilisateur basées sur des composants.",
       t_en: "1. What is React?",
-      d_en: "React is a JavaScript library for building user interfaces based on components.",
+      d_en: "React is a JavaScript library for building user interfaces based on reusable components.",
       t_ar: "1. ما هو React؟",
-      d_ar: "React هي مكتبة جافا سكريبت لبناء واجهات المستخدم بناءً على المكونات."
-    },
-    {
-      icon: "fa-puzzle-piece",
-      t_fr: "2. Les Composants",
-      code: `function Welcome() {\n  return <h1>Bonjour</h1>;\n}`,
-      d_fr: "Les composants sont les blocs de base d'une application React.",
-      t_en: "2. Components",
-      d_en: "Components are the building blocks of any React application.",
-      t_ar: "2. المكونات (Components)",
-      d_ar: "المكونات هي حجر الأساس لأي تطبيق React."
+      d_ar: "React هي مكتبة جافا سكريبت لبناء واجهات المستخدم تعتمد على المكونات."
     },
     {
       icon: "fa-code",
-      t_fr: "3. JSX",
-      d_fr: "JSX est une extension de syntaxe qui ressemble au HTML mais s'utilise dans JavaScript.",
-      t_en: "3. JSX",
-      d_en: "JSX is a syntax extension that looks like HTML but lives in JavaScript.",
-      t_ar: "3. JSX",
-      d_ar: "JSX هي إضافة لبناء الجملة تشبه HTML ولكنها تُستخدم داخل جافا سكريبت."
-    },
-    {
-      icon: "fa-toggle-on",
-      t_fr: "4. Props & State",
       badge: "badge-important",
-      code: `const [count, setCount] = useState(0);`,
-      d_fr: "Utilisez les Props pour passer des données et le State pour gérer les changements.",
-      t_en: "4. Props & State",
-      d_en: "Use Props to pass data and State to manage dynamic changes.",
-      t_ar: "4. الـ Props والـ State",
-      d_ar: "استخدام الـ Props لتمرير البيانات والـ State لإدارة التغييرات."
+      t_fr: "2. JSX (JavaScript XML)",
+      d_fr: "JSX est une extension de syntaxe qui ressemble à du HTML mais fonctionne dans du JavaScript.",
+      code: "const element = <h1>Bonjour!</h1>;",
+      t_en: "2. JSX (JavaScript XML)",
+      d_en: "JSX is a syntax extension for JavaScript that looks like HTML and is used to describe what the UI should look like.",
+      t_ar: "2. تقنية JSX",
+      d_ar: "JSX هي إضافة لصيغة جافا سكريبت تشبه HTML وتستخدم لوصف واجهة المستخدم."
     },
     {
-      icon: "fa-hook",
-      t_fr: "5. Les Hooks (useEffect)",
+      icon: "fa-cubes",
+      badge: "badge-important",
+      t_fr: "3. Composants",
+      d_fr: "Divisez votre interface en petits morceaux réutilisables.",
+      code: "function Welcome() {\n  return <h1>Bienvenue</h1>;\n}",
+      t_en: "3. Components",
+      d_en: "Break down your UI into small, independent, and reusable pieces called components.",
+      t_ar: "3. المكونات (Components)",
+      d_ar: "قسم واجهة المستخدم إلى قطع صغيرة مستقلة وقابلة لإعادة الاستخدام."
+    },
+    {
+      icon: "fa-exchange-alt",
+      badge: "badge-modern",
+      t_fr: "4. Props (Propriétés)",
+      d_fr: "Passez des données d'un composant parent à un composant enfant.",
+      code: "<Welcome name='Ali' />",
+      t_en: "4. Props (Properties)",
+      d_en: "Pass data from parent components to child components using read-only properties called props.",
+      t_ar: "4. الـ Props",
+      d_ar: "مرر البيانات من المكونات الأب إلى المكونات الابن باستخدام الـ Props."
+    },
+    {
+      icon: "fa-vial",
+      badge: "badge-important",
+      t_fr: "5. useState Hook",
+      d_fr: "Gérez l'état interne de vos composants fonctionnels.",
+      code: "const [count, setCount] = useState(0);",
+      t_en: "5. useState Hook",
+      d_en: "Manage local state within functional components using the useState hook.",
+      t_ar: "5. الـ useState Hook",
+      d_ar: "إدارة الحالة المحلية داخل المكونات باستخدام الـ useState."
+    },
+    {
+      icon: "fa-bolt",
       badge: "badge-pro",
-      code: `useEffect(() => {\n  console.log("Monté !");\n}, []);`,
-      d_fr: "Gérer les effets de bord et le cycle de vie des composants.",
-      t_en: "5. Hooks (useEffect)",
-      d_en: "Handle side effects and component lifecycle events.",
-      t_ar: "5. الـ Hooks",
-      d_ar: "التعامل مع التأثيرات الجانبية ودورة حياة المكون."
+      t_fr: "6. useEffect Hook",
+      d_fr: "Gérez les effets de bord comme les appels API ou les timers.",
+      code: "useEffect(() => { fetch(...) }, []);",
+      t_en: "6. useEffect Hook",
+      d_en: "Handle side effects like data fetching, manual DOM changes, or subscriptions with useEffect.",
+      t_ar: "6. الـ useEffect Hook",
+      d_ar: "التعامل مع الآثار الجانبية مثل جلب البيانات باستخدام الـ useEffect."
     },
     {
       icon: "fa-list",
-      t_fr: "6. Listes & Clés",
-      code: `{items.map(item => <li key={item.id}>{item.name}</li>)}`,
-      d_fr: "Afficher des listes d'éléments de manière dynamique avec map().",
-      t_en: "6. Lists & Keys",
-      d_en: "Render lists of elements dynamically using map() and keys.",
-      t_ar: "6. القوائم والمفاتيح",
-      d_ar: "عرض قوائم العناصر بشكل ديناميكي."
+      badge: "badge-modern",
+      t_fr: "7. Listes et Keys",
+      d_fr: "Affichez des collections d'éléments en utilisant la méthode .map().",
+      code: "items.map(item => <li key={item.id}>{item.text}</li>)",
+      t_en: "7. Lists & Keys",
+      d_en: "Render collections of elements efficiently using the map() function and unique keys.",
+      t_ar: "7. القوائم والمفاتيح",
+      d_ar: "اعرض مجموعات من العناصر بكفاءة باستخدام map والمفاتيح الفريدة."
+    },
+    {
+      icon: "fa-wpforms",
+      badge: "badge-modern",
+      t_fr: "8. Formulaires (Controlled Components)",
+      d_fr: "Liez la valeur des champs de formulaire à l'état de React.",
+      code: "<input value={name} onChange={e => setName(e.target.value)} />",
+      t_en: "8. Controlled Forms",
+      d_en: "Link form field values to React state to create controlled components.",
+      t_ar: "8. النماذج المحكومة",
+      d_ar: "اربط قيم حقول النماذج بحالة React لإنشاء مكونات محكومة."
+    },
+    {
+      icon: "fa-project-diagram",
+      badge: "badge-pro",
+      t_fr: "9. Context API",
+      d_fr: "Partagez des données globalement sans passer par les props à chaque niveau.",
+      t_en: "9. Context API",
+      d_en: "Share global data across your entire component tree without prop-drilling.",
+      t_ar: "9. Context API",
+      d_ar: "شارك البيانات عالمياً عبر شجرة المكونات دون الحاجة لـ prop-drilling."
+    },
+    {
+      icon: "fa-route",
+      badge: "badge-pro",
+      t_fr: "10. React Router",
+      d_fr: "Gérez la navigation entre différentes pages dans votre SPA.",
+      code: "<Route path='/about' element={<About />} />",
+      t_en: "10. React Router",
+      d_en: "Manage navigation and URL routing within your single-page application.",
+      t_ar: "10. React Router",
+      d_ar: "إدارة التنقل والروابط داخل تطبيق الصفحة الواحدة الخاص بك."
     }
   ];
 

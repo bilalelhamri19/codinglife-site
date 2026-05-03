@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cours Complet CSS - Coding Life</title>
+  <title>Cours Complet CSS3 - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
@@ -33,13 +33,13 @@
     .lesson-icon {
       width: 60px;
       height: 60px;
-      background: var(--cl-brand-soft);
+      background: #1572b622;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      color: var(--cl-brand);
+      color: #1572b6;
       flex-shrink: 0;
     }
     .lesson-info {
@@ -81,19 +81,6 @@
       border: 1px solid #30363d;
     }
 
-    .checklist {
-      list-style: none;
-      padding: 0;
-    }
-    .checklist li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .checklist li i.fa-check { color: var(--cl-success); }
-    .checklist li i.fa-xmark { color: var(--cl-error); }
-
     @media (max-width: 768px) {
       .lesson-header {
         flex-direction: column;
@@ -105,18 +92,18 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #264de4, #2965f1) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #1572b6, #33a9dc) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-css3-alt"></i> CSS3 Styling Mastery</h1>
-      <p>A comprehensive 30-module guide to building stunning, responsive visual experiences.</p>
+      <h1><i class="fab fa-css3-alt"></i> CSS3 Modern Styling</h1>
+      <p>Master the art of visual design, responsive layouts, and modern animations.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-css3-alt"></i> إتقان CSS3</h1>
-      <p>دليل شامل من 30 وحدة لبناء تجارب بصرية مذهلة ومتجاوبة.</p>
+      <h1><i class="fab fa-css3-alt"></i> تصميم CSS3 الحديث</h1>
+      <p>أتقن فن التصميم البصري، التخطيطات المستجيبة، والرسوم المتحركة الحديثة.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1><i class="fab fa-css3-alt"></i> Maîtrise CSS3</h1>
-      <p>Un guide complet de 30 modules pour créer des designs web modernes et réactifs.</p>
+      <h1><i class="fab fa-css3-alt"></i> Design CSS3 Moderne</h1>
+      <p>Maîtrisez l'art du design visuel, des mises en page réactives et des animations.</p>
     </div>
   </div>
 
@@ -128,291 +115,113 @@
 <script>
   const cssLessons = [
     {
-      icon: "fa-palette",
-      t_fr: "1. Qu’est-ce que CSS ?",
-      d_fr: "<b>CSS (Cascading Style Sheets)</b> est le langage qui donne le style et le design à une page HTML.",
-      t_en: "1. What is CSS?",
-      d_en: "<b>CSS (Cascading Style Sheets)</b> is the language used to style and design HTML web pages.",
-      t_ar: "1. ما هو CSS؟",
-      d_ar: "<b>CSS</b> هي اللغة المسؤولة عن تصميم وتنسيق صفحات الويب."
-    },
-    {
-      icon: "fa-link",
-      t_fr: "2. Comment intégrer CSS",
-      d_fr: "🔹 Inline, Interne (balise style) ou Externe (fichier .css).",
-      t_en: "2. How to integrate CSS",
-      d_en: "🔹 Inline, Internal (style tag), or External (.css file).",
-      t_ar: "2. كيفية دمج CSS",
-      d_ar: "🔹 داخلي (Inline)، أو في وسم style، أو ملف خارجي .css."
-    },
-    {
-      icon: "fa-code",
-      t_fr: "3. Syntaxe CSS",
-      code: `p {\n  color: blue;\n  font-size: 20px;\n}`,
-      d_fr: "Structure : sélecteur { propriété: valeur; }",
-      t_en: "3. CSS Syntax",
-      d_en: "Structure: selector { property: value; }",
-      t_ar: "3. بناء جملة CSS",
-      d_ar: "الهيكل: المحدد { الخاصية: القيمة؛ }"
-    },
-    {
-      icon: "fa-crosshairs",
-      t_fr: "4. Les sélecteurs",
-      badge: "badge-important",
-      d_fr: "Cibler par tag, .class, #id ou sélecteur universel (*).",
-      t_en: "4. Selectors",
-      d_en: "Target elements by tag, .class, #id, or universal selector (*).",
-      t_ar: "4. المحددات",
-      d_ar: "استهداف العناصر عن طريق الوسم، الكلاس، الـ ID، أو المحدد الشامل."
-    },
-    {
-      icon: "fa-droplet",
-      t_fr: "5. Les couleurs",
-      d_fr: "Utilisez les noms, Hex (#ff0000) ou RGB.",
-      t_en: "5. Colors",
-      d_en: "Use color names, Hex codes (#ff0000), or RGB values.",
-      t_ar: "5. الألوان",
-      d_ar: "استخدم الأسماء، أكواد Hex، أو قيم RGB."
-    },
-    {
-      icon: "fa-font",
-      t_fr: "6. Les textes",
-      code: `p {\n  font-size: 18px;\n  font-weight: bold;\n  text-align: center;\n  font-family: Arial;\n}`,
-      d_fr: "Gérer la taille, le gras, l'alignement et la police.",
-      t_en: "6. Text",
-      d_en: "Manage font size, weight, alignment, and family.",
-      t_ar: "6. النصوص",
-      d_ar: "التحكم في حجم الخط، السمك، المحاذاة والنوع."
-    },
-    {
-      icon: "fa-box",
-      t_fr: "7. Box Model",
-      badge: "badge-important",
-      code: `div {\n  width: 200px;\n  padding: 20px;\n  border: 2px solid black;\n  margin: 10px;\n}`,
-      d_fr: "Comprendre Content, Padding, Border et Margin.",
-      t_en: "7. Box Model",
-      d_en: "Understand Content, Padding, Border, and Margin.",
-      t_ar: "7. نموذج الصندوق",
-      d_ar: "فهم المحتوى، الحشوة، الإطار والهامش."
-    },
-    {
-      icon: "fa-arrows-left-right",
-      t_fr: "8. Taille et dimensions",
-      d_fr: "Définir width, height, max-width et min-height.",
-      t_en: "8. Size and Dimensions",
-      d_en: "Define width, height, max-width, and min-height.",
-      t_ar: "8. الحجم والأبعاد",
-      d_ar: "تحديد العرض والارتفاع والحد الأقصى للعرض."
-    },
-    {
-      icon: "fa-location-crosshairs",
-      t_fr: "9. Positionnement",
-      d_fr: "Positions : static, relative, absolute, fixed.",
-      t_en: "9. Positioning",
-      d_en: "Positions: static, relative, absolute, fixed.",
-      t_ar: "9. التموضع",
-      d_ar: "أنواع التموضع: ثابت، نسبي، مطلق، ومستقر."
-    },
-    {
-      icon: "fa-grip-lines",
-      t_fr: "10. Flexbox",
-      badge: "badge-pro",
-      code: `.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}`,
-      d_fr: "Alignement moderne et flexible des éléments.",
-      t_en: "10. Flexbox",
-      d_en: "Modern and flexible alignment of elements.",
-      t_ar: "10. فليكس بوكس",
-      d_ar: "محاذاة العناصر بشكل حديث ومرن."
-    },
-    {
-      icon: "fa-table-cells",
-      t_fr: "11. Grid",
-      badge: "badge-pro",
-      code: `.container {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n  gap: 10px;\n}`,
-      d_fr: "Créer des mises en page complexes en grille.",
-      t_en: "11. Grid",
-      d_en: "Create complex grid-based layouts.",
-      t_ar: "11. جريد",
-      d_ar: "إنشاء تخطيطات معقدة تعتمد على الشبكة."
-    },
-    {
-      icon: "fa-image",
-      t_fr: "12. Background",
-      d_fr: "Couleurs, images et tailles de fond.",
-      t_en: "12. Background",
-      d_en: "Colors, images, and background sizing.",
-      t_ar: "12. الخلفية",
-      d_ar: "الألوان والصور وأحجام الخلفية."
-    },
-    {
-      icon: "fa-square",
-      t_fr: "13. Borders & Shadows",
-      d_fr: "Ajouter des bordures arrondies et des ombres portées.",
-      t_en: "13. Borders & Shadows",
-      d_en: "Add rounded borders and box shadows.",
-      t_ar: "13. الحدود والظلال",
-      d_ar: "إضافة حدود دائرية وظلال للعناصر.",
-      code: `div {\n  border-radius: 10px;\n  box-shadow: 0 0 10px gray;\n}`
-    },
-    {
-      icon: "fa-clock-rotate-left",
-      t_fr: "14. Transitions",
-      code: `div {\n  transition: 0.5s;\n}\ndiv:hover {\n  background: red;\n}`,
-      d_fr: "Animer les changements de propriétés en douceur.",
-      t_en: "14. Transitions",
-      d_en: "Smoothly animate property changes.",
-      t_ar: "14. الانتقالات",
-      d_ar: "تحريك تغييرات الخصائص بسلاسة."
-    },
-    {
-      icon: "fa-film",
-      t_fr: "15. Animations",
-      code: `@keyframes move {\n  from { left: 0; }\n  to { left: 100px; }\n}\ndiv {\n  animation: move 2s infinite;\n}`,
-      d_fr: "Créer des animations personnalisées avec keyframes.",
-      t_en: "15. Animations",
-      d_en: "Create custom animations using keyframes.",
-      t_ar: "15. الحركات",
-      d_ar: "إنشاء حركات مخصصة باستخدام keyframes."
-    },
-    {
-      icon: "fa-mobile-screen",
-      t_fr: "16. Responsive Design",
-      badge: "badge-important",
-      code: `@media (max-width: 768px) {\n  body { background: red; }\n}`,
-      d_fr: "Adapter le site aux mobiles avec les media queries.",
-      t_en: "16. Responsive Design",
-      d_en: "Adapt your site for mobile using media queries.",
-      t_ar: "16. التصميم المتجاوب",
-      d_ar: "تكييف الموقع مع الهواتف باستخدام media queries."
-    },
-    {
-      icon: "fa-ruler",
-      t_fr: "17. Units",
-      d_fr: "Utiliser px, %, em, rem, vw, vh.",
-      t_en: "17. Units",
-      d_en: "Use px, %, em, rem, vw, vh.",
-      t_ar: "17. الوحدات",
-      d_ar: "استخدام px, %, em, rem, vw, vh."
-    },
-    {
-      icon: "fa-layer-group",
-      t_fr: "18. Z-index",
-      d_fr: "Gérer la superposition des éléments.",
-      t_en: "18. Z-index",
-      d_en: "Manage element stacking order.",
-      t_ar: "18. Z-index",
-      d_ar: "التحكم في ترتيب طبقات العناصر."
-    },
-    {
-      icon: "fa-water",
-      t_fr: "19. Overflow",
-      d_fr: "Contrôler le contenu qui dépasse (hidden, scroll).",
-      t_en: "19. Overflow",
-      d_en: "Control overflowing content (hidden, scroll).",
-      t_ar: "19. التدفق",
-      d_ar: "التحكم في المحتوى الزائد (مخفي، تمرير)."
-    },
-    {
-      icon: "fa-display",
-      t_fr: "20. Display",
-      d_fr: "Changer le comportement (block, inline, none).",
-      t_en: "20. Display",
-      d_en: "Change element behavior (block, inline, none).",
-      t_ar: "20. العرض",
-      d_ar: "تغيير سلوك العناصر (كتلة، سطري، مخفي)."
+      icon: "fa-magic",
+      badge: "badge-modern",
+      t_fr: "1. Introduction au CSS",
+      d_fr: "CSS (Cascading Style Sheets) définit comment les éléments HTML sont affichés à l'écran.",
+      t_en: "1. Intro to CSS",
+      d_en: "CSS (Cascading Style Sheets) describes how HTML elements are to be displayed on screen.",
+      t_ar: "1. مقدمة في CSS",
+      d_ar: "تحدد CSS كيفية عرض عناصر HTML على الشاشة."
     },
     {
       icon: "fa-mouse-pointer",
-      t_fr: "21. Pseudo-classes",
-      d_fr: "États spéciaux comme :hover, :focus.",
-      t_en: "21. Pseudo-classes",
-      d_en: "Special states like :hover, :focus.",
-      t_ar: "21. الفئات الوهمية",
-      d_ar: "حالات خاصة مثل :hover و :focus."
+      badge: "badge-important",
+      t_fr: "2. Sélecteurs et Propriétés",
+      d_fr: "Ciblez des éléments par tag, classe (.class) ou ID (#id) et changez leurs propriétés.",
+      code: "h1 {\n  color: blue;\n  font-size: 20px;\n}",
+      t_en: "2. Selectors & Properties",
+      d_en: "Target elements by tag, class (.class), or ID (#id) and modify their properties.",
+      t_ar: "2. المحددات والخصائص",
+      d_ar: "استهدف العناصر عبر التاج أو الكلاس أو الـ ID وغير خصائصها."
     },
     {
-      icon: "fa-puzzle-piece",
-      t_fr: "22. Pseudo-elements",
-      d_fr: "Cibler des parties d'éléments (::before, ::after).",
-      t_en: "22. Pseudo-elements",
-      d_en: "Target specific parts of elements (::before, ::after).",
-      t_ar: "22. العناصر الوهمية",
-      d_ar: "استهداف أجزاء معينة من العناصر."
+      icon: "fa-box",
+      badge: "badge-important",
+      t_fr: "3. Le Box Model",
+      d_fr: "Chaque élément est une boîte composée de : Content, Padding, Border, et Margin.",
+      code: "div {\n  margin: 10px;\n  padding: 20px;\n  border: 1px solid black;\n}",
+      t_en: "3. The Box Model",
+      d_en: "Every element is a box consisting of: Content, Padding, Border, and Margin.",
+      t_ar: "3. نموذج الصندوق",
+      d_ar: "كل عنصر هو صندوق يتكون من: المحتوى، الحشو، الحدود، والهوامش."
+    },
+    {
+      icon: "fa-palette",
+      badge: "badge-modern",
+      t_fr: "4. Couleurs et Backgrounds",
+      d_fr: "Utilisez des couleurs Hex, RGB, HSL ou des dégradés (gradients).",
+      code: "body {\n  background: linear-gradient(red, yellow);\n}",
+      t_en: "4. Colors & Backgrounds",
+      d_en: "Use Hex, RGB, HSL colors or background gradients.",
+      t_ar: "4. الألوان والخلفيات",
+      d_ar: "استخدم ألوان Hex أو RGB أو التدرجات اللونية."
+    },
+    {
+      icon: "fa-font",
+      badge: "badge-modern",
+      t_fr: "5. Typographie",
+      d_fr: "Gérez les polices, la taille du texte, le poids (weight) et l'espacement.",
+      code: "p {\n  font-family: 'Arial';\n  line-height: 1.6;\n}",
+      t_en: "5. Typography",
+      d_en: "Control fonts, text size, weight, alignment, and line spacing.",
+      t_ar: "5. الخطوط",
+      d_ar: "تحكم في أنواع الخطوط وأحجامها وتباعد الأسطر."
+    },
+    {
+      icon: "fa-arrows-alt",
+      badge: "badge-important",
+      t_fr: "6. Flexbox",
+      d_fr: "Créez des mises en page flexibles et alignez facilement vos éléments.",
+      code: ".container {\n  display: flex;\n  justify-content: center;\n}",
+      t_en: "6. Flexbox",
+      d_en: "Create flexible layouts and align elements easily within a container.",
+      t_ar: "6. فليكس بوكس",
+      d_ar: "أنشئ تخطيطات مرنة وقم بمحاذاة العناصر بسهولة."
+    },
+    {
+      icon: "fa-th",
+      badge: "badge-pro",
+      t_fr: "7. CSS Grid",
+      d_fr: "Le système de mise en page le plus puissant pour créer des grilles complexes.",
+      code: ".grid {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}",
+      t_en: "7. CSS Grid",
+      d_en: "The most powerful layout system for creating complex grid structures.",
+      t_ar: "7. شبكة CSS (Grid)",
+      d_ar: "أقوى نظام تخطيط لإنشاء هياكل شبكية معقدة."
+    },
+    {
+      icon: "fa-mobile-alt",
+      badge: "badge-important",
+      t_fr: "8. Responsive Design",
+      d_fr: "Utilisez les Media Queries pour adapter votre site à tous les écrans.",
+      code: "@media (max-width: 600px) {\n  body { font-size: 14px; }\n}",
+      t_en: "8. Responsive Design",
+      d_en: "Use Media Queries to make your website look great on all devices.",
+      t_ar: "8. التصميم المستجيب",
+      d_ar: "استخدم Media Queries لجعل موقعك مناسباً لجميع الأجهزة."
+    },
+    {
+      icon: "fa-running",
+      badge: "badge-pro",
+      t_fr: "9. Animations et Transitions",
+      d_fr: "Donnez vie à votre site avec des effets de transition et des keyframes.",
+      code: ".btn:hover { transition: 0.3s; transform: scale(1.1); }",
+      t_en: "9. Animations & Transitions",
+      d_en: "Bring your site to life with transition effects and keyframe animations.",
+      t_ar: "9. الرسوم المتحركة",
+      d_ar: "أضف الحيوية لموقعك باستخدام الانتقالات والرسوم المتحركة."
     },
     {
       icon: "fa-vial",
-      t_fr: "23. Variables CSS",
       badge: "badge-pro",
-      code: `:root {\n  --main-color: red;\n}\np {\n  color: var(--main-color);\n}`,
-      d_fr: "Déclarer des variables réutilisables (:root).",
-      t_en: "23. CSS Variables",
-      d_en: "Declare reusable variables using :root.",
-      t_ar: "23. متغيرات CSS",
-      d_ar: "تعريف متغيرات قابلة لإعادة الاستخدام."
-    },
-    {
-      icon: "fa-rocket",
-      t_fr: "24. Mini Projet",
-      code: `header {\n  background: black;\n  color: white;\n  padding: 20px;\n}\n.container {\n  display: flex;\n  gap: 20px;\n}`,
-      d_fr: "Appliquer CSS pour créer un en-tête et des cartes.",
-      t_en: "24. Mini Project",
-      d_en: "Apply CSS to build a header and item cards.",
-      t_ar: "24. مشروع مصغر",
-      d_ar: "تطبيق CSS لبناء رأس صفحة وبطاقات."
-    },
-    {
-      icon: "fa-triangle-exclamation",
-      t_fr: "25. Erreurs à éviter",
-      d_fr: "Trop de CSS inline, code désorganisé, manque de responsive.",
-      t_en: "25. Errors to Avoid",
-      d_en: "Too much inline CSS, disorganized code, lack of responsiveness.",
-      t_ar: "25. أخطاء يجب تجنبها",
-      d_ar: "كثرة الـ CSS المدمج، كود غير منظم، وعدم التجاوب."
-    },
-    {
-      icon: "fa-check-double",
-      t_fr: "26. Bonnes pratiques",
-      d_fr: "Organiser avec des classes, mobile-first, commentaires.",
-      t_en: "26. Best Practices",
-      d_en: "Organize with classes, mobile-first, and comments.",
-      t_ar: "26. أفضل الممارسات",
-      d_ar: "التنظيم بالكلاسات، البدء بالموبايل، والتعليقات."
-    },
-    {
-      icon: "fa-screwdriver-wrench",
-      t_fr: "27. Outils utiles",
-      d_fr: "VS Code, DevTools, Figma.",
-      t_en: "27. Useful Tools",
-      d_en: "VS Code, browser DevTools, Figma.",
-      t_ar: "27. أدوات مفيدة",
-      d_ar: "VS Code، أدوات المطور في المتصفح، Figma."
-    },
-    {
-      icon: "fa-star",
-      t_fr: "28. Niveau PRO",
-      d_fr: "Apprendre Flexbox + Grid avancés, animations et UI/UX.",
-      t_en: "28. PRO Level",
-      d_en: "Master advanced Flexbox/Grid, animations, and UI/UX.",
-      t_ar: "28. مستوى المحترفين",
-      d_ar: "إتقان Flexbox و Grid المتقدم، والحركات."
-    },
-    {
-      icon: "fa-dumbbell",
-      t_fr: "29. Challenge",
-      d_fr: "Créer une Navbar responsive avec effets hover.",
-      t_en: "29. Challenge",
-      d_en: "Create a responsive Navbar with hover effects.",
-      t_ar: "29. تحدي",
-      d_ar: "إنشاء شريط تنقل متجاوب مع تأثيرات التحويم."
-    },
-    {
-      icon: "fa-road",
-      t_fr: "30. Roadmap",
-      d_fr: "Prochaine étape : JavaScript, DOM, React.",
-      t_en: "30. Roadmap",
-      d_en: "Next steps: JavaScript, DOM, React.",
-      t_ar: "30. خارطة الطريق",
-      d_ar: "الخطوات القادمة: جافا سكريبت، DOM، ريأكت."
+      t_fr: "10. Variables CSS",
+      d_fr: "Utilisez des variables (custom properties) pour maintenir votre code propre.",
+      code: ":root {\n  --main-color: #ff0000;\n}\nbody { color: var(--main-color); }",
+      t_en: "10. CSS Variables",
+      d_en: "Use custom properties (variables) to keep your CSS clean and maintainable.",
+      t_ar: "10. متغيرات CSS",
+      d_ar: "استخدم المتغيرات للحفاظ على نظافة وجودة كود الـ CSS."
     }
   ];
 

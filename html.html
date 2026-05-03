@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cours Complet HTML - Coding Life</title>
+  <title>Cours Complet HTML5 - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
@@ -33,13 +33,13 @@
     .lesson-icon {
       width: 60px;
       height: 60px;
-      background: var(--cl-brand-soft);
+      background: #e34f2622;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      color: var(--cl-brand);
+      color: #e34f26;
       flex-shrink: 0;
     }
     .lesson-info {
@@ -81,19 +81,6 @@
       border: 1px solid #30363d;
     }
 
-    .checklist {
-      list-style: none;
-      padding: 0;
-    }
-    .checklist li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .checklist li i.fa-check { color: var(--cl-success); }
-    .checklist li i.fa-xmark { color: var(--cl-error); }
-
     @media (max-width: 768px) {
       .lesson-header {
         flex-direction: column;
@@ -107,16 +94,16 @@
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #e34f26, #f06529) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-html5"></i> HTML5 Mastery</h1>
-      <p>A comprehensive 20-module guide to becoming a professional web developer.</p>
+      <h1><i class="fab fa-html5"></i> HTML5 Masterclass</h1>
+      <p>Master the structural foundation of the modern web and technical SEO.</p>
     </div>
     <div data-cl-lang="ar">
       <h1><i class="fab fa-html5"></i> احتراف HTML5</h1>
-      <p>دليل شامل من 20 وحدة لتصبح مطور ويب محترفاً.</p>
+      <p>أتقن الهيكل الأساسي للويب الحديث وأساسيات السيو التقني.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1><i class="fab fa-html5"></i> Maîtrise HTML5</h1>
-      <p>Un guide complet de 20 modules pour devenir un développeur web professionnel.</p>
+      <h1><i class="fab fa-html5"></i> Masterclass HTML5</h1>
+      <p>Maîtrisez les fondations structurelles du web moderne et le SEO technique.</p>
     </div>
   </div>
 
@@ -128,192 +115,111 @@
 <script>
   const htmlLessons = [
     {
-      icon: "fa-book-open",
-      t_fr: "1. Qu’est-ce que HTML ?",
-      d_fr: "HTML (HyperText Markup Language) est le langage standard utilisé pour créer des pages web.",
-      t_en: "1. What is HTML?",
-      d_en: "HTML (HyperText Markup Language) is the standard language for creating web pages.",
-      t_ar: "1. ما هو HTML؟",
-      d_ar: "HTML هي اللغة القياسية المستخدمة لإنشاء صفحات الويب."
+      icon: "fa-info-circle",
+      badge: "badge-modern",
+      t_fr: "1. Qu'est-ce que HTML5 ?",
+      d_fr: "HTML (HyperText Markup Language) est le langage de balisage utilisé pour créer la structure d'un site web.",
+      t_en: "1. What is HTML5?",
+      d_en: "HTML (HyperText Markup Language) is the standard markup language used to create the structure of web pages.",
+      t_ar: "1. ما هو HTML5؟",
+      d_ar: "HTML هي لغة توصيف النص الفائق المستخدمة لإنشاء هيكل صفحات الويب."
     },
     {
-      icon: "fa-layer-group",
-      t_fr: "2. Structure de base",
-      code: `<!DOCTYPE html>\n<html lang="fr">\n<head>\n    <meta charset="UTF-8">\n    <title>Mon site</title>\n</head>\n<body>\n    <h1>Bienvenue</h1>\n</body>\n</html>`,
-      d_fr: "Tout document HTML commence par cette structure fondamentale.",
-      t_en: "2. Basic Structure",
-      d_en: "Every HTML document starts with this fundamental structure.",
-      t_ar: "2. الهيكل الأساسي",
-      d_ar: "كل مستند HTML يبدأ بهذا الهيكل الأساسي."
+      icon: "fa-file-code",
+      badge: "badge-important",
+      t_fr: "2. Structure d'un Document",
+      d_fr: "Chaque page commence par un doctype, suivi des balises html, head (pour les métadonnées) et body (pour le contenu).",
+      code: "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Ma Page</title>\n  </head>\n  <body>\n    <h1>Hello!</h1>\n  </body>\n</html>",
+      t_en: "2. Document Structure",
+      d_en: "Every page starts with a doctype, followed by html, head (for metadata), and body (for content) tags.",
+      t_ar: "2. هيكل المستند",
+      d_ar: "تبدأ كل صفحة بـ doctype، متبوعة بـ html و head و body."
     },
     {
-      icon: "fa-tags",
-      t_fr: "3. Les balises (Tags)",
-      d_fr: "Les balises entourent le contenu : &lt;p&gt;Texte&lt;/p&gt;.",
-      t_en: "3. Tags",
-      d_en: "Tags surround the content: &lt;p&gt;Text&lt;/p&gt;.",
-      t_ar: "3. الوسوم",
-      d_ar: "الوسوم تحيط بالمحتوى: &lt;p&gt;نص&lt;/p&gt;."
+      icon: "fa-heading",
+      badge: "badge-modern",
+      t_fr: "3. Titres et Paragraphes",
+      d_fr: "Utilisez h1 à h6 pour les titres (important pour le SEO) et p pour le texte normal.",
+      code: "<h1>Titre Principal</h1>\n<p>Ceci est un paragraphe.</p>",
+      t_en: "3. Headings & Paragraphs",
+      d_en: "Use h1 through h6 for titles (crucial for SEO) and p for regular text content.",
+      t_ar: "3. العناوين والفقرات",
+      d_ar: "استخدم h1 إلى h6 للعناوين و p للنصوص العادية."
     },
     {
-      icon: "fa-star",
-      t_fr: "4. Les balises essentielles",
-      d_fr: "Titres (h1-h6), paragraphes (p), liens (a) et images (img).",
-      t_en: "4. Essential Tags",
-      d_en: "Headings (h1-h6), paragraphs (p), links (a), and images (img).",
-      t_ar: "4. الوسوم الأساسية",
-      d_ar: "العناوين، الفقرات، الروابط والصور."
+      icon: "fa-link",
+      badge: "badge-pro",
+      t_fr: "4. Liens et Navigation",
+      d_fr: "La balise 'a' (anchor) permet de naviguer entre les pages en utilisant l'attribut href.",
+      code: "<a href='https://google.com'>Visitez Google</a>",
+      t_en: "4. Links & Navigation",
+      d_en: "The 'a' (anchor) tag allows navigation between pages using the href attribute.",
+      t_ar: "4. الروابط والتنقل",
+      d_ar: "تسمح علامة 'a' بالتنقل بين الصفحات باستخدام href."
+    },
+    {
+      icon: "fa-image",
+      badge: "badge-modern",
+      t_fr: "5. Images et Médias",
+      d_fr: "Insérez des images avec 'img' et n'oubliez pas l'attribut 'alt' pour l'accessibilité.",
+      code: "<img src='image.jpg' alt='Description de l\'image'>",
+      t_en: "5. Images & Media",
+      d_en: "Insert images using the 'img' tag, and always include the 'alt' attribute for accessibility.",
+      t_ar: "5. الصور والوسائط",
+      d_ar: "أدرج الصور باستخدام 'img' ولا تنسَ alt للوصول الشامل."
     },
     {
       icon: "fa-list-ul",
-      t_fr: "5. Les listes",
-      d_fr: "Listes à puces (ul) ou listes numérotées (ol).",
-      t_en: "5. Lists",
-      d_en: "Bulleted lists (ul) or numbered lists (ol).",
-      t_ar: "5. القوائم",
-      d_ar: "قوائم نقطية (ul) أو قوائم مرقمة (ol)."
+      badge: "badge-modern",
+      t_fr: "6. Listes",
+      d_fr: "Listes à puces (ul) ou ordonnées (ol) utilisant des éléments li.",
+      code: "<ul>\n  <li>Élément 1</li>\n  <li>Élément 2</li>\n</ul>",
+      t_en: "6. Lists",
+      d_en: "Unordered lists (ul) or ordered lists (ol) using li elements for each item.",
+      t_ar: "6. القوائم",
+      d_ar: "قوائم غير مرتبة (ul) أو مرتبة (ol) باستخدام عناصر li."
     },
     {
       icon: "fa-table",
-      t_fr: "6. Les tableaux",
-      code: `<table border=\"1\">\n  <tr>\n    <th>Nom</th>\n    <th>Âge</th>\n  </tr>\n  <tr>\n    <td>Ali</td>\n    <td>20</td>\n  </tr>\n</table>`,
-      d_fr: "Utilisez table, tr, th, et td pour organiser des données.",
-      t_en: "6. Tables",
-      d_en: "Use table, tr, th, and td to organize data.",
-      t_ar: "6. الجداول",
-      d_ar: "استخدام الجداول لتنظيم البيانات."
+      badge: "badge-pro",
+      t_fr: "7. Tableaux",
+      d_fr: "Organisez vos données tabulaires avec table, tr (ligne), th (en-tête) et td (cellule).",
+      code: "<table>\n  <tr><th>Nom</th></tr>\n  <tr><td>Ali</td></tr>\n</table>",
+      t_en: "7. Tables",
+      d_en: "Organize tabular data with table, tr (row), th (header), and td (cell) tags.",
+      t_ar: "7. الجداول",
+      d_ar: "نظم بياناتك في جداول باستخدام tr و th و td."
     },
     {
       icon: "fa-wpforms",
-      t_fr: "7. Les formulaires",
-      code: `<form>\n  <input type=\"text\" placeholder=\"Nom\">\n  <button>Envoyer</button>\n</form>`,
-      d_fr: "Collecter des données utilisateur avec inputs et boutons.",
-      t_en: "7. Forms",
-      d_en: "Collect user data using inputs and buttons.",
-      t_ar: "7. النماذج",
-      d_ar: "جمع بيانات المستخدم باستخدام المدخلات والأزرار."
-    },
-    {
-      icon: "fa-fingerprint",
-      t_fr: "8. Les attributs",
-      d_fr: "Ajouter des infos aux balises : href, src, alt, class, id.",
-      t_en: "8. Attributes",
-      d_en: "Add info to tags: href, src, alt, class, id.",
-      t_ar: "8. السمات",
-      d_ar: "إضافة معلومات للوسوم: href, src, alt, id."
-    },
-    {
-      icon: "fa-cubes",
-      t_fr: "9. HTML5 (Structure)",
-      badge: "badge-modern",
-      code: `<header></header><nav></nav><main></main><footer></footer>`,
-      d_fr: "Utiliser les balises sémantiques modernes pour le layout.",
-      t_en: "9. HTML5 Structure",
-      d_en: "Use modern semantic tags for your page layout.",
-      t_ar: "9. هيكل HTML5",
-      d_ar: "استخدام الوسوم الدلالية الحديثة لتخطيط الصفحة."
-    },
-    {
-      icon: "fa-brain",
-      t_fr: "10. Sémantique",
       badge: "badge-important",
-      d_fr: "Rendre le code compréhensible pour les moteurs de recherche.",
-      t_en: "10. Semantics",
-      d_en: "Make your code understandable for search engines.",
-      t_ar: "10. الدلالية",
-      d_ar: "جعل الكود مفهوماً لمحركات البحث."
+      t_fr: "8. Formulaires",
+      d_fr: "Collectez les données utilisateur avec input, textarea, select et button.",
+      code: "<input type='text' placeholder='Nom'>\n<button>Envoyer</button>",
+      t_en: "8. Forms",
+      d_en: "Collect user input using input, textarea, select, and button elements.",
+      t_ar: "8. النماذج",
+      d_ar: "اجمع بيانات المستخدم باستخدام input و textarea و button."
     },
     {
-      icon: "fa-video",
-      t_fr: "11. Balises avancées",
-      d_fr: "Intégrer du contenu multimédia : vidéo, audio, div, span.",
-      t_en: "11. Advanced Tags",
-      d_en: "Integrate multimedia: video, audio, div, span.",
-      t_ar: "11. وسوم متقدمة",
-      d_ar: "دمج الوسائط المتعددة: فيديو وصوت."
+      icon: "fa-puzzle-piece",
+      badge: "badge-important",
+      t_fr: "9. HTML Sémantique",
+      d_fr: "Utilisez des balises qui ont du sens : header, footer, nav, section, article.",
+      t_en: "9. Semantic HTML",
+      d_en: "Use meaningful tags: header, footer, nav, section, and article for better structure.",
+      t_ar: "9. HTML الدلالي",
+      d_ar: "استخدم علامات لها معنى مثل header و footer و nav."
     },
     {
-      icon: "fa-search",
-      t_fr: "12. SEO",
-      d_fr: "Optimiser le site pour Google avec les balises méta.",
-      t_en: "12. SEO",
-      d_en: "Optimize your site for Google using meta tags.",
-      t_ar: "12. SEO",
-      d_ar: "تحسين الموقع لمحركات البحث."
-    },
-    {
-      icon: "fa-mobile-screen",
-      t_fr: "13. Responsive (Mobile)",
-      d_fr: "Utiliser la balise viewport pour adapter l'affichage mobile.",
-      t_en: "13. Responsive (Mobile)",
-      d_en: "Use the viewport tag to adapt for mobile displays.",
-      t_ar: "13. التجاوب",
-      d_ar: "تكييف العرض مع الهواتف الذكية."
-    },
-    {
-      icon: "fa-project-diagram",
-      t_fr: "14. Projet complet",
-      code: `<!DOCTYPE html>\n<html>\n<body>\n  <header><h1>Portfolio</h1></header>\n</body>\n</html>`,
-      d_fr: "Créer un mini-site complet avec header, nav et footer.",
-      t_en: "14. Complete Project",
-      d_en: "Build a mini-site with header, nav, and footer.",
-      t_ar: "14. مشروع كامل",
-      d_ar: "بناء موقع مصغر متكامل."
-    },
-    {
-      icon: "fa-triangle-exclamation",
-      t_fr: "15. Erreurs à éviter",
-      d_fr: "Oublier de fermer les balises ou manquer d'alt pour les images.",
-      t_en: "15. Errors to Avoid",
-      d_en: "Forgetting to close tags or missing image alt text.",
-      t_ar: "15. أخطاء شائعة",
-      d_ar: "نسيان إغلاق الوسوم أو نقص وصف الصور."
-    },
-    {
-      icon: "fa-check-circle",
-      t_fr: "16. Bonnes pratiques",
-      d_fr: "Indentation propre et séparation HTML/CSS.",
-      t_en: "16. Best Practices",
-      d_en: "Clean indentation and separating HTML/CSS.",
-      t_ar: "16. أفضل الممارسات",
-      d_ar: "تنظيم الكود وفصل HTML عن CSS."
-    },
-    {
-      icon: "fa-tools",
-      t_fr: "17. Outils recommandés",
-      d_fr: "Utiliser VS Code et Chrome DevTools.",
-      t_en: "17. Recommended Tools",
-      d_en: "Use VS Code and Chrome DevTools.",
-      t_ar: "17. أدوات موصى بها",
-      d_ar: "استخدام VS Code وأدوات المطور."
-    },
-    {
-      icon: "fa-road",
-      t_fr: "18. Roadmap",
-      d_fr: "Après HTML, apprenez CSS et JavaScript.",
-      t_en: "18. Roadmap",
-      d_en: "After HTML, learn CSS and JavaScript.",
-      t_ar: "18. خارطة الطريق",
-      d_ar: "بعد HTML، تعلم CSS وجافا سكريبت."
-    },
-    {
-      icon: "fa-rocket",
-      t_fr: "19. Niveau PRO",
+      icon: "fa-universal-access",
       badge: "badge-pro",
-      d_fr: "Cloner des sites réels et créer un portfolio.",
-      t_en: "19. PRO Level",
-      d_en: "Clone real websites and build a portfolio.",
-      t_ar: "19. مستوى المحترفين",
-      d_ar: "تقليد مواقع حقيقية وبناء ملف أعمال."
-    },
-    {
-      icon: "fa-dumbbell",
-      t_fr: "20. Exercice",
-      d_fr: "Créez une page avec titre, image et formulaire.",
-      t_en: "20. Exercise",
-      d_en: "Create a page with a title, image, and form.",
-      t_ar: "20. تمرين",
-      d_ar: "أنشئ صفحة تحتوي على عنوان وصورة ونموذج."
+      t_fr: "10. Accessibilité et SEO",
+      d_fr: "Apprenez les attributs ARIA et les bonnes pratiques pour que votre site soit accessible à tous.",
+      t_en: "10. Accessibility & SEO",
+      d_en: "Learn ARIA attributes and best practices to make your site accessible and search-engine friendly.",
+      t_ar: "10. الوصول والسيو",
+      d_ar: "تعلم سمات ARIA وأفضل الممارسات لجعل موقعك متاحاً للجميع."
     }
   ];
 

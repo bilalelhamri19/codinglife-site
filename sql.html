@@ -6,7 +6,7 @@
   <title>Cours Complet SQL - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
@@ -94,16 +94,16 @@
 <div class="course-container">
   <div class="course-header" style="background: linear-gradient(135deg, #00758f, #005a6d) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fas fa-database"></i> SQL Data Mastery</h1>
-      <p>Master the language used to communicate with databases world-wide.</p>
+      <h1><i class="fas fa-database"></i> SQL Database Mastery</h1>
+      <p>Master relational data modeling, complex querying, and database architecture.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fas fa-database"></i> إتقان SQL</h1>
-      <p>احترف اللغة المستخدمة للتواصل مع قواعد البيانات في جميع أنحاء العالم.</p>
+      <h1><i class="fas fa-database"></i> إتقان قواعد بيانات SQL</h1>
+      <p>أتقن نمذجة البيانات العلائقية، الاستعلامات المعقدة، ومعمارية قواعد البيانات.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1><i class="fas fa-database"></i> Maîtrise SQL</h1>
-      <p>Maîtrisez le langage utilisé pour communiquer avec les bases de données.</p>
+      <h1><i class="fas fa-database"></i> Maîtrise des Bases SQL</h1>
+      <p>Maîtrisez la modélisation des données, les requêtes complexes et l'architecture.</p>
     </div>
   </div>
 
@@ -115,76 +115,112 @@
 <script>
   const sqlLessons = [
     {
-      icon: "fa-database",
-      t_fr: "1. Qu’est-ce que SQL ?",
-      d_fr: "SQL (Structured Query Language) est utilisé pour gérer et manipuler des bases de données relationnelles.",
+      icon: "fa-info-circle",
+      badge: "badge-modern",
+      t_fr: "1. Qu'est-ce que SQL ?",
+      d_fr: "SQL (Structured Query Language) est le langage standard pour gérer les bases de données relationnelles.",
       t_en: "1. What is SQL?",
-      d_en: "SQL (Structured Query Language) is used to manage and manipulate relational databases.",
+      d_en: "SQL (Structured Query Language) is the standard language for managing relational databases.",
       t_ar: "1. ما هو SQL؟",
-      d_ar: "SQL هي اللغة المستخدمة لإدارة والتحكم في قواعد البيانات العلائقية."
+      d_ar: "SQL هي اللغة القياسية لإدارة قواعد البيانات العلائقية."
+    },
+    {
+      icon: "fa-table",
+      badge: "badge-important",
+      t_fr: "2. Bases de Données et Tables",
+      d_fr: "Apprenez à créer des bases de données et des tables pour stocker vos données.",
+      code: "CREATE DATABASE shop;\nCREATE TABLE users (\n    id INT PRIMARY KEY,\n    name VARCHAR(50)\n);",
+      t_en: "2. Databases & Tables",
+      d_en: "Learn how to create databases and define tables to store your structured data.",
+      t_ar: "2. قواعد البيانات والجداول",
+      d_ar: "تعلم كيفية إنشاء قواعد البيانات والجداول لتخزين بياناتك."
+    },
+    {
+      icon: "fa-search",
+      badge: "badge-important",
+      t_fr: "3. SELECT : Récupérer des Données",
+      d_fr: "Utilisez SELECT pour extraire des informations d'une table.",
+      code: "SELECT name, email FROM users\nWHERE id = 1;",
+      t_en: "3. SELECT: Fetching Data",
+      d_en: "Use the SELECT statement to retrieve specific information from a database table.",
+      t_ar: "3. SELECT: جلب البيانات",
+      d_ar: "استخدم SELECT لاستخراج معلومات محددة من جدول."
+    },
+    {
+      icon: "fa-plus-circle",
+      badge: "badge-modern",
+      t_fr: "4. INSERT, UPDATE et DELETE",
+      d_fr: "Modifiez vos données : insérez de nouveaux enregistrements ou mettez-les à jour.",
+      code: "INSERT INTO users (name) VALUES ('Ali');\nUPDATE users SET name = 'Omar' WHERE id = 1;",
+      t_en: "4. Modifying Data",
+      d_en: "Modify your data using INSERT to add records, UPDATE to change them, and DELETE to remove them.",
+      t_ar: "4. تعديل البيانات",
+      d_ar: "عدل بياناتك باستخدام INSERT للإضافة، UPDATE للتحديث، و DELETE للحذف."
     },
     {
       icon: "fa-filter",
-      t_fr: "2. SELECT : Récupérer des données",
-      code: `SELECT nom, age FROM utilisateurs;`,
-      d_fr: "L'instruction SELECT est utilisée pour extraire des données d'une table.",
-      t_en: "2. SELECT: Retrieve Data",
-      d_en: "The SELECT statement is used to fetch data from a table.",
-      t_ar: "2. SELECT: جلب البيانات",
-      d_ar: "يُستخدم أمر SELECT لاستخراج البيانات من الجدول."
-    },
-    {
-      icon: "fa-magnifying-glass",
-      t_fr: "3. WHERE : Filtrer les résultats",
-      code: `SELECT * FROM utilisateurs\nWHERE age > 18;`,
-      d_fr: "Utilisez WHERE pour filtrer les enregistrements selon des conditions.",
-      t_en: "3. WHERE: Filter Results",
-      d_en: "Use WHERE to filter records based on specific conditions.",
-      t_ar: "3. WHERE: تصفية النتائج",
-      d_ar: "استخدم WHERE لتصفية السجلات بناءً على شروط معينة."
-    },
-    {
-      icon: "fa-plus",
-      t_fr: "4. INSERT : Ajouter des données",
-      code: `INSERT INTO utilisateurs (nom, age)\nVALUES ('Ali', 20);`,
-      d_fr: "L'instruction INSERT INTO est utilisée pour ajouter de nouvelles lignes.",
-      t_en: "4. INSERT: Add Data",
-      d_en: "The INSERT INTO statement is used to add new rows to a table.",
-      t_ar: "4. INSERT: إضافة بيانات",
-      d_ar: "يُستخدم أمر INSERT INTO لإضافة صفوف جديدة للجدول."
-    },
-    {
-      icon: "fa-pen",
-      t_fr: "5. UPDATE : Modifier des données",
-      badge: "badge-important",
-      code: `UPDATE utilisateurs\nSET age = 21\nWHERE nom = 'Ali';`,
-      d_fr: "Modifiez les enregistrements existants avec UPDATE. N'oubliez pas le WHERE !",
-      t_en: "5. UPDATE: Modify Data",
-      d_en: "Modify existing records with UPDATE. Don't forget the WHERE clause!",
-      t_ar: "5. UPDATE: تعديل البيانات",
-      d_ar: "تعديل السجلات الموجودة. لا تنسَ جملة WHERE!"
-    },
-    {
-      icon: "fa-trash",
-      t_fr: "6. DELETE : Supprimer des données",
-      badge: "badge-important",
-      code: `DELETE FROM utilisateurs\nWHERE id = 5;`,
-      d_fr: "Supprimez des lignes de la table avec DELETE.",
-      t_en: "6. DELETE: Remove Data",
-      d_en: "Remove rows from a table using the DELETE statement.",
-      t_ar: "6. DELETE: حذف البيانات",
-      d_ar: "حذف الصفوف من الجدول."
+      badge: "badge-modern",
+      t_fr: "5. Filtrage et Tri",
+      d_fr: "Utilisez WHERE, AND, OR, et ORDER BY pour organiser vos résultats.",
+      code: "SELECT * FROM products\nORDER BY price DESC;",
+      t_en: "5. Filtering & Sorting",
+      d_en: "Use WHERE, AND, OR, and ORDER BY to organize and refine your query results.",
+      t_ar: "5. التصفية والفرز",
+      d_ar: "استخدم WHERE و ORDER BY لتنظيم وتصفية نتائجك."
     },
     {
       icon: "fa-link",
-      t_fr: "7. JOINS : Relier les tables",
       badge: "badge-pro",
-      code: `SELECT * FROM commandes\nJOIN clients ON commandes.id = clients.id;`,
-      d_fr: "Combinez des lignes de deux ou plusieurs tables avec JOIN.",
-      t_en: "7. JOINS: Linking Tables",
-      d_en: "Combine rows from two or more tables using the JOIN clause.",
-      t_ar: "7. JOINS: ربط الجداول",
-      d_ar: "دمج الصفوف من جدولين أو أكثر."
+      t_fr: "6. Les JOINS (Jointures)",
+      d_fr: "Combinez les données de plusieurs tables en utilisant INNER JOIN, LEFT JOIN, etc.",
+      code: "SELECT orders.id, users.name\nFROM orders\nINNER JOIN users ON orders.user_id = users.id;",
+      t_en: "6. JOINS",
+      d_en: "Combine data from multiple tables using INNER JOIN, LEFT JOIN, and other join types.",
+      t_ar: "6. الربط (JOINS)",
+      d_ar: "اجمع البيانات من جداول متعددة باستخدام أنواع الربط المختلفة."
+    },
+    {
+      icon: "fa-calculator",
+      badge: "badge-modern",
+      t_fr: "7. Fonctions d'Agrégation",
+      d_fr: "Calculez des sommes, des moyennes ou comptez des lignes avec SUM, AVG, COUNT.",
+      code: "SELECT COUNT(*) FROM users;\nSELECT AVG(price) FROM products;",
+      t_en: "7. Aggregate Functions",
+      d_en: "Perform calculations like sums, averages, or row counts using SUM, AVG, and COUNT.",
+      t_ar: "7. دوال التجميع",
+      d_ar: "قم بإجراء حسابات مثل المجموع أو المتوسط باستخدام SUM و AVG."
+    },
+    {
+      icon: "fa-layer-group",
+      badge: "badge-pro",
+      t_fr: "8. GROUP BY et HAVING",
+      d_fr: "Groupez vos résultats par catégorie et filtrez les groupes.",
+      code: "SELECT category, COUNT(*)\nFROM products\nGROUP BY category\nHAVING COUNT(*) > 5;",
+      t_en: "8. GROUP BY & HAVING",
+      d_en: "Group your results by specific categories and filter those groups using HAVING.",
+      t_ar: "8. التجميع والفلترة",
+      d_ar: "جمع نتائجك حسب الفئة وقم بفلترة المجموعات."
+    },
+    {
+      icon: "fa-key",
+      badge: "badge-important",
+      t_fr: "9. Index et Performance",
+      d_fr: "Optimisez vos requêtes en utilisant des Index sur les colonnes fréquemment recherchées.",
+      code: "CREATE INDEX idx_name ON users(name);",
+      t_en: "9. Indexes & Performance",
+      d_en: "Optimize your queries by using Indexes on columns that are frequently searched.",
+      t_ar: "9. الفهارس والأداء",
+      d_ar: "حسن أداء استعلاماتك باستخدام الفهارس (Indexes)."
+    },
+    {
+      icon: "fa-shield-alt",
+      badge: "badge-pro",
+      t_fr: "10. Sécurité et Transactions",
+      d_fr: "Utilisez les transactions (BEGIN, COMMIT, ROLLBACK) pour garantir l'intégrité des données.",
+      t_en: "10. Security & Transactions",
+      d_en: "Use transactions (BEGIN, COMMIT, ROLLBACK) to ensure data integrity and security.",
+      t_ar: "10. الأمان والمعاملات",
+      d_ar: "استخدم المعاملات (Transactions) لضمان سلامة وأمان البيانات."
     }
   ];
 

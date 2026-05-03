@@ -6,7 +6,7 @@
   <title>Cours Complet Git - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
@@ -92,18 +92,18 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #f05032, #c0392b) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #f05032, #d13a1e) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-git-alt"></i> Git Version Control</h1>
-      <p>Master version control and collaboration to manage your code professionally.</p>
+      <h1><i class="fab fa-git-alt"></i> Git Professional Workflow</h1>
+      <p>Master version control, collaboration, and professional software delivery pipelines.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-git-alt"></i> إتقان Git</h1>
-      <p>احترف التحكم في الإصدارات والتعاون لإدارة الكود الخاص بك بشكل احترافي.</p>
+      <h1><i class="fab fa-git-alt"></i> احتراف Git والعمل الجماعي</h1>
+      <p>أتقن التحكم في الإصدارات، التعاون، ومسارات تسليم البرمجيات الاحترافية.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1><i class="fab fa-git-alt"></i> Maîtrise Git</h1>
-      <p>Maîtrisez le contrôle de version et la collaboration pour gérer votre code.</p>
+      <h1><i class="fab fa-git-alt"></i> Workflow Git Professionnel</h1>
+      <p>Maîtrisez le contrôle de version, la collaboration et la livraison logicielle.</p>
     </div>
   </div>
 
@@ -115,64 +115,111 @@
 <script>
   const gitLessons = [
     {
-      icon: "fa-rocket",
-      t_fr: "1. Qu’est-ce que Git ?",
-      d_fr: "Git est un système de contrôle de version décentralisé qui permet de suivre l'historique de votre code.",
+      icon: "fa-info-circle",
+      badge: "badge-modern",
+      t_fr: "1. Qu'est-ce que Git ?",
+      d_fr: "Git est un système de contrôle de version décentralisé qui permet de suivre les modifications de votre code.",
       t_en: "1. What is Git?",
-      d_en: "Git is a decentralized version control system used to track code history and changes.",
+      d_en: "Git is a decentralized version control system used to track changes in source code during development.",
       t_ar: "1. ما هو Git؟",
-      d_ar: "Git هو نظام لا مركزي للتحكم في الإصدارات يُستخدم لتتبع تاريخ الكود."
+      d_ar: "جيت هو نظام لا مركزي للتحكم في الإصدارات يستخدم لتتبع التغييرات في الكود."
     },
     {
-      icon: "fa-folder-plus",
-      t_fr: "2. Initialiser un dépôt",
-      code: `git init`,
-      d_fr: "Utilisez <code>git init</code> pour commencer à suivre un projet avec Git.",
-      t_en: "2. Initialize Repository",
-      d_en: "Use <code>git init</code> to start tracking a project with Git.",
-      t_ar: "2. إنشاء مستودع",
-      d_ar: "استخدم <code>git init</code> لبدء تتبع مشروعك باستخدام Git."
+      icon: "fa-terminal",
+      badge: "badge-important",
+      t_fr: "2. Initialisation et Commits",
+      d_fr: "Créez un dépôt et enregistrez vos premières modifications.",
+      code: "git init\ngit add .\ngit commit -m 'Premier commit'",
+      t_en: "2. Init & Commits",
+      d_en: "Initialize a repository and save your first set of changes using commits.",
+      t_ar: "2. التهيئة والـ Commits",
+      d_ar: "قم بتهيئة مستودع جديد واحفظ تغييراتك الأولى."
     },
     {
-      icon: "fa-plus",
-      t_fr: "3. Ajouter & Commiter",
-      code: `git add .\ngit commit -m "Mon message"`,
-      d_fr: "Ajoutez vos fichiers à la zone de staging puis enregistrez vos changements avec un commit.",
-      t_en: "3. Add & Commit",
-      d_en: "Add your files to the staging area and save your changes with a commit.",
-      t_ar: "3. الإضافة والحفظ",
-      d_ar: "إضافة الملفات ثم حفظ التغييرات باستخدام commit."
-    },
-    {
-      icon: "fa-clock-rotate-left",
-      t_fr: "4. Historique (Log)",
-      code: `git log --oneline`,
-      d_fr: "Consultez l'historique des modifications apportées au projet.",
-      t_en: "4. History (Log)",
-      d_en: "View the history of modifications made to the project.",
-      t_ar: "4. التاريخ",
-      d_ar: "عرض تاريخ التعديلات التي أجريت على المشروع."
+      icon: "fa-history",
+      badge: "badge-modern",
+      t_fr: "3. Historique et Statut",
+      d_fr: "Vérifiez l'état de vos fichiers et consultez l'historique des modifications.",
+      code: "git status\ngit log --oneline",
+      t_en: "3. History & Status",
+      d_en: "Check the state of your files and view the history of all changes made to the project.",
+      t_ar: "3. التاريخ والحالة",
+      d_ar: "تحقق من حالة ملفاتك واطلع على تاريخ التغييرات."
     },
     {
       icon: "fa-code-branch",
-      t_fr: "5. Branches",
       badge: "badge-important",
-      code: `git checkout -b feature-test`,
-      d_fr: "Utilisez les branches pour travailler sur de nouvelles fonctionnalités sans casser le code principal.",
-      t_en: "5. Branches",
-      d_en: "Use branches to work on new features without breaking the main codebase.",
-      t_ar: "5. الفروع",
-      d_ar: "استخدم الفروع للعمل على ميزات جديدة دون التأثير على الكود الرئيسي."
+      t_fr: "4. Les Branches",
+      d_fr: "Créez des branches pour travailler sur de nouvelles fonctionnalités sans casser le code principal.",
+      code: "git branch feature-x\ngit checkout feature-x",
+      t_en: "4. Branching",
+      d_en: "Create branches to work on new features independently without affecting the main codebase.",
+      t_ar: "4. الفروع (Branches)",
+      d_ar: "أنشئ فروعاً للعمل على ميزات جديدة بشكل مستقل."
     },
     {
-      icon: "fa-cloud-arrow-up",
-      t_fr: "6. Push & Pull",
-      code: `git push origin main\ngit pull origin main`,
-      d_fr: "Envoyez vos changements sur GitHub (Push) ou récupérez les derniers changements (Pull).",
-      t_en: "6. Push & Pull",
-      d_en: "Send your changes to GitHub (Push) or retrieve the latest updates (Pull).",
-      t_ar: "6. الرفع والجلب",
-      d_ar: "رفع التغييرات إلى GitHub أو جلب التحديثات الجديدة."
+      icon: "fa-object-group",
+      badge: "badge-modern",
+      t_fr: "5. Merge (Fusion)",
+      d_fr: "Fusionnez vos branches une fois le travail terminé.",
+      code: "git checkout main\ngit merge feature-x",
+      t_en: "5. Merging",
+      d_en: "Merge your feature branches back into the main branch once the work is complete.",
+      t_ar: "5. الدمج (Merge)",
+      d_ar: "قم بدمج فروع الميزات في الفرع الرئيسي بعد انتهاء العمل."
+    },
+    {
+      icon: "fa-cloud-upload-alt",
+      badge: "badge-important",
+      t_fr: "6. Dépôts Distants (GitHub)",
+      d_fr: "Envoyez votre code sur des plateformes comme GitHub, GitLab ou Bitbucket.",
+      code: "git remote add origin url\ngit push -u origin main",
+      t_en: "6. Remote Repos (GitHub)",
+      d_en: "Connect your local repository to remote platforms like GitHub for backup and collaboration.",
+      t_ar: "6. المستودعات البعيدة",
+      d_ar: "اربط مستودعك المحلي بمنصات مثل GitHub للنسخ الاحتياطي والتعاون."
+    },
+    {
+      icon: "fa-sync-alt",
+      badge: "badge-modern",
+      t_fr: "7. Pull et Fetch",
+      d_fr: "Récupérez les dernières modifications de vos collaborateurs.",
+      code: "git pull origin main",
+      t_en: "7. Pull & Fetch",
+      d_en: "Download and integrate the latest changes from your team into your local project.",
+      t_ar: "7. جلب التحديثات",
+      d_ar: "قم بجلب وتحديث كودك بآخر تغييرات زملائك."
+    },
+    {
+      icon: "fa-exclamation-triangle",
+      badge: "badge-pro",
+      t_fr: "8. Conflits de Fusion",
+      d_fr: "Apprenez à résoudre les conflits lorsque deux personnes modifient la même ligne.",
+      t_en: "8. Merge Conflicts",
+      d_en: "Learn how to resolve conflicts that occur when multiple people edit the same lines of code.",
+      t_ar: "8. تعارض الدمج",
+      d_ar: "تعلم كيفية حل التعارضات عند تعديل نفس الأسطر من قبل أشخاص مختلفين."
+    },
+    {
+      icon: "fa-undo",
+      badge: "badge-pro",
+      t_fr: "9. Revenir en arrière",
+      d_fr: "Utilisez reset, revert et stash pour annuler des erreurs ou sauvegarder temporairement votre travail.",
+      code: "git checkout -- file.txt\ngit stash",
+      t_en: "9. Undoing Changes",
+      d_en: "Use reset, revert, and stash to undo mistakes or temporarily save unfinished work.",
+      t_ar: "9. التراجع عن التغييرات",
+      d_ar: "استخدم reset و revert للتراجع عن الأخطاء أو stash لحفظ العمل مؤقتاً."
+    },
+    {
+      icon: "fa-check-double",
+      badge: "badge-pro",
+      t_fr: "10. Git Flow et Pull Requests",
+      d_fr: "Adoptez des flux de travail professionnels en utilisant les Pull Requests pour la revue de code.",
+      t_en: "10. Git Flow & PRs",
+      d_en: "Adopt professional workflows using Pull Requests for team code reviews and quality control.",
+      t_ar: "10. مسارات العمل الاحترافية",
+      d_ar: "تبنَّ مسارات عمل احترافية باستخدام Pull Requests لمراجعة الكود."
     }
   ];
 

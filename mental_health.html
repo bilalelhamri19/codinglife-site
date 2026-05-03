@@ -1,107 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mind & Body Health - Coding Life</title>
+  <title>Santé Mentale pour Développeurs - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
-    .health-tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin: 40px 0; }
-    .tip-item { background: var(--cl-surface); padding: 32px; border-radius: 16px; border: 1px solid var(--cl-line); text-align: center; transition: 0.3s; }
-    .tip-item:hover { transform: translateY(-8px); border-color: var(--cl-brand); }
-    .tip-item i { font-size: 2.5rem; color: var(--cl-brand); margin-bottom: 20px; }
-    .routine-box { background: var(--cl-ink); color: white; padding: 40px; border-radius: 24px; margin: 40px 0; }
-    .routine-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 32px; }
-    .routine-step { background: rgba(255,255,255,0.05); padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
-    .step-num { font-size: 2rem; font-weight: 800; color: var(--cl-brand); margin-bottom: 12px; }
+    .mental-hero {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+    }
+    .mental-card {
+      background: var(--cl-surface);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+    }
+    .mental-card:hover {
+      border-color: #7c3aed;
+      box-shadow: var(--cl-shadow-md);
+    }
+    .mental-icon {
+      font-size: 2.5rem;
+      color: #7c3aed;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .stat-box {
+      background: #f3f4f6;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #374151;
+      border-left: 4px solid #7c3aed;
+    }
   </style>
 </head>
 <body>
 
-<div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #10b981, #059669) !important;">
+<div class="course-container" style="max-width: 900px;">
+  <div class="course-header mental-hero">
     <div data-cl-lang="en">
-      <h1><i class="fa-solid fa-heart-pulse"></i> Mind & Body Health</h1>
-      <p>Tips to maintain your physical and mental well-being while coding. A healthy body powers a sharp mind.</p>
+      <h1><i class="fas fa-heart"></i> Mental Health for Developers</h1>
+      <p>Engineering is a mental marathon. Learn to manage burnout, imposter syndrome, and maintain peak well-being.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fa-solid fa-heart-pulse"></i> صحة العقل والجسد</h1>
-      <p>نصائح للحفاظ على سلامتك البدنية والنفسية أثناء البرمجة. الجسد السليم يغذي العقل الحاد.</p>
+      <h1><i class="fas fa-heart"></i> الصحة النفسية للمطورين</h1>
+      <p>الهندسة هي ماراثون ذهني. تعلم كيفية التعامل مع الاحتراق النفسي، متلازمة المحتال، والحفاظ على رفاهيتك.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fas fa-heart"></i> Santé Mentale pour Développeurs</h1>
+      <p>L'ingénierie est un marathon mental. Gérez le burnout et maintenez votre bien-être.</p>
     </div>
   </div>
 
   <div class="chapters">
-    <div class="chapter reveal">
+    
+    <!-- Issue 1: Burnout -->
+    <div class="mental-card reveal">
+      <i class="fas fa-fire mental-icon"></i>
       <div data-cl-lang="en">
-        <h2>Optimal Mind & Body</h2>
-        <div class="article-content">
-          <p>Maintaining mind and body health is crucial for every programmer. Allocate time for exercise, sufficient sleep, and healthy nutrition. Meditation and breathing techniques help improve focus and reduce stress.</p>
+        <h2>Understanding Burnout</h2>
+        <p>Burnout isn't just "being tired." It's emotional and physical exhaustion caused by prolonged stress.</p>
+        <div class="stat-box">
+          <strong>Tip:</strong> Set strict working hours. When the laptop closes, your brain should exit "work mode" completely.
         </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>توازن العقل والجسد</h2>
-        <div class="article-content">
-          <p>الحفاظ على صحة العقل والجسد أمر بالغ الأهمية لكل مبرمج. خصص وقتاً للتمارين الرياضية، والنوم الكافي، والتغذية الصحية. تساعد تقنيات التأمل والتنفس في تحسين التركيز وتقليل التوتر.</p>
+      <div data-cl-lang="ar" style="text-align: right;">
+        <h2>فهم الاحتراق النفسي (Burnout)</h2>
+        <p>الاحتراق ليس مجرد "تعب". إنه إنهاك عاطفي وجسدي ناتج عن ضغوط طويلة الأمد.</p>
+        <div class="stat-box">
+          <strong>نصيحة:</strong> حدد ساعات عمل صارمة. عندما يغلق اللابتوب، يجب أن يخرج عقلك من "وضع العمل" تماماً.
         </div>
       </div>
-    </div>
-
-    <!-- Health Tips Grid -->
-    <div class="health-tips-grid reveal">
-      <div class="tip-item">
-        <i class="fas fa-brain"></i>
-        <div data-cl-lang="en"><h4>Mental Wellness</h4><p>Practice mindfulness to reduce stress during coding.</p></div>
-        <div data-cl-lang="ar"><h4>الصحة النفسية</h4><p>مارس التأمل الواعي لتقليل التوتر أثناء البرمجة.</p></div>
-      </div>
-      <div class="tip-item">
-        <i class="fas fa-bed"></i>
-        <div data-cl-lang="en"><h4>Quality Sleep</h4><p>Get 7-8 hours of sleep daily to enhance memory.</p></div>
-        <div data-cl-lang="ar"><h4>النوم الصحي</h4><p>احصل على 7-8 ساعات من النوم يومياً لتعزيز الذاكرة.</p></div>
-      </div>
-      <div class="tip-item">
-        <i class="fas fa-clock"></i>
-        <div data-cl-lang="en"><h4>Regular Breaks</h4><p>Take 5-minute breaks every hour to prevent burnout.</p></div>
-        <div data-cl-lang="ar"><h4>فترات راحة</h4><p>خذ 5 دقائق راحة كل ساعة لتجنب الإرهاق.</p></div>
-      </div>
-    </div>
-
-    <!-- Daily Routine -->
-    <div class="routine-box reveal">
-      <div data-cl-lang="en"><h3 style="text-align: center;">🌅 Healthy Programmer's Daily Routine</h3></div>
-      <div data-cl-lang="ar"><h3 style="text-align: center;">🌅 الروتين اليومي للمبرمج الصحي</h3></div>
-      <div class="routine-grid">
-        <div class="routine-step">
-          <div class="step-num">1</div>
-          <div data-cl-lang="en"><h4>Morning Meditation</h4><p>Start with 10 mins of focus.</p></div>
-          <div data-cl-lang="ar"><h4>تأمل صباحي</h4><p>ابدأ بـ 10 دقائق من التركيز.</p></div>
-        </div>
-        <div class="routine-step">
-          <div class="step-num">2</div>
-          <div data-cl-lang="en"><h4>Healthy Breakfast</h4><p>Fuel your brain properly.</p></div>
-          <div data-cl-lang="ar"><h4>فطور صحي</h4><p>غذي عقلك بشكل صحيح.</p></div>
-        </div>
-        <div class="routine-step">
-          <div class="step-num">3</div>
-          <div data-cl-lang="en"><h4>Digital Detox</h4><p>No screens 1 hour before bed.</p></div>
-          <div data-cl-lang="ar"><h4>ديطوكس رقمي</h4><p>لا شاشات قبل ساعة من النوم.</p></div>
+      <div data-cl-lang="fr">
+        <h2>Comprendre le Burnout</h2>
+        <p>Le burnout est un épuisement émotionnel et physique causé par un stress prolongé.</p>
+        <div class="stat-box">
+          <strong>Conseil :</strong> Fixez des horaires de travail stricts et déconnectez-vous totalement après.
         </div>
       </div>
     </div>
 
-    <div class="chapter reveal">
+    <!-- Issue 2: Imposter Syndrome -->
+    <div class="mental-card reveal">
+      <i class="fas fa-user-mask mental-icon" style="color: #4f46e5;"></i>
       <div data-cl-lang="en">
-        <h2>Stress Management</h2>
-        <div class="article-content">
-          <p>Learn effective techniques to manage coding-related stress. Deep breathing exercises, time management, and setting realistic goals can significantly reduce anxiety.</p>
+        <h2>Imposter Syndrome</h2>
+        <p>The feeling that you don't belong or that your success is due to luck. Even senior engineers feel this.</p>
+        <div class="stat-box">
+          <strong>Fact:</strong> Tech moves too fast for anyone to know everything. Feeling "dumb" is just a sign that you are learning something new.
         </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>إدارة الضغوط</h2>
-        <div class="article-content">
-          <p>تعلم تقنيات فعالة لإدارة ضغوط العمل البرمجي. تمارين التنفس العميق، وإدارة الوقت، ووضع أهداف واقعية يمكن أن تقلل القلق بشكل كبير.</p>
+      <div data-cl-lang="ar" style="text-align: right;">
+        <h2>متلازمة المحتال (Imposter Syndrome)</h2>
+        <p>الشعور بأنك لا تنتمي أو أن نجاحك مجرد حظ. حتى المهندسين الكبار يشعرون بهذا.</p>
+        <div class="stat-box">
+          <strong>حقيقة:</strong> التكنولوجيا تتحرك بسرعة كبيرة جداً بحيث لا يمكن لأحد معرفة كل شيء. الشعور بـ "الجهل" هو مجرد علامة على أنك تتعلم شيئاً جديداً.
+        </div>
+      </div>
+      <div data-cl-lang="fr">
+        <h2>Le Syndrome de l'Imposteur</h2>
+        <p>Le sentiment que vous n'êtes pas à votre place ou que votre succès est dû à la chance.</p>
+        <div class="stat-box">
+          <strong>Réalité :</strong> La tech évolue trop vite. Se sentir "ignorant" est souvent un signe de progression.
+        </div>
+      </div>
+    </div>
+
+    <!-- Issue 3: Digital Detox -->
+    <div class="mental-card reveal">
+      <i class="fas fa-leaf mental-icon" style="color: #10b981;"></i>
+      <div data-cl-lang="en">
+        <h2>The Power of Digital Detox</h2>
+        <p>Our brains need boredom to be creative. Constant stimulation from screens prevents deep thinking.</p>
+        <div class="stat-box">
+          <strong>Practice:</strong> Spend at least 1 hour daily without any screens. Walk, read a physical book, or meditate.
+        </div>
+      </div>
+      <div data-cl-lang="ar" style="text-align: right;">
+        <h2>قوة الانفصال الرقمي (Digital Detox)</h2>
+        <p>عقولنا تحتاج إلى الملل لتكون مبدعة. التحفيز المستمر من الشاشات يمنع التفكير العميق.</p>
+        <div class="stat-box">
+          <strong>ممارسة:</strong> اقضِ ساعة واحدة على الأقل يومياً بدون شاشات. امشِ، اقرأ كتاباً ورقياً، أو تأمل.
+        </div>
+      </div>
+      <div data-cl-lang="fr">
+        <h2>La Détox Numérique</h2>
+        <p>Notre cerveau a besoin d'ennui pour être créatif. La stimulation constante empêche la pensée profonde.</p>
+        <div class="stat-box">
+          <strong>Pratique :</strong> Passez 1 heure par jour sans aucun écran (marche, lecture physique).
+        </div>
+      </div>
+    </div>
+
+    <!-- Issue 4: Sleep & Physicality -->
+    <div class="mental-card reveal">
+      <i class="fas fa-bed mental-icon" style="color: #fbbf24;"></i>
+      <div data-cl-lang="en">
+        <h2>Sleep: The Ultimate Performance Bug-Fix</h2>
+        <p>Lack of sleep reduces cognitive function by up to 30%. Your code is better when you are rested.</p>
+        <div class="stat-box">
+          <strong>Rule:</strong> Never trade sleep for "one last feature." The bugs you create while tired will take twice as long to fix tomorrow.
+        </div>
+      </div>
+      <div data-cl-lang="ar" style="text-align: right;">
+        <h2>النوم: الحل النهائي لأداء العقل</h2>
+        <p>نقص النوم يقلل الوظائف الذهنية بنسبة تصل إلى 30%. كودك يكون أفضل عندما تكون مرتاحاً.</p>
+        <div class="stat-box">
+          <strong>القاعدة:</strong> لا تضحِ أبداً بالنوم من أجل "ميزة أخيرة". الأخطاء التي تسببها وأنت متعب ستستغرق ضعف الوقت لإصلاحها غداً.
+        </div>
+      </div>
+      <div data-cl-lang="fr">
+        <h2>Le Sommeil : Réparateur de Performance</h2>
+        <p>Le manque de sommeil réduit les capacités cognitives de 30%. Votre code est meilleur au repos.</p>
+        <div class="stat-box">
+          <strong>Règle :</strong> Ne sacrifiez jamais votre sommeil. Les bugs créés fatigué sont plus longs à corriger le lendemain.
         </div>
       </div>
     </div>

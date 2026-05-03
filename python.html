@@ -6,7 +6,7 @@
   <title>Cours Complet Python - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
@@ -92,18 +92,18 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #3776ab, #ffde57) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #3776ab, #ffd343) !important; color: #fff !important;">
     <div data-cl-lang="en">
-      <h1 style="color: #0f172a;"><i class="fab fa-python"></i> Python Mastery</h1>
-      <p style="color: #0f172a;">Learn one of the world's most versatile and powerful programming languages.</p>
+      <h1><i class="fab fa-python"></i> Python Expert Training</h1>
+      <p>Master automation, data science, and AI with the world's most versatile language.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1 style="color: #0f172a;"><i class="fab fa-python"></i> إتقان Python</h1>
-      <p style="color: #0f172a;">تعلم واحدة من أكثر لغات البرمجة تنوعاً وقوة في العالم.</p>
+      <h1><i class="fab fa-python"></i> تدريب خبير بايثون</h1>
+      <p>أتقن الأتمتة، علوم البيانات، والذكاء الاصطناعي مع اللغة الأكثر مرونة في العالم.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1 style="color: #0f172a;"><i class="fab fa-python"></i> Maîtrise Python</h1>
-      <p style="color: #0f172a;">Apprenez l'un des langages de programmation les plus polyvalents et les plus puissants.</p>
+      <h1><i class="fab fa-python"></i> Formation Expert Python</h1>
+      <p>Maîtrisez l'automatisation, la science des données et l'IA avec le langage le plus polyvalent.</p>
     </div>
   </div>
 
@@ -115,103 +115,111 @@
 <script>
   const pythonLessons = [
     {
-      icon: "fa-rocket",
+      icon: "fa-info-circle",
+      badge: "badge-modern",
       t_fr: "1. Pourquoi Python ?",
-      d_fr: "Python est célèbre pour sa simplicité et sa lisibilité. Il est utilisé partout : Web, Data Science, AI.",
+      d_fr: "Python est un langage de haut niveau, facile à lire et extrêmement puissant, utilisé pour le web, l'IA et les données.",
       t_en: "1. Why Python?",
-      d_en: "Python is famous for its simplicity and readability. It's used in Web, Data Science, and AI.",
+      d_en: "Python is a high-level, easy-to-read, and extremely powerful language used for web, AI, and data science.",
       t_ar: "1. لماذا بايثون؟",
-      d_ar: "تشتهر بايثون ببساطتها وسهولة قراءتها، وتستخدم في الويب، علوم البيانات، والذكاء الاصطناعي."
+      d_ar: "بايثون لغة عالية المستوى، سهلة القراءة وقوية جداً، تستخدم في الويب والذكاء الاصطناعي والبيانات."
     },
     {
       icon: "fa-terminal",
-      t_fr: "2. Installation & Hello World",
-      code: `print("Hello World")`,
-      d_fr: "Installez Python et créez votre premier script en quelques secondes.",
-      t_en: "2. Installation & Hello World",
-      d_en: "Install Python and run your first script in seconds.",
-      t_ar: "2. التثبيت وأول برنامج",
-      d_ar: "تثبيت بايثون وتشغيل أول برنامج لك في ثوانٍ."
+      badge: "badge-important",
+      t_fr: "2. Variables et Types",
+      d_fr: "Python est dynamiquement typé. Types : str, int, float, bool, list, dict.",
+      code: "nom = 'Sara'\nage = 22\nscores = [10, 20, 15]",
+      t_en: "2. Variables & Types",
+      d_en: "Python is dynamically typed. Common types include: str, int, float, bool, list, and dict.",
+      t_ar: "2. المتغيرات والأنواع",
+      d_ar: "بايثون لغة ديناميكية الأنواع. الأنواع الشائعة: النصوص، الأرقام، القوائم، والقواميس."
     },
     {
-      icon: "fa-vial",
-      t_fr: "3. Variables & Types",
-      code: `nom = "Ali"\nage = 20\npi = 3.14`,
-      d_fr: "Pas besoin de déclarer le type en Python, c'est dynamique !",
-      t_en: "3. Variables & Types",
-      d_en: "No need to declare types in Python, it's dynamic!",
-      t_ar: "3. المتغيرات والأنواع",
-      d_ar: "لا داعي لتحديد النوع في بايثون، فهي لغة ديناميكية."
+      icon: "fa-code-branch",
+      badge: "badge-modern",
+      t_fr: "3. Conditions et Logique",
+      d_fr: "Utilisez if, elif et else pour contrôler le flux de votre programme.",
+      code: "if note >= 10:\n    print('Admis')\nelse:\n    print('Échec')",
+      t_en: "3. Logic & Conditions",
+      d_en: "Use if, elif, and else to control the flow of your program based on specific conditions.",
+      t_ar: "3. المنطق والشروط",
+      d_ar: "استخدم if و elif و else للتحكم في تدفق البرنامج."
     },
     {
-      icon: "fa-list",
-      t_fr: "4. Listes & Tuples",
-      code: `fruits = ["pomme", "banane"]\nfruits.append("orange")`,
-      d_fr: "Les listes sont des collections ordonnées et modifiables.",
-      t_en: "4. Lists & Tuples",
-      d_en: "Lists are ordered and changeable collections.",
-      t_ar: "4. القوائم والـ Tuples",
-      d_ar: "القوائم هي مجموعات مرتبة وقابلة للتغيير."
+      icon: "fa-sync",
+      badge: "badge-modern",
+      t_fr: "4. Boucles (for & while)",
+      d_fr: "Parcourez des séquences avec for ou répétez des actions avec while.",
+      code: "for fruit in fruits:\n    print(fruit)",
+      t_en: "4. Loops (for & while)",
+      d_en: "Iterate through sequences with for loops or repeat actions until conditions change with while.",
+      t_ar: "4. الحلقات",
+      d_ar: "كرر الأفعال باستخدام حلقات for و while."
     },
     {
-      icon: "fa-address-book",
-      t_fr: "5. Dictionnaires",
-      code: `user = {"nom": "Ali", "age": 20}`,
-      d_fr: "Stocker des données sous forme de clé: valeur.",
-      t_en: "5. Dictionaries",
-      d_en: "Store data in key: value pairs.",
-      t_ar: "5. القواميس (Dictionaries)",
-      d_ar: "تخزين البيانات في شكل مفتاح وقيمة."
+      icon: "fa-rocket",
+      badge: "badge-important",
+      t_fr: "5. Fonctions et Modules",
+      d_fr: "Définissez des fonctions avec 'def' et importez des modules pour étendre les fonctionnalités.",
+      code: "def saluer(nom):\n    return f'Salut {nom}'\nimport math",
+      t_en: "5. Functions & Modules",
+      d_en: "Define functions using 'def' and import external modules to expand your program's capabilities.",
+      t_ar: "5. الدوال والموديولات",
+      d_ar: "عرف الدوال باستخدام 'def' واستورد الموديولات لزيادة إمكانيات برنامجك."
     },
     {
-      icon: "fa-gears",
-      t_fr: "6. Fonctions",
-      code: `def saluer(nom):\n  return f"Bonjour {nom}"`,
-      d_fr: "Définissez des fonctions avec le mot-clé <code>def</code>.",
-      t_en: "6. Functions",
-      d_en: "Define reusable functions using the <code>def</code> keyword.",
-      t_ar: "6. الدوال",
-      d_ar: "تعريف دوال قابلة لإعادة الاستخدام باستخدام <code>def</code>."
-    },
-    {
-      icon: "fa-rotate",
-      t_fr: "7. Boucles (Loops)",
-      code: `for fruit in fruits:\n  print(fruit)`,
-      d_fr: "Parcourir des listes ou répéter des tâches avec <code>for</code> et <code>while</code>.",
-      t_en: "7. Loops",
-      d_en: "Iterate over lists or repeat tasks using <code>for</code> and <code>while</code>.",
-      t_ar: "7. الحلقات التكرارية",
-      d_ar: "التكرار عبر القوائم أو تنفيذ المهام بشكل متكرر."
-    },
-    {
-      icon: "fa-dna",
-      t_fr: "8. Classes & Objets",
+      icon: "fa-cube",
       badge: "badge-pro",
-      code: `class Robot:\n  def __init__(self, nom):\n    self.nom = nom`,
-      d_fr: "Programmation Orientée Objet pour structurer vos projets.",
-      t_en: "8. Classes & Objects",
-      d_en: "Object-Oriented Programming to structure your projects.",
-      t_ar: "8. الكلاسات والكائنات",
-      d_ar: "البرمجة الكائنية لتنظيم مشاريعك."
+      t_fr: "6. Programmation Orientée Objet",
+      d_fr: "Apprenez les classes et l'héritage pour créer des programmes modulaires.",
+      code: "class Robot:\n    def __init__(self, name):\n        self.name = name",
+      t_en: "6. Object-Oriented Programming",
+      d_en: "Learn about classes and inheritance to build modular and reusable software components.",
+      t_ar: "6. البرمجة كائنية التوجه",
+      d_ar: "تعلم الكلاسات والوراثة لبناء برامج معيارية."
     },
     {
-      icon: "fa-box-open",
-      t_fr: "9. Modules & Bibliothèques",
-      code: `import math\nprint(math.sqrt(16))`,
-      d_fr: "Utilisez la puissance des bibliothèques Python (math, random, requests).",
-      t_en: "9. Modules & Libraries",
-      d_en: "Leverage the power of Python's vast library ecosystem.",
-      t_ar: "9. الوحدات والمكتبات",
-      d_ar: "استفد من قوة مكتبات بايثون الضخمة."
+      icon: "fa-file-alt",
+      badge: "badge-modern",
+      t_fr: "7. Gestion des Fichiers",
+      d_fr: "Lisez et écrivez dans des fichiers texte ou CSV facilement.",
+      code: "with open('file.txt', 'r') as f:\n    print(f.read())",
+      t_en: "7. File Handling",
+      d_en: "Easily read from and write to text files or CSV documents using built-in methods.",
+      t_ar: "7. التعامل مع الملفات",
+      d_ar: "اقرأ واكتب في الملفات النصية أو CSV بسهولة."
     },
     {
-      icon: "fa-check-double",
-      t_fr: "10. Bonnes pratiques",
-      d_fr: "Suivez le standard PEP 8 pour un code Pythonic et propre.",
-      t_en: "10. Best Practices",
-      d_en: "Follow PEP 8 standards for clean, Pythonic code.",
-      t_ar: "10. أفضل الممارسات",
-      d_ar: "اتبع معايير PEP 8 لكتابة كود نظيف."
+      icon: "fa-flask",
+      badge: "badge-pro",
+      t_fr: "8. Bibliothèques Scientifiques",
+      d_fr: "Introduction à NumPy, Pandas et Matplotlib pour l'analyse de données.",
+      code: "import pandas as pd\ndf = pd.read_csv('data.csv')",
+      t_en: "8. Scientific Libraries",
+      d_en: "Introduction to NumPy, Pandas, and Matplotlib for powerful data analysis and visualization.",
+      t_ar: "8. المكتبات العلمية",
+      d_ar: "مقدمة في NumPy و Pandas و Matplotlib لتحليل البيانات."
+    },
+    {
+      icon: "fa-network-wired",
+      badge: "badge-pro",
+      t_fr: "9. Python pour le Web (Django/Flask)",
+      d_fr: "Découvrez comment créer des backends puissants avec Django ou des APIs rapides avec Flask.",
+      t_en: "9. Web Development with Python",
+      d_en: "Learn how to build robust backends with Django or fast APIs with Flask.",
+      t_ar: "9. بايثون للويب",
+      d_ar: "تعلم بناء باك أند قوي مع Django أو APIs سريعة مع Flask."
+    },
+    {
+      icon: "fa-brain",
+      badge: "badge-pro",
+      t_fr: "10. Automatisation et IA",
+      d_fr: "Utilisez Python pour scrapper le web (BeautifulSoup) ou créer des modèles d'IA simples.",
+      t_en: "10. Automation & AI",
+      d_en: "Leverage Python for web scraping (BeautifulSoup) or building basic AI and machine learning models.",
+      t_ar: "10. الأتمتة والذكاء الاصطناعي",
+      d_ar: "استخدم بايثون للأتمتة، كشط الويب، أو بناء نماذج ذكاء اصطناعي بسيطة."
     }
   ];
 

@@ -6,7 +6,7 @@
   <title>Cours Complet Node.js - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
@@ -33,13 +33,13 @@
     .lesson-icon {
       width: 60px;
       height: 60px;
-      background: #68a06322;
+      background: #33993322;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      color: #68a063;
+      color: #339933;
       flex-shrink: 0;
     }
     .lesson-info {
@@ -92,18 +92,18 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #333333, #68a063) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #339933, #1a4d1a) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-node-js"></i> Node.js Backend Mastery</h1>
-      <p>Build scalable server-side applications using JavaScript on the V8 engine.</p>
+      <h1><i class="fab fa-node-js"></i> Node.js Scalable Backend</h1>
+      <p>Build real-time, high-throughput architectures using the V8 engine and event-driven logic.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-node-js"></i> إتقان Node.js</h1>
-      <p>بناء تطبيقات سيرفر قابلة للتوسع باستخدام جافا سكريبت على محرك V8.</p>
+      <h1><i class="fab fa-node-js"></i> Node.js للأنظمة الخلفية</h1>
+      <p>ابنِ معماريات فورية عالية الإنتاجية باستخدام محرك V8 والمنطق المعتمد على الأحداث.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1><i class="fab fa-node-js"></i> Maîtrise Node.js</h1>
-      <p>Créez des applications côté serveur évolutives en utilisant JavaScript.</p>
+      <h1><i class="fab fa-node-js"></i> Backend Node.js Scalable</h1>
+      <p>Créez des architectures temps réel à haut débit avec le moteur V8 et une logique événementielle.</p>
     </div>
   </div>
 
@@ -115,44 +115,111 @@
 <script>
   const nodeLessons = [
     {
-      icon: "fa-server",
-      t_fr: "1. Qu’est-ce que Node.js ?",
+      icon: "fa-info-circle",
+      badge: "badge-modern",
+      t_fr: "1. Qu'est-ce que Node.js ?",
       d_fr: "Node.js est un environnement d'exécution JavaScript côté serveur basé sur le moteur V8 de Chrome.",
       t_en: "1. What is Node.js?",
-      d_en: "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine for server-side execution.",
+      d_en: "Node.js is a server-side JavaScript runtime environment built on Chrome's V8 engine.",
       t_ar: "1. ما هو Node.js؟",
-      d_ar: "Node.js هي بيئة تشغيل جافا سكريبت من جهة الخادم تعتمد على محرك V8."
+      d_ar: "Node.js هو بيئة تشغيل جافا سكريبت من جهة السيرفر تعتمد على محرك V8."
     },
     {
-      icon: "fa-cube",
-      t_fr: "2. NPM & Modules",
-      code: `npm install express`,
-      d_fr: "Utilisez NPM pour gérer les paquets et bibliothèques de votre projet.",
-      t_en: "2. NPM & Modules",
-      d_en: "Use NPM (Node Package Manager) to manage project dependencies and libraries.",
-      t_ar: "2. NPM والوحدات",
-      d_ar: "استخدام NPM لإدارة مكتبات المشروع."
-    },
-    {
-      icon: "fa-bolt",
-      t_fr: "3. Express.js",
+      icon: "fa-box",
       badge: "badge-important",
-      code: `const express = require('express');\nconst app = express();`,
-      d_fr: "Le framework le plus populaire pour créer des APIs et des serveurs web avec Node.",
-      t_en: "3. Express.js",
-      d_en: "The most popular framework for building APIs and web servers with Node.js.",
-      t_ar: "3. Express.js",
-      d_ar: "أشهر إطار عمل لبناء الـ APIs وسيرفرات الويب."
+      t_fr: "2. NPM (Node Package Manager)",
+      d_fr: "Gérez vos dépendances et installez des milliers de bibliothèques avec NPM.",
+      code: "npm init\nnpm install express",
+      t_en: "2. NPM (Node Package Manager)",
+      d_en: "Manage dependencies and install thousands of open-source libraries using NPM.",
+      t_ar: "2. مدير الحزم NPM",
+      d_ar: "إدارة المكتبات وتثبيت آلاف الحزم مفتوحة المصدر باستخدام NPM."
+    },
+    {
+      icon: "fa-server",
+      badge: "badge-important",
+      t_fr: "3. Créer un Serveur HTTP",
+      d_fr: "Utilisez le module natif 'http' pour créer votre premier serveur web.",
+      code: "const http = require('http');\nhttp.createServer((req, res) => {\n  res.end('Hello Node');\n}).listen(3000);",
+      t_en: "3. Creating an HTTP Server",
+      d_en: "Use the native 'http' module to create your very first web server.",
+      t_ar: "3. إنشاء سيرفر HTTP",
+      d_ar: "استخدم موديول 'http' الأصلي لإنشاء أول سيرفر ويب خاص بك."
+    },
+    {
+      icon: "fa-rocket",
+      badge: "badge-modern",
+      t_fr: "4. Framework Express",
+      d_fr: "Le framework le plus populaire pour créer des APIs web rapidement et simplement.",
+      code: "const express = require('express');\nconst app = express();\napp.get('/', (req, res) => res.send('Hello!'));",
+      t_en: "4. Express Framework",
+      d_en: "The most popular web framework for Node.js, making API development fast and simple.",
+      t_ar: "4. إطار عمل Express",
+      d_ar: "أشهر إطار عمل لـ Node.js، يجعل تطوير الـ APIs سريعاً وبسيطاً."
     },
     {
       icon: "fa-file-code",
-      t_fr: "4. File System (fs)",
-      code: `const fs = require('fs');\nfs.writeFileSync('test.txt', 'Salut');`,
-      d_fr: "Apprenez à lire et écrire des fichiers directement sur le serveur.",
-      t_en: "4. File System (fs)",
-      d_en: "Learn how to read and write files directly on the server's filesystem.",
-      t_ar: "4. نظام الملفات",
-      d_ar: "تعلم كيفية القراءة والكتابة في الملفات على السيرفر."
+      badge: "badge-modern",
+      t_fr: "5. Système de Fichiers (FS)",
+      d_fr: "Lisez, écrivez et manipulez des fichiers sur le serveur.",
+      code: "const fs = require('fs');\nfs.writeFileSync('test.txt', 'Contenu');",
+      t_en: "5. File System (FS)",
+      d_en: "Read, write, and manipulate files on the server using the built-in 'fs' module.",
+      t_ar: "5. نظام الملفات (FS)",
+      d_ar: "اقرأ واكتب وتعامل مع الملفات على السيرفر باستخدام موديول 'fs'."
+    },
+    {
+      icon: "fa-sync",
+      badge: "badge-pro",
+      t_fr: "6. Event Loop",
+      d_fr: "Comprenez comment Node.js gère des milliers de connexions simultanées avec un seul thread.",
+      t_en: "6. Event Loop",
+      d_en: "Understand how Node.js handles thousands of concurrent connections using a single-threaded event loop.",
+      t_ar: "6. حلقة الأحداث (Event Loop)",
+      d_ar: "افهم كيف يعالج Node.js آلاف الاتصالات المتزامنة باستخدام thread واحد."
+    },
+    {
+      icon: "fa-database",
+      badge: "badge-important",
+      t_fr: "7. MongoDB et Mongoose",
+      d_fr: "Connectez votre application à une base de données NoSQL flexible.",
+      code: "mongoose.connect('mongodb://localhost/mydb');",
+      t_en: "7. MongoDB & Mongoose",
+      d_en: "Connect your application to a flexible NoSQL database using the Mongoose ODM.",
+      t_ar: "7. MongoDB و Mongoose",
+      d_ar: "اربط تطبيقك بقاعدة بيانات NoSQL مرنة باستخدام Mongoose."
+    },
+    {
+      icon: "fa-comments",
+      badge: "badge-pro",
+      t_fr: "8. WebSockets (Socket.io)",
+      d_fr: "Créez des applications en temps réel comme des chats ou des notifications instantanées.",
+      t_en: "8. WebSockets (Socket.io)",
+      d_en: "Build real-time applications like chats or live notifications using WebSockets.",
+      t_ar: "8. الـ WebSockets",
+      d_ar: "ابنِ تطبيقات فورية مثل المحادثات أو التنبيهات المباشرة."
+    },
+    {
+      icon: "fa-shield-alt",
+      badge: "badge-pro",
+      t_fr: "9. Authentification JWT",
+      d_fr: "Sécurisez vos routes avec des JSON Web Tokens.",
+      code: "const token = jwt.sign({ id: user._id }, secret);",
+      t_en: "9. JWT Authentication",
+      d_en: "Secure your API routes using JSON Web Tokens (JWT) for stateless authentication.",
+      t_ar: "9. المصادقة بـ JWT",
+      d_ar: "أمن مسارات الـ API الخاصة بك باستخدام JSON Web Tokens."
+    },
+    {
+      icon: "fa-box-open",
+      badge: "badge-pro",
+      t_fr: "10. Déploiement (PM2 & Docker)",
+      d_fr: "Apprenez à mettre votre application en production et à la gérer avec PM2.",
+      code: "pm2 start app.js",
+      t_en: "10. Deployment (PM2 & Docker)",
+      d_en: "Learn how to put your app into production and manage it using PM2 or Docker containers.",
+      t_ar: "10. النشر (Deployment)",
+      d_ar: "تعلم كيفية وضع تطبيقك في الإنتاج وإدارته باستخدام PM2 أو Docker."
     }
   ];
 

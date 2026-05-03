@@ -6,7 +6,7 @@
   <title>Cours Complet PHP - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
@@ -33,13 +33,13 @@
     .lesson-icon {
       width: 60px;
       height: 60px;
-      background: #777bb322;
+      background: #777bb422;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      color: #777bb3;
+      color: #777bb4;
       flex-shrink: 0;
     }
     .lesson-info {
@@ -92,18 +92,18 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #777bb3, #4f5b93) !important;">
+  <div class="course-header" style="background: linear-gradient(135deg, #777bb4, #4f5b93) !important;">
     <div data-cl-lang="en">
-      <h1><i class="fab fa-php"></i> PHP Backend Mastery</h1>
-      <p>Master server-side programming and dynamic web development with PHP.</p>
+      <h1><i class="fab fa-php"></i> PHP Professional Backend</h1>
+      <p>Modern server-side development. From fundamentals to complex OOP design and frameworks.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fab fa-php"></i> إتقان PHP</h1>
-      <p>احترف برمجة السيرفر وتطوير الويب الديناميكي باستخدام PHP.</p>
+      <h1><i class="fab fa-php"></i> احتراف PHP للباك أند</h1>
+      <p>تطوير السيرفرات الحديث. من الأساسيات إلى أنماط البرمجة الكائنية المعقدة وأطر العمل.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1><i class="fab fa-php"></i> Maîtrise PHP</h1>
-      <p>Maîtrisez la programmation côté serveur et le développement web dynamique.</p>
+      <h1><i class="fab fa-php"></i> Backend PHP Professionnel</h1>
+      <p>Développement serveur moderne. Des bases à la POO complexe et aux frameworks.</p>
     </div>
   </div>
 
@@ -115,124 +115,112 @@
 <script>
   const phpLessons = [
     {
-      icon: "fa-server",
-      t_fr: "1. Qu’est-ce que PHP ?",
-      d_fr: "PHP (Hypertext Preprocessor) est un langage de script côté serveur utilisé pour créer des sites dynamiques.",
+      icon: "fa-info-circle",
+      badge: "badge-modern",
+      t_fr: "1. Qu'est-ce que PHP ?",
+      d_fr: "PHP (Hypertext Preprocessor) est un langage de script côté serveur très populaire pour le web.",
       t_en: "1. What is PHP?",
-      d_en: "PHP is a server-side scripting language used to create dynamic websites.",
+      d_en: "PHP (Hypertext Preprocessor) is a widely-used server-side scripting language for web development.",
       t_ar: "1. ما هو PHP؟",
-      d_ar: "PHP هي لغة برمجة نصية من جهة الخادم تُستخدم لإنشاء مواقع ديناميكية."
+      d_ar: "PHP هي لغة برمجة نصية لجانب السيرفر شائعة جداً في تطوير الويب."
     },
     {
       icon: "fa-code",
+      badge: "badge-important",
       t_fr: "2. Syntaxe de base",
-      code: `<?php\necho "Bonjour";\n?>`,
-      d_fr: "Le code PHP est entouré par les balises <code>&lt;?php ... ?&gt;</code>.",
+      d_fr: "Tout code PHP commence par <?php et se termine par ?>. Les variables commencent par un $.",
+      code: "<?php\n$nom = 'Ali';\necho 'Salut ' . $nom;\n?>",
       t_en: "2. Basic Syntax",
-      d_en: "PHP code is wrapped in <code>&lt;?php ... ?&gt;</code> tags.",
+      d_en: "PHP code starts with <?php and ends with ?>. Variable names start with a $ sign.",
       t_ar: "2. الأساسيات",
-      d_ar: "كود PHP يتم وضعه داخل وسوم <code>&lt;?php ... ?&gt;</code>."
+      d_ar: "يبدأ كود PHP بـ <?php وينتهي بـ ?>. تبدأ المتغيرات بـ $."
     },
     {
       icon: "fa-vial",
-      t_fr: "3. Variables & Constantes",
-      code: `$nom = "Ali";\ndefine("SITE", "Coding Life");`,
-      d_fr: "En PHP, les variables commencent par un signe dollar <code>$</code>.",
-      t_en: "3. Variables & Constants",
-      d_en: "In PHP, variables start with a dollar sign <code>$</code>.",
-      t_ar: "3. المتغيرات والثوابت",
-      d_ar: "في PHP، تبدأ المتغيرات بعلامة الدولار <code>$</code>."
+      badge: "badge-modern",
+      t_fr: "3. Types de Données",
+      d_fr: "Découvrez les types : String, Integer, Float, Boolean, Array, et Object.",
+      code: "$age = 25;\n$notes = [15, 18, 12];",
+      t_en: "3. Data Types",
+      d_en: "Learn about various data types: String, Integer, Float, Boolean, Array, and Object.",
+      t_ar: "3. أنواع البيانات",
+      d_ar: "تعلم الأنواع المختلفة: النصوص، الأرقام، المصفوفات، والكائنات."
+    },
+    {
+      icon: "fa-code-branch",
+      badge: "badge-modern",
+      t_fr: "4. Conditions et Boucles",
+      d_fr: "Gérez la logique avec if/else, switch, for, while et foreach pour les tableaux.",
+      code: "foreach ($notes as $n) {\n  echo $n;\n}",
+      t_en: "4. Logic & Loops",
+      d_en: "Handle logic with if/else, switch, for, while, and the powerful foreach loop for arrays.",
+      t_ar: "4. المنطق والحلقات",
+      d_ar: "التعامل مع المنطق باستخدام if/else والحلقات مثل foreach للمصفوفات."
+    },
+    {
+      icon: "fa-rocket",
+      badge: "badge-important",
+      t_fr: "5. Fonctions",
+      d_fr: "Créez des blocs de code réutilisables pour simplifier votre application.",
+      code: "function saluer($nom) {\n  return 'Bonjour ' . $nom;\n}",
+      t_en: "5. Functions",
+      d_en: "Create reusable blocks of code to simplify and organize your backend logic.",
+      t_ar: "5. الدوال",
+      d_ar: "أنشئ كتل برمجية قابلة لإعادة الاستخدام لتبسيط تطبيقك."
+    },
+    {
+      icon: "fa-cube",
+      badge: "badge-pro",
+      t_fr: "6. Programmation Orientée Objet (POO)",
+      d_fr: "Utilisez les classes, les objets, l'héritage et les interfaces pour une architecture solide.",
+      code: "class User {\n  public $name;\n  public function __construct($n) { $this->name = $n; }\n}",
+      t_en: "6. Object-Oriented PHP",
+      d_en: "Learn classes, objects, inheritance, and interfaces to build robust software architectures.",
+      t_ar: "6. البرمجة الكائنية (POO)",
+      d_ar: "استخدم الكلاسات والوراثة والواجهات لبناء هيكلية برمجية قوية."
     },
     {
       icon: "fa-database",
-      t_fr: "4. Types de données",
-      d_fr: "Chaînes de caractères, entiers, booléens, tableaux et objets.",
-      t_en: "4. Data Types",
-      d_en: "Strings, integers, booleans, arrays, and objects.",
-      t_ar: "4. أنواع البيانات",
-      d_ar: "النصوص، الأرقام، القيم المنطقية، المصفوفات والكائنات."
-    },
-    {
-      icon: "fa-list",
-      t_fr: "5. Tableaux (Arrays)",
-      code: `$fruits = ["Pomme", "Banane"];\necho $fruits[0];`,
-      d_fr: "PHP supporte les tableaux indexés et associatifs (clé => valeur).",
-      t_en: "5. Arrays",
-      d_en: "PHP supports indexed and associative arrays (key => value).",
-      t_ar: "5. المصفوفات",
-      d_ar: "تدعم PHP المصفوفات المفهرسة والمترابطة."
-    },
-    {
-      icon: "fa-gears",
-      t_fr: "6. Fonctions",
-      code: `function saluer($nom) {\n  return "Bonjour " . $nom;\n}`,
-      d_fr: "Créez vos propres fonctions pour réutiliser votre code.",
-      t_en: "6. Functions",
-      d_en: "Create your own functions to reuse code throughout your app.",
-      t_ar: "6. الدوال",
-      d_ar: "أنشئ دوالك الخاصة لإعادة استخدام الكود."
+      badge: "badge-important",
+      t_fr: "7. PHP et MySQL (PDO)",
+      d_fr: "Connectez-vous à une base de données en utilisant l'extension PDO pour plus de sécurité.",
+      code: "$pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'pass');",
+      t_en: "7. PHP & MySQL (PDO)",
+      d_en: "Connect to databases using the PDO extension for secure and portable data access.",
+      t_ar: "7. PHP و MySQL",
+      d_ar: "اتصل بقواعد البيانات باستخدام PDO لتأمين الوصول للبيانات."
     },
     {
       icon: "fa-wpforms",
-      t_fr: "7. Gestion des Formulaires",
-      badge: "badge-important",
-      code: `$_POST["nom"];\n$_GET["id"];`,
-      d_fr: "Récupérer des données envoyées via les méthodes GET et POST.",
-      t_en: "7. Form Handling",
-      d_en: "Retrieve data sent via GET and POST methods.",
-      t_ar: "7. التعامل مع النماذج",
-      d_ar: "استقبال البيانات المرسلة عبر طرق GET و POST."
+      badge: "badge-modern",
+      t_fr: "8. Gestion des Formulaires",
+      d_fr: "Récupérez les données utilisateur en utilisant les variables superglobales $_GET et $_POST.",
+      code: "$nom = $_POST['nom'];",
+      t_en: "8. Form Handling",
+      d_en: "Process user input and form submissions using $_GET and $_POST superglobals.",
+      t_ar: "8. التعامل مع النماذج",
+      d_ar: "استقبل بيانات المستخدم باستخدام $_GET و $_POST."
     },
     {
-      icon: "fa-database",
-      t_fr: "8. Connexion MySQL (PDO)",
+      icon: "fa-lock",
       badge: "badge-pro",
-      code: `$pdo = new PDO("mysql:host=localhost;dbname=test", "user", "pass");`,
-      d_fr: "Connectez votre application à une base de données MySQL avec PDO.",
-      t_en: "8. MySQL Connection (PDO)",
-      d_en: "Connect your app to a MySQL database using PDO safely.",
-      t_ar: "8. الاتصال بقاعدة البيانات",
-      d_ar: "ربط تطبيقك بقاعدة بيانات MySQL باستخدام PDO."
+      t_fr: "9. Sessions et Cookies",
+      d_fr: "Gérez l'authentification et les préférences utilisateur avec les sessions.",
+      code: "session_start();\n$_SESSION['user_id'] = 1;",
+      t_en: "9. Sessions & Cookies",
+      d_en: "Manage user authentication and preferences across pages using sessions and cookies.",
+      t_ar: "9. الجلسات والكوكيز",
+      d_ar: "تعامل مع المصادقة وتفضيلات المستخدم باستخدام الجلسات."
     },
     {
-      icon: "fa-shield",
-      t_fr: "9. Sécurité PHP",
-      badge: "badge-important",
-      d_fr: "Évitez les injections SQL en utilisant des requêtes préparées.",
-      t_en: "9. PHP Security",
-      d_en: "Avoid SQL injections by using prepared statements.",
-      t_ar: "9. أمن PHP",
-      d_ar: "تجنب هجمات SQL injection باستخدام الاستعلامات المحضرة."
-    },
-    {
-      icon: "fa-cookie",
-      t_fr: "10. Sessions & Cookies",
-      code: `session_start();\n$_SESSION["user"] = "Ali";`,
-      d_fr: "Gérer l'authentification des utilisateurs avec les sessions.",
-      t_en: "10. Sessions & Cookies",
-      d_en: "Manage user authentication using PHP sessions.",
-      t_ar: "10. الجلسات والكوكيز",
-      d_ar: "إدارة مصادقة المستخدمين باستخدام الجلسات."
-    },
-    {
-      icon: "fa-dna",
-      t_fr: "11. POO en PHP",
+      icon: "fa-box-open",
       badge: "badge-pro",
-      code: `class User {\n  public $nom;\n}`,
-      d_fr: "Utilisez les classes et objets pour structurer votre backend.",
-      t_en: "11. OOP in PHP",
-      d_en: "Use classes and objects to structure your backend code.",
-      t_ar: "11. البرمجة الكائنية",
-      d_ar: "استخدام الكلاسات والكائنات لتنظيم الكود."
-    },
-    {
-      icon: "fa-check-double",
-      t_fr: "12. Bonnes pratiques",
-      d_fr: "Suivez les standards PSR et gardez votre code propre.",
-      t_en: "12. Best Practices",
-      d_en: "Follow PSR standards and keep your code clean.",
-      t_ar: "12. أفضل الممارسات",
-      d_ar: "اتبع معايير PSR وحافظ على نظافة الكود."
+      t_fr: "10. Composer et Frameworks",
+      d_fr: "Utilisez Composer pour gérer vos dépendances et découvrez Laravel ou Symfony.",
+      t_en: "10. Composer & Frameworks",
+      d_en: "Use Composer for dependency management and explore frameworks like Laravel or Symfony.",
+      t_ar: "10. كومبوزر وأطر العمل",
+      d_ar: "استخدم Composer لإدارة المكتبات واستكشف Laravel أو Symfony."
     }
   ];
 

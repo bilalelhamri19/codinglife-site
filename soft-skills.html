@@ -1,93 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soft Skills Development - Coding Life</title>
+  <title>Soft Skills pour Ingénieurs - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .soft-hero {
+      background: linear-gradient(135deg, #0f766e, #14b8a6) !important;
+    }
+    .soft-card {
+      background: var(--cl-surface);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+    }
+    .soft-card:hover {
+      border-color: #14b8a6;
+      box-shadow: var(--cl-shadow-md);
+    }
+    .soft-icon {
+      font-size: 2.5rem;
+      color: #14b8a6;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .skill-box {
+      background: #f0fdfa;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #0f766e;
+      border-left: 4px solid #14b8a6;
+    }
+  </style>
 </head>
 <body>
 
-<div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #6366f1, #4338ca) !important;">
+<div class="course-container" style="max-width: 900px;">
+  <div class="course-header soft-hero">
     <div data-cl-lang="en">
-      <h1><i class="fa-solid fa-brain"></i> Soft Skills Mastery</h1>
-      <p>Practical guidance to improve communication, teamwork, leadership and productivity — essential for success.</p>
+      <h1><i class="fas fa-users"></i> Soft Skills for Engineers</h1>
+      <p>Technical skills get you the interview. Soft skills get you the job and the promotion.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fa-solid fa-brain"></i> إتقان المهارات الناعمة</h1>
-      <p>دليل عملي لتحسين التواصل، العمل الجماعي، القيادة والإنتاجية — أساس النجاح المهني.</p>
+      <h1><i class="fas fa-users"></i> المهارات الناعمة للمهندسين</h1>
+      <p>المهارات التقنية تمنحك المقابلة. المهارات الناعمة تمنحك الوظيفة والترقية.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fas fa-users"></i> Soft Skills pour Ingénieurs</h1>
+      <p>Les compétences techniques vous donnent l'entretien. Les soft skills vous donnent le poste.</p>
     </div>
   </div>
 
   <div class="chapters">
-    <!-- Section 1 -->
-    <div class="chapter reveal">
+    
+    <!-- Skill 1: Communication -->
+    <div class="soft-card reveal">
+      <i class="fas fa-comments soft-icon"></i>
       <div data-cl-lang="en">
-        <h2>🌟 What Are Soft Skills?</h2>
-        <div class="article-content">
-          <p>Soft skills are personal attributes and interpersonal abilities that determine how well you interact with others, solve problems, and manage yourself. Unlike technical skills, soft skills are transferable across jobs and industries and are crucial for long-term career growth.</p>
+        <h2>Effective Communication</h2>
+        <p>Coding is 20% writing code and 80% talking about code. Explaining complex ideas simply is a superpower.</p>
+        <div class="skill-box">
+          <strong>Practice:</strong> When explaining a technical issue, use the "ELI5" (Explain Like I'm 5) method for non-technical stakeholders.
         </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>🌟 ما هي المهارات الناعمة؟</h2>
-        <div class="article-content">
-          <p>المهارات الناعمة هي سمات شخصية وقدرات تفاعلية تحدد مدى جودة تعاملك مع الآخرين، وحل المشكلات، وإدارة نفسك. على عكس المهارات التقنية، يمكن نقل المهارات الناعمة عبر الوظائف والصناعات وهي ضرورية للنمو المهني طويل الأمد.</p>
+      <div data-cl-lang="ar" style="text-align: right;">
+        <h2>التواصل الفعال</h2>
+        <p>البرمجة هي 20% كتابة كود و 80% حديث عن الكود. شرح الأفكار المعقدة ببساطة هو قوة خارقة.</p>
+        <div class="skill-box">
+          <strong>ممارسة:</strong> عند شرح مشكلة تقنية، استخدم أسلوب التبسيط الشديد لأصحاب المصلحة غير التقنيين.
+        </div>
+      </div>
+      <div data-cl-lang="fr">
+        <h2>Communication Efficace</h2>
+        <p>Coder, c'est 20% d'écriture et 80% de discussion. Expliquer des idées complexes simplement est crucial.</p>
+        <div class="skill-box">
+          <strong>Pratique :</strong> Utilisez la méthode "ELI5" pour expliquer des concepts techniques aux non-développeurs.
         </div>
       </div>
     </div>
 
-    <!-- Section 2 -->
-    <div class="chapter reveal">
+    <!-- Skill 2: Empathy -->
+    <div class="soft-card reveal">
+      <i class="fas fa-hands-helping soft-icon" style="color: #6366f1;"></i>
       <div data-cl-lang="en">
-        <h2>🚀 Why Soft Skills Matter</h2>
-        <div class="article-content">
-          <p>Employers value candidates who can communicate clearly, work in teams, lead when needed, and manage time effectively. Strong soft skills increase employability, improve workplace relationships, and make learning new technical skills easier.</p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px;">
-            <div class="card"><h3>Better Communication</h3><p>Speak and write clearly to share ideas.</p></div>
-            <div class="card"><h3>Team Collaboration</h3><p>Contribute effectively in teams.</p></div>
-            <div class="card"><h3>Leadership</h3><p>Inspire and guide others.</p></div>
-          </div>
+        <h2>Empathy & Code Reviews</h2>
+        <p>Code reviews are not attacks. Be kind, be constructive, and remember there is a human on the other side of the screen.</p>
+        <div class="skill-box">
+          <strong>Tip:</strong> Instead of saying "You should do X," say "Have you considered doing X? It might help with Y."
         </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>🚀 لماذا تهمنا المهارات الناعمة؟</h2>
-        <div class="article-content">
-          <p>يقدر أصحاب العمل المرشحين الذين يمكنهم التواصل بوضوح، والعمل في فرق، والقيادة عند الحاجة، وإدارة الوقت بفعالية. المهارات الناعمة القوية تزيد من فرص التوظيف، وتحسن علاقات العمل، وتجعل تعلم المهارات التقنية الجديدة أسهل.</p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px;">
-            <div class="card"><h3>تواصل أفضل</h3><p>تحدث واكتب بوضوح لمشاركة الأفكار.</p></div>
-            <div class="card"><h3>التعاون الجماعي</h3><p>ساهم بفعالية داخل الفرق.</p></div>
-            <div class="card"><h3>القيادة</h3><p>إلهام وتوجيه الآخرين.</p></div>
-          </div>
+      <div data-cl-lang="ar" style="text-align: right;">
+        <h2>التعاطف ومراجعة الكود</h2>
+        <p>مراجعة الكود ليست هجوماً. كن لطيفاً، بناءً، وتذكر أن هناك بشراً خلف الشاشة الأخرى.</p>
+        <div class="skill-box">
+          <strong>نصيحة:</strong> بدلاً من قول "يجب عليك فعل كذا"، قل "هل فكرت في فعل كذا؟ قد يساعد في حل مشكلة كذا."
+        </div>
+      </div>
+      <div data-cl-lang="fr">
+        <h2>Empathie et Revue de Code</h2>
+        <p>Les revues de code ne sont pas des attaques. Soyez constructif et rappelez-vous qu'il y a un humain derrière l'écran.</p>
+        <div class="skill-box">
+          <strong>Conseil :</strong> Posez des questions plutôt que de donner des ordres lors des revues de code.
         </div>
       </div>
     </div>
 
-    <!-- Section 3 -->
-    <div class="chapter reveal">
+    <!-- Skill 3: Time Management -->
+    <div class="soft-card reveal">
+      <i class="fas fa-clock soft-icon" style="color: #f59e0b;"></i>
       <div data-cl-lang="en">
-        <h2>🛠️ Practical Exercises</h2>
-        <div class="article-content">
-          <p>Try these mini exercises today:</p>
-          <ul>
-            <li><strong>Communication Drill:</strong> Explain a technical concept to a non-technical friend.</li>
-            <li><strong>Active Listening:</strong> Repeat the other person's main points back before responding.</li>
-            <li><strong>Time-Block Practice:</strong> Plan your next day in 2-hour blocks.</li>
-          </ul>
+        <h2>Ownership & Reliability</h2>
+        <p>If you commit to a deadline, hit it. If you can't, communicate early. Reliability is more valuable than raw speed.</p>
+        <div class="skill-box">
+          <strong>Rule:</strong> Under-promise and over-deliver. It's better to finish early than to be late on an optimistic deadline.
         </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>🛠️ تمارين عملية</h2>
-        <div class="article-content">
-          <p>جرب هذه التمارين الصغيرة اليوم:</p>
-          <ul>
-            <li><strong>تدريب التواصل:</strong> اشرح مفهوماً تقنياً لصديق غير تقني.</li>
-            <li><strong>الاستماع النشط:</strong> كرر النقاط الرئيسية للشخص الآخر قبل الرد.</li>
-            <li><strong>تدريب إدارة الوقت:</strong> خطط ليومك القادم في فترات مدتها ساعتان.</li>
-          </ul>
+      <div data-cl-lang="ar" style="text-align: right;">
+        <h2>المسؤولية والموثوقية</h2>
+        <p>إذا التزمت بموعد نهائي، التزم به. إذا لم تستطع، تواصل مبكراً. الموثوقية أغلى من السرعة الخام.</p>
+        <div class="skill-box">
+          <strong>القاعدة:</strong> عد بأقل مما تستطيع، ونفذ أكثر مما وعدت. من الأفضل الإنهاء مبكراً بدلاً من التأخر.
+        </div>
+      </div>
+      <div data-cl-lang="fr">
+        <h2>Responsabilité et Fiabilité</h2>
+        <p>Si vous vous engagez sur une date, respectez-la. La fiabilité a plus de valeur que la simple rapidité.</p>
+        <div class="skill-box">
+          <strong>Règle :</strong> Promettez moins et livrez plus. Il vaut mieux finir tôt qu'être en retard.
         </div>
       </div>
     </div>
