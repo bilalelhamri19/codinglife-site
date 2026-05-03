@@ -6,7 +6,7 @@
   <title>Cours Complet Java - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
@@ -115,75 +115,123 @@
 <script>
   const javaLessons = [
     {
-      icon: "fa-rocket",
-      t_fr: "1. Pourquoi Java ?",
-      d_fr: "Java est l'un des langages les plus populaires au monde, connu pour sa devise 'Write Once, Run Anywhere'.",
-      t_en: "1. Why Java?",
-      d_en: "Java is one of the most popular languages, known for its 'Write Once, Run Anywhere' philosophy.",
-      t_ar: "1. لماذا جافا؟",
-      d_ar: "جافا هي واحدة من أكثر اللغات شعبية، وتشتهر بشعار 'اكتب مرة واحدة، وشغل في أي مكان'."
+      icon: "fa-question-circle",
+      badge: "badge-modern",
+      t_fr: "1. Qu'est-ce que Java ?",
+      d_fr: "Java est un langage multi-plateforme ('Write Once, Run Anywhere') créé par Sun Microsystems. Il est orienté objet, robuste et très utilisé dans les grandes entreprises et les applications Android.",
+      t_en: "1. What is Java?",
+      d_en: "Java is a multi-platform language ('Write Once, Run Anywhere') created by Sun Microsystems. It is object-oriented, robust, and widely used in enterprise and Android development.",
+      t_ar: "1. ما هو Java؟",
+      d_ar: "جافا هي لغة برمجة متعددة المنصات ('اكتب مرة واحدة، وشغل في أي مكان') تم إنشاؤها من قبل Sun Microsystems. هي لغة كائنية التوجه، قوية وتستخدم على نطاق واسع في الشركات وتطوير أندرويد."
     },
     {
-      icon: "fa-code",
-      t_fr: "2. Syntaxe de base",
-      code: `public class Main {\n  public static void main(String[] args) {\n    System.out.println("Hello");\n  }\n}`,
-      d_fr: "Tout code Java doit être à l'intérieur d'une classe.",
-      t_en: "2. Basic Syntax",
-      d_en: "All Java code must be inside a class structure.",
-      t_ar: "2. الأساسيات",
-      d_ar: "كل كود جافا يجب أن يكون داخل كلاس."
+      icon: "fa-download",
+      badge: "badge-important",
+      t_fr: "2. Installation & Premier Programme",
+      d_fr: "Installez le JDK (17 ou 21), configurez le PATH, et créez votre premier 'Hello World'. Utilisez IntelliJ IDEA pour la meilleure expérience.",
+      code: "public class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Bonjour le monde ! 👋\");\n    }\n}",
+      t_en: "2. Installation & First Program",
+      d_en: "Install the JDK (17 or 21), configure the PATH, and create your first 'Hello World'. Use IntelliJ IDEA for the best experience.",
+      t_ar: "2. التثبيت وأول برنامج",
+      d_ar: "قم بتثبيت JDK (17 أو 21)، وتهيئة المسار (PATH)، وأنشئ برنامجك الأول 'Hello World'. استخدم IntelliJ IDEA للحصول على أفضل تجربة."
     },
     {
       icon: "fa-vial",
-      t_fr: "3. Variables & Types",
-      code: `int age = 25;\nString nom = "Ali";\ndouble pi = 3.14;`,
-      d_fr: "Java est un langage fortement typé. Vous devez déclarer le type de chaque variable.",
-      t_en: "3. Variables & Types",
-      d_en: "Java is strongly typed. You must declare the type of every variable.",
-      t_ar: "3. المتغيرات والأنواع",
-      d_ar: "جافا لغة صارمة في أنواع البيانات، يجب تحديد نوع كل متغير."
+      badge: "badge-modern",
+      t_fr: "3. Variables et Types de Données",
+      d_fr: "Apprenez les types primitifs (int, double, char, boolean) et les objets (String). Java 10+ permet l'utilisation de 'var' pour l'inférence de type.",
+      code: "int age = 25;\ndouble prix = 9.99;\nString nom = \"Mohammed\";\nvar score = 100; // Java devine le type",
+      t_en: "3. Variables and Data Types",
+      d_en: "Learn primitive types (int, double, char, boolean) and objects (String). Java 10+ allows using 'var' for type inference.",
+      t_ar: "3. المتغيرات وأنواع البيانات",
+      d_ar: "تعلم الأنواع الأساسية (int, double, char, boolean) والكائنات (String). يسمح Java 10+ باستخدام 'var' لاستنتاج النوع."
+    },
+    {
+      icon: "fa-code-branch",
+      badge: "badge-modern",
+      t_fr: "4. Opérateurs et Conditions",
+      d_fr: "Maîtrisez les calculs et la logique. Utilisez if, else if, et le nouveau switch moderne de Java 14+.",
+      code: "if (note >= 16) {\n    System.out.println(\"Très Bien\");\n}\n\nString jour = switch (n) {\n    case 1 -> \"Lundi\";\n    default -> \"Autre\";\n};",
+      t_en: "4. Operators and Conditions",
+      d_en: "Master calculations and logic. Use if, else if, and the modern switch introduced in Java 14+.",
+      t_ar: "4. العمليات والشروط",
+      d_ar: "أتقن الحسابات والمنطق. استخدم if، else if، و switch الحديث المتوفر منذ Java 14+."
+    },
+    {
+      icon: "fa-sync",
+      badge: "badge-modern",
+      t_fr: "5. Boucles et Tableaux",
+      d_fr: "Utilisez for, while, et for-each pour parcourir des données. Gérez des tableaux simples ou multidimensionnels (matrices).",
+      code: "int[] nombres = {1, 2, 3};\nfor (int n : nombres) {\n    System.out.println(n);\n}",
+      t_en: "5. Loops and Arrays",
+      d_en: "Use for, while, and for-each to iterate through data. Manage simple or multi-dimensional arrays (matrices).",
+      t_ar: "5. الحلقات والمصفوفات",
+      d_ar: "استخدم for، while، و for-each للمرور عبر البيانات. تعامل مع المصفوفات البسيطة أو متعددة الأبعاد."
+    },
+    {
+      icon: "fa-tools",
+      badge: "badge-pro",
+      t_fr: "6. Méthodes (Fonctions)",
+      d_fr: "Créez des blocs de code réutilisables. Apprenez la surcharge de méthodes (Overloading) pour avoir le même nom avec des paramètres différents.",
+      code: "public static int addition(int a, int b) {\n    return a + b;\n}",
+      t_en: "6. Methods (Functions)",
+      d_en: "Create reusable blocks of code. Learn method overloading to have the same name with different parameters.",
+      t_ar: "6. الدوال (Methods)",
+      d_ar: "أنشئ كتل برمجية قابلة لإعادة الاستخدام. تعلم تحميل الدوال الزائد (Overloading) لاستخدام نفس الاسم ببارامترات مختلفة."
     },
     {
       icon: "fa-dna",
-      t_fr: "4. POO (Classes & Objets)",
       badge: "badge-important",
-      code: `User user = new User();\nuser.setNom("Ali");`,
-      d_fr: "Java est centré sur les objets. Apprenez à créer des classes et à instancier des objets.",
-      t_en: "4. OOP (Classes & Objects)",
-      d_en: "Java is object-centric. Learn to create classes and instantiate objects.",
-      t_ar: "4. البرمجة الكائنية",
-      d_ar: "جافا تعتمد على الكائنات بشكل كامل."
+      t_fr: "7. POO — Le Cœur de Java",
+      d_fr: "Maîtrisez les 4 piliers : Encapsulation (private/getters), Héritage (extends), Polymorphisme et Abstraction (abstract/interface).",
+      code: "public class Chien extends Animal {\n    @Override\n    public void faireBruit() { System.out.println(\"Waf!\"); }\n}",
+      t_en: "7. OOP — The Core of Java",
+      d_en: "Master the 4 pillars: Encapsulation (private/getters), Inheritance (extends), Polymorphism, and Abstraction (abstract/interface).",
+      t_ar: "7. البرمجة كائنية التوجه (POO)",
+      d_ar: "أتقن الركائز الأربعة: التغليف (Encapsulation)، الوراثة (Inheritance)، تعدد الأشكال (Polymorphism)، والتجريد (Abstraction)."
     },
     {
-      icon: "fa-shield",
-      t_fr: "5. Encapsulation",
+      icon: "fa-layer-group",
       badge: "badge-pro",
-      code: `private String secret;\npublic String getSecret() { return secret; }`,
-      d_fr: "Protégez vos données en utilisant les modificateurs d'accès (private, public).",
-      t_en: "5. Encapsulation",
-      d_en: "Protect your data using access modifiers like private and public.",
-      t_ar: "5. التغليف",
-      d_ar: "حماية بياناتك باستخدام مغيرات الوصول."
+      t_fr: "8. Collections (ArrayList & HashMap)",
+      d_fr: "Gérez des listes de données dynamiques avec ArrayList et des paires clé-valeur avec HashMap.",
+      code: "ArrayList<String> liste = new ArrayList<>();\nHashMap<String, Integer> map = new HashMap<>();",
+      t_en: "8. Collections (ArrayList & HashMap)",
+      d_en: "Manage dynamic data lists with ArrayList and key-value pairs with HashMap.",
+      t_ar: "8. المجموعات (Collections)",
+      d_ar: "تعامل مع قوائم البيانات الديناميكية باستخدام ArrayList وأزواج المفتاح والقيمة باستخدام HashMap."
     },
     {
-      icon: "fa-list",
-      t_fr: "6. Collections (ArrayList)",
-      code: `ArrayList<String> liste = new ArrayList<>();\nliste.add("Java");`,
-      d_fr: "Utilisez le framework Collections pour gérer des listes de données dynamiques.",
-      t_en: "6. Collections (ArrayList)",
-      d_en: "Use the Collections framework to manage dynamic lists of data.",
-      t_ar: "6. المجموعات",
-      d_ar: "استخدام إطار عمل المجموعات لإدارة البيانات الديناميكية."
+      icon: "fa-exclamation-triangle",
+      badge: "badge-important",
+      t_fr: "9. Gestion des Exceptions",
+      d_fr: "Utilisez try, catch, et finally pour gérer les erreurs et éviter que votre application ne plante.",
+      code: "try {\n    int res = 10 / 0;\n} catch (ArithmeticException e) {\n    System.out.println(\"Erreur !\");\n}",
+      t_en: "9. Exception Handling",
+      d_en: "Use try, catch, and finally to handle errors and prevent your application from crashing.",
+      t_ar: "9. معالجة الاستثناءات",
+      d_ar: "استخدم try، catch، و finally للتعامل مع الأخطاء ومنع تطبيقك من التوقف المفاجئ."
     },
     {
-      icon: "fa-triangle-exclamation",
-      t_fr: "7. Gestion des Exceptions",
-      code: `try {\n  // code\n} catch (Exception e) { ... }`,
-      d_fr: "Gérez les erreurs proprement avec try, catch et finally.",
-      t_en: "7. Exception Handling",
-      d_en: "Handle errors gracefully using try, catch, and finally blocks.",
-      t_ar: "7. معالجة الاستثناءات",
-      d_ar: "التعامل مع الأخطاء بشكل احترافي."
+      icon: "fa-bolt",
+      badge: "badge-pro",
+      t_fr: "10. Java Moderne (Lambda & Stream)",
+      d_fr: "Utilisez les expressions Lambda (Java 8+) et l'API Stream pour manipuler les données de manière élégante et concise.",
+      code: "noms.stream()\n    .filter(n -> n.startsWith(\"A\"))\n    .forEach(System.out::println);",
+      t_en: "10. Modern Java (Lambda & Stream)",
+      d_en: "Use Lambda expressions (Java 8+) and the Stream API to manipulate data elegantly and concisely.",
+      t_ar: "10. جافا الحديثة (Lambda & Stream)",
+      d_ar: "استخدم تعبيرات Lambda و Stream API للتعامل مع البيانات بطريقة أنيقة ومختصرة."
+    },
+    {
+      icon: "fa-road",
+      badge: "badge-modern",
+      t_fr: "11. Feuille de Route Java",
+      d_fr: "Le chemin vers l'expertise : Syntaxe -> POO -> Collections -> API Stream -> Spring Boot -> Microservices.",
+      t_en: "11. Java Roadmap",
+      d_en: "The path to expertise: Syntax -> OOP -> Collections -> Stream API -> Spring Boot -> Microservices.",
+      t_ar: "11. خارطة طريق Java",
+      d_ar: "طريق الاحتراف: الأساسيات -> POO -> المجموعات -> Stream API -> Spring Boot -> Microservices."
     }
   ];
 
