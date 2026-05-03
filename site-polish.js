@@ -96,7 +96,6 @@
     return [
       { href: "index.html", icon: "fa-house", label: tr.home },
       { href: "dorous-albarmaja.html", icon: "fa-code", label: tr.courses },
-      { href: "tools.html", icon: "fa-flask", label: currentLang === 'ar' ? 'المختبر' : 'Lab' },
       { href: "blog.html", icon: "fa-newspaper", label: tr.blog },
       { href: "contact.html", icon: "fa-envelope", label: tr.contact }
     ];
