@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -129,7 +129,7 @@ h1 { color: #0f766e; }</textarea>
     <div class="controls">
       <button class="btn-run" onclick="runCode()"><i class="fas fa-play"></i> Run Code</button>
     </div>
-    <iframe id="preview-iframe"></iframe>
+    <iframe id="preview-iframe" sandbox="allow-scripts allow-modals"></iframe>
   </div>
 </div>
 
@@ -138,11 +138,8 @@ h1 { color: #0f766e; }</textarea>
     const html = document.getElementById("html-code").value;
     const css = "<style>" + document.getElementById("css-code").value + "</style>";
     const js = "<script>" + document.getElementById("js-code").value + "<\/script>";
-    const iframe = document.getElementById("preview-iframe").contentWindow.document;
-    
-    iframe.open();
-    iframe.write(html + css + js);
-    iframe.close();
+    const iframe = document.getElementById("preview-iframe");
+    iframe.srcdoc = `<!DOCTYPE html><html><head>${css}</head><body>${html}${js}</body></html>`;
   }
 
   // Live preview as user types
