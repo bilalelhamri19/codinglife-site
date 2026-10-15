@@ -228,6 +228,16 @@
           <a href="about.html">${tr.about}</a>
           <a href="privacy.html">${tr.privacy}</a>
           <a href="terms.html">${tr.terms}</a>
+          <!-- AdSense placeholder ad unit -->
+          <div class="ad-unit" style="margin-top:24px; text-align:center;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="pub-0000000000000000"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
         </div>
       </div>
       <div style="text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;">

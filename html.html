@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cours Complet HTML5 - Coding Life</title>
+  <!-- Google AdSense Placeholder – replace with real publisher ID when available -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-0000000000000000" crossorigin="anonymous"></script>
+  <title>HTML5 Complete Course - Coding Life | Learn HTML from Zero to Pro</title>
+  <meta name="description" content="Learn HTML5 from scratch with this comprehensive free course. Covers document structure, semantic tags, forms, tables, accessibility, and SEO best practices. Bilingual EN/AR.">
+  <meta name="keywords" content="HTML5, learn HTML, HTML tutorial, web development, HTML for beginners, HTML course, تعلم HTML, دورة HTML">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://codinglife1.vercel.app/html.html">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
@@ -11,249 +17,960 @@
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 30px;
+      border-radius: 20px;
+      padding: 36px;
+      margin-bottom: 32px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cl-brand);
+      box-shadow: var(--cl-shadow-lg);
     }
     .lesson-header {
       display: flex;
       gap: 20px;
-      align-items: center;
-    }
-    .lesson-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--cl-brand);
-      box-shadow: var(--cl-shadow-lg);
+      align-items: flex-start;
+      margin-bottom: 20px;
     }
     .lesson-icon {
-      width: 60px;
-      height: 60px;
-      background: #e34f2622;
-      border-radius: 12px;
+      width: 56px;
+      height: 56px;
+      background: #e34f2615;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: #e34f26;
       flex-shrink: 0;
     }
-    .lesson-info {
-      flex-grow: 1;
+    .lesson-title { flex-grow: 1; }
+    .lesson-title h3 {
+      font-size: 1.4rem;
+      color: var(--cl-text);
+      margin: 0 0 8px;
+      font-weight: 800;
     }
-    .lesson-info h3 {
-      font-size: 1.5rem;
-      color: var(--cl-brand);
-      margin-bottom: 12px;
-      margin-top: 0;
-    }
-    .lesson-content {
-      line-height: 1.8;
-      color: var(--cl-muted);
-      font-size: 1.05rem;
-    }
+    .lesson-body { line-height: 1.95; color: var(--cl-muted); font-size: 1.05rem; }
+    .lesson-body p { margin-bottom: 14px; }
+    .lesson-body ul, .lesson-body ol { padding-left: 22px; margin: 12px 0 18px; }
+    [dir="rtl"] .lesson-body ul, [dir="rtl"] .lesson-body ol { padding-left: 0; padding-right: 22px; }
+    .lesson-body li { margin-bottom: 8px; line-height: 1.8; }
+    .lesson-body strong { color: var(--cl-text); }
     .badge {
       display: inline-block;
-      padding: 4px 12px;
+      padding: 3px 12px;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      letter-spacing: 0.5px;
     }
-    .badge-modern { background: #e0f2fe; color: #0369a1; }
-    .badge-important { background: #fee2e2; color: #b91c1c; }
-    .badge-pro { background: #fef3c7; color: #b45309; }
-
+    .badge-beginner { background: #dcfce7; color: #166534; }
+    .badge-important { background: #fee2e2; color: #991b1b; }
+    .badge-pro { background: #fef3c7; color: #92400e; }
+    .badge-seo { background: #ede9fe; color: #5b21b6; }
     .code-block {
       background: #0d1117;
       color: #c9d1d9;
-      padding: 20px;
-      border-radius: 8px;
+      padding: 22px 26px;
+      border-radius: 12px;
       font-family: 'Fira Code', monospace;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       overflow-x: auto;
-      margin: 15px 0;
+      margin: 18px 0;
       border: 1px solid #30363d;
+      position: relative;
     }
-
+    .code-block pre { margin: 0; line-height: 1.7; }
+    .code-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #e34f26;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .tip-box {
+      background: rgba(45,212,191,0.07);
+      border-left: 4px solid #2dd4bf;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+    [dir="rtl"] .tip-box { border-left: none; border-right: 4px solid #2dd4bf; }
+    .warn-box {
+      background: rgba(251,191,36,0.08);
+      border-left: 4px solid #f59e0b;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+    [dir="rtl"] .warn-box { border-left: none; border-right: 4px solid #f59e0b; }
+    .tip-box i, .warn-box i { margin-right: 8px; }
+    .lesson-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 40px 0 32px;
+    }
+    .lesson-divider span {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-muted);
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+    .lesson-divider::before, .lesson-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--cl-line);
+    }
+    .toc {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+    }
+    .toc h3 { margin: 0 0 16px; font-size: 1rem; color: var(--cl-brand); text-transform: uppercase; letter-spacing: 1px; }
+    .toc ol { margin: 0; padding-left: 20px; line-height: 2.4; }
+    .toc a { color: var(--cl-text); text-decoration: none; }
+    .toc a:hover { color: var(--cl-brand); }
+    [dir="rtl"] .toc ol { padding-left: 0; padding-right: 20px; }
+    .course-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
     @media (max-width: 768px) {
-      .lesson-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      .lesson-header { flex-direction: column; }
+      .lesson-card { padding: 24px; }
     }
   </style>
 </head>
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #e34f26, #f06529) !important;">
-    <div data-cl-lang="en">
-      <h1><i class="fab fa-html5"></i> HTML5 Masterclass</h1>
-      <p>Master the structural foundation of the modern web and technical SEO.</p>
-    </div>
-    <div data-cl-lang="ar">
-      <h1><i class="fab fa-html5"></i> احتراف HTML5</h1>
-      <p>أتقن الهيكل الأساسي للويب الحديث وأساسيات السيو التقني.</p>
-    </div>
-    <div data-cl-lang="fr">
-      <h1><i class="fab fa-html5"></i> Masterclass HTML5</h1>
-      <p>Maîtrisez les fondations structurelles du web moderne et le SEO technique.</p>
+
+  <!-- HEADER EN -->
+  <div class="course-header" style="background: linear-gradient(135deg, #e34f26 0%, #f06529 100%) !important;" data-cl-lang="en">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">Web Development → Foundation</div>
+    <h1><i class="fab fa-html5"></i> HTML5 Complete Masterclass</h1>
+    <p>From absolute zero to professional-level HTML5. Learn the standard markup language of the web, semantic structure, forms, accessibility, and SEO-ready code.</p>
+    <div class="course-meta">
+      <span class="meta-item"><i class="fa-solid fa-clock"></i> ~4 hours</span>
+      <span class="meta-item"><i class="fa-solid fa-layer-group"></i> 10 Lessons</span>
+      <span class="meta-item"><i class="fa-solid fa-signal"></i> Beginner → Intermediate</span>
+      <span class="meta-item"><i class="fa-solid fa-certificate"></i> Free Course</span>
     </div>
   </div>
 
-  <div class="chapters" id="htmlLessons">
-    <!-- Lessons will be injected here -->
+  <!-- HEADER AR -->
+  <div class="course-header" style="background: linear-gradient(135deg, #e34f26 0%, #f06529 100%) !important;" data-cl-lang="ar">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">تطوير الويب ← الأساسيات</div>
+    <h1><i class="fab fa-html5"></i> كورس HTML5 الشامل</h1>
+    <p>من الصفر المطلق إلى الاحتراف في HTML5. تعلم لغة تأشير الويب القياسية، الهيكل الدلالي، النماذج، وكتابة كود محسّن لمحركات البحث.</p>
+    <div class="course-meta">
+      <span class="meta-item"><i class="fa-solid fa-clock"></i> ~4 ساعات</span>
+      <span class="meta-item"><i class="fa-solid fa-layer-group"></i> 10 دروس</span>
+      <span class="meta-item"><i class="fa-solid fa-signal"></i> مبتدئ ← متوسط</span>
+      <span class="meta-item"><i class="fa-solid fa-certificate"></i> كورس مجاني</span>
+    </div>
   </div>
-</div>
 
-<script>
-  const htmlLessons = [
-    {
-      icon: "fa-info-circle",
-      badge: "badge-modern",
-      t_fr: "1. Qu'est-ce que HTML5 ?",
-      d_fr: "HTML (HyperText Markup Language) est le langage de balisage utilisé pour créer la structure d'un site web.",
-      t_en: "1. What is HTML5?",
-      d_en: "HTML (HyperText Markup Language) is the standard markup language used to create the structure of web pages.",
-      t_ar: "1. ما هو HTML5؟",
-      d_ar: "HTML هي لغة توصيف النص الفائق المستخدمة لإنشاء هيكل صفحات الويب."
-    },
-    {
-      icon: "fa-file-code",
-      badge: "badge-important",
-      t_fr: "2. Structure d'un Document",
-      d_fr: "Chaque page commence par un doctype, suivi des balises html, head (pour les métadonnées) et body (pour le contenu).",
-      code: "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Ma Page</title>\n  </head>\n  <body>\n    <h1>Hello!</h1>\n  </body>\n</html>",
-      t_en: "2. Document Structure",
-      d_en: "Every page starts with a doctype, followed by html, head (for metadata), and body (for content) tags.",
-      t_ar: "2. هيكل المستند",
-      d_ar: "تبدأ كل صفحة بـ doctype، متبوعة بـ html و head و body."
-    },
-    {
-      icon: "fa-heading",
-      badge: "badge-modern",
-      t_fr: "3. Titres et Paragraphes",
-      d_fr: "Utilisez h1 à h6 pour les titres (important pour le SEO) et p pour le texte normal.",
-      code: "<h1>Titre Principal</h1>\n<p>Ceci est un paragraphe.</p>",
-      t_en: "3. Headings & Paragraphs",
-      d_en: "Use h1 through h6 for titles (crucial for SEO) and p for regular text content.",
-      t_ar: "3. العناوين والفقرات",
-      d_ar: "استخدم h1 إلى h6 للعناوين و p للنصوص العادية."
-    },
-    {
-      icon: "fa-link",
-      badge: "badge-pro",
-      t_fr: "4. Liens et Navigation",
-      d_fr: "La balise 'a' (anchor) permet de naviguer entre les pages en utilisant l'attribut href.",
-      code: "<a href='https://google.com'>Visitez Google</a>",
-      t_en: "4. Links & Navigation",
-      d_en: "The 'a' (anchor) tag allows navigation between pages using the href attribute.",
-      t_ar: "4. الروابط والتنقل",
-      d_ar: "تسمح علامة 'a' بالتنقل بين الصفحات باستخدام href."
-    },
-    {
-      icon: "fa-image",
-      badge: "badge-modern",
-      t_fr: "5. Images et Médias",
-      d_fr: "Insérez des images avec 'img' et n'oubliez pas l'attribut 'alt' pour l'accessibilité.",
-      code: "<img src='image.jpg' alt='Description de l\'image'>",
-      t_en: "5. Images & Media",
-      d_en: "Insert images using the 'img' tag, and always include the 'alt' attribute for accessibility.",
-      t_ar: "5. الصور والوسائط",
-      d_ar: "أدرج الصور باستخدام 'img' ولا تنسَ alt للوصول الشامل."
-    },
-    {
-      icon: "fa-list-ul",
-      badge: "badge-modern",
-      t_fr: "6. Listes",
-      d_fr: "Listes à puces (ul) ou ordonnées (ol) utilisant des éléments li.",
-      code: "<ul>\n  <li>Élément 1</li>\n  <li>Élément 2</li>\n</ul>",
-      t_en: "6. Lists",
-      d_en: "Unordered lists (ul) or ordered lists (ol) using li elements for each item.",
-      t_ar: "6. القوائم",
-      d_ar: "قوائم غير مرتبة (ul) أو مرتبة (ol) باستخدام عناصر li."
-    },
-    {
-      icon: "fa-table",
-      badge: "badge-pro",
-      t_fr: "7. Tableaux",
-      d_fr: "Organisez vos données tabulaires avec table, tr (ligne), th (en-tête) et td (cellule).",
-      code: "<table>\n  <tr><th>Nom</th></tr>\n  <tr><td>Ali</td></tr>\n</table>",
-      t_en: "7. Tables",
-      d_en: "Organize tabular data with table, tr (row), th (header), and td (cell) tags.",
-      t_ar: "7. الجداول",
-      d_ar: "نظم بياناتك في جداول باستخدام tr و th و td."
-    },
-    {
-      icon: "fa-wpforms",
-      badge: "badge-important",
-      t_fr: "8. Formulaires",
-      d_fr: "Collectez les données utilisateur avec input, textarea, select et button.",
-      code: "<input type='text' placeholder='Nom'>\n<button>Envoyer</button>",
-      t_en: "8. Forms",
-      d_en: "Collect user input using input, textarea, select, and button elements.",
-      t_ar: "8. النماذج",
-      d_ar: "اجمع بيانات المستخدم باستخدام input و textarea و button."
-    },
-    {
-      icon: "fa-puzzle-piece",
-      badge: "badge-important",
-      t_fr: "9. HTML Sémantique",
-      d_fr: "Utilisez des balises qui ont du sens : header, footer, nav, section, article.",
-      t_en: "9. Semantic HTML",
-      d_en: "Use meaningful tags: header, footer, nav, section, and article for better structure.",
-      t_ar: "9. HTML الدلالي",
-      d_ar: "استخدم علامات لها معنى مثل header و footer و nav."
-    },
-    {
-      icon: "fa-universal-access",
-      badge: "badge-pro",
-      t_fr: "10. Accessibilité et SEO",
-      d_fr: "Apprenez les attributs ARIA et les bonnes pratiques pour que votre site soit accessible à tous.",
-      t_en: "10. Accessibility & SEO",
-      d_en: "Learn ARIA attributes and best practices to make your site accessible and search-engine friendly.",
-      t_ar: "10. الوصول والسيو",
-      d_ar: "تعلم سمات ARIA وأفضل الممارسات لجعل موقعك متاحاً للجميع."
-    }
-  ];
+  <div class="chapters">
 
-  const chaptersContainer = document.getElementById('htmlLessons');
-  
-  function render(lesson) {
-    const div = document.createElement('div');
-    div.className = 'lesson-card reveal';
-    
-    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
-    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
-    
-    div.innerHTML = `
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc reveal" data-cl-lang="en">
+      <h3><i class="fa-solid fa-list-ol"></i> Course Contents</h3>
+      <ol>
+        <li><a href="#lesson-1">What is HTML5 & How the Web Works</a></li>
+        <li><a href="#lesson-2">Document Structure & Boilerplate</a></li>
+        <li><a href="#lesson-3">Headings, Paragraphs & Text Formatting</a></li>
+        <li><a href="#lesson-4">Links, Anchors & Navigation</a></li>
+        <li><a href="#lesson-5">Images, Audio & Video</a></li>
+        <li><a href="#lesson-6">Lists — Ordered, Unordered & Description</a></li>
+        <li><a href="#lesson-7">Tables — Structure & Best Practices</a></li>
+        <li><a href="#lesson-8">Forms — Input, Validation & Accessibility</a></li>
+        <li><a href="#lesson-9">Semantic HTML5 — Structure That Means Something</a></li>
+        <li><a href="#lesson-10">HTML for SEO & Accessibility</a></li>
+      </ol>
+    </div>
+    <div class="toc reveal" data-cl-lang="ar">
+      <h3><i class="fa-solid fa-list-ol"></i> محتوى الكورس</h3>
+      <ol>
+        <li><a href="#lesson-1">ما هو HTML5 وكيف يعمل الويب</a></li>
+        <li><a href="#lesson-2">هيكل المستند والكود الأساسي</a></li>
+        <li><a href="#lesson-3">العناوين والفقرات وتنسيق النص</a></li>
+        <li><a href="#lesson-4">الروابط والمراسي والتنقل</a></li>
+        <li><a href="#lesson-5">الصور والصوت والفيديو</a></li>
+        <li><a href="#lesson-6">القوائم — مرتبة وغير مرتبة وتعريفية</a></li>
+        <li><a href="#lesson-7">الجداول — الهيكل وأفضل الممارسات</a></li>
+        <li><a href="#lesson-8">النماذج — المدخلات والتحقق وسهولة الوصول</a></li>
+        <li><a href="#lesson-9">HTML الدلالي — بنية ذات معنى</a></li>
+        <li><a href="#lesson-10">HTML للسيو وسهولة الوصول</a></li>
+      </ol>
+    </div>
+
+    <!-- ===================== LESSON 1 ===================== -->
+    <div class="lesson-card reveal" id="lesson-1">
       <div class="lesson-header">
-        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
-        <div class="lesson-info">
-          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
-          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
-          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
-          ${badgeHtml}
+        <div class="lesson-icon"><i class="fa-solid fa-earth-africa"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 1 — What is HTML5 & How the Web Works</h3><span class="badge badge-beginner">Beginner</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 1 — ما هو HTML5 وكيف يعمل الويب</h3><span class="badge badge-beginner">مبتدئ</span></div>
         </div>
       </div>
-      <div class="lesson-content">
-        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
-        <div data-cl-lang="en">${lesson.d_en || ''}</div>
-        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
-        ${codeHtml}
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p><strong>HTML</strong> stands for <em>HyperText Markup Language</em>. It is the standard language used to create and structure content on the web. Every website you visit — from Google to YouTube — is built upon an HTML foundation.</p>
+          <p>HTML is NOT a programming language. It does not have logic, conditions, or loops. Instead, it is a <strong>markup language</strong>, meaning you use special tags to annotate text and tell the browser how to display it. The browser (Chrome, Firefox, Safari) reads these tags and renders the visual page you see.</p>
+          <p><strong>How does the web work?</strong> When you type a URL in your browser, your computer sends a request to a server. That server responds by sending back an HTML file. Your browser then parses the HTML and displays it as the page you see. CSS adds styling (colors, fonts, layout) and JavaScript adds interactivity (buttons, animations, dynamic content).</p>
+          <p><strong>HTML5</strong> is the latest version of HTML, officially standardized in 2014. It brought major improvements: native audio/video support, semantic elements (<code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>), canvas for graphics, local storage, and much more.</p>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Key insight:</strong> HTML is the skeleton of a web page. CSS is the skin and clothes. JavaScript is the muscles and brain. You need all three to build a complete website.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p><strong>HTML</strong> هي اختصار لـ <em>HyperText Markup Language</em>، أي لغة ترميز النص التشعبي. هي اللغة القياسية المستخدمة لإنشاء وهيكلة المحتوى على الويب. كل موقع تزوره — من Google إلى YouTube — مبني على أساس HTML.</p>
+          <p>HTML ليست لغة برمجة. ليس لديها منطق أو شروط أو حلقات تكرار. بدلاً من ذلك، هي <strong>لغة ترميز</strong>، ما يعني أنك تستخدم وسوماً خاصة للتعليق على النص وإخبار المتصفح بكيفية عرضه. يقرأ المتصفح (Chrome أو Firefox أو Safari) هذه الوسوم ويعرض الصفحة المرئية.</p>
+          <p><strong>كيف يعمل الويب؟</strong> عندما تكتب URL في متصفحك، يرسل جهاز الكمبيوتر الخاص بك طلباً إلى خادم. يستجيب ذلك الخادم بإرسال ملف HTML. يقوم المتصفح بعد ذلك بتحليل HTML وعرضها كالصفحة التي تراها. تضيف CSS التنسيق (الألوان والخطوط والتخطيط) ويضيف JavaScript التفاعلية.</p>
+          <p><strong>HTML5</strong> هو أحدث إصدار من HTML، تم توحيده رسمياً في 2014. جلب تحسينات كبيرة: دعم الصوت والفيديو الأصلي، العناصر الدلالية، canvas للرسومات، التخزين المحلي، والكثير.</p>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>نقطة مهمة:</strong> HTML هي هيكل صفحة الويب، CSS هي الجلد والملابس، وJavaScript هي العضلات والعقل. تحتاج إلى الثلاثة لبناء موقع كامل.</div>
+        </div>
       </div>
-    `;
-    chaptersContainer.appendChild(div);
-  }
+    </div>
 
-  htmlLessons.forEach(l => render(l));
-</script>
+    <!-- ===================== LESSON 2 ===================== -->
+    <div class="lesson-card reveal" id="lesson-2">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-file-code"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 2 — Document Structure & Boilerplate</h3><span class="badge badge-important">Essential</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 2 — هيكل المستند والكود الأساسي</h3><span class="badge badge-important">أساسي</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Every HTML document follows a specific structure. This structure is called the <strong>HTML boilerplate</strong> — the minimum code every web page needs to be valid and correctly interpreted by browsers.</p>
+          <div class="code-label"><i class="fab fa-html5"></i> Standard HTML5 Boilerplate</div>
+          <div class="code-block"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Page Title&lt;/title&gt;
+    &lt;meta name="description" content="Page description for SEO"&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></div>
+          <p>Let's break down each part:</p>
+          <ul>
+            <li><strong><code>&lt;!DOCTYPE html&gt;</code></strong> — Tells the browser this is an HTML5 document. Always the very first line.</li>
+            <li><strong><code>&lt;html lang="en"&gt;</code></strong> — The root element. The <code>lang</code> attribute helps screen readers and search engines understand the language.</li>
+            <li><strong><code>&lt;head&gt;</code></strong> — Contains metadata (information about the page) that is NOT displayed on screen: title, charset, styles, meta tags.</li>
+            <li><strong><code>charset="UTF-8"</code></strong> — Sets character encoding. UTF-8 supports all languages including Arabic, Chinese, and emojis.</li>
+            <li><strong><code>viewport</code> meta tag</strong> — Critical for mobile responsiveness. Without it, mobile browsers zoom out and the page looks tiny.</li>
+            <li><strong><code>&lt;title&gt;</code></strong> — Shown in the browser tab and search engine results. Crucial for SEO.</li>
+            <li><strong><code>&lt;body&gt;</code></strong> — Everything inside here is displayed on the page: text, images, buttons, etc.</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> Always place <code>&lt;script&gt;</code> tags at the <strong>bottom of the body</strong>, just before <code>&lt;/body&gt;</code>. This ensures the HTML loads and displays before JavaScript runs, improving page load speed.</div>
+          <div class="warn-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Common Mistake:</strong> Forgetting the <code>lang</code> attribute on the <code>&lt;html&gt;</code> tag. This hurts SEO and accessibility scores significantly.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>كل مستند HTML يتبع بنية محددة. تُسمى هذه البنية <strong>HTML Boilerplate</strong> — الحد الأدنى من الكود الذي يحتاجه كل صفحة ويب لتكون صالحة ويتم تفسيرها بشكل صحيح من قبل المتصفحات.</p>
+          <div class="code-label"><i class="fab fa-html5"></i> النموذج الأساسي لـ HTML5</div>
+          <div class="code-block"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;عنوان صفحتي&lt;/title&gt;
+    &lt;meta name="description" content="وصف الصفحة للسيو"&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;مرحباً بالعالم!&lt;/h1&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></div>
+          <p>دعنا نحلل كل جزء:</p>
+          <ul>
+            <li><strong><code>&lt;!DOCTYPE html&gt;</code></strong> — يخبر المتصفح أن هذا مستند HTML5. دائماً السطر الأول.</li>
+            <li><strong><code>&lt;html lang="ar"&gt;</code></strong> — العنصر الجذر. سمة <code>lang</code> تساعد برامج قراءة الشاشة ومحركات البحث على فهم اللغة.</li>
+            <li><strong><code>&lt;head&gt;</code></strong> — يحتوي على البيانات الوصفية التي لا تظهر على الشاشة: العنوان والترميز والأنماط.</li>
+            <li><strong><code>charset="UTF-8"</code></strong> — يضبط ترميز المحارف. UTF-8 يدعم جميع اللغات بما فيها العربية والصينية والرموز التعبيرية.</li>
+            <li><strong>وسم viewport</strong> — حيوي للاستجابة على الهاتف. بدونه، تبدو الصفحة مصغرة جداً على الهواتف.</li>
+            <li><strong><code>&lt;title&gt;</code></strong> — يظهر في علامة تبويب المتصفح ونتائج محرك البحث. حاسم للسيو.</li>
+            <li><strong><code>&lt;body&gt;</code></strong> — كل شيء بداخله يظهر على الصفحة: نصوص وصور وأزرار وغيرها.</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> ضع دائماً وسوم <code>&lt;script&gt;</code> في <strong>نهاية body</strong>، قبل <code>&lt;/body&gt;</code> مباشرة. يضمن ذلك تحميل HTML وعرضها قبل تشغيل JavaScript، مما يحسن سرعة التحميل.</div>
+          <div class="warn-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>خطأ شائع:</strong> نسيان سمة <code>lang</code> على وسم <code>&lt;html&gt;</code>. يضر هذا بدرجات السيو وسهولة الوصول بشكل كبير.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 3 ===================== -->
+    <div class="lesson-card reveal" id="lesson-3">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-heading"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 3 — Headings, Paragraphs & Text Formatting</h3><span class="badge badge-seo">SEO Critical</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 3 — العناوين والفقرات وتنسيق النص</h3><span class="badge badge-seo">حيوي للسيو</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>HTML provides six levels of headings (<code>h1</code> to <code>h6</code>) and the basic paragraph tag <code>&lt;p&gt;</code>. These are not just visual elements — they carry deep <strong>semantic meaning</strong> for search engines and screen readers.</p>
+          <div class="code-label"><i class="fab fa-html5"></i> Headings & Paragraphs</div>
+          <div class="code-block"><pre>&lt;h1&gt;Main Page Title (Use ONLY ONCE per page)&lt;/h1&gt;
+&lt;h2&gt;Major Section&lt;/h2&gt;
+&lt;h3&gt;Subsection&lt;/h3&gt;
+&lt;h4&gt;Minor Heading&lt;/h4&gt;
+&lt;p&gt;This is a paragraph of text. It can contain &lt;strong&gt;bold text&lt;/strong&gt;,
+&lt;em&gt;italic text&lt;/em&gt;, and &lt;mark&gt;highlighted text&lt;/mark&gt;.&lt;/p&gt;
+
+&lt;!-- Line break (avoid overusing) --&gt;
+&lt;br&gt;
+
+&lt;!-- Horizontal rule --&gt;
+&lt;hr&gt;</pre></div>
+          <p><strong>Text formatting tags you must know:</strong></p>
+          <ul>
+            <li><code>&lt;strong&gt;</code> — Bold AND semantically important (better than <code>&lt;b&gt;</code> for SEO)</li>
+            <li><code>&lt;em&gt;</code> — Italic AND semantically emphasized (better than <code>&lt;i&gt;</code>)</li>
+            <li><code>&lt;mark&gt;</code> — Highlighted/marked text</li>
+            <li><code>&lt;code&gt;</code> — Inline code snippet</li>
+            <li><code>&lt;blockquote&gt;</code> — A quote from another source</li>
+            <li><code>&lt;abbr title="..."&gt;</code> — Abbreviation with tooltip</li>
+            <li><code>&lt;del&gt;</code> / <code>&lt;ins&gt;</code> — Deleted / Inserted text</li>
+            <li><code>&lt;sup&gt;</code> / <code>&lt;sub&gt;</code> — Superscript / Subscript</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-magnifying-glass"></i> <strong>SEO Rule:</strong> Every page must have exactly <strong>ONE</strong> <code>&lt;h1&gt;</code> tag — your main title. Use <code>&lt;h2&gt;</code> for sections, <code>&lt;h3&gt;</code> for subsections. Never skip heading levels (don't jump from h1 to h4). Google uses this hierarchy to understand your page structure.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>يوفر HTML ستة مستويات من العناوين (من <code>h1</code> إلى <code>h6</code>) ووسم الفقرة الأساسي <code>&lt;p&gt;</code>. هذه ليست مجرد عناصر مرئية — بل تحمل <strong>معنى دلالياً عميقاً</strong> لمحركات البحث وبرامج قراءة الشاشة.</p>
+          <div class="code-label"><i class="fab fa-html5"></i> العناوين والفقرات</div>
+          <div class="code-block"><pre>&lt;h1&gt;عنوان الصفحة الرئيسي (استخدم مرة واحدة فقط في الصفحة)&lt;/h1&gt;
+&lt;h2&gt;قسم رئيسي&lt;/h2&gt;
+&lt;h3&gt;قسم فرعي&lt;/h3&gt;
+&lt;p&gt;هذه فقرة نصية. يمكنها احتواء &lt;strong&gt;نص عريض&lt;/strong&gt;
+و&lt;em&gt;نص مائل&lt;/em&gt; و&lt;mark&gt;نص مظلل&lt;/mark&gt;.&lt;/p&gt;</pre></div>
+          <p><strong>وسوم تنسيق النص التي يجب معرفتها:</strong></p>
+          <ul>
+            <li><code>&lt;strong&gt;</code> — نص عريض وذو أهمية دلالية (أفضل من <code>&lt;b&gt;</code> للسيو)</li>
+            <li><code>&lt;em&gt;</code> — نص مائل ومؤكد دلالياً (أفضل من <code>&lt;i&gt;</code>)</li>
+            <li><code>&lt;mark&gt;</code> — نص مظلل أو مميز</li>
+            <li><code>&lt;code&gt;</code> — مقتطف كود مضمّن</li>
+            <li><code>&lt;blockquote&gt;</code> — اقتباس من مصدر آخر</li>
+            <li><code>&lt;del&gt;</code> / <code>&lt;ins&gt;</code> — نص محذوف / مُدرج</li>
+            <li><code>&lt;sup&gt;</code> / <code>&lt;sub&gt;</code> — نص مرتفع / منخفض</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-magnifying-glass"></i> <strong>قاعدة السيو:</strong> يجب أن تحتوي كل صفحة على وسم <code>&lt;h1&gt;</code> واحد فقط — عنوانك الرئيسي. استخدم <code>&lt;h2&gt;</code> للأقسام و<code>&lt;h3&gt;</code> للأقسام الفرعية. لا تتخطى مستويات العناوين أبداً. تستخدم Google هذا التسلسل الهرمي لفهم بنية صفحتك.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 4 ===================== -->
+    <div class="lesson-card reveal" id="lesson-4">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-link"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 4 — Links, Anchors & Navigation</h3><span class="badge badge-important">Essential</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 4 — الروابط والمراسي والتنقل</h3><span class="badge badge-important">أساسي</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>The <code>&lt;a&gt;</code> (anchor) tag is one of the most powerful elements in HTML. It connects pages together, making the web truly a <em>network</em> of documents. Without links, there would be no web.</p>
+          <div class="code-label"><i class="fab fa-html5"></i> Link Types & Attributes</div>
+          <div class="code-block"><pre>&lt;!-- External link (opens in new tab) --&gt;
+&lt;a href="https://google.com" target="_blank" rel="noopener noreferrer"&gt;Visit Google&lt;/a&gt;
+
+&lt;!-- Internal link (same website) --&gt;
+&lt;a href="about.html"&gt;About Us&lt;/a&gt;
+&lt;a href="/courses/python.html"&gt;Python Course&lt;/a&gt;
+
+&lt;!-- Anchor link (jump to section on same page) --&gt;
+&lt;a href="#lesson-5"&gt;Go to Lesson 5&lt;/a&gt;
+&lt;div id="lesson-5"&gt;...&lt;/div&gt;
+
+&lt;!-- Email and phone links --&gt;
+&lt;a href="mailto:hello@example.com"&gt;Send Email&lt;/a&gt;
+&lt;a href="tel:+212600000000"&gt;Call Us&lt;/a&gt;
+
+&lt;!-- Download link --&gt;
+&lt;a href="resume.pdf" download&gt;Download Resume&lt;/a&gt;</pre></div>
+          <ul>
+            <li><strong><code>href</code></strong> — The URL or destination. Required.</li>
+            <li><strong><code>target="_blank"</code></strong> — Opens link in a new browser tab.</li>
+            <li><strong><code>rel="noopener noreferrer"</code></strong> — Security best practice when using <code>target="_blank"</code>. Prevents the linked page from accessing your page's <code>window</code> object.</li>
+            <li><strong><code>download</code></strong> — Forces the browser to download the file instead of opening it.</li>
+          </ul>
+          <div class="warn-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Security Warning:</strong> Always add <code>rel="noopener noreferrer"</code> when using <code>target="_blank"</code>. Without it, the external page can redirect your page — a security vulnerability known as "tabnapping".</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>وسم <code>&lt;a&gt;</code> (المرساة) هو أحد أقوى العناصر في HTML. يربط الصفحات ببعضها، مما يجعل الويب شبكة حقيقية من المستندات. بدون الروابط، لن يكون هناك ويب.</p>
+          <div class="code-label"><i class="fab fa-html5"></i> أنواع الروابط والسمات</div>
+          <div class="code-block"><pre>&lt;!-- رابط خارجي (يفتح في تبويب جديد) --&gt;
+&lt;a href="https://google.com" target="_blank" rel="noopener noreferrer"&gt;زيارة جوجل&lt;/a&gt;
+
+&lt;!-- رابط داخلي (نفس الموقع) --&gt;
+&lt;a href="about.html"&gt;من نحن&lt;/a&gt;
+
+&lt;!-- رابط مرساة (القفز إلى قسم في نفس الصفحة) --&gt;
+&lt;a href="#lesson-5"&gt;الذهاب للدرس 5&lt;/a&gt;
+&lt;div id="lesson-5"&gt;...&lt;/div&gt;
+
+&lt;!-- روابط البريد الإلكتروني والهاتف --&gt;
+&lt;a href="mailto:hello@example.com"&gt;إرسال بريد&lt;/a&gt;
+&lt;a href="tel:+212600000000"&gt;اتصل بنا&lt;/a&gt;
+
+&lt;!-- رابط التنزيل --&gt;
+&lt;a href="resume.pdf" download&gt;تنزيل السيرة الذاتية&lt;/a&gt;</pre></div>
+          <div class="warn-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>تحذير أمني:</strong> أضف دائماً <code>rel="noopener noreferrer"</code> عند استخدام <code>target="_blank"</code>. بدونها، يمكن للصفحة الخارجية إعادة توجيه صفحتك — وهي ثغرة أمنية تُعرف بـ "tabnapping".</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 5 ===================== -->
+    <div class="lesson-card reveal" id="lesson-5">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-image"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 5 — Images, Audio & Video</h3><span class="badge badge-beginner">Beginner</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 5 — الصور والصوت والفيديو</h3><span class="badge badge-beginner">مبتدئ</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>HTML5 introduced native support for images, audio, and video — no plugins or Flash required. The <code>&lt;img&gt;</code>, <code>&lt;audio&gt;</code>, and <code>&lt;video&gt;</code> tags allow you to embed rich media directly in your pages.</p>
+          <div class="code-label"><i class="fab fa-html5"></i> Images, Audio & Video</div>
+          <div class="code-block"><pre>&lt;!-- Image with all best-practice attributes --&gt;
+&lt;img
+  src="photo.jpg"
+  alt="A developer typing code on a laptop"
+  width="800"
+  height="450"
+  loading="lazy"&gt;
+
+&lt;!-- Responsive image with multiple sources --&gt;
+&lt;picture&gt;
+  &lt;source srcset="photo.webp" type="image/webp"&gt;
+  &lt;img src="photo.jpg" alt="Developer at work"&gt;
+&lt;/picture&gt;
+
+&lt;!-- Audio player --&gt;
+&lt;audio controls&gt;
+  &lt;source src="podcast.mp3" type="audio/mpeg"&gt;
+  Your browser does not support audio.
+&lt;/audio&gt;
+
+&lt;!-- Video player --&gt;
+&lt;video controls width="640" poster="thumbnail.jpg"&gt;
+  &lt;source src="tutorial.mp4" type="video/mp4"&gt;
+  Your browser does not support video.
+&lt;/video&gt;</pre></div>
+          <ul>
+            <li><strong><code>alt</code></strong> — Alternative text. Shown when image fails to load. Critical for SEO and accessibility. Describe the image clearly.</li>
+            <li><strong><code>loading="lazy"</code></strong> — Native lazy loading. Images only load when they enter the viewport. Dramatically improves page speed.</li>
+            <li><strong><code>width</code> &amp; <code>height</code></strong> — Always specify these to prevent Cumulative Layout Shift (CLS), which hurts your Google PageSpeed score.</li>
+            <li><strong><code>&lt;picture&gt;</code></strong> — Allows providing multiple image formats. WebP is smaller and faster than JPEG/PNG — always offer it as the first option.</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-bolt"></i> <strong>Performance tip:</strong> Use the WebP format for images — it's 25-35% smaller than JPEG at the same quality. Always add <code>loading="lazy"</code> to images below the fold. These two changes alone can cut your page load time in half.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>قدم HTML5 دعماً أصلياً للصور والصوت والفيديو — لا حاجة لإضافات أو Flash. تسمح وسوم <code>&lt;img&gt;</code> و<code>&lt;audio&gt;</code> و<code>&lt;video&gt;</code> بتضمين الوسائط الغنية مباشرة في صفحاتك.</p>
+          <div class="code-label"><i class="fab fa-html5"></i> الصور والصوت والفيديو</div>
+          <div class="code-block"><pre>&lt;!-- صورة بجميع سمات أفضل الممارسات --&gt;
+&lt;img
+  src="photo.jpg"
+  alt="مطور يكتب كوداً على حاسوب محمول"
+  width="800"
+  height="450"
+  loading="lazy"&gt;
+
+&lt;!-- صورة متجاوبة مع مصادر متعددة --&gt;
+&lt;picture&gt;
+  &lt;source srcset="photo.webp" type="image/webp"&gt;
+  &lt;img src="photo.jpg" alt="مطور في العمل"&gt;
+&lt;/picture&gt;
+
+&lt;!-- مشغل الصوت --&gt;
+&lt;audio controls&gt;
+  &lt;source src="podcast.mp3" type="audio/mpeg"&gt;
+  متصفحك لا يدعم الصوت.
+&lt;/audio&gt;</pre></div>
+          <ul>
+            <li><strong><code>alt</code></strong> — النص البديل. يظهر عند فشل تحميل الصورة. حيوي للسيو وسهولة الوصول.</li>
+            <li><strong><code>loading="lazy"</code></strong> — التحميل الكسول الأصلي. تُحمَّل الصور فقط عند دخولها نطاق الرؤية. يحسن سرعة الصفحة بشكل كبير.</li>
+            <li><strong><code>width</code> و<code>height</code></strong> — حددهما دائماً لمنع الانزياح التراكمي للتخطيط (CLS).</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-bolt"></i> <strong>نصيحة للأداء:</strong> استخدم صيغة WebP للصور — أصغر بنسبة 25-35% من JPEG بنفس الجودة. أضف دائماً <code>loading="lazy"</code> للصور أسفل الطية. هذان التغييران وحدهما يمكنهما تقليص وقت تحميل الصفحة إلى النصف.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 6 ===================== -->
+    <div class="lesson-card reveal" id="lesson-6">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-list-ul"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 6 — Lists: Ordered, Unordered & Description</h3><span class="badge badge-beginner">Beginner</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 6 — القوائم: مرتبة وغير مرتبة وتعريفية</h3><span class="badge badge-beginner">مبتدئ</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>HTML offers three types of lists, each serving a different purpose. Knowing when to use each is important for both semantics and SEO.</p>
+          <div class="code-block"><pre>&lt;!-- Unordered list (bullets) - use for items without ranking --&gt;
+&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Ordered list (numbers) - use for steps or ranked items --&gt;
+&lt;ol&gt;
+  &lt;li&gt;Learn HTML first&lt;/li&gt;
+  &lt;li&gt;Then learn CSS&lt;/li&gt;
+  &lt;li&gt;Finally, learn JavaScript&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Description list - use for glossaries or key-value pairs --&gt;
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;The structure of web pages&lt;/dd&gt;
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;The styling of web pages&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;!-- Nested list --&gt;
+&lt;ul&gt;
+  &lt;li&gt;Frontend
+    &lt;ul&gt;
+      &lt;li&gt;HTML&lt;/li&gt;
+      &lt;li&gt;CSS&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Backend&lt;/li&gt;
+&lt;/ul&gt;</pre></div>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> Use <code>&lt;ul&gt;</code> for navigation menus — it is the semantic standard. Search engines and screen readers expect navigation to be a list. Never use divs or spans for navigation items.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>يقدم HTML ثلاثة أنواع من القوائم، كل منها يخدم غرضاً مختلفاً. معرفة متى تستخدم كلاً منها مهمة للدلالة وللسيو.</p>
+          <div class="code-block"><pre>&lt;!-- قائمة غير مرتبة (نقاط) - للعناصر غير المرتبة --&gt;
+&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- قائمة مرتبة (أرقام) - للخطوات أو العناصر المرتبة --&gt;
+&lt;ol&gt;
+  &lt;li&gt;تعلم HTML أولاً&lt;/li&gt;
+  &lt;li&gt;ثم تعلم CSS&lt;/li&gt;
+  &lt;li&gt;أخيراً تعلم JavaScript&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- قائمة وصفية - للمصطلحات أو أزواج المفتاح-القيمة --&gt;
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;هيكل صفحات الويب&lt;/dd&gt;
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;تنسيق صفحات الويب&lt;/dd&gt;
+&lt;/dl&gt;</pre></div>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> استخدم <code>&lt;ul&gt;</code> لقوائم التنقل — إنه المعيار الدلالي. تتوقع محركات البحث وبرامج قراءة الشاشة أن يكون التنقل قائمة. لا تستخدم divs أو spans لعناصر التنقل أبداً.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 7 ===================== -->
+    <div class="lesson-card reveal" id="lesson-7">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-table"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 7 — Tables: Structure & Best Practices</h3><span class="badge badge-pro">Intermediate</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 7 — الجداول: الهيكل وأفضل الممارسات</h3><span class="badge badge-pro">متوسط</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>HTML tables are used to display <strong>tabular data</strong> — data that naturally belongs in rows and columns, like spreadsheets, comparison charts, or schedules. They should <em>never</em> be used for page layout (that's CSS's job).</p>
+          <div class="code-block"><pre>&lt;table&gt;
+  &lt;caption&gt;Programming Language Popularity 2026&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;Language&lt;/th&gt;
+      &lt;th scope="col"&gt;Usage&lt;/th&gt;
+      &lt;th scope="col"&gt;Difficulty&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;JavaScript&lt;/td&gt;
+      &lt;td&gt;Frontend &amp; Backend&lt;/td&gt;
+      &lt;td&gt;Medium&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Python&lt;/td&gt;
+      &lt;td&gt;AI, Data, Backend&lt;/td&gt;
+      &lt;td&gt;Easy&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td colspan="3"&gt;Source: Stack Overflow Survey 2026&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</pre></div>
+          <ul>
+            <li><strong><code>&lt;caption&gt;</code></strong> — A title for the table. Good for accessibility and SEO.</li>
+            <li><strong><code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code></strong> — Semantic grouping of rows.</li>
+            <li><strong><code>&lt;th&gt;</code></strong> — Table header cell (bold by default). Use <code>scope="col"</code> or <code>scope="row"</code>.</li>
+            <li><strong><code>colspan</code> / <code>rowspan</code></strong> — Merge cells horizontally or vertically.</li>
+          </ul>
+          <div class="warn-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Common Mistake:</strong> Using tables for page layout. This was common in the 1990s but is now considered very bad practice. Always use CSS Flexbox or Grid for layouts.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>تُستخدم جداول HTML لعرض <strong>البيانات الجدولية</strong> — البيانات التي تنتمي بشكل طبيعي في صفوف وأعمدة، مثل جداول البيانات ومخططات المقارنة والجداول الزمنية. يجب أن تُستخدم <em>أبداً</em> لتخطيط الصفحات (ذلك عمل CSS).</p>
+          <div class="code-block"><pre>&lt;table&gt;
+  &lt;caption&gt;شعبية لغات البرمجة 2026&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;اللغة&lt;/th&gt;
+      &lt;th scope="col"&gt;الاستخدام&lt;/th&gt;
+      &lt;th scope="col"&gt;الصعوبة&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;JavaScript&lt;/td&gt;
+      &lt;td&gt;Frontend وBackend&lt;/td&gt;
+      &lt;td&gt;متوسط&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Python&lt;/td&gt;
+      &lt;td&gt;ذكاء اصطناعي وبيانات&lt;/td&gt;
+      &lt;td&gt;سهل&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre></div>
+          <div class="warn-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>خطأ شائع:</strong> استخدام الجداول لتخطيط الصفحات. كان هذا شائعاً في التسعينيات ولكنه الآن ممارسة سيئة جداً. استخدم دائماً CSS Flexbox أو Grid للتخطيطات.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 8 ===================== -->
+    <div class="lesson-card reveal" id="lesson-8">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-square-check"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 8 — Forms: Input, Validation & Accessibility</h3><span class="badge badge-important">Essential</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 8 — النماذج: المدخلات والتحقق وسهولة الوصول</h3><span class="badge badge-important">أساسي</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Forms are how websites collect user input — login screens, contact forms, search bars, checkouts. HTML5 brought powerful native validation and many new input types that work without JavaScript.</p>
+          <div class="code-block"><pre>&lt;form action="/submit" method="POST"&gt;
+  &lt;!-- Text Input --&gt;
+  &lt;label for="name"&gt;Full Name&lt;/label&gt;
+  &lt;input type="text" id="name" name="name" placeholder="John Doe" required minlength="2"&gt;
+
+  &lt;!-- Email with built-in validation --&gt;
+  &lt;label for="email"&gt;Email Address&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;
+
+  &lt;!-- Password --&gt;
+  &lt;input type="password" id="pass" name="pass" minlength="8" required&gt;
+
+  &lt;!-- Number input --&gt;
+  &lt;input type="number" min="1" max="100" step="1"&gt;
+
+  &lt;!-- Date picker --&gt;
+  &lt;input type="date"&gt;
+
+  &lt;!-- Dropdown select --&gt;
+  &lt;select name="level"&gt;
+    &lt;option value=""&gt;Select Level&lt;/option&gt;
+    &lt;option value="beginner"&gt;Beginner&lt;/option&gt;
+    &lt;option value="pro"&gt;Professional&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;!-- Textarea --&gt;
+  &lt;textarea name="message" rows="5" placeholder="Your message..."&gt;&lt;/textarea&gt;
+
+  &lt;!-- Checkbox & Radio --&gt;
+  &lt;input type="checkbox" id="agree" name="agree" required&gt;
+  &lt;label for="agree"&gt;I agree to the Terms&lt;/label&gt;
+
+  &lt;button type="submit"&gt;Send Message&lt;/button&gt;
+&lt;/form&gt;</pre></div>
+          <ul>
+            <li><strong><code>&lt;label for="..."&gt;</code></strong> — Always connect labels to inputs with <code>for</code> matching the input <code>id</code>. Required for accessibility. Clicking the label focuses the input.</li>
+            <li><strong><code>required</code></strong> — Browser-native validation. Shows an error if user tries to submit without filling the field.</li>
+            <li><strong><code>minlength</code> / <code>maxlength</code></strong> — Character count validation.</li>
+            <li><strong><code>type="email"</code></strong> — Auto-validates email format. Shows a custom keyboard on mobile.</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-mobile-screen"></i> <strong>Mobile tip:</strong> Use the right <code>type</code> attribute: <code>type="tel"</code> shows a number pad on mobile, <code>type="email"</code> shows the @ keyboard, <code>type="url"</code> shows a URL keyboard. This small detail greatly improves mobile user experience.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>النماذج هي الطريقة التي تجمع بها المواقع مدخلات المستخدمين — شاشات تسجيل الدخول ونماذج التواصل وأشرطة البحث. جلب HTML5 تحققاً أصلياً قوياً وأنواع مدخلات جديدة تعمل بدون JavaScript.</p>
+          <div class="code-block"><pre>&lt;form action="/submit" method="POST"&gt;
+  &lt;!-- مدخل نصي --&gt;
+  &lt;label for="name"&gt;الاسم الكامل&lt;/label&gt;
+  &lt;input type="text" id="name" name="name" placeholder="محمد علي" required minlength="2"&gt;
+
+  &lt;!-- بريد إلكتروني مع تحقق مدمج --&gt;
+  &lt;label for="email"&gt;البريد الإلكتروني&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;
+
+  &lt;!-- قائمة منسدلة --&gt;
+  &lt;select name="level"&gt;
+    &lt;option value=""&gt;اختر المستوى&lt;/option&gt;
+    &lt;option value="beginner"&gt;مبتدئ&lt;/option&gt;
+    &lt;option value="pro"&gt;محترف&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;button type="submit"&gt;إرسال الرسالة&lt;/button&gt;
+&lt;/form&gt;</pre></div>
+          <ul>
+            <li><strong><code>&lt;label for="..."&gt;</code></strong> — اربط دائماً التسميات بالمدخلات. مطلوب لسهولة الوصول.</li>
+            <li><strong><code>required</code></strong> — تحقق أصلي من المتصفح. يظهر خطأً إذا حاول المستخدم الإرسال دون ملء الحقل.</li>
+            <li><strong><code>type="email"</code></strong> — يتحقق تلقائياً من تنسيق البريد الإلكتروني.</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-mobile-screen"></i> <strong>نصيحة للجوال:</strong> استخدم سمة <code>type</code> الصحيحة: <code>type="tel"</code> يعرض لوحة أرقام على الجوال، <code>type="email"</code> يعرض لوحة مفاتيح مع @. هذه التفاصيل الصغيرة تحسن تجربة مستخدم الجوال بشكل كبير.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 9 ===================== -->
+    <div class="lesson-card reveal" id="lesson-9">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 9 — Semantic HTML5: Structure That Means Something</h3><span class="badge badge-seo">SEO Critical</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 9 — HTML الدلالي: بنية ذات معنى</h3><span class="badge badge-seo">حيوي للسيو</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Semantic HTML means using HTML elements that accurately describe their <em>meaning and purpose</em> in the document — not just their visual appearance. This is one of the biggest upgrades HTML5 brought over older HTML.</p>
+          <p>Compare these two approaches:</p>
+          <div class="code-block"><pre>&lt;!-- ❌ Non-semantic (old way) --&gt;
+&lt;div class="header"&gt;...&lt;/div&gt;
+&lt;div class="nav"&gt;...&lt;/div&gt;
+&lt;div class="content"&gt;
+  &lt;div class="post"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sidebar"&gt;...&lt;/div&gt;
+&lt;div class="footer"&gt;...&lt;/div&gt;
+
+&lt;!-- ✅ Semantic HTML5 (correct way) --&gt;
+&lt;header&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h1&gt;Article Title&lt;/h1&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Introduction&lt;/h2&gt;
+      &lt;p&gt;Content here...&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/article&gt;
+  &lt;aside&gt;
+    &lt;h2&gt;Related Articles&lt;/h2&gt;
+  &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2026 Coding Life&lt;/p&gt;
+&lt;/footer&gt;</pre></div>
+          <p><strong>Key semantic elements:</strong></p>
+          <ul>
+            <li><strong><code>&lt;header&gt;</code></strong> — Introductory content of a page or section</li>
+            <li><strong><code>&lt;nav&gt;</code></strong> — Navigation links</li>
+            <li><strong><code>&lt;main&gt;</code></strong> — The main content of the page (use only once)</li>
+            <li><strong><code>&lt;article&gt;</code></strong> — Self-contained content (blog post, news article)</li>
+            <li><strong><code>&lt;section&gt;</code></strong> — A thematic grouping with a heading</li>
+            <li><strong><code>&lt;aside&gt;</code></strong> — Related but secondary content (sidebar, callouts)</li>
+            <li><strong><code>&lt;footer&gt;</code></strong> — Footer of a page or section</li>
+            <li><strong><code>&lt;figure&gt;</code> / <code>&lt;figcaption&gt;</code></strong> — Image or media with a caption</li>
+            <li><strong><code>&lt;time&gt;</code></strong> — A specific date or time (<code>&lt;time datetime="2026-10-15"&gt;</code>)</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-search"></i> <strong>Why semantics matter for SEO:</strong> Google's crawler reads your HTML like a screen reader. When it sees <code>&lt;article&gt;</code>, it knows this is the main content. When it sees <code>&lt;nav&gt;</code>, it understands these are navigation links. Semantic HTML can significantly boost your search ranking.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>HTML الدلالي يعني استخدام عناصر HTML التي تصف بدقة <em>معناها وغرضها</em> في المستند — ليس مجرد مظهرها. هذا أحد أكبر التحسينات التي جلبها HTML5.</p>
+          <div class="code-block"><pre>&lt;!-- ❌ غير دلالي (الطريقة القديمة) --&gt;
+&lt;div class="header"&gt;...&lt;/div&gt;
+&lt;div class="nav"&gt;...&lt;/div&gt;
+&lt;div class="content"&gt;...&lt;/div&gt;
+&lt;div class="footer"&gt;...&lt;/div&gt;
+
+&lt;!-- ✅ HTML5 الدلالي (الطريقة الصحيحة) --&gt;
+&lt;header&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h1&gt;عنوان المقال&lt;/h1&gt;
+    &lt;section&gt;
+      &lt;h2&gt;المقدمة&lt;/h2&gt;
+      &lt;p&gt;المحتوى هنا...&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/article&gt;
+  &lt;aside&gt;مقالات ذات صلة&lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2026 Coding Life&lt;/p&gt;
+&lt;/footer&gt;</pre></div>
+          <ul>
+            <li><strong><code>&lt;header&gt;</code></strong> — محتوى تمهيدي للصفحة أو القسم</li>
+            <li><strong><code>&lt;nav&gt;</code></strong> — روابط التنقل</li>
+            <li><strong><code>&lt;main&gt;</code></strong> — المحتوى الرئيسي للصفحة (استخدم مرة واحدة)</li>
+            <li><strong><code>&lt;article&gt;</code></strong> — محتوى مستقل (مقالة مدونة، خبر)</li>
+            <li><strong><code>&lt;section&gt;</code></strong> — تجميع موضوعي مع عنوان</li>
+            <li><strong><code>&lt;aside&gt;</code></strong> — محتوى ثانوي (شريط جانبي)</li>
+            <li><strong><code>&lt;footer&gt;</code></strong> — تذييل الصفحة أو القسم</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-search"></i> <strong>لماذا تهم الدلالة للسيو:</strong> يقرأ زاحف Google كود HTML مثل برنامج قراءة الشاشة. عندما يرى <code>&lt;article&gt;</code> يعرف أن هذا المحتوى الرئيسي. HTML الدلالي يمكنه تحسين ترتيبك في البحث بشكل كبير.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 10 ===================== -->
+    <div class="lesson-card reveal" id="lesson-10">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-universal-access"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 10 — HTML for SEO & Accessibility</h3><span class="badge badge-pro">Advanced</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 10 — HTML للسيو وسهولة الوصول</h3><span class="badge badge-pro">متقدم</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>This is where HTML knowledge separates good developers from great ones. SEO (Search Engine Optimization) and Accessibility (a11y) are two sides of the same coin — both require clean, meaningful, well-structured HTML.</p>
+          <div class="code-block"><pre>&lt;!-- Essential Meta Tags for SEO --&gt;
+&lt;meta name="description" content="Learn HTML5 from scratch. Free course covering all fundamentals."&gt;
+&lt;meta name="keywords" content="HTML, HTML5, web development, tutorial"&gt;
+&lt;link rel="canonical" href="https://example.com/html.html"&gt;
+
+&lt;!-- Open Graph (Social Media Preview) --&gt;
+&lt;meta property="og:title" content="HTML5 Complete Course - Coding Life"&gt;
+&lt;meta property="og:description" content="Master HTML5 from zero to pro."&gt;
+&lt;meta property="og:image" content="https://example.com/og-image.jpg"&gt;
+&lt;meta property="og:url" content="https://example.com/html.html"&gt;
+
+&lt;!-- Accessibility: Skip Navigation --&gt;
+&lt;a href="#main-content" class="skip-link"&gt;Skip to main content&lt;/a&gt;
+
+&lt;!-- ARIA Labels for interactive elements --&gt;
+&lt;button aria-label="Close dialog"&gt;&lt;i class="fa fa-times"&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;nav aria-label="Main navigation"&gt;...&lt;/nav&gt;
+&lt;img src="chart.png" alt="Bar chart showing monthly sales data for Q4 2026"&gt;
+
+&lt;!-- Structured Data (JSON-LD) for rich search results --&gt;
+&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "HTML5 Complete Masterclass",
+  "description": "Free comprehensive HTML5 course",
+  "provider": {
+    "@type": "Organization",
+    "name": "Coding Life"
+  }
+}
+&lt;/script&gt;</pre></div>
+          <p><strong>SEO Checklist for every HTML page:</strong></p>
+          <ul>
+            <li>✅ Unique, descriptive <code>&lt;title&gt;</code> (50-60 chars)</li>
+            <li>✅ Meta description (150-160 chars)</li>
+            <li>✅ One <code>&lt;h1&gt;</code> per page with your target keyword</li>
+            <li>✅ Semantic HTML structure</li>
+            <li>✅ All images have descriptive <code>alt</code> attributes</li>
+            <li>✅ Canonical URL link tag</li>
+            <li>✅ Open Graph tags for social sharing</li>
+            <li>✅ Structured data (JSON-LD) where applicable</li>
+            <li>✅ Fast loading (lazy-loaded images, deferred scripts)</li>
+            <li>✅ Mobile-responsive viewport meta tag</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-trophy"></i> <strong>Pro tip:</strong> Test your page with <a href="https://validator.w3.org/" target="_blank" rel="noopener">W3C Validator</a> (HTML validity), <a href="https://web.dev/measure" target="_blank" rel="noopener">web.dev</a> (performance & SEO), and <a href="https://wave.webaim.org/" target="_blank" rel="noopener">WAVE</a> (accessibility). All are free tools.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>هنا تتمايز معرفة HTML بين المطورين الجيدين والممتازين. السيو وسهولة الوصول وجهان لعملة واحدة — كلاهما يتطلب HTML نظيفاً وذا معنى وبنية جيدة.</p>
+          <div class="code-block"><pre>&lt;!-- وسوم Meta الأساسية للسيو --&gt;
+&lt;meta name="description" content="تعلم HTML5 من الصفر. كورس مجاني يغطي جميع الأساسيات."&gt;
+&lt;link rel="canonical" href="https://example.com/html.html"&gt;
+
+&lt;!-- Open Graph (معاينة وسائل التواصل) --&gt;
+&lt;meta property="og:title" content="كورس HTML5 الشامل - Coding Life"&gt;
+&lt;meta property="og:description" content="أتقن HTML5 من الصفر إلى الاحتراف."&gt;
+&lt;meta property="og:image" content="https://example.com/og-image.jpg"&gt;
+
+&lt;!-- ARIA Labels للعناصر التفاعلية --&gt;
+&lt;button aria-label="إغلاق الحوار"&gt;&lt;i class="fa fa-times"&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;nav aria-label="التنقل الرئيسي"&gt;...&lt;/nav&gt;
+&lt;img src="chart.png" alt="مخطط شريطي يظهر بيانات المبيعات الشهرية للربع الرابع 2026"&gt;</pre></div>
+          <p><strong>قائمة تحقق SEO لكل صفحة HTML:</strong></p>
+          <ul>
+            <li>✅ <code>&lt;title&gt;</code> فريد ووصفي (50-60 حرفاً)</li>
+            <li>✅ وصف meta (150-160 حرفاً)</li>
+            <li>✅ <code>&lt;h1&gt;</code> واحد في الصفحة مع الكلمة المفتاحية المستهدفة</li>
+            <li>✅ هيكل HTML دلالي</li>
+            <li>✅ جميع الصور لها سمات <code>alt</code> وصفية</li>
+            <li>✅ وسم URL الرئيسي (canonical)</li>
+            <li>✅ وسوم Open Graph للمشاركة على وسائل التواصل</li>
+            <li>✅ بيانات منظمة (JSON-LD) حيثما ينطبق</li>
+            <li>✅ تحميل سريع (صور كسولة، سكريبتات مؤجلة)</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-trophy"></i> <strong>نصيحة للمحترفين:</strong> اختبر صفحتك بـ <a href="https://validator.w3.org/" target="_blank" rel="noopener">W3C Validator</a> (صلاحية HTML) و<a href="https://web.dev/measure" target="_blank" rel="noopener">web.dev</a> (الأداء والسيو). كلها أدوات مجانية.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT COURSE CTA -->
+    <div class="chapter reveal" style="text-align:center; padding: 40px; background: var(--cl-surface); border-radius: 20px; border: 1px solid var(--cl-line); margin-top: 20px;">
+      <div data-cl-lang="en">
+        <h2 style="font-size:1.6rem; margin-bottom:12px;">🎉 Congratulations! You've completed HTML5!</h2>
+        <p style="color: var(--cl-muted); margin-bottom: 28px;">Now it's time to style your pages. The natural next step is learning <strong>CSS</strong> — the language of design.</p>
+        <a href="css.html" style="display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:var(--cl-brand); color:#fff; border-radius:12px; font-weight:800; text-decoration:none; font-size:1.1rem; transition:0.3s;">Next Course: CSS Masterclass <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div data-cl-lang="ar">
+        <h2 style="font-size:1.6rem; margin-bottom:12px;">🎉 تهانينا! أكملت HTML5!</h2>
+        <p style="color: var(--cl-muted); margin-bottom: 28px;">حان الوقت الآن لتنسيق صفحاتك. الخطوة الطبيعية التالية هي تعلم <strong>CSS</strong> — لغة التصميم.</p>
+        <a href="css.html" style="display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:var(--cl-brand); color:#fff; border-radius:12px; font-weight:800; text-decoration:none; font-size:1.1rem; transition:0.3s;">الكورس التالي: CSS Masterclass <i class="fa-solid fa-arrow-left"></i></a>
+      </div>
+    </div>
+
+  </div><!-- end .chapters -->
+</div><!-- end .course-container -->
 
 <script src="site-polish.js"></script>
 </body>
