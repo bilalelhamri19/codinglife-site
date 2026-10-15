@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Skills Quiz & Assessment - Coding Life</title>
+  <meta name="description" content="Test your programming knowledge with interactive developer quizzes for HTML, CSS, JavaScript, Python, and Git. Instant feedback, detailed explanations, and score tracking.">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@400;600;800&family=Pacifico&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .quiz-container {
+      max-width: 860px;
+      margin: 130px auto 60px;
+      padding: 0 24px;
+    }
+
+    .quiz-hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .quiz-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--cl-ink);
+      margin: 12px 0;
+    }
+
+    .quiz-hero p {
+      font-size: 1.15rem;
+      color: var(--cl-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Category Cards */
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .quiz-cat-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 18px;
+      padding: 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      box-shadow: var(--cl-shadow-sm);
+    }
+
+    .quiz-cat-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cl-brand);
+      box-shadow: var(--cl-shadow-lg);
+    }
+
+    .quiz-cat-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 16px;
+    }
+
+    .cat-html { background: rgba(249, 115, 22, 0.12); color: #f97316; }
+    .cat-js { background: rgba(234, 179, 8, 0.12); color: #eab308; }
+    .cat-py { background: rgba(56, 189, 248, 0.12); color: #38bdf8; }
+    .cat-git { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+
+    .quiz-cat-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      color: var(--cl-ink);
+    }
+
+    .quiz-cat-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--cl-muted);
+    }
+
+    /* Active Quiz Screen */
+    .quiz-box {
+      display: none;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: var(--cl-shadow);
+      position: relative;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .quiz-progress-text {
+      font-weight: 700;
+      color: var(--cl-brand);
+      font-size: 0.95rem;
+    }
+
+    .quiz-progress-bar {
+      height: 6px;
+      background: var(--cl-line);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--cl-brand), #38bdf8);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .quiz-question {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--cl-ink);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .quiz-opt-btn {
+      padding: 16px 20px;
+      background: var(--cl-bg);
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      color: var(--cl-ink);
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      outline: none;
+    }
+
+    body.rtl .quiz-opt-btn {
+      text-align: right;
+    }
+
+    .quiz-opt-btn:hover:not(:disabled) {
+      border-color: var(--cl-brand);
+      background: var(--cl-brand-soft);
+      transform: translateX(4px);
+    }
+
+    body.rtl .quiz-opt-btn:hover:not(:disabled) {
+      transform: translateX(-4px);
+    }
+
+    .quiz-opt-btn.correct {
+      background: rgba(16, 185, 129, 0.15) !important;
+      border-color: #10b981 !important;
+      color: #10b981 !important;
+    }
+
+    .quiz-opt-btn.wrong {
+      background: rgba(239, 68, 68, 0.15) !important;
+      border-color: #ef4444 !important;
+      color: #ef4444 !important;
+    }
+
+    .quiz-explanation {
+      display: none;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: rgba(45, 212, 191, 0.08);
+      border: 1px solid rgba(45, 212, 191, 0.2);
+      color: var(--cl-ink);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .quiz-next-btn {
+      display: none;
+      background: var(--cl-brand);
+      color: #020617;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 20px rgba(45, 212, 191, 0.3);
+    }
+
+    .quiz-next-btn:hover {
+      background: #5eead4;
+      transform: translateY(-2px);
+    }
+
+    /* Result Screen */
+    .quiz-result {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .result-badge {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      animation: float 4s infinite ease-in-out;
+    }
+
+    .result-score {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--cl-brand);
+      margin-bottom: 8px;
+    }
+
+    .result-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--cl-ink);
+      margin-bottom: 12px;
+    }
+
+    .result-desc {
+      color: var(--cl-muted);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .result-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10000;
+    }
+
+    @media (max-width: 600px) {
+      .quiz-box { padding: 24px 18px; }
+      .quiz-question { font-size: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="confettiCanvas"></canvas>
+
+<div class="quiz-container">
+  <!-- Hero Section -->
+  <div class="quiz-hero">
+    <span class="hero-tag" data-cl-lang="en">Interactive Assessment</span>
+    <span class="hero-tag" data-cl-lang="ar">تقييم المهارات التفاعلي</span>
+    <h1 data-cl-lang="en">Developer Skill <span style="color:var(--cl-brand);">Quizzes</span></h1>
+    <h1 data-cl-lang="ar">اختبارات مهارات <span style="color:var(--cl-brand);">المبرمج</span></h1>
+    <p data-cl-lang="en">Select a programming domain below to test your practical knowledge with instant feedback and explanations.</p>
+    <p data-cl-lang="ar">اختر مساراً برمجياً لاختبار معرفتك العملية مع شروحات فورية وتقييم احترافي لمستواك.</p>
+  </div>
+
+  <!-- Categories Grid -->
+  <div class="quiz-grid" id="catGrid">
+    <div class="quiz-cat-card" data-cat="web">
+      <div class="quiz-cat-icon cat-html"><i class="fa-brands fa-html5"></i></div>
+      <h3>HTML5 & CSS3</h3>
+      <p data-cl-lang="en">Semantics, layouts, Flexbox & Grid</p>
+      <p data-cl-lang="ar">الهيكلية، التنسيقات وفليكس بوكس</p>
+    </div>
+
+    <div class="quiz-cat-card" data-cat="js">
+      <div class="quiz-cat-icon cat-js"><i class="fa-brands fa-js"></i></div>
+      <h3>JavaScript ES6+</h3>
+      <p data-cl-lang="en">Async logic, Promises, closures & DOM</p>
+      <p data-cl-lang="ar">المنطق غير المتزامن والـ DOM</p>
+    </div>
+
+    <div class="quiz-cat-card" data-cat="py">
+      <div class="quiz-cat-icon cat-py"><i class="fa-brands fa-python"></i></div>
+      <h3>Python Essentials</h3>
+      <p data-cl-lang="en">Data structures, loops & OOP</p>
+      <p data-cl-lang="ar">هياكل البيانات والبرمجة الكائنية</p>
+    </div>
+
+    <div class="quiz-cat-card" data-cat="git">
+      <div class="quiz-cat-icon cat-git"><i class="fa-brands fa-git-alt"></i></div>
+      <h3>Git & Terminal</h3>
+      <p data-cl-lang="en">Branches, merges, commits & remotes</p>
+      <p data-cl-lang="ar">الفروع والدمج والتحكم في الإصدارات</p>
+    </div>
+  </div>
+
+  <!-- Active Quiz Box -->
+  <div class="quiz-box" id="quizBox">
+    <div class="quiz-header">
+      <span class="quiz-progress-text" id="progressText">Question 1 / 5</span>
+      <button class="pg-btn" id="exitQuizBtn" style="padding:6px 14px; font-size:0.8rem;">
+        <i class="fa-solid fa-xmark"></i> <span data-cl-lang="en">Exit</span><span data-cl-lang="ar">خروج</span>
+      </button>
+    </div>
+
+    <div class="quiz-progress-bar">
+      <div class="quiz-progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="quiz-question" id="quizQuestion">Loading question...</div>
+
+    <div class="quiz-options" id="quizOptions"></div>
+
+    <div class="quiz-explanation" id="quizExplanation"></div>
+
+    <div style="text-align:right;">
+      <button class="quiz-next-btn" id="nextQuestionBtn">
+        <span data-cl-lang="en">Next Question</span><span data-cl-lang="ar">السؤال التالي</span> <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Result Screen -->
+  <div class="quiz-box quiz-result" id="quizResult">
+    <div class="result-badge" id="resBadge">🏆</div>
+    <div class="result-score" id="resScore">5 / 5</div>
+    <div class="result-title" id="resTitle">Master Developer!</div>
+    <div class="result-desc" id="resDesc">You scored high on this assessment. Keep leveling up your engineering knowledge!</div>
+    <div class="result-actions">
+      <button class="pg-btn pg-btn-primary" id="retryQuizBtn">
+        <i class="fa-solid fa-rotate-left"></i> <span data-cl-lang="en">Try Another Quiz</span><span data-cl-lang="ar">تجربة اختبار آخر</span>
+      </button>
+      <a href="dorous-albarmaja.html" class="pg-btn">
+        <i class="fa-solid fa-book-open"></i> <span data-cl-lang="en">Browse Courses</span><span data-cl-lang="ar">تصفح الدروس</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const QUIZ_DATA = {
+    web: [
+      {
+        q_en: "Which HTML5 element is semantically intended for independent, self-contained content?",
+        q_ar: "أي وسم دلالي في HTML5 مخصص للمحتوى المستقل بذاته القابل لإعادة النشر؟",
+        options: ["<article>", "<section>", "<div>", "<aside>"],
+        correct: 0,
+        exp_en: "<article> represents an independent piece of content such as a blog post or news story.",
+        exp_ar: "وسم <article> يمثل محتوى مستقلاً قائماً بذاته مثل مقالة أو تدوينة إخبارية."
+      },
+      {
+        q_en: "In CSS Flexbox, which property controls alignment along the main axis?",
+        q_ar: "في CSS Flexbox، ما الخاصية المسؤولة عن محاذاة العناصر على طول المحور الرئيسي (Main Axis)؟",
+        options: ["align-items", "justify-content", "align-content", "flex-direction"],
+        correct: 1,
+        exp_en: "justify-content aligns flex items along the main axis of the current line.",
+        exp_ar: "خاصية justify-content تحاذي العناصر على طول المحور الرئيسي."
+      },
+      {
+        q_en: "What does the 'rem' unit in modern CSS calculate relative to?",
+        q_ar: "إلى ماذا تستند وحدة 'rem' في قياسات CSS الحديثة؟",
+        options: ["Parent element font size", "Root <html> font size", "Viewport width", "Screen DPI"],
+        correct: 1,
+        exp_en: "'rem' stands for Root EM and is relative to the root <html> element's font-size.",
+        exp_ar: "'rem' تعني Root EM وتعتمد على حجم خط العنصر الجذري <html>."
+      },
+      {
+        q_en: "Which CSS property is best for 2-dimensional layouts (rows and columns simultaneously)?",
+        q_ar: "أي نظام CSS هو الأنسب لتخطيط ثنائي الأبعاد (صفوف وأعمدة في نفس الوقت)؟",
+        options: ["CSS Grid", "Flexbox", "Float", "Inline-Block"],
+        correct: 0,
+        exp_en: "CSS Grid is inherently two-dimensional, handling both rows and columns at once.",
+        exp_ar: "CSS Grid مصمم بطبيعته للتخطيط ثنائي الأبعاد الذي يشمل الصفوف والأعمدة معاً."
+      },
+      {
+        q_en: "Which HTML attribute provides text alternative for screen readers and SEO on images?",
+        q_ar: "أي خاصية (Attribute) في وسم <img> توفر نصاً بديلاً لقارئات الشاشة ومحركات البحث؟",
+        options: ["title", "src", "alt", "aria-desc"],
+        correct: 2,
+        exp_en: "The alt attribute specifies alternative text when the image cannot be displayed and for accessibility.",
+        exp_ar: "خاصية alt تحدد النص البديل عند تعذر عرض الصورة ولإمكانية الوصول والـ SEO."
+      }
+    ],
+    js: [
+      {
+        q_en: "What is the output of `typeof null` in standard JavaScript?",
+        q_ar: "ما هي نتيجة `typeof null` في معيار لغة JavaScript؟",
+        options: ["'null'", "'object'", "'undefined'", "'boolean'"],
+        correct: 1,
+        exp_en: "Due to a historic bug in JS since 1995, typeof null returns 'object'.",
+        exp_ar: "بسبب خطأ تاريخي في بدايات لغة JS سنة 1995، ترجع typeof null القيمة 'object'."
+      },
+      {
+        q_en: "Which method creates a new array with all elements that pass a test condition?",
+        q_ar: "أي دالة مصفوفات تنشئ مصفوفة جديدة تحتوي فقط على العناصر التي تحقق شرطاً معيناً؟",
+        options: ["map()", "filter()", "forEach()", "reduce()"],
+        correct: 1,
+        exp_en: "filter() returns a new array with all elements that return true for the callback.",
+        exp_ar: "دالة filter() تعيد مصفوفة جديدة تحتوي على العناصر التي ترجع true للشرط."
+      },
+      {
+        q_en: "What keyword is used to pause async function execution until a Promise resolves?",
+        q_ar: "ما هي الكلمة المفتاحية التي توقف تنفيذ الدالة غير المتزامنة حتى يتم حل الـ Promise؟",
+        options: ["wait", "yield", "await", "defer"],
+        correct: 2,
+        exp_en: "The 'await' keyword waits for a Promise to resolve inside an 'async' function.",
+        exp_ar: "تُستخدم الكلمة المفتاحية 'await' لانتظار اكتمال الـ Promise داخل الدوال غير المتزامنة."
+      },
+      {
+        q_en: "Which equality operator compares both value AND type without type coercion?",
+        q_ar: "أي معامل مقارنة يقارن القيمة والنوع معاً دون تحويل قسري للنوع (Strict Equality)؟",
+        options: ["==", "===", "=", "!="],
+        correct: 1,
+        exp_en: "=== is the strict equality operator that checks value and type without coercion.",
+        exp_ar: "المعامل === يتحقق من تطابق القيمة والنوع دون تحويل ضمني."
+      },
+      {
+        q_en: "What does localStorage do when the browser tab is closed?",
+        q_ar: "ماذا يحدث للبيانات المخزنة في localStorage عند إغلاق المتصفح؟",
+        options: ["Deleted immediately", "Persisted indefinitely", "Cleared after 1 hour", "Transferred to cookie"],
+        correct: 1,
+        exp_en: "localStorage has no expiration time; data persists across browser sessions.",
+        exp_ar: "بيانات localStorage تبقى محفوظة بشكل دائم حتى يتم مسحها برمجياً أو يدوياً."
+      }
+    ],
+    py: [
+      {
+        q_en: "Which data structure in Python is immutable (cannot be modified after creation)?",
+        q_ar: "أي هيكل بيانات في بايثون غير قابل للتعديل بعد إنشائه (Immutable)؟",
+        options: ["List", "Dictionary", "Tuple", "Set"],
+        correct: 2,
+        exp_en: "Tuples are immutable sequences; once created, items cannot be changed.",
+        exp_ar: "الـ Tuple في بايثون غير قابلة للتعديل (Immutable) بعد إنشائها."
+      },
+      {
+        q_en: "What keyword is used to define a function in Python?",
+        q_ar: "ما هي الكلمة المفتاحية المستخدمة لتعريف دالة (Function) في بايثون؟",
+        options: ["func", "function", "def", "lambda"],
+        correct: 2,
+        exp_en: "In Python, functions are defined using the 'def' keyword.",
+        exp_ar: "في لغة بايثون، يتم تعريف الدوال باستخدام الكلمة المفتاحية 'def'."
+      },
+      {
+        q_en: "What is the time complexity of looking up a key in a Python dictionary (average case)?",
+        q_ar: "ما هو التعقيد الزمني (Time Complexity) للبحث عن مفتاح في Dictionary ببايثون في المتوسط؟",
+        options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+        correct: 0,
+        exp_en: "Python dictionaries use hash tables, making key lookup O(1) constant time on average.",
+        exp_ar: "قواميس بايثون تعتمد على جداول التجزئة (Hash Tables)، مما يجعل البحث O(1) في المتوسط."
+      },
+      {
+        q_en: "How do you start a single-line comment in Python?",
+        q_ar: "كيف تبدأ تعليقاً بسطر واحد في بايثون؟",
+        options: ["//", "/*", "#", "--"],
+        correct: 2,
+        exp_en: "Single-line comments in Python begin with the '#' symbol.",
+        exp_ar: "التعليقات بسطر واحد في بايثون تبدأ برمز الهاشتاج '#'."
+      },
+      {
+        q_en: "Which method is called automatically when creating a new instance of a Python class?",
+        q_ar: "ما هي الدالة التي يتم استدعاؤها تلقائياً عند إنشاء كائن جديد من كلاس في بايثون؟",
+        options: ["__create__()", "__init__()", "__new__()", "__start__()"],
+        correct: 1,
+        exp_en: "__init__ is the constructor method initialized upon object instantiation.",
+        exp_ar: "دالة __init__ هي المشيد (Constructor) الذي يُستدعى لتهيئة الكائن."
+      }
+    ],
+    git: [
+      {
+        q_en: "Which Git command creates a new branch and switches to it immediately?",
+        q_ar: "أي أمر في Git ينشئ فرعاً جديداً وينتقل إليه فوراً؟",
+        options: ["git branch -new", "git checkout -b <name>", "git merge -b", "git switch -c <name>"],
+        correct: 1,
+        exp_en: "git checkout -b (or git switch -c) creates and switches to a new branch.",
+        exp_ar: "أمر git checkout -b (أو git switch -c) ينشئ الفرع وينتقل إليه مباشرة."
+      },
+      {
+        q_en: "Which command stages all modified and new files for the next commit?",
+        q_ar: "أي أمر يجهز جميع الملفات المعدلة والجديدة لمرحلة الـ Staging؟",
+        options: ["git add .", "git commit -a", "git push", "git save"],
+        correct: 0,
+        exp_en: "'git add .' adds all modified and new files in the current workspace.",
+        exp_ar: "أمر 'git add .' يضيف كافة التغييرات في المجلد الحالي إلى مرحلة التجهيز."
+      },
+      {
+        q_en: "What command temporarily shelves uncommitted changes to work on something else?",
+        q_ar: "أي أمر يحفظ التغييرات غير المعتمدة مؤقتاً في رف (Shelve) للعمل على شيء آخر؟",
+        options: ["git hide", "git stash", "git pause", "git store"],
+        correct: 1,
+        exp_en: "'git stash' records the current state of the working directory and index on a stack.",
+        exp_ar: "أمر 'git stash' يحفظ التعديلات الحالية في مساحة تخزين مؤقتة."
+      },
+      {
+        q_en: "Which command downloads commits from a remote repository AND merges them into current branch?",
+        q_ar: "أي أمر يقوم بتنزيل التعديلات من المستودع البعيد ودمجها تلقائياً في الفرع الحالي؟",
+        options: ["git fetch", "git pull", "git merge --remote", "git clone"],
+        correct: 1,
+        exp_en: "git pull fetches from the remote and automatically integrates with the current branch.",
+        exp_ar: "أمر git pull يجمع بين جلب التعديلات (fetch) ودمجها (merge) في خطوة واحدة."
+      },
+      {
+        q_en: "What file tells Git which files or directories to intentionally ignore from tracking?",
+        q_ar: "ما هو الملف الذي يخبر Git بالملفات أو المجلدات التي يجب تجاهلها وعدم تتبعها؟",
+        options: [".gitconfig", ".gitignore", "robots.txt", ".gitmodules"],
+        correct: 1,
+        exp_en: ".gitignore specifies intentionally untracked files that Git should ignore.",
+        exp_ar: "ملف .gitignore يحدد الملفات والمجلدات التي يتجاهلها Git تلقائياً."
+      }
+    ]
+  };
+
+  let currentCategory = null;
+  let currentIndex = 0;
+  let currentScore = 0;
+  let questions = [];
+
+  const catGrid = document.getElementById("catGrid");
+  const quizBox = document.getElementById("quizBox");
+  const quizResult = document.getElementById("quizResult");
+  const questionEl = document.getElementById("quizQuestion");
+  const optionsEl = document.getElementById("quizOptions");
+  const explanationEl = document.getElementById("quizExplanation");
+  const nextBtn = document.getElementById("nextQuestionBtn");
+  const progressText = document.getElementById("progressText");
+  const progressFill = document.getElementById("progressFill");
+
+  document.querySelectorAll(".quiz-cat-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const cat = card.dataset.cat;
+      startQuiz(cat);
+    });
+  });
+
+  function startQuiz(cat) {
+    currentCategory = cat;
+    questions = QUIZ_DATA[cat];
+    currentIndex = 0;
+    currentScore = 0;
+    catGrid.style.display = "none";
+    quizResult.style.display = "none";
+    quizBox.style.display = "block";
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = questions[currentIndex];
+    const isAr = document.documentElement.getAttribute("lang") === "ar";
+    
+    questionEl.textContent = isAr ? q.q_ar : q.q_en;
+    progressText.textContent = `${isAr ? 'السؤال' : 'Question'} ${currentIndex + 1} / ${questions.length}`;
+    progressFill.style.width = `${((currentIndex) / questions.length) * 100}%`;
+    
+    optionsEl.innerHTML = "";
+    explanationEl.style.display = "none";
+    nextBtn.style.display = "none";
+
+    q.options.forEach((opt, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "quiz-opt-btn";
+      btn.innerHTML = `<span style="opacity:0.6; font-family:'Fira Code'; font-size:0.85rem;">[${String.fromCharCode(65 + idx)}]</span> <span>${opt}</span>`;
+      btn.addEventListener("click", () => handleAnswer(idx, btn));
+      optionsEl.appendChild(btn);
+    });
+  }
+
+  function handleAnswer(selectedIndex, selectedBtn) {
+    const q = questions[currentIndex];
+    const isAr = document.documentElement.getAttribute("lang") === "ar";
+    const allBtns = optionsEl.querySelectorAll(".quiz-opt-btn");
+
+    allBtns.forEach((btn, idx) => {
+      btn.disabled = true;
+      if (idx === q.correct) {
+        btn.classList.add("correct");
+        btn.innerHTML += ` <i class="fa-solid fa-check" style="margin-left:auto;"></i>`;
+      }
+    });
+
+    if (selectedIndex === q.correct) {
+      currentScore++;
+    } else {
+      selectedBtn.classList.add("wrong");
+      selectedBtn.innerHTML += ` <i class="fa-solid fa-xmark" style="margin-left:auto;"></i>`;
+    }
+
+    explanationEl.innerHTML = `<strong>${isAr ? 'الشرح:' : 'Explanation:'}</strong> ${isAr ? q.exp_ar : q.exp_en}`;
+    explanationEl.style.display = "block";
+    nextBtn.style.display = "inline-block";
+  }
+
+  nextBtn.addEventListener("click", () => {
+    currentIndex++;
+    if (currentIndex < questions.length) {
+      renderQuestion();
+    } else {
+      showResults();
+    }
+  });
+
+  function showResults() {
+    quizBox.style.display = "none";
+    quizResult.style.display = "block";
+    progressFill.style.width = "100%";
+
+    const isAr = document.documentElement.getAttribute("lang") === "ar";
+    const resScore = document.getElementById("resScore");
+    const resTitle = document.getElementById("resTitle");
+    const resDesc = document.getElementById("resDesc");
+    const resBadge = document.getElementById("resBadge");
+
+    resScore.textContent = `${currentScore} / ${questions.length}`;
+
+    const percent = (currentScore / questions.length) * 100;
+    if (percent === 100) {
+      resBadge.textContent = "🏆";
+      resTitle.textContent = isAr ? "مستوى خبير متميز!" : "Master Engineering Level!";
+      resDesc.textContent = isAr ? "أداء ممتاز! لقد أجبت على جميع الأسئلة بشكل صحيح تماماً." : "Flawless score! You nailed every question in this track.";
+      fireConfetti();
+    } else if (percent >= 60) {
+      resBadge.textContent = "🚀";
+      resTitle.textContent = isAr ? "مستوى متقدم وجيد جداً!" : "Solid Mid-Level Knowledge!";
+      resDesc.textContent = isAr ? "لديك فهم عملي رائع. راجع النقاط البسيطة للوصول للاحتراف الكامل." : "Great practical skills! Review a few concepts to reach mastery.";
+      fireConfetti();
+    } else {
+      resBadge.textContent = "🌱";
+      resTitle.textContent = isAr ? "بداية واعدة للمتعلم!" : "Growing Knowledge!";
+      resDesc.textContent = isAr ? "لا تقلق، التدريب يصنع المحترفين. ألقِ نظرة على شروحات الدروس وأعد الاختبار." : "Practice makes perfect. Re-read our course guides and try again!";
+    }
+  }
+
+  document.getElementById("exitQuizBtn").addEventListener("click", () => {
+    quizBox.style.display = "none";
+    quizResult.style.display = "none";
+    catGrid.style.display = "grid";
+  });
+
+  document.getElementById("retryQuizBtn").addEventListener("click", () => {
+    quizResult.style.display = "none";
+    catGrid.style.display = "grid";
+  });
+
+  // Confetti Animation Engine
+  function fireConfetti() {
+    const canvas = document.getElementById("confettiCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const pieces = [];
+    const colors = ["#2dd4bf", "#38bdf8", "#f59e0b", "#ec4899", "#10b981"];
+
+    for (let i = 0; i < 80; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        w: Math.random() * 8 + 4,
+        h: Math.random() * 8 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        velX: (Math.random() - 0.5) * 4,
+        velY: Math.random() * 3 + 2,
+        rot: Math.random() * 360,
+        rotSpeed: (Math.random() - 0.5) * 8
+      });
+    }
+
+    let frame = 0;
+    function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.x += p.velX;
+        p.y += p.velY;
+        p.rot += p.rotSpeed;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rot * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+
+      frame++;
+      if (frame < 180) {
+        requestAnimationFrame(loop);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    loop();
+  }
+</script>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

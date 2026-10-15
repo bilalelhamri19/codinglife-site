@@ -15,7 +15,7 @@
   const TRANSLATIONS = {
     en: {
       dir: "ltr",
-      nav: { home: "Home", courses: "Courses", workshops: "Workshops", tools: "Tools", blog: "Blog", contact: "Contact" },
+      nav: { home: "Home", courses: "Courses", workshops: "Workshops", tools: "Tools", quiz: "Quiz", blog: "Blog", contact: "Contact" },
       footer: {
         tagline: "Premium programming education designed to take you from zero to professional.",
         platform: "Platform",
@@ -23,6 +23,7 @@
         home: "Home",
         allCourses: "All Courses",
         workshops: "Workshops",
+        quiz: "Skills Quiz",
         blog: "Blog",
         contactUs: "Contact Us",
         about: "About",
@@ -43,7 +44,7 @@
     },
     ar: {
       dir: "rtl",
-      nav: { home: "الرئيسية", courses: "الدروس", workshops: "الورشات", tools: "الأدوات", blog: "المدونة", contact: "التواصل" },
+      nav: { home: "الرئيسية", courses: "الدروس", workshops: "الورشات", tools: "الأدوات", quiz: "الاختبارات", blog: "المدونة", contact: "التواصل" },
       footer: {
         tagline: "تعليم برمجة احترافي يأخذك من الصفر إلى الاحتراف.",
         platform: "المنصة",
@@ -51,6 +52,7 @@
         home: "الرئيسية",
         allCourses: "جميع الدروس",
         workshops: "ورشات العمل",
+        quiz: "اختبارات المهارات",
         blog: "المدونة",
         contactUs: "تواصل معنا",
         about: "من نحن",
@@ -111,6 +113,7 @@
     return [
       { href: "index.html", icon: "fa-house", label: tr.home },
       { href: "dorous-albarmaja.html", icon: "fa-code", label: tr.courses },
+      { href: "quiz.html", icon: "fa-circle-question", label: tr.quiz },
       { href: "workshops.html", icon: "fa-laptop-code", label: tr.workshops },
       { href: "tools.html", icon: "fa-toolbox", label: tr.tools },
       { href: "blog.html", icon: "fa-newspaper", label: tr.blog },
@@ -345,7 +348,9 @@
           <h4>${tr.platform}</h4>
           <a href="index.html">${tr.home}</a>
           <a href="dorous-albarmaja.html">${tr.allCourses}</a>
+          <a href="quiz.html">${tr.quiz}</a>
           <a href="workshops.html">${tr.workshops}</a>
+          <a href="tools.html">${t().nav.tools}</a>
           <a href="blog.html">${tr.blog}</a>
         </div>
         <div class="footer-links">
@@ -489,6 +494,7 @@
         { t: "CSS Unit Converter", t_ar: "محول وحدات CSS", d: "PX, REM, EM, VW conversion.", d_ar: "تحويل البكسل والريم وغيرها.", h: "css-converter.html" },
         { t: "Palette Generator", t_ar: "مولد الألوان", d: "Color scheme creator.", d_ar: "إنشاء مجموعات ألوان متناسقة.", h: "colors.html" },
         { t: "Code Playground", t_ar: "مختبر الكود", d: "Live editor for practice.", d_ar: "محرر مباشر للتجربة.", h: "playground.html" },
+        { t: "Developer Skills Quiz", t_ar: "اختبارات المهارات البرمجية", d: "Interactive developer skill quizzes and assessments.", d_ar: "اختبارات وتقييمات تفاعلية لمهارات المبرمج.", h: "quiz.html" },
         { t: "Tools Dashboard", t_ar: "مركز الأدوات", d: "Developer utilities and interactive tools.", d_ar: "أدوات ومساعدات برمجية ذكية.", h: "tools.html" },
         { t: "Productivity Tips", t_ar: "نصائح الإنتاجية", d: "Increase your daily output.", d_ar: "زيادة إنتاجيتك اليومية.", h: "productivity.html" },
         { t: "Mental Health", t_ar: "صحة العقل والجسد", d: "Well-being for developers.", d_ar: "الصحة النفسية للمبرمجين.", h: "mental_health.html" },
@@ -690,6 +696,23 @@
     });
   }
 
+  function initReadingTime() {
+    const container = document.querySelector(".course-container") || document.querySelector("article");
+    if (!container || document.querySelector(".cl-reading-time")) return;
+    const header = container.querySelector(".course-header") || container.querySelector("h1")?.parentElement;
+    if (!header) return;
+    const text = container.innerText || "";
+    const words = text.trim().split(/\s+/).filter(Boolean).length;
+    if (words < 120) return;
+    const mins = Math.max(1, Math.round(words / 180));
+    const isAr = currentLang === "ar";
+    const badge = document.createElement("div");
+    badge.className = "cl-reading-time";
+    badge.style = "display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:99px; background:rgba(45,212,191,0.15); border:1px solid rgba(45,212,191,0.3); color:var(--cl-brand); font-size:0.85rem; font-weight:700; margin-top:14px;";
+    badge.innerHTML = `<i class="fa-regular fa-clock"></i> <span>${mins} ${isAr ? 'دقائق قراءة' : 'min read'}</span>`;
+    header.appendChild(badge);
+  }
+
   function boot() {
     applyLang(currentLang);
     document.querySelectorAll("header, footer").forEach(el => {
@@ -701,10 +724,16 @@
     injectSchema();
     polishCodeBlocks();
     initScrollProgress();
+    initReadingTime();
     initBackToTop();
     initAnimations();
     bindFooterEvents();
     refreshPageContent();
+
+    // Register PWA Service Worker
+    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
   }
 
   if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", boot); } else { boot(); }

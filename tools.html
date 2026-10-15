@@ -127,6 +127,98 @@
       filter: brightness(1.1);
       transform: translateY(-2px);
     }
+    .pomodoro-box {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 20px;
+      padding: 36px 24px;
+      margin: 40px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .pomo-modes {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .pomo-mode-btn {
+      background: var(--cl-brand-soft);
+      border: 1px solid transparent;
+      color: var(--cl-brand);
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--cl-transition);
+    }
+    .pomo-mode-btn.active {
+      background: var(--cl-brand);
+      color: #020617;
+    }
+    .pomo-display {
+      font-size: clamp(3.5rem, 8vw, 5.5rem);
+      font-family: 'Fira Code', monospace;
+      font-weight: 800;
+      color: var(--cl-ink);
+      margin: 16px 0;
+      letter-spacing: -2px;
+    }
+    .pomo-controls {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 20px 0 16px;
+      flex-wrap: wrap;
+    }
+    .pomo-ctrl-btn {
+      padding: 12px 30px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pomo-btn-main {
+      background: var(--cl-brand);
+      color: #020617;
+      box-shadow: 0 0 20px rgba(45, 212, 191, 0.3);
+    }
+    .pomo-btn-main:hover {
+      background: #5eead4;
+      transform: translateY(-2px);
+    }
+    .pomo-btn-sec {
+      background: var(--cl-brand-soft);
+      color: var(--cl-brand);
+      border: 1px solid var(--cl-line);
+    }
+    .pomo-btn-sec:hover {
+      background: var(--cl-line);
+    }
+    .pomo-task-input {
+      background: var(--cl-bg);
+      border: 1px solid var(--cl-line);
+      border-radius: 10px;
+      padding: 10px 16px;
+      color: var(--cl-ink);
+      font-size: 0.95rem;
+      width: min(400px, 90%);
+      text-align: center;
+      outline: none;
+      margin-bottom: 12px;
+    }
+    .pomo-task-input:focus {
+      border-color: var(--cl-brand);
+    }
   </style>
 </head>
 <body>
@@ -178,6 +270,44 @@
       <div style="padding-top:24px;">
         <button class="copy-btn" id="copyCssSnippet"><i class="fa-solid fa-copy"></i> Copy CSS</button>
       </div>
+    </div>
+  <!-- EMBEDDED QUICK TOOL 2: DEVELOPER FOCUS POMODORO -->
+  <div class="pomodoro-box reveal">
+    <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:16px;">
+      <div style="width:40px; height:40px; border-radius:10px; background:rgba(239, 68, 68, 0.15); display:flex; align-items:center; justify-content:center; color:#ef4444; font-size:1.3rem;">
+        <i class="fa-solid fa-stopwatch"></i>
+      </div>
+      <div>
+        <h2 style="margin:0; font-size:1.35rem; color:var(--cl-ink);" data-cl-lang="en">Deep Work Developer Pomodoro</h2>
+        <h2 style="margin:0; font-size:1.35rem; color:var(--cl-ink);" data-cl-lang="ar">مؤقت بومودورو لتركيز المبرمج</h2>
+      </div>
+    </div>
+    <p style="margin:0 auto 20px; font-size:0.9rem; color:var(--cl-muted); max-width:600px;" data-cl-lang="en">Boost your coding output, enter flow state, and prevent mental burnout with timed focus sprints.</p>
+    <p style="margin:0 auto 20px; font-size:0.9rem; color:var(--cl-muted); max-width:600px;" data-cl-lang="ar">ضاعف إنتاجيتك في البرمجة، ادخل في حالة التدفق الذهني، وتجنب الإرهاق مع فترات عمل واستراحة مدروسة.</p>
+
+    <div class="pomo-modes">
+      <button class="pomo-mode-btn active" data-mode="25" data-type="focus">🧠 Deep Work (25m)</button>
+      <button class="pomo-mode-btn" data-mode="5" data-type="short">☕ Short Break (5m)</button>
+      <button class="pomo-mode-btn" data-mode="15" data-type="long">🧘 Long Break (15m)</button>
+    </div>
+
+    <input type="text" id="pomoTaskInput" class="pomo-task-input" placeholder="What are you coding right now? (e.g. Building API, Fixing Bug)">
+
+    <div class="pomo-display" id="pomoTime">25:00</div>
+
+    <div class="pomo-controls">
+      <button class="pomo-ctrl-btn pomo-btn-main" id="pomoToggleBtn">
+        <i class="fa-solid fa-play"></i> <span>Start Focus</span>
+      </button>
+      <button class="pomo-ctrl-btn pomo-btn-sec" id="pomoResetBtn">
+        <i class="fa-solid fa-rotate-left"></i> <span>Reset</span>
+      </button>
+    </div>
+
+    <div style="font-size:0.85rem; color:var(--cl-muted); margin-top:12px;">
+      <span data-cl-lang="en">Completed sessions today:</span>
+      <span data-cl-lang="ar">الجلسات المكتملة اليوم:</span>
+      <strong id="pomoStreak" style="color:var(--cl-brand); font-size:1rem; margin:0 4px;">0</strong> 🍅
     </div>
   </div>
 
@@ -287,6 +417,117 @@
       copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy CSS';
     }, 2000);
   });
+
+  // Pomodoro Focus Timer
+  let pomoDuration = 25 * 60;
+  let pomoRemaining = pomoDuration;
+  let pomoTimer = null;
+  let isRunning = false;
+  let pomoType = "focus";
+
+  const pomoDisplay = document.getElementById('pomoTime');
+  const pomoToggleBtn = document.getElementById('pomoToggleBtn');
+  const pomoResetBtn = document.getElementById('pomoResetBtn');
+  const pomoModes = document.querySelectorAll('.pomo-mode-btn');
+  const pomoStreakEl = document.getElementById('pomoStreak');
+  const pomoTaskInput = document.getElementById('pomoTaskInput');
+
+  // Load streak from localStorage
+  const todayKey = 'cl-pomo-' + new Date().toISOString().slice(0, 10);
+  let todayStreak = parseInt(localStorage.getItem(todayKey) || "0", 10);
+  if (pomoStreakEl) pomoStreakEl.textContent = todayStreak;
+
+  function formatTime(seconds) {
+    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  }
+
+  function playChime() {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+      osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.3); // A5
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.8);
+    } catch(e) {}
+  }
+
+  function updatePomoDisplay() {
+    pomoDisplay.textContent = formatTime(pomoRemaining);
+    document.title = isRunning ? `(${formatTime(pomoRemaining)}) Coding Life` : 'Developer Tools & Experiments Lab - Coding Life';
+  }
+
+  function startPomo() {
+    isRunning = true;
+    pomoToggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i> <span>Pause</span>';
+    pomoToggleBtn.style.background = "#f59e0b";
+    pomoTimer = setInterval(() => {
+      if (pomoRemaining > 0) {
+        pomoRemaining--;
+        updatePomoDisplay();
+      } else {
+        clearInterval(pomoTimer);
+        isRunning = false;
+        playChime();
+        if (pomoType === "focus") {
+          todayStreak++;
+          localStorage.setItem(todayKey, todayStreak);
+          if (pomoStreakEl) pomoStreakEl.textContent = todayStreak;
+          if (window.clToast) window.clToast("🎉 Deep Work session completed! Take a break.", "success");
+        } else {
+          if (window.clToast) window.clToast("Break ended! Ready to code?", "info");
+        }
+        resetPomo();
+      }
+    }, 1000);
+  }
+
+  function pausePomo() {
+    isRunning = false;
+    clearInterval(pomoTimer);
+    pomoToggleBtn.innerHTML = '<i class="fa-solid fa-play"></i> <span>Resume</span>';
+    pomoToggleBtn.style.background = "var(--cl-brand)";
+  }
+
+  function resetPomo() {
+    clearInterval(pomoTimer);
+    isRunning = false;
+    pomoRemaining = pomoDuration;
+    pomoToggleBtn.innerHTML = '<i class="fa-solid fa-play"></i> <span>Start Focus</span>';
+    pomoToggleBtn.style.background = "var(--cl-brand)";
+    updatePomoDisplay();
+  }
+
+  pomoToggleBtn.addEventListener('click', () => {
+    if (isRunning) {
+      pausePomo();
+    } else {
+      startPomo();
+    }
+  });
+
+  pomoResetBtn.addEventListener('click', resetPomo);
+
+  pomoModes.forEach(btn => {
+    btn.addEventListener('click', () => {
+      pomoModes.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const mins = parseInt(btn.dataset.mode, 10);
+      pomoType = btn.dataset.type;
+      pomoDuration = mins * 60;
+      resetPomo();
+    });
+  });
+
+  updatePomoDisplay();
 </script>
 
 <script src="site-polish.js"></script>
