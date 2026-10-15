@@ -163,7 +163,7 @@
 
   function bindHeaderEvents() {
     const themeBtn = document.getElementById("themeToggle");
-    const currentTheme = localStorage.getItem("theme") || "light";
+    const currentTheme = localStorage.getItem("theme") || "dark";
     document.documentElement.setAttribute("data-theme", currentTheme);
     updateThemeIcon(currentTheme);
 

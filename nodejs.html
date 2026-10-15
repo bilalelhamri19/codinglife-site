@@ -33,13 +33,13 @@
     .lesson-icon {
       width: 60px;
       height: 60px;
-      background: #33993322;
+      background: rgba(45, 212, 191, 0.1);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      color: #339933;
+      color: var(--cl-brand);
       flex-shrink: 0;
     }
     .lesson-info {
@@ -65,9 +65,9 @@
       text-transform: uppercase;
       margin-bottom: 10px;
     }
-    .badge-modern { background: #e0f2fe; color: #0369a1; }
-    .badge-important { background: #fee2e2; color: #b91c1c; }
-    .badge-pro { background: #fef3c7; color: #b45309; }
+    .badge-modern { background: rgba(45, 212, 191, 0.1); color: var(--cl-brand); }
+    .badge-important { background: rgba(45, 212, 191, 0.12); color: var(--cl-brand-dark); }
+    .badge-pro { background: rgba(15, 118, 110, 0.08); color: var(--cl-brand-dark); }
 
     .code-block {
       background: #0d1117;
@@ -92,7 +92,7 @@
 <body>
 
 <div class="course-container">
-  <div class="course-header" style="background: linear-gradient(135deg, #339933, #1a4d1a) !important;">
+  <div class="course-header" >
     <div data-cl-lang="en">
       <h1><i class="fab fa-node-js"></i> Node.js Scalable Backend</h1>
       <p>Build real-time, high-throughput architectures using the V8 engine and event-driven logic.</p>
