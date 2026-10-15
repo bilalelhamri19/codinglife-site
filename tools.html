@@ -1,113 +1,293 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Experiments & Dev Tools - Coding Life</title>
+  <!-- Google AdSense Placeholder -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-0000000000000000" crossorigin="anonymous"></script>
+  <title>Developer Tools & Experiments Lab - Coding Life</title>
+  <meta name="description" content="Free interactive developer tools and utilities: live code playground, PX to REM converter, HEX to RGB color generator, CSS shadow builder, and scientific calculator.">
+  <meta name="keywords" content="Developer tools, CSS unit converter, code playground, PX to REM, color picker, أدوات المطورين, محول وحدات CSS">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://codinglife1.vercel.app/tools.html">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
-    .tool-grid {
+    .tools-hub-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 36px 0;
     }
-    .tool-card {
-      text-align: center;
-      padding: 40px;
-      border: 1px solid var(--cl-line);
-      border-radius: 24px;
+    .tool-hub-card {
       background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 20px;
+      padding: 32px;
       transition: var(--cl-transition);
-      cursor: pointer;
-      text-decoration: none;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none !important;
     }
-    .tool-card:hover {
-      transform: translateY(-8px);
+    .tool-hub-card:hover {
+      transform: translateY(-5px);
       border-color: var(--cl-brand);
       box-shadow: var(--cl-shadow-lg);
     }
-    .tool-icon {
-      font-size: 3.5rem;
+    .tool-icon-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: rgba(45, 212, 191, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
       color: var(--cl-brand);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
-    .tool-card h2 { color: var(--cl-ink); margin-bottom: 12px; }
-    .tool-card p { color: var(--cl-muted); font-size: 0.95rem; }
+    .tool-hub-card h3 {
+      font-size: 1.35rem;
+      color: var(--cl-ink);
+      margin: 0 0 10px;
+    }
+    .tool-hub-card p {
+      color: var(--cl-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin: 0 0 20px;
+    }
+    .tool-hub-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      color: var(--cl-brand);
+      font-size: 0.95rem;
+    }
+    .inline-tool-box {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 20px;
+      padding: 36px;
+      margin: 40px 0;
+    }
+    .converter-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .calc-input-group {
+      flex: 1;
+      min-width: 140px;
+    }
+    .calc-input-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cl-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .calc-input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--cl-line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--cl-ink);
+      font-family: 'Fira Code', monospace;
+      font-size: 1.1rem;
+      box-sizing: border-box;
+      outline: none;
+    }
+    .calc-input:focus {
+      border-color: var(--cl-brand);
+    }
+    .copy-btn {
+      padding: 14px 24px;
+      background: var(--cl-brand);
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+    .copy-btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 <body>
 
 <div class="course-container">
-  <div class="course-header" >
-    <div data-cl-lang="en">
-      <h1><i class="fas fa-flask"></i> Experiments & Tools</h1>
-      <p>Interactive playgrounds and developer utilities to sharpen your skills.</p>
+
+  <!-- HEADER EN -->
+  <div class="course-header" data-cl-lang="en">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">Productivity & Utilities</div>
+    <h1><i class="fa-solid fa-toolbox"></i> Developer Experiments & Tools</h1>
+    <p>A suite of high-performance developer utilities, live interactive playgrounds, and unit converters designed to accelerate your engineering workflow.</p>
+  </div>
+
+  <!-- HEADER AR -->
+  <div class="course-header" data-cl-lang="ar">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">الإنتاجية وأدوات التطوير</div>
+    <h1><i class="fa-solid fa-toolbox"></i> مختبر أدوات المطورين</h1>
+    <p>حزمة متكاملة من الأدوات البرمجية، المحررات التفاعلية، ومحولات الوحدات المصممة لتسريع وتبسيط عملك البرمجي اليومي.</p>
+  </div>
+
+  <!-- EMBEDDED QUICK TOOL: PX TO REM LIVE CONVERTER -->
+  <div class="inline-tool-box reveal">
+    <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+      <div style="width:44px; height:44px; border-radius:12px; background:rgba(45,212,191,0.1); display:flex; align-items:center; justify-content:center; color:var(--cl-brand); font-size:1.4rem;">
+        <i class="fa-solid fa-arrows-left-right"></i>
+      </div>
+      <div>
+        <h2 style="margin:0; font-size:1.35rem; color:var(--cl-ink);" data-cl-lang="en">Instant PX ⟷ REM Converter</h2>
+        <h2 style="margin:0; font-size:1.35rem; color:var(--cl-ink);" data-cl-lang="ar">محول فوري بين PX و REM</h2>
+        <p style="margin:4px 0 0; font-size:0.9rem; color:var(--cl-muted);" data-cl-lang="en">Convert pixel values to accessible rem units instantly based on root font size (Default: 16px).</p>
+        <p style="margin:4px 0 0; font-size:0.9rem; color:var(--cl-muted);" data-cl-lang="ar">تحويل وحدات البكسل إلى وحدات rem المرنة مباشرة بناءً على حجم الخط الأساسي (16px).</p>
+      </div>
     </div>
-    <div data-cl-lang="ar">
-      <h1><i class="fas fa-flask"></i> المختبر والأدوات</h1>
-      <p>تجارب تفاعلية وأدوات برمجية لمساعدتك في رحلة التعلم.</p>
-    </div>
-    <div data-cl-lang="fr">
-      <h1><i class="fas fa-flask"></i> Expériences & Outils</h1>
-      <p>Terrains de jeu interactifs et utilitaires pour développeurs.</p>
+
+    <div class="converter-row">
+      <div class="calc-input-group">
+        <label>Pixels (px)</label>
+        <input type="number" id="inputPx" class="calc-input" value="16" placeholder="e.g. 24">
+      </div>
+      <div style="font-size:1.4rem; color:var(--cl-muted); padding-top:24px;">=</div>
+      <div class="calc-input-group">
+        <label>REM Value (rem)</label>
+        <input type="number" id="inputRem" class="calc-input" value="1" step="0.0625" placeholder="e.g. 1.5">
+      </div>
+      <div class="calc-input-group" style="max-width:140px;">
+        <label>Base Font (px)</label>
+        <input type="number" id="inputBase" class="calc-input" value="16">
+      </div>
+      <div style="padding-top:24px;">
+        <button class="copy-btn" id="copyCssSnippet"><i class="fa-solid fa-copy"></i> Copy CSS</button>
+      </div>
     </div>
   </div>
 
-  <div class="tool-grid">
-    <a href="playground.html" class="tool-card reveal">
-      <i class="fas fa-laptop-code tool-icon"></i>
-      <div data-cl-lang="en">
-        <h2>Code Playground</h2>
-        <p>Write HTML, CSS, and JS with a live preview. Perfect for testing ideas quickly.</p>
+  <!-- TOOLS DIRECTORY GRID -->
+  <div class="tools-hub-grid">
+
+    <!-- Playground -->
+    <a href="playground.html" class="tool-hub-card reveal">
+      <div>
+        <div class="tool-icon-circle"><i class="fa-solid fa-laptop-code"></i></div>
+        <div data-cl-lang="en">
+          <h3>Live Code Playground</h3>
+          <p>Instant browser-based HTML, CSS, and JavaScript editor with real-time live preview. Test layouts, explore APIs, and experiment with animations.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>مختبر الأكواد الحي</h3>
+          <p>محرر تفاعلي مباشر لـ HTML وCSS وJavaScript داخل المتصفح مع معاينة لحظية لتجربة الأفكار واختبار التنسيقات.</p>
+        </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>مختبر الكود</h2>
-        <p>اكتب HTML و CSS و JS مع معاينة مباشرة. مثالي لتجربة الأفكار بسرعة.</p>
-      </div>
+      <div class="tool-hub-link" data-cl-lang="en">Launch Playground <i class="fa-solid fa-arrow-right"></i></div>
+      <div class="tool-hub-link" data-cl-lang="ar">فتح المختبر <i class="fa-solid fa-arrow-left"></i></div>
     </a>
 
-    <a href="calculator.html" class="tool-card reveal">
-      <i class="fas fa-calculator tool-icon"></i>
-      <div data-cl-lang="en">
-        <h2>Scientific Calculator</h2>
-        <p>A powerful calculator for complex math and developer calculations.</p>
+    <!-- Unit Converter -->
+    <a href="css-converter.html" class="tool-hub-card reveal">
+      <div>
+        <div class="tool-icon-circle"><i class="fa-solid fa-ruler"></i></div>
+        <div data-cl-lang="en">
+          <h3>Advanced CSS Unit Converter</h3>
+          <p>Comprehensive converter supporting PX, REM, EM, VW, VH, PT, and percentage calculations with fluid typography formulas.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>محول وحدات CSS الشامل</h3>
+          <p>محول متقدم يدعم كافة وحدات القياس (PX, REM, EM, VW, VH) مع صيغ الخطوط المرنة لتصاميم متجاوبة.</p>
+        </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>آلة حاسبة علمية</h2>
-        <p>آلة حاسبة قوية للحسابات المعقدة والعمليات الرياضية البرمجية.</p>
-      </div>
+      <div class="tool-hub-link" data-cl-lang="en">Open Unit Converter <i class="fa-solid fa-arrow-right"></i></div>
+      <div class="tool-hub-link" data-cl-lang="ar">فتح محول الوحدات <i class="fa-solid fa-arrow-left"></i></div>
     </a>
 
-    <a href="css-converter.html" class="tool-card reveal">
-      <i class="fas fa-exchange-alt tool-icon"></i>
-      <div data-cl-lang="en">
-        <h2>Unit Converter</h2>
-        <p>Convert PX to REM, EM, and other CSS units instantly.</p>
+    <!-- Color Palette Generator -->
+    <a href="colors.html" class="tool-hub-card reveal">
+      <div>
+        <div class="tool-icon-circle"><i class="fa-solid fa-palette"></i></div>
+        <div data-cl-lang="en">
+          <h3>Color Palette & Contrast Lab</h3>
+          <p>Generate harmonious color palettes, check WCAG accessibility contrast ratios, and copy Hex, RGB, and HSL tokens directly.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>مختبر الألوان والتباين</h3>
+          <p>توليد لوحات ألوان متناسقة، فحص تباين إمكانية الوصول وفق معايير WCAG، ونسخ الأكواد بصيغ Hex وRGB وHSL.</p>
+        </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>محول الوحدات</h2>
-        <p>حول PX إلى REM و EM ووحدات CSS الأخرى بشكل فوري.</p>
-      </div>
+      <div class="tool-hub-link" data-cl-lang="en">Explore Color Lab <i class="fa-solid fa-arrow-right"></i></div>
+      <div class="tool-hub-link" data-cl-lang="ar">فتح مختبر الألوان <i class="fa-solid fa-arrow-left"></i></div>
     </a>
 
-    <a href="colors.html" class="tool-card reveal">
-      <i class="fas fa-palette tool-icon"></i>
-      <div data-cl-lang="en">
-        <h2>Color Palette</h2>
-        <p>Generate and test beautiful color schemes for your projects.</p>
+    <!-- Scientific Calculator -->
+    <a href="calculator.html" class="tool-hub-card reveal">
+      <div>
+        <div class="tool-icon-circle"><i class="fa-solid fa-calculator"></i></div>
+        <div data-cl-lang="en">
+          <h3>Scientific & Developer Calculator</h3>
+          <p>Perform complex mathematical operations, trigonometric calculations, aspect ratio estimations, and bitwise operations.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>الآلة الحاسبة العلمية</h3>
+          <p>إجراء العمليات الحسابية المعقدة، الدوال المثلثية، حسابات النسب الأبعاد (Aspect Ratio)، والعمليات الرياضية للبرمجة.</p>
+        </div>
       </div>
-      <div data-cl-lang="ar">
-        <h2>لوحة الألوان</h2>
-        <p>قم بتوليد وتجربة مجموعات ألوان رائعة لمشاريعك.</p>
-      </div>
+      <div class="tool-hub-link" data-cl-lang="en">Open Calculator <i class="fa-solid fa-arrow-right"></i></div>
+      <div class="tool-hub-link" data-cl-lang="ar">فتح الآلة الحاسبة <i class="fa-solid fa-arrow-left"></i></div>
     </a>
-  </div>
-</div>
+
+  </div><!-- end .tools-hub-grid -->
+
+</div><!-- end .course-container -->
+
+<script>
+  // Live PX to REM bidirectional converter
+  const inputPx = document.getElementById('inputPx');
+  const inputRem = document.getElementById('inputRem');
+  const inputBase = document.getElementById('inputBase');
+  const copyBtn = document.getElementById('copyCssSnippet');
+
+  function updateFromPx() {
+    const px = parseFloat(inputPx.value) || 0;
+    const base = parseFloat(inputBase.value) || 16;
+    inputRem.value = (px / base).toFixed(4).replace(/\.?0+$/, "");
+  }
+
+  function updateFromRem() {
+    const rem = parseFloat(inputRem.value) || 0;
+    const base = parseFloat(inputBase.value) || 16;
+    inputPx.value = (rem * base).toFixed(2).replace(/\.?0+$/, "");
+  }
+
+  inputPx.addEventListener('input', updateFromPx);
+  inputRem.addEventListener('input', updateFromRem);
+  inputBase.addEventListener('input', updateFromPx);
+
+  copyBtn.addEventListener('click', () => {
+    const remVal = inputRem.value;
+    navigator.clipboard.writeText(`${remVal}rem`);
+    copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+    setTimeout(() => {
+      copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy CSS';
+    }, 2000);
+  });
+</script>
 
 <script src="site-polish.js"></script>
 </body>

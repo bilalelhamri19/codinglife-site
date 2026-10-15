@@ -3,65 +3,330 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us - Coding Life</title>
+  <!-- Google AdSense Placeholder -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-0000000000000000" crossorigin="anonymous"></script>
+  <title>About Us - Coding Life | Our Mission, Story & Team</title>
+  <meta name="description" content="Discover Coding Life: our mission to provide world-class, accessible, and practical programming education in Arabic and English. Learn about our team, philosophy, and educational standards.">
+  <meta name="keywords" content="About Coding Life, Coding Life mission, learn programming, Bilal El Hamri, free coding tutorials, من نحن, عن منصة كودينغ لايف">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://codinglife1.vercel.app/about.html">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .about-card {
+      background: var(--cl-surface);
+      border-radius: 20px;
+      padding: 36px;
+      margin-bottom: 32px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+    }
+    .about-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cl-brand);
+      box-shadow: var(--cl-shadow-lg);
+    }
+    .about-header-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(45, 212, 191, 0.1);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: var(--cl-brand);
+      margin-bottom: 20px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 32px 0;
+    }
+    .stat-box {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      transition: var(--cl-transition);
+    }
+    .stat-box:hover {
+      border-color: var(--cl-brand);
+      transform: translateY(-3px);
+    }
+    .stat-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--cl-brand);
+      margin-bottom: 6px;
+      font-family: 'Outfit', sans-serif;
+    }
+    .stat-label {
+      color: var(--cl-muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin: 28px 0;
+    }
+    .pillar-card {
+      background: rgba(45, 212, 191, 0.03);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 26px;
+      transition: var(--cl-transition);
+    }
+    .pillar-card:hover {
+      border-color: var(--cl-brand);
+      background: rgba(45, 212, 191, 0.06);
+    }
+    .pillar-icon {
+      font-size: 1.8rem;
+      color: var(--cl-brand);
+      margin-bottom: 14px;
+    }
+    .pillar-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--cl-ink);
+      margin-bottom: 10px;
+    }
+    .pillar-text {
+      color: var(--cl-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    .team-card {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 20px;
+      padding: 28px;
+      margin: 24px 0;
+    }
+    .team-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(45, 212, 191, 0.15);
+      border: 3px solid var(--cl-brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: var(--cl-brand);
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .team-card { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
 <div class="course-container">
-  <div class="course-header">
-    <div data-cl-lang="en">
-      <h1><i class="fa-solid fa-circle-info"></i> Our Mission</h1>
-      <p>Empowering the next generation of developers with premium, accessible, and practical programming education.</p>
+
+  <!-- HERO EN -->
+  <div class="course-header" data-cl-lang="en">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">About Coding Life</div>
+    <h1><i class="fa-solid fa-code"></i> Empowering Modern Developers</h1>
+    <p>Bridging the gap between theoretical computer science and practical, real-world software engineering with open, high-quality bilingual education.</p>
+  </div>
+
+  <!-- HERO AR -->
+  <div class="course-header" data-cl-lang="ar">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">عن منصة كودينغ لايف</div>
+    <h1><i class="fa-solid fa-code"></i> تمكين المطورين المعاصرين</h1>
+    <p>سد الفجوة بين علوم الحاسوب النظرية وهندسة البرمجيات العملية في العالم الواقعي من خلال تعليم ثنائي اللغة، مفتوح وعالي الجودة.</p>
+  </div>
+
+  <!-- STATS COUNTER -->
+  <div class="stats-grid reveal">
+    <div class="stat-box">
+      <div class="stat-num">12+</div>
+      <div class="stat-label" data-cl-lang="en">Master Courses</div>
+      <div class="stat-label" data-cl-lang="ar">دورات برمجية شاملة</div>
     </div>
-    <div data-cl-lang="ar">
-      <h1><i class="fa-solid fa-circle-info"></i> مهمتنا</h1>
-      <p>تمكين الجيل القادم من المطورين من خلال تعليم برمجي متميز، متاح، وعملي.</p>
+    <div class="stat-box">
+      <div class="stat-num">100%</div>
+      <div class="stat-label" data-cl-lang="en">Free & Accessible</div>
+      <div class="stat-label" data-cl-lang="ar">مجانية ومتاحة دائماً</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">2</div>
+      <div class="stat-label" data-cl-lang="en">Languages (EN / AR)</div>
+      <div class="stat-label" data-cl-lang="ar">لغتان كاملتان (عربي / إنجليزي)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label" data-cl-lang="en">Interactive Tools</div>
+      <div class="stat-label" data-cl-lang="ar">أدوات ومحررات تفاعلية</div>
     </div>
   </div>
 
-  <div class="chapter reveal">
+  <!-- OUR STORY & MISSION -->
+  <div class="about-card reveal">
+    <div class="about-header-icon"><i class="fa-solid fa-compass"></i></div>
     <div data-cl-lang="en">
-      <h2><i class="fa-solid fa-eye"></i> The Vision</h2>
-      <div class="article-content">
-        <p>Coding Life was founded on the belief that high-quality tech education should be available to everyone. We don't just teach code; we teach problem-solving.</p>
+      <h2 style="color:var(--cl-ink); font-size:1.6rem; margin-bottom:16px;">Our Story & Mission</h2>
+      <p style="color:var(--cl-muted); font-size:1.05rem; line-height:1.9;">
+        <strong>Coding Life</strong> was created out of a simple observation: learning to program shouldn't feel overwhelming, disconnected, or locked behind costly paywalls. Many programming tutorials either dive too quickly into abstract theory without real applications, or teach outdated snippets that don't prepare learners for modern tech jobs.
+      </p>
+      <p style="color:var(--cl-muted); font-size:1.05rem; line-height:1.9;">
+        Our mission is to build a premier, distraction-free educational hub where beginners and intermediate developers master <strong>HTML5, CSS3, JavaScript, Python, SQL, Git, and full-stack web technologies</strong> through intuitive mental models, hands-on examples, and production-ready code.
+      </p>
+    </div>
+    <div data-cl-lang="ar">
+      <h2 style="color:var(--cl-ink); font-size:1.6rem; margin-bottom:16px;">قصتنا ورسالتنا</h2>
+      <p style="color:var(--cl-muted); font-size:1.05rem; line-height:1.9;">
+        انطلقت منصة <strong>Coding Life</strong> من ملاحظة واضحة: تعلم البرمجة لا يجب أن يكون معقداً، منعزلاً عن الواقع، أو محجوزاً خلف اشتراكات مكلفة. الكثير من الشروحات إما تغرق في النظريات التجريدية دون تطبيقات حية، أو تعتمد على أكواد قديمة لا تؤهل المتعلم لسوق العمل الفعلي.
+      </p>
+      <p style="color:var(--cl-muted); font-size:1.05rem; line-height:1.9;">
+        رسالتنا هي بناء منصة تعليمية رائدة وخالية من التشتيت، تمكّن المبتدئين والمتوسطين من احتراف <strong>HTML5، CSS3، JavaScript، Python، SQL، Git، وتطوير الويب الحديث</strong> عبر مفاهيم واضحة، أمثلة واقعية، وأكواد مهيأة لمعايير الإنتاج الحقيقية.
+      </p>
+    </div>
+  </div>
+
+  <!-- FOUR CORE PILLARS -->
+  <div class="about-card reveal">
+    <div class="about-header-icon"><i class="fa-solid fa-cube"></i></div>
+    <div data-cl-lang="en">
+      <h2 style="color:var(--cl-ink); font-size:1.6rem; margin-bottom:12px;">Our 4 Core Pillars</h2>
+      <p style="color:var(--cl-muted); margin-bottom:24px;">The fundamental values that guide every tutorial, guide, and interactive tool we build:</p>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <div class="pillar-title">1. Learn by Building</div>
+          <div class="pillar-text">No passive reading. Every lesson includes clean, runnable code, live playgrounds, and real-world micro-projects you can deploy.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-language"></i></div>
+          <div class="pillar-title">2. True Bilingual Experience</div>
+          <div class="pillar-text">High-fidelity Arabic and English content created with equal depth and technical precision, never machine-translated jargon.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="pillar-title">3. Modern Best Practices</div>
+          <div class="pillar-text">We teach semantic HTML5, modern CSS Grid/Flexbox, ES6+ JavaScript, and Python 3.12 with emphasis on accessibility, performance, and SEO.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <div class="pillar-title">4. Holistic Developer Life</div>
+          <div class="pillar-text">Coding is more than syntax. We offer guides on mental health, digital detox, productivity, and soft skills to support developers' sustainable growth.</div>
+        </div>
       </div>
     </div>
     <div data-cl-lang="ar">
-      <h2><i class="fa-solid fa-eye"></i> الرؤية</h2>
-      <div class="article-content">
-        <p>تأسست Coding Life بناءً على الإيمان بأن التعليم التقني عالي الجودة يجب أن يكون متاحاً للجميع. نحن لا نعلم الكود فقط؛ بل نعلم حل المشكلات.</p>
+      <h2 style="color:var(--cl-ink); font-size:1.6rem; margin-bottom:12px;">أركاننا الأربعة الأساسية</h2>
+      <p style="color:var(--cl-muted); margin-bottom:24px;">المبادئ الجوهرية التي تقود كل درس ودليل وأداة تفاعلية نبتكرها:</p>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <div class="pillar-title">1. التعلم من خلال البناء</div>
+          <div class="pillar-text">لا قراءة سلبية. كل درس يحتوي على كود نظيف قابل للتنفيذ، ومحرر أكواد حي، ومشاريع مصغرة جاهزة للاستخدام الحقيقي.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-language"></i></div>
+          <div class="pillar-title">2. تجربة ثنائية اللغة حقيقية</div>
+          <div class="pillar-text">محتوى عربي وإنجليزي أصيل تم إعداده بدقة متناهية وعمق علمي متكافئ، بعيداً عن الترجمات الآلية الركيكة.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="pillar-title">3. أفضل الممارسات المعاصرة</div>
+          <div class="pillar-text">نركز على HTML5 الدلالي، CSS Grid وFlexbox، JavaScript ES6+، وPython مع مراعاة السيو وسهولة الوصول (Accessibility) والسرعة.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <div class="pillar-title">4. حياة المطور المتكاملة</div>
+          <div class="pillar-text">البرمجة ليست مجرد سطور كود. نوفر أدلة حول الصحة النفسية، الإنتاجية، وإدارة الضغط لدعم مسار المبرمج بصورة متوازنة ومستدامة.</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="chapter reveal">
+  <!-- LEADERSHIP & EDITORIAL STANDARDS -->
+  <div class="about-card reveal">
+    <div class="about-header-icon"><i class="fa-solid fa-user-tie"></i></div>
     <div data-cl-lang="en">
-      <h2><i class="fa-solid fa-heart"></i> Why Choose Us?</h2>
-      <div class="article-content">
-        <p>We focus on "Learn by Building." Every course on our platform leads to a real-world project.</p>
-        <ul style="margin-top: 20px;">
-          <li>Expert-led curriculum based on industry experience.</li>
-          <li>Focus on career readiness and soft skills.</li>
-        </ul>
+      <h2 style="color:var(--cl-ink); font-size:1.6rem; margin-bottom:16px;">Founder & Editorial Standards</h2>
+      <p style="color:var(--cl-muted); font-size:1.05rem; line-height:1.9;">
+        Coding Life was created and is actively maintained by <strong>Bilal El Hamri</strong>, a passionate software developer and tech educator committed to making programming accessible to all.
+      </p>
+      <div class="team-card">
+        <div class="team-avatar"><i class="fa-solid fa-terminal"></i></div>
+        <div>
+          <h3 style="margin:0 0 6px; font-size:1.3rem; color:var(--cl-ink);">Bilal El Hamri</h3>
+          <div style="color:var(--cl-brand); font-weight:700; margin-bottom:10px;">Founder & Lead Technical Educator</div>
+          <p style="color:var(--cl-muted); margin:0; line-height:1.8; font-size:0.95rem;">
+            Full-stack web developer and tech educator specializing in JavaScript, modern web standards, and developer productivity tooling. Passionate about empowering Arabic and international developers through hands-on, high-quality open educational content.
+          </p>
+        </div>
+      </div>
+      <h3 style="color:var(--cl-ink); font-size:1.2rem; margin:24px 0 12px;">Our Quality Promise (E-E-A-T)</h3>
+      <ul style="color:var(--cl-muted); line-height:1.9;">
+        <li><strong>Tested Code:</strong> Every code snippet presented on the site is manually verified across modern browsers (Chrome, Edge, Firefox, Safari).</li>
+        <li><strong>Continuous Updates:</strong> We actively review tutorials to incorporate the latest specifications (HTML5 living standard, ECMAScript releases, modern CSS features).</li>
+        <li><strong>No Sponsored Bias:</strong> Our educational recommendations are purely objective, focusing on industry best practices rather than sponsored promotions.</li>
+      </ul>
+    </div>
+    <div data-cl-lang="ar">
+      <h2 style="color:var(--cl-ink); font-size:1.6rem; margin-bottom:16px;">المؤسس ومعايير الجودة التحريرية</h2>
+      <p style="color:var(--cl-muted); font-size:1.05rem; line-height:1.9;">
+        تم تأسيس وتطوير منصة Coding Life بإشراف وتطوير <strong>بلال الحمري (Bilal El Hamri)</strong>، مطور برمجيات ومعلم تقني ملتزم بإتاحة المعرفة البرمجية للجميع مجاناً.
+      </p>
+      <div class="team-card">
+        <div class="team-avatar"><i class="fa-solid fa-terminal"></i></div>
+        <div>
+          <h3 style="margin:0 0 6px; font-size:1.3rem; color:var(--cl-ink);">بلال الحمري (Bilal El Hamri)</h3>
+          <div style="color:var(--cl-brand); font-weight:700; margin-bottom:10px;">مؤسس المنصة والمعلم التقني الرئيسي</div>
+          <p style="color:var(--cl-muted); margin:0; line-height:1.8; font-size:0.95rem;">
+            مطور ويب متكامل (Full-stack) وموجّه تقني متخصص في جافاسكريبت ومعايير الويب الحديثة وأدوات إنتاجية المطورين. شغوف بتمكين المبرمجين العرب والعالميين من خلال محتوى تعليمي تطبيقي عالي الجودة.
+          </p>
+        </div>
+      </div>
+      <h3 style="color:var(--cl-ink); font-size:1.2rem; margin:24px 0 12px;">ميثاق الجودة والمصداقية (E-E-A-T)</h3>
+      <ul style="color:var(--cl-muted); line-height:1.9; padding-right:20px;">
+        <li><strong>أكواد مجربة ومضمونة:</strong> يتم فحص واختبار كل سطر برمجي عبر مختلف المتصفحات الحديثة لضمان عمله دون أخطاء.</li>
+        <li><strong>تحديث دوري مستمر:</strong> نراجع الدروس باستمرار لمواكبة أحدث المعايير (إصدارات ECMAScript السنوية، ومواصفات CSS الحديثة).</li>
+        <li><strong>حيادية ومصداقية كاملة:</strong> توصياتنا التعليمية مبنية على معايير الصناعة والخبرة العملية ولا تخضع لأي تأثيرات ترويجية مدفوعة.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CONTACT & COMMUNITY CTA -->
+  <div class="chapter reveal" style="text-align:center; padding: 40px; background: var(--cl-surface); border-radius: 20px; border: 1px solid var(--cl-line); margin-top: 20px;">
+    <div data-cl-lang="en">
+      <h2 style="font-size:1.6rem; margin-bottom:12px;">Join the Coding Life Community</h2>
+      <p style="color: var(--cl-muted); margin-bottom: 28px; max-width:600px; margin-left:auto; margin-right:auto;">
+        Have questions, suggestions, or want to contribute? We'd love to hear from you. Explore our courses or get in direct touch with our team.
+      </p>
+      <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+        <a href="dorous-albarmaja.html" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:var(--cl-brand); color:#fff; border-radius:12px; font-weight:700; text-decoration:none;">Explore Courses <i class="fa-solid fa-graduation-cap"></i></a>
+        <a href="contact.html" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:rgba(45,212,191,0.1); color:var(--cl-brand); border:1px solid var(--cl-brand); border-radius:12px; font-weight:700; text-decoration:none;">Contact Us <i class="fa-solid fa-envelope"></i></a>
       </div>
     </div>
     <div data-cl-lang="ar">
-      <h2><i class="fa-solid fa-heart"></i> لماذا تختارنا؟</h2>
-      <div class="article-content">
-        <p>نحن نركز على "التعلم من خلال البناء". كل دورة على منصتنا تقودك إلى مشروع حقيقي.</p>
-        <ul style="margin-top: 20px; padding-right: 20px;">
-          <li>منهج يقوده خبراء بناءً على خبرة ميدانية.</li>
-          <li>التركيز على الجاهزية المهنية والمهارات الناعمة.</li>
-        </ul>
+      <h2 style="font-size:1.6rem; margin-bottom:12px;">انضم إلى مجتمع Coding Life</h2>
+      <p style="color: var(--cl-muted); margin-bottom: 28px; max-width:600px; margin-left:auto; margin-right:auto;">
+        هل لديك استفسار، اقتراح، أو ترغب في المساهمة؟ يسعدنا دائماً التواصل معك. استكشف دوراتنا البرمجية أو تواصل معنا مباشرة.
+      </p>
+      <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+        <a href="dorous-albarmaja.html" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:var(--cl-brand); color:#fff; border-radius:12px; font-weight:700; text-decoration:none;">استكشف الدورات <i class="fa-solid fa-graduation-cap"></i></a>
+        <a href="contact.html" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:rgba(45,212,191,0.1); color:var(--cl-brand); border:1px solid var(--cl-brand); border-radius:12px; font-weight:700; text-decoration:none;">تواصل معنا <i class="fa-solid fa-envelope"></i></a>
       </div>
     </div>
   </div>
 
-</div>
+</div><!-- end .course-container -->
 
 <script src="site-polish.js"></script>
 </body>

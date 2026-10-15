@@ -1,261 +1,812 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cours Complet JavaScript - Coding Life</title>
+  <!-- Google AdSense Placeholder -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-0000000000000000" crossorigin="anonymous"></script>
+  <title>JavaScript Complete Masterclass - Coding Life | Modern ES6+ Web Programming</title>
+  <meta name="description" content="Master modern JavaScript from absolute scratch to advanced web development. Learn ES6+, DOM manipulation, event handling, async/await, Fetch API, and clean code practices. Free bilingual EN/AR course.">
+  <meta name="keywords" content="JavaScript, learn JavaScript, JS tutorial, ES6, async await, DOM manipulation, web development, تعلم جافاسكريبت, دورة جافاسكريبت">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://codinglife1.vercel.app/javascript.html">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 30px;
+      border-radius: 20px;
+      padding: 36px;
+      margin-bottom: 32px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cl-brand);
+      box-shadow: var(--cl-shadow-lg);
     }
     .lesson-header {
       display: flex;
       gap: 20px;
-      align-items: center;
-    }
-    .lesson-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--cl-brand);
-      box-shadow: var(--cl-shadow-lg);
+      align-items: flex-start;
+      margin-bottom: 20px;
     }
     .lesson-icon {
-      width: 60px;
-      height: 60px;
+      width: 56px;
+      height: 56px;
       background: rgba(45, 212, 191, 0.1);
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: var(--cl-brand);
       flex-shrink: 0;
     }
-    .lesson-info {
-      flex-grow: 1;
+    .lesson-title { flex-grow: 1; }
+    .lesson-title h3 {
+      font-size: 1.4rem;
+      color: var(--cl-text);
+      margin: 0 0 8px;
+      font-weight: 800;
     }
-    .lesson-info h3 {
-      font-size: 1.5rem;
-      color: var(--cl-brand);
-      margin-bottom: 12px;
-      margin-top: 0;
-    }
-    .lesson-content {
-      line-height: 1.8;
-      color: var(--cl-muted);
-      font-size: 1.05rem;
-    }
+    .lesson-body { line-height: 1.95; color: var(--cl-muted); font-size: 1.05rem; }
+    .lesson-body p { margin-bottom: 14px; }
+    .lesson-body ul, .lesson-body ol { padding-left: 22px; margin: 12px 0 18px; }
+    [dir="rtl"] .lesson-body ul, [dir="rtl"] .lesson-body ol { padding-left: 0; padding-right: 22px; }
+    .lesson-body li { margin-bottom: 8px; line-height: 1.8; }
+    .lesson-body strong { color: var(--cl-text); }
     .badge {
       display: inline-block;
-      padding: 4px 12px;
+      padding: 3px 12px;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      letter-spacing: 0.5px;
     }
-    .badge-modern { background: rgba(45, 212, 191, 0.1); color: var(--cl-brand); }
+    .badge-beginner { background: var(--cl-brand-soft); color: var(--cl-brand); }
     .badge-important { background: rgba(45, 212, 191, 0.12); color: var(--cl-brand-dark); }
     .badge-pro { background: rgba(15, 118, 110, 0.08); color: var(--cl-brand-dark); }
-
+    .badge-seo { background: rgba(45, 212, 191, 0.08); color: var(--cl-brand); }
     .code-block {
       background: #0d1117;
       color: #c9d1d9;
-      padding: 20px;
-      border-radius: 8px;
+      padding: 22px 26px;
+      border-radius: 12px;
       font-family: 'Fira Code', monospace;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       overflow-x: auto;
-      margin: 15px 0;
+      margin: 18px 0;
       border: 1px solid #30363d;
+      position: relative;
     }
-
+    .code-block pre { margin: 0; line-height: 1.7; }
+    .code-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--cl-brand);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .tip-box {
+      background: rgba(45,212,191,0.07);
+      border-left: 4px solid #2dd4bf;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+    [dir="rtl"] .tip-box { border-left: none; border-right: 4px solid #2dd4bf; }
+    .warn-box {
+      background: rgba(251,191,36,0.08);
+      border-left: 4px solid #f59e0b;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+    [dir="rtl"] .warn-box { border-left: none; border-right: 4px solid #f59e0b; }
+    .tip-box i, .warn-box i { margin-right: 8px; }
+    .toc {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+    }
+    .toc h3 { margin: 0 0 16px; font-size: 1rem; color: var(--cl-brand); text-transform: uppercase; letter-spacing: 1px; }
+    .toc ol { margin: 0; padding-left: 20px; line-height: 2.4; }
+    .toc a { color: var(--cl-text); text-decoration: none; }
+    .toc a:hover { color: var(--cl-brand); }
+    [dir="rtl"] .toc ol { padding-left: 0; padding-right: 20px; }
+    .course-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
     @media (max-width: 768px) {
-      .lesson-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      .lesson-header { flex-direction: column; }
+      .lesson-card { padding: 24px; }
     }
   </style>
 </head>
 <body>
 
 <div class="course-container">
-  <div class="course-header" >
-    <div data-cl-lang="en">
-      <h1><i class="fab fa-js"></i> JavaScript Deep Dive</h1>
-      <p>The logic engine of the web. From ES6+ fundamentals to advanced asynchronous patterns.</p>
-    </div>
-    <div data-cl-lang="ar">
-      <h1><i class="fab fa-js"></i> تعمق في JavaScript</h1>
-      <p>محرك المنطق للويب. من أساسيات ES6+ إلى الأنماط المتقدمة غير المتزامنة.</p>
-    </div>
-    <div data-cl-lang="fr">
-      <h1><i class="fab fa-js"></i> Maîtrise JavaScript</h1>
-      <p>Le moteur du web. Des fondamentaux ES6+ aux modèles asynchrones avancés.</p>
+
+  <!-- HEADER EN -->
+  <div class="course-header" data-cl-lang="en">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">Web Development → Logic & Interactivity</div>
+    <h1><i class="fab fa-js"></i> JavaScript Complete Masterclass</h1>
+    <p>The definitive guide to modern JavaScript. Master ES6+, DOM manipulation, asynchronous programming, APIs, and modern application architecture.</p>
+    <div class="course-meta">
+      <span class="meta-item"><i class="fa-solid fa-clock"></i> ~6 hours</span>
+      <span class="meta-item"><i class="fa-solid fa-layer-group"></i> 10 Lessons</span>
+      <span class="meta-item"><i class="fa-solid fa-signal"></i> Beginner → Advanced</span>
+      <span class="meta-item"><i class="fa-solid fa-certificate"></i> Free Course</span>
     </div>
   </div>
 
-  <div class="chapters" id="jsLessons">
-    <!-- Lessons will be injected here -->
+  <!-- HEADER AR -->
+  <div class="course-header" data-cl-lang="ar">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">تطوير الويب ← المنطق والتفاعلية</div>
+    <h1><i class="fab fa-js"></i> كورس JavaScript الشامل للاحتراف</h1>
+    <p>الدليل الشامل لاحتراف جافاسكريبت الحديثة. تعلم معايير ES6+، معالجة الـ DOM، البرمجة غير المتزامنة (Async/Await)، واجهات الـ APIs، وبناء التطبيقات التفاعلية.</p>
+    <div class="course-meta">
+      <span class="meta-item"><i class="fa-solid fa-clock"></i> ~6 ساعات</span>
+      <span class="meta-item"><i class="fa-solid fa-layer-group"></i> 10 دروس</span>
+      <span class="meta-item"><i class="fa-solid fa-signal"></i> مبتدئ ← متقدم</span>
+      <span class="meta-item"><i class="fa-solid fa-certificate"></i> كورس مجاني</span>
+    </div>
   </div>
-</div>
 
-<script>
-  const jsLessons = [
-    {
-      icon: "fa-bolt",
-      badge: "badge-modern",
-      t_fr: "1. Qu'est-ce que JavaScript ?",
-      d_fr: "JavaScript est le langage de programmation qui permet de rendre les sites web interactifs.",
-      t_en: "1. What is JavaScript?",
-      d_en: "JavaScript is the programming language that powers interactivity on the web.",
-      t_ar: "1. ما هو JavaScript؟",
-      d_ar: "جافا سكريبت هي لغة البرمجة التي تسمح بجعل مواقع الويب تفاعلية."
-    },
-    {
-      icon: "fa-vial",
-      badge: "badge-important",
-      t_fr: "2. Variables et Types",
-      d_fr: "Utilisez let et const (ES6) pour déclarer des variables. Découvrez les types : String, Number, Boolean, Array, Object.",
-      code: "const nom = 'Ali';\nlet age = 25;\nconst fruits = ['Pomme', 'Banane'];",
-      t_en: "2. Variables & Types",
-      d_en: "Use let and const (ES6) to declare variables. Explore types: String, Number, Boolean, Array, Object.",
-      t_ar: "2. المتغيرات والأنواع",
-      d_ar: "استخدم let و const للتصريح عن المتغيرات. استكشف الأنواع المختلفة."
-    },
-    {
-      icon: "fa-code-branch",
-      badge: "badge-modern",
-      t_fr: "3. Conditions et Logique",
-      d_fr: "Prenez des décisions avec if/else, switch et les opérateurs logiques (&&, ||, !).",
-      code: "if (age >= 18) {\n  console.log('Majeur');\n}",
-      t_en: "3. Logic & Conditions",
-      d_en: "Make decisions in code using if/else statements, switch cases, and logical operators.",
-      t_ar: "3. المنطق والشروط",
-      d_ar: "اتخذ القرارات في الكود باستخدام if/else والمعاملات المنطقية."
-    },
-    {
-      icon: "fa-sync",
-      badge: "badge-modern",
-      t_fr: "4. Boucles",
-      d_fr: "Répétez des actions avec for, while et les méthodes d'itération modernes comme forEach.",
-      code: "fruits.forEach(f => console.log(f));",
-      t_en: "4. Loops",
-      d_en: "Repeat actions using for, while, and modern iteration methods like forEach and map.",
-      t_ar: "4. الحلقات",
-      d_ar: "كرر الأفعال باستخدام الحلقات مثل for و while و forEach."
-    },
-    {
-      icon: "fa-rocket",
-      badge: "badge-important",
-      t_fr: "5. Fonctions et ES6",
-      d_fr: "Découvrez les Arrow Functions et comment passer des arguments.",
-      code: "const saluer = (nom) => `Salut ${nom}!`;",
-      t_en: "5. Functions & ES6",
-      d_en: "Learn about Arrow Functions, parameters, return values, and template literals.",
-      t_ar: "5. الدوال و ES6",
-      d_ar: "تعلم عن الدوال السهمية (Arrow Functions) والمميزات الحديثة لـ ES6."
-    },
-    {
-      icon: "fa-cube",
-      badge: "badge-pro",
-      t_fr: "6. Objets et Classes",
-      d_fr: "La programmation orientée objet en JS utilisant les classes et les prototypes.",
-      code: "class User {\n  constructor(name) { this.name = name; }\n}",
-      t_en: "6. Objects & Classes",
-      d_en: "Object-oriented programming in JS using modern class syntax and prototypes.",
-      t_ar: "6. الكائنات والكلاسات",
-      d_ar: "البرمجة كائنية التوجه في جافا سكريبت باستخدام الكلاسات."
-    },
-    {
-      icon: "fa-sitemap",
-      badge: "badge-important",
-      t_fr: "7. Manipulation du DOM",
-      d_fr: "Interagissez avec le HTML en sélectionnant et modifiant des éléments en temps réel.",
-      code: "document.querySelector('h1').innerText = 'Nouveau Titre';",
-      t_en: "7. DOM Manipulation",
-      d_en: "Interact with HTML by selecting and modifying elements dynamically.",
-      t_ar: "7. التلاعب بـ DOM",
-      d_ar: "تفاعل مع الـ HTML عبر اختيار وتعديل العناصر برمجياً."
-    },
-    {
-      icon: "fa-mouse",
-      badge: "badge-modern",
-      t_fr: "8. Événements",
-      d_fr: "Écoutez les clics, les saisies clavier et les soumissions de formulaires.",
-      code: "btn.addEventListener('click', () => alert('Cliqué!'));",
-      t_en: "8. Events",
-      d_en: "Listen for user interactions like clicks, key presses, and form submissions.",
-      t_ar: "8. الأحداث",
-      d_ar: "استمع لتفاعلات المستخدم مثل النقرات وإدخالات لوحة المفاتيح."
-    },
-    {
-      icon: "fa-clock",
-      badge: "badge-pro",
-      t_fr: "9. Programmation Asynchrone",
-      d_fr: "Maîtrisez les Promises et async/await pour gérer les appels API et les délais.",
-      code: "async function getData() {\n  const res = await fetch(url);\n}",
-      t_en: "9. Async JS",
-      d_en: "Master Promises and async/await to handle API calls and delayed execution.",
-      t_ar: "9. البرمجة غير المتزامنة",
-      d_ar: "أتقن الوعود (Promises) و async/await للتعامل مع الـ APIs."
-    },
-    {
-      icon: "fa-box-open",
-      badge: "badge-pro",
-      t_fr: "10. Modules et JSON",
-      d_fr: "Organisez votre code avec import/export et apprenez à manipuler les données JSON.",
-      code: "import { data } from './utils.js';\nconst obj = JSON.parse(jsonStr);",
-      t_en: "10. Modules & JSON",
-      d_en: "Organize your code with ES Modules and learn to handle JSON data structures.",
-      t_ar: "10. الموديولات و JSON",
-      d_ar: "نظم كودك باستخدام الموديولات وتعلم التعامل مع بيانات JSON."
-    }
-  ];
+  <div class="chapters">
 
-  const chaptersContainer = document.getElementById('jsLessons');
-  
-  function render(lesson) {
-    const div = document.createElement('div');
-    div.className = 'lesson-card reveal';
-    
-    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
-    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
-    
-    div.innerHTML = `
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc reveal" data-cl-lang="en">
+      <h3><i class="fa-solid fa-list-ol"></i> Course Contents</h3>
+      <ol>
+        <li><a href="#lesson-1">Introduction to JavaScript & The Browser Runtime</a></li>
+        <li><a href="#lesson-2">Variables (let, const) & Data Types Deep Dive</a></li>
+        <li><a href="#lesson-3">Operators, Comparisons & Type Coercion</a></li>
+        <li><a href="#lesson-4">Control Flow, Conditionals & Modern Loops</a></li>
+        <li><a href="#lesson-5">Functions, Arrow Functions & Scope Closures</a></li>
+        <li><a href="#lesson-6">Arrays & Modern High-Order Methods (map, filter, reduce)</a></li>
+        <li><a href="#lesson-7">Objects, Destructuring & JSON Serialization</a></li>
+        <li><a href="#lesson-8">DOM Selection & Real-Time UI Manipulation</a></li>
+        <li><a href="#lesson-9">Events, Form Handling & User Interaction</a></li>
+        <li><a href="#lesson-10">Asynchronous JS — Promises, Async/Await & Fetch API</a></li>
+      </ol>
+    </div>
+    <div class="toc reveal" data-cl-lang="ar">
+      <h3><i class="fa-solid fa-list-ol"></i> محتوى الكورس</h3>
+      <ol>
+        <li><a href="#lesson-1">مقدمة في JavaScript وبيئة تشغيل المتصفح</a></li>
+        <li><a href="#lesson-2">المتغيرات (let, const) وأنواع البيانات بالتفصيل</a></li>
+        <li><a href="#lesson-3">المعاملات البرمجية والتحقق ومطابقة الأنواع</a></li>
+        <li><a href="#lesson-4">التحكم في التدفق والشروط وحلقات التكرار الحديثة</a></li>
+        <li><a href="#lesson-5">الدوال العادية والدوال السهمية (Arrow Functions) ونطاق المتغيرات</a></li>
+        <li><a href="#lesson-6">المصفوفات والدوال العليا الحديثة (map, filter, reduce)</a></li>
+        <li><a href="#lesson-7">الكائنات (Objects)، التفكيك (Destructuring) وصيغة JSON</a></li>
+        <li><a href="#lesson-8">التحكم في الـ DOM وتحديث واجهة المستخدم لحظياً</a></li>
+        <li><a href="#lesson-9">إدارة الأحداث ومعالجة النماذج وتفاعل المستخدم</a></li>
+        <li><a href="#lesson-10">البرمجة غير المتزامنة — الوعود، Async/Await وواجهة Fetch API</a></li>
+      </ol>
+    </div>
+
+    <!-- ===================== LESSON 1 ===================== -->
+    <div class="lesson-card reveal" id="lesson-1">
       <div class="lesson-header">
-        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
-        <div class="lesson-info">
-          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
-          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
-          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
-          ${badgeHtml}
+        <div class="lesson-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 1 — Introduction to JavaScript & The Browser Runtime</h3><span class="badge badge-beginner">Foundations</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 1 — مقدمة في JavaScript وبيئة تشغيل المتصفح</h3><span class="badge badge-beginner">الأساسيات</span></div>
         </div>
       </div>
-      <div class="lesson-content">
-        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
-        <div data-cl-lang="en">${lesson.d_en || ''}</div>
-        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
-        ${codeHtml}
-      </div>
-    `;
-    chaptersContainer.appendChild(div);
-  }
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p><strong>JavaScript</strong> is the universal programming language of the World Wide Web. While HTML provides the skeleton and CSS provides the skin and styling, JavaScript represents the brain and nervous system — handling interactivity, calculations, network requests, and dynamic UI updates.</p>
+          <p>JavaScript executes inside an engine embedded within the browser (such as Google's <strong>V8</strong> in Chrome and Node.js, SpiderMonkey in Firefox, or JavaScriptCore in Safari). It is a high-level, single-threaded, garbage-collected language equipped with a non-blocking event loop.</p>
+          <p><strong>Connecting JavaScript to HTML:</strong></p>
+          <div class="code-block">
+            <div class="code-label">The Correct Way to Link JavaScript</div>
+            <pre>&lt;!-- Always link with 'defer' in the head for optimum performance --&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;
 
-  jsLessons.forEach(l => render(l));
-</script>
+&lt;!-- 'defer' ensures HTML parses first, then script runs in order --&gt;</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> Open your browser Developer Tools anytime by pressing <code>F12</code> or <code>Ctrl+Shift+I</code> (Cmd+Option+I on Mac) and switch to the <strong>Console</strong> tab. You can test JS statements in real time!</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p><strong>JavaScript (جافاسكريبت)</strong> هي لغة البرمجة العالمية للويب. إذا كان HTML هو الهيكل العظمي وCSS هو المظهر الخارجي والألوان، فإن جافاسكريبت هي العقل والجهاز العصبي للموقع — تدير التفاعل، الحسابات، طلبات الخادم (APIs)، وتحديث الواجهات لحظياً دون إعادة تحميل الصفحة.</p>
+          <p>تعمل جافاسكريبت داخل محركات فائقة السرعة مدمجة في المتصفحات (مثل محرك <strong>V8</strong> في كروم وNode.js، أو SpiderMonkey في فايرفوكس). وهي لغة عالية المستوى تعتمد على حلقة الأحداث (Event Loop) لمعالجة المهام بكفاءة دون تجميد واجهة المستخدم.</p>
+          <div class="code-block">
+            <div class="code-label">الطريقة النموذجية لربط كود جافاسكريبت</div>
+            <pre>&lt;!-- استخدم دائماً السمة defer داخل وسم head --&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- defer تسمح بتحميل الصفحة فوراً دون انتظار تنزيل ملف السكريبت --&gt;</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>نصيحة للمبتدئين:</strong> اضغط على <code>F12</code> في أي متصفح وانتقل إلى لسان <strong>Console</strong> لتجربة كتابة وتنفيذ أكواد جافاسكريبت مباشرة!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 2 ===================== -->
+    <div class="lesson-card reveal" id="lesson-2">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 2 — Variables (let, const) & Data Types Deep Dive</h3><span class="badge badge-important">Core Logic</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 2 — المتغيرات (let, const) وأنواع البيانات بالتفصيل</h3><span class="badge badge-important">منطق أساسي</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Variables are containers for storing data values. In modern JavaScript (ES6+), we use two keywords:</p>
+          <ul>
+            <li><code>const</code>: For variables whose reference will <em>not</em> be reassigned. (Default choice in 90% of code).</li>
+            <li><code>let</code>: For variables that need to change over time (e.g. counters, loop iterators).</li>
+            <li><em>Avoid <code>var</code>:</em> It has function-level scope and variable hoisting bugs that cause hard-to-find defects.</li>
+          </ul>
+          <p><strong>JavaScript Data Types:</strong></p>
+          <ol>
+            <li><strong>Primitive Types (Immutable):</strong> <code>string</code>, <code>number</code>, <code>boolean</code>, <code>null</code>, <code>undefined</code>, <code>BigInt</code>, <code>Symbol</code>.</li>
+            <li><strong>Reference Types:</strong> <code>Object</code>, <code>Array</code>, <code>Function</code>.</li>
+          </ol>
+          <div class="code-block">
+            <div class="code-label">Declaring Variables & Template Literals</div>
+            <pre>const platformName = "Coding Life";
+let activeStudents = 1540;
+const isFreeForever = true;
+
+// Template literals with backticks `` allow seamless string interpolation
+const welcomeMessage = `Welcome to ${platformName}! Total learners: ${activeStudents}.`;
+console.log(welcomeMessage);
+
+// Checking types
+console.log(typeof platformName); // "string"
+console.log(typeof isFreeForever); // "boolean"</pre>
+          </div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>المتغيرات هي حاويات لتخزين البيانات والقيم. في جافاسكريبت الحديثة (معايير ES6+)، نستخدم كلمتين رئيسيتين للتصريح عن المتغيرات:</p>
+          <ul>
+            <li><code>const</code>: للمتغيرات الثابتة التي لن يُعاد تعيينها (الخيار الافتراضي في أغلب الأكواد).</li>
+            <li><code>let</code>: للمتغيرات القابلة للتغير لاحقاً (مثل العدادات وقيم المدخلات).</li>
+            <li><em>تجنب استخدام <code>var</code> القديمة:</em> لأنها تعاني من مشاكل في نطاق الرؤية وتسبب أخطاء خفية.</li>
+          </ul>
+          <p><strong>أنواع البيانات الأساسية:</strong> النصوص (<code>string</code>)، الأرقام (<code>number</code>)، القيم المنطقية (<code>boolean</code>)، والقيم الفارغة (<code>null</code> و <code>undefined</code>).</p>
+          <div class="code-block">
+            <div class="code-label">التصريح عن المتغيرات وسلاسل النصوص الذكية</div>
+            <pre>const platformName = "Coding Life";
+let activeStudents = 1540;
+const isFree = true;
+
+// استخدام علامة التنصيص المائلة للدمج السلس (Template Literals)
+const message = `مرحباً بك في ${platformName}! عدد المتعلمين: ${activeStudents}`;
+console.log(message);</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 3 ===================== -->
+    <div class="lesson-card reveal" id="lesson-3">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-calculator"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 3 — Operators, Comparisons & Type Coercion</h3><span class="badge badge-important">Clean Code</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 3 — المعاملات البرمجية والتحقق ومطابقة الأنواع</h3><span class="badge badge-important">كود نظيف</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Operators perform operations on variables and values: arithmetic (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>), assignment (<code>=</code>, <code>+=</code>), comparison, and logical evaluations.</p>
+          <p><strong>The Golden Rule: Strict Equality (<code>===</code>) vs Loose Equality (<code>==</code>)</strong></p>
+          <p>Always use strict equality <code>===</code> and strict inequality <code>!==</code>. Loose equality (<code>==</code>) performs unexpected type coercion behind the scenes, leading to bizarre bugs:</p>
+          <div class="code-block">
+            <div class="code-label">Strict Equality vs Type Coercion Trap</div>
+            <pre>// Loose equality allows unsafe type conversions:
+console.log(5 == "5");  // true (Dangerous!)
+console.log(0 == false); // true (Dangerous!)
+
+// Strict equality checks value AND data type:
+console.log(5 === "5");  // false (Correct & Safe)
+console.log(5 === 5);    // true
+
+// Modern Nullish Coalescing (??) - returns right side only if null or undefined
+const userNickname = null;
+const displayName = userNickname ?? "Guest Developer"; // "Guest Developer"</pre>
+          </div>
+          <div class="warn-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Never use <code>==</code>:</strong> Using <code>===</code> protects your code from unpredictable edge cases and keeps business logic deterministic.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>تستخدم المعاملات الرياضية والمنطقية لإجراء العمليات على المتغيرات: الجمع، الطرح، المقارنة، والتحقق المنطقي.</p>
+          <p><strong>القاعدة الذهبية: المطابقة الصارمة <code>===</code> مقابل المطابقة التقريبية <code>==</code></strong></p>
+          <p>استخدم دائماً المطابقة التامة <code>===</code>. المطابقة القديمة <code>==</code> تقوم بتحويل نوع البيانات قسراً مما يسبب أخطاء برمجية خادعة:</p>
+          <div class="code-block">
+            <div class="code-label">الفرق بين المطابقة الصارمة والعادية</div>
+            <pre>// المطابقة العادية خطرة:
+console.log(5 == "5");   // true (خطأ منطقي!)
+
+// المطابقة الصارمة تتحقق من القيمة ونوع البيانات معاً:
+console.log(5 === "5");  // false (صحيح وآمن)
+
+// المعامل الحديث ?? (Nullish Coalescing)
+const username = null;
+const greeting = username ?? "زائر متميز"; // يعطي القيمة البديلة عند غياب القيمة</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 4 ===================== -->
+    <div class="lesson-card reveal" id="lesson-4">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-route"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 4 — Control Flow, Conditionals & Modern Loops</h3><span class="badge badge-beginner">Control Flow</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 4 — التحكم في التدفق والشروط وحلقات التكرار الحديثة</h3><span class="badge badge-beginner">تدفق التنفيذ</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Conditionals allow your code to make decisions and execute different paths based on conditions. Loops let you repeat logic efficiently over collections of data.</p>
+          <div class="code-block">
+            <div class="code-label">Modern Conditionals & for...of Loops</div>
+            <pre>const score = 88;
+
+// If / Else If Ladder
+if (score >= 90) {
+  console.log("Grade: Outstanding!");
+} else if (score >= 75) {
+  console.log("Grade: Proficient");
+} else {
+  console.log("Keep practicing!");
+}
+
+// Ternary Operator for concise inline decisions:
+const status = score >= 60 ? "Passed" : "Needs Review";
+
+// Modern for...of loop for clean array iteration
+const technologies = ["HTML5", "CSS3", "JavaScript", "Python"];
+for (const tech of technologies) {
+  console.log(`Learning: ${tech}`);
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> Prefer <code>for...of</code> loops when iterating arrays. It is cleaner and avoids manual counter indexing bugs common with traditional <code>for (let i = 0; ...)</code>.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>الجمل الشرطية تمكّن برنامجك من اتخاذ القرارات وتنفيذ تعليمات معينة بناءً على شروط محددة. وتتيح لك حلقات التكرار (Loops) معالجة مجموعات البيانات بسهولة وسرعة.</p>
+          <div class="code-block">
+            <div class="code-label">الشروط وحلقة for...of الحديثة</div>
+            <pre>const score = 85;
+
+// الجملة الشرطية if/else
+if (score >= 90) {
+  console.log("النتيجة: ممتاز");
+} else if (score >= 70) {
+  console.log("النتيجة: جيد جداً");
+} else {
+  console.log("واصل المحاولة والممارسة");
+}
+
+// التكرار الحديث الأنيق for...of على المصفوفات
+const skills = ["HTML5", "CSS3", "JavaScript", "Python"];
+for (const skill of skills) {
+  console.log(`تعلم مهارة: ${skill}`);
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 5 ===================== -->
+    <div class="lesson-card reveal" id="lesson-5">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-code"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 5 — Functions, Arrow Functions & Scope Closures</h3><span class="badge badge-important">Functions</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 5 — الدوال العادية والدوال السهمية (Arrow Functions) ونطاق المتغيرات</h3><span class="badge badge-important">دوال ونطاقات</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Functions are the primary building blocks of programs. They bundle reusable pieces of logic that accept inputs (parameters) and return outputs.</p>
+          <p><strong>ES6 Arrow Functions:</strong> Arrow functions provide a cleaner, more concise syntax and automatically bind the lexical <code>this</code> value from their surrounding context.</p>
+          <div class="code-block">
+            <div class="code-label">Function Declarations vs Arrow Functions</div>
+            <pre>// 1. Traditional Function Declaration
+function calculateDiscount(price, discountPercent = 10) {
+  return price - (price * (discountPercent / 100));
+}
+
+// 2. Modern Arrow Function
+const calculateTax = (subtotal, rate = 0.20) => subtotal * rate;
+
+// 3. Arrow Function with implicit return (single line)
+const square = num => num * num;
+
+console.log(calculateDiscount(100, 15)); // 85
+console.log(calculateTax(100));          // 20
+console.log(square(5));                 // 25</pre>
+          </div>
+          <p><strong>Understanding Closures:</strong> A closure is created when an inner function remembers and maintains access to variables declared in its outer parent scope, even after the outer function has finished executing. Closures enable private variables and data encapsulation.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <p>الدوال (Functions) هي اللبنات الأساسية لأي تطبيق. تقوم بتجميع مجموعة من الأوامر القابلة لإعادة الاستخدام، تستقبل مدخلات وترجع مخرجات محسوبة.</p>
+          <p><strong>الدوال السهمية (Arrow Functions):</strong> أحدثت ثورة في جافاسكريبت باختصارها للكود وتسهيل كتابة الدوال المصغرة والمضمنة.</p>
+          <div class="code-block">
+            <div class="code-label">مقارنة بين الدوال العادية والدوال السهمية الحديثة</div>
+            <pre>// دالة عادية مع قيمة افتراضية للمعامل
+function calculateDiscount(price, discount = 10) {
+  return price - (price * (discount / 100));
+}
+
+// دالة سهمية حديثة ومختصرة
+const calculateTax = (amount, rate = 0.20) => amount * rate;
+
+// استدعاء الدوال
+console.log(calculateDiscount(200, 20)); // 160
+console.log(calculateTax(100));          // 20</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 6 ===================== -->
+    <div class="lesson-card reveal" id="lesson-6">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-list-check"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 6 — Arrays & Modern High-Order Methods (map, filter, reduce)</h3><span class="badge badge-pro">Data Mastery</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 6 — المصفوفات والدوال العليا الحديثة (map, filter, reduce)</h3><span class="badge badge-pro">إدارة البيانات</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Arrays hold ordered lists of items. Modern JavaScript replaces traditional loops with functional, declarative higher-order methods that don't mutate original data:</p>
+          <ul>
+            <li><code>map()</code>: Transforms every item in an array and returns a brand-new array.</li>
+            <li><code>filter()</code>: Returns a new array with items that satisfy a truth condition.</li>
+            <li><code>reduce()</code>: Accumulates array items into a single final value (e.g. total sum).</li>
+            <li><code>find()</code>: Returns the first item matching a condition.</li>
+          </ul>
+          <div class="code-block">
+            <div class="code-label">Declarative Array Processing</div>
+            <pre>const courses = [
+  { id: 1, title: "HTML5", hours: 4, level: "Beginner" },
+  { id: 2, title: "CSS3", hours: 5, level: "Intermediate" },
+  { id: 3, title: "JavaScript", hours: 6, level: "Advanced" },
+  { id: 4, title: "Python", hours: 5, level: "Beginner" }
+];
+
+// 1. Filter: Get only Beginner courses
+const beginnerCourses = courses.filter(c => c.level === "Beginner");
+
+// 2. Map: Extract an array of course titles
+const courseTitles = courses.map(c => c.title);
+
+// 3. Reduce: Calculate total study hours across all courses
+const totalHours = courses.reduce((sum, c) => sum + c.hours, 0);
+
+console.log(courseTitles); // ["HTML5", "CSS3", "JavaScript", "Python"]
+console.log(`Total Study Duration: ${totalHours} hours`); // 20 hours</pre>
+          </div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>تحتوي المصفوفات على قوائم مرتبة من البيانات. أحدثت الدوال العليا (High-Order Methods) ثورة برمجية حيث تتيح فلترة وتحويل وتجميع البيانات بأسلوب إعلاني نظيف دون تعديل المصفوفة الأصلية:</p>
+          <ul>
+            <li><code>map()</code>: لتحويل كل عنصر في المصفوفة وإرجاع مصفوفة جديدة بالنتائج.</li>
+            <li><code>filter()</code>: لتصفية العناصر واستخراج ما يطابق الشرط فقط.</li>
+            <li><code>reduce()</code>: لضغط عناصر المصفوفة وحساب قيمة نهائية واحدة (كالمجموع الكلي).</li>
+          </ul>
+          <div class="code-block">
+            <div class="code-label">معالجة البيانات بـ map و filter و reduce</div>
+            <pre>const courses = [
+  { title: "HTML5", hours: 4, level: "Beginner" },
+  { title: "CSS3", hours: 5, level: "Intermediate" },
+  { title: "JavaScript", hours: 6, level: "Advanced" }
+];
+
+// استخراج العناوين فقط عبر map
+const titles = courses.map(c => c.title);
+
+// حساب إجمالي ساعات التعلم عبر reduce
+const totalHours = courses.reduce((acc, c) => acc + c.hours, 0);
+
+console.log(titles); // ["HTML5", "CSS3", "JavaScript"]
+console.log(`المجموع: ${totalHours} ساعات`); // 15 ساعات</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 7 ===================== -->
+    <div class="lesson-card reveal" id="lesson-7">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-shapes"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 7 — Objects, Destructuring & JSON Serialization</h3><span class="badge badge-important">Data Structures</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 7 — الكائنات (Objects)، التفكيك (Destructuring) وصيغة JSON</h3><span class="badge badge-important">هياكل البيانات</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Objects are key-value collections used to represent entities in real-world applications. Modern JavaScript introduces <strong>Destructuring</strong> and the <strong>Spread Operator (<code>...</code>)</strong> to work with objects effortlessly.</p>
+          <div class="code-block">
+            <div class="code-label">Object Destructuring, Spread & JSON</div>
+            <pre>const developer = {
+  name: "Bilal",
+  role: "Full-Stack Engineer",
+  skills: ["JS", "Python", "CSS"],
+  location: "Morocco"
+};
+
+// 1. Destructuring: Unpack properties directly into variables
+const { name, role, skills } = developer;
+console.log(`${name} is a ${role}.`);
+
+// 2. Spread Operator: Immutable cloning & merging
+const updatedDeveloper = {
+  ...developer,
+  role: "Lead Architect",
+  isAvailable: true
+};
+
+// 3. JSON Serialization (Converting for API exchange)
+const jsonString = JSON.stringify(updatedDeveloper);
+const parsedObj = JSON.parse(jsonString);</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>JSON Insight:</strong> JSON (JavaScript Object Notation) is the universal language of APIs across all programming languages (Python, Java, Go, PHP). <code>JSON.stringify()</code> encodes; <code>JSON.parse()</code> decodes.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>الكائنات (Objects) هي مجموعات من أزواج المفاتيح والقيم (Key-Value) لتمثيل البيانات الحقيقية. توفر جافاسكريبت الحديثة خاصية التفكيك (Destructuring) ومعامل النشر (Spread Operator) لتسهيل التعامل مع الكائنات دون تكرار.</p>
+          <div class="code-block">
+            <div class="code-label">تفكيك الكائنات والتحويل إلى JSON</div>
+            <pre>const user = {
+  name: "بلال",
+  role: "مطور برمجيات",
+  experience: 5
+};
+
+// استخراج الخصائص مباشرة (Destructuring)
+const { name, role } = user;
+console.log(`${name} - ${role}`);
+
+// استنساخ الكائن وتعديله بأمان دون المساس بالأصل
+const updatedUser = { ...user, active: true };
+
+// التحويل إلى صيغة JSON لتبادل البيانات مع السيرفر
+const jsonData = JSON.stringify(updatedUser);
+const backToObject = JSON.parse(jsonData);</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 8 ===================== -->
+    <div class="lesson-card reveal" id="lesson-8">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-display"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 8 — DOM Selection & Real-Time UI Manipulation</h3><span class="badge badge-pro">DOM Mastery</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 8 — التحكم في الـ DOM وتحديث واجهة المستخدم لحظياً</h3><span class="badge badge-pro">احتراف الـ DOM</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>The <strong>Document Object Model (DOM)</strong> is the tree representation of an HTML document in browser memory. JavaScript can read, modify, add, or delete any HTML element and CSS style dynamically.</p>
+          <div class="code-block">
+            <div class="code-label">Selecting & Modifying DOM Elements</div>
+            <pre>// Selecting elements using CSS selector syntax
+const heading = document.querySelector("#main-title");
+const allCards = document.querySelectorAll(".lesson-card");
+
+// Modifying text & attributes securely
+heading.textContent = "Welcome to Modern JavaScript!";
+
+// Managing CSS classes dynamically (preferred over inline styles)
+heading.classList.add("highlight");
+heading.classList.toggle("dark-mode");
+
+// Creating and inserting new elements dynamically
+const newBadge = document.createElement("span");
+newBadge.className = "badge badge-pro";
+newBadge.textContent = "New Lesson";
+heading.appendChild(newBadge);</pre>
+          </div>
+          <div class="warn-box"><i class="fa-solid fa-shield-halved"></i> <strong>Security Reminder:</strong> Always prefer <code>textContent</code> over <code>innerHTML</code> when inserting user-supplied data to prevent Cross-Site Scripting (XSS) vulnerabilities.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>شجرة الـ <strong>DOM</strong> هي البنية البرمجية لملف HTML داخل ذاكرة المتصفح. من خلالها تستطيع جافاسكريبت قراءة وتعديل وحذف أي عنصر وتغيير كلاسات الـ CSS فورياً.</p>
+          <div class="code-block">
+            <div class="code-label">تحديد العناصر وتعديلها بأمان</div>
+            <pre>// تحديد العناصر باستخدام محددات CSS
+const title = document.querySelector("h1");
+
+// تعديل النص بأمان تام
+title.textContent = "مرحباً بكم في كورس جافاسكريبت المحدث!";
+
+// التحكم في كلاسات CSS
+title.classList.add("active");
+title.classList.toggle("theme-dark");
+
+// إنشاء عناصر جديدة وإضافتها للصفحة
+const badge = document.createElement("span");
+badge.className = "badge badge-beginner";
+badge.textContent = "درس جديد";
+title.appendChild(badge);</pre>
+          </div>
+          <div class="warn-box"><i class="fa-solid fa-shield-halved"></i> <strong>أمان المعلومات:</strong> استخدم <code>textContent</code> بدلاً من <code>innerHTML</code> عند إدراج نصوص يدخلها المستخدمون لحماية موقعك من هجمات XSS الخبيثة.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 9 ===================== -->
+    <div class="lesson-card reveal" id="lesson-9">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-hand-pointer"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 9 — Events, Form Handling & User Interaction</h3><span class="badge badge-important">Interactivity</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 9 — إدارة الأحداث ومعالجة النماذج وتفاعل المستخدم</h3><span class="badge badge-important">تفاعل حي</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Events notify code that something interesting occurred: a button click, a key press, a window resize, or a form submission. We register listeners using <code>addEventListener</code>.</p>
+          <div class="code-block">
+            <div class="code-label">Event Handling & Form Interception</div>
+            <pre>const submitButton = document.querySelector("#submitBtn");
+const searchInput = document.querySelector("#searchInput");
+const contactForm = document.querySelector("#contactForm");
+
+// 1. Click Event
+submitButton.addEventListener("click", (event) => {
+  console.log("Button clicked!");
+});
+
+// 2. Real-time Live Input Event
+searchInput.addEventListener("input", (event) => {
+  const query = event.target.value.toLowerCase();
+  console.log(`Searching for: ${query}`);
+});
+
+// 3. Form Submission with preventDefault()
+contactForm.addEventListener("submit", (event) => {
+  event.preventDefault(); // Prevents page reload
+  
+  const formData = new FormData(contactForm);
+  const email = formData.get("email");
+  console.log(`Sending message for: ${email}`);
+});</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-bullseye"></i> <strong>Event Delegation:</strong> Instead of attaching listeners to 100 individual buttons, attach a single listener to their parent container and inspect <code>event.target</code>. This optimizes performance significantly.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>الأحداث (Events) هي إشارات يطلقها المتصفح عند قيام المستخدم بإجراء معين: نقر زر، كتابة في حقل إدخال، تحريك الفأرة، أو إرسال نموذج. نربط الأحداث بالدوال عبر <code>addEventListener</code>.</p>
+          <div class="code-block">
+            <div class="code-label">الاستماع للأحداث والتحكم في النماذج</div>
+            <pre>const btn = document.querySelector("#myBtn");
+const form = document.querySelector("#myForm");
+
+// الاستماع للنقر
+btn.addEventListener("click", (e) => {
+  console.log("تم النقر على الزر بنجاح!");
+});
+
+// معالجة النماذج ومنع إعادة تحميل الصفحة
+form.addEventListener("submit", (e) => {
+  e.preventDefault(); // منع السلوك الافتراضي للمتصفح
+  
+  const inputVal = document.querySelector("#emailInput").value;
+  console.log(`تم استلام البريد: ${inputVal}`);
+});</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 10 ===================== -->
+    <div class="lesson-card reveal" id="lesson-10">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 10 — Asynchronous JS — Promises, Async/Await & Fetch API</h3><span class="badge badge-pro">Production Level</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 10 — البرمجة غير المتزامنة — الوعود، Async/Await وواجهة Fetch API</h3><span class="badge badge-pro">مستوى احترافي</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Network requests (like fetching data from a database or API) take time. If JavaScript blocked execution while waiting, your entire webpage would freeze. <strong>Asynchronous JavaScript</strong> allows tasks to run in the background while keeping the UI responsive.</p>
+          <p><strong>Modern Async/Await with the Fetch API:</strong></p>
+          <div class="code-block">
+            <div class="code-label">Fetching Real Data with async/await and try/catch</div>
+            <pre>async function loadGithubProfile(username) {
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    
+    // Check if HTTP request was successful (status 200-299)
+    if (!response.ok) {
+      throw new Error(`Profile not found (Status: ${response.status})`);
+    }
+    
+    const data = await response.json();
+    console.log(`User: ${data.name}, Public Repos: ${data.public_repos}`);
+    return data;
+  } catch (error) {
+    console.error("Fetch failed:", error.message);
+  } finally {
+    console.log("Request finished.");
+  }
+}
+
+// Storing data in browser localStorage
+localStorage.setItem("userRole", "developer");
+const savedRole = localStorage.getItem("userRole");</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-trophy"></i> <strong>Congratulations:</strong> You now possess the complete foundational and modern JavaScript toolset required to build real interactive web applications!</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>جلب البيانات من الخوادم وواجهات الـ API يستغرق وقتاً. لكي لا تتجمد الصفحة أثناء الانتظار، تعتمد جافاسكريبت على <strong>البرمجة غير المتزامنة (Asynchronous)</strong> لتنفيذ المهام في الخلفية مع بقاء واجهة الموقع سريعة واستجابية.</p>
+          <p><strong>استخدام Async/Await وواجهة Fetch الحديثة:</strong></p>
+          <div class="code-block">
+            <div class="code-label">جلب بيانات حقيقية ومعالجة الأخطاء بـ try/catch</div>
+            <pre>async function fetchUserData(username) {
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    
+    if (!response.ok) {
+      throw new Error("تعذر العثور على المستخدم المطلوب");
+    }
+    
+    const user = await response.json();
+    console.log(`الاسم: ${user.name} | المستودعات: ${user.public_repos}`);
+    return user;
+  } catch (error) {
+    console.error("حدث خطأ أثناء جلب البيانات:", error.message);
+  }
+}
+
+// حفظ الإعدادات في المتصفح محلياً
+localStorage.setItem("themePreference", "dark");
+const currentTheme = localStorage.getItem("themePreference");</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-trophy"></i> <strong>تهانينا الحارة:</strong> أصبحت الآن تمتلك الأساسيات الصلبة والمعايير الحديثة للغة جافاسكريبت لبناء مواقع وتطبيقات تفاعلية متكاملة!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT COURSE CTA -->
+    <div class="chapter reveal" style="text-align:center; padding: 40px; background: var(--cl-surface); border-radius: 20px; border: 1px solid var(--cl-line); margin-top: 20px;">
+      <div data-cl-lang="en">
+        <h2 style="font-size:1.6rem; margin-bottom:12px;">🚀 Level Up: Master Python Next!</h2>
+        <p style="color: var(--cl-muted); margin-bottom: 28px;">You've conquered frontend web development. Ready to explore backend programming, data analysis, and automation? Dive into <strong>Python</strong>.</p>
+        <a href="python.html" style="display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:var(--cl-brand); color:#000; border-radius:12px; font-weight:800; text-decoration:none; font-size:1.1rem; transition:0.3s;">Next Course: Python Masterclass <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div data-cl-lang="ar">
+        <h2 style="font-size:1.6rem; margin-bottom:12px;">🚀 الخطوة التالية: احترف لغة Python!</h2>
+        <p style="color: var(--cl-muted); margin-bottom: 28px;">لقد أتقنت واجهات الويب الأمامية. هل أنت جاهز لدخول عالم الباك إند وتحليل البيانات والأتمتة؟ انطلق مع <strong>Python</strong>.</p>
+        <a href="python.html" style="display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:var(--cl-brand); color:#000; border-radius:12px; font-weight:800; text-decoration:none; font-size:1.1rem; transition:0.3s;">الكورس التالي: Python Masterclass <i class="fa-solid fa-arrow-left"></i></a>
+      </div>
+    </div>
+
+  </div><!-- end .chapters -->
+</div><!-- end .course-container -->
 
 <script src="site-polish.js"></script>
 </body>

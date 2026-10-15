@@ -1,261 +1,1016 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cours Complet CSS3 - Coding Life</title>
+  <!-- Google AdSense Placeholder -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-0000000000000000" crossorigin="anonymous"></script>
+  <title>CSS3 Complete Course - Coding Life | Modern Styling & Responsive Design</title>
+  <meta name="description" content="Master CSS3 and modern responsive web design. From selectors and the box model to Flexbox, CSS Grid, animations, and custom properties. Free bilingual EN/AR course.">
+  <meta name="keywords" content="CSS3, learn CSS, CSS tutorial, flexbox, css grid, responsive web design, modern css, تعلم CSS, دورة CSS">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://codinglife1.vercel.app/css.html">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .lesson-card {
       background: var(--cl-surface);
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 30px;
+      border-radius: 20px;
+      padding: 36px;
+      margin-bottom: 32px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cl-brand);
+      box-shadow: var(--cl-shadow-lg);
     }
     .lesson-header {
       display: flex;
       gap: 20px;
-      align-items: center;
-    }
-    .lesson-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--cl-brand);
-      box-shadow: var(--cl-shadow-lg);
+      align-items: flex-start;
+      margin-bottom: 20px;
     }
     .lesson-icon {
-      width: 60px;
-      height: 60px;
+      width: 56px;
+      height: 56px;
       background: rgba(45, 212, 191, 0.1);
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: var(--cl-brand);
       flex-shrink: 0;
     }
-    .lesson-info {
-      flex-grow: 1;
+    .lesson-title { flex-grow: 1; }
+    .lesson-title h3 {
+      font-size: 1.4rem;
+      color: var(--cl-text);
+      margin: 0 0 8px;
+      font-weight: 800;
     }
-    .lesson-info h3 {
-      font-size: 1.5rem;
-      color: var(--cl-brand);
-      margin-bottom: 12px;
-      margin-top: 0;
-    }
-    .lesson-content {
-      line-height: 1.8;
-      color: var(--cl-muted);
-      font-size: 1.05rem;
-    }
+    .lesson-body { line-height: 1.95; color: var(--cl-muted); font-size: 1.05rem; }
+    .lesson-body p { margin-bottom: 14px; }
+    .lesson-body ul, .lesson-body ol { padding-left: 22px; margin: 12px 0 18px; }
+    [dir="rtl"] .lesson-body ul, [dir="rtl"] .lesson-body ol { padding-left: 0; padding-right: 22px; }
+    .lesson-body li { margin-bottom: 8px; line-height: 1.8; }
+    .lesson-body strong { color: var(--cl-text); }
     .badge {
       display: inline-block;
-      padding: 4px 12px;
+      padding: 3px 12px;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      letter-spacing: 0.5px;
     }
-    .badge-modern { background: rgba(45, 212, 191, 0.1); color: var(--cl-brand); }
+    .badge-beginner { background: var(--cl-brand-soft); color: var(--cl-brand); }
     .badge-important { background: rgba(45, 212, 191, 0.12); color: var(--cl-brand-dark); }
     .badge-pro { background: rgba(15, 118, 110, 0.08); color: var(--cl-brand-dark); }
-
+    .badge-seo { background: rgba(45, 212, 191, 0.08); color: var(--cl-brand); }
     .code-block {
       background: #0d1117;
       color: #c9d1d9;
-      padding: 20px;
-      border-radius: 8px;
+      padding: 22px 26px;
+      border-radius: 12px;
       font-family: 'Fira Code', monospace;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       overflow-x: auto;
-      margin: 15px 0;
+      margin: 18px 0;
       border: 1px solid #30363d;
+      position: relative;
     }
-
+    .code-block pre { margin: 0; line-height: 1.7; }
+    .code-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--cl-brand);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .tip-box {
+      background: rgba(45,212,191,0.07);
+      border-left: 4px solid #2dd4bf;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+    [dir="rtl"] .tip-box { border-left: none; border-right: 4px solid #2dd4bf; }
+    .warn-box {
+      background: rgba(251,191,36,0.08);
+      border-left: 4px solid #f59e0b;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+    [dir="rtl"] .warn-box { border-left: none; border-right: 4px solid #f59e0b; }
+    .tip-box i, .warn-box i { margin-right: 8px; }
+    .toc {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+    }
+    .toc h3 { margin: 0 0 16px; font-size: 1rem; color: var(--cl-brand); text-transform: uppercase; letter-spacing: 1px; }
+    .toc ol { margin: 0; padding-left: 20px; line-height: 2.4; }
+    .toc a { color: var(--cl-text); text-decoration: none; }
+    .toc a:hover { color: var(--cl-brand); }
+    [dir="rtl"] .toc ol { padding-left: 0; padding-right: 20px; }
+    .course-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
     @media (max-width: 768px) {
-      .lesson-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      .lesson-header { flex-direction: column; }
+      .lesson-card { padding: 24px; }
     }
   </style>
 </head>
 <body>
 
 <div class="course-container">
-  <div class="course-header" >
-    <div data-cl-lang="en">
-      <h1><i class="fab fa-css3-alt"></i> CSS3 Modern Styling</h1>
-      <p>Master the art of visual design, responsive layouts, and modern animations.</p>
-    </div>
-    <div data-cl-lang="ar">
-      <h1><i class="fab fa-css3-alt"></i> تصميم CSS3 الحديث</h1>
-      <p>أتقن فن التصميم البصري، التخطيطات المستجيبة، والرسوم المتحركة الحديثة.</p>
-    </div>
-    <div data-cl-lang="fr">
-      <h1><i class="fab fa-css3-alt"></i> Design CSS3 Moderne</h1>
-      <p>Maîtrisez l'art du design visuel, des mises en page réactives et des animations.</p>
+
+  <!-- HEADER EN -->
+  <div class="course-header" data-cl-lang="en">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">Web Design → Visual Architecture</div>
+    <h1><i class="fab fa-css3-alt"></i> CSS3 Modern Styling Masterclass</h1>
+    <p>Master visual design, responsive layouts, Flexbox, CSS Grid, smooth animations, and scalable CSS architecture from scratch to production.</p>
+    <div class="course-meta">
+      <span class="meta-item"><i class="fa-solid fa-clock"></i> ~5 hours</span>
+      <span class="meta-item"><i class="fa-solid fa-layer-group"></i> 10 Lessons</span>
+      <span class="meta-item"><i class="fa-solid fa-signal"></i> Beginner → Advanced</span>
+      <span class="meta-item"><i class="fa-solid fa-certificate"></i> Free Course</span>
     </div>
   </div>
 
-  <div class="chapters" id="cssLessons">
-    <!-- Lessons will be injected here -->
+  <!-- HEADER AR -->
+  <div class="course-header" data-cl-lang="ar">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">تصميم الويب ← الهندسة البصرية</div>
+    <h1><i class="fab fa-css3-alt"></i> كورس CSS3 الشامل للتصميم المعاصر</h1>
+    <p>احترف التصميم البصري، التخطيطات المستجيبة، Flexbox، شبكة CSS Grid، الرسوم المتحركة السلسة، وبناء هياكل CSS قابلة للتوسع من الصفر حتى الاحتراف.</p>
+    <div class="course-meta">
+      <span class="meta-item"><i class="fa-solid fa-clock"></i> ~5 ساعات</span>
+      <span class="meta-item"><i class="fa-solid fa-layer-group"></i> 10 دروس</span>
+      <span class="meta-item"><i class="fa-solid fa-signal"></i> مبتدئ ← متقدم</span>
+      <span class="meta-item"><i class="fa-solid fa-certificate"></i> كورس مجاني</span>
+    </div>
   </div>
-</div>
 
-<script>
-  const cssLessons = [
-    {
-      icon: "fa-magic",
-      badge: "badge-modern",
-      t_fr: "1. Introduction au CSS",
-      d_fr: "CSS (Cascading Style Sheets) définit comment les éléments HTML sont affichés à l'écran.",
-      t_en: "1. Intro to CSS",
-      d_en: "CSS (Cascading Style Sheets) describes how HTML elements are to be displayed on screen.",
-      t_ar: "1. مقدمة في CSS",
-      d_ar: "تحدد CSS كيفية عرض عناصر HTML على الشاشة."
-    },
-    {
-      icon: "fa-mouse-pointer",
-      badge: "badge-important",
-      t_fr: "2. Sélecteurs et Propriétés",
-      d_fr: "Ciblez des éléments par tag, classe (.class) ou ID (#id) et changez leurs propriétés.",
-      code: "h1 {\n  color: blue;\n  font-size: 20px;\n}",
-      t_en: "2. Selectors & Properties",
-      d_en: "Target elements by tag, class (.class), or ID (#id) and modify their properties.",
-      t_ar: "2. المحددات والخصائص",
-      d_ar: "استهدف العناصر عبر التاج أو الكلاس أو الـ ID وغير خصائصها."
-    },
-    {
-      icon: "fa-box",
-      badge: "badge-important",
-      t_fr: "3. Le Box Model",
-      d_fr: "Chaque élément est une boîte composée de : Content, Padding, Border, et Margin.",
-      code: "div {\n  margin: 10px;\n  padding: 20px;\n  border: 1px solid black;\n}",
-      t_en: "3. The Box Model",
-      d_en: "Every element is a box consisting of: Content, Padding, Border, and Margin.",
-      t_ar: "3. نموذج الصندوق",
-      d_ar: "كل عنصر هو صندوق يتكون من: المحتوى، الحشو، الحدود، والهوامش."
-    },
-    {
-      icon: "fa-palette",
-      badge: "badge-modern",
-      t_fr: "4. Couleurs et Backgrounds",
-      d_fr: "Utilisez des couleurs Hex, RGB, HSL ou des dégradés (gradients).",
-      code: "body {\n  background: linear-gradient(red, yellow);\n}",
-      t_en: "4. Colors & Backgrounds",
-      d_en: "Use Hex, RGB, HSL colors or background gradients.",
-      t_ar: "4. الألوان والخلفيات",
-      d_ar: "استخدم ألوان Hex أو RGB أو التدرجات اللونية."
-    },
-    {
-      icon: "fa-font",
-      badge: "badge-modern",
-      t_fr: "5. Typographie",
-      d_fr: "Gérez les polices, la taille du texte, le poids (weight) et l'espacement.",
-      code: "p {\n  font-family: 'Arial';\n  line-height: 1.6;\n}",
-      t_en: "5. Typography",
-      d_en: "Control fonts, text size, weight, alignment, and line spacing.",
-      t_ar: "5. الخطوط",
-      d_ar: "تحكم في أنواع الخطوط وأحجامها وتباعد الأسطر."
-    },
-    {
-      icon: "fa-arrows-alt",
-      badge: "badge-important",
-      t_fr: "6. Flexbox",
-      d_fr: "Créez des mises en page flexibles et alignez facilement vos éléments.",
-      code: ".container {\n  display: flex;\n  justify-content: center;\n}",
-      t_en: "6. Flexbox",
-      d_en: "Create flexible layouts and align elements easily within a container.",
-      t_ar: "6. فليكس بوكس",
-      d_ar: "أنشئ تخطيطات مرنة وقم بمحاذاة العناصر بسهولة."
-    },
-    {
-      icon: "fa-th",
-      badge: "badge-pro",
-      t_fr: "7. CSS Grid",
-      d_fr: "Le système de mise en page le plus puissant pour créer des grilles complexes.",
-      code: ".grid {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}",
-      t_en: "7. CSS Grid",
-      d_en: "The most powerful layout system for creating complex grid structures.",
-      t_ar: "7. شبكة CSS (Grid)",
-      d_ar: "أقوى نظام تخطيط لإنشاء هياكل شبكية معقدة."
-    },
-    {
-      icon: "fa-mobile-alt",
-      badge: "badge-important",
-      t_fr: "8. Responsive Design",
-      d_fr: "Utilisez les Media Queries pour adapter votre site à tous les écrans.",
-      code: "@media (max-width: 600px) {\n  body { font-size: 14px; }\n}",
-      t_en: "8. Responsive Design",
-      d_en: "Use Media Queries to make your website look great on all devices.",
-      t_ar: "8. التصميم المستجيب",
-      d_ar: "استخدم Media Queries لجعل موقعك مناسباً لجميع الأجهزة."
-    },
-    {
-      icon: "fa-running",
-      badge: "badge-pro",
-      t_fr: "9. Animations et Transitions",
-      d_fr: "Donnez vie à votre site avec des effets de transition et des keyframes.",
-      code: ".btn:hover { transition: 0.3s; transform: scale(1.1); }",
-      t_en: "9. Animations & Transitions",
-      d_en: "Bring your site to life with transition effects and keyframe animations.",
-      t_ar: "9. الرسوم المتحركة",
-      d_ar: "أضف الحيوية لموقعك باستخدام الانتقالات والرسوم المتحركة."
-    },
-    {
-      icon: "fa-vial",
-      badge: "badge-pro",
-      t_fr: "10. Variables CSS",
-      d_fr: "Utilisez des variables (custom properties) pour maintenir votre code propre.",
-      code: ":root {\n  --main-color: #ff0000;\n}\nbody { color: var(--main-color); }",
-      t_en: "10. CSS Variables",
-      d_en: "Use custom properties (variables) to keep your CSS clean and maintainable.",
-      t_ar: "10. متغيرات CSS",
-      d_ar: "استخدم المتغيرات للحفاظ على نظافة وجودة كود الـ CSS."
-    }
-  ];
+  <div class="chapters">
 
-  const chaptersContainer = document.getElementById('cssLessons');
-  
-  function render(lesson) {
-    const div = document.createElement('div');
-    div.className = 'lesson-card reveal';
-    
-    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
-    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
-    
-    div.innerHTML = `
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc reveal" data-cl-lang="en">
+      <h3><i class="fa-solid fa-list-ol"></i> Course Contents</h3>
+      <ol>
+        <li><a href="#lesson-1">Introduction to CSS3 & How the Cascade Works</a></li>
+        <li><a href="#lesson-2">Selectors, Combinators & Specificity Hierarchy</a></li>
+        <li><a href="#lesson-3">The Box Model & Display Fundamentals</a></li>
+        <li><a href="#lesson-4">Colors, Backgrounds & Modern Gradients</a></li>
+        <li><a href="#lesson-5">Modern Web Typography & Font Engineering</a></li>
+        <li><a href="#lesson-6">Flexbox Architecture — One-Dimensional Layouts</a></li>
+        <li><a href="#lesson-7">CSS Grid — Two-Dimensional Modern Layouts</a></li>
+        <li><a href="#lesson-8">Responsive Design, Media Queries & Fluid Units</a></li>
+        <li><a href="#lesson-9">Transforms, Transitions & Keyframe Animations</a></li>
+        <li><a href="#lesson-10">CSS Custom Properties, Dark Mode & Architecture</a></li>
+      </ol>
+    </div>
+    <div class="toc reveal" data-cl-lang="ar">
+      <h3><i class="fa-solid fa-list-ol"></i> محتوى الكورس</h3>
+      <ol>
+        <li><a href="#lesson-1">مقدمة في CSS3 وكيفية عمل التعاقب (The Cascade)</a></li>
+        <li><a href="#lesson-2">المحددات (Selectors) والروابط وتراتبية الخصوصية</a></li>
+        <li><a href="#lesson-3">نموذج الصندوق (The Box Model) وخصائص العرض</a></li>
+        <li><a href="#lesson-4">الألوان والخلفيات والتدرجات اللونية الحديثة</a></li>
+        <li><a href="#lesson-5">الخطوط والطباعة الرقمية الحديثة (Typography)</a></li>
+        <li><a href="#lesson-6">تخطيط فليكس بوكس (Flexbox) أحادي البعد</a></li>
+        <li><a href="#lesson-7">شبكة CSS Grid — التخطيطات ثنائية الأبعاد</a></li>
+        <li><a href="#lesson-8">التصميم المستجيب (Responsive) ووحدات القياس المرنة</a></li>
+        <li><a href="#lesson-9">التحولات والانتقالات والرسوم المتحركة (Animations)</a></li>
+        <li><a href="#lesson-10">متغيرات CSS، الوضع الليلي، والهيكلة الاحترافية</a></li>
+      </ol>
+    </div>
+
+    <!-- ===================== LESSON 1 ===================== -->
+    <div class="lesson-card reveal" id="lesson-1">
       <div class="lesson-header">
-        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
-        <div class="lesson-info">
-          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
-          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
-          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
-          ${badgeHtml}
+        <div class="lesson-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 1 — Introduction to CSS3 & How the Cascade Works</h3><span class="badge badge-beginner">Beginner</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 1 — مقدمة في CSS3 وكيفية عمل التعاقب (The Cascade)</h3><span class="badge badge-beginner">مبتدئ</span></div>
         </div>
       </div>
-      <div class="lesson-content">
-        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
-        <div data-cl-lang="en">${lesson.d_en || ''}</div>
-        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
-        ${codeHtml}
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p><strong>CSS</strong> (Cascading Style Sheets) is the styling language used to describe the presentation, design, colors, and layout of a document written in HTML. Without CSS, the web would be plain black text on white backgrounds with blue links.</p>
+          <p>There are three ways to apply CSS to an HTML document:</p>
+          <ul>
+            <li><strong>External CSS:</strong> Inside a separate <code>.css</code> file linked via <code>&lt;link rel="stylesheet" href="style.css"&gt;</code> (The industry standard for clean architecture).</li>
+            <li><strong>Internal CSS:</strong> Inside a <code>&lt;style&gt;</code> tag located within the HTML <code>&lt;head&gt;</code>.</li>
+            <li><strong>Inline CSS:</strong> Directly inside an HTML tag using the <code>style="..."</code> attribute (Recommended only for dynamic email templates or JS overrides).</li>
+          </ul>
+          <p><strong>Understanding The Cascade:</strong> The word "Cascading" means rules flow downward. When multiple styles target the same HTML element, CSS resolves conflicts using three criteria: <strong>Importance</strong> (e.g. <code>!important</code>), <strong>Specificity</strong> (how specific the selector is), and <strong>Source Order</strong> (the last rule declared wins).</p>
+          <div class="code-block">
+            <div class="code-label">CSS Rule Syntax</div>
+            <pre>/* Selector: Targets the element */
+h1 {
+  /* Property: What to change | Value: How to change it */
+  color: #2dd4bf;
+  font-size: 2.5rem;
+  text-align: center;
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Key Takeaway:</strong> Always prefer external stylesheets. They can be cached by browsers, drastically improving load speed and user experience.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p><strong>CSS</strong> (Cascading Style Sheets - أوراق الأنماط المتعاقبة) هي لغة التنسيق والتصميم المسؤولة عن المظهر البصري، الألوان، الخطوط، وتوزيع العناصر لصفحات الويب المكتوبة بـ HTML.</p>
+          <p>توجد ثلاث طرق رئيسية لربط CSS بملفات HTML:</p>
+          <ul>
+            <li><strong>CSS خارجي (External):</strong> في ملف مستقل بامتداد <code>.css</code> يُربط عبر <code>&lt;link rel="stylesheet" href="style.css"&gt;</code> (المعيار الاحترافي الموصى به دائماً).</li>
+            <li><strong>CSS داخلي (Internal):</strong> داخل وسم <code>&lt;style&gt;</code> في رأس الصفحة <code>&lt;head&gt;</code>.</li>
+            <li><strong>CSS سطحي (Inline):</strong> داخل الوسم مباشرة بواسطة السمة <code>style="..."</code>.</li>
+          </ul>
+          <p><strong>ما هو مفهوم التعاقب (The Cascade)؟</strong> كلمة "متعاقبة" تعني أن القواعد تتدفق من الأعلى للأسفل. عندما تنطبق عدة قواعد تنسيق على نفس العنصر، تحل لغة CSS التضارب عبر ثلاثة معايير: <strong>الأهمية</strong>، <strong>الخصوصية (Specificity)</strong>، و<strong>ترتيب الظهور (Source Order)</strong> حيث تطبق القاعدة الأخيرة.</p>
+          <div class="code-block">
+            <div class="code-label">صيغة كتابة قاعدة CSS</div>
+            <pre>/* المحدد (Selector) */
+h1 {
+  /* الخاصية (Property) : القيمة (Value) */
+  color: #2dd4bf;
+  font-size: 2.5rem;
+  text-align: center;
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>قاعدة ذهبية:</strong> اعتمد دائماً على ملفات CSS الخارجية لأن المتصفح يقوم بتخزينها مؤقتاً (Cache)، مما يجعل تحميل الموقع فائق السرعة.</div>
+        </div>
       </div>
-    `;
-    chaptersContainer.appendChild(div);
-  }
+    </div>
 
-  cssLessons.forEach(l => render(l));
-</script>
+    <!-- ===================== LESSON 2 ===================== -->
+    <div class="lesson-card reveal" id="lesson-2">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-crosshairs"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 2 — Selectors, Combinators & Specificity Hierarchy</h3><span class="badge badge-important">Core Skill</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 2 — المحددات (Selectors) والروابط وتراتبية الخصوصية</h3><span class="badge badge-important">مهارة أساسية</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Selectors tell CSS exactly which HTML elements to apply styles to. Mastering selectors and specificity is the secret to avoiding messy CSS overrides and styling bugs.</p>
+          <p><strong>Core Selectors:</strong></p>
+          <ul>
+            <li><strong>Element:</strong> <code>p { ... }</code> (Targets all paragraphs).</li>
+            <li><strong>Class:</strong> <code>.btn { ... }</code> (Targets any element with <code>class="btn"</code>. Reusable).</li>
+            <li><strong>ID:</strong> <code>#navbar { ... }</code> (Targets the unique element with <code>id="navbar"</code>).</li>
+            <li><strong>Attribute:</strong> <code>input[type="email"] { ... }</code> (Targets specific input types).</li>
+          </ul>
+          <p><strong>Combinators & Pseudo-classes:</strong></p>
+          <ul>
+            <li><strong>Descendant (space):</strong> <code>nav a</code> targets all <code>&lt;a&gt;</code> inside <code>nav</code>.</li>
+            <li><strong>Direct Child (<code>&gt;</code>):</strong> <code>ul &gt; li</code> targets direct children only.</li>
+            <li><strong>Pseudo-classes:</strong> <code>:hover</code> (when hovered), <code>:focus</code> (when focused), <code>:nth-child(even)</code> (every alternate element).</li>
+            <li><strong>Pseudo-elements:</strong> <code>::before</code> and <code>::after</code> for inserting decorative content without extra HTML.</li>
+          </ul>
+          <div class="code-block">
+            <div class="code-label">Modern Selectors in Action</div>
+            <pre>/* Button hover & focus state */
+.btn-primary {
+  background-color: var(--cl-brand);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* Zebra striping for table rows */
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}</pre>
+          </div>
+          <div class="warn-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Specificity Warning:</strong> Avoid overusing <code>!important</code>. Specificity points rank: Inline style (1000) &gt; ID (100) &gt; Class/Attribute/Pseudo-class (10) &gt; Element (1). Keep specificity low with utility classes.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>المحددات (Selectors) تحدد بدقة العناصر التي ستطبق عليها أنماط CSS. فهم المحددات وقوة التحديد (Specificity) هو المفتاح لكتابة كود نظيف وخالٍ من التعارضات.</p>
+          <p><strong>أهم أنواع المحددات:</strong></p>
+          <ul>
+            <li><strong>محدد العنصر:</strong> <code>p { ... }</code> يحدد كل الفقرات.</li>
+            <li><strong>محدد الفئة (Class):</strong> <code>.card { ... }</code> يحدد كل عنصر يحمل <code>class="card"</code>، وهو قابل لإعادة الاستخدام.</li>
+            <li><strong>محدد المعرف (ID):</strong> <code>#header { ... }</code> يحدد العنصر الفريد فقط.</li>
+            <li><strong>محدد السمة:</strong> <code>input[type="submit"]</code> يستهدف عناصر بإدخال محدد.</li>
+          </ul>
+          <p><strong>العناصر الزائفة وحالات التفاعل (Pseudo-classes & Elements):</strong></p>
+          <ul>
+            <li><code>:hover</code> للتفاعل عند تمرير مؤشر الفأرة.</li>
+            <li><code>:focus</code> عند النقر أو تفعيل حقل الإدخال.</li>
+            <li><code>:nth-child(2n)</code> لتلوين الصفوف الفردية والزوجية في الجداول والقوائم.</li>
+            <li><code>::before</code> و <code>::after</code> لإنشاء عناصر زخرفية دون تضخيم كود HTML.</li>
+          </ul>
+          <div class="code-block">
+            <div class="code-label">أمثلة عملية للمحددات الحديثة</div>
+            <pre>/* زر تفاعلي احترافي */
+.btn-primary {
+  background-color: var(--cl-brand);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* تلوين الصفوف المتناوبة */
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}</pre>
+          </div>
+          <div class="warn-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>تحذير الخصوصية:</strong> تجنب استخدام <code>!important</code>. حساب قوة التحديد يبدأ من السطحي (1000) &gt; الـ ID (100) &gt; الكلاس والسمات (10) &gt; العنصر (1).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 3 ===================== -->
+    <div class="lesson-card reveal" id="lesson-3">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-box-open"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 3 — The Box Model & Display Fundamentals</h3><span class="badge badge-important">Essential</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 3 — نموذج الصندوق (The Box Model) وخصائص العرض</h3><span class="badge badge-important">جوهري</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Every single visible element on a web page is rendered as a rectangular box. The CSS Box Model defines the dimensions and spacing around that box through four layers:</p>
+          <ol>
+            <li><strong>Content:</strong> The text, image, or media itself.</li>
+            <li><strong>Padding:</strong> The transparent space between the content and the border.</li>
+            <li><strong>Border:</strong> The outline wrapping the padding and content.</li>
+            <li><strong>Margin:</strong> The transparent space outside the border separating the element from neighbors.</li>
+          </ol>
+          <p><strong>The Most Important CSS Rule: <code>box-sizing: border-box</code></strong></p>
+          <p>By default, CSS uses <code>box-sizing: content-box</code>, meaning if you set a width of 200px and add 20px padding, the total rendered width becomes 240px. With <code>border-box</code>, the padding and border are included <em>inside</em> the 200px width. Modern developers apply this globally:</p>
+          <div class="code-block">
+            <div class="code-label">Global Box-Sizing Reset</div>
+            <pre>*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Card with explicit padding and border */
+.card {
+  width: 320px;
+  padding: 24px;
+  border: 1px solid var(--cl-line);
+  margin-bottom: 24px;
+  background: var(--cl-surface);
+}</pre>
+          </div>
+          <p><strong>Display Properties:</strong> <code>block</code> (starts on new line, takes full width), <code>inline</code> (flows with text, ignores top/bottom margins), <code>inline-block</code> (flows inline but respects width/height), and <code>none</code> (completely removes from document flow).</p>
+        </div>
+        <div data-cl-lang="ar">
+          <p>كل عنصر يظهر على الشاشة في المتصفح يتم تمثيله كصندوق مستطيل. نموذج الصندوق (CSS Box Model) هو الهيكل الذي يحدد أبعاد وهوامش كل عنصر عبر أربع طبقات متداخلة:</p>
+          <ol>
+            <li><strong>المحتوى (Content):</strong> النص أو الصورة المعروضة.</li>
+            <li><strong>الحشو الداخلي (Padding):</strong> المساحة الشفافة بين المحتوى وحدود العنصر.</li>
+            <li><strong>الحدود (Border):</strong> الإطار المحيط بالحشو والمحتوى.</li>
+            <li><strong>الهامش الخارجي (Margin):</strong> المساحة الشفافة الخارجية التي تفصل العنصر عن العناصر المجاورة.</li>
+          </ol>
+          <p><strong>أهم قاعدة في CSS الحديث: <code>box-sizing: border-box</code></strong></p>
+          <p>افتراضياً، تحسب CSS الأبعاد وفق <code>content-box</code>، أي إذا حددت عرض 200 بكسل مع حشو 20 بكسل، سيصبح العرض الفعلي 240 بكسل مما يكسر التخطيط. باستخدام <code>border-box</code>، يتم احتساب الحشو والإطار ضمن العرض الإجمالي المحدد:</p>
+          <div class="code-block">
+            <div class="code-label">تصفير قياس الصناديق العام</div>
+            <pre>*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  width: 320px;
+  padding: 24px;
+  border: 1px solid var(--cl-line);
+  margin-bottom: 24px;
+  background: var(--cl-surface);
+}</pre>
+          </div>
+          <p><strong>أنواع العرض (Display):</strong> <code>block</code> (يأخذ السطر كاملاً), <code>inline</code> (يتدفق بجانب النصوص ولا يقبل هوامش علوية), <code>inline-block</code> (يتدفق أفقياً مع قبول أبعاد محددة), و<code>none</code> (إخفاء العنصر تماماً من شجرة المستند).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 4 ===================== -->
+    <div class="lesson-card reveal" id="lesson-4">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-palette"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 4 — Colors, Backgrounds & Modern Gradients</h3><span class="badge badge-beginner">Design</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 4 — الألوان والخلفيات والتدرجات اللونية الحديثة</h3><span class="badge badge-beginner">تصميم</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Colors create emotion, brand identity, and visual hierarchy. In CSS3, you have multiple formats to declare colors with complete alpha-channel transparency control:</p>
+          <ul>
+            <li><strong>Hexadecimal:</strong> <code>#2dd4bf</code> or 8-digit hex with alpha <code>#2dd4bf80</code> (50% opacity).</li>
+            <li><strong>RGB / RGBA:</strong> <code>rgb(45 212 191 / 0.8)</code> using modern comma-free syntax.</li>
+            <li><strong>HSL:</strong> <code>hsl(172deg 66% 50%)</code> (Hue, Saturation, Lightness — easiest for creating color palettes).</li>
+          </ul>
+          <p><strong>Gradients & Background Mastery:</strong></p>
+          <div class="code-block">
+            <div class="code-label">Advanced Backgrounds & Gradients</div>
+            <pre>/* Subtle dark teal linear gradient */
+.hero-banner {
+  background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #115e59 100%);
+  color: #ffffff;
+  padding: 60px 40px;
+  border-radius: 16px;
+}
+
+/* Background image with overlay and cover */
+.card-header {
+  background-image: linear-gradient(rgba(2, 6, 23, 0.7), rgba(2, 6, 23, 0.9)),
+                    url('cover.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-circle-check"></i> <strong>Accessibility Rule:</strong> Ensure your text color has at least a 4.5:1 contrast ratio against the background (WCAG AA standard) for optimal readability.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>الألوان تصنع الهوية البصرية وتحدد التراتبية للأعين. تدعم CSS3 صيغاً متعددة لتعريف الألوان مع التحكم الكامل في الشفافية (Alpha Channel):</p>
+          <ul>
+            <li><strong>السداسي عشري (Hex):</strong> <code>#2dd4bf</code>، أو بصيغة 8 خانات للشفافية <code>#2dd4bf80</code>.</li>
+            <li><strong>RGB / RGBA:</strong> <code>rgba(45, 212, 191, 0.8)</code> لدمج نسب الأحمر والأخضر والأزرق مع الشفافية.</li>
+            <li><strong>HSL:</strong> <code>hsl(172, 66%, 50%)</code> (تدرج اللون، التشبع، الإضاءة) وهي الأسهل في إنشاء تدرجات متناسقة.</li>
+          </ul>
+          <div class="code-block">
+            <div class="code-label">تدرجات لونية وخلفيات حديثة</div>
+            <pre>/* تدرج خطي متناسق */
+.hero-banner {
+  background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #115e59 100%);
+  color: #ffffff;
+  padding: 60px 40px;
+  border-radius: 16px;
+}
+
+/* صورة خلفية مع طبقة تظليل للحفاظ على وضوح النص */
+.card-header {
+  background-image: linear-gradient(rgba(2, 6, 23, 0.7), rgba(2, 6, 23, 0.9)),
+                    url('cover.jpg');
+  background-size: cover;
+  background-position: center;
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-circle-check"></i> <strong>معيار إمكانية الوصول:</strong> حافظ دائماً على تباين لوني لا يقل عن 4.5:1 بين النص والخلفية لضمان سهولة القراءة لجميع الزوار.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 5 ===================== -->
+    <div class="lesson-card reveal" id="lesson-5">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-font"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 5 — Modern Web Typography & Font Engineering</h3><span class="badge badge-important">Typography</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 5 — الخطوط والطباعة الرقمية الحديثة (Typography)</h3><span class="badge badge-important">طباعة وخطوط</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Typography accounts for more than 90% of user interface communication. Clean typography makes your content enjoyable and effortless to read.</p>
+          <p><strong>Units of Typography:</strong></p>
+          <ul>
+            <li><code>rem</code> (Root EM): Scaled relative to the root <code>&lt;html&gt;</code> font size (usually 16px). Highly accessible because it respects user browser font preferences. <em>(Recommended for all font sizes and spacings)</em>.</li>
+            <li><code>em</code>: Scaled relative to the parent element's font size. Great for self-contained components.</li>
+            <li><code>px</code>: Absolute pixels. Fixed, but does not scale if visually impaired users increase default browser zoom.</li>
+          </ul>
+          <div class="code-block">
+            <div class="code-label">Modern Typography System</div>
+            <pre>/* Base typography configuration */
+html {
+  font-size: 16px; /* 1rem = 16px */
+}
+
+body {
+  font-family: 'Cairo', 'Outfit', system-ui, sans-serif;
+  line-height: 1.7; /* Optimum line readability */
+  color: var(--cl-text);
+}
+
+h1 {
+  font-size: 2.5rem; /* 40px */
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.05rem;
+  margin-bottom: 1.25rem;
+  max-width: 70ch; /* Optimal line length: 60-75 characters */
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> Limit line lengths to <code>60ch</code> - <code>75ch</code> (characters) for body text using <code>max-width</code>. Excessively long lines cause eye fatigue and lower reading retention.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>تشكل النصوص أكثر من 90% من واجهات المستخدم على الويب. الطباعة المتقنة تجعل القراءة تجربة ممتعة ومريحة لعين الزائر.</p>
+          <p><strong>وحدات قياس الخطوط الحديثة:</strong></p>
+          <ul>
+            <li><code>rem</code>: تعتمد على حجم خط الجذر <code>&lt;html&gt;</code> (الافتراضي 16px). الخيار الأفضل لإمكانية الوصول واحترام إعدادات تكبير المتصفح لدى المستخدم.</li>
+            <li><code>em</code>: تعتمد على حجم خط العنصر الأب المباشر. مفيدة للأزرار والمكونات المعزولة.</li>
+            <li><code>px</code>: بكسل ثابت، لا يراعي تفضيلات المتصفح إذا قام المستخدم بتكبير الخط الأساسي.</li>
+          </ul>
+          <div class="code-block">
+            <div class="code-label">منظومة خطوط احترافية</div>
+            <pre>html {
+  font-size: 16px; /* 1rem = 16px */
+}
+
+body {
+  font-family: 'Cairo', system-ui, sans-serif;
+  line-height: 1.8; /* تباعد مريح للأسطر */
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.05rem;
+  max-width: 70ch; /* طول السطر المثالي للقراءة */
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>نصيحة ذهبية:</strong> اجعل أقصى عرض للفقرة <code>max-width: 70ch</code> لكي لا يمتد السطر عبر الشاشات الكبيرة فيرهق عين القارئ.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 6 ===================== -->
+    <div class="lesson-card reveal" id="lesson-6">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-table-columns"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 6 — Flexbox Architecture — One-Dimensional Layouts</h3><span class="badge badge-pro">Essential Tool</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 6 — تخطيط فليكس بوكس (Flexbox) أحادي البعد</h3><span class="badge badge-pro">أداة محورية</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p><strong>CSS Flexible Box Layout (Flexbox)</strong> is the industry standard for distributing space and aligning items along a single axis (either row or column). It solved decades of layout headaches like vertical centering and equal-height columns.</p>
+          <p><strong>Container Properties:</strong></p>
+          <ul>
+            <li><code>display: flex;</code>: Activates flex context on direct children.</li>
+            <li><code>flex-direction: row | column;</code>: Sets the main axis.</li>
+            <li><code>justify-content: flex-start | center | space-between | space-around;</code>: Aligns along the main axis.</li>
+            <li><code>align-items: stretch | center | flex-start | flex-end;</code>: Aligns along the cross axis (vertical in row mode).</li>
+            <li><code>gap: 16px;</code>: Native spacing between items (no hacky margins!).</li>
+            <li><code>flex-wrap: wrap;</code>: Allows items to break into new lines on smaller screens.</li>
+          </ul>
+          <div class="code-block">
+            <div class="code-label">Real-World Flexbox Navbar & Card Row</div>
+            <pre>/* Perfectly centered navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: var(--cl-surface);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+/* Centering any element vertically & horizontally */
+.center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-bolt"></i> <strong>Flex items tip:</strong> Use <code>flex: 1;</code> on a child to make it automatically expand and fill all available remaining space.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p><strong>Flexbox (الصندوق المرن)</strong> هو النظام الأساسي لتوزيع العناصر والمحاذاة التلقائية على طول محور واحد (إما أفقياً كصف أو عمودياً كعمود). حل فليكس بوكس مشكلات قديمة مثل المحاذاة العمودية في الوسط وتساوي ارتفاعات البطاقات.</p>
+          <p><strong>أهم خصائص حاوية Flexbox:</strong></p>
+          <ul>
+            <li><code>display: flex;</code> لتفعيل النظام على العناصر الأبناء مباشرة.</li>
+            <li><code>flex-direction: row | column;</code> لتحديد اتجاه المحور الرئيسي.</li>
+            <li><code>justify-content: space-between | center;</code> لتوزيع العناصر على المحور الرئيسي.</li>
+            <li><code>align-items: center;</code> لمحاذاة العناصر على المحور الثانوي (عمودياً).</li>
+            <li><code>gap: 16px;</code> لترك مسافات متساوية بين العناصر دون الحاجة لهوامش يدوية.</li>
+            <li><code>flex-wrap: wrap;</code> للسماح للعناصر بالانتقال لسطر جديد عند ضيق الشاشة.</li>
+          </ul>
+          <div class="code-block">
+            <div class="code-label">شريط تنقل ومحاذاة بـ Flexbox</div>
+            <pre>/* شريط تنقل متناسق */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: var(--cl-surface);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+/* توسيط كامل عمودياً وأفقياً */
+.center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-bolt"></i> <strong>نصيحة فليكس:</strong> كتابة <code>flex: 1;</code> على العنصر الابن تجعله يتمدد تلقائياً لملء أي مساحة شاغرة متاحة.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 7 ===================== -->
+    <div class="lesson-card reveal" id="lesson-7">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-border-all"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 7 — CSS Grid — Two-Dimensional Modern Layouts</h3><span class="badge badge-pro">Advanced</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 7 — شبكة CSS Grid — التخطيطات ثنائية الأبعاد</h3><span class="badge badge-pro">متقدم</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>While Flexbox is designed for 1-dimensional layouts (a row OR a column), <strong>CSS Grid</strong> is built from the ground up for 2-dimensional layouts (rows AND columns simultaneously). It is the most powerful layout engine ever built into the web platform.</p>
+          <p><strong>The Magic of <code>repeat()</code>, <code>auto-fit</code>, and <code>minmax()</code>:</strong></p>
+          <p>With CSS Grid, you can create fully responsive card grids that automatically calculate the number of columns without writing a single media query:</p>
+          <div class="code-block">
+            <div class="code-label">Ultra-Responsive Auto-Fitting Grid</div>
+            <pre>/* Zero-media-query responsive card layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* 12-Column Classic Layout System */
+.page-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  gap: 20px;
+}</pre>
+          </div>
+          <p><strong>Grid Template Areas:</strong> Define your layout visually using ASCII-like declarations:</p>
+          <div class="code-block">
+            <div class="code-label">Grid Template Areas</div>
+            <pre>.dashboard {
+  display: grid;
+  grid-template-areas:
+    "header  header"
+    "sidebar main"
+    "footer  footer";
+  grid-template-columns: 240px 1fr;
+}
+
+.header  { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main    { grid-area: main; }
+.footer  { grid-area: footer; }</pre>
+          </div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>بينما يعمل Flexbox في بعد واحد (صف أو عمود)، صُمم نظام <strong>CSS Grid</strong> لإدارة التخطيطات ثنائية الأبعاد (صفوف وأعمدة معاً في آن واحد). وهو أقوى محرك تخطيط متوفر في متصفحات الويب الحديثة.</p>
+          <p><strong>معادلة الشبكة التلقائية السحرية: <code>auto-fit</code> مع <code>minmax()</code></strong></p>
+          <p>تستطيع عبر سطر واحد بناء شبكة بطاقات مستجيبة تتكيف مع جميع الشاشات تلقائياً دون كتابة استعلام وسائط (Media Query) واحد:</p>
+          <div class="code-block">
+            <div class="code-label">شبكة بطاقات فائقة الاستجابة تلقائياً</div>
+            <pre>/* تتكيف الأعمدة تلقائياً حسب عرض الشاشة */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* تخطيط صفحة ثنائي الأعمدة */
+.page-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+}</pre>
+          </div>
+          <p><strong>المناطق المحددة (Grid Template Areas):</strong> تسمح برسم هيكل الصفحة بتسميات واضحة ومباشرة مثل header و sidebar و main و footer.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 8 ===================== -->
+    <div class="lesson-card reveal" id="lesson-8">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 8 — Responsive Design, Media Queries & Fluid Units</h3><span class="badge badge-important">Industry Standard</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 8 — التصميم المستجيب (Responsive) ووحدات القياس المرنة</h3><span class="badge badge-important">معيار عالمي</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>More than 60% of all web traffic comes from mobile devices. <strong>Responsive Web Design (RWD)</strong> ensures your website looks beautiful and functions smoothly across phones, tablets, laptops, and ultra-wide desktops.</p>
+          <p><strong>The Mobile-First Strategy:</strong> Write your default CSS for mobile screens without media queries. Then, use <code>@media (min-width: ...)</code> to progressively add complexity as screen width expands. This improves mobile performance and simplifies CSS logic.</p>
+          <div class="code-block">
+            <div class="code-label">Mobile-First Media Query Breakpoints</div>
+            <pre>/* 1. Mobile Default (Base styles) */
+.container {
+  padding: 16px;
+  flex-direction: column;
+}
+
+/* 2. Tablet (min-width: 768px) */
+@media (min-width: 768px) {
+  .container {
+    padding: 32px;
+    flex-direction: row;
+  }
+}
+
+/* 3. Desktop (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* Fluid Typography with clamp() */
+h1 {
+  /* clamp(min, preferred, max) */
+  font-size: clamp(1.75rem, 4vw + 1rem, 3.5rem);
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-ruler-combined"></i> <strong>Modern Magic:</strong> <code>clamp()</code> allows font sizes, paddings, and margins to fluidly interpolate between minimum and maximum boundaries based on viewport width without rigid breakpoints!</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>أكثر من 60% من زيارات الويب اليوم تأتي من الهواتف الذكية. <strong>التصميم المستجيب (Responsive Design)</strong> يضمن أن موقعك يظهر بجمالية وانسيابية كاملة على مختلف الأجهزة: الهواتف، الأجهزة اللوحية، والشاشات الكبيرة.</p>
+          <p><strong>استراتيجية الجوال أولاً (Mobile-First):</strong> تبدأ بكتابة الأنماط الأساسية لشاشات الهواتف مباشرة، ثم تستخدم استعلامات <code>@media (min-width: ...)</code> لإضافة التعديلات تدريجياً مع اتساع الشاشة. هذا يحقق سرعة أعلى وكوداً أنظف.</p>
+          <div class="code-block">
+            <div class="code-label">نقاط التوقف (Breakpoints) بمعيار Mobile-First</div>
+            <pre>/* الأنماط الافتراضية للهواتف */
+.container {
+  padding: 16px;
+  flex-direction: column;
+}
+
+/* الأجهزة اللوحية (ابتداء من 768px) */
+@media (min-width: 768px) {
+  .container {
+    padding: 32px;
+    flex-direction: row;
+  }
+}
+
+/* الشاشات الكبيرة (ابتداء من 1024px) */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* خط مرن يتناسب تلقائياً مع الشاشة */
+h1 {
+  font-size: clamp(1.75rem, 4vw + 1rem, 3.5rem);
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-ruler-combined"></i> <strong>خاصية clamp السحرية:</strong> تتيح للدالة <code>clamp(min, val, max)</code> تحديد حد أدنى وحد أقصى لحجم الخط أو الهوامش مع تغير انسيابي مستمر بحسب عرض الشاشة.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 9 ===================== -->
+    <div class="lesson-card reveal" id="lesson-9">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-play"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 9 — Transforms, Transitions & Keyframe Animations</h3><span class="badge badge-pro">Interaction</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 9 — التحولات والانتقالات والرسوم المتحركة (Animations)</h3><span class="badge badge-pro">حركة وتفاعل</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p>Micro-interactions and smooth animations transform a static website into a tactile, premium application. CSS provides two powerful systems for motion: <strong>Transitions</strong> (state changes) and <strong>Keyframe Animations</strong> (complex, looping sequences).</p>
+          <p><strong>1. Transitions & Hardware-Accelerated Transforms:</strong></p>
+          <p>Always animate <code>transform</code> (translate, scale, rotate) and <code>opacity</code>. These properties are processed directly by the GPU, ensuring smooth 60fps animations without causing browser reflow or repaint lag.</p>
+          <div class="code-block">
+            <div class="code-label">Smooth Button & Keyframe Animation</div>
+            <pre>/* Interactive Card Hover with Transition */
+.card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Infinite Pulse Animation with @keyframes */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.badge-live {
+  animation: pulseGlow 2s infinite ease-in-out;
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Performance Rule:</strong> Never animate properties like <code>width</code>, <code>height</code>, <code>top</code>, or <code>left</code>. They force CPU layout calculations. Use <code>transform: translate()</code> or <code>scale()</code> instead.</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p>تمنح الانتقالات والرسوم المتحركة الموقع طابعاً حيوياً وسلساً يجذب المستخدمين. توفر CSS وسيلتين رئيسيتين: <strong>الانتقالات (Transitions)</strong> للتفاعل اللحظي، و<strong>رسوم الإطارات الرئيسية (@keyframes)</strong> للحركات المعقدة والمتكررة.</p>
+          <p><strong>قاعدة الأداء العالي لمعالج الرسومات (GPU):</strong></p>
+          <p>احرص دائماً على تحريك خاصيتي <code>transform</code> (التحريك وتغيير الحجم والدوران) و <code>opacity</code> (الشفافية). يتم معالجة هاتين الخاصيتين مباشرة بواسطة كارت الشاشة (GPU) مما يضمن سرعة 60 إطاراً في الثانية دون ثقل أو تجميد.</p>
+          <div class="code-block">
+            <div class="code-label">كود انتقال وحركة متكاملة</div>
+            <pre>/* تأثير صعود البطاقة عند التمرير */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* حركة نبض متكررة */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+.badge-live {
+  animation: pulseGlow 2s infinite ease-in-out;
+}</pre>
+          </div>
+          <div class="tip-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>تحذير أداء:</strong> تجنب تحريك <code>width</code> أو <code>height</code> أو <code>margin</code> لأنها تستهلك المعالج. استعض عنها بـ <code>transform: scale()</code> أو <code>translate()</code>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LESSON 10 ===================== -->
+    <div class="lesson-card reveal" id="lesson-10">
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fa-solid fa-sliders"></i></div>
+        <div class="lesson-title">
+          <div data-cl-lang="en"><h3>Lesson 10 — CSS Custom Properties, Dark Mode & Architecture</h3><span class="badge badge-pro">Production Architecture</span></div>
+          <div data-cl-lang="ar"><h3>الدرس 10 — متغيرات CSS، الوضع الليلي، والهيكلة الاحترافية</h3><span class="badge badge-pro">معمارية الإنتاج</span></div>
+        </div>
+      </div>
+      <div class="lesson-body">
+        <div data-cl-lang="en">
+          <p><strong>CSS Custom Properties (Variables)</strong> allow you to store values (colors, spacing, font sizes) centrally and reuse them throughout your stylesheet. Unlike preprocessors (SASS/LESS), native CSS variables are dynamic and update live at runtime via JavaScript or media queries.</p>
+          <p><strong>Building a Production Dark Mode System:</strong></p>
+          <div class="code-block">
+            <div class="code-label">Complete Theme Architecture with CSS Variables</div>
+            <pre>/* 1. Light Theme Tokens (Default) */
+:root {
+  --cl-bg: #f8fafc;
+  --cl-surface: #ffffff;
+  --cl-text: #0f172a;
+  --cl-muted: #64748b;
+  --cl-brand: #0f766e;
+  --cl-line: #e2e8f0;
+}
+
+/* 2. Dark Theme Tokens */
+[data-theme="dark"] {
+  --cl-bg: #020617;
+  --cl-surface: #0f172a;
+  --cl-text: #f8fafc;
+  --cl-muted: #94a3b8;
+  --cl-brand: #2dd4bf;
+  --cl-line: #1e293b;
+}
+
+/* 3. Universal Components consume tokens */
+body {
+  background-color: var(--cl-bg);
+  color: var(--cl-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card {
+  background: var(--cl-surface);
+  border: 1px solid var(--cl-line);
+}</pre>
+          </div>
+          <p><strong>CSS Architecture Best Practices (BEM Methodology):</strong></p>
+          <ul>
+            <li><strong>Block:</strong> Standalone entity (<code>.btn</code>, <code>.card</code>).</li>
+            <li><strong>Element:</strong> Part of a block that has no standalone meaning (<code>.card__title</code>, <code>.card__body</code>).</li>
+            <li><strong>Modifier:</strong> Flag that changes appearance or behavior (<code>.btn--primary</code>, <code>.card--featured</code>).</li>
+          </ul>
+          <div class="tip-box"><i class="fa-solid fa-trophy"></i> <strong>Pro Architect Tip:</strong> Maintain a <code>tokens.css</code> or <code>variables.css</code> file. When your brand colors change, you update one single line of code instead of searching across thousands of lines!</div>
+        </div>
+        <div data-cl-lang="ar">
+          <p><strong>متغيرات CSS (Custom Properties)</strong> تتيح لك تخزين القيم المتكررة (مثل درجات الألوان، قياسات الهوامش، وأنواع الخطوط) في مكان مركزي وإعادة استخدامها عبر الموقع. وعلى عكس معالجات SASS القديمة، متغيرات CSS الأصلية ديناميكية وتستجيب لحظياً للتغييرات عبر JavaScript.</p>
+          <p><strong>بناء نظام الوضع الليلي (Dark Mode) الاحترافي:</strong></p>
+          <div class="code-block">
+            <div class="code-label">معمارية متكاملة للثيمات بالمتغيرات</div>
+            <pre>/* المتغيرات الافتراضية (الوضع الفاتح) */
+:root {
+  --cl-bg: #f8fafc;
+  --cl-surface: #ffffff;
+  --cl-text: #0f172a;
+  --cl-brand: #0f766e;
+  --cl-line: #e2e8f0;
+}
+
+/* متغيرات الوضع الليلي الداكن */
+[data-theme="dark"] {
+  --cl-bg: #020617;
+  --cl-surface: #0f172a;
+  --cl-text: #f8fafc;
+  --cl-brand: #2dd4bf;
+  --cl-line: #1e293b;
+}
+
+/* تطبيق المتغيرات على العناصر */
+body {
+  background-color: var(--cl-bg);
+  color: var(--cl-text);
+  transition: background-color 0.3s ease;
+}
+
+.card {
+  background: var(--cl-surface);
+  border: 1px solid var(--cl-line);
+}</pre>
+          </div>
+          <p><strong>منهجية BEM لتنظيم الكلاسات:</strong> البلوك <code>.card</code>، العنصر <code>.card__title</code>، والمعدل <code>.btn--primary</code>. تساعدك هذه التسميات في تجنب تداخل التنسيقات عند كبر حجم المشاريع البرمجية.</p>
+          <div class="tip-box"><i class="fa-solid fa-trophy"></i> <strong>نصيحة معمارية:</strong> اجعل كل ألوان موقعك مستندة إلى متغيرات CSS في رأس الملف. عند الرغبة في تغيير هوية الموقع اللونية، ستقوم بتعديل سطر واحد فقط!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT COURSE CTA -->
+    <div class="chapter reveal" style="text-align:center; padding: 40px; background: var(--cl-surface); border-radius: 20px; border: 1px solid var(--cl-line); margin-top: 20px;">
+      <div data-cl-lang="en">
+        <h2 style="font-size:1.6rem; margin-bottom:12px;">🎉 Fantastic job! You've mastered CSS3!</h2>
+        <p style="color: var(--cl-muted); margin-bottom: 28px;">Now that your pages look visually stunning, it's time to bring them to life with dynamic logic and interactivity. The next step is <strong>JavaScript</strong>.</p>
+        <a href="javascript.html" style="display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:var(--cl-brand); color:#000; border-radius:12px; font-weight:800; text-decoration:none; font-size:1.1rem; transition:0.3s;">Next Course: JavaScript Masterclass <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div data-cl-lang="ar">
+        <h2 style="font-size:1.6rem; margin-bottom:12px;">🎉 عمل رائع! لقد أتقنت CSS3 بنجاح!</h2>
+        <p style="color: var(--cl-muted); margin-bottom: 28px;">الآن بعد أن أصبحت صفحاتك أنيقة ومتناسقة، حان الوقت لمنحها الحياة والتفاعلية البرمجية. الخطوة التالية هي <strong>JavaScript</strong>.</p>
+        <a href="javascript.html" style="display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:var(--cl-brand); color:#000; border-radius:12px; font-weight:800; text-decoration:none; font-size:1.1rem; transition:0.3s;">الكورس التالي: JavaScript Masterclass <i class="fa-solid fa-arrow-left"></i></a>
+      </div>
+    </div>
+
+  </div><!-- end .chapters -->
+</div><!-- end .course-container -->
 
 <script src="site-polish.js"></script>
 </body>
