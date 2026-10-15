@@ -1,146 +1,171 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soft Skills pour Ingénieurs - Coding Life</title>
+  <!-- Google AdSense Placeholder -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-0000000000000000" crossorigin="anonymous"></script>
+  <title>Soft Skills for Software Engineers - Coding Life</title>
+  <meta name="description" content="Master essential soft skills for software engineers: effective technical communication, empathetic code reviews, realistic estimations, async teamwork, and career growth.">
+  <meta name="keywords" content="Soft skills for developers, engineering leadership, code reviews, technical communication, career growth, المهارات الناعمة للمبرمجين">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://codinglife1.vercel.app/soft-skills.html">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
-    .soft-hero {
-      background: linear-gradient(135deg, var(--cl-brand), var(--cl-brand-dark)) !important;
-    }
     .soft-card {
       background: var(--cl-surface);
       border-radius: 20px;
-      padding: 30px;
-      margin-bottom: 30px;
+      padding: 36px;
+      margin-bottom: 32px;
       border: 1px solid var(--cl-line);
       transition: var(--cl-transition);
     }
     .soft-card:hover {
+      transform: translateY(-4px);
       border-color: var(--cl-brand);
-      box-shadow: var(--cl-shadow-md);
+      box-shadow: var(--cl-shadow-lg);
     }
     .soft-icon {
-      font-size: 2.5rem;
+      width: 56px;
+      height: 56px;
+      background: rgba(45, 212, 191, 0.1);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
       color: var(--cl-brand);
       margin-bottom: 20px;
-      display: block;
+    }
+    .soft-card h2 {
+      font-size: 1.4rem;
+      color: var(--cl-ink);
+      margin: 0 0 12px;
+      font-weight: 800;
+    }
+    .soft-card p {
+      color: var(--cl-muted);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-bottom: 16px;
     }
     .skill-box {
-      background: var(--cl-brand-soft);
-      border-radius: 12px;
-      padding: 15px;
-      margin-top: 15px;
-      font-size: 0.9rem;
+      background: rgba(45, 212, 191, 0.05);
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 18px;
+      font-size: 0.95rem;
       color: var(--cl-ink);
       border-left: 4px solid var(--cl-brand);
+      line-height: 1.8;
+    }
+    [dir="rtl"] .skill-box {
+      border-left: none;
+      border-right: 4px solid var(--cl-brand);
     }
   </style>
 </head>
 <body>
 
-<div class="course-container" style="max-width: 900px;">
-  <div class="course-header soft-hero">
-    <div data-cl-lang="en">
-      <h1><i class="fas fa-users"></i> Soft Skills for Engineers</h1>
-      <p>Technical skills get you the interview. Soft skills get you the job and the promotion.</p>
-    </div>
-    <div data-cl-lang="ar">
-      <h1><i class="fas fa-users"></i> المهارات الناعمة للمهندسين</h1>
-      <p>المهارات التقنية تمنحك المقابلة. المهارات الناعمة تمنحك الوظيفة والترقية.</p>
-    </div>
-    <div data-cl-lang="fr">
-      <h1><i class="fas fa-users"></i> Soft Skills pour Ingénieurs</h1>
-      <p>Les compétences techniques vous donnent l'entretien. Les soft skills vous donnent le poste.</p>
-    </div>
+<div class="course-container">
+
+  <!-- HEADER EN -->
+  <div class="course-header" data-cl-lang="en">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">Career & Human Engineering</div>
+    <h1><i class="fa-solid fa-users-gear"></i> Soft Skills for Software Engineers</h1>
+    <p>Technical chops land you the interview. Human skills, clear communication, empathy, and ownership land you the role, leadership trust, and career longevity.</p>
+  </div>
+
+  <!-- HEADER AR -->
+  <div class="course-header" data-cl-lang="ar">
+    <div style="font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;opacity:0.85;">المسار المهني والهندسة الإنسانية</div>
+    <h1><i class="fa-solid fa-users-gear"></i> المهارات الناعمة للمهندسين والمطورين</h1>
+    <p>المهارات التقنية تجلب لك المقابلة الشخصية، بينما مهارات التواصل، التعاطف، وتحمل المسؤولية هي ما يمنحك الوظيفة، ثقة الفريق، والنمو القيادي المستمر.</p>
   </div>
 
   <div class="chapters">
-    
-    <!-- Skill 1: Communication -->
+
+    <!-- 1. Technical Communication -->
     <div class="soft-card reveal">
-      <i class="fas fa-comments soft-icon"></i>
+      <div class="soft-icon"><i class="fa-solid fa-comments"></i></div>
       <div data-cl-lang="en">
-        <h2>Effective Communication</h2>
-        <p>Coding is 20% writing code and 80% talking about code. Explaining complex ideas simply is a superpower.</p>
+        <h2>1. Clear Technical Communication & Async Writing</h2>
+        <p>Software engineering is 20% writing code and 80% communicating about code — in pull request descriptions, architecture design documents, Slack threads, and customer bug reports. The ability to explain complex distributed systems simply without condescension is a true superpower.</p>
         <div class="skill-box">
-          <strong>Practice:</strong> When explaining a technical issue, use the "ELI5" (Explain Like I'm 5) method for non-technical stakeholders.
+          <strong>Framework — ELI5 & The BLUF Rule:</strong> Use <em>Bottom Line Up Front (BLUF)</em>. Put the conclusion, business impact, and required decision in the first two sentences. Provide deep technical traces afterward for readers who need details.
         </div>
       </div>
-      <div data-cl-lang="ar" style="text-align: right;">
-        <h2>التواصل الفعال</h2>
-        <p>البرمجة هي 20% كتابة كود و 80% حديث عن الكود. شرح الأفكار المعقدة ببساطة هو قوة خارقة.</p>
+      <div data-cl-lang="ar">
+        <h2>1. التواصل التقني الواضح والكتابة غير المتزامنة</h2>
+        <p>البرمجة ليست مجرد كتابة كود، بل 80% منها تواصل مع الفريق والعملاء عبر توصيف التعديلات (Pull Requests)، وثائق البنية المعمارية، وتتبع الأخطاء. القدرة على تبسيط المفاهيم المعقدة دون تعالي هي ميزة تنافسية كبرى للمطور المحترف.</p>
         <div class="skill-box">
-          <strong>ممارسة:</strong> عند شرح مشكلة تقنية، استخدم أسلوب التبسيط الشديد لأصحاب المصلحة غير التقنيين.
-        </div>
-      </div>
-      <div data-cl-lang="fr">
-        <h2>Communication Efficace</h2>
-        <p>Coder, c'est 20% d'écriture et 80% de discussion. Expliquer des idées complexes simplement est crucial.</p>
-        <div class="skill-box">
-          <strong>Pratique :</strong> Utilisez la méthode "ELI5" pour expliquer des concepts techniques aux non-développeurs.
+          <strong>منهجية الخلاصة أولاً (BLUF):</strong> ابدأ دائماً بالنتيجة المباشرة والأثر العملي في أول سطرين، ثم ضع التفاصيل الفنية المعمقة بعد ذلك لمن يحتاجها من المهندسين.
         </div>
       </div>
     </div>
 
-    <!-- Skill 2: Empathy -->
+    <!-- 2. Egoless Code Reviews -->
     <div class="soft-card reveal">
-      <i class="fas fa-hands-helping soft-icon" style="color: #6366f1;"></i>
+      <div class="soft-icon"><i class="fa-solid fa-code-pull-request"></i></div>
       <div data-cl-lang="en">
-        <h2>Empathy & Code Reviews</h2>
-        <p>Code reviews are not attacks. Be kind, be constructive, and remember there is a human on the other side of the screen.</p>
+        <h2>2. Egoless Programming & Empathetic Code Reviews</h2>
+        <p>You are not your code. Great engineers separate their personal self-worth from the code they produce. When someone critiques your pull request, they are refining the software, not attacking your intelligence. Treat review feedback with curiosity rather than defensiveness.</p>
         <div class="skill-box">
-          <strong>Tip:</strong> Instead of saying "You should do X," say "Have you considered doing X? It might help with Y."
+          <strong>Golden Rule for Reviewers:</strong> Frame critiques as open questions: <em>"Have you considered how this loop handles 10,000 items?"</em> rather than authoritative commands: <em>"This loop is bad, change it."</em>
         </div>
       </div>
-      <div data-cl-lang="ar" style="text-align: right;">
-        <h2>التعاطف ومراجعة الكود</h2>
-        <p>مراجعة الكود ليست هجوماً. كن لطيفاً، بناءً، وتذكر أن هناك بشراً خلف الشاشة الأخرى.</p>
+      <div data-cl-lang="ar">
+        <h2>2. البرمجة غير المشخصة والتعاطف في مراجعة الكود</h2>
+        <p>أنت لست كودك. المطور المتميز يفصل بين قيمته الذاتية والكود الذي يكتبه. عندما ينتقد زميلك حلاً برمجياً كتبته، فهو يسعى لتحسين البرنامج وليس التقليل من مهاراتك. استقبل الملاحظات بفضول ورغبة في التعلم بدلاً من الدفاعية.</p>
         <div class="skill-box">
-          <strong>نصيحة:</strong> بدلاً من قول "يجب عليك فعل كذا"، قل "هل فكرت في فعل كذا؟ قد يساعد في حل مشكلة كذا."
-        </div>
-      </div>
-      <div data-cl-lang="fr">
-        <h2>Empathie et Revue de Code</h2>
-        <p>Les revues de code ne sont pas des attaques. Soyez constructif et rappelez-vous qu'il y a un humain derrière l'écran.</p>
-        <div class="skill-box">
-          <strong>Conseil :</strong> Posez des questions plutôt que de donner des ordres lors des revues de code.
+          <strong>نصيحة ذهبية للمراجع:</strong> صغ الملاحظات في هيئة أسئلة استكشافية: <em>"ما رأيك لو جربنا كذا لتسريع المعالجة؟"</em> بدلاً من الأوامر الجافة مثل: <em>"الكود سيء ويجب تغييره"</em>.
         </div>
       </div>
     </div>
 
-    <!-- Skill 3: Time Management -->
+    <!-- 3. Time Estimation & Ownership -->
     <div class="soft-card reveal">
-      <i class="fas fa-clock soft-icon" style="color: #f59e0b;"></i>
+      <div class="soft-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
       <div data-cl-lang="en">
-        <h2>Ownership & Reliability</h2>
-        <p>If you commit to a deadline, hit it. If you can't, communicate early. Reliability is more valuable than raw speed.</p>
+        <h2>3. Ownership, Estimation & Managing Expectations</h2>
+        <p>Junior developers often promise optimistic deadlines out of enthusiasm, leading to burnout and missed delivery targets. Senior developers deconstruct large ambiguous tasks into small verifiable milestones and communicate early whenever unexpected blockers arise.</p>
         <div class="skill-box">
-          <strong>Rule:</strong> Under-promise and over-deliver. It's better to finish early than to be late on an optimistic deadline.
+          <strong>The Rule: Under-Promise & Over-Deliver:</strong> Add a 20-30% buffer for testing, edge cases, and code reviews. If a task hits an unforeseen roadblock, inform your team immediately with potential alternatives.
         </div>
       </div>
-      <div data-cl-lang="ar" style="text-align: right;">
-        <h2>المسؤولية والموثوقية</h2>
-        <p>إذا التزمت بموعد نهائي، التزم به. إذا لم تستطع، تواصل مبكراً. الموثوقية أغلى من السرعة الخام.</p>
+      <div data-cl-lang="ar">
+        <h2>3. تحمل المسؤولية وتقدير الأوقات بواقعية</h2>
+        <p>المطور المبتدئ قد يقع في فخ التفاؤل المفرط وتقديم مواعيد غير واقعية مما يسبب ضغطاً نفسياً وتأخيراً للمشاريع. بينما يقوم المهندس الخبير بتقسيم المهام الكبيرة إلى أجزاء صغيرة مدروسة وإبلاغ الفريق فوراً عند ظهور أي عقبة غير متوقعة.</p>
         <div class="skill-box">
-          <strong>القاعدة:</strong> عد بأقل مما تستطيع، ونفذ أكثر مما وعدت. من الأفضل الإنهاء مبكراً بدلاً من التأخر.
-        </div>
-      </div>
-      <div data-cl-lang="fr">
-        <h2>Responsabilité et Fiabilité</h2>
-        <p>Si vous vous engagez sur une date, respectez-la. La fiabilité a plus de valeur que la simple rapidité.</p>
-        <div class="skill-box">
-          <strong>Règle :</strong> Promettez moins et livrez plus. Il vaut mieux finir tôt qu'être en retard.
+          <strong>قاعدة الإنجاز:</strong> ضع هامش أمان بنسبة 20-30% لاختبار الحالات النادرة ومراجعة الكود، وأخطر فريقك مبكراً بأي تحديات طارئة مع اقتراح بدائل للحل.
         </div>
       </div>
     </div>
 
-  </div>
-</div>
+    <!-- 4. Problem Deconstruction -->
+    <div class="soft-card reveal">
+      <div class="soft-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+      <div data-cl-lang="en">
+        <h2>4. Critical Thinking & First-Principles Problem Solving</h2>
+        <p>Anyone can copy code from StackOverflow or prompt an AI model. What sets great software engineers apart is the ability to break an unfamiliar, messy real-world problem down to its fundamental first principles before writing a single line of syntax.</p>
+        <div class="skill-box">
+          <strong>The Rubber Duck Technique:</strong> Explain the problem out loud to an inanimate object (or a colleague). In 80% of debugging dilemmas, the act of articulating the problem in plain human speech reveals the logical flaw.
+        </div>
+      </div>
+      <div data-cl-lang="ar">
+        <h2>4. التفكير النقدي وحل المشكلات من الجذور</h2>
+        <p>الجميع يستطيع نسخ حلول جاهزة من الإنترنت. لكن الفارق الحقيقي بين المطور العادي والمهندس المبدع هو القدرة على تفكيك المشكلات الغامضة إلى مبادئها الأساسية الأولى والتخطيط المنطقي قبل كتابة سطر كود واحد.</p>
+        <div class="skill-box">
+          <strong>تقنية البطة المطاطية (Rubber Ducking):</strong> اشرح المشكلة البرمجية بصوت مسموع لشيء أمامك أو لزميلك؛ فمجرد صياغة المشكلة بكلمات بشرية واضحة يكشف لك الحل في أغلب الأحيان.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .chapters -->
+</div><!-- end .course-container -->
 
 <script src="site-polish.js"></script>
 </body>
