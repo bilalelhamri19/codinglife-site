@@ -113,9 +113,19 @@
     return [
       { href: "index.html", icon: "fa-house", label: tr.home },
       { href: "dorous-albarmaja.html", icon: "fa-code", label: tr.courses },
+      { href: "blog.html", icon: "fa-newspaper", label: tr.blog },
+      { href: "contact.html", icon: "fa-envelope", label: tr.contact }
+    ];
+  }
+
+  function mobileNavItems() {
+    const tr = t().nav;
+    return [
+      { href: "index.html", icon: "fa-house", label: tr.home },
+      { href: "dorous-albarmaja.html", icon: "fa-code", label: tr.courses },
       { href: "quiz.html", icon: "fa-circle-question", label: tr.quiz },
-      { href: "workshops.html", icon: "fa-laptop-code", label: tr.workshops },
       { href: "tools.html", icon: "fa-toolbox", label: tr.tools },
+      { href: "workshops.html", icon: "fa-laptop-code", label: tr.workshops },
       { href: "blog.html", icon: "fa-newspaper", label: tr.blog },
       { href: "contact.html", icon: "fa-envelope", label: tr.contact }
     ];
@@ -154,9 +164,8 @@
           <button class="theme-toggle" id="themeToggle" title="Toggle Theme" aria-label="Toggle Theme">
             <i class="fa-solid fa-moon"></i>
           </button>
-          <button class="theme-toggle" id="searchToggle" title="Search" aria-label="Search">
+          <button class="theme-toggle" id="searchToggle" title="Search (Ctrl + K)" aria-label="Search">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <span class="search-badge">Ctrl K</span>
           </button>
           <button class="cl-mobile-menu-btn" id="clMobileMenuBtn" title="Menu" aria-label="Toggle Navigation">
             <i class="fa-solid fa-bars"></i>
@@ -198,7 +207,7 @@
     drawer.className = "cl-mobile-drawer";
     drawer.id = "clMobileDrawer";
 
-    const items = navItems();
+    const items = mobileNavItems();
     drawer.innerHTML = `
       <div class="cl-mobile-drawer-header">
         <a href="index.html" class="cl-brand" style="font-size:1.4rem;">
