@@ -3,151 +3,821 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Code Playground - Coding Life</title>
+  <title>Live Code Playground - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Fira+Code:wght@400;500;700&family=Outfit:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
-    .playground-wrapper {
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .pg-container {
       display: flex;
       flex-direction: column;
       height: calc(100vh - 88px);
       margin-top: 88px;
+      background: #020617;
+      color: #f8fafc;
     }
-    .editor-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      height: 50%;
-      background: #0f172a;
-      border-bottom: 2px solid var(--cl-line);
-    }
-    .editor-box {
-      border-right: 1px solid #1e293b;
-      display: flex;
-      flex-direction: column;
-    }
-    .editor-header {
-      background: #1e293b;
-      color: #94a3b8;
-      padding: 8px 16px;
-      font-size: 0.8rem;
-      font-weight: 700;
+
+    /* Playground Toolbar */
+    .pg-toolbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 12px 24px;
+      background: #0f172a;
+      border-bottom: 1px solid #1e293b;
+      gap: 16px;
+      flex-wrap: wrap;
+      z-index: 10;
     }
-    .editor-header i { margin-right: 8px; }
-    textarea {
+
+    .pg-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(45, 212, 191, 0.15);
+      color: #2dd4bf;
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid rgba(45, 212, 191, 0.3);
+    }
+
+    .pg-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pg-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #f1f5f9;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none !important;
+    }
+
+    .pg-btn:hover {
+      background: #334155;
+      border-color: #64748b;
+      transform: translateY(-1px);
+    }
+
+    .pg-btn-primary {
+      background: #2dd4bf;
+      color: #020617;
+      border-color: #2dd4bf;
+      box-shadow: 0 0 15px rgba(45, 212, 191, 0.25);
+    }
+
+    .pg-btn-primary:hover {
+      background: #5eead4;
+      color: #020617;
+      border-color: #5eead4;
+    }
+
+    .pg-select {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Main Workspace (Split Editors & Preview) */
+    .pg-workspace {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      flex: 1;
+      height: calc(100% - 61px);
+      overflow: hidden;
+    }
+
+    /* Left: Editors */
+    .pg-editors {
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr;
+      border-right: 1px solid #1e293b;
+      background: #090d16;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .pg-box {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid #1e293b;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pg-box:last-child {
+      border-bottom: none;
+    }
+
+    .pg-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 16px;
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid #1e293b;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+
+    .pg-box-header span i {
+      margin-right: 6px;
+    }
+
+    .pg-tag-html { color: #f97316; }
+    .pg-tag-css { color: #38bdf8; }
+    .pg-tag-js { color: #facc15; }
+
+    .pg-box textarea {
       flex: 1;
       width: 100%;
-      background: #0d1117;
-      color: #c9d1d9;
+      background: #020617;
+      color: #e2e8f0;
       border: none;
-      padding: 15px;
-      font-family: 'Fira Code', monospace;
+      padding: 12px 16px;
+      font-family: 'Fira Code', 'Courier New', monospace;
       font-size: 0.9rem;
+      line-height: 1.55;
       resize: none;
       outline: none;
-      line-height: 1.5;
+      box-sizing: border-box;
+      tab-size: 2;
     }
-    .preview-section {
-      height: 50%;
-      background: white;
+
+    /* Right: Preview */
+    .pg-preview-pane {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: #ffffff;
       position: relative;
     }
+
+    .pg-preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 16px;
+      background: #0f172a;
+      border-bottom: 1px solid #1e293b;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
     #preview-iframe {
+      flex: 1;
       width: 100%;
       height: 100%;
       border: none;
+      background: #ffffff;
     }
-    .controls {
-      position: absolute;
-      top: 10px;
-      right: 20px;
+
+    /* In-Playground Console Output */
+    .pg-console {
+      height: 120px;
+      background: #090d16;
+      border-top: 1px solid #1e293b;
+      color: #cbd5e1;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      padding: 8px 12px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .pg-console.active {
+      display: block;
+    }
+
+    .pg-console-line {
+      margin-bottom: 4px;
       display: flex;
-      gap: 10px;
-      z-index: 10;
+      gap: 8px;
     }
-    .btn-run {
-      background: var(--cl-brand);
-      color: white;
+
+    .pg-console-line.log { color: #94a3b8; }
+    .pg-console-line.error { color: #ef4444; }
+    .pg-console-line.warn { color: #f59e0b; }
+
+    /* Mobile Tabs */
+    .pg-mobile-tabs {
+      display: none;
+      background: #0f172a;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .pg-tab-btn {
+      flex: 1;
+      padding: 10px;
+      background: transparent;
       border: none;
-      padding: 8px 20px;
-      border-radius: 8px;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 0.85rem;
       cursor: pointer;
-      font-weight: 700;
-      transition: 0.3s;
+      border-bottom: 2px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
-    .btn-run:hover { transform: scale(1.05); background: var(--cl-brand-dark); }
-    
-    @media (max-width: 768px) {
-      .editor-section { grid-template-columns: 1fr; height: auto; }
-      .playground-wrapper { height: auto; }
-      .preview-section { height: 400px; }
-      textarea { min-height: 200px; }
+
+    .pg-tab-btn.active {
+      color: #2dd4bf;
+      border-bottom-color: #2dd4bf;
+      background: rgba(45, 212, 191, 0.05);
+    }
+
+    @media (max-width: 900px) {
+      .pg-container {
+        height: auto;
+      }
+      .pg-mobile-tabs {
+        display: flex;
+      }
+      .pg-workspace {
+        display: block;
+        height: auto;
+      }
+      .pg-editors {
+        display: block;
+        height: auto;
+      }
+      .pg-box {
+        display: none;
+        height: 380px;
+      }
+      .pg-box.mobile-active {
+        display: flex;
+      }
+      .pg-preview-pane {
+        display: none;
+        height: 480px;
+      }
+      .pg-preview-pane.mobile-active {
+        display: flex;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="playground-wrapper">
-  <div class="editor-section">
-    <div class="editor-box">
-      <div class="editor-header"><span><i class="fab fa-html5"></i> HTML</span></div>
-      <textarea id="html-code" placeholder="Write HTML here..."><div class="card">
-  <h1>Hello Coding Life!</h1>
-  <p>Try editing the code to see live changes.</p>
-</div></textarea>
+<div class="pg-container">
+  <!-- Toolbar -->
+  <div class="pg-toolbar">
+    <div class="pg-title-group">
+      <span class="pg-badge"><i class="fa-solid fa-code"></i> Live Playground</span>
+      <select class="pg-select" id="templateSelect" title="Load Starter Template">
+        <option value="">⚡ Load Template...</option>
+        <option value="neon">🚀 Neon Glow Button</option>
+        <option value="card">✨ Glassmorphism Card</option>
+        <option value="counter">🔢 Interactive Counter</option>
+        <option value="theme">🌗 Dark Mode Widget</option>
+      </select>
     </div>
-    <div class="editor-box">
-      <div class="editor-header"><span><i class="fab fa-css3-alt"></i> CSS</span></div>
-      <textarea id="css-code" placeholder="Write CSS here...">body { 
-  font-family: 'Segoe UI', sans-serif; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  height: 100vh; 
-  background: #f0fdfa; 
-}
-.card {
-  padding: 40px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  text-align: center;
-}
-h1 { color: #0f766e; }</textarea>
-    </div>
-    <div class="editor-box">
-      <div class="editor-header"><span><i class="fab fa-js"></i> JavaScript</span></div>
-      <textarea id="js-code" placeholder="Write JS here...">console.log("Welcome to Playground!");</textarea>
+
+    <div class="pg-actions">
+      <button class="pg-btn" id="toggleConsoleBtn" title="Toggle Console Logs">
+        <i class="fa-solid fa-terminal"></i> <span>Console</span>
+      </button>
+      <button class="pg-btn" id="copyBundleBtn" title="Copy Full HTML Bundle">
+        <i class="fa-regular fa-copy"></i> <span>Copy All</span>
+      </button>
+      <button class="pg-btn" id="downloadHtmlBtn" title="Download as index.html">
+        <i class="fa-solid fa-download"></i> <span>Download</span>
+      </button>
+      <button class="pg-btn" id="resetBtn" title="Clear Code">
+        <i class="fa-solid fa-rotate-left"></i> <span>Reset</span>
+      </button>
+      <button class="pg-btn pg-btn-primary" id="runBtn" title="Run Code (Live Auto-Run Enabled)">
+        <i class="fa-solid fa-play"></i> <span>Run</span>
+      </button>
     </div>
   </div>
 
-  <div class="preview-section">
-    <div class="controls">
-      <button class="btn-run" onclick="runCode()"><i class="fas fa-play"></i> Run Code</button>
+  <!-- Mobile View Tabs -->
+  <div class="pg-mobile-tabs">
+    <button class="pg-tab-btn active" data-tab="html"><i class="fa-brands fa-html5 pg-tag-html"></i> HTML</button>
+    <button class="pg-tab-btn" data-tab="css"><i class="fa-brands fa-css3-alt pg-tag-css"></i> CSS</button>
+    <button class="pg-tab-btn" data-tab="js"><i class="fa-brands fa-js pg-tag-js"></i> JS</button>
+    <button class="pg-tab-btn" data-tab="preview"><i class="fa-solid fa-eye" style="color:#2dd4bf;"></i> Preview</button>
+  </div>
+
+  <!-- Workspace -->
+  <div class="pg-workspace">
+    <!-- Left: 3 Editors -->
+    <div class="pg-editors">
+      <div class="pg-box mobile-active" id="box-html">
+        <div class="pg-box-header">
+          <span><i class="fa-brands fa-html5 pg-tag-html"></i> HTML5</span>
+          <span style="font-size:0.75rem; color:#64748b;">Body structure</span>
+        </div>
+        <textarea id="htmlCode" spellcheck="false" placeholder="<!-- Write HTML here -->"><div class="welcome-box">
+  <div class="badge">🚀 Interactive Sandbox</div>
+  <h1>Coding Life Playground</h1>
+  <p>Write HTML, CSS, and JavaScript with live instant preview!</p>
+  <button id="actionBtn" class="glow-button">Click Me</button>
+  <div id="status" class="status-text">Ready to code...</div>
+</div></textarea>
+      </div>
+
+      <div class="pg-box" id="box-css">
+        <div class="pg-box-header">
+          <span><i class="fa-brands fa-css3-alt pg-tag-css"></i> CSS3</span>
+          <span style="font-size:0.75rem; color:#64748b;">Styles & Layout</span>
+        </div>
+        <textarea id="cssCode" spellcheck="false" placeholder="/* Write CSS here */">body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #0f172a 0%, #020617 100%);
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #f8fafc;
+}
+
+.welcome-box {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(45, 212, 191, 0.15);
+  color: #2dd4bf;
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+h1 {
+  margin: 0 0 12px 0;
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.glow-button {
+  background: #2dd4bf;
+  color: #020617;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.35);
+}
+
+.glow-button:hover {
+  background: #5eead4;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(45, 212, 191, 0.6);
+}
+
+.status-text {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: #64748b;
+}</textarea>
+      </div>
+
+      <div class="pg-box" id="box-js">
+        <div class="pg-box-header">
+          <span><i class="fa-brands fa-js pg-tag-js"></i> JavaScript</span>
+          <span style="font-size:0.75rem; color:#64748b;">Logic & Events</span>
+        </div>
+        <textarea id="jsCode" spellcheck="false" placeholder="// Write JavaScript here">let clicks = 0;
+const btn = document.getElementById('actionBtn');
+const status = document.getElementById('status');
+
+btn.addEventListener('click', () => {
+  clicks++;
+  status.textContent = `Button clicked ${clicks} times!`;
+  status.style.color = '#2dd4bf';
+  console.log(`User clicked button: ${clicks} time(s)`);
+});
+
+console.log("Playground initialized successfully!");</textarea>
+      </div>
     </div>
-    <iframe id="preview-iframe" sandbox="allow-scripts allow-modals"></iframe>
+
+    <!-- Right: Preview Pane -->
+    <div class="pg-preview-pane" id="box-preview">
+      <div class="pg-preview-header">
+        <span><i class="fa-solid fa-laptop-code"></i> Live Output</span>
+        <span id="runIndicator" style="color:#2dd4bf; font-size:0.75rem;">
+          <i class="fa-solid fa-circle" style="font-size:0.5rem;"></i> Live
+        </span>
+      </div>
+      <iframe id="preview-iframe" sandbox="allow-scripts allow-modals"></iframe>
+      
+      <!-- Console Tray -->
+      <div class="pg-console" id="pgConsole">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#64748b; font-size:0.75rem; border-bottom:1px solid #1e293b; padding-bottom:4px;">
+          <span>CONSOLE LOGS</span>
+          <span style="cursor:pointer;" id="clearConsoleBtn">Clear</span>
+        </div>
+        <div id="consoleLogs"></div>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
-  function runCode() {
-    const html = document.getElementById("html-code").value;
-    const css = "<style>" + document.getElementById("css-code").value + "</style>";
-    const js = "<script>" + document.getElementById("js-code").value + "<\/script>";
-    const iframe = document.getElementById("preview-iframe");
-    iframe.srcdoc = `<!DOCTYPE html><html><head>${css}</head><body>${html}${js}</body></html>`;
+  const htmlInput = document.getElementById("htmlCode");
+  const cssInput = document.getElementById("cssCode");
+  const jsInput = document.getElementById("jsCode");
+  const iframe = document.getElementById("preview-iframe");
+  const consoleEl = document.getElementById("pgConsole");
+  const consoleLogs = document.getElementById("consoleLogs");
+
+  // Check for preloaded code from courses
+  const preloadCode = localStorage.getItem("cl-playground-preload");
+  if (preloadCode) {
+    if (preloadCode.includes("<style>") || preloadCode.includes("<script>") || preloadCode.includes("</")) {
+      // Parse HTML, CSS, JS
+      let codeToParse = preloadCode;
+      let styleMatch = codeToParse.match(/<style[^>]*>([\s\S]*?)<\/style>/i);
+      let scriptMatch = codeToParse.match(/<script[^>]*>([\s\S]*?)<\/script>/i);
+      if (styleMatch) {
+        cssInput.value = styleMatch[1].trim();
+        codeToParse = codeToParse.replace(styleMatch[0], "");
+      }
+      if (scriptMatch) {
+        jsInput.value = scriptMatch[1].trim();
+        codeToParse = codeToParse.replace(scriptMatch[0], "");
+      }
+      htmlInput.value = codeToParse.trim();
+    } else {
+      htmlInput.value = preloadCode;
+    }
+    localStorage.removeItem("cl-playground-preload");
   }
 
-  // Live preview as user types
-  document.querySelectorAll('textarea').forEach(textarea => {
-    textarea.addEventListener('input', runCode);
+  function appendLog(type, message) {
+    const line = document.createElement("div");
+    line.className = `pg-console-line ${type}`;
+    line.innerHTML = `<span style="opacity:0.5;">[${type.toUpperCase()}]</span> <span>${message}</span>`;
+    consoleLogs.appendChild(line);
+    consoleEl.scrollTop = consoleEl.scrollHeight;
+  }
+
+  window.addEventListener("message", (e) => {
+    if (e.data && e.data.type === "cl-console") {
+      appendLog(e.data.level, e.data.message);
+    }
   });
 
-  window.onload = runCode;
+  function renderPreview() {
+    const html = htmlInput.value;
+    const css = `<style>${cssInput.value}</style>`;
+    
+    // Inject console interceptor
+    const consoleHook = `
+      <script>
+        (function() {
+          const send = (level, args) => {
+            try {
+              const msg = Array.from(args).map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
+              window.parent.postMessage({ type: 'cl-console', level, message: msg }, '*');
+            } catch(e) {}
+          };
+          const _log = console.log, _error = console.error, _warn = console.warn;
+          console.log = function() { send('log', arguments); _log.apply(console, arguments); };
+          console.error = function() { send('error', arguments); _error.apply(console, arguments); };
+          console.warn = function() { send('warn', arguments); _warn.apply(console, arguments); };
+        })();
+      <\/script>
+    `;
+
+    const js = `<script>${jsInput.value}<\/script>`;
+    iframe.srcdoc = `<!DOCTYPE html><html><head><meta charset="UTF-8">${css}${consoleHook}</head><body>${html}${js}</body></html>`;
+  }
+
+  // Debounced live typing
+  let timeout;
+  function scheduleRender() {
+    clearTimeout(timeout);
+    timeout = setTimeout(renderPreview, 350);
+  }
+
+  [htmlInput, cssInput, jsInput].forEach(el => el.addEventListener("input", scheduleRender));
+  document.getElementById("runBtn").addEventListener("click", renderPreview);
+
+  // Toggle Console
+  document.getElementById("toggleConsoleBtn").addEventListener("click", () => {
+    consoleEl.classList.toggle("active");
+  });
+
+  document.getElementById("clearConsoleBtn").addEventListener("click", () => {
+    consoleLogs.innerHTML = "";
+  });
+
+  // Mobile Tabs switcher
+  document.querySelectorAll(".pg-tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".pg-tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const tab = btn.dataset.tab;
+      
+      document.getElementById("box-html").classList.toggle("mobile-active", tab === "html");
+      document.getElementById("box-css").classList.toggle("mobile-active", tab === "css");
+      document.getElementById("box-js").classList.toggle("mobile-active", tab === "js");
+      document.getElementById("box-preview").classList.toggle("mobile-active", tab === "preview");
+    });
+  });
+
+  // Templates
+  const templates = {
+    neon: {
+      html: `<button class="neon-btn">NEON GLOW</button>`,
+      css: `body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #030712;
+  font-family: sans-serif;
+}
+
+.neon-btn {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #2dd4bf;
+  background: transparent;
+  border: 3px solid #2dd4bf;
+  border-radius: 12px;
+  padding: 16px 36px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.4), inset 0 0 15px rgba(45, 212, 191, 0.2);
+}
+
+.neon-btn:hover {
+  background: #2dd4bf;
+  color: #030712;
+  box-shadow: 0 0 40px #2dd4bf, inset 0 0 10px #2dd4bf;
+  transform: scale(1.05);
+}`,
+      js: `document.querySelector('.neon-btn').addEventListener('click', () => {
+  console.log("Neon button activated!");
+});`
+    },
+    card: {
+      html: `<div class="glass-card">
+  <div class="avatar">👨‍💻</div>
+  <h2>Coding Life Pro</h2>
+  <p>Learn, Build, and Master Full-Stack Programming with real-world projects.</p>
+  <div class="tags">
+    <span>React</span>
+    <span>Node.js</span>
+    <span>Python</span>
+  </div>
+</div>`,
+      css: `body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+}
+
+.glass-card {
+  width: 300px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.avatar {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+h2 { margin: 0 0 10px; color: #38bdf8; }
+p { font-size: 0.9rem; color: #94a3b8; line-height: 1.5; }
+
+.tags {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.tags span {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}`,
+      js: `console.log("Glass card loaded!");`
+    },
+    counter: {
+      html: `<div class="counter-box">
+  <h1 id="count">0</h1>
+  <div class="btn-group">
+    <button id="dec">-</button>
+    <button id="reset">Reset</button>
+    <button id="inc">+</button>
+  </div>
+</div>`,
+      css: `body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0f172a;
+  font-family: sans-serif;
+  color: white;
+}
+
+.counter-box {
+  text-align: center;
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+#count { font-size: 4rem; margin: 0 0 24px; color: #2dd4bf; }
+
+.btn-group { display: flex; gap: 12px; }
+button {
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background: #334155;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover { background: #2dd4bf; color: #020617; }`,
+      js: `let count = 0;
+const el = document.getElementById('count');
+document.getElementById('inc').onclick = () => { count++; el.textContent = count; };
+document.getElementById('dec').onclick = () => { count--; el.textContent = count; };
+document.getElementById('reset').onclick = () => { count = 0; el.textContent = count; };`
+    },
+    theme: {
+      html: `<div class="theme-wrapper" id="themeWrapper">
+  <div class="card">
+    <h2 id="themeTitle">Theme Switcher</h2>
+    <p>Click below to toggle between dark and light themes smoothly.</p>
+    <button id="themeToggleBtn">Toggle Mode</button>
+  </div>
+</div>`,
+      css: `body { margin: 0; font-family: sans-serif; }
+.theme-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+  background: #020617;
+  color: #f8fafc;
+}
+
+.theme-wrapper.light {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.card {
+  padding: 36px;
+  border-radius: 16px;
+  border: 1px solid rgba(120,120,120,0.2);
+  text-align: center;
+}
+
+button {
+  padding: 12px 24px;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  background: #2dd4bf;
+  color: #020617;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover { transform: scale(1.05); }`,
+      js: `const wrapper = document.getElementById('themeWrapper');
+document.getElementById('themeToggleBtn').onclick = () => {
+  wrapper.classList.toggle('light');
+  console.log("Theme switched to: " + (wrapper.classList.contains('light') ? 'Light' : 'Dark'));
+};`
+    }
+  };
+
+  document.getElementById("templateSelect").addEventListener("change", (e) => {
+    const t = templates[e.target.value];
+    if (t) {
+      htmlInput.value = t.html;
+      cssInput.value = t.css;
+      jsInput.value = t.js;
+      renderPreview();
+      if (window.clToast) window.clToast("Template loaded!", "success");
+    }
+  });
+
+  // Copy All
+  document.getElementById("copyBundleBtn").addEventListener("click", () => {
+    const fullHtml = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${cssInput.value}</style></head><body>${htmlInput.value}<script>${jsInput.value}<\/script></body></html>`;
+    navigator.clipboard.writeText(fullHtml).then(() => {
+      if (window.clToast) window.clToast("Full HTML bundle copied!", "success");
+    });
+  });
+
+  // Download index.html
+  document.getElementById("downloadHtmlBtn").addEventListener("click", () => {
+    const fullHtml = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${cssInput.value}</style></head><body>${htmlInput.value}<script>${jsInput.value}<\/script></body></html>`;
+    const blob = new Blob([fullHtml], { type: "text/html" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "index.html";
+    a.click();
+    if (window.clToast) window.clToast("Downloaded index.html!", "success");
+  });
+
+  // Reset
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    htmlInput.value = "";
+    cssInput.value = "";
+    jsInput.value = "";
+    renderPreview();
+    if (window.clToast) window.clToast("Playground reset!", "info");
+  });
+
+  // Initial load
+  renderPreview();
 </script>
 
 <script src="site-polish.js"></script>

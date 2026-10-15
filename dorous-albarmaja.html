@@ -90,25 +90,130 @@
     }
     .category-block {
       margin-bottom: 120px !important;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .category-block.is-hidden {
+      display: none !important;
+    }
+    .course-card.is-hidden {
+      display: none !important;
+    }
+    .course-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 50px;
+      padding: 16px 20px;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-pill {
+      background: var(--cl-brand-soft);
+      border: 1px solid transparent;
+      color: var(--cl-brand);
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--cl-transition);
+    }
+    .filter-pill:hover, .filter-pill.active {
+      background: var(--cl-brand);
+      color: #020617;
+    }
+    .course-search-box {
+      position: relative;
+      min-width: 250px;
+      flex: 1;
+      max-width: 320px;
+    }
+    .course-search-box input {
+      width: 100%;
+      padding: 10px 16px 10px 38px;
+      border-radius: 99px;
+      border: 1px solid var(--cl-line);
+      background: var(--cl-bg);
+      color: var(--cl-ink);
+      font-size: 0.9rem;
+      outline: none;
+      box-sizing: border-box;
+      transition: var(--cl-transition);
+    }
+    body.rtl .course-search-box input {
+      padding: 10px 38px 10px 16px;
+    }
+    .course-search-box input:focus {
+      border-color: var(--cl-brand);
+      box-shadow: 0 0 10px rgba(45, 212, 191, 0.2);
+    }
+    .course-search-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--cl-muted);
+      font-size: 0.9rem;
+    }
+    body.rtl .course-search-box i {
+      left: auto;
+      right: 14px;
     }
   </style>
 </head>
 <body>
 
 <div class="course-container" style="max-width: 1300px; margin-top: 150px;">
-  <div class="course-header" style="text-align: left; padding: 0 0 60px 0; background: none !important; color: var(--cl-ink) !important;">
+  <div class="course-header" style="text-align: left; padding: 0 0 40px 0; background: none !important; color: var(--cl-ink) !important;">
     <div data-cl-lang="en">
-      <h1 style="font-size: 4rem !important; font-weight: 900; margin-bottom: 16px;">Global <span style="color: var(--cl-brand);">Curriculum</span></h1>
-      <p style="font-size: 1.3rem; color: var(--cl-muted); max-width: 700px;">Professional grade engineering paths designed for modern software development.</p>
+      <h1 style="font-size: clamp(2.5rem, 5vw, 4rem) !important; font-weight: 900; margin-bottom: 16px;">Global <span style="color: var(--cl-brand);">Curriculum</span></h1>
+      <p style="font-size: 1.2rem; color: var(--cl-muted); max-width: 700px;">Professional grade engineering paths designed for modern software development.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1 style="font-size: 4rem !important; font-weight: 900; margin-bottom: 16px;">المناهج <span style="color: var(--cl-brand);">العالمية</span></h1>
-      <p style="font-size: 1.3rem; color: var(--cl-muted); max-width: 700px;">مسارات هندسية احترافية مصممة لتطوير البرمجيات الحديثة.</p>
+      <h1 style="font-size: clamp(2.5rem, 5vw, 4rem) !important; font-weight: 900; margin-bottom: 16px;">المناهج <span style="color: var(--cl-brand);">العالمية</span></h1>
+      <p style="font-size: 1.2rem; color: var(--cl-muted); max-width: 700px;">مسارات هندسية احترافية مصممة لتطوير البرمجيات الحديثة.</p>
+    </div>
+  </div>
+
+  <!-- Interactive Filter Bar -->
+  <div class="course-filter-bar">
+    <div class="filter-pills">
+      <button class="filter-pill active" data-filter="all">
+        <span data-cl-lang="en">All Tracks</span><span data-cl-lang="ar">جميع المسارات</span>
+      </button>
+      <button class="filter-pill" data-filter="web">
+        <span data-cl-lang="en">Web & Frontend</span><span data-cl-lang="ar">الويب والواجهات</span>
+      </button>
+      <button class="filter-pill" data-filter="mobile">
+        <span data-cl-lang="en">Mobile Apps</span><span data-cl-lang="ar">تطبيقات الموبايل</span>
+      </button>
+      <button class="filter-pill" data-filter="backend">
+        <span data-cl-lang="en">Backend & Systems</span><span data-cl-lang="ar">الأنظمة الخلفية</span>
+      </button>
+      <button class="filter-pill" data-filter="tools">
+        <span data-cl-lang="en">Lab & Tools</span><span data-cl-lang="ar">المختبر والأدوات</span>
+      </button>
+      <button class="filter-pill" data-filter="growth">
+        <span data-cl-lang="en">Growth & Mindset</span><span data-cl-lang="ar">تطوير الذات</span>
+      </button>
+    </div>
+    <div class="course-search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="courseFilterInput" placeholder="Filter courses...">
     </div>
   </div>
 
   <!-- Path: Web Foundations -->
-  <div class="category-block reveal">
+  <div class="category-block reveal" data-category="web">
     <div data-cl-lang="en"><h2 class="section-title">Web Development Foundations</h2><div class="section-separator"></div></div>
     <div data-cl-lang="ar"><h2 class="section-title">أساسيات تطوير الويب</h2><div class="section-separator"></div></div>
     
@@ -145,7 +250,7 @@
   </div>
 
   <!-- Path: Mobile Development -->
-  <div class="category-block reveal">
+  <div class="category-block reveal" data-category="mobile">
     <div data-cl-lang="en"><h2 class="section-title">Mobile App Development</h2><div class="section-separator"></div></div>
     <div data-cl-lang="ar"><h2 class="section-title">تطوير تطبيقات الموبايل</h2><div class="section-separator"></div></div>
     
@@ -161,7 +266,7 @@
   </div>
 
   <!-- Path: Backend & Systems -->
-  <div class="category-block reveal">
+  <div class="category-block reveal" data-category="backend">
     <div data-cl-lang="en"><h2 class="section-title" style="color: #a855f7;">Backend & Enterprise Logic</h2><div class="section-separator" style="background: #a855f7;"></div></div>
     <div data-cl-lang="ar"><h2 class="section-title" style="color: #a855f7;">الأنظمة الخلفية ومنطق الشركات</h2><div class="section-separator" style="background: #a855f7;"></div></div>
     
@@ -219,7 +324,7 @@
   </div>
 
   <!-- Path: Lab & Tools -->
-  <div class="category-block reveal">
+  <div class="category-block reveal" data-category="tools">
     <div data-cl-lang="en"><h2 class="section-title" style="color: #0d9488;">Interactive Lab & Dev Tools</h2><div class="section-separator" style="background: #0d9488;"></div></div>
     <div data-cl-lang="ar"><h2 class="section-title" style="color: #0d9488;">المختبر التفاعلي وأدوات المطورين</h2><div class="section-separator" style="background: #0d9488;"></div></div>
     
@@ -256,7 +361,7 @@
   </div>
 
   <!-- Path: Growth -->
-  <div class="category-block reveal">
+  <div class="category-block reveal" data-category="growth">
     <div data-cl-lang="en"><h2 class="section-title" style="color: #3b82f6;">Personal Growth & Roadmaps</h2><div class="section-separator" style="background: #3b82f6;"></div></div>
     <div data-cl-lang="ar"><h2 class="section-title" style="color: #3b82f6;">النمو المهني وخرائط الطريق</h2><div class="section-separator" style="background: #3b82f6;"></div></div>
     
@@ -286,6 +391,57 @@
   </div>
 
 </div>
+
+<script>
+  // Filter Functionality
+  const filterPills = document.querySelectorAll(".filter-pill");
+  const blocks = document.querySelectorAll(".category-block");
+  const searchInput = document.getElementById("courseFilterInput");
+
+  let currentCategory = "all";
+  let searchQuery = "";
+
+  function applyFilters() {
+    blocks.forEach(block => {
+      const cat = block.getAttribute("data-category");
+      const matchCat = currentCategory === "all" || cat === currentCategory;
+      
+      const cards = block.querySelectorAll(".course-card");
+      let visibleInBlock = 0;
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const matchSearch = !searchQuery || text.includes(searchQuery);
+        if (matchSearch) {
+          card.classList.remove("is-hidden");
+          visibleInBlock++;
+        } else {
+          card.classList.add("is-hidden");
+        }
+      });
+
+      if (matchCat && visibleInBlock > 0) {
+        block.classList.remove("is-hidden");
+      } else {
+        block.classList.add("is-hidden");
+      }
+    });
+  }
+
+  filterPills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      filterPills.forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+      currentCategory = pill.getAttribute("data-filter");
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener("input", (e) => {
+    searchQuery = e.target.value.trim().toLowerCase();
+    applyFilters();
+  });
+</script>
 
 <script src="site-polish.js"></script>
 </body>

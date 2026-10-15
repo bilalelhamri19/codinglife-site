@@ -15,7 +15,7 @@
   const TRANSLATIONS = {
     en: {
       dir: "ltr",
-      nav: { home: "Home", courses: "Courses", blog: "Blog", contact: "Contact" },
+      nav: { home: "Home", courses: "Courses", workshops: "Workshops", tools: "Tools", blog: "Blog", contact: "Contact" },
       footer: {
         tagline: "Premium programming education designed to take you from zero to professional.",
         platform: "Platform",
@@ -31,13 +31,19 @@
         copy: "Built with passion for learners."
       },
       search: {
-        placeholder: "Search courses, lessons, topics...",
+        placeholder: "Search courses, lessons, topics... (Ctrl + K)",
         noResults: "No results found for"
+      },
+      code: {
+        copy: "Copy",
+        copied: "Copied!",
+        playground: "Playground",
+        copiedToast: "Code copied to clipboard!"
       }
     },
     ar: {
       dir: "rtl",
-      nav: { home: "الرئيسية", courses: "الدروس", blog: "المدونة", contact: "التواصل" },
+      nav: { home: "الرئيسية", courses: "الدروس", workshops: "الورشات", tools: "الأدوات", blog: "المدونة", contact: "التواصل" },
       footer: {
         tagline: "تعليم برمجة احترافي يأخذك من الصفر إلى الاحتراف.",
         platform: "المنصة",
@@ -53,8 +59,14 @@
         copy: "مبني بشغف للمتعلمين."
       },
       search: {
-        placeholder: "ابحث عن دروس، مواضيع...",
+        placeholder: "ابحث عن دروس، مواضيع... (Ctrl + K)",
         noResults: "لا توجد نتائج لـ"
+      },
+      code: {
+        copy: "نسخ",
+        copied: "تم النسخ!",
+        playground: "تجربة الكود",
+        copiedToast: "تم نسخ الكود إلى الحافظة!"
       }
     }
   };
@@ -73,6 +85,7 @@
     // Refresh UI elements
     refreshHeader();
     refreshFooter();
+    refreshMobileDrawer();
     updateSearchPlaceholder();
     refreshPageContent(); 
     
@@ -98,6 +111,8 @@
     return [
       { href: "index.html", icon: "fa-house", label: tr.home },
       { href: "dorous-albarmaja.html", icon: "fa-code", label: tr.courses },
+      { href: "workshops.html", icon: "fa-laptop-code", label: tr.workshops },
+      { href: "tools.html", icon: "fa-toolbox", label: tr.tools },
       { href: "blog.html", icon: "fa-newspaper", label: tr.blog },
       { href: "contact.html", icon: "fa-envelope", label: tr.contact }
     ];
@@ -121,9 +136,9 @@
             </a>
           `).join('')}
         </nav>
-        <div style="display:flex; gap:12px; align-items:center;">
+        <div style="display:flex; gap:10px; align-items:center;">
           <div class="cl-lang-switcher">
-            <button class="cl-lang-btn" id="cl-lang-btn">
+            <button class="cl-lang-btn" id="cl-lang-btn" aria-label="Change language">
               <i class="fa-solid fa-globe"></i>
               <span>${currentLang.toUpperCase()}</span>
               <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i>
@@ -133,11 +148,15 @@
               <button class="cl-lang-option ${currentLang === 'ar' ? 'active' : ''}" data-lang="ar">العربية</button>
             </div>
           </div>
-          <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+          <button class="theme-toggle" id="themeToggle" title="Toggle Theme" aria-label="Toggle Theme">
             <i class="fa-solid fa-moon"></i>
           </button>
-          <button class="theme-toggle" id="searchToggle" title="Search">
+          <button class="theme-toggle" id="searchToggle" title="Search" aria-label="Search">
             <i class="fa-solid fa-magnifying-glass"></i>
+            <span class="search-badge">Ctrl K</span>
+          </button>
+          <button class="cl-mobile-menu-btn" id="clMobileMenuBtn" title="Menu" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars"></i>
           </button>
         </div>
       </div>
@@ -151,6 +170,7 @@
     header.innerHTML = buildHeaderHTML();
     document.body.prepend(header);
     bindHeaderEvents();
+    createMobileDrawer();
   }
 
   function refreshHeader() {
@@ -161,47 +181,153 @@
     }
   }
 
+  function createMobileDrawer() {
+    let overlay = document.getElementById("clMobileOverlay");
+    let drawer = document.getElementById("clMobileDrawer");
+    if (overlay) overlay.remove();
+    if (drawer) drawer.remove();
+
+    overlay = document.createElement("div");
+    overlay.className = "cl-mobile-overlay";
+    overlay.id = "clMobileOverlay";
+
+    drawer = document.createElement("div");
+    drawer.className = "cl-mobile-drawer";
+    drawer.id = "clMobileDrawer";
+
+    const items = navItems();
+    drawer.innerHTML = `
+      <div class="cl-mobile-drawer-header">
+        <a href="index.html" class="cl-brand" style="font-size:1.4rem;">
+          <img src="${CONFIG.logoPath}" alt="Logo" style="height:38px;">
+          <span>${CONFIG.brandName}</span>
+        </a>
+        <button class="cl-mobile-drawer-close" id="clMobileDrawerClose" aria-label="Close menu">&times;</button>
+      </div>
+      <div class="cl-mobile-nav-links">
+        ${items.map(item => `
+          <a href="${item.href}" class="${currentFile === item.href ? 'active' : ''}">
+            <i class="fa-solid ${item.icon}" style="width:20px; text-align:center; color:var(--cl-brand);"></i>
+            <span>${item.label}</span>
+          </a>
+        `).join('')}
+      </div>
+      <div class="cl-mobile-drawer-footer">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+          <div style="display:flex; gap:8px;">
+            <button class="cl-lang-btn ${currentLang === 'en' ? 'active' : ''}" style="padding:6px 12px; font-size:0.85rem;" data-action-lang="en">EN</button>
+            <button class="cl-lang-btn ${currentLang === 'ar' ? 'active' : ''}" style="padding:6px 12px; font-size:0.85rem;" data-action-lang="ar">عربي</button>
+          </div>
+          <button class="theme-toggle" id="mobileDrawerThemeToggle" title="Toggle Theme" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+    document.body.appendChild(drawer);
+    bindMobileDrawerEvents();
+  }
+
+  function refreshMobileDrawer() {
+    createMobileDrawer();
+  }
+
+  function bindMobileDrawerEvents() {
+    const overlay = document.getElementById("clMobileOverlay");
+    const drawer = document.getElementById("clMobileDrawer");
+    const closeBtn = document.getElementById("clMobileDrawerClose");
+    const mobileThemeToggle = document.getElementById("mobileDrawerThemeToggle");
+
+    function closeDrawer() {
+      if (drawer) drawer.classList.remove("active");
+      if (overlay) overlay.classList.remove("active");
+    }
+
+    if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+    if (overlay) overlay.addEventListener("click", closeDrawer);
+
+    if (mobileThemeToggle) {
+      const currentTheme = localStorage.getItem("theme") || "dark";
+      const icon = mobileThemeToggle.querySelector("i");
+      if (icon) icon.className = currentTheme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+      mobileThemeToggle.addEventListener("click", () => {
+        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateThemeIcon(newTheme);
+      });
+    }
+
+    document.querySelectorAll("[data-action-lang]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        applyLang(btn.getAttribute("data-action-lang"));
+        closeDrawer();
+      });
+    });
+  }
+
   function bindHeaderEvents() {
     const themeBtn = document.getElementById("themeToggle");
     const currentTheme = localStorage.getItem("theme") || "dark";
     document.documentElement.setAttribute("data-theme", currentTheme);
     updateThemeIcon(currentTheme);
 
-    themeBtn.addEventListener("click", () => {
-      const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
-      updateThemeIcon(newTheme);
-    });
+    if (themeBtn) {
+      themeBtn.addEventListener("click", () => {
+        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateThemeIcon(newTheme);
+      });
+    }
 
     const searchToggle = document.getElementById("searchToggle");
-    searchToggle.addEventListener("click", () => {
-      const overlay = document.getElementById("searchOverlay");
-      overlay.style.display = "flex";
-      document.getElementById("searchInput").focus();
-    });
+    if (searchToggle) {
+      searchToggle.addEventListener("click", () => {
+        const overlay = document.getElementById("searchOverlay");
+        if (overlay) {
+          overlay.style.display = "flex";
+          document.getElementById("searchInput").focus();
+        }
+      });
+    }
+
+    const mobileMenuBtn = document.getElementById("clMobileMenuBtn");
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener("click", () => {
+        const drawer = document.getElementById("clMobileDrawer");
+        const overlay = document.getElementById("clMobileOverlay");
+        if (drawer) drawer.classList.add("active");
+        if (overlay) overlay.classList.add("active");
+      });
+    }
 
     const langBtn = document.getElementById("cl-lang-btn");
     const langDropdown = document.getElementById("cl-lang-dropdown");
-    langBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      langDropdown.classList.toggle("open");
-    });
-
-    document.addEventListener("click", () => langDropdown.classList.remove("open"));
-
-    document.querySelectorAll(".cl-lang-option").forEach(btn => {
-      btn.addEventListener("click", (e) => {
+    if (langBtn && langDropdown) {
+      langBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        applyLang(btn.dataset.lang);
-        langDropdown.classList.remove("open");
+        langDropdown.classList.toggle("open");
       });
-    });
+
+      document.addEventListener("click", () => langDropdown.classList.remove("open"));
+
+      document.querySelectorAll(".cl-lang-option").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          applyLang(btn.dataset.lang);
+          langDropdown.classList.remove("open");
+        });
+      });
+    }
   }
 
   function updateThemeIcon(theme) {
-    const icon = document.querySelector("#themeToggle i");
-    if (icon) icon.className = theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+    document.querySelectorAll("#themeToggle i, #mobileDrawerThemeToggle i").forEach(icon => {
+      icon.className = theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+    });
   }
 
   function buildFooterHTML() {
@@ -313,8 +439,34 @@
 
     const input = document.getElementById("searchInput");
     const close = document.getElementById("closeSearch");
-    close.addEventListener("click", () => overlay.style.display = "none");
-    overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.style.display = "none"; });
+    
+    function closeSearch() {
+      overlay.style.display = "none";
+      input.value = "";
+      document.getElementById("searchResults").innerHTML = "";
+    }
+
+    function openSearch() {
+      overlay.style.display = "flex";
+      setTimeout(() => input.focus(), 50);
+    }
+
+    close.addEventListener("click", closeSearch);
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeSearch(); });
+
+    // Keyboard Shortcuts (Ctrl + K / Cmd + K / ESC)
+    document.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        if (overlay.style.display === "flex") {
+          closeSearch();
+        } else {
+          openSearch();
+        }
+      } else if (e.key === "Escape" && overlay.style.display === "flex") {
+        closeSearch();
+      }
+    });
 
     input.addEventListener("input", (e) => {
       const q = e.target.value.toLowerCase();
@@ -337,8 +489,11 @@
         { t: "CSS Unit Converter", t_ar: "محول وحدات CSS", d: "PX, REM, EM, VW conversion.", d_ar: "تحويل البكسل والريم وغيرها.", h: "css-converter.html" },
         { t: "Palette Generator", t_ar: "مولد الألوان", d: "Color scheme creator.", d_ar: "إنشاء مجموعات ألوان متناسقة.", h: "colors.html" },
         { t: "Code Playground", t_ar: "مختبر الكود", d: "Live editor for practice.", d_ar: "محرر مباشر للتجربة.", h: "playground.html" },
+        { t: "Tools Dashboard", t_ar: "مركز الأدوات", d: "Developer utilities and interactive tools.", d_ar: "أدوات ومساعدات برمجية ذكية.", h: "tools.html" },
         { t: "Productivity Tips", t_ar: "نصائح الإنتاجية", d: "Increase your daily output.", d_ar: "زيادة إنتاجيتك اليومية.", h: "productivity.html" },
         { t: "Mental Health", t_ar: "صحة العقل والجسد", d: "Well-being for developers.", d_ar: "الصحة النفسية للمبرمجين.", h: "mental_health.html" },
+        { t: "Motivation", t_ar: "التحفيز والاستمرارية", d: "Overcome burnout and stay focused.", d_ar: "تجاوز الإحباط ومواصلة التطور.", h: "motivation.html" },
+        { t: "Soft Skills", t_ar: "المهارات الناعمة", d: "Communication and team collaboration.", d_ar: "التواصل والعمل الجماعي.", h: "soft-skills.html" },
         { t: "Blog", t_ar: "المدونة", d: "Articles and tips.", d_ar: "مقالات ونصائح تقنية.", h: "blog.html" },
         { t: "Workshops", t_ar: "ورشات العمل", d: "Live coding workshops.", d_ar: "ورشات عمل مباشرة.", h: "workshops.html" },
         { t: "About", t_ar: "من نحن", d: "Our mission.", d_ar: "مهمتنا ورؤيتنا.", h: "about.html" },
@@ -371,22 +526,117 @@
     if (input) input.placeholder = t().search.placeholder;
   }
 
+  // Toast Notification Engine
+  window.clToast = function (message, type = "info") {
+    let container = document.getElementById("clToastContainer");
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "clToastContainer";
+      container.className = "cl-toast-container";
+      document.body.appendChild(container);
+    }
+    const icon = type === "success" ? "fa-circle-check" : "fa-circle-info";
+    const toast = document.createElement("div");
+    toast.className = `cl-toast cl-toast-${type}`;
+    toast.innerHTML = `<i class="fa-solid ${icon}"></i><span>${message}</span>`;
+    container.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add("fade-out");
+      setTimeout(() => toast.remove(), 300);
+    }, 2800);
+  };
+
   function polishCodeBlocks() {
     document.querySelectorAll(".code-example").forEach(block => {
       if (block.querySelector(".code-header")) return;
-      const lang = block.getAttribute("data-lang") || "code";
+      const lang = (block.getAttribute("data-lang") || "code").toLowerCase();
       const pre = block.querySelector("pre");
+      if (!pre) return;
       const code = pre.innerText;
+      const trCode = t().code;
+
       const header = document.createElement("div");
       header.className = "code-header";
-      header.innerHTML = `<span><i class="fa-solid fa-code"></i> ${lang}</span><button class="code-copy">Copy</button>`;
+
+      const showPlayground = ["html", "css", "javascript", "js"].includes(lang) || /<[a-z][\s\S]*>/i.test(code);
+
+      header.innerHTML = `
+        <span><i class="fa-solid fa-code"></i> ${lang.toUpperCase()}</span>
+        <div class="code-actions-group">
+          ${showPlayground ? `
+            <button class="code-action-btn cl-run-btn" title="Open in Live Playground">
+              <i class="fa-solid fa-play"></i> <span>${trCode.playground}</span>
+            </button>
+          ` : ''}
+          <button class="code-action-btn cl-copy-btn" title="Copy code to clipboard">
+            <i class="fa-regular fa-copy"></i> <span>${trCode.copy}</span>
+          </button>
+        </div>
+      `;
       block.prepend(header);
-      header.querySelector(".code-copy").addEventListener("click", (e) => {
-        navigator.clipboard.writeText(code);
-        e.target.innerText = "Copied!";
-        setTimeout(() => e.target.innerText = "Copy", 2000);
-      });
+
+      const copyBtn = header.querySelector(".cl-copy-btn");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", () => {
+          navigator.clipboard.writeText(code).then(() => {
+            const span = copyBtn.querySelector("span");
+            const icon = copyBtn.querySelector("i");
+            if (span) span.innerText = trCode.copied;
+            if (icon) icon.className = "fa-solid fa-check";
+            window.clToast(trCode.copiedToast, "success");
+            setTimeout(() => {
+              if (span) span.innerText = trCode.copy;
+              if (icon) icon.className = "fa-regular fa-copy";
+            }, 2000);
+          });
+        });
+      }
+
+      const runBtn = header.querySelector(".cl-run-btn");
+      if (runBtn) {
+        runBtn.addEventListener("click", () => {
+          localStorage.setItem("cl-playground-preload", code);
+          window.location.href = "playground.html";
+        });
+      }
     });
+  }
+
+  function initScrollProgress() {
+    let bar = document.getElementById("cl-scroll-progress");
+    if (!bar) {
+      bar = document.createElement("div");
+      bar.id = "cl-scroll-progress";
+      document.body.prepend(bar);
+    }
+    const updateProgress = () => {
+      const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollTotal > 0 ? (window.scrollY / scrollTotal) * 100 : 0;
+      bar.style.width = Math.min(100, Math.max(0, progress)) + "%";
+    };
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  function initBackToTop() {
+    let btt = document.getElementById("clBackToTop");
+    if (!btt) {
+      btt = document.createElement("button");
+      btt.id = "clBackToTop";
+      btt.className = "cl-back-to-top";
+      btt.setAttribute("aria-label", "Back to top");
+      btt.title = "Back to top";
+      btt.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+      document.body.appendChild(btt);
+      btt.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    }
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 400) {
+        btt.classList.add("visible");
+      } else {
+        btt.classList.remove("visible");
+      }
+    }, { passive: true });
   }
 
   function initAnimations() {
@@ -450,16 +700,11 @@
     initSearch();
     injectSchema();
     polishCodeBlocks();
+    initScrollProgress();
+    initBackToTop();
     initAnimations();
     bindFooterEvents();
     refreshPageContent();
-
-    const btt = document.createElement("button");
-    btt.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
-    btt.style = "position:fixed; bottom:30px; right:30px; width:50px; height:50px; border-radius:50%; background:#2dd4bf; border:none; color:white; cursor:pointer; display:none; z-index:100; box-shadow:0 10px 20px rgba(0,0,0,0.2);";
-    document.body.appendChild(btt);
-    window.addEventListener("scroll", () => { btt.style.display = window.scrollY > 500 ? "block" : "none"; });
-    btt.addEventListener("click", () => window.scrollTo({top: 0, behavior: 'smooth'}));
   }
 
   if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", boot); } else { boot(); }
