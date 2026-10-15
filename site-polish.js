@@ -4,6 +4,7 @@
   const CONFIG = {
     brandName: "Coding Life",
     logoPath: "logo.png",
+    adsensePublisherId: "ca-pub-0000000000000000", // Replace with your approved AdSense Publisher ID
     socialLinks: [
       { href: "https://www.facebook.com/profile.php?id=100087855939787", icon: "fab fa-facebook-f" },
       { href: "https://www.instagram.com/codinglife_1?igsh=eXU4ZHZ4MWY5dXR6", icon: "fab fa-instagram" },
@@ -40,6 +41,14 @@
         copied: "Copied!",
         playground: "Playground",
         copiedToast: "Code copied to clipboard!"
+      },
+      cookies: {
+        title: "Cookie Consent & Privacy",
+        desc: "We and third-party advertising partners (such as Google AdSense) use cookies to personalize content and ads, analyze traffic, and ensure a secure experience. You can manage your preferences or accept all cookies.",
+        accept: "Accept All",
+        decline: "Essential Only",
+        privacy: "Privacy Policy",
+        adNotice: "Advertisement"
       }
     },
     ar: {
@@ -69,6 +78,14 @@
         copied: "تم النسخ!",
         playground: "تجربة الكود",
         copiedToast: "تم نسخ الكود إلى الحافظة!"
+      },
+      cookies: {
+        title: "ملفات تعريف الارتباط والخصوصية",
+        desc: "نستخدم نحن وشركاء الإعلانات (مثل Google AdSense) ملفات تعريف الارتباط لتخصيص المحتوى والإعلانات وتحليل حركة المرور. يمكنك قبول الكل أو استخدام الملفات الضرورية فقط وفقاً لسياسة الخصوصية.",
+        accept: "قبول الكل",
+        decline: "الضرورية فقط",
+        privacy: "سياسة الخصوصية",
+        adNotice: "إعلان"
       }
     }
   };
@@ -368,11 +385,12 @@
           <a href="about.html">${tr.about}</a>
           <a href="privacy.html">${tr.privacy}</a>
           <a href="terms.html">${tr.terms}</a>
-          <!-- AdSense placeholder ad unit -->
-          <div class="ad-unit" style="margin-top:24px; text-align:center;">
+          <!-- AdSense compliant ad unit with clear labeling -->
+          <div class="ad-unit-container" style="margin-top:24px;">
+            <span class="ad-notice-badge">${t().cookies ? t().cookies.adNotice : 'Advertisement'}</span>
             <ins class="adsbygoogle"
                  style="display:block"
-                 data-ad-client="pub-0000000000000000"
+                 data-ad-client="${CONFIG.adsensePublisherId}"
                  data-ad-slot="1234567890"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
@@ -722,6 +740,50 @@
     header.appendChild(badge);
   }
 
+  function initCookieConsent() {
+    if (localStorage.getItem('cl-cookie-consent')) return;
+    const tr = t().cookies;
+    if (!tr) return;
+    const banner = document.createElement('div');
+    banner.id = 'clCookieBanner';
+    banner.className = 'cl-cookie-banner';
+    banner.innerHTML = `
+      <div class="cl-cookie-banner-title">
+        <i class="fa-solid fa-cookie-bite" style="color:var(--cl-brand);"></i>
+        <span>${tr.title}</span>
+      </div>
+      <p>${tr.desc} <a href="privacy.html">${tr.privacy}</a></p>
+      <div class="cl-cookie-actions">
+        <button class="cl-cookie-btn cl-cookie-decline" id="clCookieDecline">${tr.decline}</button>
+        <button class="cl-cookie-btn cl-cookie-accept" id="clCookieAccept">${tr.accept}</button>
+      </div>
+    `;
+    document.body.appendChild(banner);
+
+    const acceptBtn = document.getElementById('clCookieAccept');
+    const declineBtn = document.getElementById('clCookieDecline');
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cl-cookie-consent', 'accepted');
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateY(20px)';
+        banner.style.transition = '0.3s ease';
+        setTimeout(() => banner.remove(), 300);
+      });
+    }
+
+    if (declineBtn) {
+      declineBtn.addEventListener('click', () => {
+        localStorage.setItem('cl-cookie-consent', 'essential');
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateY(20px)';
+        banner.style.transition = '0.3s ease';
+        setTimeout(() => banner.remove(), 300);
+      });
+    }
+  }
+
   function boot() {
     applyLang(currentLang);
     document.querySelectorAll("header, footer").forEach(el => {
@@ -738,6 +800,7 @@
     initAnimations();
     bindFooterEvents();
     refreshPageContent();
+    initCookieConsent();
 
     // Register PWA Service Worker
     if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {

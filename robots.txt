@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# Google AdSense Crawler
+User-agent: Mediapartners-Google
+Allow: /
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+
 Sitemap: https://codinglife1.vercel.app/sitemap.xml

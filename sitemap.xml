@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://codinglife1.vercel.app/</loc><priority>1.0</priority></url>
-  <url><loc>https://codinglife1.vercel.app/dorous-albarmaja.html</loc><priority>0.9</priority></url>
-  <url><loc>https://codinglife1.vercel.app/html.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/css.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/javascript.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/python.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/php.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/sql.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/nodejs.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/java.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/csharp.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/flutter.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/git.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/react.html</loc><priority>0.8</priority></url>
-  <url><loc>https://codinglife1.vercel.app/blog.html</loc><priority>0.7</priority></url>
-  <url><loc>https://codinglife1.vercel.app/coding.html</loc><priority>0.7</priority></url>
-  <url><loc>https://codinglife1.vercel.app/contact.html</loc><priority>0.5</priority></url>
-  <url><loc>https://codinglife1.vercel.app/privacy.html</loc><priority>0.4</priority></url>
-  <url><loc>https://codinglife1.vercel.app/terms.html</loc><priority>0.4</priority></url>
-  <url><loc>https://codinglife1.vercel.app/about.html</loc><priority>0.5</priority></url>
+  <!-- Core Pages -->
+  <url><loc>https://codinglife1.vercel.app/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/dorous-albarmaja.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/quiz.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/workshops.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/tools.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/playground.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/blog.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+
+  <!-- Programming Courses -->
+  <url><loc>https://codinglife1.vercel.app/html.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/css.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/javascript.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/react.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/python.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/php.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/nodejs.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/java.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/csharp.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/flutter.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/sql.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/git.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Interactive Utilities -->
+  <url><loc>https://codinglife1.vercel.app/css-converter.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/colors.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/calculator.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Developer Well-Being & Mindset -->
+  <url><loc>https://codinglife1.vercel.app/coding.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/productivity.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/mental_health.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/motivation.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/soft-skills.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Company & Legal -->
+  <url><loc>https://codinglife1.vercel.app/about.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/contact.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/privacy.html</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/terms.html</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
 </urlset>
