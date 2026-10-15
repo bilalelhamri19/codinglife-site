@@ -27,6 +27,7 @@
         contactUs: "Contact Us",
         about: "About",
         privacy: "Privacy Policy",
+        terms: "Terms of Use",
         copy: "Built with passion for learners."
       },
       search: {
@@ -48,6 +49,7 @@
         contactUs: "تواصل معنا",
         about: "من نحن",
         privacy: "سياسة الخصوصية",
+        terms: "شروط الاستخدام",
         copy: "مبني بشغف للمتعلمين."
       },
       search: {
@@ -225,6 +227,7 @@
           <a href="contact.html">${tr.contactUs}</a>
           <a href="about.html">${tr.about}</a>
           <a href="privacy.html">${tr.privacy}</a>
+          <a href="terms.html">${tr.terms}</a>
         </div>
       </div>
       <div style="text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;">
