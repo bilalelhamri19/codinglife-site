@@ -4,47 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coding Life - Elevate Your Future</title>
-  <meta name="description" content="Coding Life - Your premium platform for mastering programming. Start your coding journey today!">
+  <meta name="description" content="Coding Life - Your premium platform for mastering modern programming, developer tools, and developer well-being. Start your coding journey today!">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#020617">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&family=Pacifico&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Pacifico&family=Outfit:wght@300;400;600;700;800;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
-    body { font-family: 'Outfit', 'Cairo', sans-serif !important; overflow-x: hidden; margin: 0; padding: 0; }
+    body { font-family: 'Outfit', 'Cairo', sans-serif !important; overflow-x: hidden; margin: 0; padding: 0; background: #020617; }
+    
+    /* Splash Screen */
     #splash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #020617 !important; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-out, visibility 0.8s; }
-    .splash-logo { width: 150px !important; filter: brightness(0) invert(1); animation: splash-pulse 2s infinite ease-in-out; }
+    .splash-logo { width: 140px !important; filter: brightness(0) invert(1); animation: splash-pulse 2s infinite ease-in-out; }
     .splash-loader { width: 200px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 30px; overflow: hidden; position: relative; }
     .splash-loader::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: #2dd4bf; animation: loading 1.5s infinite ease-in-out; }
     @keyframes splash-pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
     @keyframes loading { 0% { left: -100%; } 100% { left: 100%; } }
-    .hero-premium { min-height: 100vh; position: relative; display: flex; align-items: center; color: white; padding: 120px 24px; overflow: hidden; }
-    .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-    .hero-premium::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 118, 110, 0.8) 100%); z-index: 1; }
-    .hero-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
-    .hero-tag { display: inline-block; padding: 8px 16px; background: rgba(45, 212, 191, 0.1); border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 99px; color: #2dd4bf; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
-    .hero-premium h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); line-height: 1.1; font-weight: 800; margin: 0 0 32px 0; }
-    .hero-premium p { font-size: 1.25rem; color: #94a3b8; max-width: 600px; margin-bottom: 48px; }
+
+    /* Hero Section */
+    .hero-premium { min-height: 100vh; position: relative; display: flex; align-items: center; color: white; padding: 140px 24px 100px; overflow: hidden; }
+    .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; filter: brightness(0.7); }
+    .hero-premium::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(45, 212, 191, 0.15) 0%, transparent 60%), linear-gradient(135deg, rgba(2, 6, 23, 0.94) 0%, rgba(15, 23, 42, 0.88) 100%); z-index: 1; }
+    .hero-content { max-width: 1240px; margin: 0 auto; position: relative; z-index: 2; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 50px; align-items: center; }
+    
+    .hero-tag { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; background: rgba(45, 212, 191, 0.12); border: 1px solid rgba(45, 212, 191, 0.35); border-radius: 99px; color: #2dd4bf; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; backdrop-filter: blur(8px); }
+    .hero-tag i { animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.7; } }
+
+    .hero-premium h1 { font-size: clamp(2.5rem, 6vw, 4.8rem); line-height: 1.12; font-weight: 900; margin: 0 0 24px 0; letter-spacing: -0.02em; }
+    .hero-premium p { font-size: 1.2rem; color: #94a3b8; max-width: 580px; margin-bottom: 40px; line-height: 1.7; }
     .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn-glow { padding: 18px 40px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; text-decoration: none; transition: 0.3s; position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 12px; }
-    .btn-main { background: #2dd4bf; color: #020617; box-shadow: 0 0 30px rgba(45, 212, 191, 0.2); }
-    .btn-main:hover { background: #5eead4; transform: translateY(-4px); }
-    .btn-outline { border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); color: white; }
-    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-4px); }
-    .visual-card { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); animation: float 6s infinite ease-in-out; }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-    @media (max-width: 1024px) { .hero-content { grid-template-columns: 1fr; text-align: center; padding-top: 60px; } .hero-premium p { margin-inline: auto; } .hero-cta { justify-content: center; } .hero-visual { display: none; } }
+    
+    .btn-glow { padding: 16px 36px; border-radius: 14px; font-weight: 800; font-size: 1.05rem; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 10px; cursor: pointer; }
+    .btn-main { background: #2dd4bf; color: #020617; box-shadow: 0 0 30px rgba(45, 212, 191, 0.3); border: 1px solid #2dd4bf; }
+    .btn-main:hover { background: #5eead4; transform: translateY(-3px); box-shadow: 0 10px 40px rgba(45, 212, 191, 0.45); }
+    .btn-outline { border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); color: white; }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: #2dd4bf; color: #2dd4bf; transform: translateY(-3px); }
+
+    /* Interactive Code Card in Hero */
+    .visual-card { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; box-shadow: 0 25px 60px -15px rgba(0,0,0,0.7); overflow: hidden; transition: transform 0.3s ease; }
+    .visual-card:hover { transform: translateY(-4px); }
+    .editor-tabs { display: flex; background: rgba(2, 6, 23, 0.8); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px 16px 0; gap: 8px; align-items: center; }
+    .window-dots { display: flex; gap: 8px; margin-right: 16px; }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+    .tab-btn { background: transparent; border: none; color: #64748b; font-size: 0.85rem; font-weight: 600; padding: 8px 16px; border-radius: 8px 8px 0 0; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+    .tab-btn.active { background: rgba(15, 23, 42, 0.85); color: #2dd4bf; border-top: 2px solid #2dd4bf; }
+    .tab-btn:hover:not(.active) { color: #cbd5e1; }
+    .code-body { padding: 24px; min-height: 220px; font-family: 'Fira Code', monospace; font-size: 0.92rem; line-height: 1.7; color: #cbd5e1; }
+    
+    /* Stats Bar */
+    .stats-bar { background: #020617; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 48px 24px; position: relative; z-index: 5; }
+    .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; text-align: center; }
+    .stat-number { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: #2dd4bf; margin-bottom: 6px; letter-spacing: -1px; }
+    .stat-label { font-size: 0.95rem; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* Key Pillars Section */
+    .pillar-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 40px; transition: all 0.35s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+    .pillar-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #2dd4bf, transparent); opacity: 0; transition: opacity 0.3s; }
+    .pillar-card:hover { transform: translateY(-8px); border-color: rgba(45, 212, 191, 0.4); box-shadow: 0 20px 40px -15px rgba(45, 212, 191, 0.15); }
+    .pillar-card:hover::before { opacity: 1; }
+    .pillar-icon-box { width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 24px; }
+
+    /* Interactive Tech Stack Grid */
+    .tech-card { background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; padding: 24px 16px; text-align: center; text-decoration: none !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .tech-card i { font-size: 2.8rem; transition: transform 0.3s ease; }
+    .tech-card span.tech-name { color: #f8fafc; font-weight: 700; font-size: 1rem; }
+    .tech-card span.tech-badge { font-size: 0.75rem; color: #2dd4bf; background: rgba(45, 212, 191, 0.1); padding: 4px 10px; border-radius: 99px; opacity: 0; transform: translateY(4px); transition: all 0.3s ease; }
+    .tech-card:hover { transform: translateY(-6px); background: rgba(15, 23, 42, 0.9); border-color: rgba(45, 212, 191, 0.5); box-shadow: 0 12px 30px -10px rgba(45, 212, 191, 0.25); }
+    .tech-card:hover i { transform: scale(1.15); }
+    .tech-card:hover span.tech-badge { opacity: 1; transform: translateY(0); }
+
+    /* Accordion FAQ */
+    .faq-item { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; margin-bottom: 14px; overflow: hidden; transition: border-color 0.2s; }
+    .faq-item:hover { border-color: rgba(45, 212, 191, 0.3); }
+    .faq-header { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+    .faq-header h4 { margin: 0; font-size: 1.1rem; color: #f8fafc; font-weight: 700; }
+    .faq-icon { color: #2dd4bf; transition: transform 0.3s; font-size: 0.9rem; }
+    .faq-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease-out, padding 0.35s ease; padding: 0 24px; color: #94a3b8; line-height: 1.8; }
+    .faq-item.active .faq-header { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .faq-item.active .faq-icon { transform: rotate(180deg); }
+    .faq-item.active .faq-body { max-height: 300px; padding: 18px 24px 24px; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; padding-top: 40px; }
+      .hero-premium p { margin-inline: auto; }
+      .hero-cta { justify-content: center; }
+      .visual-card { max-width: 600px; margin: 0 auto; text-align: left; }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Splash Screen -->
   <div id="splash">
     <img src="logo.png" alt="Logo" class="splash-logo">
     <h1 style="color: white; font-family: 'Pacifico'; margin-top: 20px; font-weight: normal;">Coding Life</h1>
     <div class="splash-loader"></div>
   </div>
 
+  <!-- Hero Section -->
   <div class="hero-premium">
     <video autoplay muted loop playsinline class="hero-video">
       <source src="assets/videos/video.mp4" type="video/mp4">
@@ -53,219 +116,407 @@
       <div class="reveal">
         <!-- English Hero -->
         <div data-cl-lang="en">
-          <span class="hero-tag">The Elite Dev Community</span>
-          <h1>Code Your Way to <span style="color: #2dd4bf;">Success</span></h1>
-          <p>Your personal guide to mastering modern programming. Learn at your own pace with practical examples and real-world projects.</p>
+          <span class="hero-tag"><i class="fa-solid fa-bolt"></i> Elite Developer Ecosystem</span>
+          <h1>Code Your Future With <span style="color: #2dd4bf;">Excellence</span></h1>
+          <p>Your premier roadmap for modern full-stack engineering, interactive tooling, and developer wellness. Master practical skills at your own pace.</p>
           <div class="hero-cta">
-            <a href="dorous-albarmaja.html" class="btn-glow btn-main">Start Learning <i class="fa-solid fa-rocket"></i></a>
-            <a href="quiz.html" class="btn-glow btn-outline"><i class="fa-solid fa-circle-question"></i> Skills Quiz</a>
-            <a href="workshops.html" class="btn-glow btn-outline">Our Workshops <i class="fa-solid fa-laptop-code"></i></a>
+            <a href="dorous-albarmaja.html" class="btn-glow btn-main">Explore Courses <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="quiz.html" class="btn-glow btn-outline"><i class="fa-solid fa-brain"></i> Skills Quiz</a>
+            <a href="playground.html" class="btn-glow btn-outline"><i class="fa-solid fa-code"></i> Live Playground</a>
           </div>
         </div>
         <!-- Arabic Hero -->
         <div data-cl-lang="ar">
-          <span class="hero-tag">مجتمع المطورين النخبة</span>
-          <h1>برمج طريقك نحو <span style="color: #2dd4bf;">النجاح</span></h1>
-          <p>دليلك الشخصي لإتقان البرمجة الحديثة. تعلم بوتيرتك الخاصة مع أمثلة عملية ومشاريع واقعية.</p>
+          <span class="hero-tag"><i class="fa-solid fa-bolt"></i> منظومة المطورين المتكاملة</span>
+          <h1>برمج مستقبلك نحو <span style="color: #2dd4bf;">الاحتراف</span></h1>
+          <p>منصتك الشاملة لتعلم البرمجة الحديثة، الأدوات التفاعلية، ونمط حياة المطور الناجح. انتقل من الصفر إلى مرحلة بناء المشاريع الحقيقية.</p>
           <div class="hero-cta">
-            <a href="dorous-albarmaja.html" class="btn-glow btn-main">ابدأ التعلم الآن <i class="fa-solid fa-rocket"></i></a>
-            <a href="quiz.html" class="btn-glow btn-outline"><i class="fa-solid fa-circle-question"></i> اختبر مستواك</a>
-            <a href="workshops.html" class="btn-glow btn-outline">ورشات العمل <i class="fa-solid fa-laptop-code"></i></a>
+            <a href="dorous-albarmaja.html" class="btn-glow btn-main">استكشف المسارات <i class="fa-solid fa-arrow-left"></i></a>
+            <a href="quiz.html" class="btn-glow btn-outline"><i class="fa-solid fa-brain"></i> اختبر مستواك</a>
+            <a href="playground.html" class="btn-glow btn-outline"><i class="fa-solid fa-code"></i> جرب المحرر الحي</a>
           </div>
         </div>
       </div>
+
+      <!-- Interactive Code Preview -->
       <div class="hero-visual reveal">
         <div class="visual-card">
-          <div style="display: flex; gap: 8px; margin-bottom: 24px;">
-            <div style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444;"></div>
-            <div style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b;"></div>
-            <div style="width: 10px; height: 10px; border-radius: 50%; background: #10b981;"></div>
+          <div class="editor-tabs">
+            <div class="window-dots">
+              <div class="dot dot-red"></div>
+              <div class="dot dot-yellow"></div>
+              <div class="dot dot-green"></div>
+            </div>
+            <button class="tab-btn active" onclick="switchSnippet('js', this)"><i class="fa-brands fa-js" style="color:#f7df1e;"></i> app.js</button>
+            <button class="tab-btn" onclick="switchSnippet('py', this)"><i class="fa-brands fa-python" style="color:#38bdf8;"></i> main.py</button>
+            <button class="tab-btn" onclick="switchSnippet('html', this)"><i class="fa-brands fa-html5" style="color:#f97316;"></i> index.html</button>
           </div>
-          <code style="color: #2dd4bf; font-family: 'Fira Code'; font-size: 0.95rem; line-height: 1.6;">
+          <div class="code-body" id="codeEditorBody">
             <span style="color: #c084fc;">const</span> platform = {<br>
             &nbsp;&nbsp;name: <span style="color: #f59e0b;">'Coding Life'</span>,<br>
-            &nbsp;&nbsp;mission: <span style="color: #f59e0b;">'Excellence'</span>,<br>
+            &nbsp;&nbsp;mission: <span style="color: #f59e0b;">'Empower Next-Gen Developers'</span>,<br>
+            &nbsp;&nbsp;interactiveTools: [<span style="color: #f59e0b;">'Playground'</span>, <span style="color: #f59e0b;">'Quiz'</span>],<br>
             &nbsp;&nbsp;verified: <span style="color: #61dafb;">true</span><br>
             };<br><br>
             <span style="color: #c084fc;">export default</span> platform;
-          </code>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Stats Section -->
-  <section style="padding: 120px 24px; background: #020617; color: white;">
-    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-      <div data-cl-lang="en">
-        <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem;">Our Methodology</span>
-        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin: 20px 0;">Built for the <span style="color:#2dd4bf;">Next Generation</span></h2>
-      </div>
-      <div data-cl-lang="ar">
-        <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem;">منهجيتنا التعليمية</span>
-        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin: 20px 0;">مصممة لجيل <span style="color:#2dd4bf;">المستقبل</span></h2>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 60px;">
-        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 24px; text-align: center; transition: 0.3s;">
-          <div data-cl-lang="en">
-            <h3 style="color: #2dd4bf; margin-bottom: 16px;"><i class="fas fa-bolt"></i> Fast-Track Engineering</h3>
-            <p style="color: #94a3b8; line-height: 1.8;">Skip the theory and focus on practical implementation of production-grade systems.</p>
-          </div>
-          <div data-cl-lang="ar">
-            <h3 style="color: #2dd4bf; margin-bottom: 16px;"><i class="fas fa-bolt"></i> هندسة سريعة المسار</h3>
-            <p style="color: #94a3b8; line-height: 1.8;">تجاوز النظريات المملة وركز على التطبيق العملي للأنظمة البرمجية الحقيقية.</p>
-          </div>
+  <!-- Real Metrics Bar -->
+  <section class="stats-bar">
+    <div class="stats-grid">
+      <div class="reveal">
+        <div class="stat-number">12+</div>
+        <div class="stat-label">
+          <span data-cl-lang="en">Specialized Tracks</span>
+          <span data-cl-lang="ar">مسار برمجي متخصص</span>
         </div>
-
-        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 24px; text-align: center; transition: 0.3s;">
-          <div data-cl-lang="en">
-            <h3 style="color: #a855f7; margin-bottom: 16px;"><i class="fas fa-shield-halved"></i> Enterprise Standards</h3>
-            <p style="color: #94a3b8; line-height: 1.8;">Learn the security patterns and testing strategies used by elite engineering teams.</p>
-          </div>
-          <div data-cl-lang="ar">
-            <h3 style="color: #a855f7; margin-bottom: 16px;"><i class="fas fa-shield-halved"></i> معايير الشركات الكبرى</h3>
-            <p style="color: #94a3b8; line-height: 1.8;">تعلم أنماط الحماية واختبار البرمجيات المستخدمة في أكبر شركات التكنولوجيا.</p>
-          </div>
+      </div>
+      <div class="reveal">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">
+          <span data-cl-lang="en">Hands-on Lessons</span>
+          <span data-cl-lang="ar">درس عملي تطبيقي</span>
         </div>
-
-        <div class="reveal" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 24px; text-align: center; transition: 0.3s;">
-          <div data-cl-lang="en">
-            <h3 style="color: #3b82f6; margin-bottom: 16px;"><i class="fas fa-users-rays"></i> Open Collaboration</h3>
-            <p style="color: #94a3b8; line-height: 1.8;">Join a global community to collaborate on real-world projects and grow together.</p>
-          </div>
-          <div data-cl-lang="ar">
-            <h3 style="color: #3b82f6; margin-bottom: 16px;"><i class="fas fa-users-rays"></i> تعاون مفتوح</h3>
-            <p style="color: #94a3b8; line-height: 1.8;">انضم إلى مجتمع عالمي للتعاون في مشاريع حقيقية وتطوير شبكة علاقاتك.</p>
-          </div>
+      </div>
+      <div class="reveal">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">
+          <span data-cl-lang="en">Interactive Quizzes</span>
+          <span data-cl-lang="ar">اختبار تفاعلي مع الشرح</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">
+          <span data-cl-lang="en">Free & Open Access</span>
+          <span data-cl-lang="ar">مجاني ومتاح للجميع</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stack Mastery Section -->
-  <section style="padding: 100px 24px; background: #020617; position: relative; overflow: hidden;">
-    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-      <div data-cl-lang="en">
-        <h2 style="font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 60px;">Technologies You'll <span style="color: #2dd4bf;">Master</span></h2>
-      </div>
-      <div data-cl-lang="ar">
-        <h2 style="font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 60px;">تكنولوجيات <span style="color: #2dd4bf;">ستحترفها</span></h2>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 24px; justify-items: center;">
-        
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s; cursor: default;">
-          <i class="fab fa-html5" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">HTML5</p>
-        </div>
-
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s;">
-          <i class="fab fa-css3-alt" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">CSS3</p>
-        </div>
-
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s;">
-          <i class="fab fa-js" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">JavaScript</p>
-        </div>
-
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s;">
-          <i class="fab fa-php" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">PHP</p>
-        </div>
-
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s;">
-          <i class="fab fa-python" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">Python</p>
-        </div>
-
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s;">
-          <i class="fab fa-java" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">Java</p>
-        </div>
-
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s;">
-          <i class="fas fa-database" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">SQL</p>
-        </div>
-
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s;">
-          <i class="fab fa-git-alt" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">Git</p>
-        </div>
-
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s;">
-          <i class="fab fa-react" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">React</p>
-        </div>
-
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s;">
-          <i class="fab fa-node-js" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">Node.js</p>
-        </div>
-
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s;">
-          <i class="fas fa-mobile-alt" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">Flutter</p>
-        </div>
-
-        <div class="reveal" style="width: 100%; padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s;">
-          <i class="fas fa-hashtag" style="font-size: 3rem; color: var(--cl-brand); margin-bottom: 15px;"></i>
-          <p style="color: white; font-weight: 700; margin: 0;">C#</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section style="padding: 100px 24px; background: #0f172a;">
-    <div style="max-width: 900px; margin: 0 auto;">
-      <div style="text-align: center; margin-bottom: 60px;">
+  <!-- Key Pillars / Features Showcase -->
+  <section style="padding: 110px 24px; background: #020617; color: white;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 70px;">
         <div data-cl-lang="en">
-          <h2 style="font-size: 2.5rem; font-weight: 800; color: white;">Frequently Asked Questions</h2>
+          <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem;">Why Coding Life</span>
+          <h2 style="font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; margin: 16px 0;">Built for Real <span style="color:#2dd4bf;">Developer Growth</span></h2>
+          <p style="color: #94a3b8; max-width: 650px; margin: 0 auto; font-size: 1.15rem;">We combine engineering excellence with hands-on tools and mental longevity.</p>
         </div>
         <div data-cl-lang="ar">
-          <h2 style="font-size: 2.5rem; font-weight: 800; color: white;">الأسئلة الشائعة</h2>
+          <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem;">لماذا Coding Life</span>
+          <h2 style="font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; margin: 16px 0;">مصممة للنمو <span style="color:#2dd4bf;">البرمجي الحقيقي</span></h2>
+          <p style="color: #94a3b8; max-width: 650px; margin: 0 auto; font-size: 1.15rem;">نجمع بين قوة التعليم التقني، الأدوات الحية، والاهتمام بالصحة الذهنية للمبرمج.</p>
         </div>
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 16px;">
-        <div class="reveal" style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
-          <div data-cl-lang="en">
-            <h4 style="color: white; margin-bottom: 12px;">Do I need a degree to start?</h4>
-            <p style="color: #94a3b8;">No. The tech industry values skills and projects above all else.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px;">
+        
+        <!-- Pillar 1: Code Playground -->
+        <div class="pillar-card reveal">
+          <div>
+            <div class="pillar-icon-box" style="background: rgba(45, 212, 191, 0.12); color: #2dd4bf;">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <div data-cl-lang="en">
+              <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 14px; color: #f8fafc;">Live Code Playground</h3>
+              <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 24px;">Test and execute HTML, CSS, and modern JavaScript in real-time right inside your browser without installing heavy software.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 14px; color: #f8fafc;">محرر الأكواد التفاعلي</h3>
+              <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 24px;">جرب أكواد HTML و CSS و JavaScript مباشرة فالمتصفح مع معاينة حية فورية بدون الحاجة لتثبيت برامج ثقيلة.</p>
+            </div>
           </div>
-          <div data-cl-lang="ar">
-            <h4 style="color: white; margin-bottom: 12px;">هل أحتاج لشهادة جامعية للبدء؟</h4>
-            <p style="color: #94a3b8;">لا. صناعة التكنولوجيا تهتم بالمهارات والمشاريع أكثر من أي شيء آخر.</p>
+          <a href="playground.html" class="btn-glow btn-outline" style="align-self: flex-start; padding: 12px 24px; font-size: 0.95rem;">
+            <span data-cl-lang="en">Launch Playground <i class="fa-solid fa-arrow-right"></i></span>
+            <span data-cl-lang="ar">افتح المحرر الآن <i class="fa-solid fa-arrow-left"></i></span>
+          </a>
+        </div>
+
+        <!-- Pillar 2: Interactive Quiz -->
+        <div class="pillar-card reveal">
+          <div>
+            <div class="pillar-icon-box" style="background: rgba(168, 85, 247, 0.12); color: #c084fc;">
+              <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <div data-cl-lang="en">
+              <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 14px; color: #f8fafc;">Assessment Quizzes</h3>
+              <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 24px;">Test your knowledge in HTML, CSS, JavaScript, Python, and Git. Receive instant score analytics and in-depth explanations.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 14px; color: #f8fafc;">بنك الاختبارات التفاعلية</h3>
+              <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 24px;">اختبر مستواك فـ لغات البرمجة مع تقييم ذكي فوري وشرح مفصل لكل جواب باش تفهم الأخطاء ديالك بدقة.</p>
+            </div>
+          </div>
+          <a href="quiz.html" class="btn-glow btn-outline" style="align-self: flex-start; padding: 12px 24px; font-size: 0.95rem; border-color: rgba(168, 85, 247, 0.4); color: #c084fc;">
+            <span data-cl-lang="en">Take a Quiz <i class="fa-solid fa-arrow-right"></i></span>
+            <span data-cl-lang="ar">ابدأ الاختبار دابا <i class="fa-solid fa-arrow-left"></i></span>
+          </a>
+        </div>
+
+        <!-- Pillar 3: Developer Well-being -->
+        <div class="pillar-card reveal">
+          <div>
+            <div class="pillar-icon-box" style="background: rgba(59, 130, 246, 0.12); color: #60a5fa;">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <div data-cl-lang="en">
+              <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 14px; color: #f8fafc;">Developer Wellness</h3>
+              <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 24px;">Master the psychological side of coding: burnout prevention, deep work routines, focus methods, and career soft skills.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 14px; color: #f8fafc;">صحة المطور وإنتاجيته</h3>
+              <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 24px;">دليلك للحماية من الاحتراق الوظيفي، تنظيم وقت العمل العميق، وإتقان المهارات الشخصية (Soft Skills) المطلوبة فسوق العمل.</p>
+            </div>
+          </div>
+          <a href="mental_health.html" class="btn-glow btn-outline" style="align-self: flex-start; padding: 12px 24px; font-size: 0.95rem; border-color: rgba(59, 130, 246, 0.4); color: #60a5fa;">
+            <span data-cl-lang="en">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+            <span data-cl-lang="ar">اكتشف الدليل <i class="fa-solid fa-arrow-left"></i></span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Technology Stack (Clickable) -->
+  <section style="padding: 100px 24px; background: #0f172a; position: relative;">
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+      <div data-cl-lang="en">
+        <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem;">Comprehensive Curriculum</span>
+        <h2 style="font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; color: white; margin: 16px 0 50px;">Technologies You'll <span style="color: #2dd4bf;">Master</span></h2>
+      </div>
+      <div data-cl-lang="ar">
+        <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem;">مناهج تعليمية متكاملة</span>
+        <h2 style="font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; color: white; margin: 16px 0 50px;">تقنيات ستصل فيها إلى <span style="color: #2dd4bf;">الاحتراف</span></h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px;">
+        
+        <a href="html.html" class="tech-card reveal">
+          <i class="fab fa-html5" style="color: #f97316;"></i>
+          <span class="tech-name">HTML5</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <a href="css.html" class="tech-card reveal">
+          <i class="fab fa-css3-alt" style="color: #38bdf8;"></i>
+          <span class="tech-name">CSS3</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <a href="javascript.html" class="tech-card reveal">
+          <i class="fab fa-js" style="color: #facc15;"></i>
+          <span class="tech-name">JavaScript</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <a href="react.html" class="tech-card reveal">
+          <i class="fab fa-react" style="color: #22d3ee;"></i>
+          <span class="tech-name">React</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <a href="python.html" class="tech-card reveal">
+          <i class="fab fa-python" style="color: #38bdf8;"></i>
+          <span class="tech-name">Python</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <a href="nodejs.html" class="tech-card reveal">
+          <i class="fab fa-node-js" style="color: #22c55e;"></i>
+          <span class="tech-name">Node.js</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <a href="php.html" class="tech-card reveal">
+          <i class="fab fa-php" style="color: #a855f7;"></i>
+          <span class="tech-name">PHP</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <a href="java.html" class="tech-card reveal">
+          <i class="fab fa-java" style="color: #f43f5e;"></i>
+          <span class="tech-name">Java</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <a href="csharp.html" class="tech-card reveal">
+          <i class="fas fa-hashtag" style="color: #a855f7;"></i>
+          <span class="tech-name">C#</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <a href="sql.html" class="tech-card reveal">
+          <i class="fas fa-database" style="color: #38bdf8;"></i>
+          <span class="tech-name">SQL</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <a href="git.html" class="tech-card reveal">
+          <i class="fab fa-git-alt" style="color: #f97316;"></i>
+          <span class="tech-name">Git</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+        <a href="flutter.html" class="tech-card reveal">
+          <i class="fas fa-mobile-screen" style="color: #38bdf8;"></i>
+          <span class="tech-name">Flutter</span>
+          <span class="tech-badge">Start Track <i class="fa-solid fa-chevron-right"></i></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Accordion FAQ -->
+  <section style="padding: 110px 24px; background: #020617;">
+    <div style="max-width: 880px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 50px;">
+        <div data-cl-lang="en">
+          <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem;">Clear Answers</span>
+          <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: white; margin: 14px 0;">Frequently Asked <span style="color: #2dd4bf;">Questions</span></h2>
+        </div>
+        <div data-cl-lang="ar">
+          <span style="color: #2dd4bf; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem;">إجابات واضحة</span>
+          <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: white; margin: 14px 0;">الأسئلة الأكثر <span style="color: #2dd4bf;">تكراراً</span></h2>
+        </div>
+      </div>
+
+      <div class="faq-list">
+        
+        <div class="faq-item active reveal">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <div data-cl-lang="en"><h4>Do I need a computer science degree to get hired?</h4></div>
+            <div data-cl-lang="ar"><h4>واش خاصني ديبلوم جامعي باش نخدم كمبرمج؟</h4></div>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            <div data-cl-lang="en">No. The modern software industry primarily assesses your portfolio, problem-solving skills, and real-world projects. Our tracks are specifically designed to give you portfolio-grade code from day one.</div>
+            <div data-cl-lang="ar">لا نهائياً. سوق الشغل البرمجي فالعالم كامل كيعتمد بنسبة 90% على المشاريع الواقعية (Portfolio) وقدرتك على حل المشاكل البرمجية. مساراتنا مصممة باش تعطيك مشاريع تزيدها فـ CV ديالك.</div>
           </div>
         </div>
-        <div class="reveal" style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
-          <div data-cl-lang="en">
-            <h4 style="color: white; margin-bottom: 12px;">How long does it take?</h4>
-            <p style="color: #94a3b8;">Most learners reach job-ready status in 6 to 9 months of consistent effort.</p>
+
+        <div class="faq-item reveal">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <div data-cl-lang="en"><h4>How long does it take to reach junior developer level?</h4></div>
+            <div data-cl-lang="ar"><h4>شحال كياخد الوقت باش نوصل لمستوى مطور جونيور؟</h4></div>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
           </div>
-          <div data-cl-lang="ar">
-            <h4 style="color: white; margin-bottom: 12px;">كم من الوقت يستغرق الأمر؟</h4>
-            <p style="color: #94a3b8;">معظم المتعلمين يصلون لمستوى العمل في غضون 6 إلى 9 أشهر من الجهد المستمر.</p>
+          <div class="faq-body">
+            <div data-cl-lang="en">With consistent practice of 2 to 3 hours daily, most students master foundations and complete 3-4 real projects within 6 to 9 months.</div>
+            <div data-cl-lang="ar">إلى كنتي كتركز من 2 إلى 3 سوايع يومياً فالتطبيق العملي، أغلب المتعلمين كيوصلو لمستوى احترافي وكيبنيو 3 لـ 4 مشاريع كاملة فظرف 6 حتى لـ 9 أشهر.</div>
           </div>
         </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <div data-cl-lang="en"><h4>Are all the interactive tools and quizzes really free?</h4></div>
+            <div data-cl-lang="ar"><h4>واش جميع الأدوات والاختبارات بالمجان بصح؟</h4></div>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            <div data-cl-lang="en">Yes, 100%! All course materials, code playgrounds, and assessment quizzes on Coding Life are completely open and free with no hidden paywalls.</div>
+            <div data-cl-lang="ar">نعم 100%! جميع الدروس، محرر الأكواد، وبنك الاختبارات على منصة Coding Life مفتوحة ومجانية بالكامل للجميع بدون أي اشتراكات مدفوعة.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <div data-cl-lang="en"><h4>Which language should I start with as a beginner?</h4></div>
+            <div data-cl-lang="ar"><h4>باشمن لغة تنصحني نبدأ إلى كنت مبتدئ تماماً؟</h4></div>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            <div data-cl-lang="en">If you want to build websites and web apps, start with HTML, CSS, then JavaScript. If you are interested in data science or automation, Python is an incredible first language.</div>
+            <div data-cl-lang="ar">إلى كان هدفك هو مواقع وتطبيقات الويب، بدا فوراً بـ HTML ثم CSS ثم JavaScript. وإلى كنتي باغي تدخل لمجال الذكاء الاصطناعي والأتمتة، فـ Python هي أحسن بداية.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section style="padding: 90px 24px; background: linear-gradient(135deg, rgba(15, 118, 110, 0.4), rgba(2, 6, 23, 0.95)); border-top: 1px solid rgba(45, 212, 191, 0.2); text-align: center;">
+    <div style="max-width: 800px; margin: 0 auto;" class="reveal">
+      <div data-cl-lang="en">
+        <h2 style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; color: white; margin-bottom: 20px;">Ready to Elevate Your Future?</h2>
+        <p style="font-size: 1.2rem; color: #94a3b8; margin-bottom: 36px;">Join hundreds of ambitious learners mastering software engineering with Coding Life today.</p>
+        <a href="dorous-albarmaja.html" class="btn-glow btn-main" style="font-size: 1.15rem; padding: 18px 48px;">Get Started Free <i class="fa-solid fa-rocket"></i></a>
+      </div>
+      <div data-cl-lang="ar">
+        <h2 style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; color: white; margin-bottom: 20px;">مستعد تبدا رحلتك البرمجية؟</h2>
+        <p style="font-size: 1.2rem; color: #94a3b8; margin-bottom: 36px;">انضم لمئات المتعلمين الطموحين لي كيطورو مهاراتهم يومياً فـ Coding Life مجاناً.</p>
+        <a href="dorous-albarmaja.html" class="btn-glow btn-main" style="font-size: 1.15rem; padding: 18px 48px;">ابدأ التعلم الآن مجاناً <i class="fa-solid fa-rocket"></i></a>
       </div>
     </div>
   </section>
 
   <script src="site-polish.js"></script>
   <script>
+    // Splash screen handler
     (function() {
       const splash = document.getElementById('splash');
       if (!splash) return;
       if (localStorage.getItem('splashShown')) { splash.style.display = 'none'; return; }
-      function hideSplash() { splash.style.opacity = '0'; setTimeout(() => { splash.style.display = 'none'; localStorage.setItem('splashShown', 'true'); }, 800); }
-      window.addEventListener('load', () => setTimeout(hideSplash, 1500));
-      setTimeout(hideSplash, 4000);
+      function hideSplash() { 
+        splash.style.opacity = '0'; 
+        setTimeout(() => { 
+          splash.style.display = 'none'; 
+          localStorage.setItem('splashShown', 'true'); 
+        }, 800); 
+      }
+      window.addEventListener('load', () => setTimeout(hideSplash, 1200));
+      setTimeout(hideSplash, 3500);
     })();
+
+    // Interactive Code Tabs
+    const snippets = {
+      js: `<span style="color: #c084fc;">const</span> platform = {<br>
+  &nbsp;&nbsp;name: <span style="color: #f59e0b;">'Coding Life'</span>,<br>
+  &nbsp;&nbsp;mission: <span style="color: #f59e0b;">'Empower Next-Gen Developers'</span>,<br>
+  &nbsp;&nbsp;interactiveTools: [<span style="color: #f59e0b;">'Playground'</span>, <span style="color: #f59e0b;">'Quiz'</span>],<br>
+  &nbsp;&nbsp;verified: <span style="color: #61dafb;">true</span><br>
+};<br><br>
+<span style="color: #c084fc;">export default</span> platform;`,
+      py: `<span style="color: #c084fc;">class</span> <span style="color: #61dafb;">Developer</span>:<br>
+  &nbsp;&nbsp;<span style="color: #c084fc;">def</span> <span style="color: #2dd4bf;">__init__</span>(self, name):<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;self.name = name<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;self.skills = [<span style="color: #f59e0b;">'Python'</span>, <span style="color: #f59e0b;">'FullStack'</span>]<br><br>
+dev = <span style="color: #61dafb;">Developer</span>(<span style="color: #f59e0b;">'You'</span>)<br>
+print(<span style="color: #f59e0b;">f'Welcome {dev.name} to Coding Life!'</span>)`,
+      html: `&lt;<span style="color: #f43f5e;">div</span> <span style="color: #c084fc;">class</span>=<span style="color: #f59e0b;">"app"</span>&gt;<br>
+  &nbsp;&nbsp;&lt;<span style="color: #f43f5e;">h1</span>&gt;Code. Build. Elevate.&lt;/<span style="color: #f43f5e;">h1</span>&gt;<br>
+  &nbsp;&nbsp;&lt;<span style="color: #f43f5e;">p</span>&gt;Master your developer journey.&lt;/<span style="color: #f43f5e;">p</span>&gt;<br>
+&lt;/<span style="color: #f43f5e;">div</span>&gt;`
+    };
+
+    function switchSnippet(lang, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const editor = document.getElementById('codeEditorBody');
+      editor.style.opacity = '0';
+      setTimeout(() => {
+        editor.innerHTML = snippets[lang];
+        editor.style.opacity = '1';
+      }, 150);
+    }
+
+    // FAQ Accordion
+    function toggleFaq(header) {
+      const item = header.parentElement;
+      const wasActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!wasActive) {
+        item.classList.add('active');
+      }
+    }
   </script>
 </body>
 </html>
