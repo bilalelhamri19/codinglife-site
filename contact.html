@@ -1,7 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<title>Coding Life - Elevate Your Future</title>
+<meta name="description" content="Coding Life - Your premium platform for mastering modern programming, developer tools, and developer wellâ€‘being. Start your coding journey today!" />
+<meta property="og:title" content="Coding Life" />
+<meta property="og:description" content="Your premium platform for mastering modern programming, developer tools, and developer wellâ€‘being." />
+<meta property="og:image" content="https://codinglife1.vercel.app/logo.png" />
+<meta property="og:url" content="https://codinglife1.vercel.app" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
@@ -27,8 +34,8 @@
       <p>Have questions or ideas? We'd love to hear from you. Send us a message and we'll get back to you within 24 hours.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fa-solid fa-paper-plane"></i> تواصل معنا</h1>
-      <p>لديك أسئلة أو أفكار؟ يسعدنا سماع ذلك منك. أرسل لنا رسالة وسنرد عليك في غضون 24 ساعة.</p>
+      <h1><i class="fa-solid fa-paper-plane"></i> طھظˆط§طµظ„ ظ…ط¹ظ†ط§</h1>
+      <p>ظ„ط¯ظٹظƒ ط£ط³ط¦ظ„ط© ط£ظˆ ط£ظپظƒط§ط±طں ظٹط³ط¹ط¯ظ†ط§ ط³ظ…ط§ط¹ ط°ظ„ظƒ ظ…ظ†ظƒ. ط£ط±ط³ظ„ ظ„ظ†ط§ ط±ط³ط§ظ„ط© ظˆط³ظ†ط±ط¯ ط¹ظ„ظٹظƒ ظپظٹ ط؛ط¶ظˆظ† 24 ط³ط§ط¹ط©.</p>
     </div>
   </div>
 
@@ -39,28 +46,28 @@
       <input type="hidden" name="_captcha" value="false">
       <div class="form-group">
         <div data-cl-lang="en"><label for="name">Full Name</label></div>
-        <div data-cl-lang="ar"><label for="name">الاسم الكامل</label></div>
+        <div data-cl-lang="ar"><label for="name">ط§ظ„ط§ط³ظ… ط§ظ„ظƒط§ظ…ظ„</label></div>
         <input type="text" id="name" name="name" placeholder="..." required>
       </div>
       <div class="form-group">
         <div data-cl-lang="en"><label for="email">Email Address</label></div>
-        <div data-cl-lang="ar"><label for="email">البريد الإلكتروني</label></div>
+        <div data-cl-lang="ar"><label for="email">ط§ظ„ط¨ط±ظٹط¯ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ</label></div>
         <input type="email" id="email" name="email" placeholder="..." required>
       </div>
       <div class="form-group">
         <div data-cl-lang="en"><label for="subject">Subject</label></div>
-        <div data-cl-lang="ar"><label for="subject">الموضوع</label></div>
+        <div data-cl-lang="ar"><label for="subject">ط§ظ„ظ…ظˆط¶ظˆط¹</label></div>
         <input type="text" id="subject" name="subject" placeholder="..." required>
       </div>
       <div class="form-group">
         <div data-cl-lang="en"><label for="message">Your Message</label></div>
-        <div data-cl-lang="ar"><label for="message">رسالتك</label></div>
+        <div data-cl-lang="ar"><label for="message">ط±ط³ط§ظ„طھظƒ</label></div>
         <textarea id="message" name="message" rows="6" placeholder="..." required></textarea>
       </div>
       
       <button type="submit" class="btn-submit">
         <span data-cl-lang="en">Send Message <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></span>
-        <span data-cl-lang="ar">إرسال الرسالة <i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i></span>
+        <span data-cl-lang="ar">ط¥ط±ط³ط§ظ„ ط§ظ„ط±ط³ط§ظ„ط© <i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i></span>
       </button>
     </form>
     <div id="contact-status" style="margin-top: 20px; text-align: center; display: none; font-weight: 700;"></div>
@@ -80,8 +87,8 @@
       status.style.color = "var(--cl-brand)";
       const lang = localStorage.getItem('cl-lang') || 'en';
       const msgs = {
-        en: { sending: "Sending...", success: "Message Sent Successfully! ✅", error: "Oops! Error sending message." },
-        ar: { sending: "جاري الإرسال...", success: "تم إرسال الرسالة بنجاح! ✅", error: "عذراً! حدث خطأ في الإرسال." }
+        en: { sending: "Sending...", success: "Message Sent Successfully! âœ…", error: "Oops! Error sending message." },
+        ar: { sending: "ط¬ط§ط±ظٹ ط§ظ„ط¥ط±ط³ط§ظ„...", success: "طھظ… ط¥ط±ط³ط§ظ„ ط§ظ„ط±ط³ط§ظ„ط© ط¨ظ†ط¬ط§ط­! âœ…", error: "ط¹ط°ط±ط§ظ‹! ط­ط¯ط« ط®ط·ط£ ظپظٹ ط§ظ„ط¥ط±ط³ط§ظ„." }
       };
       const currentMsgs = msgs[lang] || msgs.en;
 
@@ -109,3 +116,4 @@
 </script>
 </body>
 </html>
+

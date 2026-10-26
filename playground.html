@@ -1,7 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<title>Coding Life - Elevate Your Future</title>
+<meta name="description" content="Coding Life - Your premium platform for mastering modern programming, developer tools, and developer wellâ€‘being. Start your coding journey today!" />
+<meta property="og:title" content="Coding Life" />
+<meta property="og:description" content="Your premium platform for mastering modern programming, developer tools, and developer wellâ€‘being." />
+<meta property="og:image" content="https://codinglife1.vercel.app/logo.png" />
+<meta property="og:url" content="https://codinglife1.vercel.app" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live Code Playground - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
@@ -302,11 +309,11 @@
     <div class="pg-title-group">
       <span class="pg-badge"><i class="fa-solid fa-code"></i> Live Playground</span>
       <select class="pg-select" id="templateSelect" title="Load Starter Template">
-        <option value="">⚡ Load Template...</option>
-        <option value="neon">🚀 Neon Glow Button</option>
-        <option value="card">✨ Glassmorphism Card</option>
-        <option value="counter">🔢 Interactive Counter</option>
-        <option value="theme">🌗 Dark Mode Widget</option>
+        <option value="">âڑ، Load Template...</option>
+        <option value="neon">ًںڑ€ Neon Glow Button</option>
+        <option value="card">âœ¨ Glassmorphism Card</option>
+        <option value="counter">ًں”¢ Interactive Counter</option>
+        <option value="theme">ًںŒ— Dark Mode Widget</option>
       </select>
     </div>
 
@@ -347,7 +354,7 @@
           <span style="font-size:0.75rem; color:#64748b;">Body structure</span>
         </div>
         <textarea id="htmlCode" spellcheck="false" placeholder="<!-- Write HTML here -->"><div class="welcome-box">
-  <div class="badge">🚀 Interactive Sandbox</div>
+  <div class="badge">ًںڑ€ Interactive Sandbox</div>
   <h1>Coding Life Playground</h1>
   <p>Write HTML, CSS, and JavaScript with live instant preview!</p>
   <button id="actionBtn" class="glow-button">Click Me</button>
@@ -544,7 +551,15 @@ console.log("Playground initialized successfully!");</textarea>
     `;
 
     const js = `<script>${jsInput.value}<\/script>`;
-    iframe.srcdoc = `<!DOCTYPE html><html><head><meta charset="UTF-8">${css}${consoleHook}</head><body>${html}${js}</body></html>`;
+    iframe.srcdoc = `<!DOCTYPE html><html><head>
+<title>Coding Life - Elevate Your Future</title>
+<meta name="description" content="Coding Life - Your premium platform for mastering modern programming, developer tools, and developer wellâ€‘being. Start your coding journey today!" />
+<meta property="og:title" content="Coding Life" />
+<meta property="og:description" content="Your premium platform for mastering modern programming, developer tools, and developer wellâ€‘being." />
+<meta property="og:image" content="https://codinglife1.vercel.app/logo.png" />
+<meta property="og:url" content="https://codinglife1.vercel.app" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta charset="UTF-8">${css}${consoleHook}</head><body>${html}${js}</body></html>`;
   }
 
   // Debounced live typing
@@ -621,7 +636,7 @@ console.log("Playground initialized successfully!");</textarea>
     },
     card: {
       html: `<div class="glass-card">
-  <div class="avatar">👨‍💻</div>
+  <div class="avatar">ًں‘¨â€چًں’»</div>
   <h2>Coding Life Pro</h2>
   <p>Learn, Build, and Master Full-Stack Programming with real-world projects.</p>
   <div class="tags">
@@ -790,7 +805,15 @@ document.getElementById('themeToggleBtn').onclick = () => {
 
   // Copy All
   document.getElementById("copyBundleBtn").addEventListener("click", () => {
-    const fullHtml = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${cssInput.value}</style></head><body>${htmlInput.value}<script>${jsInput.value}<\/script></body></html>`;
+    const fullHtml = `<!DOCTYPE html><html><head>
+<title>Coding Life - Elevate Your Future</title>
+<meta name="description" content="Coding Life - Your premium platform for mastering modern programming, developer tools, and developer wellâ€‘being. Start your coding journey today!" />
+<meta property="og:title" content="Coding Life" />
+<meta property="og:description" content="Your premium platform for mastering modern programming, developer tools, and developer wellâ€‘being." />
+<meta property="og:image" content="https://codinglife1.vercel.app/logo.png" />
+<meta property="og:url" content="https://codinglife1.vercel.app" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta charset="UTF-8"><style>${cssInput.value}</style></head><body>${htmlInput.value}<script>${jsInput.value}<\/script></body></html>`;
     navigator.clipboard.writeText(fullHtml).then(() => {
       if (window.clToast) window.clToast("Full HTML bundle copied!", "success");
     });
@@ -798,7 +821,15 @@ document.getElementById('themeToggleBtn').onclick = () => {
 
   // Download index.html
   document.getElementById("downloadHtmlBtn").addEventListener("click", () => {
-    const fullHtml = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${cssInput.value}</style></head><body>${htmlInput.value}<script>${jsInput.value}<\/script></body></html>`;
+    const fullHtml = `<!DOCTYPE html><html><head>
+<title>Coding Life - Elevate Your Future</title>
+<meta name="description" content="Coding Life - Your premium platform for mastering modern programming, developer tools, and developer wellâ€‘being. Start your coding journey today!" />
+<meta property="og:title" content="Coding Life" />
+<meta property="og:description" content="Your premium platform for mastering modern programming, developer tools, and developer wellâ€‘being." />
+<meta property="og:image" content="https://codinglife1.vercel.app/logo.png" />
+<meta property="og:url" content="https://codinglife1.vercel.app" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta charset="UTF-8"><style>${cssInput.value}</style></head><body>${htmlInput.value}<script>${jsInput.value}<\/script></body></html>`;
     const blob = new Blob([fullHtml], { type: "text/html" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -823,3 +854,4 @@ document.getElementById('themeToggleBtn').onclick = () => {
 <script src="site-polish.js"></script>
 </body>
 </html>
+
