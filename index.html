@@ -69,12 +69,14 @@
     .pillar-card:hover::before { opacity: 1; }
     .pillar-icon-box { width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 24px; }
 
-    /* Interactive Tech Stack Grid */
-    .tech-card { background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; padding: 28px 16px; text-align: center; text-decoration: none !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
-    .tech-card i { font-size: 3rem; transition: transform 0.3s ease; }
-    .tech-card span.tech-name { color: #f8fafc; font-weight: 700; font-size: 1.05rem; }
-    .tech-card:hover { transform: translateY(-6px); background: rgba(15, 23, 42, 0.9); border-color: rgba(45, 212, 191, 0.5); box-shadow: 0 12px 30px -10px rgba(45, 212, 191, 0.25); }
-    .tech-card:hover i { transform: scale(1.15); }
+    /* Interactive Tech Stack Symbols (Clean Floating Icons) */
+    .tech-symbols-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 36px 48px; max-width: 900px; margin: 0 auto; }
+    .tech-symbol { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-decoration: none !important; background: transparent; border: none; padding: 12px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+    .tech-symbol i { font-size: 3.6rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-block; }
+    .tech-symbol span.tech-symbol-name { color: #94a3b8; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px; transition: all 0.3s ease; }
+    .tech-symbol:hover { transform: translateY(-8px) scale(1.18); }
+    .tech-symbol:hover i { filter: drop-shadow(0 0 25px currentColor); }
+    .tech-symbol:hover span.tech-symbol-name { color: #ffffff; transform: translateY(2px); }
 
     /* Accordion FAQ */
     .faq-item { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; margin-bottom: 14px; overflow: hidden; transition: border-color 0.2s; }
@@ -294,66 +296,66 @@
         <h2 style="font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; color: white; margin: 16px 0 50px;">تقنيات ستصل فيها إلى <span style="color: #2dd4bf;">الاحتراف</span></h2>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px;">
+      <div class="tech-symbols-container">
         
-        <a href="html.html" class="tech-card reveal">
+        <a href="html.html" class="tech-symbol reveal" title="HTML5">
           <i class="fab fa-html5" style="color: #f97316;"></i>
-          <span class="tech-name">HTML5</span>
+          <span class="tech-symbol-name">HTML5</span>
         </a>
 
-        <a href="css.html" class="tech-card reveal">
+        <a href="css.html" class="tech-symbol reveal" title="CSS3">
           <i class="fab fa-css3-alt" style="color: #38bdf8;"></i>
-          <span class="tech-name">CSS3</span>
+          <span class="tech-symbol-name">CSS3</span>
         </a>
 
-        <a href="javascript.html" class="tech-card reveal">
+        <a href="javascript.html" class="tech-symbol reveal" title="JavaScript">
           <i class="fab fa-js" style="color: #facc15;"></i>
-          <span class="tech-name">JavaScript</span>
+          <span class="tech-symbol-name">JavaScript</span>
         </a>
 
-        <a href="react.html" class="tech-card reveal">
+        <a href="react.html" class="tech-symbol reveal" title="React">
           <i class="fab fa-react" style="color: #22d3ee;"></i>
-          <span class="tech-name">React</span>
+          <span class="tech-symbol-name">React</span>
         </a>
 
-        <a href="python.html" class="tech-card reveal">
+        <a href="python.html" class="tech-symbol reveal" title="Python">
           <i class="fab fa-python" style="color: #38bdf8;"></i>
-          <span class="tech-name">Python</span>
+          <span class="tech-symbol-name">Python</span>
         </a>
 
-        <a href="nodejs.html" class="tech-card reveal">
+        <a href="nodejs.html" class="tech-symbol reveal" title="Node.js">
           <i class="fab fa-node-js" style="color: #22c55e;"></i>
-          <span class="tech-name">Node.js</span>
+          <span class="tech-symbol-name">Node.js</span>
         </a>
 
-        <a href="php.html" class="tech-card reveal">
+        <a href="php.html" class="tech-symbol reveal" title="PHP">
           <i class="fab fa-php" style="color: #a855f7;"></i>
-          <span class="tech-name">PHP</span>
+          <span class="tech-symbol-name">PHP</span>
         </a>
 
-        <a href="java.html" class="tech-card reveal">
+        <a href="java.html" class="tech-symbol reveal" title="Java">
           <i class="fab fa-java" style="color: #f43f5e;"></i>
-          <span class="tech-name">Java</span>
+          <span class="tech-symbol-name">Java</span>
         </a>
 
-        <a href="csharp.html" class="tech-card reveal">
+        <a href="csharp.html" class="tech-symbol reveal" title="C#">
           <i class="fas fa-hashtag" style="color: #a855f7;"></i>
-          <span class="tech-name">C#</span>
+          <span class="tech-symbol-name">C#</span>
         </a>
 
-        <a href="sql.html" class="tech-card reveal">
+        <a href="sql.html" class="tech-symbol reveal" title="SQL">
           <i class="fas fa-database" style="color: #38bdf8;"></i>
-          <span class="tech-name">SQL</span>
+          <span class="tech-symbol-name">SQL</span>
         </a>
 
-        <a href="git.html" class="tech-card reveal">
+        <a href="git.html" class="tech-symbol reveal" title="Git">
           <i class="fab fa-git-alt" style="color: #f97316;"></i>
-          <span class="tech-name">Git</span>
+          <span class="tech-symbol-name">Git</span>
         </a>
 
-        <a href="flutter.html" class="tech-card reveal">
+        <a href="flutter.html" class="tech-symbol reveal" title="Flutter">
           <i class="fas fa-mobile-screen" style="color: #38bdf8;"></i>
-          <span class="tech-name">Flutter</span>
+          <span class="tech-symbol-name">Flutter</span>
         </a>
 
       </div>
