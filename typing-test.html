@@ -173,7 +173,7 @@
     }
     .tt-char.wrong {
       color: #ef4444;
-      background: rgba(239, 68, 68, 0.2);
+      background: rgba(239, 68, 68, 0.25);
       border-radius: 2px;
       text-decoration: underline;
     }
@@ -182,9 +182,61 @@
       border-left: 2px solid #38bdf8;
       animation: blinkCursor 0.9s infinite;
     }
+    .tt-char.current.wrong {
+      background: rgba(239, 68, 68, 0.35) !important;
+      border-left: 2px solid #ef4444 !important;
+      color: #ef4444 !important;
+      animation: none !important;
+    }
     @keyframes blinkCursor {
       0%, 100% { border-left-color: #38bdf8; }
       50% { border-left-color: transparent; }
+    }
+    @keyframes arenaShake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-5px); }
+      40%, 80% { transform: translateX(5px); }
+    }
+    .tt-arena.wrong-shake {
+      animation: arenaShake 0.25s cubic-bezier(.36,.07,.19,.97) both;
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.4) !important;
+    }
+
+    /* Arabic Keyboard Alert */
+    .tt-kb-alert {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(14, 165, 233, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #bae6fd;
+      padding: 10px 16px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-size: 0.88rem;
+      direction: rtl;
+      text-align: right;
+    }
+    .tt-kb-alert strong {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .tt-kb-alert-close {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.25rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 4px;
+      transition: color 0.15s ease;
+    }
+    .tt-kb-alert-close:hover {
+      color: #ffffff;
     }
 
     /* Transparent Input overlay right over the arena (NEVER left: -9999px) */
@@ -358,6 +410,15 @@
       </div>
     </div>
 
+    <!-- Arabic Keyboard Alert -->
+    <div id="arabicKbAlert" class="tt-kb-alert" style="display:none;">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <i class="fa-solid fa-keyboard" style="color:#38bdf8;"></i>
+        <span>تم رصد لوحة المفاتيح بالعربية: يتم التحويل التلقائي للأحرف الإنجليزية في الكود البرمجي (أو اضغط <strong>Alt + Shift</strong>).</span>
+      </div>
+      <button type="button" class="tt-kb-alert-close" aria-label="Close" onclick="this.parentElement.style.display='none'">&times;</button>
+    </div>
+
     <!-- Typing Arena -->
     <div class="tt-arena" id="arena" tabindex="0">
       <div class="tt-code-display" id="codeDisplay"></div>
@@ -428,10 +489,111 @@
     let timeLeft = 60;
     let timer = null;
     let hasStarted = false;
+    let sessionStartTime = null;
     let currentCode = "";
     let typedIndex = 0;
     let errorCount = 0;
     let totalTyped = 0;
+    let hasErrorOnCurrent = false;
+    let arabicNoticeShown = false;
+
+    // Comprehensive Arabic -> Latin QWERTY keyboard map
+    const ARABIC_TO_LATIN = {
+      // Row 1
+      'ذ':'`', '1':'1', '2':'2', '3':'3', '4':'4', '5':'5', '6':'6', '7':'7', '8':'8', '9':'9', '0':'0', '-':'-', '=':'=',
+      // Row 2
+      'ض':'q', 'ص':'w', 'ث':'e', 'ق':'r', 'ف':'t', 'غ':'y', 'ع':'u', 'ه':'i', 'خ':'o', 'ح':'p', 'ج':'[', 'د':']', '\\':'\\',
+      // Row 3
+      'ش':'a', 'س':'s', 'ي':'d', 'ب':'f', 'ل':'g', 'ا':'h', 'ت':'j', 'ن':'k', 'م':'l', 'ك':';', 'ط':"'",
+      // Row 4
+      'ئ':'z', 'ء':'x', 'ؤ':'c', 'ر':'v', 'لا':'b', 'ى':'n', 'ة':'m', 'و':',', 'ز':'.', 'ظ':'/',
+      // Shifted Arabic keys
+      'َ':'Q', 'ً':'W', 'ُ':'E', 'ٌ':'R', 'لإ':'T', 'إ':'Y', '‘':'U', '÷':'I', '×':'O', '؛':'P', '<':'>', '>':'<',
+      'ِ':'A', 'ٍ':'S', ']':'D', '[':'F', 'لأ':'G', 'أ':'H', 'ـ':'J', '،':'K', '/':'L', ':':':', '"':'"',
+      '~':'~', 'ْ':'X', '}':'C', '{':'V', 'لآ':'B', 'آ':'N', '’':'M', '؟':'?'
+    };
+
+    const SYMBOL_MAP = {
+      'BracketLeft': (s) => s ? '{' : '[',
+      'BracketRight': (s) => s ? '}' : ']',
+      'Semicolon': (s) => s ? ':' : ';',
+      'Quote': (s) => s ? '"' : "'",
+      'Comma': (s) => s ? '<' : ',',
+      'Period': (s) => s ? '>' : '.',
+      'Slash': (s) => s ? '?' : '/',
+      'Backquote': (s) => s ? '~' : '`',
+      'Minus': (s) => s ? '_' : '-',
+      'Equal': (s) => s ? '+' : '=',
+      'Backslash': (s) => s ? '|' : '\\',
+      'Digit1': (s) => s ? '!' : '1',
+      'Digit2': (s) => s ? '@' : '2',
+      'Digit3': (s) => s ? '#' : '3',
+      'Digit4': (s) => s ? '$' : '4',
+      'Digit5': (s) => s ? '%' : '5',
+      'Digit6': (s) => s ? '^' : '6',
+      'Digit7': (s) => s ? '&' : '7',
+      'Digit8': (s) => s ? '*' : '8',
+      'Digit9': (s) => s ? '(' : '9',
+      'Digit0': (s) => s ? ')' : '0',
+      'Space': () => ' '
+    };
+
+    function isArabicChar(str) {
+      return /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(str);
+    }
+
+    function showArabicKbNotice() {
+      if (arabicNoticeShown) return;
+      arabicNoticeShown = true;
+      const alertEl = document.getElementById("arabicKbAlert");
+      if (alertEl) {
+        alertEl.style.display = "flex";
+      }
+    }
+
+    function checkKeyMatch(e, expected) {
+      // 1. Direct exact match (English / Latin layout)
+      if (e.key === expected) return true;
+
+      // 2. Arabic layout translation
+      if (isArabicChar(e.key)) {
+        showArabicKbNotice();
+        const mapped = ARABIC_TO_LATIN[e.key];
+        if (mapped === expected) return true;
+        if (mapped && mapped.toLowerCase() === expected.toLowerCase()) {
+          if (expected >= 'A' && expected <= 'Z') {
+            return !!(e.shiftKey || (e.getModifierState && e.getModifierState('CapsLock')));
+          } else {
+            return !e.shiftKey;
+          }
+        }
+      }
+
+      // 3. Physical Key fallback via e.code for English letters
+      if (/^[a-zA-Z]$/.test(expected)) {
+        if (e.code === 'Key' + expected.toUpperCase()) {
+          const isUpper = !!(e.shiftKey || (e.getModifierState && e.getModifierState('CapsLock')));
+          const expectedUpper = (expected === expected.toUpperCase());
+          return isUpper === expectedUpper;
+        }
+      }
+
+      // 4. Physical Key fallback for digits
+      if (/^[0-9]$/.test(expected)) {
+        if (e.code === ('Digit' + expected) || e.code === ('Numpad' + expected)) {
+          return !e.shiftKey;
+        }
+      }
+
+      // 5. Physical Key fallback for punctuation & symbols
+      if (SYMBOL_MAP[e.code]) {
+        if (SYMBOL_MAP[e.code](!!e.shiftKey) === expected) {
+          return true;
+        }
+      }
+
+      return false;
+    }
 
     const arena = document.getElementById("arena");
     const codeDisplay = document.getElementById("codeDisplay");
@@ -462,6 +624,8 @@
       errorCount = 0;
       totalTyped = 0;
       hasStarted = false;
+      sessionStartTime = null;
+      hasErrorOnCurrent = false;
       clearInterval(timer);
       timer = null;
       timeLeft = selectedDuration === "free" ? 0 : selectedDuration;
@@ -482,6 +646,9 @@
           cls += " correct";
         } else if (i === typedIndex) {
           cls += " current";
+          if (hasErrorOnCurrent) {
+            cls += " wrong";
+          }
         }
         const char = currentCode[i];
         if (char === "\n") {
@@ -503,8 +670,9 @@
     }
 
     function startTimer() {
+      if (hasStarted) return;
       hasStarted = true;
-      const startTime = Date.now();
+      sessionStartTime = Date.now();
 
       timer = setInterval(() => {
         if (selectedDuration === "free") {
@@ -516,23 +684,33 @@
             valTime.textContent = `${timeLeft}s`;
           } else {
             finishTest();
+            return;
           }
         }
-        updateWPM(startTime);
+        updateStats();
       }, 1000);
     }
 
-    function updateWPM(startTime) {
-      const elapsedSec = (Date.now() - startTime) / 1000;
-      if (elapsedSec <= 0) return;
-      // 5 chars = 1 word
-      const words = (typedIndex / 5);
-      const wpm = Math.round((words / elapsedSec) * 60);
-      valWpm.textContent = Math.max(0, wpm);
+    function updateStats() {
+      if (sessionStartTime) {
+        const elapsedSec = (Date.now() - sessionStartTime) / 1000;
+        if (elapsedSec > 0.5) {
+          const words = (typedIndex / 5);
+          const wpm = Math.round((words / elapsedSec) * 60);
+          valWpm.textContent = Math.max(0, wpm);
+        }
+      }
 
-      const acc = totalTyped > 0 ? Math.round(((totalTyped - errorCount) / totalTyped) * 100) : 100;
+      const acc = totalTyped > 0 ? Math.round((Math.max(0, totalTyped - errorCount) / totalTyped) * 100) : 100;
       valAcc.textContent = `${Math.max(0, acc)}%`;
       valErrors.textContent = errorCount;
+    }
+
+    function triggerErrorShake() {
+      arena.classList.remove("wrong-shake");
+      void arena.offsetWidth;
+      arena.classList.add("wrong-shake");
+      setTimeout(() => arena.classList.remove("wrong-shake"), 300);
     }
 
     function safeFocusInput() {
@@ -543,7 +721,83 @@
       }
     }
 
-    arena.addEventListener("click", (e) => {
+    function handleKey(e) {
+      if (resModal.style.display === "flex") return;
+      if (e.ctrlKey || e.altKey || e.metaKey) return;
+      if (e.key === "F12" || e.key === "F5") return;
+
+      const expected = currentCode[typedIndex];
+
+      if (e.key === "Backspace") {
+        e.preventDefault();
+        if (typedIndex > 0) {
+          typedIndex--;
+          hasErrorOnCurrent = false;
+          renderDisplay();
+          updateStats();
+        }
+        return;
+      }
+
+      // Start timer on first meaningful key
+      if (!hasStarted && (e.key.length === 1 || e.key === "Enter" || e.key === "Tab" || (e.code && (e.code.startsWith("Key") || e.code.startsWith("Digit"))))) {
+        startTimer();
+      }
+
+      if (e.key === "Enter") {
+        e.preventDefault();
+        totalTyped++;
+        if (expected === "\n") {
+          typedIndex++;
+          hasErrorOnCurrent = false;
+        } else {
+          errorCount++;
+          hasErrorOnCurrent = true;
+          triggerErrorShake();
+        }
+        checkProgress();
+        renderDisplay();
+        updateStats();
+        return;
+      }
+
+      if (e.key === "Tab") {
+        e.preventDefault();
+        totalTyped += 2;
+        if (expected === " " && currentCode[typedIndex + 1] === " ") {
+          typedIndex += 2;
+          hasErrorOnCurrent = false;
+        } else {
+          errorCount++;
+          hasErrorOnCurrent = true;
+          triggerErrorShake();
+        }
+        checkProgress();
+        renderDisplay();
+        updateStats();
+        return;
+      }
+
+      // Check single character / physical key
+      const isCharEvent = (e.key && e.key.length === 1) || (e.code && (e.code.startsWith("Key") || e.code.startsWith("Digit") || SYMBOL_MAP[e.code]));
+      if (isCharEvent) {
+        e.preventDefault();
+        totalTyped++;
+        if (checkKeyMatch(e, expected)) {
+          typedIndex++;
+          hasErrorOnCurrent = false;
+        } else {
+          errorCount++;
+          hasErrorOnCurrent = true;
+          triggerErrorShake();
+        }
+        checkProgress();
+        renderDisplay();
+        updateStats();
+      }
+    }
+
+    arena.addEventListener("click", () => {
       safeFocusInput();
     });
 
@@ -556,71 +810,20 @@
       if (e.ctrlKey || e.altKey || e.metaKey) return;
       if (e.key === "F12" || e.key === "F5") return;
 
+      const tag = document.activeElement && document.activeElement.tagName;
+      if ((tag === "INPUT" || tag === "TEXTAREA") && document.activeElement !== hiddenInput) {
+        return;
+      }
+
       if (document.activeElement !== hiddenInput) {
         safeFocusInput();
+        handleKey(e);
       }
     });
 
     hiddenInput.addEventListener("keydown", (e) => {
-      if (!hasStarted && e.key.length === 1) {
-        startTimer();
-      }
-
-      const expected = currentCode[typedIndex];
-
-      if (e.key === "Backspace") {
-        e.preventDefault();
-        if (typedIndex > 0) {
-          typedIndex--;
-          renderDisplay();
-        }
-        return;
-      }
-
-      if (e.key === "Enter") {
-        e.preventDefault();
-        totalTyped++;
-        if (expected === "\n") {
-          typedIndex++;
-        } else {
-          errorCount++;
-        }
-        checkProgress();
-        renderDisplay();
-        return;
-      }
-
-      if (e.key === "Tab") {
-        e.preventDefault();
-        // Check if expected is spaces
-        totalTyped += 2;
-        if (expected === " " && currentCode[typedIndex + 1] === " ") {
-          typedIndex += 2;
-        } else {
-          errorCount++;
-        }
-        checkProgress();
-        renderDisplay();
-        return;
-      }
-
-      if (e.key.length === 1) {
-        e.preventDefault();
-        totalTyped++;
-        if (e.key === expected) {
-          typedIndex++;
-        } else {
-          errorCount++;
-          // briefly flash error class on current char
-          const curEl = codeDisplay.querySelector(`.tt-char[data-idx="${typedIndex}"]`);
-          if (curEl) {
-            curEl.classList.add("wrong");
-            setTimeout(() => curEl.classList.remove("wrong"), 300);
-          }
-        }
-        checkProgress();
-        renderDisplay();
-      }
+      e.stopPropagation();
+      handleKey(e);
     });
 
     function checkProgress() {
