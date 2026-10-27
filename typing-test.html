@@ -127,7 +127,9 @@
       font-weight: 800;
     }
 
-    /* Typing Arena */
+    /* Typing Arena - Forced LTR to prevent RTL mirroring and viewport jumping */
+    html[lang="ar"] .tt-arena,
+    body.rtl .tt-arena,
     .tt-arena {
       background: #020617;
       border: 1px solid rgba(56, 189, 248, 0.25);
@@ -138,23 +140,33 @@
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
       margin-bottom: 24px;
       min-height: 220px;
+      direction: ltr !important;
+      text-align: left !important;
+      unicode-bidi: isolate !important;
+      overflow: hidden !important;
     }
     .tt-arena:focus-within {
       border-color: #38bdf8;
       box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
     }
+    html[lang="ar"] .tt-code-display,
+    body.rtl .tt-code-display,
     .tt-code-display {
-      font-family: 'Fira Code', monospace;
+      font-family: 'Fira Code', monospace !important;
       font-size: 1.15rem;
       line-height: 1.8;
       white-space: pre-wrap;
       word-break: break-all;
       user-select: none;
       color: #475569;
+      direction: ltr !important;
+      text-align: left !important;
+      unicode-bidi: isolate !important;
     }
     .tt-char {
       position: relative;
       transition: color 0.1s ease;
+      display: inline-block;
     }
     .tt-char.correct {
       color: #38bdf8;
@@ -175,12 +187,26 @@
       50% { border-left-color: transparent; }
     }
 
-    /* Hidden Real Input for Keyboard capture */
+    /* Transparent Input overlay right over the arena (NEVER left: -9999px) */
+    html[lang="ar"] .tt-hidden-input,
+    body.rtl .tt-hidden-input,
     .tt-hidden-input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-      left: -9999px;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: auto !important;
+      width: 100% !important;
+      height: 100% !important;
+      opacity: 0 !important;
+      cursor: text !important;
+      border: none !important;
+      outline: none !important;
+      background: transparent !important;
+      color: transparent !important;
+      z-index: 5 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      caret-color: transparent !important;
     }
 
     /* Action buttons */
@@ -509,8 +535,16 @@
       valErrors.textContent = errorCount;
     }
 
-    arena.addEventListener("click", () => {
-      hiddenInput.focus();
+    function safeFocusInput() {
+      try {
+        hiddenInput.focus({ preventScroll: true });
+      } catch (err) {
+        hiddenInput.focus();
+      }
+    }
+
+    arena.addEventListener("click", (e) => {
+      safeFocusInput();
     });
 
     window.addEventListener("keydown", (e) => {
@@ -519,8 +553,12 @@
         return;
       }
       if (resModal.style.display === "flex") return;
+      if (e.ctrlKey || e.altKey || e.metaKey) return;
+      if (e.key === "F12" || e.key === "F5") return;
 
-      hiddenInput.focus();
+      if (document.activeElement !== hiddenInput) {
+        safeFocusInput();
+      }
     });
 
     hiddenInput.addEventListener("keydown", (e) => {
