@@ -87,10 +87,47 @@
         privacy: "سياسة الخصوصية",
         adNotice: "إعلان"
       }
+    },
+    fr: {
+      dir: "ltr",
+      nav: { home: "Accueil", courses: "Cours", workshops: "Ateliers", tools: "Outils", quiz: "Quiz", blog: "Blog", contact: "Contact" },
+      footer: {
+        tagline: "Formation de programmation d'élite conçue pour vous mener de zéro à professionnel.",
+        platform: "Plateforme",
+        support: "Support",
+        home: "Accueil",
+        allCourses: "Tous les Cours",
+        workshops: "Ateliers",
+        quiz: "Quiz de Compétences",
+        blog: "Blog",
+        contactUs: "Contactez-nous",
+        about: "À propos",
+        privacy: "Politique de Confidentialité",
+        terms: "Conditions d'Utilisation",
+        copy: "Conçu avec passion pour les apprenants."
+      },
+      search: {
+        placeholder: "Rechercher des cours, leçons, sujets... (Ctrl + K)",
+        noResults: "Aucun résultat trouvé pour"
+      },
+      code: {
+        copy: "Copier",
+        copied: "Copié !",
+        playground: "Bac à sable",
+        copiedToast: "Code copié dans le presse-papiers !"
+      },
+      cookies: {
+        title: "Consentement aux Cookies & Confidentialité",
+        desc: "Nous et nos partenaires publicitaires tiers (tels que Google AdSense) utilisons des cookies pour personnaliser le contenu et les publicités, analyser le trafic et garantir une expérience sécurisée. Vous pouvez gérer vos préférences ou accepter tous les cookies.",
+        accept: "Tout Accepter",
+        decline: "Essentiels Seulement",
+        privacy: "Politique de Confidentialité",
+        adNotice: "Publicité"
+      }
     }
   };
 
-  const LANG_LABELS = { en: "EN", ar: "AR" };
+  const LANG_LABELS = { en: "EN", ar: "AR", fr: "FR" };
   let currentLang = localStorage.getItem("cl-lang") || "en";
 
   function t() { return TRANSLATIONS[currentLang]; }
@@ -116,13 +153,26 @@
   }
 
   function refreshPageContent() {
-    document.querySelectorAll('[data-cl-lang]').forEach(el => {
+    const elements = document.querySelectorAll('[data-cl-lang]');
+    elements.forEach(el => {
       if (el.getAttribute('data-cl-lang') === currentLang) {
         el.classList.add('cl-active-lang');
       } else {
         el.classList.remove('cl-active-lang');
       }
     });
+
+    if (currentLang === 'fr') {
+      const parents = new Set();
+      elements.forEach(el => { if (el.parentElement) parents.add(el.parentElement); });
+      parents.forEach(parent => {
+        const hasActive = parent.querySelector(':scope > .cl-active-lang');
+        if (!hasActive) {
+          const fallback = parent.querySelector(':scope > [data-cl-lang="en"]') || parent.querySelector(':scope > [data-cl-lang="ar"]');
+          if (fallback) fallback.classList.add('cl-active-lang');
+        }
+      });
+    }
   }
 
   function navItems() {
@@ -176,6 +226,7 @@
             <div class="cl-lang-dropdown" id="cl-lang-dropdown">
               <button class="cl-lang-option ${currentLang === 'en' ? 'active' : ''}" data-lang="en">English</button>
               <button class="cl-lang-option ${currentLang === 'ar' ? 'active' : ''}" data-lang="ar">العربية</button>
+              <button class="cl-lang-option ${currentLang === 'fr' ? 'active' : ''}" data-lang="fr">Français</button>
             </div>
           </div>
           <button class="theme-toggle" id="themeToggle" title="Toggle Theme" aria-label="Toggle Theme">
@@ -246,6 +297,7 @@
           <div style="display:flex; gap:8px;">
             <button class="cl-lang-btn ${currentLang === 'en' ? 'active' : ''}" style="padding:6px 12px; font-size:0.85rem;" data-action-lang="en">EN</button>
             <button class="cl-lang-btn ${currentLang === 'ar' ? 'active' : ''}" style="padding:6px 12px; font-size:0.85rem;" data-action-lang="ar">عربي</button>
+            <button class="cl-lang-btn ${currentLang === 'fr' ? 'active' : ''}" style="padding:6px 12px; font-size:0.85rem;" data-action-lang="fr">FR</button>
           </div>
           <button class="theme-toggle" id="mobileDrawerThemeToggle" title="Toggle Theme" aria-label="Toggle Theme">
             <i class="fa-solid fa-moon"></i>
