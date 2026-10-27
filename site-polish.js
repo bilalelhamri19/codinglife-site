@@ -218,12 +218,6 @@
           `).join('')}
         </nav>
         <div style="display:flex; gap:10px; align-items:center;">
-          <button class="cl-streak-pill" id="clStreakBtn" title="Daily Streak & Developer XP" aria-label="Daily Streak & XP">
-            <span class="cl-streak-flame">🔥</span>
-            <span id="clStreakNum" class="cl-streak-num">1</span>
-            <span class="cl-streak-divider"></span>
-            <span class="cl-xp-badge" id="clXpNum">120 XP</span>
-          </button>
           <div class="cl-lang-switcher">
             <button class="cl-lang-btn" id="cl-lang-btn" aria-label="Change language">
               <i class="fa-solid fa-globe"></i>
@@ -1035,7 +1029,6 @@
     initCookieConsent();
     initCourseProgress();
     initDailyDevTip();
-    initGamification();
 
     // Register PWA Service Worker
     if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
