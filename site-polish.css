@@ -1040,3 +1040,117 @@ body.rtl .cl-cookie-banner {
   flex: 1;
   line-height: 1.6;
 }
+
+/* Gamification: Streak & XP Pill */
+.cl-streak-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--cl-surface);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  padding: 6px 12px;
+  border-radius: 99px;
+  cursor: pointer;
+  font-family: 'Outfit', 'Cairo', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--cl-ink);
+  transition: var(--cl-transition);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+.cl-streak-pill:hover {
+  transform: translateY(-2px);
+  border-color: #f59e0b;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
+}
+.cl-streak-flame {
+  font-size: 1.05rem;
+  animation: flamePulse 1.8s infinite ease-in-out;
+}
+@keyframes flamePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2) rotate(-5deg); }
+}
+.cl-streak-divider {
+  width: 1px;
+  height: 14px;
+  background: var(--cl-line);
+}
+.cl-xp-badge {
+  color: #f59e0b;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.82rem;
+}
+
+/* Gamification Modal */
+.cl-streak-modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 10002;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.cl-streak-modal {
+  background: var(--cl-surface);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 24px;
+  padding: 32px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8);
+  animation: streakModalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+@keyframes streakModalIn {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.cl-streak-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--cl-muted);
+  cursor: pointer;
+}
+[dir="rtl"] .cl-streak-modal-close,
+html[lang="ar"] .cl-streak-modal-close {
+  right: auto;
+  left: 20px;
+}
+.cl-streak-modal-close:hover {
+  color: #ef4444;
+}
+.cl-level-progress-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 12px 0 20px;
+}
+.cl-level-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #38bdf8);
+  border-radius: 99px;
+  transition: width 0.6s ease;
+}
+.cl-quest-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--cl-bg);
+  border: 1px solid var(--cl-line);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--cl-ink);
+}

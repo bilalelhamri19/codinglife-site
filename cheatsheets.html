@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Cheatsheets Hub - Coding Life</title>
+  <meta name="description" content="Instant developer cheatsheets and quick reference guides for Git, CSS Flexbox & Grid, JavaScript ES6+, Python, SQL, Linux Bash, and Regex. Fast search and one-click code copy.">
+  <meta name="keywords" content="Developer cheatsheets, Git cheatsheet, CSS flexbox cheatsheet, JavaScript array methods, Python cheatsheet, SQL commands, Linux commands, Regex patterns, أوراق مساعدة برمجية, ملخصات البرمجة">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://codinglife1.vercel.app/cheatsheets.html">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@400;600;800;900&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .cs-header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .cs-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 99px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--cl-brand);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+    .cs-header h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      color: var(--cl-ink);
+      line-height: 1.15;
+      margin: 0 0 16px;
+      letter-spacing: -0.02em;
+    }
+    .cs-header p {
+      font-size: 1.15rem;
+      color: var(--cl-muted);
+      line-height: 1.7;
+      margin: 0 0 32px;
+    }
+
+    /* Search & Filter Controls */
+    .cs-controls {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .cs-search-box {
+      position: relative;
+      width: 100%;
+    }
+    .cs-search-box i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--cl-muted);
+      font-size: 1.1rem;
+    }
+    [dir="rtl"] .cs-search-box i,
+    html[lang="ar"] .cs-search-box i {
+      left: auto;
+      right: 20px;
+    }
+    .cs-search-input {
+      width: 100%;
+      padding: 16px 20px 16px 54px;
+      border-radius: 16px;
+      border: 1px solid var(--cl-line);
+      background: var(--cl-surface);
+      color: var(--cl-ink);
+      font-size: 1.05rem;
+      font-family: inherit;
+      outline: none;
+      transition: var(--cl-transition);
+      box-sizing: border-box;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    [dir="rtl"] .cs-search-input,
+    html[lang="ar"] .cs-search-input {
+      padding: 16px 54px 16px 20px;
+    }
+    .cs-search-input:focus {
+      border-color: var(--cl-brand);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+    }
+
+    .cs-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .cs-tab {
+      padding: 10px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--cl-line);
+      background: var(--cl-surface);
+      color: var(--cl-muted);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--cl-transition);
+    }
+    .cs-tab:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-ink);
+      transform: translateY(-2px);
+    }
+    .cs-tab.active {
+      background: var(--cl-brand);
+      color: #020617;
+      border-color: var(--cl-brand);
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35);
+    }
+
+    /* Cheatsheet Grid */
+    .cs-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .cs-section {
+      margin-bottom: 50px;
+    }
+    .cs-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cl-line);
+    }
+    .cs-section-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--cl-ink);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0;
+    }
+    .cs-section-count {
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 99px;
+      background: var(--cl-brand-soft);
+      color: var(--cl-brand);
+    }
+
+    .cs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 20px;
+    }
+    @media (max-width: 600px) {
+      .cs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cs-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 20px;
+      transition: var(--cl-transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .cs-card:hover {
+      border-color: var(--cl-brand);
+      transform: translateY(-3px);
+      box-shadow: var(--cl-shadow-md);
+    }
+    .cs-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+    .cs-card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--cl-ink);
+      margin: 0;
+    }
+    .cs-card-desc {
+      font-size: 0.88rem;
+      color: var(--cl-muted);
+      line-height: 1.5;
+      margin: 0 0 14px;
+    }
+    .cs-code-wrap {
+      position: relative;
+      background: #020617;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      margin-top: auto;
+    }
+    .cs-code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.88rem;
+      color: #38bdf8;
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin: 0;
+      display: block;
+    }
+    .cs-copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      border-radius: 8px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+    [dir="rtl"] .cs-copy-btn,
+    html[lang="ar"] .cs-copy-btn {
+      right: auto;
+      left: 8px;
+    }
+    .cs-copy-btn:hover {
+      background: var(--cl-brand);
+      color: #020617;
+      border-color: var(--cl-brand);
+    }
+    .cs-empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--cl-muted);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="cs-header reveal">
+    <div class="cs-tag">
+      <i class="fa-solid fa-bolt"></i>
+      <span data-cl-lang="en">Fast Reference</span>
+      <span data-cl-lang="ar">دليل مرجعي سريع</span>
+    </div>
+    <h1 data-cl-lang="en">Developer Cheatsheets Hub</h1>
+    <h1 data-cl-lang="ar">مركز ملخصات الأكواد السريعة</h1>
+    <p data-cl-lang="en">Instant, high-impact syntax references, commands, and code patterns for modern developers. Search fast, copy instantly.</p>
+    <p data-cl-lang="ar">أوراق مساعدة سريعة وملخصات دقيقة لأهم الأوامر والأكواد التي يحتاجها كل مبرمج يومياً. ابحث بسرعة وانسخ بنقرة واحدة.</p>
+
+    <div class="cs-controls">
+      <div class="cs-search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="csSearch" class="cs-search-input" placeholder="Search commands, syntax, or keywords (e.g. git stash, flexbox, map, sql join)..." aria-label="Search cheatsheets">
+      </div>
+      <div class="cs-tabs">
+        <button class="cs-tab active" data-cat="all"><i class="fa-solid fa-layer-group"></i> All</button>
+        <button class="cs-tab" data-cat="git"><i class="fa-brands fa-git-alt"></i> Git</button>
+        <button class="cs-tab" data-cat="css"><i class="fa-brands fa-css3-alt"></i> CSS Layouts</button>
+        <button class="cs-tab" data-cat="js"><i class="fa-brands fa-js"></i> JavaScript</button>
+        <button class="cs-tab" data-cat="python"><i class="fa-brands fa-python"></i> Python</button>
+        <button class="cs-tab" data-cat="sql"><i class="fa-solid fa-database"></i> SQL</button>
+        <button class="cs-tab" data-cat="linux"><i class="fa-brands fa-linux"></i> Linux & Bash</button>
+        <button class="cs-tab" data-cat="regex"><i class="fa-solid fa-code"></i> Regex</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="cs-container">
+    <div id="csContent"></div>
+    <div class="cs-empty-state" id="csEmpty">
+      <i class="fa-solid fa-search" style="font-size:3rem; margin-bottom:16px; opacity:0.4;"></i>
+      <h3>No cheatsheets found matching your search</h3>
+      <p>Try searching for other keywords like "commit", "filter", "border", or "select".</p>
+    </div>
+  </main>
+
+  <script>
+    const CHEATSHEET_DATA = [
+      // GIT
+      {
+        cat: "git",
+        title_en: "Clone with Submodules",
+        title_ar: "استنساخ مستودع مع الموديلات الفرعية",
+        desc_en: "Clones repository and recursively pulls all nested submodules.",
+        desc_ar: "استنساخ المستودع كاملاً مع تحميل كل الموديلات الفرعية المضمنة تلقائياً.",
+        code: "git clone --recurse-submodules <repository_url>"
+      },
+      {
+        cat: "git",
+        title_en: "Create and Switch Branch",
+        title_ar: "إنشاء فرع جديد والانتقال إليه",
+        desc_en: "Creates a new feature branch and switches working directory to it.",
+        desc_ar: "إنشاء فرع عمل جديد والتبديل إليه بلمسة واحدة.",
+        code: "git switch -c feature/auth-system"
+      },
+      {
+        cat: "git",
+        title_en: "Undo Last Commit (Keep Changes)",
+        title_ar: "التراجع عن آخر Commit مع الاحتفاظ بالتعديلات",
+        desc_en: "Resets the commit record while keeping all file edits in your staging area.",
+        desc_ar: "إلغاء آخر اعتماد (Commit) مع الحفاظ على كل التعديلات غير مفقودة.",
+        code: "git reset --soft HEAD~1"
+      },
+      {
+        cat: "git",
+        title_en: "Stash WIP Changes with Message",
+        title_ar: "حفظ التعديلات المؤقتة في الرف (Stash)",
+        desc_en: "Saves uncommitted work to the stash queue with a memorable title.",
+        desc_ar: "حفظ الشغل الحالي غير المكتمل في الرف للانتقال لفرع آخر بأمان.",
+        code: "git stash push -m \"wip: payment gateway implementation\""
+      },
+      {
+        cat: "git",
+        title_en: "Apply and Remove Latest Stash",
+        title_ar: "استرجاع التعديلات من الرف وتفريغها",
+        desc_en: "Restores stashed changes back into your working branch and pops it from queue.",
+        desc_ar: "استعادة آخر تعديلات محفوظة في الرف وإزالتها من القائمة.",
+        code: "git stash pop"
+      },
+      {
+        cat: "git",
+        title_en: "Beautiful One-line Git Log Tree",
+        title_ar: "شجرة سجل الفروع والاعتمادات في سطر واحد",
+        desc_en: "Displays a clean ASCII tree graph of all commits, branches, and merges.",
+        desc_ar: "عرض مرئي أنيق لجميع فروع واعتمادات المشروع في سطر واحد ملون.",
+        code: "git log --graph --oneline --decorate --all"
+      },
+      {
+        cat: "git",
+        title_en: "Cherry-pick Specific Commit",
+        title_ar: "نسخ Commit محدد من فرع آخر",
+        desc_en: "Applies the exact changes from an individual commit onto current branch.",
+        desc_ar: "تطبيق تعديلات Commit معين بذاته من فرع آخر إلى فرعك الحالي.",
+        code: "git cherry-pick <commit_hash>"
+      },
+      {
+        cat: "git",
+        title_en: "Amend Commit Message",
+        title_ar: "تعديل نص آخر Commit",
+        desc_en: "Rewrites the commit message of the most recent commit without adding files.",
+        desc_ar: "تعديل رسالة آخر Commit قمت به بدون إعادة التعديلات.",
+        code: "git commit --amend -m \"docs: updated installation instructions\""
+      },
+
+      // CSS LAYOUTS
+      {
+        cat: "css",
+        title_en: "Perfect Center with Flexbox",
+        title_ar: "التوسيط المثالي باستخدام Flexbox",
+        desc_en: "Centers child elements both horizontally and vertically inside a container.",
+        desc_ar: "توسيط العناصر رأسياً وأفقياً بدقة وسهولة تامة داخل الحاوية.",
+        code: "display: flex;\njustify-content: center;\nalign-items: center;"
+      },
+      {
+        cat: "css",
+        title_en: "Responsive Grid Auto-Fit",
+        title_ar: "شبكة متجاوبة تلقائياً بدون Media Queries",
+        desc_en: "Creates dynamic grid columns that wrap automatically without hardcoded media queries.",
+        desc_ar: "توليد أعمدة شبكية تتكيف تلقائياً مع حجم الشاشة دون الحاجة لكتابة استعلامات وسائط كثيرة.",
+        code: "display: grid;\ngrid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\ngap: 24px;"
+      },
+      {
+        cat: "css",
+        title_en: "Fluid Typography with Clamp",
+        title_ar: "خط مرن متجاوب باستخدام clamp()",
+        desc_en: "Scales font size smoothly between minimum, responsive viewport unit, and maximum.",
+        desc_ar: "تحديد حجم خط يتمدد بسلاسة بين حد أدنى، نسبة من الشاشة، وحد أقصى.",
+        code: "font-size: clamp(1.25rem, 2.5vw + 0.5rem, 2.75rem);"
+      },
+      {
+        cat: "css",
+        title_en: "Modern Glassmorphism Effect",
+        title_ar: "تأثير الزجاج المصنفر (Glassmorphism)",
+        desc_en: "Creates a frosted glass translucent backdrop with subtle glowing borders.",
+        desc_ar: "إنشاء خلفية زجاجية شفافة مع ضبابية أنيقة وإطار ناعم عصري.",
+        code: "background: rgba(15, 23, 42, 0.75);\nbackdrop-filter: blur(12px);\n-webkit-backdrop-filter: blur(12px);\nborder: 1px solid rgba(255, 255, 255, 0.12);"
+      },
+      {
+        cat: "css",
+        title_en: "Aspect Ratio Constraint",
+        title_ar: "تثبيت النسبة البصرية (Aspect Ratio)",
+        desc_en: "Forces responsive video embeds, cards, or banners to lock at 16:9 ratio.",
+        desc_ar: "إلزام أي عنصر بالحفاظ على أبعاد ثابتة (مثلاً 16:9 للفيديو أو الصور) مهما تغير العرض.",
+        code: "aspect-ratio: 16 / 9;\nwidth: 100%;\nobject-fit: cover;"
+      },
+      {
+        cat: "css",
+        title_en: "Multi-line Text Truncate",
+        title_ar: "قص النص المتعدد الأسطر بـ (...)",
+        desc_en: "Truncates long paragraphs neatly after 3 lines with ellipsis.",
+        desc_ar: "قص النصوص الطويلة وإظهار نقاط الحذف (...) تلقائياً بعد 3 أسطر.",
+        code: "display: -webkit-box;\n-webkit-line-clamp: 3;\n-webkit-box-orient: vertical;\noverflow: hidden;"
+      },
+
+      // JAVASCRIPT
+      {
+        cat: "js",
+        title_en: "Array Transformation with Map & Filter",
+        title_ar: "تحويل وتصفية المصفوفات (Map & Filter)",
+        desc_en: "Filters active users and maps their names into an array.",
+        desc_ar: "تصفية المستخدمين النشطين واستخراج أسمائهم في مصفوفة جديدة.",
+        code: "const activeNames = users\n  .filter(user => user.isActive)\n  .map(user => user.fullName);"
+      },
+      {
+        cat: "js",
+        title_en: "Array Grouping with Reduce",
+        title_ar: "تجميع العناصر حسب خاصية بـ Reduce",
+        desc_en: "Groups list of objects into buckets keyed by category or role.",
+        desc_ar: "تجميع قائمة من الكائنات في مجموعات مفهرسة حسب الدور أو الفئة.",
+        code: "const grouped = items.reduce((acc, item) => {\n  (acc[item.category] = acc[item.category] || []).push(item);\n  return acc;\n}, {});"
+      },
+      {
+        cat: "js",
+        title_en: "Safe Deep Access (Optional Chaining)",
+        title_ar: "الوصول الآمن للكائنات العميقة والافتراضيات",
+        desc_en: "Prevents Cannot read properties of undefined crashes with default fallback.",
+        desc_ar: "منع انهيار البرنامج عند قراءة خصائص كائن غير موجود مع تعيين قيمة افتراضية.",
+        code: "const avatarUrl = user?.profile?.media?.avatar ?? '/images/default.png';"
+      },
+      {
+        cat: "js",
+        title_en: "Robust Async/Await Fetch with Timeout",
+        title_ar: "جلب البيانات بأمان مع تحديد مهلة (Timeout)",
+        desc_en: "Performs HTTP fetch request with AbortController timeout handling.",
+        desc_ar: "طلب بيانات HTTP باستخدام fetch مع إلغاء الطلب تلقائياً إذا تأخر الخادم.",
+        code: "async function fetchWithTimeout(url, timeoutMs = 5000) {\n  const controller = new AbortController();\n  const id = setTimeout(() => controller.abort(), timeoutMs);\n  try {\n    const res = await fetch(url, { signal: controller.signal });\n    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);\n    return await res.json();\n  } finally {\n    clearTimeout(id);\n  }\n}"
+      },
+      {
+        cat: "js",
+        title_en: "Remove Array Duplicates",
+        title_ar: "حذف العناصر المكررة من المصفوفة",
+        desc_en: "Uses Set to return an array containing only unique primitive elements.",
+        desc_ar: "طريقة سريعة وحديثة لاستخراج القيم الفريدة فقط بدون أي تكرار.",
+        code: "const uniqueNumbers = [...new Set([1, 2, 2, 3, 4, 4, 5])];"
+      },
+      {
+        cat: "js",
+        title_en: "Debounce Function for Search Inputs",
+        title_ar: "دالة Debounce لتأخير عمليات البحث",
+        desc_en: "Delays execution until user pauses typing for specified delay.",
+        desc_ar: "تأخير تنفيذ طلب البحث حتى يتوقف المستخدم عن الكتابة لتوفير موارد الخادم.",
+        code: "function debounce(fn, delay = 300) {\n  let timer;\n  return (...args) => {\n    clearTimeout(timer);\n    timer = setTimeout(() => fn(...args), delay);\n  };\n}"
+      },
+
+      // PYTHON
+      {
+        cat: "python",
+        title_en: "List Comprehension with Filtering",
+        title_ar: "توليد القوائم الشرطي (List Comprehension)",
+        desc_en: "Squares only the even integers in a list using a clean single line.",
+        desc_ar: "تربيع الأعداد الزوجية فقط في سطر واحد أنيق وسريع.",
+        code: "squares = [x**2 for x in range(20) if x % 2 == 0]"
+      },
+      {
+        cat: "python",
+        title_en: "Safe Dictionary Access & Defaults",
+        title_ar: "استخراج قيم القاموس بأمان مع Default",
+        desc_en: "Fetches dictionary key without throwing KeyError if key is missing.",
+        desc_ar: "الحصول على قيمة من القاموس بدون رمي خطأ KeyError في حالة عدم وجود المفتاح.",
+        code: "user_role = user_dict.get('role', 'guest')\nconfig_items = user_dict.setdefault('preferences', {})"
+      },
+      {
+        cat: "python",
+        title_en: "Enumerate with Custom Start Index",
+        title_ar: "الترقيم التلقائي في الحلقات التكرارية",
+        desc_en: "Loops through iterable providing both index and element simultaneously.",
+        desc_ar: "الدوران عبر العناصر مع الحصول على الفهرس والرقم الترتيبي في نفس الوقت.",
+        code: "for rank, lang in enumerate(['Python', 'JS', 'Rust'], start=1):\n    print(f\"#{rank}: {lang}\")"
+      },
+      {
+        cat: "python",
+        title_en: "Safe File Handling with Context Manager",
+        title_ar: "قراءة الملفات بأمان مع إدارة الذاكرة",
+        desc_en: "Opens and reads UTF-8 file guaranteeing automatic closure even on error.",
+        desc_ar: "فتح وقراءة الملفات النصية بأمان مع ضمان إغلاق الملف تلقائياً حتى عند وقوع خطأ.",
+        code: "with open('data.json', 'r', encoding='utf-8') as f:\n    import json\n    payload = json.load(f)"
+      },
+      {
+        cat: "python",
+        title_en: "Sorting Objects by Custom Key",
+        title_ar: "ترتيب القوائم المعقدة بدالة Lambda",
+        desc_en: "Sorts list of dictionaries or objects by a specific property.",
+        desc_ar: "ترتيب قائمة من القواميس أو الكائنات حسب خاصية معينة تصاعدياً أو تنازلياً.",
+        code: "students.sort(key=lambda s: s['score'], reverse=True)"
+      },
+
+      // SQL
+      {
+        cat: "sql",
+        title_en: "INNER JOIN with Table Aliases",
+        title_ar: "الربط بين الجداول (INNER JOIN)",
+        desc_en: "Retrieves matching records across customers and their completed orders.",
+        desc_ar: "استرجاع السجلات المتطابقة بين جدول العملاء وجدول الطلبات المكتملة.",
+        code: "SELECT c.id, c.full_name, o.order_date, o.total_amount\nFROM customers c\nINNER JOIN orders o ON c.id = o.customer_id\nWHERE o.status = 'completed'\nORDER BY o.order_date DESC;"
+      },
+      {
+        cat: "sql",
+        title_en: "GROUP BY with HAVING Filter",
+        title_ar: "التجميع وحساب الإحصائيات (GROUP BY & HAVING)",
+        desc_en: "Calculates department metrics filtering only departments with more than 5 members.",
+        desc_ar: "تجميع الموظفين حسب الأقسام وحساب المتوسط مع تصفية الأقسام التي بها أكثر من 5 موظفين.",
+        code: "SELECT department, COUNT(*) AS emp_count, AVG(salary) AS avg_sal\nFROM employees\nGROUP BY department\nHAVING COUNT(*) > 5\nORDER BY avg_sal DESC;"
+      },
+      {
+        cat: "sql",
+        title_en: "Conditional Column with CASE WHEN",
+        title_ar: "القيم الشرطية في الاستعلامات (CASE WHEN)",
+        desc_en: "Dynamically transforms numeric values or codes into human-readable labels.",
+        desc_ar: "تحويل الحالات الرقمية أو الرموز إلى تسميات مقروءة وواضحة داخل النتائج.",
+        code: "SELECT product_name, stock_qty,\n  CASE\n    WHEN stock_qty = 0 THEN 'Out of Stock'\n    WHEN stock_qty < 10 THEN 'Low Stock'\n    ELSE 'In Stock'\n  END AS stock_status\nFROM inventory;"
+      },
+      {
+        cat: "sql",
+        title_en: "Optimized Composite Index Creation",
+        title_ar: "إنشاء فهرس مركب لتسريع الاستعلامات",
+        desc_en: "Builds a high-performance index covering multiple query filter columns.",
+        desc_ar: "بناء فهرس مركب (Composite Index) يسرع استعلامات التصفية والترتيب بدرجة هائلة.",
+        code: "CREATE INDEX idx_orders_cust_status ON orders(customer_id, status, created_at DESC);"
+      },
+
+      // LINUX
+      {
+        cat: "linux",
+        title_en: "Search Text Recursively with Grep",
+        title_ar: "البحث في محتويات الملفات بشكل متكرر (grep)",
+        desc_en: "Finds all occurrences of text string in current directory ignoring binary files.",
+        desc_ar: "البحث عن نص أو كلمة داخل جميع ملفات المجلد وفروعه مع إظهار أرقام الأسطر.",
+        code: "grep -rnI \"API_SECRET_KEY\" ."
+      },
+      {
+        cat: "linux",
+        title_en: "Find and Kill Process on Port",
+        title_ar: "كشف وإيقاف التطبيق الشاغل لمنفذ (Port)",
+        desc_en: "Finds process ID bound to port 3000 and forcefully terminates it.",
+        desc_ar: "معرفة المعرف (PID) للعملية التي تشغل منفذاً معيناً (مثل 3000) وإيقافها فوراً.",
+        code: "# Find process on port 3000:\nlsof -i :3000\n# Terminate by PID:\nkill -9 <PID>"
+      },
+      {
+        cat: "linux",
+        title_en: "Inspect Disk Usage of Folders",
+        title_ar: "فحص مساحات المجلدات التخزينية (du)",
+        desc_en: "Displays human-readable size of top-level folders sorted by size.",
+        desc_ar: "عرض أحجام المجلدات في المسار الحالي مرتبة لمعرفة المستهلك الأكبر للمساحة.",
+        code: "du -sh * | sort -h"
+      },
+      {
+        cat: "linux",
+        title_en: "Tail and Follow Live Log File",
+        title_ar: "متابعة سجلات الخادم اللحظية (tail -f)",
+        desc_en: "Streams new entries appended to server log in real-time.",
+        desc_ar: "متابعة السجلات والأخطاء البرمجية التي تُكتب لحظياً في ملف السجل.",
+        code: "tail -f -n 100 /var/log/nginx/error.log"
+      },
+
+      // REGEX
+      {
+        cat: "regex",
+        title_en: "Validate Standard Email Address",
+        title_ar: "التحقق من صحة البريد الإلكتروني",
+        desc_en: "Matches modern valid email addresses with international TLDs.",
+        desc_ar: "نمط للتحقق من صياغة عناوين البريد الإلكتروني القياسية.",
+        code: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+      },
+      {
+        cat: "regex",
+        title_en: "Match Strong Password",
+        title_ar: "التحقق من كلمة مرور قوية",
+        desc_en: "Ensures at least 8 characters with 1 uppercase, 1 lowercase, 1 number, and 1 symbol.",
+        desc_ar: "شرط كلمة مرور: 8 خانات على الأقل، حرف كبير، حرف صغير، رقم، ورمز خاص.",
+        code: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
+      },
+      {
+        cat: "regex",
+        title_en: "Slug / URL-Friendly Pattern",
+        title_ar: "التحقق من روابط المقالات (Slug)",
+        desc_en: "Ensures lowercase alphanumeric words separated only by single dashes.",
+        desc_ar: "التحقق من صياغة الروابط المختصرة (Slug) بالأحرف والأرقام والشرطات فقط.",
+        code: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      {
+        cat: "regex",
+        title_en: "Extract IPv4 Address",
+        title_ar: "استخراج عناوين بروتوكول الإنترنت (IPv4)",
+        desc_en: "Matches 4 octets ranging from 0 to 255 delimited by dots.",
+        desc_ar: "مطابقة عناوين الآي بي IPv4 الصحيحة بين 0.0.0.0 و 255.255.255.255.",
+        code: "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+      }
+    ];
+
+    const catHeaders = {
+      git: { en: "Git & Version Control", ar: "Git وإدارة الإصدارات", icon: "fa-brands fa-git-alt" },
+      css: { en: "Modern CSS & Responsive Layouts", ar: "تنسيقات CSS والتخطيط المتجاوب", icon: "fa-brands fa-css3-alt" },
+      js: { en: "Modern JavaScript (ES6+)", ar: "جافاسكربت الحديثة والمتقدمة", icon: "fa-brands fa-js" },
+      python: { en: "Python Engineering Essentials", ar: "أساسيات بايثون الهندسية", icon: "fa-brands fa-python" },
+      sql: { en: "SQL & Relational Databases", ar: "قواعد البيانات و SQL", icon: "fa-solid fa-database" },
+      linux: { en: "Linux Terminal & Bash Commands", ar: "أوامر لينكس وسطر الأوامر", icon: "fa-brands fa-linux" },
+      regex: { en: "Regular Expressions (Regex)", ar: "التعابير النمطية (Regex)", icon: "fa-solid fa-code" }
+    };
+
+    let activeCat = "all";
+    let searchQuery = "";
+
+    const contentEl = document.getElementById("csContent");
+    const emptyEl = document.getElementById("csEmpty");
+    const searchInput = document.getElementById("csSearch");
+    const tabs = document.querySelectorAll(".cs-tab");
+
+    function renderCheats() {
+      const isAr = document.documentElement.getAttribute("lang") === "ar";
+      const q = searchQuery.toLowerCase().trim();
+
+      // Filter items
+      const filtered = CHEATSHEET_DATA.filter(item => {
+        const matchesCat = activeCat === "all" || item.cat === activeCat;
+        const matchesSearch = !q || 
+          item.title_en.toLowerCase().includes(q) ||
+          item.title_ar.toLowerCase().includes(q) ||
+          item.desc_en.toLowerCase().includes(q) ||
+          item.desc_ar.toLowerCase().includes(q) ||
+          item.code.toLowerCase().includes(q) ||
+          item.cat.toLowerCase().includes(q);
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        contentEl.innerHTML = "";
+        emptyEl.style.display = "block";
+        return;
+      }
+
+      emptyEl.style.display = "none";
+
+      // Group by category
+      const groups = {};
+      filtered.forEach(item => {
+        if (!groups[item.cat]) groups[item.cat] = [];
+        groups[item.cat].push(item);
+      });
+
+      let html = "";
+      for (const cat in groups) {
+        const catInfo = catHeaders[cat] || { en: cat, ar: cat, icon: "fa-solid fa-code" };
+        const items = groups[cat];
+
+        html += `
+          <section class="cs-section reveal">
+            <div class="cs-section-header">
+              <h2 class="cs-section-title">
+                <i class="${catInfo.icon}" style="color:var(--cl-brand);"></i>
+                <span>${isAr ? catInfo.ar : catInfo.en}</span>
+              </h2>
+              <span class="cs-section-count">${items.length} ${isAr ? 'عنصر' : 'cheats'}</span>
+            </div>
+            <div class="cs-grid">
+              ${items.map(item => `
+                <div class="cs-card">
+                  <div class="cs-card-top">
+                    <h3 class="cs-card-title">${isAr ? item.title_ar : item.title_en}</h3>
+                  </div>
+                  <p class="cs-card-desc">${isAr ? item.desc_ar : item.desc_en}</p>
+                  <div class="cs-code-wrap">
+                    <button class="cs-copy-btn" title="Copy code" onclick="copySnippet(this)">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                    <pre class="cs-code"><code>${escapeHtml(item.code)}</code></pre>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+        `;
+      }
+
+      contentEl.innerHTML = html;
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    window.copySnippet = function(btn) {
+      const code = btn.nextElementSibling.innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.innerHTML = `<i class="fa-solid fa-check" style="color:#10b981;"></i>`;
+        if (window.clToast) window.clToast(document.documentElement.getAttribute("lang") === "ar" ? "تم نسخ الكود بنجاح!" : "Code copied to clipboard!", "success");
+        setTimeout(() => {
+          btn.innerHTML = `<i class="fa-regular fa-copy"></i>`;
+        }, 1800);
+      });
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        activeCat = tab.dataset.cat;
+        renderCheats();
+      });
+    });
+
+    searchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      renderCheats();
+    });
+
+    // Re-render when language toggle occurs
+    window.addEventListener("cl:langchange", () => renderCheats());
+
+    // Initial render
+    renderCheats();
+  </script>
+
+  <script src="site-polish.js"></script>
+</body>
+</html>

@@ -180,6 +180,7 @@
     return [
       { href: "index.html", icon: "fa-house", label: tr.home },
       { href: "dorous-albarmaja.html", icon: "fa-code", label: tr.courses },
+      { href: "cheatsheets.html", icon: "fa-bolt", label: currentLang === 'ar' ? "ملخصات الأكواد" : "Cheatsheets" },
       { href: "blog.html", icon: "fa-newspaper", label: tr.blog },
       { href: "contact.html", icon: "fa-envelope", label: tr.contact }
     ];
@@ -217,6 +218,12 @@
           `).join('')}
         </nav>
         <div style="display:flex; gap:10px; align-items:center;">
+          <button class="cl-streak-pill" id="clStreakBtn" title="Daily Streak & Developer XP" aria-label="Daily Streak & XP">
+            <span class="cl-streak-flame">🔥</span>
+            <span id="clStreakNum" class="cl-streak-num">1</span>
+            <span class="cl-streak-divider"></span>
+            <span class="cl-xp-badge" id="clXpNum">120 XP</span>
+          </button>
           <div class="cl-lang-switcher">
             <button class="cl-lang-btn" id="cl-lang-btn" aria-label="Change language">
               <i class="fa-solid fa-globe"></i>
@@ -575,6 +582,9 @@
         { t: "Code Playground", t_ar: "مختبر الكود", d: "Live editor for practice.", d_ar: "محرر مباشر للتجربة.", h: "playground.html" },
         { t: "Developer Skills Quiz", t_ar: "اختبارات المهارات البرمجية", d: "Interactive developer skill quizzes and assessments.", d_ar: "اختبارات وتقييمات تفاعلية لمهارات المبرمج.", h: "quiz.html" },
         { t: "Tools Dashboard", t_ar: "مركز الأدوات", d: "Developer utilities and interactive tools.", d_ar: "أدوات ومساعدات برمجية ذكية.", h: "tools.html" },
+        { t: "Developer Cheatsheets Hub", t_ar: "مركز ملخصات الأكواد السريعة", d: "Fast syntax reference for Git, CSS, JS, Python, SQL, Linux, and Regex.", d_ar: "ملخصات سريعة لأهم أوامر وأكواد Git و CSS و JS و Python و SQL.", h: "cheatsheets.html" },
+        { t: "Code Formatter & Minifier", t_ar: "منسق وضواغط الأكواد", d: "Format, beautify, validate, and minify JSON, HTML, CSS, and JS.", d_ar: "تنسيق وتجميل وضغط أكواد JSON و HTML و CSS و JavaScript.", h: "formatter.html" },
+        { t: "Code Typing Speed Test", t_ar: "اختبار سرعة كتابة الكود", d: "Developer typing speed challenge for code syntax and WPM.", d_ar: "تحدي واختبار سرعة كتابة الأكواد البرمجية والدقة.", h: "typing-test.html" },
         { t: "Scientific & Developer Calculator", t_ar: "آلة حاسبة علمية وبرمجية", d: "Scientific, programmer bitwise, base conversions, and aspect ratio.", d_ar: "حاسبة علمية متطورة، تحويل الأنظمة العددية، ونسب الشاشات.", h: "calculator.html" },
         { t: "Courses Catalog", t_ar: "فهرس ومسارات الدروس", d: "Complete catalog of programming tutorials.", d_ar: "دليل وفهرس شامل لجميع الدروس البرمجية.", h: "dorous-albarmaja.html" },
         { t: "Productivity Tips", t_ar: "نصائح الإنتاجية", d: "Increase your daily output.", d_ar: "زيادة إنتاجيتك اليومية.", h: "productivity.html" },
@@ -1025,6 +1035,7 @@
     initCookieConsent();
     initCourseProgress();
     initDailyDevTip();
+    initGamification();
 
     // Register PWA Service Worker
     if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {

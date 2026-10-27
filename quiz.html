@@ -353,7 +353,100 @@
       .quiz-box { padding: 24px 18px; }
       .quiz-question { font-size: 1.15rem; }
     }
-  </style>
+  
+  /* Certificate Modal */
+  .cert-modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.92);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  .cert-modal {
+    background: var(--cl-surface);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    border-radius: 24px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.85);
+    overflow: hidden;
+    animation: certPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes certPop {
+    0% { transform: scale(0.92); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .cert-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--cl-line);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .cert-modal-close {
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--cl-muted);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .cert-modal-close:hover {
+    color: #ef4444;
+  }
+  .cert-modal-body {
+    padding: 24px 28px 32px;
+  }
+  .cert-input-wrap {
+    margin-bottom: 20px;
+  }
+  .cert-input-wrap label {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--cl-ink);
+  }
+  .cert-name-input {
+    flex: 1;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--cl-line);
+    background: var(--cl-bg);
+    color: var(--cl-ink);
+    font-size: 1rem;
+    font-weight: 700;
+    outline: none;
+  }
+  .cert-name-input:focus {
+    border-color: var(--cl-brand);
+  }
+  .cert-canvas-wrap {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 24px;
+    background: #020617;
+  }
+  .cert-canvas-wrap canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .cert-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>
 </head>
 <body>
 
@@ -536,12 +629,59 @@
     <div class="result-title" id="resTitle">Master Engineering Level!</div>
     <div class="result-desc" id="resDesc">You scored high on this assessment. Keep leveling up your engineering knowledge!</div>
     <div class="result-actions">
+            <button class="pg-btn pg-btn-primary" id="claimCertBtn" style="display:none; background:linear-gradient(135deg, #f59e0b, #d97706); color:#020617; font-weight:800; border:none; box-shadow:0 4px 20px rgba(245, 158, 11, 0.4);">
+        <i class="fa-solid fa-award"></i> <span data-cl-lang="en">Claim Your Certificate</span><span data-cl-lang="ar">احصل على شهادتك المعتمدة</span>
+      </button>
       <button class="pg-btn pg-btn-primary" id="retryQuizBtn">
         <i class="fa-solid fa-rotate-left"></i> <span data-cl-lang="en">Try Another Quiz</span><span data-cl-lang="ar">تجربة اختبار آخر</span>
       </button>
       <a href="dorous-albarmaja.html" class="pg-btn">
         <i class="fa-solid fa-book-open"></i> <span data-cl-lang="en">Browse Courses</span><span data-cl-lang="ar">تصفح الدروس</span>
       </a>
+    </div>
+  </div>
+
+  <!-- Certificate Modal -->
+  <div class="cert-modal-backdrop" id="certModal">
+    <div class="cert-modal">
+      <div class="cert-modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <i class="fa-solid fa-award" style="color:#f59e0b; font-size:1.5rem;"></i>
+          <h2 style="margin:0; font-size:1.4rem; color:var(--cl-ink);">
+            <span data-cl-lang="en">Official Certificate of Achievement</span>
+            <span data-cl-lang="ar">شهادة إتمام واجتياز معتمدة</span>
+          </h2>
+        </div>
+        <button class="cert-modal-close" id="closeCertModalBtn">&times;</button>
+      </div>
+
+      <div class="cert-modal-body">
+        <div class="cert-input-wrap">
+          <label for="certStudentName">
+            <span data-cl-lang="en">Your Full Name (As it will appear on the certificate):</span>
+            <span data-cl-lang="ar">اسمك الكامل (كما سيظهر على الشهادة الرسمية):</span>
+          </label>
+          <div style="display:flex; gap:10px; margin-top:8px;">
+            <input type="text" id="certStudentName" placeholder="e.g. Bilal El Hamri" class="cert-name-input">
+            <button id="updateCertNameBtn" class="pg-btn pg-btn-primary" style="white-space:nowrap;">
+              <span data-cl-lang="en">Update Certificate</span><span data-cl-lang="ar">تحديث الشهادة</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="cert-canvas-wrap">
+          <canvas id="certCanvas" width="1200" height="800"></canvas>
+        </div>
+
+        <div class="cert-actions">
+          <button id="downloadCertBtn" class="pg-btn pg-btn-primary" style="background:#10b981; border:none; box-shadow:0 4px 15px rgba(16,185,129,0.3); font-weight:800;">
+            <i class="fa-solid fa-download"></i> <span data-cl-lang="en">Download Certificate (PNG)</span><span data-cl-lang="ar">تحميل الشهادة عالية الدقة (PNG)</span>
+          </button>
+          <button id="printCertBtn" class="pg-btn" style="background:var(--cl-brand); color:#020617; font-weight:800;">
+            <i class="fa-solid fa-print"></i> <span data-cl-lang="en">Print / PDF</span><span data-cl-lang="ar">طباعة أو حفظ كـ PDF</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -2251,6 +2391,13 @@
     const resBadge = document.getElementById("resBadge");
 
     resScore.textContent = `${currentScore} / ${questions.length}`;
+    if (claimCertBtn) {
+      if ((currentScore / questions.length) >= 0.7) {
+        claimCertBtn.style.display = "inline-flex";
+      } else {
+        claimCertBtn.style.display = "none";
+      }
+    }
 
     const percent = (currentScore / questions.length) * 100;
     if (percent === 100) {
@@ -2285,6 +2432,304 @@
     quizResult.style.display = "none";
     catGrid.style.display = "grid";
     document.querySelector(".quiz-filter-bar").style.display = "flex";
+  });
+
+  
+  // Track Names Dictionary
+  const TRACK_TITLES = {
+  "web": {
+    "en": "Web Development Foundations (HTML5)",
+    "ar": "أساسيات تطوير الويب (HTML5)"
+  },
+  "css": {
+    "en": "Modern CSS3 & Responsive Architecture",
+    "ar": "تنسيقات CSS3 والهندسة المتجاوبة"
+  },
+  "js": {
+    "en": "Modern JavaScript (ES6+) Mastery",
+    "ar": "احتراف جافاسكربت الحديثة (ES6+)"
+  },
+  "react": {
+    "en": "React.js Component Architecture",
+    "ar": "بنية مكونات وتطبيقات React.js"
+  },
+  "py": {
+    "en": "Python Core Engineering & Automation",
+    "ar": "هندسة بايثون وبرمجة الأتمتة"
+  },
+  "node": {
+    "en": "Node.js Backend & API Engineering",
+    "ar": "هندسة الخوادم والـ APIs بـ Node.js"
+  },
+  "sql": {
+    "en": "SQL & Relational Database Design",
+    "ar": "تصميم وإدارة قواعد البيانات و SQL"
+  },
+  "java": {
+    "en": "Java Enterprise & OOP Architecture",
+    "ar": "برمجة جافا والتصميم كائني التوجه"
+  },
+  "csharp": {
+    "en": "C# & .NET Platform Development",
+    "ar": "تطوير التطبيقات بـ C# ومنصة .NET"
+  },
+  "php": {
+    "en": "PHP Modern Web Development",
+    "ar": "تطوير تطبيقات الويب بـ PHP الحديثة"
+  },
+  "flutter": {
+    "en": "Flutter & Cross-Platform Mobile Apps",
+    "ar": "تطبيقات الهواتف الذكية بـ Flutter"
+  },
+  "git": {
+    "en": "Git & Version Control Workflow",
+    "ar": "أنظمة التحكم في الإصدارات Git"
+  }
+};
+
+  // Show Certificate Button if percent >= 70%
+  const claimCertBtn = document.getElementById("claimCertBtn");
+  const certModal = document.getElementById("certModal");
+  const closeCertModalBtn = document.getElementById("closeCertModalBtn");
+  const certStudentName = document.getElementById("certStudentName");
+  const updateCertNameBtn = document.getElementById("updateCertNameBtn");
+  const downloadCertBtn = document.getElementById("downloadCertBtn");
+  const printCertBtn = document.getElementById("printCertBtn");
+  const certCanvas = document.getElementById("certCanvas");
+
+  let studentName = localStorage.getItem("cl_student_name") || "Software Engineer";
+  certStudentName.value = studentName;
+
+  function renderCertificate() {
+    if (!certCanvas) return;
+    const ctx = certCanvas.getContext("2d");
+    const w = 1200;
+    const h = 800;
+
+    const isAr = document.documentElement.getAttribute("lang") === "ar";
+    const trackInfo = TRACK_TITLES[currentCategory] || { en: "Software Engineering Track", ar: "المسار الهندسي للبرمجة" };
+    const trackName = isAr ? trackInfo.ar : trackInfo.en;
+    const percent = Math.round((currentScore / questions.length) * 100);
+
+    // Background Gradient (Cyber Luxury Navy)
+    const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+    bgGrad.addColorStop(0, "#020617");
+    bgGrad.addColorStop(0.5, "#0b1528");
+    bgGrad.addColorStop(1, "#030816");
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, w, h);
+
+    // Delicate background grid lines
+    ctx.strokeStyle = "rgba(56, 189, 248, 0.04)";
+    ctx.lineWidth = 1;
+    for (let x = 40; x < w; x += 40) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+    }
+    for (let y = 40; y < h; y += 40) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+    }
+
+    // Outer Luxury Gold Border
+    ctx.strokeStyle = "#f59e0b";
+    ctx.lineWidth = 4;
+    ctx.strokeRect(36, 36, w - 72, h - 72);
+
+    // Inner Glowing Cyan Border
+    ctx.strokeStyle = "rgba(56, 189, 248, 0.6)";
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(48, 48, w - 96, h - 96);
+
+    // Corner Ornaments
+    const corners = [
+      [48, 48], [w - 48, 48], [48, h - 48], [w - 48, h - 48]
+    ];
+    corners.forEach(([cx, cy]) => {
+      ctx.fillStyle = "#f59e0b";
+      ctx.beginPath();
+      ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Top Brand Badge
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#38bdf8";
+    ctx.font = "bold 16px 'Outfit', 'Cairo', sans-serif";
+    ctx.letterSpacing = "6px";
+    ctx.fillText("CODING LIFE ACADEMY", w / 2, 105);
+
+    // Main Certificate Title
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "900 42px 'Outfit', 'Cairo', sans-serif";
+    ctx.letterSpacing = "2px";
+    ctx.fillText(isAr ? "شـهـادة إتـمـام وتـفـوّق" : "CERTIFICATE OF ACHIEVEMENT", w / 2, 160);
+
+    // Subtitle
+    ctx.fillStyle = "rgba(148, 163, 184, 0.9)";
+    ctx.font = "600 17px 'Outfit', 'Cairo', sans-serif";
+    ctx.letterSpacing = "1px";
+    ctx.fillText(isAr ? "تُمنح هذه الشهادة تقديراً لإظهار الكفاءة المعرفية والتطبيقية في:" : "THIS IS OFFICIALLY PRESENTED IN RECOGNITION OF EXCELLENCE TO", w / 2, 215);
+
+    // Student Name (Highlight)
+    ctx.fillStyle = "#38bdf8";
+    ctx.font = "900 52px 'Outfit', 'Cairo', sans-serif";
+    ctx.fillText(studentName, w / 2, 290);
+
+    // Gold Underline under name
+    const nameWidth = ctx.measureText(studentName).width;
+    const lineW = Math.max(nameWidth + 60, 320);
+    const gradLine = ctx.createLinearGradient((w / 2) - (lineW / 2), 0, (w / 2) + (lineW / 2), 0);
+    gradLine.addColorStop(0, "transparent");
+    gradLine.addColorStop(0.5, "#f59e0b");
+    gradLine.addColorStop(1, "transparent");
+    ctx.strokeStyle = gradLine;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo((w / 2) - (lineW / 2), 312);
+    ctx.lineTo((w / 2) + (lineW / 2), 312);
+    ctx.stroke();
+
+    // Track Description
+    ctx.fillStyle = "#f8fafc";
+    ctx.font = "700 24px 'Outfit', 'Cairo', sans-serif";
+    ctx.fillText(trackName, w / 2, 375);
+
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "500 16px 'Outfit', 'Cairo', sans-serif";
+    const descText = isAr 
+      ? `لافراده كافة الاختبارات التقييمية وإثبات استيعاب المفاهيم الهندسية بمعدل إتقان ${percent}%`
+      : `For demonstrating technical competence by achieving a final passing score of ${percent}% in the assessment.`;
+    ctx.fillText(descText, w / 2, 415);
+
+    // Distinction Pill Badge in Center
+    ctx.fillStyle = "rgba(245, 158, 11, 0.15)";
+    ctx.strokeStyle = "#f59e0b";
+    ctx.lineWidth = 1.5;
+    const badgeW = 280;
+    const badgeH = 44;
+    const badgeX = (w / 2) - (badgeW / 2);
+    const badgeY = 460;
+    roundRect(ctx, badgeX, badgeY, badgeW, badgeH, 22);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "#f59e0b";
+    ctx.font = "bold 16px 'Outfit', 'Cairo', sans-serif";
+    const grade = percent === 100 ? "GRADE: MASTER WITH HONORS" : "GRADE: DISTINCTION (VERIFIED)";
+    ctx.fillText(grade, w / 2, 488);
+
+    // Verification Box (Bottom Left)
+    ctx.textAlign = "left";
+    ctx.fillStyle = "#64748b";
+    ctx.font = "600 13px 'Fira Code', monospace";
+    const certId = "CL-" + (currentCategory || "GEN").toUpperCase() + "-" + Math.abs(hashCode(studentName + currentCategory)).toString(36).toUpperCase().padStart(6, "0");
+    const issueDate = new Date().toLocaleDateString(isAr ? 'ar-EG' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    ctx.fillText(`CERT ID: ${certId}`, 90, 680);
+    ctx.fillText(`DATE: ${issueDate}`, 90, 705);
+    ctx.fillText(`VERIFICATION: codinglife1.vercel.app`, 90, 730);
+
+    // Official Seal Graphic (Center Bottom)
+    ctx.save();
+    ctx.translate(w / 2, 690);
+    ctx.beginPath();
+    ctx.arc(0, 0, 36, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(56, 189, 248, 0.12)";
+    ctx.fill();
+    ctx.strokeStyle = "#38bdf8";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#38bdf8";
+    ctx.font = "bold 20px 'Fira Code', monospace";
+    ctx.fillText("</>", 0, 8);
+    ctx.restore();
+
+    // Signatures (Bottom Right)
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "bold 15px 'Outfit', 'Cairo', sans-serif";
+    ctx.fillText("Coding Life Academic Board", w - 90, 685);
+    ctx.fillStyle = "#64748b";
+    ctx.font = "500 13px 'Outfit', 'Cairo', sans-serif";
+    ctx.fillText("Verified Technical Certification", w - 90, 710);
+
+    // Signature Line
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(w - 260, 660);
+    ctx.lineTo(w - 90, 660);
+    ctx.stroke();
+  }
+
+  function roundRect(ctx, x, y, width, height, radius) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+  }
+
+  function hashCode(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) - hash) + str.charCodeAt(i);
+      hash |= 0;
+    }
+    return hash;
+  }
+
+  // Certificate Modal Handlers
+  claimCertBtn.addEventListener("click", () => {
+    certModal.style.display = "flex";
+    renderCertificate();
+  });
+
+  closeCertModalBtn.addEventListener("click", () => {
+    certModal.style.display = "none";
+  });
+
+  updateCertNameBtn.addEventListener("click", () => {
+    const val = certStudentName.value.trim();
+    if (val) {
+      studentName = val;
+      localStorage.setItem("cl_student_name", studentName);
+      renderCertificate();
+      if (window.clToast) window.clToast("Certificate updated!", "success");
+    }
+  });
+
+  certStudentName.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") updateCertNameBtn.click();
+  });
+
+  downloadCertBtn.addEventListener("click", () => {
+    const dataUrl = certCanvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    const safeName = studentName.replace(/[^a-zA-Z0-9]/g, "_");
+    link.download = `CodingLife-Certificate-${safeName}.png`;
+    link.href = dataUrl;
+    link.click();
+    if (window.clToast) window.clToast("Certificate downloaded successfully! 🎓", "success");
+  });
+
+  printCertBtn.addEventListener("click", () => {
+    const dataUrl = certCanvas.toDataURL("image/png");
+    const printWin = window.open("", "_blank");
+    printWin.document.write(`
+      <html>
+        <head><title>Print Certificate - Coding Life</title></head>
+        <body style="margin:0; display:flex; align-items:center; justify-content:center; height:100vh; background:#000;">
+          <img src="${dataUrl}" style="max-width:100%; max-height:100%;" onload="window.print(); window.close();" />
+        </body>
+      </html>
+    `);
+    printWin.document.close();
   });
 
   // Confetti Engine

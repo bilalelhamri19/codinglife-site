@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Code Typing Speed Test - Coding Life</title>
+  <meta name="description" content="Test and practice your coding typing speed with real JavaScript, Python, and HTML/CSS snippets. Measure WPM, accuracy, and syntax dexterity.">
+  <meta name="keywords" content="Code typing test, developer typing speed, programmer WPM test, typing speed test, اختبار سرعة كتابة الكود, سرعة الطباعة البرمجية">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://codinglife1.vercel.app/typing-test.html">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@400;600;800;900&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .tt-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .tt-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .tt-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 99px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--cl-brand);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+    }
+    .tt-header h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 900;
+      color: var(--cl-ink);
+      margin: 0 0 12px;
+    }
+    .tt-header p {
+      color: var(--cl-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Live Dashboard Metrics */
+    .tt-dash {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 768px) {
+      .tt-dash {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .tt-stat-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 18px 20px;
+      text-align: center;
+      transition: var(--cl-transition);
+    }
+    .tt-stat-val {
+      font-size: 2.2rem;
+      font-family: 'Fira Code', monospace;
+      font-weight: 900;
+      color: var(--cl-brand);
+      line-height: 1.2;
+    }
+    .tt-stat-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--cl-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* Track Selector */
+    .tt-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 20px;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 14px 20px;
+    }
+    .tt-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tt-pill {
+      padding: 8px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--cl-line);
+      background: transparent;
+      color: var(--cl-muted);
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: var(--cl-transition);
+    }
+    .tt-pill:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-ink);
+    }
+    .tt-pill.active {
+      background: var(--cl-brand);
+      color: #020617;
+      border-color: var(--cl-brand);
+      font-weight: 800;
+    }
+
+    /* Typing Arena */
+    .tt-arena {
+      background: #020617;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 20px;
+      padding: 30px;
+      position: relative;
+      cursor: text;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      margin-bottom: 24px;
+      min-height: 220px;
+    }
+    .tt-arena:focus-within {
+      border-color: #38bdf8;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
+    }
+    .tt-code-display {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      word-break: break-all;
+      user-select: none;
+      color: #475569;
+    }
+    .tt-char {
+      position: relative;
+      transition: color 0.1s ease;
+    }
+    .tt-char.correct {
+      color: #38bdf8;
+    }
+    .tt-char.wrong {
+      color: #ef4444;
+      background: rgba(239, 68, 68, 0.2);
+      border-radius: 2px;
+      text-decoration: underline;
+    }
+    .tt-char.current {
+      background: rgba(56, 189, 248, 0.3);
+      border-left: 2px solid #38bdf8;
+      animation: blinkCursor 0.9s infinite;
+    }
+    @keyframes blinkCursor {
+      0%, 100% { border-left-color: #38bdf8; }
+      50% { border-left-color: transparent; }
+    }
+
+    /* Hidden Real Input for Keyboard capture */
+    .tt-hidden-input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      left: -9999px;
+    }
+
+    /* Action buttons */
+    .tt-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .tt-btn {
+      padding: 12px 28px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      transition: all 0.2s ease;
+    }
+    .tt-btn-primary {
+      background: #0f172a;
+      color: #ffffff;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+    .tt-btn-primary:hover {
+      background: #1e293b;
+      border-color: #38bdf8;
+      color: #38bdf8;
+      transform: translateY(-2px);
+    }
+
+    /* Results Modal */
+    .tt-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .tt-modal {
+      background: var(--cl-surface);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 24px;
+      padding: 36px 30px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes modalPop {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .tt-modal-badge {
+      font-size: 3.5rem;
+      margin-bottom: 12px;
+    }
+    .tt-modal-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--cl-ink);
+      margin: 0 0 8px;
+    }
+    .tt-modal-subtitle {
+      color: var(--cl-muted);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .tt-modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .tt-modal-stat {
+      background: var(--cl-bg);
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .tt-modal-stat-val {
+      font-size: 1.6rem;
+      font-family: 'Fira Code', monospace;
+      font-weight: 800;
+      color: var(--cl-brand);
+    }
+    .tt-modal-stat-lbl {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--cl-muted);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tt-container">
+    <div class="tt-header reveal">
+      <div class="tt-tag">
+        <i class="fa-solid fa-keyboard"></i>
+        <span data-cl-lang="en">Interactive Challenge</span>
+        <span data-cl-lang="ar">تحدي تفاعلي</span>
+      </div>
+      <h1 data-cl-lang="en">Developer Typing Speed Test</h1>
+      <h1 data-cl-lang="ar">اختبار سرعة كتابة الأكواد</h1>
+      <p data-cl-lang="en">Practice typing real-world code snippets with braces, brackets, and syntax symbols. Boost your daily programming speed.</p>
+      <p data-cl-lang="ar">تمرن على كتابة أكواد برمجية حقيقية تحتوي على الأقواس والرموز الخاصة. قِس سرعتك بالكلمات في الدقيقة (WPM) ودقتك.</p>
+    </div>
+
+    <!-- Live Metrics Dashboard -->
+    <div class="tt-dash">
+      <div class="tt-stat-card">
+        <div class="tt-stat-val" id="valWpm">0</div>
+        <div class="tt-stat-label">WPM (Speed)</div>
+      </div>
+      <div class="tt-stat-card">
+        <div class="tt-stat-val" id="valAcc">100%</div>
+        <div class="tt-stat-label">Accuracy</div>
+      </div>
+      <div class="tt-stat-card">
+        <div class="tt-stat-val" id="valTime">60s</div>
+        <div class="tt-stat-label">Time Remaining</div>
+      </div>
+      <div class="tt-stat-card">
+        <div class="tt-stat-val" id="valErrors" style="color:#ef4444;">0</div>
+        <div class="tt-stat-label">Errors</div>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="tt-toolbar">
+      <div class="tt-pills" id="langPills">
+        <button class="tt-pill active" data-lang="js"><i class="fa-brands fa-js"></i> JavaScript</button>
+        <button class="tt-pill" data-lang="python"><i class="fa-brands fa-python"></i> Python</button>
+        <button class="tt-pill" data-lang="html"><i class="fa-brands fa-html5"></i> HTML/CSS</button>
+      </div>
+
+      <div class="tt-pills" id="timePills">
+        <button class="tt-pill" data-time="30">30s</button>
+        <button class="tt-pill active" data-time="60">60s</button>
+        <button class="tt-pill" data-time="free">Freeflow</button>
+      </div>
+    </div>
+
+    <!-- Typing Arena -->
+    <div class="tt-arena" id="arena" tabindex="0">
+      <div class="tt-code-display" id="codeDisplay"></div>
+      <input type="text" id="hiddenInput" class="tt-hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    </div>
+
+    <div class="tt-actions">
+      <button class="tt-btn tt-btn-primary" id="restartBtn">
+        <i class="fa-solid fa-rotate-left"></i> <span>Restart Test (Esc)</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Results Modal -->
+  <div class="tt-modal-backdrop" id="resModal">
+    <div class="tt-modal">
+      <div class="tt-modal-badge" id="modalBadge">🚀</div>
+      <h2 class="tt-modal-title" id="modalTitle">Impressive Speed!</h2>
+      <p class="tt-modal-subtitle" id="modalRank">Rank: Code Warrior</p>
+
+      <div class="tt-modal-grid">
+        <div class="tt-modal-stat">
+          <div class="tt-modal-stat-val" id="modalWpm">0</div>
+          <div class="tt-modal-stat-lbl">Final WPM</div>
+        </div>
+        <div class="tt-modal-stat">
+          <div class="tt-modal-stat-val" id="modalAcc">100%</div>
+          <div class="tt-modal-stat-lbl">Accuracy</div>
+        </div>
+        <div class="tt-modal-stat">
+          <div class="tt-modal-stat-val" id="modalChars">0</div>
+          <div class="tt-modal-stat-lbl">Characters</div>
+        </div>
+        <div class="tt-modal-stat">
+          <div class="tt-modal-stat-val" id="modalErr" style="color:#ef4444;">0</div>
+          <div class="tt-modal-stat-lbl">Errors</div>
+        </div>
+      </div>
+
+      <button class="tt-btn tt-btn-primary" style="width:100%; justify-content:center;" id="modalTryAgainBtn">
+        <i class="fa-solid fa-play"></i> <span>Try Again</span>
+      </button>
+    </div>
+  </div>
+
+  <canvas id="confettiCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+
+  <script>
+    const SNIPPETS = {
+      js: [
+        "const calculateTotal = (items, taxRate = 0.05) => {\n  return items.reduce((acc, curr) => acc + (curr.price * curr.qty), 0) * (1 + taxRate);\n};",
+        "async function fetchUserProfile(userId) {\n  const response = await fetch(`/api/users/${userId}`);\n  if (!response.ok) throw new Error('User not found');\n  return await response.json();\n}",
+        "useEffect(() => {\n  const handleResize = () => setWindowWidth(window.innerWidth);\n  window.addEventListener('resize', handleResize);\n  return () => window.removeEventListener('resize', handleResize);\n}, []);"
+      ],
+      python: [
+        "def fetch_active_subscribers(users_list):\n    return [u['email'] for u in users_list if u.get('is_active') and u.get('plan') == 'pro']",
+        "class DatabaseConnection:\n    def __init__(self, host='localhost', port=5432):\n        self.host = host\n        self.port = port\n        self.is_connected = False",
+        "def memoize(fn):\n    cache = {}\n    def wrapper(*args):\n        if args not in cache:\n            cache[args] = fn(*args)\n        return cache[args]\n    return wrapper"
+      ],
+      html: [
+        "<div class=\"card-profile\">\n  <img src=\"/avatar.png\" alt=\"Avatar\" class=\"avatar-img\" />\n  <h3>Full-Stack Engineer</h3>\n  <a href=\"#contact\" class=\"btn-cta\">Get In Touch</a>\n</div>",
+        ".header-glass {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  backdrop-filter: blur(12px);\n  background: rgba(15, 23, 42, 0.75);\n}"
+      ]
+    };
+
+    let selectedLang = "js";
+    let selectedDuration = 60; // 30, 60, or null
+    let timeLeft = 60;
+    let timer = null;
+    let hasStarted = false;
+    let currentCode = "";
+    let typedIndex = 0;
+    let errorCount = 0;
+    let totalTyped = 0;
+
+    const arena = document.getElementById("arena");
+    const codeDisplay = document.getElementById("codeDisplay");
+    const hiddenInput = document.getElementById("hiddenInput");
+
+    const valWpm = document.getElementById("valWpm");
+    const valAcc = document.getElementById("valAcc");
+    const valTime = document.getElementById("valTime");
+    const valErrors = document.getElementById("valErrors");
+
+    const resModal = document.getElementById("resModal");
+    const modalBadge = document.getElementById("modalBadge");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalRank = document.getElementById("modalRank");
+    const modalWpm = document.getElementById("modalWpm");
+    const modalAcc = document.getElementById("modalAcc");
+    const modalChars = document.getElementById("modalChars");
+    const modalErr = document.getElementById("modalErr");
+
+    function getRandomSnippet(lang) {
+      const list = SNIPPETS[lang] || SNIPPETS.js;
+      return list[Math.floor(Math.random() * list.length)];
+    }
+
+    function initSnippet() {
+      currentCode = getRandomSnippet(selectedLang);
+      typedIndex = 0;
+      errorCount = 0;
+      totalTyped = 0;
+      hasStarted = false;
+      clearInterval(timer);
+      timer = null;
+      timeLeft = selectedDuration === "free" ? 0 : selectedDuration;
+      valTime.textContent = selectedDuration === "free" ? "Free" : `${timeLeft}s`;
+      valWpm.textContent = "0";
+      valAcc.textContent = "100%";
+      valErrors.textContent = "0";
+      hiddenInput.value = "";
+
+      renderDisplay();
+    }
+
+    function renderDisplay() {
+      let html = "";
+      for (let i = 0; i < currentCode.length; i++) {
+        let cls = "tt-char";
+        if (i < typedIndex) {
+          cls += " correct";
+        } else if (i === typedIndex) {
+          cls += " current";
+        }
+        const char = currentCode[i];
+        if (char === "\n") {
+          html += `<span class="${cls}" data-idx="${i}">\n</span>`;
+        } else if (char === " ") {
+          html += `<span class="${cls}" data-idx="${i}">&nbsp;</span>`;
+        } else {
+          html += `<span class="${cls}" data-idx="${i}">${escapeChar(char)}</span>`;
+        }
+      }
+      codeDisplay.innerHTML = html;
+    }
+
+    function escapeChar(c) {
+      if (c === "<") return "&lt;";
+      if (c === ">") return "&gt;";
+      if (c === "&") return "&amp;";
+      return c;
+    }
+
+    function startTimer() {
+      hasStarted = true;
+      const startTime = Date.now();
+
+      timer = setInterval(() => {
+        if (selectedDuration === "free") {
+          timeLeft++;
+          valTime.textContent = `${timeLeft}s`;
+        } else {
+          if (timeLeft > 0) {
+            timeLeft--;
+            valTime.textContent = `${timeLeft}s`;
+          } else {
+            finishTest();
+          }
+        }
+        updateWPM(startTime);
+      }, 1000);
+    }
+
+    function updateWPM(startTime) {
+      const elapsedSec = (Date.now() - startTime) / 1000;
+      if (elapsedSec <= 0) return;
+      // 5 chars = 1 word
+      const words = (typedIndex / 5);
+      const wpm = Math.round((words / elapsedSec) * 60);
+      valWpm.textContent = Math.max(0, wpm);
+
+      const acc = totalTyped > 0 ? Math.round(((totalTyped - errorCount) / totalTyped) * 100) : 100;
+      valAcc.textContent = `${Math.max(0, acc)}%`;
+      valErrors.textContent = errorCount;
+    }
+
+    arena.addEventListener("click", () => {
+      hiddenInput.focus();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        initSnippet();
+        return;
+      }
+      if (resModal.style.display === "flex") return;
+
+      hiddenInput.focus();
+    });
+
+    hiddenInput.addEventListener("keydown", (e) => {
+      if (!hasStarted && e.key.length === 1) {
+        startTimer();
+      }
+
+      const expected = currentCode[typedIndex];
+
+      if (e.key === "Backspace") {
+        e.preventDefault();
+        if (typedIndex > 0) {
+          typedIndex--;
+          renderDisplay();
+        }
+        return;
+      }
+
+      if (e.key === "Enter") {
+        e.preventDefault();
+        totalTyped++;
+        if (expected === "\n") {
+          typedIndex++;
+        } else {
+          errorCount++;
+        }
+        checkProgress();
+        renderDisplay();
+        return;
+      }
+
+      if (e.key === "Tab") {
+        e.preventDefault();
+        // Check if expected is spaces
+        totalTyped += 2;
+        if (expected === " " && currentCode[typedIndex + 1] === " ") {
+          typedIndex += 2;
+        } else {
+          errorCount++;
+        }
+        checkProgress();
+        renderDisplay();
+        return;
+      }
+
+      if (e.key.length === 1) {
+        e.preventDefault();
+        totalTyped++;
+        if (e.key === expected) {
+          typedIndex++;
+        } else {
+          errorCount++;
+          // briefly flash error class on current char
+          const curEl = codeDisplay.querySelector(`.tt-char[data-idx="${typedIndex}"]`);
+          if (curEl) {
+            curEl.classList.add("wrong");
+            setTimeout(() => curEl.classList.remove("wrong"), 300);
+          }
+        }
+        checkProgress();
+        renderDisplay();
+      }
+    });
+
+    function checkProgress() {
+      if (typedIndex >= currentCode.length) {
+        finishTest();
+      }
+    }
+
+    function finishTest() {
+      clearInterval(timer);
+      timer = null;
+      const wpm = parseInt(valWpm.textContent, 10) || 0;
+      const acc = parseInt(valAcc.textContent, 10) || 100;
+
+      modalWpm.textContent = wpm;
+      modalAcc.textContent = `${acc}%`;
+      modalChars.textContent = typedIndex;
+      modalErr.textContent = errorCount;
+
+      let rank = "Junior Coder 🐣";
+      let badge = "🌱";
+      if (wpm >= 80) { rank = "10x Engineering Legend ⚡"; badge = "👑"; }
+      else if (wpm >= 55) { rank = "Full-Stack Code Ninja 🥷"; badge = "🚀"; }
+      else if (wpm >= 35) { rank = "Solid Code Warrior ⚔️"; badge = "🔥"; }
+
+      modalRank.textContent = `Rank: ${rank}`;
+      modalBadge.textContent = badge;
+      resModal.style.display = "flex";
+
+      // Fire confetti if score is great
+      if (wpm >= 35) fireConfetti();
+    }
+
+    // Confetti
+    function fireConfetti() {
+      const canvas = document.getElementById("confettiCanvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const pieces = [];
+      const colors = ["#38bdf8", "#0f172a", "#f59e0b", "#ec4899", "#10b981"];
+      for (let i = 0; i < 90; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * -canvas.height,
+          size: Math.random() * 8 + 4,
+          speed: Math.random() * 4 + 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          angle: Math.random() * 360,
+          rotSpeed: Math.random() * 6 - 3
+        });
+      }
+      let frame = 0;
+      function anim() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => {
+          p.y += p.speed;
+          p.angle += p.rotSpeed;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.angle * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+        });
+        frame++;
+        if (frame < 120) requestAnimationFrame(anim);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      anim();
+    }
+
+    // Language pills
+    document.querySelectorAll("#langPills .tt-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        document.querySelectorAll("#langPills .tt-pill").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        selectedLang = pill.dataset.lang;
+        initSnippet();
+      });
+    });
+
+    // Time pills
+    document.querySelectorAll("#timePills .tt-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        document.querySelectorAll("#timePills .tt-pill").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        const t = pill.dataset.time;
+        selectedDuration = t === "free" ? "free" : parseInt(t, 10);
+        initSnippet();
+      });
+    });
+
+    document.getElementById("restartBtn").addEventListener("click", initSnippet);
+    document.getElementById("modalTryAgainBtn").addEventListener("click", () => {
+      resModal.style.display = "none";
+      initSnippet();
+    });
+
+    // Initial load
+    initSnippet();
+  </script>
+
+  <script src="site-polish.js"></script>
+</body>
+</html>
