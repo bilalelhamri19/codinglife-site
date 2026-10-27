@@ -279,7 +279,7 @@
     drawer.innerHTML = `
       <div class="cl-mobile-drawer-header">
         <a href="index.html" class="cl-brand" style="font-size:1.4rem;">
-          <img src="${CONFIG.logoPath}" alt="Logo" style="height:38px;">
+          <img src="${CONFIG.logoPath}" alt="Logo" style="height:40px; width:40px; border-radius:50%; object-fit:cover;">
           <span>${CONFIG.brandName}</span>
         </a>
         <button class="cl-mobile-drawer-close" id="clMobileDrawerClose" aria-label="Close menu">&times;</button>
