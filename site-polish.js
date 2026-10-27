@@ -597,7 +597,7 @@
           const desc = lang === 'ar' ? (p.d_ar || p.d) : p.d;
           return `
             <a href="${p.h}" style="padding:16px; background:rgba(30,41,59,0.8); border-radius:8px; color:white; text-decoration:none; display:block; transition:0.2s; border:1px solid #1e293b; text-align:${lang === 'ar' ? 'right' : 'left'};">
-              <div style="font-weight:bold; color:#2dd4bf; margin-bottom:4px;">${title}</div>
+              <div style="font-weight:bold; color:#38bdf8; margin-bottom:4px;">${title}</div>
               <div style="font-size:0.85rem; color:#94a3b8;">${desc}</div>
             </a>
           `;

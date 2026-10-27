@@ -191,8 +191,8 @@
       display: none;
       padding: 16px 20px;
       border-radius: 12px;
-      background: rgba(45, 212, 191, 0.08);
-      border: 1px solid rgba(45, 212, 191, 0.2);
+      background: #0f172a;
+      border: 1px solid rgba(56, 189, 248, 0.25);
       color: var(--cl-ink);
       font-size: 0.95rem;
       line-height: 1.6;
@@ -201,20 +201,22 @@
 
     .quiz-next-btn {
       display: none;
-      background: var(--cl-brand);
-      color: #020617;
-      border: none;
+      background: #0f172a;
+      color: #ffffff;
+      border: 1px solid rgba(56, 189, 248, 0.4);
       padding: 14px 32px;
       border-radius: 12px;
       font-size: 1rem;
       font-weight: 800;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 0 20px rgba(45, 212, 191, 0.3);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.4);
     }
 
     .quiz-next-btn:hover {
-      background: #5eead4;
+      background: #1e293b;
+      border-color: #38bdf8;
+      color: #38bdf8;
       transform: translateY(-2px);
     }
 
@@ -673,7 +675,7 @@
     canvas.height = window.innerHeight;
 
     const pieces = [];
-    const colors = ["#2dd4bf", "#38bdf8", "#f59e0b", "#ec4899", "#10b981"];
+    const colors = ["#38bdf8", "#0f172a", "#f59e0b", "#ec4899", "#10b981"];
 
     for (let i = 0; i < 80; i++) {
       pieces.push({

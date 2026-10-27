@@ -47,13 +47,13 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(45, 212, 191, 0.15);
-      color: #2dd4bf;
+      background: #0f172a;
+      color: #38bdf8;
       padding: 4px 10px;
       border-radius: 99px;
       font-size: 0.8rem;
       font-weight: 700;
-      border: 1px solid rgba(45, 212, 191, 0.3);
+      border: 1px solid rgba(56, 189, 248, 0.3);
     }
 
     .pg-actions {
@@ -86,16 +86,16 @@
     }
 
     .pg-btn-primary {
-      background: #2dd4bf;
-      color: #020617;
-      border-color: #2dd4bf;
-      box-shadow: 0 0 15px rgba(45, 212, 191, 0.25);
+      background: #0f172a;
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     }
 
     .pg-btn-primary:hover {
-      background: #5eead4;
-      color: #020617;
-      border-color: #5eead4;
+      background: #1e293b;
+      color: #38bdf8;
+      border-color: #38bdf8;
     }
 
     .pg-select {
@@ -257,9 +257,9 @@
     }
 
     .pg-tab-btn.active {
-      color: #2dd4bf;
-      border-bottom-color: #2dd4bf;
-      background: rgba(45, 212, 191, 0.05);
+      color: #38bdf8;
+      border-bottom-color: #38bdf8;
+      background: #0f172a;
     }
 
     @media (max-width: 900px) {
@@ -334,7 +334,7 @@
     <button class="pg-tab-btn active" data-tab="html"><i class="fa-brands fa-html5 pg-tag-html"></i> HTML</button>
     <button class="pg-tab-btn" data-tab="css"><i class="fa-brands fa-css3-alt pg-tag-css"></i> CSS</button>
     <button class="pg-tab-btn" data-tab="js"><i class="fa-brands fa-js pg-tag-js"></i> JS</button>
-    <button class="pg-tab-btn" data-tab="preview"><i class="fa-solid fa-eye" style="color:#2dd4bf;"></i> Preview</button>
+    <button class="pg-tab-btn" data-tab="preview"><i class="fa-solid fa-eye" style="color:#38bdf8;"></i> Preview</button>
   </div>
 
   <!-- Workspace -->
@@ -384,13 +384,14 @@
 
 .badge {
   display: inline-block;
-  background: rgba(45, 212, 191, 0.15);
-  color: #2dd4bf;
+  background: #0f172a;
+  color: #38bdf8;
   padding: 6px 14px;
   border-radius: 99px;
   font-size: 0.85rem;
   font-weight: 700;
   margin-bottom: 16px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
 }
 
 h1 {
@@ -409,22 +410,23 @@ p {
 }
 
 .glow-button {
-  background: #2dd4bf;
-  color: #020617;
-  border: none;
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 12px 28px;
   border-radius: 10px;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(45, 212, 191, 0.35);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .glow-button:hover {
-  background: #5eead4;
+  background: #1e293b;
+  color: #38bdf8;
+  border-color: #38bdf8;
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(45, 212, 191, 0.6);
 }
 
 .status-text {
@@ -446,7 +448,7 @@ const status = document.getElementById('status');
 btn.addEventListener('click', () => {
   clicks++;
   status.textContent = `Button clicked ${clicks} times!`;
-  status.style.color = '#2dd4bf';
+  status.style.color = '#38bdf8';
   console.log(`User clicked button: ${clicks} time(s)`);
 });
 
@@ -458,7 +460,7 @@ console.log("Playground initialized successfully!");</textarea>
     <div class="pg-preview-pane" id="box-preview">
       <div class="pg-preview-header">
         <span><i class="fa-solid fa-laptop-code"></i> Live Output</span>
-        <span id="runIndicator" style="color:#2dd4bf; font-size:0.75rem;">
+        <span id="runIndicator" style="color:#38bdf8; font-size:0.75rem;">
           <i class="fa-solid fa-circle" style="font-size:0.5rem;"></i> Live
         </span>
       </div>
@@ -598,21 +600,21 @@ console.log("Playground initialized successfully!");</textarea>
   font-size: 1.4rem;
   font-weight: 800;
   letter-spacing: 2px;
-  color: #2dd4bf;
-  background: transparent;
-  border: 3px solid #2dd4bf;
+  color: #38bdf8;
+  background: #0f172a;
+  border: 2px solid #38bdf8;
   border-radius: 12px;
   padding: 16px 36px;
   cursor: pointer;
   position: relative;
   transition: 0.3s;
-  box-shadow: 0 0 15px rgba(45, 212, 191, 0.4), inset 0 0 15px rgba(45, 212, 191, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .neon-btn:hover {
-  background: #2dd4bf;
-  color: #030712;
-  box-shadow: 0 0 40px #2dd4bf, inset 0 0 10px #2dd4bf;
+  background: #1e293b;
+  color: #ffffff;
+  border-color: #60a5fa;
   transform: scale(1.05);
 }`,
       js: `document.querySelector('.neon-btn').addEventListener('click', () => {
@@ -705,7 +707,7 @@ p { font-size: 0.9rem; color: #94a3b8; line-height: 1.5; }
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-#count { font-size: 4rem; margin: 0 0 24px; color: #2dd4bf; }
+#count { font-size: 4rem; margin: 0 0 24px; color: #38bdf8; }
 
 .btn-group { display: flex; gap: 12px; }
 button {
@@ -720,7 +722,7 @@ button {
   transition: 0.2s;
 }
 
-button:hover { background: #2dd4bf; color: #020617; }`,
+button:hover { background: #0f172a; color: #38bdf8; }`,
       js: `let count = 0;
 const el = document.getElementById('count');
 document.getElementById('inc').onclick = () => { count++; el.textContent = count; };
@@ -762,13 +764,13 @@ button {
   padding: 12px 24px;
   font-weight: 700;
   border-radius: 8px;
-  border: none;
-  background: #2dd4bf;
-  color: #020617;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #0f172a;
+  color: #ffffff;
   cursor: pointer;
   transition: 0.3s;
 }
-button:hover { transform: scale(1.05); }`,
+button:hover { transform: scale(1.05); color: #38bdf8; }`,
       js: `const wrapper = document.getElementById('themeWrapper');
 document.getElementById('themeToggleBtn').onclick = () => {
   wrapper.classList.toggle('light');
