@@ -89,23 +89,28 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: "Pacifico", cursive;
-  font-size: 1.6rem;
-  color: var(--cl-ink) !important;
+  text-decoration: none !important;
 }
 
 .cl-brand img {
-  height: 48px;
-  width: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  height: 44px;
+  width: auto;
+  max-width: 185px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
   transition: var(--cl-transition);
 }
 
+.cl-brand span {
+  display: none !important;
+}
+
 [data-theme="dark"] .cl-brand img {
-  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.35));
-  border: 1.5px solid rgba(56, 189, 248, 0.4);
+  background: #ffffff;
+  padding: 4px 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+  border: 1px solid rgba(56, 189, 248, 0.4);
 }
 
 .cl-nav {
