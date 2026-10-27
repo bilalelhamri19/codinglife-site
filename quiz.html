@@ -8,6 +8,7 @@
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@400;600;800&family=Pacifico&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .quiz-container {
@@ -674,11 +675,14 @@
         </div>
 
         <div class="cert-actions">
-          <button id="downloadCertBtn" class="pg-btn pg-btn-primary" style="background:#10b981; border:none; box-shadow:0 4px 15px rgba(16,185,129,0.3); font-weight:800;">
-            <i class="fa-solid fa-download"></i> <span data-cl-lang="en">Download Certificate (PNG)</span><span data-cl-lang="ar">تحميل الشهادة عالية الدقة (PNG)</span>
+          <button id="downloadCertBtn" class="pg-btn pg-btn-primary" style="background:#dc2626; border:none; box-shadow:0 4px 18px rgba(220,38,38,0.35); font-weight:800; font-size:1rem; padding:12px 26px;">
+            <i class="fa-solid fa-file-pdf"></i> <span data-cl-lang="en">Download Certificate (PDF)</span><span data-cl-lang="ar">تحميل الشهادة (PDF)</span>
+          </button>
+          <button id="downloadPngBtn" class="pg-btn" style="background:var(--cl-surface); color:var(--cl-ink); border:1px solid var(--cl-line); font-weight:700;">
+            <i class="fa-solid fa-image"></i> <span>PNG</span>
           </button>
           <button id="printCertBtn" class="pg-btn" style="background:var(--cl-brand); color:#020617; font-weight:800;">
-            <i class="fa-solid fa-print"></i> <span data-cl-lang="en">Print / PDF</span><span data-cl-lang="ar">طباعة أو حفظ كـ PDF</span>
+            <i class="fa-solid fa-print"></i> <span data-cl-lang="en">Print</span><span data-cl-lang="ar">طباعة</span>
           </button>
         </div>
       </div>
@@ -2405,19 +2409,23 @@
       resTitle.textContent = isAr ? "مستوى خبير متميز!" : "Master Engineering Level!";
       resDesc.textContent = isAr ? "أداء ممتاز! لقد أجبت على جميع الأسئلة الـ 10 بشكل صحيح تماماً." : "Flawless score! You nailed every question in this track.";
       fireConfetti();
+      setTimeout(() => { if (window.clAddXP) window.clAddXP(150, isAr ? "🏆 نتيجة مثالية في الاختبار!" : "🏆 Perfect Quiz Score!"); }, 600);
     } else if (percent >= 70) {
       resBadge.textContent = "🚀";
       resTitle.textContent = isAr ? "مستوى متقدم وممتاز!" : "Solid Mid-Level Knowledge!";
       resDesc.textContent = isAr ? "أداء رائع جداً! لديك فهم عملي قوي للمفاهيم الأساسية والمتقدمة." : "Great practical skills! Review a few concepts to reach mastery.";
       fireConfetti();
+      setTimeout(() => { if (window.clAddXP) window.clAddXP(100, isAr ? "🎯 اجتزت اختبار بنجاح!" : "🎯 Quiz Passed!"); }, 600);
     } else if (percent >= 50) {
       resBadge.textContent = "📚";
       resTitle.textContent = isAr ? "نتيجة جيدة للمتعلم!" : "Good Foundation!";
       resDesc.textContent = isAr ? "اجتزت الاختبار بنجاح، راجع الشروحات لترسيخ فهمك أكثر." : "You passed! Re-read the explanations to reinforce your knowledge.";
+      setTimeout(() => { if (window.clAddXP) window.clAddXP(40, isAr ? "📚 شاركت في اختبار تقييمي" : "📚 Quiz Attempted"); }, 600);
     } else {
       resBadge.textContent = "🌱";
       resTitle.textContent = isAr ? "بداية واعدة للمتعلم!" : "Growing Knowledge!";
       resDesc.textContent = isAr ? "لا تقلق، التدريب يصنع المحترفين. ألقِ نظرة على شروحات الدورات وأعد المحاولة." : "Practice makes perfect. Re-read our course guides and try again!";
+      setTimeout(() => { if (window.clAddXP) window.clAddXP(20, isAr ? "🌱 واصل التدريب!" : "🌱 Keep practicing!"); }, 600);
     }
   }
 
@@ -2435,57 +2443,69 @@
   });
 
   
-  // Track Names Dictionary
+  // Track Names Dictionary (French, Arabic & English)
   const TRACK_TITLES = {
-  "web": {
-    "en": "Web Development Foundations (HTML5)",
-    "ar": "أساسيات تطوير الويب (HTML5)"
-  },
-  "css": {
-    "en": "Modern CSS3 & Responsive Architecture",
-    "ar": "تنسيقات CSS3 والهندسة المتجاوبة"
-  },
-  "js": {
-    "en": "Modern JavaScript (ES6+) Mastery",
-    "ar": "احتراف جافاسكربت الحديثة (ES6+)"
-  },
-  "react": {
-    "en": "React.js Component Architecture",
-    "ar": "بنية مكونات وتطبيقات React.js"
-  },
-  "py": {
-    "en": "Python Core Engineering & Automation",
-    "ar": "هندسة بايثون وبرمجة الأتمتة"
-  },
-  "node": {
-    "en": "Node.js Backend & API Engineering",
-    "ar": "هندسة الخوادم والـ APIs بـ Node.js"
-  },
-  "sql": {
-    "en": "SQL & Relational Database Design",
-    "ar": "تصميم وإدارة قواعد البيانات و SQL"
-  },
-  "java": {
-    "en": "Java Enterprise & OOP Architecture",
-    "ar": "برمجة جافا والتصميم كائني التوجه"
-  },
-  "csharp": {
-    "en": "C# & .NET Platform Development",
-    "ar": "تطوير التطبيقات بـ C# ومنصة .NET"
-  },
-  "php": {
-    "en": "PHP Modern Web Development",
-    "ar": "تطوير تطبيقات الويب بـ PHP الحديثة"
-  },
-  "flutter": {
-    "en": "Flutter & Cross-Platform Mobile Apps",
-    "ar": "تطبيقات الهواتف الذكية بـ Flutter"
-  },
-  "git": {
-    "en": "Git & Version Control Workflow",
-    "ar": "أنظمة التحكم في الإصدارات Git"
-  }
-};
+    "web": {
+      "fr": "Développement Web & Architecture HTML5",
+      "en": "Web Development Foundations (HTML5)",
+      "ar": "أساسيات تطوير الويب (HTML5)"
+    },
+    "css": {
+      "fr": "Architecture CSS3 & Design Responsive Avancé",
+      "en": "Modern CSS3 & Responsive Architecture",
+      "ar": "تنسيقات CSS3 والهندسة المتجاوبة"
+    },
+    "js": {
+      "fr": "Maîtrise Complète de JavaScript Moderne (ES6+)",
+      "en": "Modern JavaScript (ES6+) Mastery",
+      "ar": "احتراف جافاسكربت الحديثة (ES6+)"
+    },
+    "react": {
+      "fr": "Architecture des Composants React.js & Hooks",
+      "en": "React.js Component Architecture",
+      "ar": "بنية مكونات وتطبيقات React.js"
+    },
+    "py": {
+      "fr": "Ingénierie Python, Algorithmes & Automatisation",
+      "en": "Python Core Engineering & Automation",
+      "ar": "هندسة بايثون وبرمجة الأتمتة"
+    },
+    "node": {
+      "fr": "Développement Backend & API REST avec Node.js",
+      "en": "Node.js Backend & API Engineering",
+      "ar": "هندسة الخوادم والـ APIs بـ Node.js"
+    },
+    "sql": {
+      "fr": "Conception, Requêtes & Gestion des Bases SQL",
+      "en": "SQL & Relational Database Design",
+      "ar": "تصميم وإدارة قواعد البيانات و SQL"
+    },
+    "java": {
+      "fr": "Architecture Java Entreprise & POO Avancée",
+      "en": "Java Enterprise & OOP Architecture",
+      "ar": "برمجة جافا والتصميم كائني التوجه"
+    },
+    "csharp": {
+      "fr": "Développement d'Applications C# & Écosystème .NET",
+      "en": "C# & .NET Platform Development",
+      "ar": "تطوير التطبيقات بـ C# ومنصة .NET"
+    },
+    "php": {
+      "fr": "Développement Web Moderne & Backend PHP",
+      "en": "PHP Modern Web Development",
+      "ar": "تطوير تطبيقات الويب بـ PHP الحديثة"
+    },
+    "flutter": {
+      "fr": "Développement Mobile Multiplateforme Flutter",
+      "en": "Flutter & Cross-Platform Mobile Apps",
+      "ar": "تطبيقات الهواتف الذكية بـ Flutter"
+    },
+    "git": {
+      "fr": "Gestion de Versions & Workflow Collaboratif Git",
+      "en": "Git & Version Control Workflow",
+      "ar": "أنظمة التحكم في الإصدارات Git"
+    }
+  };
 
   // Show Certificate Button if percent >= 70%
   const claimCertBtn = document.getElementById("claimCertBtn");
@@ -2494,11 +2514,19 @@
   const certStudentName = document.getElementById("certStudentName");
   const updateCertNameBtn = document.getElementById("updateCertNameBtn");
   const downloadCertBtn = document.getElementById("downloadCertBtn");
+  const downloadPngBtn = document.getElementById("downloadPngBtn");
   const printCertBtn = document.getElementById("printCertBtn");
   const certCanvas = document.getElementById("certCanvas");
 
   let studentName = localStorage.getItem("cl_student_name") || "Software Engineer";
   certStudentName.value = studentName;
+
+  // Preload logo for crisp rendering on canvas
+  const certLogoImg = new Image();
+  certLogoImg.src = "logo.png";
+  certLogoImg.onload = () => {
+    if (certModal.style.display === "flex") renderCertificate();
+  };
 
   function renderCertificate() {
     if (!certCanvas) return;
@@ -2506,159 +2534,292 @@
     const w = 1200;
     const h = 800;
 
-    const isAr = document.documentElement.getAttribute("lang") === "ar";
-    const trackInfo = TRACK_TITLES[currentCategory] || { en: "Software Engineering Track", ar: "المسار الهندسي للبرمجة" };
-    const trackName = isAr ? trackInfo.ar : trackInfo.en;
+    const trackInfo = TRACK_TITLES[currentCategory] || {
+      fr: "Ingénierie Logicielle & Développement Web",
+      en: "Software Engineering Track",
+      ar: "المسار الهندسي للبرمجة"
+    };
+
     const percent = Math.round((currentScore / questions.length) * 100);
 
-    // Background Gradient (Cyber Luxury Navy)
-    const bgGrad = ctx.createLinearGradient(0, 0, w, h);
-    bgGrad.addColorStop(0, "#020617");
-    bgGrad.addColorStop(0.5, "#0b1528");
-    bgGrad.addColorStop(1, "#030816");
-    ctx.fillStyle = bgGrad;
+    // Date in French
+    const frenchMonths = [
+      "janvier", "février", "mars", "avril", "mai", "juin",
+      "juillet", "août", "septembre", "octobre", "novembre", "décembre"
+    ];
+    const now = new Date();
+    const issueDateFr = `${now.getDate()} ${frenchMonths[now.getMonth()]} ${now.getFullYear()}`;
+
+    // 1. Clean Pristine White / Ivory Background
+    ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, w, h);
 
-    // Delicate background grid lines
-    ctx.strokeStyle = "rgba(56, 189, 248, 0.04)";
+    // Subtle luxury paper warmth
+    const paperGrad = ctx.createRadialGradient(w / 2, h / 2, 80, w / 2, h / 2, 700);
+    paperGrad.addColorStop(0, "#ffffff");
+    paperGrad.addColorStop(1, "#faf8f5");
+    ctx.fillStyle = paperGrad;
+    ctx.fillRect(0, 0, w, h);
+
+    // 2. High-End Diploma Borders
+    // Outer Deep Navy Border (solid 6px)
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 6;
+    ctx.strokeRect(30, 30, w - 60, h - 60);
+
+    // Inner Warm Gold Accent Border (2px)
+    ctx.strokeStyle = "#c59b27";
+    ctx.lineWidth = 2.5;
+    ctx.strokeRect(44, 44, w - 88, h - 88);
+
+    // Delicate Fine Line (0.8px)
+    ctx.strokeStyle = "rgba(15, 23, 42, 0.15)";
     ctx.lineWidth = 1;
-    for (let x = 40; x < w; x += 40) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
-    }
-    for (let y = 40; y < h; y += 40) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
-    }
+    ctx.strokeRect(52, 52, w - 104, h - 104);
 
-    // Outer Luxury Gold Border
-    ctx.strokeStyle = "#f59e0b";
-    ctx.lineWidth = 4;
-    ctx.strokeRect(36, 36, w - 72, h - 72);
-
-    // Inner Glowing Cyan Border
-    ctx.strokeStyle = "rgba(56, 189, 248, 0.6)";
-    ctx.lineWidth = 1.5;
-    ctx.strokeRect(48, 48, w - 96, h - 96);
-
-    // Corner Ornaments
-    const corners = [
-      [48, 48], [w - 48, 48], [48, h - 48], [w - 48, h - 48]
+    // Classical Corner Ornaments
+    const cornerOffsets = [
+      [44, 44], [w - 44, 44], [44, h - 44], [w - 44, h - 44]
     ];
-    corners.forEach(([cx, cy]) => {
-      ctx.fillStyle = "#f59e0b";
+    cornerOffsets.forEach(([cx, cy]) => {
+      ctx.fillStyle = "#c59b27";
       ctx.beginPath();
-      ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 5, 0, Math.PI * 2);
       ctx.fill();
+
+      ctx.strokeStyle = "#c59b27";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 12, 0, Math.PI * 2);
+      ctx.stroke();
     });
 
-    // Top Brand Badge
+    // 3. Top Emblem / Logo
+    const logoY = 110;
+    if (certLogoImg.complete && certLogoImg.naturalWidth > 0) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(w / 2, logoY, 34, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.drawImage(certLogoImg, (w / 2) - 34, logoY - 34, 68, 68);
+      ctx.restore();
+
+      // Gold ring around logo
+      ctx.strokeStyle = "#c59b27";
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.arc(w / 2, logoY, 35, 0, Math.PI * 2);
+      ctx.stroke();
+    } else {
+      // Vector fallback badge
+      ctx.beginPath();
+      ctx.arc(w / 2, logoY, 32, 0, Math.PI * 2);
+      ctx.fillStyle = "#0f172a";
+      ctx.fill();
+      ctx.strokeStyle = "#c59b27";
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#38bdf8";
+      ctx.font = "bold 20px 'Fira Code', monospace";
+      ctx.fillText("</>", w / 2, logoY + 7);
+    }
+
+    // 4. Academy Title
     ctx.textAlign = "center";
-    ctx.fillStyle = "#38bdf8";
-    ctx.font = "bold 16px 'Outfit', 'Cairo', sans-serif";
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "bold 17px 'Outfit', sans-serif";
     ctx.letterSpacing = "6px";
-    ctx.fillText("CODING LIFE ACADEMY", w / 2, 105);
+    ctx.fillText("CODING LIFE ACADEMY", w / 2, 172);
 
-    // Main Certificate Title
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "900 42px 'Outfit', 'Cairo', sans-serif";
+    ctx.fillStyle = "#b45309";
+    ctx.font = "600 11px 'Outfit', sans-serif";
+    ctx.letterSpacing = "4px";
+    ctx.fillText("EXCELLENCE EN INGÉNIERIE LOGICIELLE & WEB", w / 2, 192);
+
+    // 5. Certificate Main Heading
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "900 38px 'Outfit', sans-serif";
     ctx.letterSpacing = "2px";
-    ctx.fillText(isAr ? "شـهـادة إتـمـام وتـفـوّق" : "CERTIFICATE OF ACHIEVEMENT", w / 2, 160);
+    ctx.fillText("CERTIFICAT DE RÉUSSITE", w / 2, 240);
 
-    // Subtitle
-    ctx.fillStyle = "rgba(148, 163, 184, 0.9)";
-    ctx.font = "600 17px 'Outfit', 'Cairo', sans-serif";
+    ctx.fillStyle = "#c59b27";
+    ctx.font = "bold 13px 'Outfit', sans-serif";
+    ctx.letterSpacing = "3px";
+    ctx.fillText("— CERTIFICATE OF ACHIEVEMENT & EXCELLENCE —", w / 2, 264);
+
+    // 6. Presentation text
+    ctx.fillStyle = "#64748b";
+    ctx.font = "500 16px 'Outfit', sans-serif";
     ctx.letterSpacing = "1px";
-    ctx.fillText(isAr ? "تُمنح هذه الشهادة تقديراً لإظهار الكفاءة المعرفية والتطبيقية في:" : "THIS IS OFFICIALLY PRESENTED IN RECOGNITION OF EXCELLENCE TO", w / 2, 215);
+    ctx.fillText("Ce certificat officiel est fièrement décerné à :", w / 2, 305);
 
-    // Student Name (Highlight)
-    ctx.fillStyle = "#38bdf8";
-    ctx.font = "900 52px 'Outfit', 'Cairo', sans-serif";
-    ctx.fillText(studentName, w / 2, 290);
+    // 7. Student Name (Bold & Crisp Deep Navy)
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "900 48px 'Outfit', 'Cairo', sans-serif";
+    ctx.letterSpacing = "0.5px";
+    ctx.fillText(studentName, w / 2, 362);
 
-    // Gold Underline under name
+    // Luxury Gold Line with Center Diamond under Name
     const nameWidth = ctx.measureText(studentName).width;
-    const lineW = Math.max(nameWidth + 60, 320);
-    const gradLine = ctx.createLinearGradient((w / 2) - (lineW / 2), 0, (w / 2) + (lineW / 2), 0);
-    gradLine.addColorStop(0, "transparent");
-    gradLine.addColorStop(0.5, "#f59e0b");
-    gradLine.addColorStop(1, "transparent");
-    ctx.strokeStyle = gradLine;
-    ctx.lineWidth = 3;
+    const lineHalf = Math.max(nameWidth / 2 + 40, 220);
+    
+    ctx.strokeStyle = "#c59b27";
+    ctx.lineWidth = 2;
+    // Left segment
     ctx.beginPath();
-    ctx.moveTo((w / 2) - (lineW / 2), 312);
-    ctx.lineTo((w / 2) + (lineW / 2), 312);
+    ctx.moveTo((w / 2) - lineHalf, 378);
+    ctx.lineTo((w / 2) - 16, 378);
+    ctx.stroke();
+    // Center diamond
+    ctx.fillStyle = "#c59b27";
+    ctx.beginPath();
+    ctx.moveTo(w / 2, 372);
+    ctx.lineTo(w / 2 + 6, 378);
+    ctx.lineTo(w / 2, 384);
+    ctx.lineTo(w / 2 - 6, 378);
+    ctx.closePath();
+    ctx.fill();
+    // Right segment
+    ctx.beginPath();
+    ctx.moveTo((w / 2) + 16, 378);
+    ctx.lineTo((w / 2) + lineHalf, 378);
     ctx.stroke();
 
-    // Track Description
-    ctx.fillStyle = "#f8fafc";
-    ctx.font = "700 24px 'Outfit', 'Cairo', sans-serif";
-    ctx.fillText(trackName, w / 2, 375);
+    // 8. Recognition Description
+    ctx.fillStyle = "#475569";
+    ctx.font = "500 16px 'Outfit', sans-serif";
+    ctx.fillText("Pour avoir complété avec succès et brio l'évaluation technique officielle :", w / 2, 415);
 
-    ctx.fillStyle = "#94a3b8";
-    ctx.font = "500 16px 'Outfit', 'Cairo', sans-serif";
-    const descText = isAr 
-      ? `لافراده كافة الاختبارات التقييمية وإثبات استيعاب المفاهيم الهندسية بمعدل إتقان ${percent}%`
-      : `For demonstrating technical competence by achieving a final passing score of ${percent}% in the assessment.`;
-    ctx.fillText(descText, w / 2, 415);
+    // Track Title (Royal Blue / Cyan Accent)
+    ctx.fillStyle = "#0369a1";
+    ctx.font = "800 24px 'Outfit', 'Cairo', sans-serif";
+    ctx.fillText(trackInfo.fr || trackInfo.en, w / 2, 448);
 
-    // Distinction Pill Badge in Center
-    ctx.fillStyle = "rgba(245, 158, 11, 0.15)";
-    ctx.strokeStyle = "#f59e0b";
-    ctx.lineWidth = 1.5;
-    const badgeW = 280;
-    const badgeH = 44;
+    // Score & Validation Text
+    ctx.fillStyle = "#64748b";
+    ctx.font = "500 15px 'Outfit', sans-serif";
+    ctx.fillText(`Score Obtenu : ${currentScore} / ${questions.length} (${percent}%) — Validation des compétences théoriques et pratiques.`, w / 2, 478);
+
+    // 9. Distinction Badge (Pill in Center)
+    const badgeW = 380;
+    const badgeH = 40;
     const badgeX = (w / 2) - (badgeW / 2);
-    const badgeY = 460;
-    roundRect(ctx, badgeX, badgeY, badgeW, badgeH, 22);
+    const badgeY = 505;
+
+    ctx.fillStyle = "#fef3c7";
+    ctx.strokeStyle = "#d97706";
+    ctx.lineWidth = 1.5;
+    roundRect(ctx, badgeX, badgeY, badgeW, badgeH, 20);
     ctx.fill();
     ctx.stroke();
 
-    ctx.fillStyle = "#f59e0b";
-    ctx.font = "bold 16px 'Outfit', 'Cairo', sans-serif";
-    const grade = percent === 100 ? "GRADE: MASTER WITH HONORS" : "GRADE: DISTINCTION (VERIFIED)";
-    ctx.fillText(grade, w / 2, 488);
+    ctx.fillStyle = "#92400e";
+    ctx.font = "bold 13px 'Outfit', sans-serif";
+    ctx.letterSpacing = "1.5px";
+    const mention = percent === 100 
+      ? "★ MENTION : EXPERTISE AVEC FÉLICITATIONS ★"
+      : "★ MENTION : TRÈS BIEN (VÉRIFIÉ & CERTIFIÉ) ★";
+    ctx.fillText(mention, w / 2, 530);
 
-    // Verification Box (Bottom Left)
+    // 10. Footer Section (Left, Center Seal, Right Signature)
+    const footerY = 675;
+
+    // A. Left Column: Official Verification & Date in French
     ctx.textAlign = "left";
-    ctx.fillStyle = "#64748b";
-    ctx.font = "600 13px 'Fira Code', monospace";
-    const certId = "CL-" + (currentCategory || "GEN").toUpperCase() + "-" + Math.abs(hashCode(studentName + currentCategory)).toString(36).toUpperCase().padStart(6, "0");
-    const issueDate = new Date().toLocaleDateString(isAr ? 'ar-EG' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    ctx.fillText(`CERT ID: ${certId}`, 90, 680);
-    ctx.fillText(`DATE: ${issueDate}`, 90, 705);
-    ctx.fillText(`VERIFICATION: codinglife1.vercel.app`, 90, 730);
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "bold 12px 'Fira Code', monospace";
+    const certId = "CL-" + (currentCategory || "WEB").toUpperCase() + "-" + Math.abs(hashCode(studentName + currentCategory)).toString(36).toUpperCase().padStart(6, "0");
+    ctx.fillText(`CERT ID : ${certId}`, 85, footerY - 26);
+    
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "600 12px 'Fira Code', monospace";
+    ctx.fillText(`DATE    : ${issueDateFr}`, 85, footerY - 5);
 
-    // Official Seal Graphic (Center Bottom)
+    ctx.fillStyle = "#64748b";
+    ctx.font = "500 11px 'Fira Code', monospace";
+    ctx.fillText("VÉRIF   : codinglife1.vercel.app", 85, footerY + 16);
+
+    // B. Center: Official Golden Seal
     ctx.save();
-    ctx.translate(w / 2, 690);
+    ctx.translate(w / 2, footerY - 5);
+
+    // Seal Ribbons
+    ctx.fillStyle = "#0f172a";
+    ctx.beginPath();
+    ctx.moveTo(-16, 25);
+    ctx.lineTo(-24, 65);
+    ctx.lineTo(-12, 55);
+    ctx.lineTo(0, 65);
+    ctx.lineTo(-4, 25);
+    ctx.fill();
+
+    ctx.fillStyle = "#c59b27";
+    ctx.beginPath();
+    ctx.moveTo(4, 25);
+    ctx.lineTo(0, 65);
+    ctx.lineTo(12, 55);
+    ctx.lineTo(24, 65);
+    ctx.lineTo(16, 25);
+    ctx.fill();
+
+    // Outer Seal Circle
     ctx.beginPath();
     ctx.arc(0, 0, 36, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(56, 189, 248, 0.12)";
+    ctx.fillStyle = "#fffbeb";
     ctx.fill();
-    ctx.strokeStyle = "#38bdf8";
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#c59b27";
+    ctx.lineWidth = 3;
     ctx.stroke();
+
+    // Inner Dotted Circle
+    ctx.beginPath();
+    ctx.arc(0, 0, 30, 0, Math.PI * 2);
+    ctx.strokeStyle = "#b45309";
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Seal Text
     ctx.textAlign = "center";
-    ctx.fillStyle = "#38bdf8";
-    ctx.font = "bold 20px 'Fira Code', monospace";
-    ctx.fillText("</>", 0, 8);
+    ctx.fillStyle = "#b45309";
+    ctx.font = "bold 8px 'Outfit', sans-serif";
+    ctx.letterSpacing = "1px";
+    ctx.fillText("OFFICIAL SEAL", 0, -8);
+    ctx.font = "bold 13px 'Outfit', sans-serif";
+    ctx.fillText("★ ★ ★", 0, 6);
+    ctx.font = "bold 8px 'Outfit', sans-serif";
+    ctx.fillText("CODING LIFE", 0, 18);
     ctx.restore();
 
-    // Signatures (Bottom Right)
+    // C. Right Column: Signature
     ctx.textAlign = "right";
-    ctx.fillStyle = "#94a3b8";
-    ctx.font = "bold 15px 'Outfit', 'Cairo', sans-serif";
-    ctx.fillText("Coding Life Academic Board", w - 90, 685);
-    ctx.fillStyle = "#64748b";
-    ctx.font = "500 13px 'Outfit', 'Cairo', sans-serif";
-    ctx.fillText("Verified Technical Certification", w - 90, 710);
-
-    // Signature Line
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
-    ctx.lineWidth = 1;
+    
+    // Draw elegant signature stroke
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(w - 260, 660);
-    ctx.lineTo(w - 90, 660);
+    ctx.moveTo(w - 240, footerY - 26);
+    ctx.bezierCurveTo(w - 200, footerY - 50, w - 180, footerY - 10, w - 150, footerY - 30);
+    ctx.bezierCurveTo(w - 130, footerY - 45, w - 110, footerY - 15, w - 90, footerY - 28);
     ctx.stroke();
+
+    // Signature Divider line
+    ctx.strokeStyle = "#cbd5e1";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(w - 260, footerY - 12);
+    ctx.lineTo(w - 85, footerY - 12);
+    ctx.stroke();
+
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "bold 14px 'Outfit', sans-serif";
+    ctx.fillText("Le Comité Pédagogique", w - 85, footerY + 8);
+
+    ctx.fillStyle = "#64748b";
+    ctx.font = "500 12px 'Outfit', sans-serif";
+    ctx.fillText("Direction des Certifications Coding Life", w - 85, footerY + 25);
   }
 
   function roundRect(ctx, x, y, width, height, radius) {
@@ -2700,7 +2861,7 @@
       studentName = val;
       localStorage.setItem("cl_student_name", studentName);
       renderCertificate();
-      if (window.clToast) window.clToast("Certificate updated!", "success");
+      if (window.clToast) window.clToast("Certificat mis à jour !", "success");
     }
   });
 
@@ -2708,23 +2869,73 @@
     if (e.key === "Enter") updateCertNameBtn.click();
   });
 
+  // Direct PDF Download Handler
   downloadCertBtn.addEventListener("click", () => {
-    const dataUrl = certCanvas.toDataURL("image/png");
-    const link = document.createElement("a");
-    const safeName = studentName.replace(/[^a-zA-Z0-9]/g, "_");
-    link.download = `CodingLife-Certificate-${safeName}.png`;
-    link.href = dataUrl;
-    link.click();
-    if (window.clToast) window.clToast("Certificate downloaded successfully! 🎓", "success");
+    const safeName = studentName.replace(/[^a-zA-Z0-9]/g, "_") || "Etudiant";
+    const isAr = document.documentElement.getAttribute("lang") === "ar";
+    
+    try {
+      if (window.jspdf && window.jspdf.jsPDF) {
+        const { jsPDF } = window.jspdf;
+        // High quality landscape PDF matching 1200x800 aspect ratio (A4 landscape is 297x210 mm)
+        const pdf = new jsPDF({
+          orientation: "landscape",
+          unit: "mm",
+          format: "a4"
+        });
+        const imgData = certCanvas.toDataURL("image/jpeg", 0.98);
+        pdf.addImage(imgData, "JPEG", 0, 0, 297, 198); // 297 x 198 mm perfectly fits A4 landscape
+        pdf.save(`Certificat-CodingLife-${safeName}.pdf`);
+        
+        if (window.clToast) {
+          window.clToast(isAr ? "تم تحميل الشهادة بصيغة PDF بنجاح! 🎓" : "Certificat PDF téléchargé avec succès ! 🎓", "success");
+        }
+      } else {
+        // Fallback to high-res PNG download if CDN blocked
+        const dataUrl = certCanvas.toDataURL("image/png");
+        const link = document.createElement("a");
+        link.download = `Certificat-CodingLife-${safeName}.png`;
+        link.href = dataUrl;
+        link.click();
+        if (window.clToast) {
+          window.clToast(isAr ? "تم تحميل الشهادة بنجاح! 🎓" : "Certificat téléchargé avec succès ! 🎓", "success");
+        }
+      }
+
+      if (window.clAddXP) {
+        window.clAddXP(200, isAr ? "🎓 استلمت شهادة إنجاز رسمية!" : "🎓 Certificat Officiel Obtenu !");
+      }
+    } catch (err) {
+      console.error("PDF generation error:", err);
+      // Fallback
+      const dataUrl = certCanvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.download = `Certificat-CodingLife-${safeName}.png`;
+      link.href = dataUrl;
+      link.click();
+    }
   });
+
+  // PNG Download Handler
+  if (downloadPngBtn) {
+    downloadPngBtn.addEventListener("click", () => {
+      const dataUrl = certCanvas.toDataURL("image/png");
+      const safeName = studentName.replace(/[^a-zA-Z0-9]/g, "_") || "Etudiant";
+      const link = document.createElement("a");
+      link.download = `Certificat-CodingLife-${safeName}.png`;
+      link.href = dataUrl;
+      link.click();
+      if (window.clToast) window.clToast("Image PNG téléchargée !", "success");
+    });
+  }
 
   printCertBtn.addEventListener("click", () => {
     const dataUrl = certCanvas.toDataURL("image/png");
     const printWin = window.open("", "_blank");
     printWin.document.write(`
       <html>
-        <head><title>Print Certificate - Coding Life</title></head>
-        <body style="margin:0; display:flex; align-items:center; justify-content:center; height:100vh; background:#000;">
+        <head><title>Imprimer Certificat - Coding Life</title></head>
+        <body style="margin:0; display:flex; align-items:center; justify-content:center; height:100vh; background:#ffffff;">
           <img src="${dataUrl}" style="max-width:100%; max-height:100%;" onload="window.print(); window.close();" />
         </body>
       </html>

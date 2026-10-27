@@ -604,9 +604,10 @@
 
       let rank = "Junior Coder 🐣";
       let badge = "🌱";
-      if (wpm >= 80) { rank = "10x Engineering Legend ⚡"; badge = "👑"; }
-      else if (wpm >= 55) { rank = "Full-Stack Code Ninja 🥷"; badge = "🚀"; }
-      else if (wpm >= 35) { rank = "Solid Code Warrior ⚔️"; badge = "🔥"; }
+      let xpEarned = 20;
+      if (wpm >= 80) { rank = "10x Engineering Legend ⚡"; badge = "👑"; xpEarned = 80; }
+      else if (wpm >= 55) { rank = "Full-Stack Code Ninja 🥷"; badge = "🚀"; xpEarned = 60; }
+      else if (wpm >= 35) { rank = "Solid Code Warrior ⚔️"; badge = "🔥"; xpEarned = 40; }
 
       modalRank.textContent = `Rank: ${rank}`;
       modalBadge.textContent = badge;
@@ -614,6 +615,11 @@
 
       // Fire confetti if score is great
       if (wpm >= 35) fireConfetti();
+
+      // Award XP
+      setTimeout(() => {
+        if (window.clAddXP) window.clAddXP(xpEarned, `⌨️ WPM: ${wpm} — ${rank}`);
+      }, 600);
     }
 
     // Confetti
@@ -690,3 +696,4 @@
   <script src="site-polish.js"></script>
 </body>
 </html>
+

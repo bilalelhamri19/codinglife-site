@@ -537,6 +537,7 @@
           localStorage.setItem(todayKey, todayStreak);
           if (pomoStreakEl) pomoStreakEl.textContent = todayStreak;
           if (window.clToast) window.clToast("🎉 Deep Work session completed! Take a break.", "success");
+          if (window.clAddXP) window.clAddXP(30, "🍅 Deep Work Focus Session Completed!");
         } else {
           if (window.clToast) window.clToast("Break ended! Ready to code?", "info");
         }

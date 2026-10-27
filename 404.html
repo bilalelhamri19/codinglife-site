@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found | Coding Life</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .err-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--cl-bg);
+    }
+    .err-code {
+      font-family: 'Fira Code', monospace;
+      font-size: clamp(5rem, 20vw, 10rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, #38bdf8, #0f172a 60%, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      letter-spacing: -4px;
+    }
+    .err-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--cl-ink);
+      margin: 0 0 12px;
+    }
+    .err-sub {
+      font-size: 1.05rem;
+      color: var(--cl-muted);
+      max-width: 500px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .err-terminal {
+      background: #020617;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 16px;
+      padding: 18px 24px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      color: #38bdf8;
+      margin-bottom: 36px;
+      text-align: left;
+      max-width: 520px;
+      width: 100%;
+    }
+    .err-terminal .prompt { color: #64748b; }
+    .err-terminal .green { color: #10b981; }
+    .err-terminal .yellow { color: #f59e0b; }
+    .err-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+    .err-btn {
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .err-btn-primary {
+      background: #0f172a;
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+    .err-btn-primary:hover {
+      background: #1e293b;
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+    }
+    .err-btn-ghost {
+      background: var(--cl-surface);
+      color: var(--cl-muted);
+      border: 1px solid var(--cl-line);
+    }
+    .err-btn-ghost:hover {
+      color: var(--cl-ink);
+      border-color: var(--cl-muted);
+      transform: translateY(-2px);
+    }
+    @keyframes glitchPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+    .err-code {
+      animation: glitchPulse 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="err-page">
+    <div class="err-code">404</div>
+    <h1 class="err-title">
+      <span data-cl-lang="en">Page Not Found</span>
+      <span data-cl-lang="ar" style="display:none;">الصفحة غير موجودة</span>
+    </h1>
+    <p class="err-sub">
+      <span data-cl-lang="en">The route you navigated to does not exist or has been moved. Let's get you back on track.</span>
+      <span data-cl-lang="ar" style="display:none;">الصفحة التي تبحث عنها غير موجودة أو تم نقلها. لنعد معاً إلى المسار الصحيح.</span>
+    </p>
+
+    <div class="err-terminal">
+      <div><span class="prompt">$&nbsp;</span><span class="yellow">GET</span> /unknown-route HTTP/1.1</div>
+      <div style="margin-top:6px;"><span class="prompt">→&nbsp;</span><span style="color:#ef4444;">404 Not Found</span></div>
+      <div style="margin-top:6px;"><span class="prompt">→&nbsp;</span><span class="green">Suggested fix:</span> Navigate to a valid route below.</div>
+    </div>
+
+    <div class="err-links">
+      <a href="index.html" class="err-btn err-btn-primary">
+        <i class="fa-solid fa-house"></i> Go Home
+      </a>
+      <a href="dorous-albarmaja.html" class="err-btn err-btn-ghost">
+        <i class="fa-solid fa-code"></i> Browse Courses
+      </a>
+      <a href="quiz.html" class="err-btn err-btn-ghost">
+        <i class="fa-solid fa-circle-question"></i> Take a Quiz
+      </a>
+      <a href="tools.html" class="err-btn err-btn-ghost">
+        <i class="fa-solid fa-toolbox"></i> Developer Tools
+      </a>
+      <a href="cheatsheets.html" class="err-btn err-btn-ghost">
+        <i class="fa-solid fa-bolt"></i> Cheatsheets
+      </a>
+    </div>
+  </div>
+
+  <script src="site-polish.js"></script>
+</body>
+</html>
+
