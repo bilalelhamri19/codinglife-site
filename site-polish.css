@@ -96,13 +96,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .cl-brand img {
   height: 48px;
-  width: auto;
+  width: 48px;
+  border-radius: 50%;
+  object-fit: cover;
   filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
   transition: var(--cl-transition);
 }
 
 [data-theme="dark"] .cl-brand img {
-  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.3));
+  filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(56, 189, 248, 0.35));
 }
 
 .cl-nav {
@@ -879,3 +881,153 @@ body.rtl .cl-cookie-banner {
   opacity: 0.7;
 }
 
+
+
+/* ==========================================================================
+   Interactive Course Progress Tracking & Enhancements
+   ========================================================================== */
+.cl-course-progress-card {
+  background: var(--cl-surface);
+  border: 1px solid var(--cl-line);
+  border-radius: 20px;
+  padding: 20px 28px;
+  margin: 30px 0 40px;
+  box-shadow: var(--cl-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cl-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cl-progress-title {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--cl-ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cl-progress-stats {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--cl-brand);
+}
+.cl-progress-bar-bg {
+  width: 100%;
+  height: 10px;
+  background: var(--cl-bg);
+  border: 1px solid var(--cl-line);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.cl-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Lesson Completion Button */
+.cl-lesson-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--cl-line);
+  display: flex;
+  justify-content: flex-end;
+}
+.cl-lesson-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 1px solid var(--cl-line);
+  background: var(--cl-bg);
+  color: var(--cl-muted);
+  transition: var(--cl-transition);
+}
+.cl-lesson-toggle-btn:hover {
+  border-color: var(--cl-brand);
+  color: var(--cl-brand);
+  background: var(--cl-brand-soft);
+}
+.cl-lesson-toggle-btn.completed {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  color: #10b981;
+}
+.lesson-card.cl-completed {
+  border-color: rgba(16, 185, 129, 0.4);
+  position: relative;
+}
+.lesson-card.cl-completed::after {
+  content: "✓ COMPLETED";
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  font-size: 0.72rem;
+  font-family: 'Fira Code', monospace;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+[dir="rtl"] .lesson-card.cl-completed::after {
+  content: "✓ مكتمل";
+  right: auto;
+  left: 24px;
+}
+
+/* Code Download Button */
+.cl-download-btn {
+  background: rgba(100, 116, 139, 0.15);
+  color: var(--cl-muted);
+}
+.cl-download-btn:hover {
+  background: var(--cl-brand);
+  color: #ffffff;
+}
+
+/* Daily Dev Tip Widget */
+.cl-daily-tip-banner {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 18px;
+  padding: 16px 24px;
+  margin: 24px auto;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4);
+}
+.cl-tip-badge {
+  background: var(--cl-brand);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.cl-tip-text {
+  font-size: 0.95rem;
+  color: #f1f5f9;
+  flex: 1;
+  line-height: 1.6;
+}

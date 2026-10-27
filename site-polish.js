@@ -575,6 +575,8 @@
         { t: "Code Playground", t_ar: "مختبر الكود", d: "Live editor for practice.", d_ar: "محرر مباشر للتجربة.", h: "playground.html" },
         { t: "Developer Skills Quiz", t_ar: "اختبارات المهارات البرمجية", d: "Interactive developer skill quizzes and assessments.", d_ar: "اختبارات وتقييمات تفاعلية لمهارات المبرمج.", h: "quiz.html" },
         { t: "Tools Dashboard", t_ar: "مركز الأدوات", d: "Developer utilities and interactive tools.", d_ar: "أدوات ومساعدات برمجية ذكية.", h: "tools.html" },
+        { t: "Scientific & Developer Calculator", t_ar: "آلة حاسبة علمية وبرمجية", d: "Scientific, programmer bitwise, base conversions, and aspect ratio.", d_ar: "حاسبة علمية متطورة، تحويل الأنظمة العددية، ونسب الشاشات.", h: "calculator.html" },
+        { t: "Courses Catalog", t_ar: "فهرس ومسارات الدروس", d: "Complete catalog of programming tutorials.", d_ar: "دليل وفهرس شامل لجميع الدروس البرمجية.", h: "dorous-albarmaja.html" },
         { t: "Productivity Tips", t_ar: "نصائح الإنتاجية", d: "Increase your daily output.", d_ar: "زيادة إنتاجيتك اليومية.", h: "productivity.html" },
         { t: "Mental Health", t_ar: "صحة العقل والجسد", d: "Well-being for developers.", d_ar: "الصحة النفسية للمبرمجين.", h: "mental_health.html" },
         { t: "Motivation", t_ar: "التحفيز والاستمرارية", d: "Overcome burnout and stay focused.", d_ar: "تجاوز الإحباط ومواصلة التطور.", h: "motivation.html" },
@@ -653,6 +655,7 @@
               <i class="fa-solid fa-play"></i> <span>${trCode.playground}</span>
             </button>
           ` : ''}
+          <button class="code-action-btn cl-download-btn" title="Download snippet"><i class="fa-solid fa-download"></i> <span>Download</span></button>
           <button class="code-action-btn cl-copy-btn" title="Copy code to clipboard">
             <i class="fa-regular fa-copy"></i> <span>${trCode.copy}</span>
           </button>
@@ -677,6 +680,23 @@
         });
       }
 
+      const downloadBtn = header.querySelector(".cl-download-btn");
+      if (downloadBtn) {
+        const extMap = { html: "index.html", css: "style.css", javascript: "script.js", js: "script.js", python: "main.py", py: "main.py", java: "Main.java", csharp: "Program.cs", cs: "Program.cs", php: "index.php", sql: "query.sql", git: "script.sh" };
+        const fileName = extMap[lang] || `snippet.${lang || 'txt'}`;
+        downloadBtn.addEventListener("click", () => {
+          const blob = new Blob([code], { type: "text/plain;charset=utf-8" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = fileName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          window.clToast(currentLang === 'ar' ? 'تم تنزيل ملف الكود بنجاح!' : 'Code file downloaded!', 'success');
+        });
+      }
       const runBtn = header.querySelector(".cl-run-btn");
       if (runBtn) {
         runBtn.addEventListener("click", () => {
@@ -836,6 +856,156 @@
     }
   }
 
+  function initCourseProgress() {
+    const lessonCards = document.querySelectorAll(".lesson-card");
+    if (!lessonCards || lessonCards.length === 0) return;
+
+    const pageId = window.location.pathname.split("/").pop().replace(".html", "") || "course";
+    const isAr = currentLang === "ar";
+    const txtTitle = isAr ? "مؤشر إنجاز المسار التدريبي" : "Course Progress";
+    const txtDone = isAr ? "مكتمل" : "Completed";
+    const txtMark = isAr ? "تحديد كمكتمل" : "Mark as Completed";
+    const txtCelebration = isAr ? "🎉 مبروك! لقد أتممت جميع دروس هذا المسار بنجاح!" : "🎉 Congratulations! You completed all lessons in this course!";
+
+    const getDoneCount = () => {
+      let count = 0;
+      lessonCards.forEach((_, i) => {
+        if (localStorage.getItem(`cl_prog_${pageId}_${i}`) === "true") count++;
+      });
+      return count;
+    };
+
+    const card = document.createElement("div");
+    card.className = "cl-course-progress-card reveal";
+    card.innerHTML = `
+      <div class="cl-progress-header">
+        <div class="cl-progress-title">
+          <i class="fa-solid fa-graduation-cap" style="color:var(--cl-brand);"></i>
+          <span>${txtTitle}</span>
+        </div>
+        <div class="cl-progress-stats" id="clProgressStats">0 / ${lessonCards.length} (0%)</div>
+      </div>
+      <div class="cl-progress-bar-bg">
+        <div class="cl-progress-bar-fill" id="clProgressBarFill" style="width: 0%;"></div>
+      </div>
+    `;
+
+    const targetHeader = document.querySelector(".course-header");
+    if (targetHeader && targetHeader.nextElementSibling) {
+      targetHeader.parentNode.insertBefore(card, targetHeader.nextElementSibling);
+    } else if (lessonCards[0]) {
+      lessonCards[0].parentNode.insertBefore(card, lessonCards[0]);
+    }
+
+    const updateStats = () => {
+      const done = getDoneCount();
+      const total = lessonCards.length;
+      const pct = Math.round((done / total) * 100);
+      const statsEl = document.getElementById("clProgressStats");
+      const barEl = document.getElementById("clProgressBarFill");
+      if (statsEl) statsEl.innerText = `${done} / ${total} (${pct}%)`;
+      if (barEl) barEl.style.width = `${pct}%`;
+      if (done === total && total > 0) {
+        if (typeof window.clToast === "function") window.clToast(txtCelebration, "success");
+      }
+    };
+
+    lessonCards.forEach((lCard, idx) => {
+      const isDone = localStorage.getItem(`cl_prog_${pageId}_${idx}`) === "true";
+      if (isDone) lCard.classList.add("cl-completed");
+
+      const footer = document.createElement("div");
+      footer.className = "cl-lesson-footer";
+      footer.innerHTML = `
+        <button class="cl-lesson-toggle-btn ${isDone ? 'completed' : ''}" type="button">
+          <i class="fa-${isDone ? 'solid' : 'regular'} fa-circle-check"></i>
+          <span>${isDone ? txtDone : txtMark}</span>
+        </button>
+      `;
+      lCard.appendChild(footer);
+
+      const btn = footer.querySelector(".cl-lesson-toggle-btn");
+      btn.addEventListener("click", () => {
+        const currentlyDone = lCard.classList.contains("cl-completed");
+        if (currentlyDone) {
+          lCard.classList.remove("cl-completed");
+          btn.classList.remove("completed");
+          btn.querySelector("i").className = "fa-regular fa-circle-check";
+          btn.querySelector("span").innerText = txtMark;
+          localStorage.removeItem(`cl_prog_${pageId}_${idx}`);
+        } else {
+          lCard.classList.add("cl-completed");
+          btn.classList.add("completed");
+          btn.querySelector("i").className = "fa-solid fa-circle-check";
+          btn.querySelector("span").innerText = txtDone;
+          localStorage.setItem(`cl_prog_${pageId}_${idx}`, "true");
+        }
+        updateStats();
+      });
+    });
+
+    updateStats();
+  }
+
+  function initDailyDevTip() {
+    const path = window.location.pathname.toLowerCase();
+    const isHome = path.endsWith("/") || path.endsWith("/index.html") || path === "" || path.endsWith("tools.html");
+    if (!isHome || document.getElementById("clDailyTipBanner")) return;
+
+    const tips = [
+      {
+        en: "Clean Code: Functions should do one thing, do it well, and do it only.",
+        ar: "كود نظيف: يجب على كل دالة برمجية أن تؤدي مهمة واحدة فقط وتتقنها تماماً."
+      },
+      {
+        en: "Git Pro Tip: Use 'git commit --amend' to quickly fix your most recent commit without creating a new one.",
+        ar: "احتراف Git: استخدم 'git commit --amend' لتعديل آخر كوميت دون إنشاء كوميت جديد."
+      },
+      {
+        en: "CSS Modern: Prefer 'clamp(min, preferred, max)' for truly responsive fluid typography without media queries.",
+        ar: "تصميم CSS حديث: استخدم 'clamp()' لتحقيق نصوص مرنة تتكيف مع كل الشاشات بدون كتابة استعلامات وسائط متعددة."
+      },
+      {
+        en: "JS Tip: Use console.table(data) instead of console.log for clean visualization of arrays and objects.",
+        ar: "نصيحة JavaScript: استعمل console.table(data) بدلاً من console.log لعرض المصفوفات والكائنات في جدول مرتب."
+      },
+      {
+        en: "Performance: Always add loading='lazy' to images below the fold to speed up initial page rendering.",
+        ar: "أداء الويب: أضف دائماً loading='lazy' للصور في أسفل الصفحة لتسريع فتح الموقع فوراً."
+      },
+      {
+        en: "Dev Well-being: Follow the 20-20-20 rule: every 20 mins, look at something 20 feet away for 20 seconds.",
+        ar: "صحة المبرمج: اتبع قاعدة 20-20-20 لحماية عينيك: كل 20 دقيقة، انظر لشيء يبعد 6 أمتار لمدة 20 ثانية."
+      },
+      {
+        en: "Python Zen: Explicit is better than implicit. Simple is better than complex.",
+        ar: "فلسفة بايثون: الوضوح والصراحة أفضل من الغموض، والبساطة دائماً أفضل من التعقيد."
+      }
+    ];
+
+    const dayIndex = Math.floor(Date.now() / 86400000) % tips.length;
+    const currentTip = tips[dayIndex];
+    const text = currentLang === 'ar' ? currentTip.ar : currentTip.en;
+
+    const banner = document.createElement("div");
+    banner.id = "clDailyTipBanner";
+    banner.className = "cl-daily-tip-banner reveal";
+    banner.innerHTML = `
+      <div class="cl-tip-badge">
+        <i class="fa-solid fa-lightbulb"></i>
+        <span>${currentLang === 'ar' ? 'نصيحة اليوم' : 'Daily Tip'}</span>
+      </div>
+      <div class="cl-tip-text">${text}</div>
+    `;
+
+    const target = document.querySelector(".hero-premium") || document.querySelector(".tools-hub-grid") || document.querySelector("main") || document.body.firstChild;
+    if (target && target.nextElementSibling) {
+      target.parentNode.insertBefore(banner, target.nextElementSibling);
+    } else {
+      document.body.prepend(banner);
+    }
+  }
+
   function boot() {
     applyLang(currentLang);
     document.querySelectorAll("header, footer").forEach(el => {
@@ -853,6 +1023,8 @@
     bindFooterEvents();
     refreshPageContent();
     initCookieConsent();
+    initCourseProgress();
+    initDailyDevTip();
 
     // Register PWA Service Worker
     if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {

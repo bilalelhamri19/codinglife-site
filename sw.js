@@ -1,15 +1,45 @@
-// Coding Life - Progressive Web App Service Worker
-const CACHE_NAME = 'codinglife-v1';
+// Coding Life - Progressive Web App Service Worker (Complete Offline PWA)
+const CACHE_NAME = 'codinglife-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './dorous-albarmaja.html',
-  './quiz.html',
-  './playground.html',
-  './tools.html',
   './site-polish.css',
   './site-polish.js',
-  './logo.png'
+  './logo.png',
+  './manifest.json',
+  // Interactive Tools
+  './tools.html',
+  './calculator.html',
+  './colors.html',
+  './css-converter.html',
+  './playground.html',
+  './quiz.html',
+  './workshops.html',
+  // All Courses & Tutorials
+  './dorous-albarmaja.html',
+  './html.html',
+  './css.html',
+  './javascript.html',
+  './python.html',
+  './react.html',
+  './nodejs.html',
+  './php.html',
+  './sql.html',
+  './java.html',
+  './csharp.html',
+  './flutter.html',
+  './git.html',
+  './coding.html',
+  // Community, Career & Soft Skills
+  './blog.html',
+  './productivity.html',
+  './mental_health.html',
+  './motivation.html',
+  './soft-skills.html',
+  './about.html',
+  './contact.html',
+  './privacy.html',
+  './terms.html'
 ];
 
 self.addEventListener('install', (event) => {
@@ -35,7 +65,6 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Stale-while-revalidate for local assets, network-first for others
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
@@ -49,7 +78,10 @@ self.addEventListener('fetch', (event) => {
         }
         return networkResponse;
       }).catch(() => {
-        return cachedResponse;
+        // Fallback to cached index.html for page navigations when offline
+        if (event.request.mode === 'navigate') {
+          return caches.match('./index.html');
+        }
       });
 
       return cachedResponse || fetchPromise;
