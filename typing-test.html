@@ -184,19 +184,35 @@
       display: inline-block;
     }
     .tt-char.correct {
-      color: #38bdf8;
+      color: #38bdf8 !important;
     }
-    /* Wrong char typed — shows the incorrect character in red and advances */
+    /* Vibrant bright red for typed errors - highly visible against dark background */
     .tt-char.typed-wrong {
-      color: #ef4444;
-      background: rgba(239, 68, 68, 0.22);
-      border-radius: 2px;
-      text-decoration: underline wavy #ef4444;
+      color: #ff4d4d !important;
+      background: rgba(239, 68, 68, 0.32) !important;
+      border-bottom: 2px solid #ef4444 !important;
+      border-radius: 3px;
+      font-weight: 700 !important;
+      text-shadow: 0 0 8px rgba(239, 68, 68, 0.7) !important;
+      display: inline-block;
     }
     .tt-char.current {
       background: rgba(56, 189, 248, 0.3);
       border-left: 2px solid #38bdf8;
       animation: blinkCursor 0.9s infinite;
+    }
+    /* Current cursor glowing in bright red when an error is made */
+    .tt-char.current.has-error,
+    .tt-char.current.wrong {
+      background: rgba(239, 68, 68, 0.45) !important;
+      border-left: 3px solid #ef4444 !important;
+      color: #ff6b6b !important;
+      text-shadow: 0 0 10px rgba(239, 68, 68, 0.8) !important;
+      animation: errorPulse 0.4s ease infinite !important;
+    }
+    @keyframes errorPulse {
+      0%, 100% { border-left-color: #ef4444; background: rgba(239, 68, 68, 0.45); }
+      50% { border-left-color: #ff8888; background: rgba(239, 68, 68, 0.2); }
     }
     @keyframes blinkCursor {
       0%, 100% { border-left-color: #38bdf8; }
@@ -937,29 +953,45 @@
         const typedEntry = typedChars[i];
 
         let cls = "tt-char";
-        let displayChar = escapeChar(char); // default: show expected char
+        let displayChar = escapeChar(char);
 
         if (typedEntry !== undefined) {
           if (typedEntry.correct) {
             cls += " correct";
           } else {
             cls += " typed-wrong";
-            // Show the WRONG character typed (in red), not the expected one
-            displayChar = escapeChar(typedEntry.typed) || "&middot;";
+            // Show the actual typed wrong character in bright red
+            const wrongTyped = typedEntry.typed;
+            if (wrongTyped === " ") {
+              displayChar = "␣";
+            } else if (wrongTyped) {
+              displayChar = escapeChar(wrongTyped);
+            } else {
+              displayChar = escapeChar(char);
+            }
           }
-        } else if (i === typedIndex) {
+        }
+
+        // Active cursor at current position
+        if (i === typedIndex) {
           cls += " current";
+          if (hasErrorOnCurrent) {
+            cls += " has-error wrong";
+          }
         }
 
         if (char === "\n") {
-          // Render a visible ↵ symbol for newlines so wrong ones are visible
-          const wrongGlyph = typedEntry && !typedEntry.correct ? '↵' : '';
-          html += `<span class="${cls}" data-idx="${i}">${wrongGlyph ? wrongGlyph : '↵'}\n</span>`;
+          // Only show visible red ↵ if a newline was mistyped, otherwise natural newline
+          const wrongGlyph = (typedEntry && !typedEntry.correct) ? '<span class="tt-char typed-wrong">↵</span>' : '';
+          html += `<span class="${cls}" data-idx="${i}">${wrongGlyph}\n</span>`;
         } else if (char === " ") {
-          const spaceContent = (typedEntry && !typedEntry.correct && typedEntry.typed !== " ")
-            ? `<span style="font-size:0.7em;vertical-align:middle">·</span>`
-            : "&nbsp;";
-          html += `<span class="${cls}" data-idx="${i}">${spaceContent}</span>`;
+          if (typedEntry && !typedEntry.correct) {
+            // Mistyped space: display the wrong character in bright red
+            const wrongChar = escapeChar(typedEntry.typed || "␣");
+            html += `<span class="${cls}" data-idx="${i}">${wrongChar}</span>`;
+          } else {
+            html += `<span class="${cls}" data-idx="${i}">&nbsp;</span>`;
+          }
         } else {
           html += `<span class="${cls}" data-idx="${i}">${displayChar}</span>`;
         }
@@ -1016,6 +1048,15 @@
       void arena.offsetWidth;
       arena.classList.add("wrong-shake");
       setTimeout(() => arena.classList.remove("wrong-shake"), 300);
+
+      // Pop the error counter with red scale animation
+      valErrors.style.transform = "scale(1.3)";
+      valErrors.style.transition = "transform 0.15s ease, color 0.15s ease";
+      valErrors.style.color = "#ff4d4d";
+      setTimeout(() => {
+        valErrors.style.transform = "scale(1)";
+        valErrors.style.color = "#ef4444";
+      }, 200);
     }
 
     function safeFocusInput() {
