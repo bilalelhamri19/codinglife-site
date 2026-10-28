@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive In-Browser SQL Playground - Coding Life</title>
+  <meta name="description" content="Free interactive in-browser SQL playground and sandbox. Run live SQL queries (SELECT, JOIN, GROUP BY, INSERT) against real relational tables with instant results and CSV/JSON export.">
+  <meta name="keywords" content="SQL playground, online SQL editor, SQL sandbox, run SQL in browser, interactive SQL, SQL queries, تعلم قواعد البيانات, محرر SQL تفاعلي">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://codinglife1.vercel.app/sql-playground.html">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    :root {
+      --sql-bg-editor: #090d16;
+      --sql-keyword: #38bdf8;
+      --sql-string: #34d399;
+      --sql-number: #fbbf24;
+      --sql-comment: #64748b;
+    }
+    .sql-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
+    .sql-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .sql-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--cl-brand);
+      padding: 6px 16px;
+      border-radius: 99px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .sql-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--cl-ink);
+      font-weight: 800;
+      margin: 0 0 10px;
+    }
+    .sql-header p {
+      color: var(--cl-muted);
+      font-size: 1.05rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Layout Grid */
+    .sql-layout {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 1024px) {
+      .sql-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Schema Panel */
+    .sql-panel {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .sql-panel-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--cl-ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .sql-table-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: var(--cl-transition);
+    }
+    .sql-table-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .sql-table-header {
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .sql-table-name {
+      font-family: 'Fira Code', monospace;
+      font-weight: 700;
+      color: var(--cl-brand);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sql-table-count {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--cl-muted);
+      padding: 2px 8px;
+      border-radius: 99px;
+    }
+    .sql-col-list {
+      padding: 8px 14px 12px;
+      font-size: 0.82rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .sql-col-item {
+      display: flex;
+      justify-content: space-between;
+      color: var(--cl-ink);
+      font-family: 'Fira Code', monospace;
+    }
+    .sql-col-type {
+      color: var(--cl-muted);
+      font-size: 0.75rem;
+    }
+
+    /* Main Workspace */
+    .sql-workspace {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Quick Query Pills */
+    .sql-presets {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .sql-preset-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-ink);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--cl-transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sql-preset-pill:hover {
+      background: var(--cl-brand-soft);
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+      transform: translateY(-1px);
+    }
+
+    /* Editor Box */
+    .sql-editor-card {
+      background: var(--sql-bg-editor);
+      border: 1px solid var(--cl-line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .sql-editor-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: #0d131f;
+      border-bottom: 1px solid var(--cl-line);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .sql-editor-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cl-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sql-toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sql-btn {
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--cl-transition);
+      border: none;
+      font-family: inherit;
+    }
+    .sql-btn-run {
+      background: linear-gradient(135deg, #0284c7, var(--cl-brand));
+      color: #020617;
+      font-weight: 800;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+    }
+    .sql-btn-run:hover {
+      filter: brightness(1.15);
+      transform: translateY(-1px);
+    }
+    .sql-btn-ghost {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--cl-ink);
+      border: 1px solid var(--cl-line);
+    }
+    .sql-btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Editor Textarea with Line Numbers */
+    .sql-editor-body {
+      position: relative;
+      display: flex;
+      min-height: 190px;
+      background: #060911;
+    }
+    .sql-linenums {
+      width: 44px;
+      padding: 16px 8px;
+      text-align: right;
+      color: #334155;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      user-select: none;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      background: #04060a;
+    }
+    .sql-textarea {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #e2e8f0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.96rem;
+      line-height: 1.6;
+      padding: 16px;
+      resize: vertical;
+      min-height: 190px;
+      white-space: pre;
+      tab-size: 2;
+    }
+
+    /* Results Card */
+    .sql-results-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .sql-results-header {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--cl-line);
+      background: rgba(255, 255, 255, 0.02);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .sql-meta-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+    }
+    .sql-status-badge {
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+    .sql-status-badge.success {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .sql-status-badge.error {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .sql-export-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sql-export-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-ink);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--cl-transition);
+    }
+    .sql-export-btn:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+    }
+
+    /* Result Table */
+    .sql-table-wrapper {
+      max-height: 480px;
+      overflow: auto;
+    }
+    .sql-result-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+    .sql-result-table th {
+      position: sticky;
+      top: 0;
+      background: #0f172a;
+      color: var(--cl-brand);
+      font-weight: 800;
+      font-family: 'Fira Code', monospace;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--cl-line);
+      white-space: nowrap;
+      z-index: 1;
+    }
+    .sql-result-table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--cl-ink);
+      font-family: 'Fira Code', monospace;
+      white-space: nowrap;
+    }
+    .sql-result-table tr:hover td {
+      background: rgba(56, 189, 248, 0.05);
+    }
+    .sql-null {
+      color: #64748b;
+      font-style: italic;
+    }
+    .sql-num {
+      color: #fbbf24;
+    }
+    .sql-str {
+      color: #e2e8f0;
+    }
+    .sql-empty {
+      padding: 48px 20px;
+      text-align: center;
+      color: var(--cl-muted);
+    }
+    .sql-error-box {
+      padding: 20px;
+      background: rgba(239, 68, 68, 0.08);
+      border-left: 4px solid #ef4444;
+      color: #fca5a5;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.92rem;
+      white-space: pre-wrap;
+    }
+    .sql-shortcut-tip {
+      font-size: 0.8rem;
+      color: var(--cl-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    kbd {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: inherit;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sql-container">
+  
+  <!-- Header EN -->
+  <div class="sql-header" data-cl-lang="en">
+    <div class="sql-badge"><i class="fa-solid fa-database"></i> Live Relational Engine</div>
+    <h1>In-Browser Interactive SQL Playground</h1>
+    <p>Write and execute real SQL queries instantly in your browser. Practice SELECT, JOIN, GROUP BY, and aggregates with zero setup.</p>
+  </div>
+
+  <!-- Header AR -->
+  <div class="sql-header" data-cl-lang="ar">
+    <div class="sql-badge"><i class="fa-solid fa-database"></i> محرك قواعد بيانات تفاعلي فوري</div>
+    <h1>مختبر SQL التفاعلي في المتصفح</h1>
+    <p>اكتب ونفّذ استعلامات SQL الحقيقية مباشرة داخل المتصفح. تدرّب على SELECT و JOIN و GROUP BY والدوال التجميعية بدون أي تنصيب.</p>
+  </div>
+
+  <!-- Quick Presets -->
+  <div style="margin-bottom: 18px;">
+    <div style="font-size: 0.8rem; font-weight: 700; color: var(--cl-muted); margin-bottom: 8px; text-transform: uppercase;">
+      <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-cl-lang="en">Example Queries:</span><span data-cl-lang="ar">استعلامات جاهزة للتجربة:</span>
+    </div>
+    <div class="sql-presets">
+      <button class="sql-preset-pill" data-query="SELECT * FROM users LIMIT 5;">
+        <i class="fa-solid fa-users"></i> All Users
+      </button>
+      <button class="sql-preset-pill" data-query="SELECT name, email, spending, country FROM users WHERE spending > 500 ORDER BY spending DESC;">
+        <i class="fa-solid fa-gem"></i> Top Spending Customers
+      </button>
+      <button class="sql-preset-pill" data-query="SELECT u.name, o.product_name, o.amount, o.status FROM users u INNER JOIN orders o ON u.id = o.user_id WHERE o.status = 'completed';">
+        <i class="fa-solid fa-link"></i> Customer Orders (JOIN)
+      </button>
+      <button class="sql-preset-pill" data-query="SELECT category, COUNT(*) as product_count, ROUND(AVG(price), 2) as avg_price, SUM(stock) as total_stock FROM products GROUP BY category ORDER BY avg_price DESC;">
+        <i class="fa-solid fa-chart-pie"></i> Products by Category (GROUP BY)
+      </button>
+      <button class="sql-preset-pill" data-query="SELECT title, price, stock, rating FROM products WHERE rating >= 4.7 AND stock > 20 ORDER BY rating DESC;">
+        <i class="fa-solid fa-star"></i> Top Rated In-Stock
+      </button>
+      <button class="sql-preset-pill" data-query="INSERT INTO products (title, category, price, stock, rating) VALUES ('Ergonomic Mechanical Keyboard', 'Electronics', 99.99, 45, 4.9);
+SELECT * FROM products ORDER BY id DESC LIMIT 3;">
+        <i class="fa-solid fa-plus"></i> INSERT New Product
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="sql-layout">
+    
+    <!-- Left: Schema Explorer -->
+    <div class="sql-panel">
+      <div class="sql-panel-title">
+        <span><i class="fa-solid fa-table-cells"></i> <span data-cl-lang="en">Database Schema</span><span data-cl-lang="ar">جداول قاعدة البيانات</span></span>
+        <button class="sql-export-btn" id="resetDbBtn" title="Reset tables to default initial data">
+          <i class="fa-solid fa-rotate-left"></i> <span data-cl-lang="en">Reset</span><span data-cl-lang="ar">إعادة ضبط</span>
+        </button>
+      </div>
+
+      <!-- Users Table Card -->
+      <div class="sql-table-card">
+        <div class="sql-table-header" onclick="insertTableName('users')">
+          <div class="sql-table-name"><i class="fa-solid fa-table"></i> users</div>
+          <span class="sql-table-count" id="count-users">6 rows</span>
+        </div>
+        <div class="sql-col-list">
+          <div class="sql-col-item"><span>id</span><span class="sql-col-type">INTEGER (PK)</span></div>
+          <div class="sql-col-item"><span>name</span><span class="sql-col-type">VARCHAR</span></div>
+          <div class="sql-col-item"><span>email</span><span class="sql-col-type">VARCHAR</span></div>
+          <div class="sql-col-item"><span>role</span><span class="sql-col-type">VARCHAR</span></div>
+          <div class="sql-col-item"><span>country</span><span class="sql-col-type">VARCHAR</span></div>
+          <div class="sql-col-item"><span>spending</span><span class="sql-col-type">DECIMAL</span></div>
+        </div>
+      </div>
+
+      <!-- Orders Table Card -->
+      <div class="sql-table-card">
+        <div class="sql-table-header" onclick="insertTableName('orders')">
+          <div class="sql-table-name"><i class="fa-solid fa-table"></i> orders</div>
+          <span class="sql-table-count" id="count-orders">8 rows</span>
+        </div>
+        <div class="sql-col-list">
+          <div class="sql-col-item"><span>id</span><span class="sql-col-type">INTEGER (PK)</span></div>
+          <div class="sql-col-item"><span>user_id</span><span class="sql-col-type">INTEGER (FK)</span></div>
+          <div class="sql-col-item"><span>product_name</span><span class="sql-col-type">VARCHAR</span></div>
+          <div class="sql-col-item"><span>amount</span><span class="sql-col-type">DECIMAL</span></div>
+          <div class="sql-col-item"><span>status</span><span class="sql-col-type">VARCHAR</span></div>
+          <div class="sql-col-item"><span>order_date</span><span class="sql-col-type">DATE</span></div>
+        </div>
+      </div>
+
+      <!-- Products Table Card -->
+      <div class="sql-table-card">
+        <div class="sql-table-header" onclick="insertTableName('products')">
+          <div class="sql-table-name"><i class="fa-solid fa-table"></i> products</div>
+          <span class="sql-table-count" id="count-products">7 rows</span>
+        </div>
+        <div class="sql-col-list">
+          <div class="sql-col-item"><span>id</span><span class="sql-col-type">INTEGER (PK)</span></div>
+          <div class="sql-col-item"><span>title</span><span class="sql-col-type">VARCHAR</span></div>
+          <div class="sql-col-item"><span>category</span><span class="sql-col-type">VARCHAR</span></div>
+          <div class="sql-col-item"><span>price</span><span class="sql-col-type">DECIMAL</span></div>
+          <div class="sql-col-item"><span>stock</span><span class="sql-col-type">INTEGER</span></div>
+          <div class="sql-col-item"><span>rating</span><span class="sql-col-type">FLOAT</span></div>
+        </div>
+      </div>
+
+      <div style="font-size:0.78rem; color:var(--cl-muted); text-align:center; margin-top:12px;">
+        <i class="fa-solid fa-lightbulb" style="color:var(--cl-brand);"></i> <span data-cl-lang="en">Click table header to insert into editor</span><span data-cl-lang="ar">انقر على الجدول لإدراجه في المحرر</span>
+      </div>
+    </div>
+
+    <!-- Right: Workspace -->
+    <div class="sql-workspace">
+      
+      <!-- Editor Card -->
+      <div class="sql-editor-card">
+        <div class="sql-editor-toolbar">
+          <div class="sql-editor-title">
+            <i class="fa-solid fa-terminal" style="color:var(--cl-brand);"></i>
+            <span>SQL Query Editor</span>
+            <span class="sql-shortcut-tip"><kbd>Ctrl</kbd> + <kbd>Enter</kbd> to run</span>
+          </div>
+          <div class="sql-toolbar-actions">
+            <button class="sql-btn sql-btn-ghost" id="formatSqlBtn" title="Format SQL keywords">
+              <i class="fa-solid fa-align-left"></i> <span data-cl-lang="en">Format</span><span data-cl-lang="ar">تنسيق</span>
+            </button>
+            <button class="sql-btn sql-btn-ghost" id="clearSqlBtn" title="Clear Query">
+              <i class="fa-solid fa-trash-can"></i> <span data-cl-lang="en">Clear</span><span data-cl-lang="ar">مسح</span>
+            </button>
+            <button class="sql-btn sql-btn-run" id="runSqlBtn">
+              <i class="fa-solid fa-play"></i> <span data-cl-lang="en">Run Query</span><span data-cl-lang="ar">تشغيل الاستعلام</span>
+            </button>
+          </div>
+        </div>
+        <div class="sql-editor-body">
+          <div class="sql-linenums" id="lineNumbers">1</div>
+          <textarea id="sqlInput" class="sql-textarea" spellcheck="false" placeholder="-- Enter your SQL query here
+SELECT * FROM users;"></textarea>
+        </div>
+      </div>
+
+      <!-- Results Card -->
+      <div class="sql-results-card">
+        <div class="sql-results-header">
+          <div class="sql-meta-info">
+            <span id="statusBadge" class="sql-status-badge success"><i class="fa-solid fa-check"></i> Ready</span>
+            <span id="execStats" style="color:var(--cl-muted); font-size:0.84rem;">Press Run to execute</span>
+          </div>
+          <div class="sql-export-actions">
+            <button class="sql-export-btn" id="exportCsvBtn" title="Download as CSV">
+              <i class="fa-solid fa-file-csv"></i> <span>CSV</span>
+            </button>
+            <button class="sql-export-btn" id="exportJsonBtn" title="Download as JSON">
+              <i class="fa-solid fa-file-code"></i> <span>JSON</span>
+            </button>
+            <button class="sql-export-btn" id="copyMarkdownBtn" title="Copy as Markdown table">
+              <i class="fa-solid fa-copy"></i> <span>Markdown</span>
+            </button>
+          </div>
+        </div>
+        <div class="sql-table-wrapper" id="tableWrapper">
+          <div class="sql-empty" id="emptyState">
+            <i class="fa-solid fa-table" style="font-size:2.5rem; opacity:0.3; margin-bottom:12px;"></i>
+            <div>No query results yet. Write a query above and hit <strong>Run Query</strong>!</div>
+          </div>
+          <table class="sql-result-table" id="resultTable" style="display:none;">
+            <thead id="resultHead"></thead>
+            <tbody id="resultBody"></tbody>
+          </table>
+          <div class="sql-error-box" id="errorBox" style="display:none;"></div>
+        </div>
+      </div>
+
+    </div><!-- end .sql-workspace -->
+
+  </div><!-- end .sql-layout -->
+
+</div><!-- end .sql-container -->
+
+<script src="site-polish.js"></script>
+<script>
+  // --- IN-BROWSER RELATIONAL DATABASE ENGINE ---
+  const INITIAL_DATABASE = {
+    users: [
+      { id: 1, name: "Bilal El Hamri", email: "bilal@codinglife.dev", role: "Admin", country: "Morocco", spending: 1250.00 },
+      { id: 2, name: "Sophia Martinez", email: "sophia@techlabs.io", role: "Developer", country: "Spain", spending: 640.50 },
+      { id: 3, name: "Karim Bennani", email: "karim@startup.ma", role: "Designer", country: "Morocco", spending: 310.20 },
+      { id: 4, name: "Lucas Chen", email: "lucas@cloudscale.net", role: "DevOps", country: "Singapore", spending: 890.00 },
+      { id: 5, name: "Amira Zaki", email: "amira@datascience.eg", role: "Data Scientist", country: "Egypt", spending: 1120.75 },
+      { id: 6, name: "Youssef Idrissi", email: "youssef@coders.ma", role: "Developer", country: "Morocco", spending: 430.00 }
+    ],
+    orders: [
+      { id: 101, user_id: 1, product_name: "UltraWide 4K Monitor", amount: 499.99, status: "completed", order_date: "2026-03-15" },
+      { id: 102, user_id: 2, product_name: "Mechanical Keyboard", amount: 129.99, status: "completed", order_date: "2026-03-18" },
+      { id: 103, user_id: 1, product_name: "Ergonomic Desk Chair", amount: 350.00, status: "completed", order_date: "2026-03-20" },
+      { id: 104, user_id: 3, product_name: "Wireless Precision Mouse", amount: 79.99, status: "pending", order_date: "2026-03-22" },
+      { id: 105, user_id: 4, product_name: "USB-C Dual Dock Pro", amount: 189.50, status: "completed", order_date: "2026-03-24" },
+      { id: 106, user_id: 5, product_name: "Active Noise-Cancelling Headphones", amount: 299.00, status: "completed", order_date: "2026-03-25" },
+      { id: 107, user_id: 2, product_name: "Screen Light Bar", amount: 59.99, status: "shipped", order_date: "2026-03-26" },
+      { id: 108, user_id: 6, product_name: "High-Speed NVMe SSD 2TB", amount: 175.00, status: "completed", order_date: "2026-03-27" }
+    ],
+    products: [
+      { id: 1, title: "UltraWide 4K Monitor", category: "Displays", price: 499.99, stock: 18, rating: 4.8 },
+      { id: 2, title: "Mechanical Keyboard RGB", category: "Accessories", price: 129.99, stock: 45, rating: 4.9 },
+      { id: 3, title: "Wireless Precision Mouse", category: "Accessories", price: 79.99, stock: 62, rating: 4.7 },
+      { id: 4, title: "Ergonomic Desk Chair", category: "Furniture", price: 350.00, stock: 12, rating: 4.6 },
+      { id: 5, title: "USB-C Dual Dock Pro", category: "Cables & Docks", price: 189.50, stock: 28, rating: 4.5 },
+      { id: 6, title: "Noise-Cancelling Headphones", category: "Audio", price: 299.00, stock: 35, rating: 4.9 },
+      { id: 7, title: "NVMe Gen4 SSD 2TB", category: "Storage", price: 175.00, stock: 54, rating: 4.8 }
+    ]
+  };
+
+  // Deep clone database
+  let db = JSON.parse(JSON.stringify(INITIAL_DATABASE));
+  let lastResultRows = [];
+  let lastResultCols = [];
+
+  function updateRowCounts() {
+    Object.keys(db).forEach(tbl => {
+      const el = document.getElementById(`count-${tbl}`);
+      if (el) el.textContent = `${db[tbl].length} rows`;
+    });
+  }
+
+  function resetDatabase() {
+    db = JSON.parse(JSON.stringify(INITIAL_DATABASE));
+    updateRowCounts();
+    if (window.clToast) window.clToast("Database reset to demo state!", "success");
+  }
+
+  // --- SQL EXECUTOR ENGINE ---
+  function executeSQL(rawQuery) {
+    const clean = rawQuery.replace(/--.*$/gm, "").trim();
+    if (!clean) throw new Error("Empty query. Please write a SQL statement.");
+
+    // Split multiple statements by semicolon
+    const statements = clean.split(";").map(s => s.trim()).filter(Boolean);
+    let finalResult = null;
+
+    for (let stmt of statements) {
+      finalResult = executeSingleStatement(stmt);
+    }
+    return finalResult;
+  }
+
+  function executeSingleStatement(stmt) {
+    const trimmed = stmt.trim();
+    const upper = trimmed.toUpperCase();
+
+    if (upper.startsWith("SELECT")) {
+      return executeSelect(stmt);
+    } else if (upper.startsWith("INSERT INTO")) {
+      return executeInsert(stmt);
+    } else if (upper.startsWith("UPDATE")) {
+      return executeUpdate(stmt);
+    } else if (upper.startsWith("DELETE FROM")) {
+      return executeDelete(stmt);
+    } else if (upper.startsWith("SHOW TABLES")) {
+      const rows = Object.keys(db).map(t => ({ table_name: t, row_count: db[t].length }));
+      return { columns: ["table_name", "row_count"], rows: rows, message: `${rows.length} tables found` };
+    } else {
+      throw new Error(`Unsupported SQL command: "${trimmed.split(" ")[0]}". Supported: SELECT, INSERT INTO, UPDATE, DELETE FROM, SHOW TABLES.`);
+    }
+  }
+
+  // Parse and execute SELECT
+  function executeSelect(stmt) {
+    const selectMatch = stmt.match(/^SELECT\s+(DISTINCT\s+)?([\s\S]+?)\s+FROM\s+([a-zA-Z0-9_]+)(?:\s+([a-zA-Z0-9_]+))?(\s+INNER\s+JOIN|\s+LEFT\s+JOIN|\s+JOIN)?([\s\S]*)$/i);
+    if (!selectMatch) {
+      throw new Error("Syntax error in SELECT statement. Expected: SELECT ... FROM <table>");
+    }
+
+    const isDistinct = !!selectMatch[1];
+    const rawCols = selectMatch[2].trim();
+    let mainTable = selectMatch[3].toLowerCase();
+    let mainAlias = selectMatch[4] ? selectMatch[4] : mainTable;
+    let remainder = (selectMatch[5] || "") + (selectMatch[6] || "");
+
+    const reserved = ["WHERE", "GROUP", "ORDER", "LIMIT", "INNER", "LEFT", "RIGHT", "JOIN", "HAVING"];
+    if (selectMatch[4] && reserved.includes(selectMatch[4].toUpperCase())) {
+      remainder = " " + selectMatch[4] + remainder;
+      mainAlias = mainTable;
+    }
+
+    if (!db[mainTable]) {
+      throw new Error(`Table "${mainTable}" does not exist. Available tables: ${Object.keys(db).join(", ")}`);
+    }
+
+    // Prepare Working Rows (with alias prefixes)
+    let workingRows = db[mainTable].map(row => {
+      const flat = {};
+      Object.keys(row).forEach(k => {
+        flat[k] = row[k];
+        flat[`${mainAlias}.${k}`] = row[k];
+        flat[`${mainTable}.${k}`] = row[k];
+      });
+      return flat;
+    });
+
+    // Check for JOIN
+    const joinMatch = remainder.match(/^\s*(?:INNER\s+JOIN|LEFT\s+JOIN|JOIN)\s+([a-zA-Z0-9_]+)(?:\s+([a-zA-Z0-9_]+))?\s+ON\s+([a-zA-Z0-9_.]+)\s*=\s*([a-zA-Z0-9_.]+)([\s\S]*)$/i);
+    if (joinMatch) {
+      const joinTable = joinMatch[1].toLowerCase();
+      const joinAlias = joinMatch[2] || joinTable;
+      const leftKey = joinMatch[3];
+      const rightKey = joinMatch[4];
+      remainder = joinMatch[5] || "";
+
+      if (!db[joinTable]) {
+        throw new Error(`Joined table "${joinTable}" does not exist.`);
+      }
+
+      const joinedRows = [];
+      const isLeft = /LEFT/i.test(selectMatch[4] || "");
+
+      workingRows.forEach(leftRow => {
+        let matched = false;
+        db[joinTable].forEach(rightRow => {
+          const lVal = leftRow[leftKey] !== undefined ? leftRow[leftKey] : leftRow[`${mainAlias}.${leftKey}`];
+          const rVal = rightRow[rightKey] !== undefined ? rightRow[rightKey] : rightRow[rightKey.split(".").pop()];
+
+          if (lVal == rVal) {
+            matched = true;
+            const combined = { ...leftRow };
+            Object.keys(rightRow).forEach(k => {
+              combined[k] = rightRow[k];
+              combined[`${joinAlias}.${k}`] = rightRow[k];
+              combined[`${joinTable}.${k}`] = rightRow[k];
+            });
+            joinedRows.push(combined);
+          }
+        });
+        if (!matched && isLeft) {
+          const combined = { ...leftRow };
+          joinedRows.push(combined);
+        }
+      });
+      workingRows = joinedRows;
+    }
+
+    // WHERE clause
+    const whereMatch = remainder.match(/\bWHERE\s+([\s\S]+?)(?=\bGROUP\s+BY\b|\bORDER\s+BY\b|\bLIMIT\b|$)/i);
+    if (whereMatch) {
+      const whereCond = whereMatch[1].trim();
+      workingRows = workingRows.filter(row => evaluateCondition(whereCond, row));
+    }
+
+    // GROUP BY clause
+    const groupMatch = remainder.match(/\bGROUP\s+BY\s+([\s\S]+?)(?=\bHAVING\b|\bORDER\s+BY\b|\bLIMIT\b|$)/i);
+    let finalRows = [];
+
+    if (groupMatch) {
+      const groupCols = groupMatch[1].split(",").map(c => c.trim());
+      const groups = {};
+
+      workingRows.forEach(row => {
+        const key = groupCols.map(c => row[c] ?? "").join("___");
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(row);
+      });
+
+      finalRows = Object.keys(groups).map(key => {
+        const groupRows = groups[key];
+        return computeSelectedColumns(rawCols, groupRows[0], groupRows);
+      });
+    } else {
+      // Check if rawCols has aggregates without GROUP BY (e.g. SELECT COUNT(*), AVG(spending) FROM users)
+      if (hasAggregates(rawCols)) {
+        finalRows = [computeSelectedColumns(rawCols, workingRows[0] || {}, workingRows)];
+      } else {
+        finalRows = workingRows.map(row => computeSelectedColumns(rawCols, row, [row]));
+      }
+    }
+
+    // DISTINCT
+    if (isDistinct) {
+      const seen = new Set();
+      finalRows = finalRows.filter(r => {
+        const str = JSON.stringify(r);
+        if (seen.has(str)) return false;
+        seen.add(str);
+        return true;
+      });
+    }
+
+    // ORDER BY
+    const orderMatch = remainder.match(/\bORDER\s+BY\s+([a-zA-Z0-9_.]+)(?:\s+(ASC|DESC))?/i);
+    if (orderMatch) {
+      const orderCol = orderMatch[1].trim();
+      const isDesc = (orderMatch[2] || "").toUpperCase() === "DESC";
+      finalRows.sort((a, b) => {
+        let valA = a[orderCol];
+        let valB = b[orderCol];
+        if (valA === undefined) valA = Object.values(a)[0];
+        if (valB === undefined) valB = Object.values(b)[0];
+        if (typeof valA === "number" && typeof valB === "number") {
+          return isDesc ? valB - valA : valA - valB;
+        }
+        return isDesc ? String(valB).localeCompare(String(valA)) : String(valA).localeCompare(String(valB));
+      });
+    }
+
+    // LIMIT & OFFSET
+    const limitMatch = remainder.match(/\bLIMIT\s+(\d+)(?:\s+OFFSET\s+(\d+))?/i);
+    if (limitMatch) {
+      const limit = parseInt(limitMatch[1], 10);
+      const offset = limitMatch[2] ? parseInt(limitMatch[2], 10) : 0;
+      finalRows = finalRows.slice(offset, offset + limit);
+    }
+
+    // Compute column names from first result row
+    const cols = finalRows.length > 0 ? Object.keys(finalRows[0]) : (rawCols === "*" ? ["id"] : rawCols.split(",").map(c => c.trim().split(/\s+as\s+/i).pop()));
+
+    return {
+      columns: cols,
+      rows: finalRows,
+      message: `${finalRows.length} rows returned`
+    };
+  }
+
+  function hasAggregates(rawCols) {
+    return /\b(COUNT|SUM|AVG|MIN|MAX|ROUND)\b/i.test(rawCols);
+  }
+
+  // Evaluate WHERE conditions
+  function evaluateCondition(condStr, row) {
+    try {
+      // Replace AND / OR / NOT
+      let jsCond = condStr;
+      
+      // Handle = (single equals to ==)
+      jsCond = jsCond.replace(/([a-zA-Z0-9_.]+)\s*=\s*(['"][^'"]*['"]|\d+(\.\d+)?)/g, (m, k, v) => {
+        const val = row[k] !== undefined ? JSON.stringify(row[k]) : JSON.stringify(row[k.split('.').pop()]);
+        return `${val} == ${v}`;
+      });
+
+      // Handle != or <>
+      jsCond = jsCond.replace(/([a-zA-Z0-9_.]+)\s*(?:!=|<>)\s*(['"][^'"]*['"]|\d+(\.\d+)?)/g, (m, k, v) => {
+        const val = row[k] !== undefined ? JSON.stringify(row[k]) : JSON.stringify(row[k.split('.').pop()]);
+        return `${val} != ${v}`;
+      });
+
+      // Handle >= and <=
+      jsCond = jsCond.replace(/([a-zA-Z0-9_.]+)\s*(>=|<=|>|<)\s*(\d+(\.\d+)?)/g, (m, k, op, v) => {
+        const val = row[k] !== undefined ? row[k] : row[k.split('.').pop()];
+        return `${val} ${op} ${v}`;
+      });
+
+      // Handle LIKE '%str%'
+      jsCond = jsCond.replace(/([a-zA-Z0-9_.]+)\s+LIKE\s+['"]%?([^'"%]+)%?['"]/gi, (m, k, needle) => {
+        const val = String(row[k] !== undefined ? row[k] : row[k.split('.').pop()] || "");
+        return val.toLowerCase().includes(needle.toLowerCase()) ? "true" : "false";
+      });
+
+      // Replace keywords
+      jsCond = jsCond.replace(/\bAND\b/gi, "&&").replace(/\bOR\b/gi, "||").replace(/\bNOT\b/gi, "!");
+
+      // Execute safely
+      return Boolean(new Function(`return (${jsCond});`)());
+    } catch (e) {
+      // Fallback simple true to prevent break
+      return true;
+    }
+  }
+
+  // Compute selected projection row
+  function computeSelectedColumns(rawCols, sampleRow, groupRows) {
+    if (rawCols.trim() === "*") {
+      // Clean duplicate alias keys
+      const clean = {};
+      Object.keys(sampleRow).forEach(k => {
+        if (!k.includes(".")) clean[k] = sampleRow[k];
+      });
+      return clean;
+    }
+
+    const res = {};
+    const colExprs = rawCols.split(/,(?![^(]*\))/); // split commas not inside parens
+
+    colExprs.forEach(expr => {
+      const trimmed = expr.trim();
+      let alias = trimmed;
+      let computation = trimmed;
+
+      const asMatch = trimmed.match(/^([\s\S]+?)\s+AS\s+([a-zA-Z0-9_]+)$/i);
+      if (asMatch) {
+        computation = asMatch[1].trim();
+        alias = asMatch[2].trim();
+      } else {
+        // Strip table prefix from default alias
+        alias = alias.split(".").pop();
+      }
+
+      // Check for Aggregate functions
+      const aggMatch = computation.match(/^(COUNT|SUM|AVG|MIN|MAX|ROUND)\(([\s\S]*)\)$/i);
+      if (aggMatch) {
+        const fn = aggMatch[1].toUpperCase();
+        const arg = aggMatch[2].trim();
+
+        if (fn === "COUNT") {
+          res[alias] = groupRows.length;
+        } else if (fn === "SUM") {
+          const sum = groupRows.reduce((acc, r) => acc + (parseFloat(r[arg] || r[arg.split('.').pop()] || 0)), 0);
+          res[alias] = Math.round(sum * 100) / 100;
+        } else if (fn === "AVG") {
+          const sum = groupRows.reduce((acc, r) => acc + (parseFloat(r[arg] || r[arg.split('.').pop()] || 0)), 0);
+          res[alias] = groupRows.length ? Math.round((sum / groupRows.length) * 100) / 100 : 0;
+        } else if (fn === "MIN") {
+          const vals = groupRows.map(r => r[arg] || r[arg.split('.').pop()]).filter(v => v !== undefined);
+          res[alias] = Math.min(...vals);
+        } else if (fn === "MAX") {
+          const vals = groupRows.map(r => r[arg] || r[arg.split('.').pop()]).filter(v => v !== undefined);
+          res[alias] = Math.max(...vals);
+        } else if (fn === "ROUND") {
+          const parts = arg.split(",");
+          const innerExpr = parts[0].trim();
+          const decimals = parts[1] ? parseInt(parts[1], 10) : 0;
+          // compute inner
+          let val = 0;
+          if (innerExpr.toUpperCase().startsWith("AVG")) {
+            const innerArg = innerExpr.match(/\((.*?)\)/)[1].trim();
+            const sum = groupRows.reduce((acc, r) => acc + (parseFloat(r[innerArg] || 0)), 0);
+            val = groupRows.length ? sum / groupRows.length : 0;
+          } else {
+            val = parseFloat(sampleRow[innerExpr] || 0);
+          }
+          res[alias] = parseFloat(val.toFixed(decimals));
+        }
+      } else {
+        // Standard column lookup
+        const val = sampleRow[computation] !== undefined ? sampleRow[computation] : sampleRow[computation.split(".").pop()];
+        res[alias] = val !== undefined ? val : null;
+      }
+    });
+
+    return res;
+  }
+
+  // INSERT statement executor
+  function executeInsert(stmt) {
+    const match = stmt.match(/INSERT\s+INTO\s+([a-zA-Z0-9_]+)\s*(?:\(([^)]+)\))?\s*VALUES\s*\(([\s\S]+)\)/i);
+    if (!match) throw new Error("Syntax error in INSERT statement. Expected: INSERT INTO <table> [(cols)] VALUES (...)");
+
+    const table = match[1].toLowerCase();
+    if (!db[table]) throw new Error(`Table "${table}" does not exist.`);
+
+    const cols = match[2] ? match[2].split(",").map(c => c.trim()) : Object.keys(db[table][0] || {});
+    // Parse values safely
+    const valString = match[3];
+    const vals = valString.split(/,(?![^'"]*['"])/).map(v => {
+      let t = v.trim();
+      if ((t.startsWith("'") && t.endsWith("'")) || (t.startsWith('"') && t.endsWith('"'))) {
+        return t.slice(1, -1);
+      }
+      if (!isNaN(t)) return parseFloat(t);
+      return t;
+    });
+
+    const newRow = {};
+    // Auto-increment id if not provided
+    if (!cols.includes("id")) {
+      const maxId = db[table].reduce((max, r) => Math.max(max, r.id || 0), 0);
+      newRow.id = maxId + 1;
+    }
+
+    cols.forEach((col, i) => {
+      newRow[col] = vals[i] !== undefined ? vals[i] : null;
+    });
+
+    db[table].push(newRow);
+    updateRowCounts();
+
+    return {
+      columns: Object.keys(newRow),
+      rows: [newRow],
+      message: `1 row inserted into ${table} (Total: ${db[table].length} rows)`
+    };
+  }
+
+  // UPDATE statement executor
+  function executeUpdate(stmt) {
+    const match = stmt.match(/UPDATE\s+([a-zA-Z0-9_]+)\s+SET\s+([a-zA-Z0-9_]+)\s*=\s*([\s\S]+?)(?:\s+WHERE\s+([\s\S]+))?$/i);
+    if (!match) throw new Error("Syntax error in UPDATE. Expected: UPDATE <table> SET <col> = <val> [WHERE ...]");
+
+    const table = match[1].toLowerCase();
+    const setCol = match[2].trim();
+    let setVal = match[3].trim();
+    const whereCond = match[4] ? match[4].trim() : null;
+
+    if (!db[table]) throw new Error(`Table "${table}" does not exist.`);
+
+    if ((setVal.startsWith("'") && setVal.endsWith("'")) || (setVal.startsWith('"') && setVal.endsWith('"'))) {
+      setVal = setVal.slice(1, -1);
+    } else if (!isNaN(setVal)) {
+      setVal = parseFloat(setVal);
+    }
+
+    let updatedCount = 0;
+    db[table].forEach(row => {
+      if (!whereCond || evaluateCondition(whereCond, row)) {
+        row[setCol] = setVal;
+        updatedCount++;
+      }
+    });
+
+    return {
+      columns: ["affected_rows", "table"],
+      rows: [{ affected_rows: updatedCount, table: table }],
+      message: `${updatedCount} row(s) updated in ${table}`
+    };
+  }
+
+  // DELETE statement executor
+  function executeDelete(stmt) {
+    const match = stmt.match(/DELETE\s+FROM\s+([a-zA-Z0-9_]+)(?:\s+WHERE\s+([\s\S]+))?$/i);
+    if (!match) throw new Error("Syntax error in DELETE. Expected: DELETE FROM <table> [WHERE ...]");
+
+    const table = match[1].toLowerCase();
+    const whereCond = match[2] ? match[2].trim() : null;
+
+    if (!db[table]) throw new Error(`Table "${table}" does not exist.`);
+
+    const before = db[table].length;
+    if (!whereCond) {
+      db[table] = [];
+    } else {
+      db[table] = db[table].filter(row => !evaluateCondition(whereCond, row));
+    }
+    const deleted = before - db[table].length;
+    updateRowCounts();
+
+    return {
+      columns: ["deleted_rows", "table"],
+      rows: [{ deleted_rows: deleted, table: table }],
+      message: `${deleted} row(s) deleted from ${table}`
+    };
+  }
+
+  // --- UI CONTROLLERS ---
+  const sqlInput = document.getElementById("sqlInput");
+  const lineNumbers = document.getElementById("lineNumbers");
+  const runBtn = document.getElementById("runSqlBtn");
+  const clearBtn = document.getElementById("clearSqlBtn");
+  const formatBtn = document.getElementById("formatSqlBtn");
+  const resetDbBtn = document.getElementById("resetDbBtn");
+  const statusBadge = document.getElementById("statusBadge");
+  const execStats = document.getElementById("execStats");
+  const emptyState = document.getElementById("emptyState");
+  const resultTable = document.getElementById("resultTable");
+  const resultHead = document.getElementById("resultHead");
+  const resultBody = document.getElementById("resultBody");
+  const errorBox = document.getElementById("errorBox");
+
+  // Sync line numbers
+  function updateLineNumbers() {
+    const lines = sqlInput.value.split("\n").length;
+    lineNumbers.innerHTML = Array.from({ length: lines }, (_, i) => i + 1).join("<br>");
+  }
+  sqlInput.addEventListener("input", updateLineNumbers);
+  sqlInput.addEventListener("scroll", () => {
+    lineNumbers.scrollTop = sqlInput.scrollTop;
+  });
+
+  // Handle Tab key in editor
+  sqlInput.addEventListener("keydown", (e) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const start = sqlInput.selectionStart;
+      const end = sqlInput.selectionEnd;
+      sqlInput.value = sqlInput.value.substring(0, start) + "  " + sqlInput.value.substring(end);
+      sqlInput.selectionStart = sqlInput.selectionEnd = start + 2;
+      updateLineNumbers();
+    } else if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+      e.preventDefault();
+      runCurrentQuery();
+    }
+  });
+
+  // Run Query Logic
+  function runCurrentQuery() {
+    const query = sqlInput.value.trim();
+    if (!query) {
+      if (window.clToast) window.clToast("Please enter a SQL query first", "info");
+      return;
+    }
+
+    const startTime = performance.now();
+    try {
+      const result = executeSQL(query);
+      const elapsed = (performance.now() - startTime).toFixed(2);
+
+      // Render Success
+      statusBadge.className = "sql-status-badge success";
+      statusBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Success';
+      execStats.textContent = `⚡ Executed in ${elapsed}ms • ${result.message}`;
+
+      errorBox.style.display = "none";
+      emptyState.style.display = "none";
+      resultTable.style.display = "table";
+
+      renderTable(result.columns, result.rows);
+      lastResultRows = result.rows;
+      lastResultCols = result.columns;
+
+    } catch (err) {
+      const elapsed = (performance.now() - startTime).toFixed(2);
+      statusBadge.className = "sql-status-badge error";
+      statusBadge.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error';
+      execStats.textContent = `Failed in ${elapsed}ms`;
+
+      resultTable.style.display = "none";
+      emptyState.style.display = "none";
+      errorBox.style.display = "block";
+      errorBox.innerHTML = `<strong>SQL Error:</strong>\n${escapeHtml(err.message)}`;
+    }
+  }
+
+  function renderTable(cols, rows) {
+    resultHead.innerHTML = `<tr>${cols.map(c => `<th>${escapeHtml(c)}</th>`).join("")}</tr>`;
+
+    if (rows.length === 0) {
+      resultBody.innerHTML = `<tr><td colspan="${cols.length}" style="text-align:center; padding:30px; color:var(--cl-muted);">0 rows returned</td></tr>`;
+      return;
+    }
+
+    resultBody.innerHTML = rows.map(r => {
+      const cells = cols.map(c => {
+        const val = r[c];
+        if (val === null || val === undefined) return '<span class="sql-null">NULL</span>';
+        if (typeof val === "number") return `<span class="sql-num">${val}</span>`;
+        return `<span class="sql-str">${escapeHtml(String(val))}</span>`;
+      });
+      return `<tr>${cells.map(td => `<td>${td}</td>`).join("")}</tr>`;
+    }).join("");
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  // Format SQL Query
+  function formatSQL() {
+    const keywords = [
+      "SELECT", "FROM", "WHERE", "INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "JOIN", "ON",
+      "GROUP BY", "HAVING", "ORDER BY", "ASC", "DESC", "LIMIT", "OFFSET", "INSERT INTO",
+      "VALUES", "UPDATE", "SET", "DELETE FROM", "DISTINCT", "AND", "OR", "NOT", "IN",
+      "LIKE", "BETWEEN", "IS NULL", "IS NOT NULL", "COUNT", "SUM", "AVG", "MIN", "MAX",
+      "ROUND", "AS"
+    ];
+    let text = sqlInput.value;
+    keywords.forEach(kw => {
+      const regex = new RegExp(`\\b${kw}\\b`, "gi");
+      text = text.replace(regex, kw);
+    });
+    sqlInput.value = text;
+    updateLineNumbers();
+    if (window.clToast) window.clToast("SQL formatted!", "success");
+  }
+
+  // Preset queries click
+  document.querySelectorAll(".sql-preset-pill").forEach(btn => {
+    btn.addEventListener("click", () => {
+      sqlInput.value = btn.dataset.query;
+      updateLineNumbers();
+      runCurrentQuery();
+    });
+  });
+
+  // Table header click inserts name
+  window.insertTableName = function(name) {
+    sqlInput.value = `SELECT * FROM ${name} LIMIT 10;`;
+    updateLineNumbers();
+    runCurrentQuery();
+  };
+
+  // Buttons wiring
+  runBtn.addEventListener("click", runCurrentQuery);
+  clearBtn.addEventListener("click", () => {
+    sqlInput.value = "";
+    updateLineNumbers();
+    sqlInput.focus();
+  });
+  formatBtn.addEventListener("click", formatSQL);
+  resetDbBtn.addEventListener("click", () => {
+    resetDatabase();
+    runCurrentQuery();
+  });
+
+  // Exports
+  document.getElementById("exportCsvBtn").addEventListener("click", () => {
+    if (!lastResultRows.length) return alert("Run a query first to get results!");
+    const header = lastResultCols.join(",");
+    const rows = lastResultRows.map(r => lastResultCols.map(c => `"${String(r[c] ?? '').replace(/"/g, '""')}"`).join(","));
+    const csv = [header, ...rows].join("\n");
+    downloadFile(csv, "sql-results.csv", "text/csv");
+  });
+
+  document.getElementById("exportJsonBtn").addEventListener("click", () => {
+    if (!lastResultRows.length) return alert("Run a query first to get results!");
+    const json = JSON.stringify(lastResultRows, null, 2);
+    downloadFile(json, "sql-results.json", "application/json");
+  });
+
+  document.getElementById("copyMarkdownBtn").addEventListener("click", () => {
+    if (!lastResultRows.length) return alert("Run a query first to get results!");
+    const header = `| ${lastResultCols.join(" | ")} |`;
+    const sep = `| ${lastResultCols.map(() => "---").join(" | ")} |`;
+    const rows = lastResultRows.map(r => `| ${lastResultCols.map(c => String(r[c] ?? "NULL")).join(" | ")} |`);
+    const md = [header, sep, ...rows].join("\n");
+    navigator.clipboard.writeText(md).then(() => {
+      if (window.clToast) window.clToast("Markdown table copied!", "success");
+    });
+  });
+
+  function downloadFile(content, fileName, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    URL.revokeObjectURL(url);
+    if (window.clToast) window.clToast(`Downloaded ${fileName}!`, "success");
+  }
+
+  // Initial load
+  sqlInput.value = "SELECT * FROM users LIMIT 5;";
+  updateLineNumbers();
+  runCurrentQuery();
+</script>
+
+</body>
+</html>

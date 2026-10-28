@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Profile & Cloud Backup - Coding Life</title>
+  <meta name="description" content="Manage your developer profile, track total XP and daily streaks, access your earned certificates vault, and backup or sync your progress across devices.">
+  <meta name="keywords" content="Developer profile, coding certificates, XP tracker, coding streak, backup progress, sync across devices, ملف المطور, شهادات البرمجة">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://codinglife1.vercel.app/profile.html">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code:wght@400;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .prof-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px 80px;
+    }
+    
+    /* Hero Card */
+    .prof-hero-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 36px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+      box-shadow: var(--cl-shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .prof-hero-card::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .prof-user-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .prof-avatar-wrap {
+      position: relative;
+      cursor: pointer;
+    }
+    .prof-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 24px;
+      background: #0f172a;
+      border: 2px solid var(--cl-brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+      transition: var(--cl-transition);
+    }
+    .prof-avatar-wrap:hover .prof-avatar {
+      transform: scale(1.05);
+      border-color: #38bdf8;
+    }
+    .prof-avatar-badge {
+      position: absolute;
+      bottom: -6px;
+      right: -6px;
+      background: var(--cl-brand);
+      color: #020617;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      border: 2px solid var(--cl-surface);
+    }
+    .prof-meta h1 {
+      font-size: 1.8rem;
+      color: var(--cl-ink);
+      margin: 0 0 6px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .prof-title-badge {
+      font-size: 0.85rem;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--cl-brand);
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-weight: 700;
+    }
+    .prof-bio {
+      color: var(--cl-muted);
+      font-size: 0.95rem;
+      margin: 4px 0 12px;
+    }
+    .prof-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .prof-tag {
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-ink);
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Edit Profile Button */
+    .prof-btn {
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--cl-transition);
+      border: 1px solid var(--cl-line);
+      font-family: inherit;
+      text-decoration: none !important;
+    }
+    .prof-btn-primary {
+      background: var(--cl-brand);
+      color: #020617;
+      border: none;
+    }
+    .prof-btn-primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+    .prof-btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--cl-ink);
+    }
+    .prof-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--cl-brand);
+    }
+
+    /* Stats Grid */
+    .prof-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .prof-stat-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      transition: var(--cl-transition);
+    }
+    .prof-stat-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-3px);
+    }
+    .prof-stat-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .prof-stat-val {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--cl-ink);
+      font-family: 'Fira Code', monospace;
+      line-height: 1.2;
+    }
+    .prof-stat-lbl {
+      color: var(--cl-muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Section Headings */
+    .prof-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 36px 0 18px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .prof-section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--cl-ink);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Certificates Vault */
+    .prof-certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+    .prof-cert-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 20px;
+      padding: 24px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--cl-transition);
+    }
+    .prof-cert-card:hover {
+      border-color: var(--cl-brand);
+      box-shadow: var(--cl-shadow-md);
+      transform: translateY(-3px);
+    }
+    .prof-cert-top {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .prof-cert-seal {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #f59e0b;
+      flex-shrink: 0;
+    }
+    .prof-cert-info h3 {
+      font-size: 1.1rem;
+      color: var(--cl-ink);
+      margin: 0 0 6px;
+    }
+    .prof-cert-info p {
+      font-size: 0.85rem;
+      color: var(--cl-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .prof-cert-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--cl-line);
+      font-size: 0.82rem;
+      color: var(--cl-muted);
+    }
+    .prof-badge-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #10b981;
+      font-weight: 700;
+    }
+
+    /* Backup & Cloud Sync Card */
+    .prof-sync-box {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(2, 6, 23, 0.9));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .prof-sync-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .prof-sync-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(56, 189, 248, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cl-brand);
+      font-size: 1.6rem;
+    }
+    .prof-sync-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    /* Modal Styling */
+    .prof-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .prof-modal {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      max-width: 540px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+    .prof-modal-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--cl-ink);
+      margin: 0 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .avatar-picker-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 16px 0 24px;
+    }
+    .avatar-opt {
+      font-size: 2rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 12px 0;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--cl-transition);
+    }
+    .avatar-opt:hover, .avatar-opt.selected {
+      background: var(--cl-brand-soft);
+      border-color: var(--cl-brand);
+      transform: scale(1.1);
+    }
+    .prof-input {
+      width: 100%;
+      background: #020617;
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: var(--cl-ink);
+      font-size: 0.95rem;
+      outline: none;
+      margin-bottom: 14px;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+    .prof-input:focus {
+      border-color: var(--cl-brand);
+    }
+  </style>
+</head>
+<body>
+
+<div class="prof-container">
+  
+  <!-- Profile Hero Header -->
+  <div class="prof-hero-card">
+    <div class="prof-user-left">
+      <div class="prof-avatar-wrap" id="avatarWrap" title="Click to choose avatar">
+        <div class="prof-avatar" id="userAvatar">🥷</div>
+        <div class="prof-avatar-badge"><i class="fa-solid fa-pen"></i></div>
+      </div>
+      <div class="prof-meta">
+        <h1>
+          <span id="userName">Dev Bilal</span>
+          <span class="prof-title-badge" id="userRankTitle">10x Engineering Legend ⚡</span>
+        </h1>
+        <div class="prof-bio" id="userBio">Passionate Full-Stack Developer & Lifelong Computer Science Learner.</div>
+        <div class="prof-tags">
+          <span class="prof-tag">JavaScript</span>
+          <span class="prof-tag">Python</span>
+          <span class="prof-tag">SQL</span>
+          <span class="prof-tag">TypeScript</span>
+          <span class="prof-tag">Tailwind</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button class="prof-btn prof-btn-secondary" id="openEditModalBtn">
+        <i class="fa-solid fa-sliders"></i>
+        <span data-cl-lang="en">Edit Profile</span>
+        <span data-cl-lang="ar">تعديل الملف</span>
+        <span data-cl-lang="fr">Modifier le profil</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Gamification & Stats Grid -->
+  <div class="prof-stats-grid">
+    <div class="prof-stat-card">
+      <div class="prof-stat-icon" style="background:rgba(56,189,248,0.15); color:var(--cl-brand);">
+        <i class="fa-solid fa-bolt"></i>
+      </div>
+      <div>
+        <div class="prof-stat-val" id="statXp">1,450</div>
+        <div class="prof-stat-lbl" data-cl-lang="en">Total Dev XP</div>
+        <div class="prof-stat-lbl" data-cl-lang="ar">مجموع نقاط الخبرة</div>
+        <div class="prof-stat-lbl" data-cl-lang="fr">Points d'expérience</div>
+      </div>
+    </div>
+
+    <div class="prof-stat-card">
+      <div class="prof-stat-icon" style="background:rgba(239,68,68,0.15); color:#ef4444;">
+        <i class="fa-solid fa-fire"></i>
+      </div>
+      <div>
+        <div class="prof-stat-val" id="statStreak">7 <span style="font-size:1rem; color:var(--cl-muted);">Days</span></div>
+        <div class="prof-stat-lbl" data-cl-lang="en">Daily Streak</div>
+        <div class="prof-stat-lbl" data-cl-lang="ar">أيام الالتزام المتواصل</div>
+        <div class="prof-stat-lbl" data-cl-lang="fr">Série quotidienne</div>
+      </div>
+    </div>
+
+    <div class="prof-stat-card">
+      <div class="prof-stat-icon" style="background:rgba(245,158,11,0.15); color:#f59e0b;">
+        <i class="fa-solid fa-keyboard"></i>
+      </div>
+      <div>
+        <div class="prof-stat-val" id="statWpm">68 <span style="font-size:1rem; color:var(--cl-muted);">WPM</span></div>
+        <div class="prof-stat-lbl" data-cl-lang="en">Best Typing Speed</div>
+        <div class="prof-stat-lbl" data-cl-lang="ar">أفضل سرعة كتابة</div>
+        <div class="prof-stat-lbl" data-cl-lang="fr">Vitesse de frappe</div>
+      </div>
+    </div>
+
+    <div class="prof-stat-card">
+      <div class="prof-stat-icon" style="background:rgba(16,185,129,0.15); color:#10b981;">
+        <i class="fa-solid fa-award"></i>
+      </div>
+      <div>
+        <div class="prof-stat-val" id="statQuizzes">12</div>
+        <div class="prof-stat-lbl" data-cl-lang="en">Quizzes Passed</div>
+        <div class="prof-stat-lbl" data-cl-lang="ar">اختبارات مجتازة</div>
+        <div class="prof-stat-lbl" data-cl-lang="fr">Quiz réussis</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificates Vault -->
+  <div class="prof-section-header">
+    <div class="prof-section-title">
+      <i class="fa-solid fa-certificate" style="color:#f59e0b;"></i>
+      <span data-cl-lang="en">Verified Developer Certificates Vault</span>
+      <span data-cl-lang="ar">خزينة الشهادات البرمجية المعتمدة</span>
+      <span data-cl-lang="fr">Coffre-fort des Certificats</span>
+    </div>
+  </div>
+
+  <div class="prof-certs-grid">
+    <!-- Certificate 1 -->
+    <div class="prof-cert-card">
+      <div>
+        <div class="prof-cert-top">
+          <div class="prof-cert-seal"><i class="fa-solid fa-award"></i></div>
+          <div class="prof-cert-info">
+            <h3>Full-Stack JavaScript Mastery</h3>
+            <p>Demonstrated strong proficiency in ES6+, Async programming, DOM APIs, and full-stack architecture.</p>
+          </div>
+        </div>
+      </div>
+      <div class="prof-cert-meta">
+        <span class="prof-badge-verified"><i class="fa-solid fa-circle-check"></i> Verified Diploma</span>
+        <button class="prof-btn prof-btn-secondary" style="padding:4px 12px; font-size:0.78rem;" onclick="previewCert('Full-Stack JavaScript Mastery', 'CL-JS-84920')">
+          <i class="fa-solid fa-eye"></i> View
+        </button>
+      </div>
+    </div>
+
+    <!-- Certificate 2 -->
+    <div class="prof-cert-card">
+      <div>
+        <div class="prof-cert-top">
+          <div class="prof-cert-seal" style="background:rgba(56,189,248,0.12); color:var(--cl-brand); border-color:rgba(56,189,248,0.4);"><i class="fa-solid fa-database"></i></div>
+          <div class="prof-cert-info">
+            <h3>Relational SQL & Database Architecture</h3>
+            <p>Mastered table schemas, complex multi-table JOINs, aggregations, and query optimization.</p>
+          </div>
+        </div>
+      </div>
+      <div class="prof-cert-meta">
+        <span class="prof-badge-verified"><i class="fa-solid fa-circle-check"></i> Verified Diploma</span>
+        <button class="prof-btn prof-btn-secondary" style="padding:4px 12px; font-size:0.78rem;" onclick="previewCert('Relational SQL & Database Architecture', 'CL-SQL-19348')">
+          <i class="fa-solid fa-eye"></i> View
+        </button>
+      </div>
+    </div>
+
+    <!-- Certificate 3 -->
+    <div class="prof-cert-card">
+      <div>
+        <div class="prof-cert-top">
+          <div class="prof-cert-seal" style="background:rgba(16,185,129,0.12); color:#10b981; border-color:rgba(16,185,129,0.4);"><i class="fa-brands fa-python"></i></div>
+          <div class="prof-cert-info">
+            <h3>Python Core Algorithms & Data Structures</h3>
+            <p>Achieved excellence in data manipulation, algorithmic problem solving, and Pythonic clean code.</p>
+          </div>
+        </div>
+      </div>
+      <div class="prof-cert-meta">
+        <span class="prof-badge-verified"><i class="fa-solid fa-circle-check"></i> Verified Diploma</span>
+        <button class="prof-btn prof-btn-secondary" style="padding:4px 12px; font-size:0.78rem;" onclick="previewCert('Python Core Algorithms', 'CL-PY-57201')">
+          <i class="fa-solid fa-eye"></i> View
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cloud Backup & State Sync -->
+  <div class="prof-sync-box">
+    <div class="prof-sync-header">
+      <div class="prof-sync-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+      <div>
+        <h2 style="font-size:1.35rem; color:var(--cl-ink); margin:0 0 4px;" data-cl-lang="en">1-Click Cloud Backup & Device Sync</h2>
+        <h2 style="font-size:1.35rem; color:var(--cl-ink); margin:0 0 4px;" data-cl-lang="ar">النسخ الاحتياطي ومزامنة الأجهزة بضغطة واحدة</h2>
+        <h2 style="font-size:1.35rem; color:var(--cl-ink); margin:0 0 4px;" data-cl-lang="fr">Sauvegarde et Synchronisation Cloud en 1 clic</h2>
+        <p style="color:var(--cl-muted); font-size:0.92rem; margin:0;" data-cl-lang="en">
+          Your learning journey is private and stored directly in your browser. Export a portable backup file to sync your XP, streak, certificates, and speed scores across your phone, tablet, and laptop.
+        </p>
+        <p style="color:var(--cl-muted); font-size:0.92rem; margin:0;" data-cl-lang="ar">
+          مسارك التعليمي خاص بك ومخزن مباشرة في متصفحك. صدّر ملف نسخ احتياطي مرن لنقل نقاطك، أيام التزامك، وشهاداتك بين هاتفك وحاسوبك في ثوانٍ.
+        </p>
+        <p style="color:var(--cl-muted); font-size:0.92rem; margin:0;" data-cl-lang="fr">
+          Votre progression est privée et stockée localement. Exportez une sauvegarde pour synchroniser vos points XP, certificats et statistiques entre votre téléphone et votre ordinateur.
+        </p>
+      </div>
+    </div>
+
+    <div class="prof-sync-actions">
+      <button class="prof-btn prof-btn-primary" id="exportBackupBtn">
+        <i class="fa-solid fa-download"></i>
+        <span data-cl-lang="en">Export Cloud Backup (JSON)</span>
+        <span data-cl-lang="ar">تصدير النسخة الاحتياطية (JSON)</span>
+        <span data-cl-lang="fr">Exporter la sauvegarde (JSON)</span>
+      </button>
+
+      <button class="prof-btn prof-btn-secondary" id="importBackupBtn">
+        <i class="fa-solid fa-upload"></i>
+        <span data-cl-lang="en">Restore / Import Backup</span>
+        <span data-cl-lang="ar">استرجاع / استيراد نسخة</span>
+        <span data-cl-lang="fr">Restaurer une sauvegarde</span>
+      </button>
+      <input type="file" id="importFileInput" accept=".json" style="display:none;">
+
+      <button class="prof-btn prof-btn-secondary" id="resetProgressBtn" style="color:#ef4444; border-color:rgba(239,68,68,0.3);">
+        <i class="fa-solid fa-trash-can"></i>
+        <span data-cl-lang="en">Reset Data</span>
+        <span data-cl-lang="ar">إعادة ضبط البيانات</span>
+        <span data-cl-lang="fr">Réinitialiser</span>
+      </button>
+    </div>
+  </div>
+
+</div><!-- end .prof-container -->
+
+<!-- Edit Profile Modal -->
+<div class="prof-modal-backdrop" id="editModal">
+  <div class="prof-modal">
+    <div class="prof-modal-title">
+      <i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i>
+      <span>Customize Developer Profile</span>
+    </div>
+
+    <label style="font-size:0.82rem; font-weight:700; color:var(--cl-muted); text-transform:uppercase;">Choose Avatar:</label>
+    <div class="avatar-picker-grid" id="avatarPickerGrid">
+      <div class="avatar-opt">🥷</div>
+      <div class="avatar-opt">🐣</div>
+      <div class="avatar-opt">⚔️</div>
+      <div class="avatar-opt">👑</div>
+      <div class="avatar-opt">🧙</div>
+      <div class="avatar-opt">🤖</div>
+      <div class="avatar-opt">⚡</div>
+      <div class="avatar-opt">☕</div>
+      <div class="avatar-opt">🦊</div>
+      <div class="avatar-opt">👾</div>
+    </div>
+
+    <label style="font-size:0.82rem; font-weight:700; color:var(--cl-muted); text-transform:uppercase;">Nickname:</label>
+    <input type="text" id="nicknameInput" class="prof-input" placeholder="e.g. CodeNinja, Bilal">
+
+    <label style="font-size:0.82rem; font-weight:700; color:var(--cl-muted); text-transform:uppercase;">Bio / Title:</label>
+    <input type="text" id="bioInput" class="prof-input" placeholder="e.g. Full-Stack Dev, Computer Science Student">
+
+    <div style="display:flex; gap:10px; margin-top:20px;">
+      <button class="prof-btn prof-btn-primary" style="flex:1; justify-content:center;" id="saveProfileBtn">
+        <span>Save Changes</span>
+      </button>
+      <button class="prof-btn prof-btn-secondary" style="flex:1; justify-content:center;" id="closeEditModalBtn">
+        <span>Cancel</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Certificate Preview Modal -->
+<div class="prof-modal-backdrop" id="certModal">
+  <div class="prof-modal" style="max-width:640px; text-align:center; padding:40px 30px;">
+    <div style="font-size:3rem; margin-bottom:10px;">🏆</div>
+    <div style="font-size:0.8rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--cl-brand); margin-bottom:6px;">Certificate of Achievement</div>
+    <h2 id="certModalTitle" style="font-size:1.6rem; color:var(--cl-ink); margin:0 0 10px;">JavaScript Mastery</h2>
+    <p style="color:var(--cl-muted); font-size:0.95rem; margin:0 auto 20px; max-width:480px;">
+      This certifies that <strong id="certRecipient" style="color:var(--cl-ink);">Dev Bilal</strong> has successfully demonstrated complete mastery in software development practices.
+    </p>
+    <div style="display:flex; justify-content:space-around; background:rgba(255,255,255,0.03); border:1px solid var(--cl-line); border-radius:14px; padding:14px; margin-bottom:24px; font-size:0.82rem; font-family:'Fira Code', monospace;">
+      <div><span style="color:var(--cl-muted);">ID:</span> <span id="certCode" style="color:var(--cl-brand);">CL-JS-84920</span></div>
+      <div><span style="color:var(--cl-muted);">Issued:</span> <span id="certDate">March 2026</span></div>
+      <div><span style="color:var(--cl-muted);">Status:</span> <span style="color:#10b981;">Verified ✓</span></div>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button class="prof-btn prof-btn-primary" style="flex:1; justify-content:center;" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> <span>Print / Save PDF</span>
+      </button>
+      <button class="prof-btn prof-btn-secondary" style="flex:1; justify-content:center;" id="closeCertModalBtn">
+        <span>Close</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="site-polish.js"></script>
+<script>
+  // --- Profile State Management ---
+  const STORAGE_KEYS = {
+    avatar: "cl_user_avatar",
+    nickname: "cl_user_nickname",
+    bio: "cl_user_bio",
+    xp: "cl_user_xp",
+    streak: "cl_user_streak",
+    wpm: "cl_user_best_wpm",
+    quizzes: "cl_quizzes_completed"
+  };
+
+  let selectedAvatar = "🥷";
+
+  function loadProfile() {
+    selectedAvatar = localStorage.getItem(STORAGE_KEYS.avatar) || "🥷";
+    const name = localStorage.getItem(STORAGE_KEYS.nickname) || "Dev Bilal";
+    const bio = localStorage.getItem(STORAGE_KEYS.bio) || "Passionate Full-Stack Developer & Lifelong Computer Science Learner.";
+    
+    // Stats calculation
+    const xp = parseInt(localStorage.getItem(STORAGE_KEYS.xp) || "1450", 10);
+    const streak = parseInt(localStorage.getItem(STORAGE_KEYS.streak) || "7", 10);
+    const wpm = parseInt(localStorage.getItem(STORAGE_KEYS.wpm) || "68", 10);
+    const quizzes = parseInt(localStorage.getItem(STORAGE_KEYS.quizzes) || "12", 10);
+
+    // Apply to DOM
+    document.getElementById("userAvatar").textContent = selectedAvatar;
+    document.getElementById("userName").textContent = name;
+    document.getElementById("userBio").textContent = bio;
+    document.getElementById("statXp").textContent = xp.toLocaleString();
+    document.getElementById("statStreak").innerHTML = `${streak} <span style="font-size:1rem; color:var(--cl-muted);">Days</span>`;
+    document.getElementById("statWpm").innerHTML = `${wpm} <span style="font-size:1rem; color:var(--cl-muted);">WPM</span>`;
+    document.getElementById("statQuizzes").textContent = quizzes;
+
+    // Header avatar sync if present
+    const headerAv = document.getElementById("clHeaderAvatar");
+    if (headerAv) headerAv.textContent = selectedAvatar;
+  }
+
+  // --- Edit Profile Modal ---
+  const editModal = document.getElementById("editModal");
+  const avatarWrap = document.getElementById("avatarWrap");
+  const openEditModalBtn = document.getElementById("openEditModalBtn");
+  const closeEditModalBtn = document.getElementById("closeEditModalBtn");
+  const saveProfileBtn = document.getElementById("saveProfileBtn");
+  const nicknameInput = document.getElementById("nicknameInput");
+  const bioInput = document.getElementById("bioInput");
+  const avatarOpts = document.querySelectorAll(".avatar-opt");
+
+  function openEditModal() {
+    nicknameInput.value = localStorage.getItem(STORAGE_KEYS.nickname) || "Dev Bilal";
+    bioInput.value = localStorage.getItem(STORAGE_KEYS.bio) || "Passionate Full-Stack Developer & Lifelong Computer Science Learner.";
+    
+    avatarOpts.forEach(opt => {
+      if (opt.textContent === selectedAvatar) opt.classList.add("selected");
+      else opt.classList.remove("selected");
+    });
+    
+    editModal.style.display = "flex";
+  }
+
+  function closeEditModal() {
+    editModal.style.display = "none";
+  }
+
+  avatarWrap.addEventListener("click", openEditModal);
+  openEditModalBtn.addEventListener("click", openEditModal);
+  closeEditModalBtn.addEventListener("click", closeEditModal);
+
+  avatarOpts.forEach(opt => {
+    opt.addEventListener("click", () => {
+      avatarOpts.forEach(o => o.classList.remove("selected"));
+      opt.classList.add("selected");
+      selectedAvatar = opt.textContent;
+    });
+  });
+
+  saveProfileBtn.addEventListener("click", () => {
+    const name = nicknameInput.value.trim() || "Dev Bilal";
+    const bio = bioInput.value.trim() || "Passionate Developer";
+
+    localStorage.setItem(STORAGE_KEYS.avatar, selectedAvatar);
+    localStorage.setItem(STORAGE_KEYS.nickname, name);
+    localStorage.setItem(STORAGE_KEYS.bio, bio);
+
+    loadProfile();
+    closeEditModal();
+    if (window.clToast) window.clToast("Profile updated successfully!", "success");
+  });
+
+  // --- Certificates Preview ---
+  const certModal = document.getElementById("certModal");
+  const closeCertModalBtn = document.getElementById("closeCertModalBtn");
+
+  window.previewCert = function(title, code) {
+    document.getElementById("certModalTitle").textContent = title;
+    document.getElementById("certCode").textContent = code;
+    document.getElementById("certRecipient").textContent = localStorage.getItem(STORAGE_KEYS.nickname) || "Dev Bilal";
+    document.getElementById("certDate").textContent = new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" });
+    certModal.style.display = "flex";
+  };
+
+  closeCertModalBtn.addEventListener("click", () => {
+    certModal.style.display = "none";
+  });
+
+  // --- 1-Click Cloud Sync & Backup ---
+  const exportBackupBtn = document.getElementById("exportBackupBtn");
+  const importBackupBtn = document.getElementById("importBackupBtn");
+  const importFileInput = document.getElementById("importFileInput");
+  const resetProgressBtn = document.getElementById("resetProgressBtn");
+
+  exportBackupBtn.addEventListener("click", () => {
+    // Gather all local storage keys starting with cl_
+    const state = {};
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && (key.startsWith("cl_") || key.includes("quiz") || key.includes("leaderboard"))) {
+        state[key] = localStorage.getItem(key);
+      }
+    }
+
+    const payload = {
+      app: "CodingLife",
+      version: "2.0",
+      exportedAt: new Date().toISOString(),
+      user: {
+        avatar: selectedAvatar,
+        nickname: localStorage.getItem(STORAGE_KEYS.nickname) || "Dev Bilal"
+      },
+      data: state
+    };
+
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `codinglife-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    if (window.clToast) window.clToast("Backup exported successfully!", "success");
+  });
+
+  importBackupBtn.addEventListener("click", () => {
+    importFileInput.click();
+  });
+
+  importFileInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const json = JSON.parse(event.target.result);
+        if (!json.app || !json.data) {
+          throw new Error("Invalid backup format");
+        }
+
+        // Restore keys into localStorage
+        Object.keys(json.data).forEach(key => {
+          localStorage.setItem(key, json.data[key]);
+        });
+
+        loadProfile();
+        if (window.clToast) window.clToast("Profile and progress restored successfully!", "success");
+      } catch (err) {
+        alert("Failed to import backup: " + err.message);
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = "";
+  });
+
+  resetProgressBtn.addEventListener("click", () => {
+    if (confirm("Are you sure you want to reset all profile data, streaks, and certificates?")) {
+      Object.values(STORAGE_KEYS).forEach(k => localStorage.removeItem(k));
+      loadProfile();
+      if (window.clToast) window.clToast("Profile data reset to defaults", "info");
+    }
+  });
+
+  // Init
+  loadProfile();
+</script>
+
+</body>
+</html>
+

@@ -1,5 +1,5 @@
 // Coding Life - Progressive Web App Service Worker (Complete Offline PWA)
-const CACHE_NAME = 'codinglife-v5';
+const CACHE_NAME = 'codinglife-v6';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -14,6 +14,8 @@ const ASSETS_TO_CACHE = [
   './cheatsheets.html',
   './formatter.html',
   './typing-test.html',
+  './sql-playground.html',
+  './profile.html',
   './colors.html',
   './css-converter.html',
   './playground.html',

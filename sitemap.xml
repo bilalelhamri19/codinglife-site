@@ -27,6 +27,8 @@
   <url><loc>https://codinglife1.vercel.app/cheatsheets.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://codinglife1.vercel.app/formatter.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://codinglife1.vercel.app/typing-test.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/sql-playground.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/profile.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://codinglife1.vercel.app/css-converter.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://codinglife1.vercel.app/colors.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://codinglife1.vercel.app/calculator.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
