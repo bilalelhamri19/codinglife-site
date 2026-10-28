@@ -90,16 +90,31 @@
     /* Track Selector */
     .tt-toolbar {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 14px;
+      flex-direction: column;
+      gap: 12px;
       margin-bottom: 20px;
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
       border-radius: 16px;
       padding: 14px 20px;
     }
+    .tt-toolbar-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    /* Language scroll strip */
+    .tt-lang-strip {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 2px;
+    }
+    .tt-lang-strip::-webkit-scrollbar { display: none; }
     .tt-pills {
       display: flex;
       gap: 8px;
@@ -435,13 +450,25 @@
 
     <!-- Toolbar -->
     <div class="tt-toolbar">
-      <div class="tt-pills" id="langPills">
-        <button class="tt-pill active" data-lang="js"><i class="fa-brands fa-js"></i> JavaScript</button>
-        <button class="tt-pill" data-lang="python"><i class="fa-brands fa-python"></i> Python</button>
-        <button class="tt-pill" data-lang="html"><i class="fa-brands fa-html5"></i> HTML/CSS</button>
+      <!-- Language strip (scrollable) -->
+      <div class="tt-toolbar-row" style="width:100%;">
+        <div class="tt-lang-strip" id="langPills">
+          <button class="tt-pill active" data-lang="js"><i class="fa-brands fa-js"></i> JavaScript</button>
+          <button class="tt-pill" data-lang="ts"><i class="fa-brands fa-js" style="color:#3178c6"></i> TypeScript</button>
+          <button class="tt-pill" data-lang="python"><i class="fa-brands fa-python"></i> Python</button>
+          <button class="tt-pill" data-lang="html"><i class="fa-brands fa-html5"></i> HTML/CSS</button>
+          <button class="tt-pill" data-lang="java"><i class="fa-brands fa-java"></i> Java</button>
+          <button class="tt-pill" data-lang="csharp"><i class="fa-solid fa-copyright" style="font-size:0.9em"></i> C#</button>
+          <button class="tt-pill" data-lang="php"><i class="fa-brands fa-php"></i> PHP</button>
+          <button class="tt-pill" data-lang="go"><i class="fa-solid fa-g"></i> Go</button>
+          <button class="tt-pill" data-lang="rust"><i class="fa-solid fa-gear"></i> Rust</button>
+          <button class="tt-pill" data-lang="sql"><i class="fa-solid fa-database"></i> SQL</button>
+          <button class="tt-pill" data-lang="bash"><i class="fa-solid fa-terminal"></i> Bash</button>
+        </div>
       </div>
 
-      <div style="display:flex; align-items:center; gap:10px;">
+      <!-- Time + Settings row -->
+      <div class="tt-toolbar-row" style="width:100%;">
         <div class="tt-pills" id="timePills">
           <button class="tt-pill" data-time="15">15s</button>
           <button class="tt-pill" data-time="30">30s</button>
@@ -547,6 +574,22 @@
           "async function retryFetch(url, retries = 3, delay = 500) {\n  for (let i = 0; i < retries; i++) {\n    try {\n      const res = await fetch(url);\n      if (!res.ok) throw new Error(res.statusText);\n      return await res.json();\n    } catch (err) {\n      if (i === retries - 1) throw err;\n      await new Promise(r => setTimeout(r, delay));\n    }\n  }\n}"
         ]
       },
+      ts: {
+        short: [
+          "type Point = { x: number; y: number };",
+          "const add = (a: number, b: number): number => a + b;",
+          "interface User {\n  id: number;\n  name: string;\n  email: string;\n}",
+          "enum Direction { Up, Down, Left, Right }"
+        ],
+        medium: [
+          "function identity<T>(value: T): T {\n  return value;\n}\n\nconst num = identity<number>(42);\nconst str = identity<string>('hello');",
+          "interface ApiResponse<T> {\n  data: T;\n  status: number;\n  message: string;\n}\n\nasync function get<T>(url: string): Promise<ApiResponse<T>> {\n  const res = await fetch(url);\n  return res.json();\n}",
+          "type Nullable<T> = T | null;\ntype Optional<T> = T | undefined;\n\nconst findUser = (id: number): Nullable<User> => {\n  return users.find(u => u.id === id) ?? null;\n};"
+        ],
+        long: [
+          "class Repository<T extends { id: number }> {\n  private items: T[] = [];\n\n  add(item: T): void {\n    this.items.push(item);\n  }\n\n  findById(id: number): T | undefined {\n    return this.items.find(item => item.id === id);\n  }\n\n  getAll(): T[] {\n    return [...this.items];\n  }\n\n  remove(id: number): boolean {\n    const idx = this.items.findIndex(item => item.id === id);\n    if (idx === -1) return false;\n    this.items.splice(idx, 1);\n    return true;\n  }\n}"
+        ]
+      },
       python: {
         short: [
           "def add(a, b):\n    return a + b",
@@ -576,6 +619,111 @@
         long: [
           "<nav class=\"navbar\">\n  <div class=\"nav-brand\">\n    <img src=\"logo.svg\" alt=\"Logo\" />\n    <span>My App</span>\n  </div>\n  <ul class=\"nav-links\">\n    <li><a href=\"/\">Home</a></li>\n    <li><a href=\"/about\">About</a></li>\n    <li><a href=\"/contact\">Contact</a></li>\n  </ul>\n  <button class=\"nav-cta\">Get Started</button>\n</nav>",
           ".grid-layout {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n  gap: 24px;\n  padding: 40px;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.card {\n  background: #fff;\n  border-radius: 12px;\n  padding: 24px;\n  box-shadow: 0 4px 16px rgba(0,0,0,0.08);\n}"
+        ]
+      },
+      java: {
+        short: [
+          "int sum(int a, int b) {\n    return a + b;\n}",
+          "String greet = \"Hello, \" + name + \"!\";",
+          "List<Integer> nums = new ArrayList<>();\nnums.add(1);\nnums.add(2);"
+        ],
+        medium: [
+          "public class User {\n    private String name;\n    private int age;\n\n    public User(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    public String getName() { return name; }\n    public int getAge() { return age; }\n}",
+          "public Optional<User> findById(int id) {\n    return users.stream()\n        .filter(u -> u.getId() == id)\n        .findFirst();\n}",
+          "try {\n    int result = 10 / 0;\n} catch (ArithmeticException e) {\n    System.err.println(\"Error: \" + e.getMessage());\n} finally {\n    System.out.println(\"Done\");\n}"
+        ],
+        long: [
+          "public class LinkedList<T> {\n    private Node<T> head;\n\n    private static class Node<T> {\n        T data;\n        Node<T> next;\n        Node(T data) { this.data = data; }\n    }\n\n    public void add(T data) {\n        Node<T> newNode = new Node<>(data);\n        if (head == null) { head = newNode; return; }\n        Node<T> cur = head;\n        while (cur.next != null) cur = cur.next;\n        cur.next = newNode;\n    }\n}"
+        ]
+      },
+      csharp: {
+        short: [
+          "int Sum(int a, int b) => a + b;",
+          "var list = new List<string> { \"a\", \"b\", \"c\" };",
+          "Console.WriteLine($\"Hello, {name}!\");"
+        ],
+        medium: [
+          "public class Person {\n    public string Name { get; set; }\n    public int Age { get; set; }\n\n    public Person(string name, int age) {\n        Name = name;\n        Age = age;\n    }\n}",
+          "public async Task<User> GetUserAsync(int id) {\n    var response = await _httpClient.GetAsync($\"/api/users/{id}\");\n    response.EnsureSuccessStatusCode();\n    return await response.Content.ReadFromJsonAsync<User>();\n}",
+          "var result = users\n    .Where(u => u.IsActive)\n    .OrderBy(u => u.Name)\n    .Select(u => u.Email)\n    .ToList();"
+        ],
+        long: [
+          "public class GenericRepository<T> where T : class {\n    private readonly DbContext _context;\n    private readonly DbSet<T> _dbSet;\n\n    public GenericRepository(DbContext context) {\n        _context = context;\n        _dbSet = context.Set<T>();\n    }\n\n    public async Task<T> GetByIdAsync(int id) =>\n        await _dbSet.FindAsync(id);\n\n    public async Task AddAsync(T entity) {\n        await _dbSet.AddAsync(entity);\n        await _context.SaveChangesAsync();\n    }\n}"
+        ]
+      },
+      php: {
+        short: [
+          "<?php\necho 'Hello, World!';",
+          "$arr = [1, 2, 3];\narray_push($arr, 4);",
+          "$name = 'Dev';\necho \"Hello, $name!\";"
+        ],
+        medium: [
+          "function fetchUser(int $id): ?array {\n    $stmt = $pdo->prepare('SELECT * FROM users WHERE id = ?');\n    $stmt->execute([$id]);\n    return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;\n}",
+          "class User {\n    public function __construct(\n        private string $name,\n        private string $email,\n        private int $age\n    ) {}\n\n    public function getName(): string {\n        return $this->name;\n    }\n}",
+          "$users = array_filter($allUsers, fn($u) => $u['active']);\n$emails = array_map(fn($u) => $u['email'], $users);\nsort($emails);"
+        ],
+        long: [
+          "class Router {\n    private array $routes = [];\n\n    public function get(string $path, callable $handler): void {\n        $this->routes['GET'][$path] = $handler;\n    }\n\n    public function post(string $path, callable $handler): void {\n        $this->routes['POST'][$path] = $handler;\n    }\n\n    public function dispatch(string $method, string $path): mixed {\n        $handler = $this->routes[$method][$path] ?? null;\n        if (!$handler) throw new \\RuntimeException('404 Not Found');\n        return $handler();\n    }\n}"
+        ]
+      },
+      go: {
+        short: [
+          "func add(a, b int) int {\n    return a + b\n}",
+          "fmt.Println(\"Hello, World!\")",
+          "nums := []int{1, 2, 3, 4, 5}\nfor _, v := range nums {\n    fmt.Println(v)\n}"
+        ],
+        medium: [
+          "type User struct {\n    ID    int    `json:\"id\"`\n    Name  string `json:\"name\"`\n    Email string `json:\"email\"`\n}\n\nfunc (u User) String() string {\n    return fmt.Sprintf(\"%s <%s>\", u.Name, u.Email)\n}",
+          "func fetchJSON(url string) ([]byte, error) {\n    resp, err := http.Get(url)\n    if err != nil {\n        return nil, err\n    }\n    defer resp.Body.Close()\n    return io.ReadAll(resp.Body)\n}",
+          "ch := make(chan int, 5)\ngo func() {\n    for i := 0; i < 5; i++ {\n        ch <- i\n    }\n    close(ch)\n}()\nfor v := range ch {\n    fmt.Println(v)\n}"
+        ],
+        long: [
+          "func mergeSort(arr []int) []int {\n    if len(arr) <= 1 {\n        return arr\n    }\n    mid := len(arr) / 2\n    left := mergeSort(arr[:mid])\n    right := mergeSort(arr[mid:])\n    return merge(left, right)\n}\n\nfunc merge(l, r []int) []int {\n    result := []int{}\n    i, j := 0, 0\n    for i < len(l) && j < len(r) {\n        if l[i] < r[j] {\n            result = append(result, l[i]); i++\n        } else {\n            result = append(result, r[j]); j++\n        }\n    }\n    return append(result, append(l[i:], r[j:]...)...)\n}"
+        ]
+      },
+      rust: {
+        short: [
+          "fn add(a: i32, b: i32) -> i32 {\n    a + b\n}",
+          "let mut v = vec![1, 2, 3];\nv.push(4);",
+          "println!(\"Hello, {}!\", name);"
+        ],
+        medium: [
+          "struct User {\n    name: String,\n    age: u32,\n}\n\nimpl User {\n    fn new(name: &str, age: u32) -> Self {\n        User { name: name.to_string(), age }\n    }\n\n    fn greet(&self) -> String {\n        format!(\"Hi, I'm {}\", self.name)\n    }\n}",
+          "fn find_max(nums: &[i32]) -> Option<i32> {\n    nums.iter().copied().reduce(i32::max)\n}",
+          "let result: Result<i32, &str> = Ok(42);\nmatch result {\n    Ok(val) => println!(\"Got: {}\", val),\n    Err(e)  => eprintln!(\"Error: {}\", e),\n}"
+        ],
+        long: [
+          "use std::collections::HashMap;\n\nfn word_count(text: &str) -> HashMap<&str, usize> {\n    let mut map = HashMap::new();\n    for word in text.split_whitespace() {\n        let count = map.entry(word).or_insert(0);\n        *count += 1;\n    }\n    map\n}"
+        ]
+      },
+      sql: {
+        short: [
+          "SELECT * FROM users;",
+          "SELECT name, email FROM users WHERE active = 1;",
+          "INSERT INTO products (name, price)\nVALUES ('Laptop', 999.99);"
+        ],
+        medium: [
+          "SELECT u.name, COUNT(o.id) AS order_count\nFROM users u\nLEFT JOIN orders o ON o.user_id = u.id\nGROUP BY u.id\nHAVING order_count > 3\nORDER BY order_count DESC;",
+          "UPDATE products\nSET price = price * 0.9,\n    updated_at = NOW()\nWHERE category = 'electronics'\n  AND stock > 0;",
+          "CREATE TABLE sessions (\n  id         BIGINT PRIMARY KEY AUTO_INCREMENT,\n  user_id    BIGINT NOT NULL,\n  token      VARCHAR(255) UNIQUE NOT NULL,\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);"
+        ],
+        long: [
+          "WITH monthly_revenue AS (\n  SELECT\n    DATE_FORMAT(created_at, '%Y-%m') AS month,\n    SUM(amount) AS revenue\n  FROM orders\n  WHERE status = 'completed'\n  GROUP BY month\n),\nranked AS (\n  SELECT *,\n    RANK() OVER (ORDER BY revenue DESC) AS rnk\n  FROM monthly_revenue\n)\nSELECT month, revenue\nFROM ranked\nWHERE rnk <= 5;"
+        ]
+      },
+      bash: {
+        short: [
+          "echo \"Hello, World!\"",
+          "for i in 1 2 3 4 5; do\n  echo \"Number: $i\"\ndone",
+          "if [ -f \"config.txt\" ]; then\n  echo \"Config found\"\nfi"
+        ],
+        medium: [
+          "#!/bin/bash\nBACKUP_DIR=\"/backups/$(date +%Y-%m-%d)\"\nmkdir -p \"$BACKUP_DIR\"\ncp -r /var/www/html \"$BACKUP_DIR\"\necho \"Backup complete: $BACKUP_DIR\"",
+          "check_service() {\n  if systemctl is-active --quiet \"$1\"; then\n    echo \"$1 is running\"\n  else\n    echo \"$1 is stopped\"\n    systemctl start \"$1\"\n  fi\n}\n\ncheck_service nginx\ncheck_service mysql",
+          "FILES=$(find /logs -name '*.log' -mtime +30)\nfor f in $FILES; do\n  gzip \"$f\"\n  echo \"Archived: $f\"\ndone"
+        ],
+        long: [
+          "#!/bin/bash\nset -euo pipefail\n\nDEPLOY_PATH=\"/var/www/app\"\nGIT_BRANCH=\"main\"\n\necho \"Pulling latest code...\"\ngit -C \"$DEPLOY_PATH\" fetch origin\ngit -C \"$DEPLOY_PATH\" reset --hard \"origin/$GIT_BRANCH\"\n\necho \"Installing dependencies...\"\nnpm ci --prefix \"$DEPLOY_PATH\"\n\necho \"Rebuilding...\"\nnpm run build --prefix \"$DEPLOY_PATH\"\n\necho \"Restarting service...\"\nsystemctl restart myapp\necho \"Deploy complete!\""
         ]
       }
     };
