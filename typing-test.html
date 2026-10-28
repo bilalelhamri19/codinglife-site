@@ -171,22 +171,17 @@
     .tt-char.correct {
       color: #38bdf8;
     }
-    .tt-char.wrong {
+    /* Wrong char typed — shows the incorrect character in red and advances */
+    .tt-char.typed-wrong {
       color: #ef4444;
-      background: rgba(239, 68, 68, 0.25);
+      background: rgba(239, 68, 68, 0.22);
       border-radius: 2px;
-      text-decoration: underline;
+      text-decoration: underline wavy #ef4444;
     }
     .tt-char.current {
       background: rgba(56, 189, 248, 0.3);
       border-left: 2px solid #38bdf8;
       animation: blinkCursor 0.9s infinite;
-    }
-    .tt-char.current.wrong {
-      background: rgba(239, 68, 68, 0.35) !important;
-      border-left: 2px solid #ef4444 !important;
-      color: #ef4444 !important;
-      animation: none !important;
     }
     @keyframes blinkCursor {
       0%, 100% { border-left-color: #38bdf8; }
@@ -201,6 +196,49 @@
       animation: arenaShake 0.25s cubic-bezier(.36,.07,.19,.97) both;
       border-color: #ef4444 !important;
       box-shadow: 0 0 25px rgba(239, 68, 68, 0.4) !important;
+    }
+
+    /* Settings Panel */
+    .tt-settings-btn {
+      background: transparent;
+      border: 1px solid var(--cl-line);
+      color: var(--cl-muted);
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      transition: var(--cl-transition);
+      flex-shrink: 0;
+    }
+    .tt-settings-btn:hover { border-color: var(--cl-brand); color: var(--cl-brand); }
+    .tt-settings-panel {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 18px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .tt-settings-panel.open { display: flex; }
+    .tt-settings-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .tt-settings-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--cl-muted);
+      min-width: 100px;
     }
 
     /* Arabic Keyboard Alert */
@@ -403,10 +441,34 @@
         <button class="tt-pill" data-lang="html"><i class="fa-brands fa-html5"></i> HTML/CSS</button>
       </div>
 
-      <div class="tt-pills" id="timePills">
-        <button class="tt-pill" data-time="30">30s</button>
-        <button class="tt-pill active" data-time="60">60s</button>
-        <button class="tt-pill" data-time="free">Freeflow</button>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div class="tt-pills" id="timePills">
+          <button class="tt-pill" data-time="15">15s</button>
+          <button class="tt-pill" data-time="30">30s</button>
+          <button class="tt-pill active" data-time="60">60s</button>
+          <button class="tt-pill" data-time="120">120s</button>
+          <button class="tt-pill" data-time="free">Freeflow</button>
+        </div>
+        <button class="tt-settings-btn" id="settingsToggleBtn" title="Settings"><i class="fa-solid fa-sliders"></i></button>
+      </div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div class="tt-settings-panel" id="settingsPanel">
+      <div class="tt-settings-row">
+        <span class="tt-settings-label"><i class="fa-solid fa-text-width"></i> Code Length</span>
+        <div class="tt-pills" id="lengthPills">
+          <button class="tt-pill" data-len="short">Short</button>
+          <button class="tt-pill active" data-len="medium">Medium</button>
+          <button class="tt-pill" data-len="long">Long</button>
+        </div>
+      </div>
+      <div class="tt-settings-row">
+        <span class="tt-settings-label"><i class="fa-solid fa-pencil"></i> Error Mode</span>
+        <div class="tt-pills" id="errorModePills">
+          <button class="tt-pill active" data-emode="show">Show errors (red)</button>
+          <button class="tt-pill" data-emode="block">Block on error</button>
+        </div>
       </div>
     </div>
 
@@ -468,24 +530,60 @@
 
   <script>
     const SNIPPETS = {
-      js: [
-        "const calculateTotal = (items, taxRate = 0.05) => {\n  return items.reduce((acc, curr) => acc + (curr.price * curr.qty), 0) * (1 + taxRate);\n};",
-        "async function fetchUserProfile(userId) {\n  const response = await fetch(`/api/users/${userId}`);\n  if (!response.ok) throw new Error('User not found');\n  return await response.json();\n}",
-        "useEffect(() => {\n  const handleResize = () => setWindowWidth(window.innerWidth);\n  window.addEventListener('resize', handleResize);\n  return () => window.removeEventListener('resize', handleResize);\n}, []);"
-      ],
-      python: [
-        "def fetch_active_subscribers(users_list):\n    return [u['email'] for u in users_list if u.get('is_active') and u.get('plan') == 'pro']",
-        "class DatabaseConnection:\n    def __init__(self, host='localhost', port=5432):\n        self.host = host\n        self.port = port\n        self.is_connected = False",
-        "def memoize(fn):\n    cache = {}\n    def wrapper(*args):\n        if args not in cache:\n            cache[args] = fn(*args)\n        return cache[args]\n    return wrapper"
-      ],
-      html: [
-        "<div class=\"card-profile\">\n  <img src=\"/avatar.png\" alt=\"Avatar\" class=\"avatar-img\" />\n  <h3>Full-Stack Engineer</h3>\n  <a href=\"#contact\" class=\"btn-cta\">Get In Touch</a>\n</div>",
-        ".header-glass {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  backdrop-filter: blur(12px);\n  background: rgba(15, 23, 42, 0.75);\n}"
-      ]
+      js: {
+        short: [
+          "const sum = (a, b) => a + b;",
+          "let arr = [1, 2, 3];\narr.push(4);\nconsole.log(arr);",
+          "const greet = name => `Hello, ${name}!`;\ngreet('World');",
+          "const obj = { x: 10, y: 20 };\nconst { x, y } = obj;"
+        ],
+        medium: [
+          "const calculateTotal = (items, taxRate = 0.05) => {\n  return items.reduce((acc, curr) => acc + (curr.price * curr.qty), 0) * (1 + taxRate);\n};",
+          "async function fetchUserProfile(userId) {\n  const response = await fetch(`/api/users/${userId}`);\n  if (!response.ok) throw new Error('User not found');\n  return await response.json();\n}",
+          "useEffect(() => {\n  const handleResize = () => setWindowWidth(window.innerWidth);\n  window.addEventListener('resize', handleResize);\n  return () => window.removeEventListener('resize', handleResize);\n}, []);"
+        ],
+        long: [
+          "class EventEmitter {\n  constructor() { this.events = {}; }\n  on(event, listener) {\n    if (!this.events[event]) this.events[event] = [];\n    this.events[event].push(listener);\n    return this;\n  }\n  emit(event, ...args) {\n    (this.events[event] || []).forEach(fn => fn(...args));\n  }\n}",
+          "async function retryFetch(url, retries = 3, delay = 500) {\n  for (let i = 0; i < retries; i++) {\n    try {\n      const res = await fetch(url);\n      if (!res.ok) throw new Error(res.statusText);\n      return await res.json();\n    } catch (err) {\n      if (i === retries - 1) throw err;\n      await new Promise(r => setTimeout(r, delay));\n    }\n  }\n}"
+        ]
+      },
+      python: {
+        short: [
+          "def add(a, b):\n    return a + b",
+          "nums = [1, 2, 3, 4, 5]\nsquares = [x**2 for x in nums]",
+          "name = 'World'\nprint(f'Hello, {name}!')"
+        ],
+        medium: [
+          "def fetch_active_subscribers(users_list):\n    return [u['email'] for u in users_list if u.get('is_active') and u.get('plan') == 'pro']",
+          "class DatabaseConnection:\n    def __init__(self, host='localhost', port=5432):\n        self.host = host\n        self.port = port\n        self.is_connected = False",
+          "def memoize(fn):\n    cache = {}\n    def wrapper(*args):\n        if args not in cache:\n            cache[args] = fn(*args)\n        return cache[args]\n    return wrapper"
+        ],
+        long: [
+          "import functools\n\ndef retry(times=3):\n    def decorator(fn):\n        @functools.wraps(fn)\n        def wrapper(*args, **kwargs):\n            for attempt in range(times):\n                try:\n                    return fn(*args, **kwargs)\n                except Exception as e:\n                    if attempt == times - 1:\n                        raise\n        return wrapper\n    return decorator",
+          "class Stack:\n    def __init__(self):\n        self._data = []\n    def push(self, val):\n        self._data.append(val)\n    def pop(self):\n        if not self._data:\n            raise IndexError('Stack is empty')\n        return self._data.pop()\n    def peek(self):\n        return self._data[-1] if self._data else None\n    def __len__(self):\n        return len(self._data)"
+        ]
+      },
+      html: {
+        short: [
+          "<h1>Hello World</h1>\n<p>Welcome to my site.</p>",
+          "<ul>\n  <li>Item one</li>\n  <li>Item two</li>\n</ul>",
+          "<a href=\"#\" class=\"btn\">Click me</a>"
+        ],
+        medium: [
+          "<div class=\"card-profile\">\n  <img src=\"/avatar.png\" alt=\"Avatar\" class=\"avatar-img\" />\n  <h3>Full-Stack Engineer</h3>\n  <a href=\"#contact\" class=\"btn-cta\">Get In Touch</a>\n</div>",
+          ".header-glass {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  backdrop-filter: blur(12px);\n  background: rgba(15, 23, 42, 0.75);\n}"
+        ],
+        long: [
+          "<nav class=\"navbar\">\n  <div class=\"nav-brand\">\n    <img src=\"logo.svg\" alt=\"Logo\" />\n    <span>My App</span>\n  </div>\n  <ul class=\"nav-links\">\n    <li><a href=\"/\">Home</a></li>\n    <li><a href=\"/about\">About</a></li>\n    <li><a href=\"/contact\">Contact</a></li>\n  </ul>\n  <button class=\"nav-cta\">Get Started</button>\n</nav>",
+          ".grid-layout {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n  gap: 24px;\n  padding: 40px;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.card {\n  background: #fff;\n  border-radius: 12px;\n  padding: 24px;\n  box-shadow: 0 4px 16px rgba(0,0,0,0.08);\n}"
+        ]
+      }
     };
 
     let selectedLang = "js";
     let selectedDuration = 60; // 30, 60, or null
+    let selectedLength = "medium";
+    let errorMode = "show"; // "show" = wrong chars advance in red; "block" = stay on wrong char
     let timeLeft = 60;
     let timer = null;
     let hasStarted = false;
@@ -494,6 +592,7 @@
     let typedIndex = 0;
     let errorCount = 0;
     let totalTyped = 0;
+    let typedChars = []; // array of { expected, typed, correct }
     let hasErrorOnCurrent = false;
     let arabicNoticeShown = false;
 
@@ -614,7 +713,8 @@
     const modalErr = document.getElementById("modalErr");
 
     function getRandomSnippet(lang) {
-      const list = SNIPPETS[lang] || SNIPPETS.js;
+      const langSnippets = SNIPPETS[lang] || SNIPPETS.js;
+      const list = langSnippets[selectedLength] || langSnippets.medium;
       return list[Math.floor(Math.random() * list.length)];
     }
 
@@ -623,6 +723,7 @@
       typedIndex = 0;
       errorCount = 0;
       totalTyped = 0;
+      typedChars = [];
       hasStarted = false;
       sessionStartTime = null;
       hasErrorOnCurrent = false;
@@ -641,22 +742,35 @@
     function renderDisplay() {
       let html = "";
       for (let i = 0; i < currentCode.length; i++) {
+        const char = currentCode[i];
+        const typedEntry = typedChars[i];
+
         let cls = "tt-char";
-        if (i < typedIndex) {
-          cls += " correct";
+        let displayChar = escapeChar(char); // default: show expected char
+
+        if (typedEntry !== undefined) {
+          if (typedEntry.correct) {
+            cls += " correct";
+          } else {
+            cls += " typed-wrong";
+            // Show the WRONG character typed (in red), not the expected one
+            displayChar = escapeChar(typedEntry.typed) || "&middot;";
+          }
         } else if (i === typedIndex) {
           cls += " current";
-          if (hasErrorOnCurrent) {
-            cls += " wrong";
-          }
         }
-        const char = currentCode[i];
+
         if (char === "\n") {
-          html += `<span class="${cls}" data-idx="${i}">\n</span>`;
+          // Render a visible ↵ symbol for newlines so wrong ones are visible
+          const wrongGlyph = typedEntry && !typedEntry.correct ? '↵' : '';
+          html += `<span class="${cls}" data-idx="${i}">${wrongGlyph ? wrongGlyph : '↵'}\n</span>`;
         } else if (char === " ") {
-          html += `<span class="${cls}" data-idx="${i}">&nbsp;</span>`;
+          const spaceContent = (typedEntry && !typedEntry.correct && typedEntry.typed !== " ")
+            ? `<span style="font-size:0.7em;vertical-align:middle">·</span>`
+            : "&nbsp;";
+          html += `<span class="${cls}" data-idx="${i}">${spaceContent}</span>`;
         } else {
-          html += `<span class="${cls}" data-idx="${i}">${escapeChar(char)}</span>`;
+          html += `<span class="${cls}" data-idx="${i}">${displayChar}</span>`;
         }
       }
       codeDisplay.innerHTML = html;
@@ -732,6 +846,7 @@
         e.preventDefault();
         if (typedIndex > 0) {
           typedIndex--;
+          typedChars[typedIndex] = undefined;
           hasErrorOnCurrent = false;
           renderDisplay();
           updateStats();
@@ -747,13 +862,21 @@
       if (e.key === "Enter") {
         e.preventDefault();
         totalTyped++;
-        if (expected === "\n") {
+        const matched = expected === "\n";
+        if (matched) {
+          typedChars[typedIndex] = { typed: "\n", correct: true };
           typedIndex++;
           hasErrorOnCurrent = false;
         } else {
           errorCount++;
-          hasErrorOnCurrent = true;
+          typedChars[typedIndex] = { typed: "↵", correct: false };
           triggerErrorShake();
+          if (errorMode === "show") {
+            typedIndex++;
+            hasErrorOnCurrent = false;
+          } else {
+            hasErrorOnCurrent = true;
+          }
         }
         checkProgress();
         renderDisplay();
@@ -765,12 +888,20 @@
         e.preventDefault();
         totalTyped += 2;
         if (expected === " " && currentCode[typedIndex + 1] === " ") {
+          typedChars[typedIndex] = { typed: " ", correct: true };
+          typedChars[typedIndex + 1] = { typed: " ", correct: true };
           typedIndex += 2;
           hasErrorOnCurrent = false;
         } else {
           errorCount++;
-          hasErrorOnCurrent = true;
+          typedChars[typedIndex] = { typed: "⇥", correct: false };
           triggerErrorShake();
+          if (errorMode === "show") {
+            typedIndex++;
+            hasErrorOnCurrent = false;
+          } else {
+            hasErrorOnCurrent = true;
+          }
         }
         checkProgress();
         renderDisplay();
@@ -783,13 +914,30 @@
       if (isCharEvent) {
         e.preventDefault();
         totalTyped++;
-        if (checkKeyMatch(e, expected)) {
+        const isMatch = checkKeyMatch(e, expected);
+
+        // Determine what character to record as typed
+        let resolvedKey = e.key;
+        if (isArabicChar(e.key) && ARABIC_TO_LATIN[e.key]) {
+          resolvedKey = ARABIC_TO_LATIN[e.key];
+        } else if (SYMBOL_MAP[e.code] && e.key.length !== 1) {
+          resolvedKey = SYMBOL_MAP[e.code](!!e.shiftKey);
+        }
+
+        if (isMatch) {
+          typedChars[typedIndex] = { typed: resolvedKey, correct: true };
           typedIndex++;
           hasErrorOnCurrent = false;
         } else {
           errorCount++;
-          hasErrorOnCurrent = true;
+          typedChars[typedIndex] = { typed: resolvedKey, correct: false };
           triggerErrorShake();
+          if (errorMode === "show") {
+            typedIndex++;
+            hasErrorOnCurrent = false;
+          } else {
+            hasErrorOnCurrent = true;
+          }
         }
         checkProgress();
         renderDisplay();
@@ -922,6 +1070,32 @@
         selectedDuration = t === "free" ? "free" : parseInt(t, 10);
         initSnippet();
       });
+    });
+
+    // Length pills (settings)
+    document.querySelectorAll("#lengthPills .tt-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        document.querySelectorAll("#lengthPills .tt-pill").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        selectedLength = pill.dataset.len;
+        initSnippet();
+      });
+    });
+
+    // Error mode pills (settings)
+    document.querySelectorAll("#errorModePills .tt-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        document.querySelectorAll("#errorModePills .tt-pill").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        errorMode = pill.dataset.emode;
+        initSnippet();
+      });
+    });
+
+    // Settings toggle
+    document.getElementById("settingsToggleBtn").addEventListener("click", () => {
+      const panel = document.getElementById("settingsPanel");
+      panel.classList.toggle("open");
     });
 
     document.getElementById("restartBtn").addEventListener("click", initSnippet);
