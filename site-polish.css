@@ -1,14 +1,14 @@
 :root {
-  /* Premium Palette - Light Mode */
+  /* Premium Palette - Light Mode (High Contrast & WCAG AA Compliant) */
   --cl-bg: #f8fafc;
   --cl-surface: #ffffff;
-  --cl-surface-glass: rgba(255, 255, 255, 0.8);
+  --cl-surface-glass: rgba(255, 255, 255, 0.88);
   --cl-ink: #0f172a;
   --cl-muted: #64748b;
   --cl-line: #e2e8f0;
-  --cl-brand: #0f172a;
-  --cl-brand-dark: #020617;
-  --cl-brand-soft: #f1f5f9;
+  --cl-brand: #0284c7;           /* Sky 600: Vibrant, professional blue */
+  --cl-brand-dark: #0369a1;      /* Sky 700 */
+  --cl-brand-soft: rgba(2, 132, 199, 0.1); /* Soft adaptable blue tint */
   --cl-accent: #f59e0b;
   --cl-accent-soft: #fffbeb;
   --cl-success: #10b981;
@@ -21,15 +21,16 @@
 }
 
 [data-theme="dark"] {
+  /* Premium Palette - Dark Mode (Vibrant Cyber Accents) */
   --cl-bg: #020617;
   --cl-surface: #0f172a;
-  --cl-surface-glass: rgba(15, 23, 42, 0.8);
+  --cl-surface-glass: rgba(15, 23, 42, 0.88);
   --cl-ink: #f8fafc;
   --cl-muted: #94a3b8;
   --cl-line: #1e293b;
-  --cl-brand: #38bdf8;
+  --cl-brand: #38bdf8;           /* Neon Cyan 400 */
   --cl-brand-dark: #0284c7;
-  --cl-brand-soft: #0f172a;
+  --cl-brand-soft: rgba(56, 189, 248, 0.14); /* Glowing transparent tint */
   --cl-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5);
 }
 
@@ -1178,4 +1179,119 @@ table {
     width: 38px !important;
     height: 38px !important;
   }
+}
+
+
+/* ==========================================================================
+   UNIVERSAL THEME CONTRAST & VISIBILITY OVERRIDES (LIGHT & DARK MODES)
+   ========================================================================== */
+
+/* Lesson Icons */
+.lesson-icon {
+  background: var(--cl-brand-soft) !important;
+  color: var(--cl-brand) !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+}
+
+:root:not([data-theme="dark"]) .lesson-icon,
+[data-theme="light"] .lesson-icon {
+  background: rgba(2, 132, 199, 0.1) !important;
+  color: #0284c7 !important;
+  border: 1px solid rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="dark"] .lesson-icon {
+  background: rgba(56, 189, 248, 0.14) !important;
+  color: #38bdf8 !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+}
+
+/* Lesson Titles & Text */
+.lesson-info h3 {
+  color: var(--cl-ink) !important;
+}
+
+.lesson-content {
+  color: var(--cl-muted) !important;
+}
+
+/* Badges */
+.badge-modern, .badge-important, .badge-pro, .badge-seo {
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+}
+
+:root:not([data-theme="dark"]) .badge,
+:root:not([data-theme="dark"]) .badge-modern,
+:root:not([data-theme="dark"]) .badge-important,
+:root:not([data-theme="dark"]) .badge-pro,
+:root:not([data-theme="dark"]) .badge-seo,
+[data-theme="light"] .badge,
+[data-theme="light"] .badge-modern,
+[data-theme="light"] .badge-important,
+[data-theme="light"] .badge-pro,
+[data-theme="light"] .badge-seo {
+  background: rgba(2, 132, 199, 0.1) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="dark"] .badge,
+[data-theme="dark"] .badge-modern,
+[data-theme="dark"] .badge-important,
+[data-theme="dark"] .badge-pro,
+[data-theme="dark"] .badge-seo {
+  background: rgba(56, 189, 248, 0.14) !important;
+  color: #38bdf8 !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
+}
+
+/* Tool & Feature Icon Boxes */
+.tool-icon-circle, .pillar-icon-box {
+  background: var(--cl-brand-soft) !important;
+  color: var(--cl-brand) !important;
+}
+
+:root:not([data-theme="dark"]) .tool-icon-circle,
+:root:not([data-theme="dark"]) .pillar-icon-box,
+[data-theme="light"] .tool-icon-circle,
+[data-theme="light"] .pillar-icon-box {
+  background: rgba(2, 132, 199, 0.1) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="dark"] .tool-icon-circle,
+[data-theme="dark"] .pillar-icon-box {
+  background: rgba(56, 189, 248, 0.14) !important;
+  color: #38bdf8 !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
+}
+
+/* Course Header Banners */
+:root:not([data-theme="dark"]) .course-header,
+[data-theme="light"] .course-header {
+  background: linear-gradient(135deg, #0284c7, #0369a1) !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="dark"] .course-header {
+  background: linear-gradient(135deg, #0f172a, #020617) !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.course-header h1, .course-header p {
+  color: #ffffff !important;
+}
+
+/* Code Blocks */
+.code-block, .code-example {
+  background: #090d16 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid var(--cl-line) !important;
+}
+.code-block pre, .code-example pre {
+  color: inherit !important;
 }
