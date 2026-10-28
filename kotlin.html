@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maîtrise de Kotlin & Android - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 16px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: #7f52ff;
+      box-shadow: var(--cl-shadow-lg);
+    }
+    .lesson-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #7f52ff;
+      flex-shrink: 0;
+    }
+    .lesson-info {
+      flex-grow: 1;
+    }
+    .lesson-info h3 {
+      font-size: 1.35rem;
+      color: var(--cl-ink);
+      margin: 0 0 6px;
+    }
+    .lesson-content {
+      line-height: 1.75;
+      color: var(--cl-muted);
+      font-size: 1rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .badge-modern { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--cl-brand); }
+    .badge-important { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); color: #f59e0b; }
+    .badge-pro { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; }
+
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      padding: 18px;
+      border-radius: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 14px 0 6px;
+      border: 1px solid var(--cl-line);
+      line-height: 1.6;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+
+    @media (max-width: 768px) {
+      .lesson-card {
+        padding: 20px 16px;
+      }
+      .lesson-header {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+      }
+      .lesson-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+      .lesson-info h3 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header">
+    <div data-cl-lang="en">
+      <h1><i class="fa-brands fa-android"></i> Kotlin — Native Android Mastery</h1>
+      <p>Build modern native Android apps using Kotlin, Jetpack Compose, Coroutines, and MVVM architecture.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-brands fa-android"></i> إتقان Kotlin لتطوير تطبيقات Android</h1>
+      <p>ابنِ تطبيقات أندرويد أصلية حديثة باستخدام Kotlin وواجهات Jetpack Compose ومعمارية MVVM.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-brands fa-android"></i> Maîtrise de Kotlin & Android</h1>
+      <p>Créez des applications Android modernes avec Kotlin, Jetpack Compose et Coroutines.</p>
+    </div>
+  </div>
+
+  <div class="chapters" id="courseLessons">
+    <!-- Lessons rendered via JS -->
+  </div>
+</div>
+
+<script>
+  const courseLessons = [
+  {
+    "icon": "fa-mobile-screen",
+    "badge": "badge-modern",
+    "t_en": "1. What is Kotlin for Android?",
+    "t_ar": "1. لماذا Kotlin لتطبيقات Android؟",
+    "t_fr": "1. Pourquoi Kotlin ?",
+    "d_en": "Kotlin is Google's official preferred language for Android, featuring concise syntax, null safety, and full Java interoperability.",
+    "d_ar": "Kotlin هي اللغة الرسمية المفضلة من Google لتطبيقات Android، تتميز بالأمان ضد أخطاء Null وسرعة الأداء.",
+    "d_fr": "Kotlin est le langage officiel recommandé par Google pour développer des applications Android natives.",
+    "code": "fun main() {\n    val developer = \"Bilal\"\n    println(\"Hello Android with $developer!\")\n}"
+  },
+  {
+    "icon": "fa-shapes",
+    "badge": "badge-important",
+    "t_en": "2. Jetpack Compose (Declarative UI)",
+    "t_ar": "2. واجهات Jetpack Compose الحديثة",
+    "t_fr": "2. UI Déclarative avec Jetpack Compose",
+    "d_en": "Build Android UIs purely in Kotlin code without bulky XML layout files.",
+    "d_ar": "ابنِ واجهات المستخدم بكود Kotlin مباشر ومرن وبدون الحاجة لملفات XML المعقدة.",
+    "d_fr": "Créez des interfaces Android modernes directement en code Kotlin sans fichiers XML.",
+    "code": "@Composable\nfun UserCard(name: String) {\n    Card(modifier = Modifier.padding(16.dp)) {\n        Text(text = \"Developer: $name\", style = MaterialTheme.typography.h6)\n    }\n}"
+  },
+  {
+    "icon": "fa-bolt",
+    "badge": "badge-pro",
+    "t_en": "3. Kotlin Coroutines (Async Logic)",
+    "t_ar": "3. المعالجة غير المتزامنة (Coroutines)",
+    "t_fr": "3. Coroutines Asynchrones",
+    "d_en": "Execute background network tasks smoothly without blocking the main UI thread.",
+    "d_ar": "نفّذ اتصالات الإنترنت والعمليات الثقيلة في الخلفية بدون تجميد الشاشة أو التأثير على سلاسة التطبيق.",
+    "d_fr": "Exécutez des tâches réseau en arrière-plan sans bloquer l'interface utilisateur.",
+    "code": "viewModelScope.launch(Dispatchers.IO) {\n    val user = apiService.fetchProfile(userId)\n    withContext(Dispatchers.Main) {\n        uiState.value = Success(user)\n    }\n}"
+  }
+];
+
+  const container = document.getElementById('courseLessons');
+  courseLessons.forEach(lesson => {
+    const div = document.createElement('div');
+    div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
+    div.innerHTML = `
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
+        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+</script>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

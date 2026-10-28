@@ -23,6 +23,18 @@
   <url><loc>https://codinglife1.vercel.app/sql.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://codinglife1.vercel.app/git.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
 
+  <url><loc>https://codinglife1.vercel.app/vue.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/nextjs.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/tailwind.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/typescript.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/mongodb.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/docker.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/linux.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/algorithms.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/cybersecurity.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/kotlin.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://codinglife1.vercel.app/freelance.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+
   <!-- Interactive Utilities & Hubs -->
   <url><loc>https://codinglife1.vercel.app/cheatsheets.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://codinglife1.vercel.app/formatter.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>

@@ -1,5 +1,5 @@
 // Coding Life - Progressive Web App Service Worker (Complete Offline PWA)
-const CACHE_NAME = 'codinglife-v6';
+const CACHE_NAME = 'codinglife-v7';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -34,6 +34,17 @@ const ASSETS_TO_CACHE = [
   './java.html',
   './csharp.html',
   './flutter.html',
+  './vue.html',
+  './nextjs.html',
+  './tailwind.html',
+  './typescript.html',
+  './mongodb.html',
+  './docker.html',
+  './linux.html',
+  './algorithms.html',
+  './cybersecurity.html',
+  './kotlin.html',
+  './freelance.html',
   './git.html',
   './coding.html',
   // Community, Career & Soft Skills

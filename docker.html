@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maîtrise de Docker & DevOps - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 16px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: #0db7ed;
+      box-shadow: var(--cl-shadow-lg);
+    }
+    .lesson-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #0db7ed;
+      flex-shrink: 0;
+    }
+    .lesson-info {
+      flex-grow: 1;
+    }
+    .lesson-info h3 {
+      font-size: 1.35rem;
+      color: var(--cl-ink);
+      margin: 0 0 6px;
+    }
+    .lesson-content {
+      line-height: 1.75;
+      color: var(--cl-muted);
+      font-size: 1rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .badge-modern { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--cl-brand); }
+    .badge-important { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); color: #f59e0b; }
+    .badge-pro { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; }
+
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      padding: 18px;
+      border-radius: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 14px 0 6px;
+      border: 1px solid var(--cl-line);
+      line-height: 1.6;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+
+    @media (max-width: 768px) {
+      .lesson-card {
+        padding: 20px 16px;
+      }
+      .lesson-header {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+      }
+      .lesson-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+      .lesson-info h3 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header">
+    <div data-cl-lang="en">
+      <h1><i class="fa-brands fa-docker"></i> Docker & DevOps Engineering</h1>
+      <p>Containerize your applications, master Dockerfile instructions, Docker Compose, and CI/CD pipelines.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-brands fa-docker"></i> إتقان Docker وهندسة DevOps</h1>
+      <p>حوّل تطبيقاتك إلى حاويات برمجية، أتقن Dockerfile وDocker Compose ومسارات النشر السحابي.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-brands fa-docker"></i> Maîtrise de Docker & DevOps</h1>
+      <p>Conteneurisez vos applications, maîtrisez Dockerfile, Docker Compose et l'intégration continue.</p>
+    </div>
+  </div>
+
+  <div class="chapters" id="courseLessons">
+    <!-- Lessons rendered via JS -->
+  </div>
+</div>
+
+<script>
+  const courseLessons = [
+  {
+    "icon": "fa-box",
+    "badge": "badge-modern",
+    "t_en": "1. What are Containers?",
+    "t_ar": "1. ما هي الحاويات البرمجية؟",
+    "t_fr": "1. Que sont les Conteneurs ?",
+    "d_en": "Containers package your code, runtime, system tools, and libraries together, guaranteeing it runs everywhere identically.",
+    "d_ar": "تجمع الحاوية كود تطبيقك مع بيئة التشغيل والمكتبات ليعمل في أي سيرفر بنفس الدقة وبدون مشاكل \"It works on my machine\".",
+    "d_fr": "Les conteneurs emballent le code et ses dépendances pour une exécution garantie partout.",
+    "code": "# Check running containers\ndocker ps\n\n# Run a Node.js container\ndocker run -p 3000:3000 -d my-node-app"
+  },
+  {
+    "icon": "fa-file-lines",
+    "badge": "badge-important",
+    "t_en": "2. Crafting Production Dockerfiles",
+    "t_ar": "2. كتابة ملف Dockerfile",
+    "t_fr": "2. Écrire un Dockerfile de production",
+    "d_en": "Write multi-stage Dockerfiles that keep production image sizes tiny, secure, and fast.",
+    "d_ar": "اكتب ملفات Dockerfile متعددة المراحل للحصول على صور صغيرة الحجم وآمنة وسريعة.",
+    "d_fr": "Créez des builds multi-étapes pour des images légères, rapides et sécurisées.",
+    "code": "FROM node:20-alpine AS builder\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci\nCOPY . .\nRUN npm run build\n\nEXPOSE 3000\nCMD [\"npm\", \"start\"]"
+  },
+  {
+    "icon": "fa-network-wired",
+    "badge": "badge-pro",
+    "t_en": "3. Multi-Service with Docker Compose",
+    "t_ar": "3. إدارة الخدمات بـ Docker Compose",
+    "t_fr": "3. Docker Compose multi-services",
+    "d_en": "Spin up frontend, backend, database, and Redis cache with a single command.",
+    "d_ar": "شغّل السيرفر والواجهة وقاعدة البيانات والـ Redis دفعة واحدة بأمر واحد.",
+    "d_fr": "Démarrez votre frontend, backend et base de données avec une seule commande.",
+    "code": "version: \"3.8\"\nservices:\n  app:\n    build: .\n    ports: [\"3000:3000\"]\n    environment:\n      - DB_URL=mongodb://db:27017/prod\n  db:\n    image: mongo:latest\n    volumes: [\"mongo-data:/data/db\"]\nvolumes:\n  mongo-data:"
+  }
+];
+
+  const container = document.getElementById('courseLessons');
+  courseLessons.forEach(lesson => {
+    const div = document.createElement('div');
+    div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
+    div.innerHTML = `
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
+        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+</script>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

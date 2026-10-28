@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maîtrise de MongoDB & NoSQL - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 16px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: #47a248;
+      box-shadow: var(--cl-shadow-lg);
+    }
+    .lesson-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #47a248;
+      flex-shrink: 0;
+    }
+    .lesson-info {
+      flex-grow: 1;
+    }
+    .lesson-info h3 {
+      font-size: 1.35rem;
+      color: var(--cl-ink);
+      margin: 0 0 6px;
+    }
+    .lesson-content {
+      line-height: 1.75;
+      color: var(--cl-muted);
+      font-size: 1rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .badge-modern { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--cl-brand); }
+    .badge-important { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); color: #f59e0b; }
+    .badge-pro { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; }
+
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      padding: 18px;
+      border-radius: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 14px 0 6px;
+      border: 1px solid var(--cl-line);
+      line-height: 1.6;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+
+    @media (max-width: 768px) {
+      .lesson-card {
+        padding: 20px 16px;
+      }
+      .lesson-header {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+      }
+      .lesson-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+      .lesson-info h3 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header">
+    <div data-cl-lang="en">
+      <h1><i class="fa-solid fa-leaf"></i> MongoDB & NoSQL Databases</h1>
+      <p>Learn document database architecture, Mongoose ODM, aggregation pipelines, and cloud Atlas scaling.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-solid fa-leaf"></i> إتقان MongoDB وقواعد بيانات NoSQL</h1>
+      <p>تعلم معمارية قواعد البيانات الوثائقية، Mongoose، واستعلامات التجميع المتقدمة مع MongoDB.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-solid fa-leaf"></i> Maîtrise de MongoDB & NoSQL</h1>
+      <p>Apprenez les bases de données orientées documents, Mongoose et les pipelines d'agrégation.</p>
+    </div>
+  </div>
+
+  <div class="chapters" id="courseLessons">
+    <!-- Lessons rendered via JS -->
+  </div>
+</div>
+
+<script>
+  const courseLessons = [
+  {
+    "icon": "fa-database",
+    "badge": "badge-modern",
+    "t_en": "1. SQL vs NoSQL (Document Store)",
+    "t_ar": "1. الفارق بين SQL و NoSQL",
+    "t_fr": "1. SQL vs NoSQL",
+    "d_en": "MongoDB stores data in flexible JSON-like documents called BSON instead of rigid tables and rows.",
+    "d_ar": "تخزن MongoDB البيانات في وثائق JSON مرنة (BSON) بدلاً من الجداول والأعمدة الصارمة.",
+    "d_fr": "MongoDB stocke les données dans des documents flexibles similaires au format JSON (BSON).",
+    "code": "// Document Structure in MongoDB\n{\n  \"_id\": \"65e23a9b2...\",\n  \"name\": \"Bilal\",\n  \"skills\": [\"JavaScript\", \"Python\", \"MongoDB\"],\n  \"profile\": { \"city\": \"Casablanca\", \"verified\": true }\n}"
+  },
+  {
+    "icon": "fa-code",
+    "badge": "badge-important",
+    "t_en": "2. Mongoose Models & Schemas",
+    "t_ar": "2. نمذجة البيانات بـ Mongoose",
+    "t_fr": "2. Schémas et Modèles Mongoose",
+    "d_en": "Structure and validate document data in Node.js applications with ease.",
+    "d_ar": "نظّم وتحقق من صحة بيانات الوثائق في تطبيقات Node.js باستخدام مكتبة Mongoose.",
+    "d_fr": "Structurez et validez vos données avec Mongoose dans vos projets Node.js.",
+    "code": "import mongoose from \"mongoose\";\n\nconst ProductSchema = new mongoose.Schema({\n  title: { type: String, required: true },\n  price: { type: Number, required: true },\n  category: String,\n  inStock: { type: Boolean, default: true }\n});\n\nexport const Product = mongoose.model(\"Product\", ProductSchema);"
+  },
+  {
+    "icon": "fa-chart-pie",
+    "badge": "badge-pro",
+    "t_en": "3. Aggregation Pipelines",
+    "t_ar": "3. مسارات التجميع (Aggregation Pipeline)",
+    "t_fr": "3. Pipelines d'Agrégation",
+    "d_en": "Filter, group, and compute metrics over millions of documents with maximum speed.",
+    "d_ar": "قم بفرز وتجميع وتحليل البيانات عبر مراحل متتالية بسرعة فائقة.",
+    "d_fr": "Filtrez, regroupez et calculez des statistiques complexes à grande vitesse.",
+    "code": "const stats = await Product.aggregate([\n  { $match: { inStock: true } },\n  { $group: { _id: \"$category\", avgPrice: { $avg: \"$price\" }, total: { $sum: 1 } } },\n  { $sort: { avgPrice: -1 } }\n]);"
+  }
+];
+
+  const container = document.getElementById('courseLessons');
+  courseLessons.forEach(lesson => {
+    const div = document.createElement('div');
+    div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
+    div.innerHTML = `
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
+        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+</script>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

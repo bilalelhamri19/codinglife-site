@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maîtrise de Linux & Ligne de commande - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 16px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: #fcc624;
+      box-shadow: var(--cl-shadow-lg);
+    }
+    .lesson-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #fcc624;
+      flex-shrink: 0;
+    }
+    .lesson-info {
+      flex-grow: 1;
+    }
+    .lesson-info h3 {
+      font-size: 1.35rem;
+      color: var(--cl-ink);
+      margin: 0 0 6px;
+    }
+    .lesson-content {
+      line-height: 1.75;
+      color: var(--cl-muted);
+      font-size: 1rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .badge-modern { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--cl-brand); }
+    .badge-important { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); color: #f59e0b; }
+    .badge-pro { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; }
+
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      padding: 18px;
+      border-radius: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 14px 0 6px;
+      border: 1px solid var(--cl-line);
+      line-height: 1.6;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+
+    @media (max-width: 768px) {
+      .lesson-card {
+        padding: 20px 16px;
+      }
+      .lesson-header {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+      }
+      .lesson-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+      .lesson-info h3 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header">
+    <div data-cl-lang="en">
+      <h1><i class="fa-brands fa-linux"></i> Linux & Terminal Command Line</h1>
+      <p>Navigate the terminal with absolute confidence, master file permissions, Bash scripting, and SSH server administration.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-brands fa-linux"></i> إتقان نظام Linux وسطر الأوامر</h1>
+      <p>تحكّم في سطر الأوامر، أتقن الصلاحيات، كتابة سكريبتات Bash، وإدارة السيرفرات عن بعد عبر SSH.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-brands fa-linux"></i> Maîtrise de Linux & Ligne de commande</h1>
+      <p>Naviguez dans le terminal avec confiance, maîtrisez les permissions, Bash et l'administration SSH.</p>
+    </div>
+  </div>
+
+  <div class="chapters" id="courseLessons">
+    <!-- Lessons rendered via JS -->
+  </div>
+</div>
+
+<script>
+  const courseLessons = [
+  {
+    "icon": "fa-terminal",
+    "badge": "badge-modern",
+    "t_en": "1. Essential Terminal Commands",
+    "t_ar": "1. أوامر الطرفية الأساسية",
+    "t_fr": "1. Commandes essentielles",
+    "d_en": "Master navigation, directory operations, process monitoring, and file inspection in seconds.",
+    "d_ar": "أتقن التنقل في المجلدات، إنشاء الملفات، ومراقبة العمليات الجارية بسرعة.",
+    "d_fr": "Maîtrisez la navigation, la création de fichiers et la surveillance des processus.",
+    "code": "pwd                      # Print working directory\nls -la                   # List all files with permissions\nmkdir -p project/src     # Create nested directories\ntop                      # Monitor system resource usage\ngrep -rn \"TODO\" .        # Search pattern in codebase"
+  },
+  {
+    "icon": "fa-key",
+    "badge": "badge-important",
+    "t_en": "2. File Permissions & Sudo",
+    "t_ar": "2. الصلاحيات والمستخدمين (chmod & chown)",
+    "t_fr": "2. Permissions et Sudo",
+    "d_en": "Understand read, write, and execute permissions (chmod 755 / 600) and root privileges.",
+    "d_ar": "افهم صلاحيات القراءة والكتابة والتشغيل وأمّن ملفاتك وسيرفراتك.",
+    "d_fr": "Comprenez les droits de lecture, écriture et exécution pour sécuriser vos serveurs.",
+    "code": "chmod 755 deploy.sh      # rwxr-xr-x (executable for owner)\nchmod 600 id_rsa         # rw------- (secure SSH private key)\nchown -R www-data:www-data /var/www"
+  },
+  {
+    "icon": "fa-scroll",
+    "badge": "badge-pro",
+    "t_en": "3. Automated Bash Scripting",
+    "t_ar": "3. برمجة سكريبتات Bash المؤتمتة",
+    "t_fr": "3. Scripts Bash Automatisés",
+    "d_en": "Automate backups, deployments, and cron jobs with clean shell scripts.",
+    "d_ar": "أتمت النسخ الاحتياطي والنشر والمهام الدورية عبر سكريبتات شل ذكية.",
+    "d_fr": "Automatisez vos sauvegardes et déploiements avec des scripts shell élégants.",
+    "code": "#!/usr/bin/env bash\nBACKUP_DIR=\"/backup/$(date +%F)\"\nmkdir -p \"$BACKUP_DIR\"\npg_dump prod_db > \"$BACKUP_DIR/db.sql\"\necho \"Backup finished successfully at $(date)\""
+  }
+];
+
+  const container = document.getElementById('courseLessons');
+  courseLessons.forEach(lesson => {
+    const div = document.createElement('div');
+    div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
+    div.innerHTML = `
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
+        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+</script>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

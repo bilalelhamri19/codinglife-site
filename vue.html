@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maîtrise de Vue.js 3 - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 16px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: #42b883;
+      box-shadow: var(--cl-shadow-lg);
+    }
+    .lesson-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #42b883;
+      flex-shrink: 0;
+    }
+    .lesson-info {
+      flex-grow: 1;
+    }
+    .lesson-info h3 {
+      font-size: 1.35rem;
+      color: var(--cl-ink);
+      margin: 0 0 6px;
+    }
+    .lesson-content {
+      line-height: 1.75;
+      color: var(--cl-muted);
+      font-size: 1rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .badge-modern { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--cl-brand); }
+    .badge-important { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); color: #f59e0b; }
+    .badge-pro { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; }
+
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      padding: 18px;
+      border-radius: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 14px 0 6px;
+      border: 1px solid var(--cl-line);
+      line-height: 1.6;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+
+    @media (max-width: 768px) {
+      .lesson-card {
+        padding: 20px 16px;
+      }
+      .lesson-header {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+      }
+      .lesson-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+      .lesson-info h3 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header">
+    <div data-cl-lang="en">
+      <h1><i class="fa-brands fa-vuejs"></i> Vue.js 3 — Progressive Framework</h1>
+      <p>Build elegant reactive user interfaces with Vue 3 Composition API, Pinia, and Vue Router.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-brands fa-vuejs"></i> إتقان Vue.js 3 الحديث</h1>
+      <p>ابنِ واجهات مستخدم تفاعلية أنيقة باستخدام Vue 3 وComposition API وPinia.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-brands fa-vuejs"></i> Maîtrise de Vue.js 3</h1>
+      <p>Créez des interfaces réactives élégantes avec Vue 3, Composition API et Pinia.</p>
+    </div>
+  </div>
+
+  <div class="chapters" id="courseLessons">
+    <!-- Lessons rendered via JS -->
+  </div>
+</div>
+
+<script>
+  const courseLessons = [
+  {
+    "icon": "fa-info-circle",
+    "badge": "badge-modern",
+    "t_en": "1. What is Vue.js?",
+    "t_ar": "1. ما هو Vue.js؟",
+    "t_fr": "1. Qu'est-ce que Vue.js ?",
+    "d_en": "Vue.js is an approachable, performant and versatile framework for building modern web user interfaces.",
+    "d_ar": "Vue.js هو إطار عمل تدريجي وعالي الأداء لبناء واجهات مستخدم الويب الحديثة.",
+    "d_fr": "Vue.js est un framework progressif, performant et polyvalent pour créer des interfaces web.",
+    "code": "import { createApp, ref } from \"vue\";\n\nconst app = createApp({\n  setup() {\n    const message = ref(\"Hello Vue 3!\");\n    return { message };\n  }\n}).mount(\"#app\");"
+  },
+  {
+    "icon": "fa-atom",
+    "badge": "badge-important",
+    "t_en": "2. Composition API & Reactivity",
+    "t_ar": "2. واجهة التكوين (Composition API) والتفاعلية",
+    "t_fr": "2. Composition API & Réactivité",
+    "d_en": "Use ref() for primitive values and reactive() for complex state objects.",
+    "d_ar": "استخدم ref() للقيم البسيطة و reactive() للكائنات المعقدة لإدارة الحالة التفاعلية.",
+    "d_fr": "Utilisez ref() pour les primitives et reactive() pour les objets d'état complexes.",
+    "code": "import { ref, computed } from \"vue\";\n\nconst count = ref(0);\nconst double = computed(() => count.value * 2);\n\nfunction increment() {\n  count.value++;\n}"
+  },
+  {
+    "icon": "fa-code",
+    "badge": "badge-modern",
+    "t_en": "3. Template Directives (v-if, v-for, v-model)",
+    "t_ar": "3. توجيهات القوالب (Directives)",
+    "t_fr": "3. Directives de template",
+    "d_en": "Bind data bidirectionally with v-model, loop with v-for, and render conditionally with v-if.",
+    "d_ar": "ربط البيانات ثنائي الاتجاه بـ v-model، التكرار بـ v-for، والعرض الشرطي بـ v-if.",
+    "d_fr": "Liez les données avec v-model, itérez avec v-for et conditionnez avec v-if.",
+    "code": "<template>\n  <input v-model=\"username\" placeholder=\"Enter name\" />\n  <p v-if=\"username\">Hello, {{ username }}!</p>\n  <ul>\n    <li v-for=\"item in items\" :key=\"item.id\">{{ item.name }}</li>\n  </ul>\n</template>"
+  },
+  {
+    "icon": "fa-database",
+    "badge": "badge-pro",
+    "t_en": "4. State Management with Pinia",
+    "t_ar": "4. إدارة الحالة بـ Pinia",
+    "t_fr": "4. Gestion d'état avec Pinia",
+    "d_en": "Pinia is the official, type-safe and intuitive store library for Vue applications.",
+    "d_ar": "Pinia هي المكتبة الرسمية لإدارة الحالة المشتركة في تطبيقات Vue بشكل آمن وسلس.",
+    "d_fr": "Pinia est le magasin officiel et typé pour gérer l'état dans Vue 3.",
+    "code": "import { defineStore } from \"pinia\";\n\nexport const useCartStore = defineStore(\"cart\", {\n  state: () => ({ items: [] }),\n  actions: {\n    addItem(item) { this.items.push(item); }\n  }\n});"
+  }
+];
+
+  const container = document.getElementById('courseLessons');
+  courseLessons.forEach(lesson => {
+    const div = document.createElement('div');
+    div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
+    div.innerHTML = `
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
+        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+</script>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

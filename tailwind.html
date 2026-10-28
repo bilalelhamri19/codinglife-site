@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maîtrise de Tailwind CSS - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 16px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: #06b6d4;
+      box-shadow: var(--cl-shadow-lg);
+    }
+    .lesson-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #06b6d4;
+      flex-shrink: 0;
+    }
+    .lesson-info {
+      flex-grow: 1;
+    }
+    .lesson-info h3 {
+      font-size: 1.35rem;
+      color: var(--cl-ink);
+      margin: 0 0 6px;
+    }
+    .lesson-content {
+      line-height: 1.75;
+      color: var(--cl-muted);
+      font-size: 1rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .badge-modern { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--cl-brand); }
+    .badge-important { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); color: #f59e0b; }
+    .badge-pro { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; }
+
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      padding: 18px;
+      border-radius: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 14px 0 6px;
+      border: 1px solid var(--cl-line);
+      line-height: 1.6;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+
+    @media (max-width: 768px) {
+      .lesson-card {
+        padding: 20px 16px;
+      }
+      .lesson-header {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+      }
+      .lesson-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+      .lesson-info h3 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header">
+    <div data-cl-lang="en">
+      <h1><i class="fa-solid fa-wind"></i> Tailwind CSS — Rapid Modern UI</h1>
+      <p>Build bespoke, responsive, and maintainable user interfaces 10x faster with utility-first CSS.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-solid fa-wind"></i> إتقان Tailwind CSS للواجهات الحديثة</h1>
+      <p>ابنِ واجهات مستخدم مخصصة ومتجاوبة بسرعة فائقة باستخدام فئات Tailwind الجاهزة.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-solid fa-wind"></i> Maîtrise de Tailwind CSS</h1>
+      <p>Construisez des interfaces responsives et sur mesure 10x plus vite avec Tailwind CSS.</p>
+    </div>
+  </div>
+
+  <div class="chapters" id="courseLessons">
+    <!-- Lessons rendered via JS -->
+  </div>
+</div>
+
+<script>
+  const courseLessons = [
+  {
+    "icon": "fa-palette",
+    "badge": "badge-modern",
+    "t_en": "1. The Utility-First Workflow",
+    "t_ar": "1. فلسفة Utility-First",
+    "t_fr": "1. Philosophie Utility-First",
+    "d_en": "Style elements directly in markup without writing separate CSS classes or leaving your HTML.",
+    "d_ar": "نسّق العناصر مباشرة داخل HTML بدون الحاجة لإنشاء ملفات وفئات CSS منفصلة.",
+    "d_fr": "Appliquez les styles directement dans le HTML sans quitter votre balisage.",
+    "code": "<button class=\"bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-xl shadow-lg transition duration-200\">\n  Click Me\n</button>"
+  },
+  {
+    "icon": "fa-mobile-screen",
+    "badge": "badge-important",
+    "t_en": "2. Responsive Design (sm, md, lg, xl)",
+    "t_ar": "2. التصميم المتجاوب للشاشات",
+    "t_fr": "2. Design Responsive",
+    "d_en": "Prefix utility classes with screen breakpoints to adapt layouts seamlessly from phones to wide monitors.",
+    "d_ar": "استخدم بادئات الشاشات لتعديل التصميم تلقائيًا بين الهاتف والكمبيوتر.",
+    "d_fr": "Préfixez les classes pour adapter la mise en page à chaque taille d'écran.",
+    "code": "<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4\">\n  <div class=\"p-6 bg-slate-900 rounded-2xl border border-slate-800\">Card 1</div>\n</div>"
+  },
+  {
+    "icon": "fa-moon",
+    "badge": "badge-pro",
+    "t_en": "3. Dark Mode & Custom Themes",
+    "t_ar": "3. الوضع الليلي والثيمات",
+    "t_fr": "3. Mode Sombre & Thèmes",
+    "d_en": "Implement flawless light and dark themes using the dark: modifier and CSS variables.",
+    "d_ar": "فعّل الوضع الداكن بسلاسة تامة باستخدام بادئة dark: ومتغيرات الألوان.",
+    "d_fr": "Implémentez un mode sombre parfait avec le modificateur dark: et vos variables.",
+    "code": "<div class=\"bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 border border-slate-200 dark:border-slate-800 p-8 rounded-xl\">\n  <h2 class=\"text-xl font-bold\">Theme Adaptive Box</h2>\n</div>"
+  }
+];
+
+  const container = document.getElementById('courseLessons');
+  courseLessons.forEach(lesson => {
+    const div = document.createElement('div');
+    div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
+    div.innerHTML = `
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
+        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+</script>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

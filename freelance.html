@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide Freelance pour Développeurs - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 16px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: #10b981;
+      box-shadow: var(--cl-shadow-lg);
+    }
+    .lesson-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #10b981;
+      flex-shrink: 0;
+    }
+    .lesson-info {
+      flex-grow: 1;
+    }
+    .lesson-info h3 {
+      font-size: 1.35rem;
+      color: var(--cl-ink);
+      margin: 0 0 6px;
+    }
+    .lesson-content {
+      line-height: 1.75;
+      color: var(--cl-muted);
+      font-size: 1rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .badge-modern { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--cl-brand); }
+    .badge-important { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); color: #f59e0b; }
+    .badge-pro { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; }
+
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      padding: 18px;
+      border-radius: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 14px 0 6px;
+      border: 1px solid var(--cl-line);
+      line-height: 1.6;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+
+    @media (max-width: 768px) {
+      .lesson-card {
+        padding: 20px 16px;
+      }
+      .lesson-header {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+      }
+      .lesson-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+      .lesson-info h3 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header">
+    <div data-cl-lang="en">
+      <h1><i class="fa-solid fa-briefcase"></i> Freelancing for Software Developers</h1>
+      <p>Land high-paying clients, build a high-converting portfolio, master pricing strategies, and build a thriving freelance career.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-solid fa-briefcase"></i> دليل العمل الحر الشامل للمطورين</h1>
+      <p>احصل على عملاء مميزين، ابنِ محفظة أعمال تقنع الشركات، حدّد أسعارك بثقة، وأسّس مسارك المستقل بنجاح.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-solid fa-briefcase"></i> Guide Freelance pour Développeurs</h1>
+      <p>Trouvez des clients rentables, créez un portfolio d'impact et maîtrisez la tarification de vos projets.</p>
+    </div>
+  </div>
+
+  <div class="chapters" id="courseLessons">
+    <!-- Lessons rendered via JS -->
+  </div>
+</div>
+
+<script>
+  const courseLessons = [
+  {
+    "icon": "fa-briefcase",
+    "badge": "badge-modern",
+    "t_en": "1. Finding Your First Clients",
+    "t_ar": "1. كيف تحصل على أول عميل؟",
+    "t_fr": "1. Trouver ses premiers clients",
+    "d_en": "Leverage local businesses, open-source reputation, Upwork/Fiverr profiles, and direct cold outreach that gets replies.",
+    "d_ar": "استفد من الأعمال المحلية، مشاريع المصدر المفتوح، منصات العمل الحر، والرسائل الاحترافية المباشرة.",
+    "d_fr": "Exploitez les commerces locaux, plateformes freelance et la prospection directe personnalisée.",
+    "code": "// Example: Clear Value Proposition\n\"I build fast, mobile-friendly landing pages that help restaurants\nincrease online reservations by 35%.\""
+  },
+  {
+    "icon": "fa-money-bill-wave",
+    "badge": "badge-important",
+    "t_en": "2. Pricing: Hourly vs Value-Based",
+    "t_ar": "2. تسعير المشاريع: بالساعة أم بالقيمة؟",
+    "t_fr": "2. Stratégies de tarification",
+    "d_en": "Transition from low hourly rates to value-based project pricing based on the business outcome you deliver.",
+    "d_ar": "انتقل من بيع ساعاتك بسعر رخيص إلى التسعير بناءً على القيمة والأرباح التي ستحققها للعميل.",
+    "d_fr": "Passez de la tarification horaire à la tarification basée sur la valeur ajoutée apportée au client.",
+    "code": "Project Cost = Business Value Delivered * Investment Ratio (e.g., $3,000 for an e-commerce feature expected to generate $30,000)"
+  },
+  {
+    "icon": "fa-file-contract",
+    "badge": "badge-pro",
+    "t_en": "3. Contracts, Milestones & Payments",
+    "t_ar": "3. العقود والدفعات الآمنة",
+    "t_fr": "3. Contrats et Paiements sécurisés",
+    "d_en": "Always require a 50% upfront deposit, define clear project scopes, and protect your intellectual property.",
+    "d_ar": "اطلب دائمًا دفعة أولى 50% قبل البدء، حدّد نطاق العمل كتابيًا، وتجنب فخ التعديلات اللانهائية (Scope Creep).",
+    "d_fr": "Exigez toujours un acompte de 50%, définissez le périmètre du projet et sécurisez vos livrables.",
+    "code": "Standard Payment Structure:\n- 50% Upfront Deposit before starting\n- 25% Upon MVP milestone demo\n- 25% Final deployment & handover"
+  }
+];
+
+  const container = document.getElementById('courseLessons');
+  courseLessons.forEach(lesson => {
+    const div = document.createElement('div');
+    div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
+    div.innerHTML = `
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
+        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+</script>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

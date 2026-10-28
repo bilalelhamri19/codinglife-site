@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorithmes & Structures de Données - Coding Life</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .lesson-card {
+      background: var(--cl-surface);
+      border-radius: 16px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      border: 1px solid var(--cl-line);
+      transition: var(--cl-transition);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .lesson-header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: #f97316;
+      box-shadow: var(--cl-shadow-lg);
+    }
+    .lesson-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #f97316;
+      flex-shrink: 0;
+    }
+    .lesson-info {
+      flex-grow: 1;
+    }
+    .lesson-info h3 {
+      font-size: 1.35rem;
+      color: var(--cl-ink);
+      margin: 0 0 6px;
+    }
+    .lesson-content {
+      line-height: 1.75;
+      color: var(--cl-muted);
+      font-size: 1rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .badge-modern { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--cl-brand); }
+    .badge-important { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); color: #f59e0b; }
+    .badge-pro { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; }
+
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      padding: 18px;
+      border-radius: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 14px 0 6px;
+      border: 1px solid var(--cl-line);
+      line-height: 1.6;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+
+    @media (max-width: 768px) {
+      .lesson-card {
+        padding: 20px 16px;
+      }
+      .lesson-header {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+      }
+      .lesson-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+      .lesson-info h3 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="course-container">
+  <div class="course-header">
+    <div data-cl-lang="en">
+      <h1><i class="fa-solid fa-diagram-project"></i> Algorithms & Data Structures Mastery</h1>
+      <p>Master Big-O complexity analysis, sorting, hash maps, binary search trees, and dynamic programming.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1><i class="fa-solid fa-diagram-project"></i> إتقان الخوارزميات وهياكل البيانات</h1>
+      <p>أتقن تحليل التعقيد الزمني (Big-O)، الأشجار الثنائية، الخرائط، والبرمجة الديناميكية لاجتياز المقابلات التقنية.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-solid fa-diagram-project"></i> Algorithmes & Structures de Données</h1>
+      <p>Maîtrisez la complexité Big-O, les arbres, tables de hachage et la programmation dynamique.</p>
+    </div>
+  </div>
+
+  <div class="chapters" id="courseLessons">
+    <!-- Lessons rendered via JS -->
+  </div>
+</div>
+
+<script>
+  const courseLessons = [
+  {
+    "icon": "fa-stopwatch",
+    "badge": "badge-modern",
+    "t_en": "1. Big-O Complexity Analysis",
+    "t_ar": "1. تحليل التعقيد الزمني والمكاني (Big-O)",
+    "t_fr": "1. Analyse de complexité Big-O",
+    "d_en": "Understand how algorithms scale with input size: O(1) constant, O(log N) logarithmic, O(N) linear, and O(N^2) quadratic.",
+    "d_ar": "افهم كيف يتأثر أداء الكود بزيادة حجم البيانات وميّز بين الحلول السريعة والبطيئة.",
+    "d_fr": "Comprenez comment les algorithmes évoluent : O(1), O(log N), O(N) et O(N^2).",
+    "code": "// O(1) - Constant Time\nfunction getFirst(arr) { return arr[0]; }\n\n// O(N) - Linear Time\nfunction findMax(arr) {\n  let max = -Infinity;\n  for (let x of arr) if (x > max) max = x;\n  return max;\n}"
+  },
+  {
+    "icon": "fa-magnifying-glass",
+    "badge": "badge-important",
+    "t_en": "2. Binary Search (O(log N))",
+    "t_ar": "2. البحث الثنائي (Binary Search)",
+    "t_fr": "2. Recherche Binaire",
+    "d_en": "Find target items in sorted arrays in logarithmic time by repeatedly dividing search space in half.",
+    "d_ar": "ابحث عن أي قيمة في مصفوفة مرتبة في أجزاء من الملي ثانية عن طريق تقسيم النطاق للنصف.",
+    "d_fr": "Trouvez un élément dans un tableau trié en divisant l'espace de recherche par deux.",
+    "code": "function binarySearch(arr, target) {\n  let left = 0, right = arr.length - 1;\n  while (left <= right) {\n    const mid = Math.floor((left + right) / 2);\n    if (arr[mid] === target) return mid;\n    if (arr[mid] < target) left = mid + 1;\n    else right = mid - 1;\n  }\n  return -1;\n}"
+  },
+  {
+    "icon": "fa-tree",
+    "badge": "badge-pro",
+    "t_en": "3. Binary Trees & Traversal",
+    "t_ar": "3. الأشجار الثنائية وطرق التنقل",
+    "t_fr": "3. Arbres Binaires",
+    "d_en": "Traverse and manipulate hierarchical tree structures using Breadth-First (BFS) and Depth-First Search (DFS).",
+    "d_ar": "تصفح وتنقّل داخل الأشجار وهياكل البيانات الهرمية باستخدام تقنيات BFS و DFS.",
+    "d_fr": "Parcourez les arbres binaires avec les algorithmes BFS et DFS.",
+    "code": "class TreeNode {\n  constructor(val, left = null, right = null) {\n    this.val = val;\n    this.left = left;\n    this.right = right;\n  }\n}\n\nfunction inorder(root) {\n  if (!root) return;\n  inorder(root.left);\n  console.log(root.val);\n  inorder(root.right);\n}"
+  }
+];
+
+  const container = document.getElementById('courseLessons');
+  courseLessons.forEach(lesson => {
+    const div = document.createElement('div');
+    div.className = 'lesson-card reveal';
+    
+    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+    
+    div.innerHTML = `
+      <div class="lesson-header">
+        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+        <div class="lesson-info">
+          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+          ${badgeHtml}
+        </div>
+      </div>
+      <div class="lesson-content">
+        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+        <div data-cl-lang="en">${lesson.d_en || ''}</div>
+        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+        ${codeHtml}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+</script>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

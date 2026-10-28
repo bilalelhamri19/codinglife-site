@@ -1040,3 +1040,142 @@ body.rtl .cl-cookie-banner {
   flex: 1;
   line-height: 1.6;
 }
+
+
+/* ==========================================================================
+   GLOBAL BULLETPROOF RESPONSIVENESS (MOBILE, TABLET, DESKTOP)
+   ========================================================================== */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box !important;
+}
+
+img, video, iframe, canvas, svg {
+  max-width: 100% !important;
+  height: auto;
+}
+
+pre, code, .code-block {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+table {
+  max-width: 100% !important;
+  display: block;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+@media (max-width: 900px) {
+  .cl-header-inner {
+    padding: 0 16px !important;
+  }
+  .cl-brand span {
+    font-size: 1.25rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .course-container {
+    padding: 105px 16px 60px !important;
+  }
+  .course-header h1 {
+    font-size: clamp(1.8rem, 6vw, 2.4rem) !important;
+  }
+  .course-header p {
+    font-size: 0.95rem !important;
+  }
+  .lesson-card {
+    padding: 20px 16px !important;
+    gap: 14px !important;
+  }
+  .lesson-header {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+  .lesson-icon {
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 1.35rem !important;
+  }
+  .lesson-info h3 {
+    font-size: 1.2rem !important;
+  }
+  .lesson-content {
+    font-size: 0.95rem !important;
+  }
+  .cl-course-progress-card {
+    padding: 16px !important;
+    margin: 20px 0 !important;
+  }
+  .cl-daily-tip-banner {
+    margin: 16px 12px !important;
+    padding: 14px 16px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .cl-cookie-banner {
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 12px !important;
+    max-width: none !important;
+    width: auto !important;
+    padding: 18px !important;
+  }
+  .tools-hub-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .prof-hero-card {
+    padding: 24px 18px !important;
+  }
+  .prof-user-left {
+    gap: 16px !important;
+  }
+  .prof-avatar {
+    width: 76px !important;
+    height: 76px !important;
+    font-size: 2.6rem !important;
+  }
+  .prof-modal {
+    max-width: 94vw !important;
+    padding: 20px 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cl-site-header {
+    height: 76px !important;
+  }
+  .course-container {
+    padding: 95px 12px 50px !important;
+  }
+  .cl-brand img {
+    height: 38px !important;
+    width: 38px !important;
+  }
+  .cl-brand span {
+    font-size: 1.15rem !important;
+  }
+  .cl-lang-btn {
+    padding: 6px 8px !important;
+    font-size: 0.78rem !important;
+  }
+  .theme-toggle {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  .cl-mobile-menu-btn {
+    width: 38px !important;
+    height: 38px !important;
+  }
+}
