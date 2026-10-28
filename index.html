@@ -113,21 +113,79 @@
   <meta name="twitter:description" content="Learn to code with 36 structured courses, interactive live playgrounds, assessment quizzes, and developer utilities. 100% Free.">
   <meta name="twitter:image" content="https://codinglife1.vercel.app/logo.png">
 
-  <!-- Schema.org WebSite & Organization -->
+  <!-- Schema.org WebSite, SearchAction & Sitelinks Navigation -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Coding Life",
-    "alternateName": [
-      "codinglife1",
-      "codinglife",
-      "codinglife1 vercel",
-      "Coding Life 1",
-      "codinglife1.vercel.app"
-    ],
-    "url": "https://codinglife1.vercel.app/",
-    "description": "Coding Life (codinglife1) — Official learning platform for modern programming and engineering."
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://codinglife1.vercel.app/#website",
+        "url": "https://codinglife1.vercel.app/",
+        "name": "Coding Life",
+        "alternateName": [
+          "codinglife1",
+          "codinglife",
+          "codinglife1 vercel",
+          "Coding Life 1",
+          "codinglife1.vercel.app"
+        ],
+        "description": "Coding Life (codinglife1) — Official learning platform for modern programming and engineering.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://codinglife1.vercel.app/dorous-albarmaja.html?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "ItemList",
+        "name": "Coding Life Main Navigation Sitelinks",
+        "itemListElement": [
+          {
+            "@type": "SiteNavigationElement",
+            "position": 1,
+            "name": "All Courses — جميع الدروس",
+            "description": "36 full programming courses in Web, Backend, Mobile, and DevOps.",
+            "url": "https://codinglife1.vercel.app/dorous-albarmaja.html"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 2,
+            "name": "Code Playground — محرر الأكواد التفاعلي",
+            "description": "Interactive in-browser HTML, CSS, and JavaScript editor.",
+            "url": "https://codinglife1.vercel.app/playground.html"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 3,
+            "name": "Skills Quiz — اختبارات البرمجة",
+            "description": "Interactive developer skill assessments across 12 technical tracks.",
+            "url": "https://codinglife1.vercel.app/quiz.html"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 4,
+            "name": "Developer Cheatsheets — ملخصات المطورين",
+            "description": "Quick reference guides and syntax cheatsheets for developers.",
+            "url": "https://codinglife1.vercel.app/cheatsheets.html"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 5,
+            "name": "About Coding Life — من نحن",
+            "description": "Our mission to provide free, world-class programming education.",
+            "url": "https://codinglife1.vercel.app/about.html"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 6,
+            "name": "Contact Us — اتصل بنا",
+            "description": "Get in touch with the Coding Life development team.",
+            "url": "https://codinglife1.vercel.app/contact.html"
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>
