@@ -665,86 +665,63 @@
       <button class="tt-btn tt-btn-primary" id="restartBtn">
         <i class="fa-solid fa-rotate-left"></i> <span>Restart Test (Esc)</span>
       </button>
-      <button class="tt-btn tt-btn-secondary" id="openLeaderboardBtn">
-        <i class="fa-solid fa-trophy" style="color:#f59e0b;"></i> <span>Leaderboard</span>
-      </button>
-    </div>
+      </div>
   </div>
 
   <!-- Results Modal -->
   <div class="tt-modal-backdrop" id="resModal">
     <div class="tt-modal">
       <div class="tt-modal-badge" id="modalBadge">🚀</div>
-      <h2 class="tt-modal-title" id="modalTitle">Impressive Speed!</h2>
+      <h2 class="tt-modal-title" id="modalTitle">
+        <span data-cl-lang="en">Test Results</span>
+        <span data-cl-lang="ar">إحصائيات النتيجة</span>
+        <span data-cl-lang="fr">Résultats du Test</span>
+      </h2>
       <p class="tt-modal-subtitle" id="modalRank">Rank: Code Warrior</p>
 
       <div class="tt-modal-grid">
         <div class="tt-modal-stat">
-          <div class="tt-modal-stat-val" id="modalWpm">0</div>
-          <div class="tt-modal-stat-lbl">Final WPM</div>
+          <div class="tt-modal-stat-val" id="modalWpm" style="color:var(--cl-brand);">0</div>
+          <div class="tt-modal-stat-lbl">
+            <span data-cl-lang="en">Speed (WPM)</span>
+            <span data-cl-lang="ar">السرعة (WPM)</span>
+            <span data-cl-lang="fr">Vitesse (WPM)</span>
+          </div>
         </div>
         <div class="tt-modal-stat">
           <div class="tt-modal-stat-val" id="modalAcc">100%</div>
-          <div class="tt-modal-stat-lbl">Accuracy</div>
+          <div class="tt-modal-stat-lbl">
+            <span data-cl-lang="en">Accuracy</span>
+            <span data-cl-lang="ar">نسبة الدقة</span>
+            <span data-cl-lang="fr">Précision</span>
+          </div>
         </div>
         <div class="tt-modal-stat">
-          <div class="tt-modal-stat-val" id="modalChars">0</div>
-          <div class="tt-modal-stat-lbl">Characters</div>
+          <div class="tt-modal-stat-val" id="modalChars" style="color:#10b981;">0</div>
+          <div class="tt-modal-stat-lbl">
+            <span data-cl-lang="en">Correct</span>
+            <span data-cl-lang="ar">رموز صحيحة</span>
+            <span data-cl-lang="fr">Corrects</span>
+          </div>
         </div>
         <div class="tt-modal-stat">
           <div class="tt-modal-stat-val" id="modalErr" style="color:#ef4444;">0</div>
-          <div class="tt-modal-stat-lbl">Errors</div>
+          <div class="tt-modal-stat-lbl">
+            <span data-cl-lang="en">Errors</span>
+            <span data-cl-lang="ar">أخطاء</span>
+            <span data-cl-lang="fr">Erreurs</span>
+          </div>
         </div>
       </div>
 
-      <!-- Submit to Leaderboard -->
-      <div class="tt-submit-score" id="submitScoreBox">
-        <div style="font-size:0.85rem; font-weight:700; color:#f59e0b; margin-bottom:8px;">
-          <i class="fa-solid fa-trophy"></i> Save your score to Leaderboard
-        </div>
-        <div style="display:flex; gap:8px;">
-          <input type="text" id="leaderboardName" class="tt-name-input" style="margin-bottom:0;" placeholder="Your developer nickname..." maxlength="18">
-          <button class="tt-btn tt-btn-gold" id="submitScoreBtn" style="white-space:nowrap;">
-            <span>Save</span>
-          </button>
-        </div>
-        <div id="scoreSavedMsg" style="display:none; color:#10b981; font-weight:700; margin-top:8px; font-size:0.85rem;">
-          <i class="fa-solid fa-circle-check"></i> Score added to Leaderboard!
-        </div>
-      </div>
-
-      <div style="display:flex; gap:10px;">
-        <button class="tt-btn tt-btn-primary" style="flex:1; justify-content:center;" id="modalTryAgainBtn">
-          <i class="fa-solid fa-play"></i> <span>Try Again</span>
-        </button>
-        <button class="tt-btn tt-btn-secondary" style="flex:1; justify-content:center;" id="modalViewLbBtn">
-          <i class="fa-solid fa-trophy"></i> <span>Leaderboard</span>
+      <div style="display:flex; justify-content:center; gap:10px; margin-top:22px;">
+        <button class="tt-btn tt-btn-primary" style="padding:12px 36px; font-size:1.05rem; justify-content:center;" id="modalTryAgainBtn">
+          <i class="fa-solid fa-rotate-left"></i>
+          <span data-cl-lang="en">Try Again</span>
+          <span data-cl-lang="ar">إعادة التجربة</span>
+          <span data-cl-lang="fr">Recommencer</span>
         </button>
       </div>
-    </div>
-  </div>
-
-  
-  <!-- Leaderboard Modal -->
-  <div class="tt-modal-backdrop" id="lbModal">
-    <div class="tt-modal tt-lb-modal">
-      <div class="tt-lb-header">
-        <h2 class="tt-lb-title">
-          <i class="fa-solid fa-trophy" style="color:#f59e0b;"></i>
-          <span>Top Developers Leaderboard</span>
-        </h2>
-        <button type="button" class="tt-kb-alert-close" id="closeLbBtn" style="font-size:1.6rem;">&times;</button>
-      </div>
-      <div class="tt-toolbar-row" style="margin-bottom:12px;">
-        <span style="font-size:0.82rem; color:var(--cl-muted); font-weight:700;">Top WPM across all languages:</span>
-        <button class="tt-pill" id="clearLbBtn" style="font-size:0.75rem; padding:4px 10px;">Reset</button>
-      </div>
-      <div class="tt-lb-list" id="lbList">
-        <!-- Rendered via JS -->
-      </div>
-      <button class="tt-btn tt-btn-primary" style="width:100%; justify-content:center; margin-top:14px;" id="closeLbBottomBtn">
-        <span>Close</span>
-      </button>
     </div>
   </div>
 
@@ -1462,9 +1439,10 @@
       const wpm = parseInt(valWpm.textContent, 10) || 0;
       const acc = parseInt(valAcc.textContent, 10) || 100;
 
+      const correctCount = Math.max(0, typedIndex - errorCount);
       modalWpm.textContent = wpm;
       modalAcc.textContent = `${acc}%`;
-      modalChars.textContent = typedIndex;
+      modalChars.textContent = correctCount;
       modalErr.textContent = errorCount;
 
       let rank = "Junior Coder 🐣";
@@ -1474,18 +1452,9 @@
       else if (wpm >= 55) { rank = "Full-Stack Code Ninja 🥷"; badge = "🚀"; xpEarned = 60; }
       else if (wpm >= 35) { rank = "Solid Code Warrior ⚔️"; badge = "🔥"; xpEarned = 40; }
 
-      modalRank.textContent = `Rank: ${rank}`;
+      const isAr = document.documentElement.getAttribute("lang") === "ar";
+      modalRank.textContent = isAr ? `المستوى: ${rank}` : `Rank: ${rank}`;
       modalBadge.textContent = badge;
-      
-      const submitBox = document.getElementById("submitScoreBox");
-      if (submitBox) submitBox.style.display = "block";
-      const savedMsg = document.getElementById("scoreSavedMsg");
-      if (savedMsg) savedMsg.style.display = "none";
-      const nameInput = document.getElementById("leaderboardName");
-      if (nameInput) {
-        const savedName = localStorage.getItem("cl_user_nickname") || "";
-        if (savedName) nameInput.value = savedName;
-      }
 
       resModal.style.display = "flex";
 
@@ -1539,118 +1508,6 @@
     }
 
     
-    // --- Leaderboard System ---
-    const LB_STORAGE_KEY = "cl_typing_leaderboard_v1";
-    const DEFAULT_LEADERBOARD = [
-      { name: "Ada Lovelace", wpm: 96, acc: 99, lang: "JavaScript", date: "Recent" },
-      { name: "Linus Torvalds", wpm: 88, acc: 97, lang: "C#", date: "Recent" },
-      { name: "Margaret Hamilton", wpm: 82, acc: 100, lang: "Python", date: "Recent" },
-      { name: "Satoshi", wpm: 76, acc: 95, lang: "Rust", date: "Recent" },
-      { name: "Full-Stack Ninja", wpm: 68, acc: 96, lang: "TypeScript", date: "Recent" },
-      { name: "Dev Bilal", wpm: 62, acc: 94, lang: "JavaScript", date: "Recent" }
-    ];
-
-    function getLeaderboard() {
-      try {
-        const stored = localStorage.getItem(LB_STORAGE_KEY);
-        if (!stored) {
-          localStorage.setItem(LB_STORAGE_KEY, JSON.stringify(DEFAULT_LEADERBOARD));
-          return DEFAULT_LEADERBOARD;
-        }
-        return JSON.parse(stored);
-      } catch (err) {
-        return DEFAULT_LEADERBOARD;
-      }
-    }
-
-    function saveToLeaderboard(entry) {
-      const list = getLeaderboard();
-      list.push(entry);
-      // Sort by WPM descending, then accuracy
-      list.sort((a, b) => b.wpm - a.wpm || b.acc - a.acc);
-      // Keep top 25
-      const trimmed = list.slice(0, 25);
-      localStorage.setItem(LB_STORAGE_KEY, JSON.stringify(trimmed));
-      renderLeaderboard();
-    }
-
-    function renderLeaderboard() {
-      const listEl = document.getElementById("lbList");
-      if (!listEl) return;
-      const list = getLeaderboard();
-      if (!list || list.length === 0) {
-        listEl.innerHTML = '<div style="text-align:center; padding:30px; color:var(--cl-muted);">No records yet. Be the first!</div>';
-        return;
-      }
-      listEl.innerHTML = list.map((item, idx) => {
-        let medal = `#${idx + 1}`;
-        if (idx === 0) medal = "🥇";
-        else if (idx === 1) medal = "🥈";
-        else if (idx === 2) medal = "🥉";
-        const isTop1 = idx === 0 ? "is-top1" : "";
-        return `
-          <div class="tt-lb-item ${isTop1}">
-            <div class="tt-lb-rank">${medal}</div>
-            <div class="tt-lb-info">
-              <div class="tt-lb-name">${escapeChar(item.name)}</div>
-              <div class="tt-lb-tag">${escapeChar(item.lang || "Code")} &bull; ${item.date || "Just now"}</div>
-            </div>
-            <div class="tt-lb-stat">
-              <div class="tt-lb-wpm">${item.wpm} <span style="font-size:0.75rem; font-weight:600; color:var(--cl-muted);">WPM</span></div>
-              <div class="tt-lb-acc">${item.acc}% acc</div>
-            </div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    const lbModal = document.getElementById("lbModal");
-    function openLeaderboard() {
-      renderLeaderboard();
-      if (lbModal) lbModal.style.display = "flex";
-    }
-    function closeLeaderboard() {
-      if (lbModal) lbModal.style.display = "none";
-    }
-
-    document.getElementById("openLeaderboardBtn").addEventListener("click", openLeaderboard);
-    document.getElementById("modalViewLbBtn").addEventListener("click", () => {
-      resModal.style.display = "none";
-      openLeaderboard();
-    });
-    document.getElementById("closeLbBtn").addEventListener("click", closeLeaderboard);
-    document.getElementById("closeLbBottomBtn").addEventListener("click", closeLeaderboard);
-
-    document.getElementById("clearLbBtn").addEventListener("click", () => {
-      if (confirm("Reset leaderboard to default?")) {
-        localStorage.removeItem(LB_STORAGE_KEY);
-        renderLeaderboard();
-      }
-    });
-
-    document.getElementById("submitScoreBtn").addEventListener("click", () => {
-      const nameInput = document.getElementById("leaderboardName");
-      const name = (nameInput.value || "").trim() || "Anonymous Coder";
-      localStorage.setItem("cl_user_nickname", name);
-      const wpm = parseInt(modalWpm.textContent, 10) || 0;
-      const acc = parseInt(modalAcc.textContent, 10) || 100;
-      const langNames = { js: "JavaScript", ts: "TypeScript", python: "Python", html: "HTML/CSS", java: "Java", csharp: "C#", php: "PHP", go: "Go", rust: "Rust", sql: "SQL", bash: "Bash" };
-      const langLabel = langNames[selectedLang] || "Code";
-
-      saveToLeaderboard({
-        name: name,
-        wpm: wpm,
-        acc: acc,
-        lang: langLabel,
-        date: "Just now"
-      });
-
-      document.getElementById("submitScoreBox").style.display = "none";
-      const savedMsg = document.getElementById("scoreSavedMsg");
-      if (savedMsg) savedMsg.style.display = "block";
-      if (window.clToast) window.clToast("🏆 Score saved to Leaderboard!", "success");
-    });
-
     // Language pills
     document.querySelectorAll("#langPills .tt-pill").forEach(pill => {
       pill.addEventListener("click", () => {
