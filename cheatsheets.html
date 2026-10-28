@@ -708,13 +708,16 @@
     }
 
     window.copySnippet = function(btn) {
+      if (btn.classList.contains("copied")) return;
+      btn.classList.add("copied");
       const code = btn.nextElementSibling.innerText;
       navigator.clipboard.writeText(code).then(() => {
         btn.innerHTML = `<i class="fa-solid fa-check" style="color:#10b981;"></i>`;
         if (window.clToast) window.clToast(document.documentElement.getAttribute("lang") === "ar" ? "تم نسخ الكود بنجاح!" : "Code copied to clipboard!", "success");
         setTimeout(() => {
           btn.innerHTML = `<i class="fa-regular fa-copy"></i>`;
-        }, 1800);
+          btn.classList.remove("copied");
+        }, 1600);
       });
     };
 

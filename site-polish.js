@@ -616,7 +616,8 @@
     if (input) input.placeholder = t().search.placeholder;
   }
 
-  // Toast Notification Engine
+  // Toast Notification Engine - Single active toast, never stacks
+  let clToastTimer = null;
   window.clToast = function (message, type = "info") {
     let container = document.getElementById("clToastContainer");
     if (!container) {
@@ -625,15 +626,21 @@
       container.className = "cl-toast-container";
       document.body.appendChild(container);
     }
+    // Always clear existing toasts so they never stack
+    if (clToastTimer) clearTimeout(clToastTimer);
+    container.innerHTML = "";
+
     const icon = type === "success" ? "fa-circle-check" : "fa-circle-info";
     const toast = document.createElement("div");
     toast.className = `cl-toast cl-toast-${type}`;
     toast.innerHTML = `<i class="fa-solid ${icon}"></i><span>${message}</span>`;
     container.appendChild(toast);
-    setTimeout(() => {
+    clToastTimer = setTimeout(() => {
       toast.classList.add("fade-out");
-      setTimeout(() => toast.remove(), 300);
-    }, 2800);
+      setTimeout(() => {
+        if (toast.parentElement) toast.remove();
+      }, 300);
+    }, 2000);
   };
 
   function polishCodeBlocks() {
