@@ -181,7 +181,6 @@
       { href: "index.html", icon: "fa-house", label: tr.home },
       { href: "dorous-albarmaja.html", icon: "fa-code", label: tr.courses },
       { href: "blog.html", icon: "fa-newspaper", label: tr.blog },
-      { href: "sql-playground.html", icon: "fa-database", label: "SQL Lab" },
       { href: "profile.html", icon: "fa-user-circle", label: currentLang === "ar" ? "ملفي" : currentLang === "fr" ? "Profil" : "Profile" },
       { href: "contact.html", icon: "fa-envelope", label: tr.contact }
     ];
