@@ -30,6 +30,10 @@
       <h1><i class="fa-solid fa-paper-plane"></i> تواصل معنا</h1>
       <p>لديك أسئلة أو أفكار؟ يسعدنا سماع ذلك منك. أرسل لنا رسالة وسنرد عليك في غضون 24 ساعة.</p>
     </div>
+    <div data-cl-lang="fr">
+      <h1><i class="fa-solid fa-paper-plane"></i> Contactez-nous</h1>
+      <p>Vous avez des questions ou des suggestions ? Envoyez-nous un message et nous vous répondrons sous 24h.</p>
+    </div>
   </div>
 
   <div class="contact-form-container reveal">
@@ -42,27 +46,32 @@
       <div class="form-group">
         <div data-cl-lang="en"><label for="name">Full Name</label></div>
         <div data-cl-lang="ar"><label for="name">الاسم الكامل</label></div>
+        <div data-cl-lang="fr"><label for="name">Nom complet</label></div>
         <input type="text" id="name" name="name" placeholder="..." required>
       </div>
       <div class="form-group">
         <div data-cl-lang="en"><label for="email">Email Address</label></div>
         <div data-cl-lang="ar"><label for="email">البريد الإلكتروني</label></div>
+        <div data-cl-lang="fr"><label for="email">Adresse e-mail</label></div>
         <input type="email" id="email" name="email" placeholder="..." required>
       </div>
       <div class="form-group">
         <div data-cl-lang="en"><label for="subject">Subject</label></div>
         <div data-cl-lang="ar"><label for="subject">الموضوع</label></div>
+        <div data-cl-lang="fr"><label for="subject">Sujet</label></div>
         <input type="text" id="subject" name="subject" placeholder="..." required>
       </div>
       <div class="form-group">
         <div data-cl-lang="en"><label for="message">Your Message</label></div>
         <div data-cl-lang="ar"><label for="message">رسالتك</label></div>
+        <div data-cl-lang="fr"><label for="message">Votre message</label></div>
         <textarea id="message" name="message" rows="6" placeholder="..." required></textarea>
       </div>
       
       <button type="submit" class="btn-submit">
         <span data-cl-lang="en">Send Message <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></span>
         <span data-cl-lang="ar">إرسال الرسالة <i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i></span>
+        <span data-cl-lang="fr">Envoyer le message <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i></span>
       </button>
     </form>
     <div id="contact-status" style="margin-top: 20px; text-align: center; display: none; font-weight: 700;"></div>
@@ -83,7 +92,8 @@
       const lang = localStorage.getItem('cl-lang') || 'en';
       const msgs = {
         en: { sending: "Sending...", success: "Message Sent Successfully! ✅", error: "Oops! Error sending message." },
-        ar: { sending: "جاري الإرسال...", success: "تم إرسال الرسالة بنجاح! ✅", error: "عذراً! حدث خطأ في الإرسال." }
+        ar: { sending: "جاري الإرسال...", success: "تم إرسال الرسالة بنجاح! ✅", error: "عذراً! حدث خطأ في الإرسال." },
+        fr: { sending: "Envoi en cours...", success: "Message envoyé avec succès ! ✅", error: "Oups ! Erreur lors de l'envoi." }
       };
       const currentMsgs = msgs[lang] || msgs.en;
 
