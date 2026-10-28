@@ -4,111 +4,91 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Courses - Coding Life</title>
+  <meta name="description" content="Explore professional programming courses: HTML, CSS, JavaScript, React, Python, Node.js, Java, PHP, SQL, Flutter, Git and more. Learn to code with Coding Life.">
+  <meta name="keywords" content="coding courses, programming tutorials, learn to code, HTML CSS JavaScript React Python SQL, دروس البرمجة, تعلم البرمجة">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://codinglife1.vercel.app/dorous-albarmaja.html">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Pacifico&family=Fira+Code:wght@400;600&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
-    .course-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 60px 40px; /* Large vertical gap */
-      margin-top: 50px;
+    /* ─── Page Layout ─── */
+    .courses-page {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 32px 20px 100px;
     }
-    .course-card {
-      display: flex !important;
-      flex-direction: column !important;
-      height: 100% !important;
-      background: var(--cl-surface) !important;
-      border-radius: 24px !important; /* Rounded corners */
-      padding: 0 !important; /* Remove internal padding from site-polish.css */
-      border: 1px solid var(--cl-line) !important;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    }
-    .course-card:hover {
-      transform: translateY(-12px) !important;
-      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25) !important;
-      border-color: var(--cl-brand) !important;
-    }
-    .course-card img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      border-bottom: 1px solid var(--cl-line);
-      transition: transform 0.6s ease;
-    }
-    .course-card:hover img {
-      transform: scale(1.03);
-    }
-    .course-card-content {
-      padding: 32px !important;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .course-card h3 {
-      font-size: 1.6rem !important;
-      font-weight: 800 !important;
-      color: var(--cl-brand) !important;
-      margin-bottom: 16px !important;
-    }
-    .course-card p {
-      font-size: 1.05rem !important;
-      color: var(--cl-muted) !important;
-      line-height: 1.7 !important;
-      margin-bottom: 30px !important;
-      flex-grow: 1;
-    }
-    .btn-learn {
-      background: var(--cl-brand-soft) !important;
-      color: var(--cl-brand) !important;
-      padding: 16px !important;
-      border-radius: 14px !important;
-      font-weight: 700 !important;
+
+    /* ─── Hero Header ─── */
+    .courses-hero {
       text-align: center;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border: 1px solid transparent;
+      padding: 20px 0 48px;
     }
-    .course-card:hover .btn-learn {
-      background: var(--cl-brand) !important;
-      color: white !important;
-    }
-    .section-title {
-      font-size: 2.2rem !important;
-      font-weight: 900 !important;
-      color: var(--cl-brand) !important;
-      letter-spacing: -0.5px;
-    }
-    .section-separator {
-      height: 6px;
-      width: 80px;
-      background: linear-gradient(90deg, var(--cl-brand), var(--cl-success));
-      border-radius: 10px;
-      margin: 20px 0 50px 0;
-    }
-    .category-block {
-      margin-bottom: 120px !important;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .category-block.is-hidden {
-      display: none !important;
-    }
-    .course-card.is-hidden {
-      display: none !important;
-    }
-    .course-filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
+    .courses-hero-badge {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 50px;
-      padding: 16px 20px;
+      gap: 8px;
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.3);
+      color: var(--cl-brand);
+      padding: 6px 18px;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .courses-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 900;
+      color: var(--cl-ink);
+      margin: 0 0 14px;
+      line-height: 1.15;
+    }
+    .courses-hero h1 span {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .courses-hero p {
+      font-size: 1.1rem;
+      color: var(--cl-muted);
+      max-width: 640px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      font-size: 0.88rem;
+      color: var(--cl-muted);
+    }
+    .hero-stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-stat i { color: var(--cl-brand); }
+    .hero-stat strong { color: var(--cl-ink); }
+
+    /* ─── Search & Filter Bar ─── */
+    .filter-bar {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 16px;
+      border-radius: 18px;
+      padding: 16px 20px;
+      margin-bottom: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
       box-shadow: var(--cl-shadow-sm);
     }
     .filter-pills {
@@ -117,327 +97,1213 @@
       gap: 8px;
     }
     .filter-pill {
-      background: var(--cl-brand-soft);
-      border: 1px solid transparent;
-      color: var(--cl-brand);
-      padding: 8px 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-muted);
+      padding: 7px 16px;
       border-radius: 99px;
+      font-size: 0.83rem;
       font-weight: 700;
-      font-size: 0.85rem;
       cursor: pointer;
       transition: var(--cl-transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .filter-pill:hover, .filter-pill.active {
+    .filter-pill:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+    }
+    .filter-pill.active {
       background: var(--cl-brand);
+      border-color: var(--cl-brand);
       color: #020617;
     }
-    .course-search-box {
-      position: relative;
-      min-width: 250px;
-      flex: 1;
-      max-width: 320px;
+    .filter-pill span.pill-count {
+      background: rgba(0,0,0,0.15);
+      padding: 1px 6px;
+      border-radius: 99px;
+      font-size: 0.72rem;
     }
-    .course-search-box input {
+    .filter-pill.active span.pill-count {
+      background: rgba(0,0,0,0.25);
+    }
+    .search-box {
+      position: relative;
+      min-width: 240px;
+    }
+    .search-box input {
       width: 100%;
-      padding: 10px 16px 10px 38px;
+      padding: 10px 16px 10px 40px;
       border-radius: 99px;
       border: 1px solid var(--cl-line);
       background: var(--cl-bg);
       color: var(--cl-ink);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       outline: none;
       box-sizing: border-box;
+      font-family: inherit;
       transition: var(--cl-transition);
     }
-    body.rtl .course-search-box input {
-      padding: 10px 38px 10px 16px;
-    }
-    .course-search-box input:focus {
+    .search-box input:focus {
       border-color: var(--cl-brand);
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.15);
     }
-    .course-search-box i {
+    .search-box i {
       position: absolute;
       left: 14px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--cl-muted);
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+    body.rtl .search-box input { padding: 10px 40px 10px 16px; }
+    body.rtl .search-box i { left: auto; right: 14px; }
+
+    /* ─── Section Headers ─── */
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .section-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .section-head h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--cl-ink);
+      margin: 0;
+    }
+    .section-head span.section-count {
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.06);
+      color: var(--cl-muted);
+      margin-left: 8px;
+    }
+
+    /* ─── Course Grid ─── */
+    .category-block {
+      margin-bottom: 60px;
+    }
+    .category-block.is-hidden { display: none !important; }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    /* ─── Course Card ─── */
+    .course-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      text-decoration: none !important;
+      position: relative;
+    }
+    .course-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+    .course-card.is-hidden { display: none !important; }
+
+    /* Card Color Bar */
+    .card-bar {
+      height: 4px;
+      width: 100%;
+    }
+
+    /* Card Icon Header (replaces images) */
+    .card-icon-area {
+      padding: 28px 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-lang-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .card-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+    .card-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 99px;
+      letter-spacing: 0.3px;
+    }
+    .badge-hot {
+      background: rgba(239,68,68,0.15);
+      color: #ef4444;
+      border: 1px solid rgba(239,68,68,0.3);
+    }
+    .badge-new {
+      background: rgba(16,185,129,0.15);
+      color: #10b981;
+      border: 1px solid rgba(16,185,129,0.3);
+    }
+    .badge-free {
+      background: rgba(245,158,11,0.15);
+      color: #f59e0b;
+      border: 1px solid rgba(245,158,11,0.3);
+    }
+    .badge-popular {
+      background: rgba(139,92,246,0.15);
+      color: #8b5cf6;
+      border: 1px solid rgba(139,92,246,0.3);
+    }
+
+    /* Card Body */
+    .card-body {
+      padding: 18px 28px 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-title {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: var(--cl-ink);
+      margin: 0 0 8px;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 0.91rem;
+      color: var(--cl-muted);
+      line-height: 1.7;
+      margin: 0 0 18px;
+      flex-grow: 1;
+    }
+
+    /* Card Meta row */
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.78rem;
+      color: var(--cl-muted);
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .card-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .card-meta-item i { font-size: 0.72rem; }
+
+    /* Topics chips */
+    .card-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .topic-chip {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--cl-ink);
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* CTA Button */
+    .card-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none !important;
+      font-weight: 700;
       font-size: 0.9rem;
+      transition: var(--cl-transition);
+      background: rgba(56,189,248,0.08);
+      color: var(--cl-brand);
+      border: 1px solid rgba(56,189,248,0.2);
     }
-    body.rtl .course-search-box i {
-      left: auto;
-      right: 14px;
+    .card-cta:hover {
+      background: var(--cl-brand);
+      color: #020617;
+      border-color: var(--cl-brand);
+      transform: none;
     }
+    .card-cta i { font-size: 0.85rem; transition: transform 0.2s; }
+    .card-cta:hover i { transform: translateX(3px); }
+    body.rtl .card-cta:hover i { transform: translateX(-3px); }
+
+    /* ─── Empty State ─── */
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--cl-muted);
+    }
+    .no-results i { font-size: 3rem; opacity: 0.3; margin-bottom: 12px; }
+    .no-results.visible { display: block; }
   </style>
 </head>
 <body>
 
-<div class="course-container" style="max-width: 1300px; margin-top: 150px;">
-  <div class="course-header" style="text-align: left; padding: 0 0 40px 0; background: none !important; color: var(--cl-ink) !important;">
+<div class="courses-page">
+
+  <!-- ══════════════════════════════
+       HERO HEADER
+  ══════════════════════════════ -->
+  <div class="courses-hero">
     <div data-cl-lang="en">
-      <h1 style="font-size: clamp(2.5rem, 5vw, 4rem) !important; font-weight: 900; margin-bottom: 16px;">Global <span style="color: var(--cl-brand);">Curriculum</span></h1>
-      <p style="font-size: 1.2rem; color: var(--cl-muted); max-width: 700px;">Professional grade engineering paths designed for modern software development.</p>
+      <div class="courses-hero-badge">
+        <i class="fa-solid fa-graduation-cap"></i> Professional Curriculum
+      </div>
+      <h1>Learn to Code.<br><span>Master the Craft.</span></h1>
+      <p>Structured, practical, and modern programming courses built for real-world engineering — from zero to production-ready.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1 style="font-size: clamp(2.5rem, 5vw, 4rem) !important; font-weight: 900; margin-bottom: 16px;">المناهج <span style="color: var(--cl-brand);">العالمية</span></h1>
-      <p style="font-size: 1.2rem; color: var(--cl-muted); max-width: 700px;">مسارات هندسية احترافية مصممة لتطوير البرمجيات الحديثة.</p>
+      <div class="courses-hero-badge">
+        <i class="fa-solid fa-graduation-cap"></i> منهج احترافي متكامل
+      </div>
+      <h1>تعلّم البرمجة.<br><span>أتقن الصنعة.</span></h1>
+      <p>دروس برمجية منظمة وعملية وحديثة مبنية للمشاريع الحقيقية — من الصفر حتى الإنتاج الفعلي.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <div class="courses-hero-badge">
+        <i class="fa-solid fa-graduation-cap"></i> Programme professionnel
+      </div>
+      <h1>Apprenez à coder.<br><span>Maîtrisez l'art.</span></h1>
+      <p>Des formations structurées et modernes conçues pour le développement logiciel réel — du zéro au niveau professionnel.</p>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat"><i class="fa-solid fa-book-open"></i> <strong>15</strong> <span data-cl-lang="en">Courses</span><span data-cl-lang="ar">دورة</span><span data-cl-lang="fr">cours</span></div>
+      <div class="hero-stat"><i class="fa-solid fa-users"></i> <strong>100%</strong> <span data-cl-lang="en">Free</span><span data-cl-lang="ar">مجانية</span><span data-cl-lang="fr">Gratuits</span></div>
+      <div class="hero-stat"><i class="fa-solid fa-globe"></i> <strong>3</strong> <span data-cl-lang="en">Languages</span><span data-cl-lang="ar">لغات</span><span data-cl-lang="fr">Langues</span></div>
+      <div class="hero-stat"><i class="fa-solid fa-mobile-screen"></i> <span data-cl-lang="en">Mobile Friendly</span><span data-cl-lang="ar">يدعم الجوال</span><span data-cl-lang="fr">Mobile Friendly</span></div>
     </div>
   </div>
 
-  <!-- Interactive Filter Bar -->
-  <div class="course-filter-bar">
+  <!-- ══════════════════════════════
+       FILTER BAR
+  ══════════════════════════════ -->
+  <div class="filter-bar">
     <div class="filter-pills">
       <button class="filter-pill active" data-filter="all">
-        <span data-cl-lang="en">All Tracks</span><span data-cl-lang="ar">جميع المسارات</span>
+        <i class="fa-solid fa-border-all"></i>
+        <span data-cl-lang="en">All</span><span data-cl-lang="ar">الكل</span><span data-cl-lang="fr">Tout</span>
+        <span class="pill-count">15</span>
       </button>
       <button class="filter-pill" data-filter="web">
-        <span data-cl-lang="en">Web & Frontend</span><span data-cl-lang="ar">الويب والواجهات</span>
-      </button>
-      <button class="filter-pill" data-filter="mobile">
-        <span data-cl-lang="en">Mobile Apps</span><span data-cl-lang="ar">تطبيقات الموبايل</span>
+        <i class="fa-solid fa-code"></i>
+        <span data-cl-lang="en">Web</span><span data-cl-lang="ar">الويب</span><span data-cl-lang="fr">Web</span>
+        <span class="pill-count">4</span>
       </button>
       <button class="filter-pill" data-filter="backend">
-        <span data-cl-lang="en">Backend & Systems</span><span data-cl-lang="ar">الأنظمة الخلفية</span>
+        <i class="fa-solid fa-server"></i>
+        <span data-cl-lang="en">Backend</span><span data-cl-lang="ar">Backend</span><span data-cl-lang="fr">Backend</span>
+        <span class="pill-count">6</span>
+      </button>
+      <button class="filter-pill" data-filter="mobile">
+        <i class="fa-solid fa-mobile-screen"></i>
+        <span data-cl-lang="en">Mobile</span><span data-cl-lang="ar">موبايل</span><span data-cl-lang="fr">Mobile</span>
+        <span class="pill-count">1</span>
       </button>
       <button class="filter-pill" data-filter="tools">
-        <span data-cl-lang="en">Lab & Tools</span><span data-cl-lang="ar">المختبر والأدوات</span>
+        <i class="fa-solid fa-toolbox"></i>
+        <span data-cl-lang="en">Tools</span><span data-cl-lang="ar">أدوات</span><span data-cl-lang="fr">Outils</span>
+        <span class="pill-count">3</span>
       </button>
       <button class="filter-pill" data-filter="growth">
-        <span data-cl-lang="en">Growth & Mindset</span><span data-cl-lang="ar">تطوير الذات</span>
+        <i class="fa-solid fa-seedling"></i>
+        <span data-cl-lang="en">Growth</span><span data-cl-lang="ar">تطوير الذات</span><span data-cl-lang="fr">Croissance</span>
+        <span class="pill-count">3</span>
       </button>
     </div>
-    <div class="course-search-box">
+    <div class="search-box">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="courseFilterInput" placeholder="Filter courses...">
+      <input type="text" id="courseSearch" placeholder="Search courses..." autocomplete="off">
     </div>
   </div>
 
-  <!-- Path: Web Foundations -->
+  <!-- ══════════════════════════════
+       SECTION 1 — WEB DEVELOPMENT
+  ══════════════════════════════ -->
   <div class="category-block reveal" data-category="web">
-    <div data-cl-lang="en"><h2 class="section-title">Web Development Foundations</h2><div class="section-separator"></div></div>
-    <div data-cl-lang="ar"><h2 class="section-title">أساسيات تطوير الويب</h2><div class="section-separator"></div></div>
-    
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(56,189,248,0.12); color:var(--cl-brand);">
+        <i class="fa-solid fa-code"></i>
+      </div>
+      <div>
+        <h2>
+          <span data-cl-lang="en">Web Development</span>
+          <span data-cl-lang="ar">تطوير الويب</span>
+          <span data-cl-lang="fr">Développement Web</span>
+          <span class="section-count">4</span>
+        </h2>
+      </div>
+    </div>
+
     <div class="course-grid">
-      <div class="course-card">
-        <img src="assets/images/html.jpg" alt="HTML">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>HTML5 Masterclass</h3><p>Master the semantic structure and SEO foundations of the modern web.</p><a href="html.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>احتراف HTML5</h3><p>أتقن الهيكل الدلالي وأساسيات الـ SEO للويب الحديث.</p><a href="html.html" class="btn-learn">ابدأ التعلم</a></div>
+
+      <!-- HTML5 -->
+      <div class="course-card" data-keywords="html html5 structure semantic seo markup tags">
+        <div class="card-bar" style="background:linear-gradient(90deg,#e34c26,#f06529);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(227,76,38,0.12); color:#e34c26;">
+            <i class="fa-brands fa-html5"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-hot" data-cl-lang="en">🔥 Most Popular</span>
+            <span class="card-badge badge-hot" data-cl-lang="ar">🔥 الأكثر طلبًا</span>
+            <span class="card-badge badge-hot" data-cl-lang="fr">🔥 Le plus populaire</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">HTML5 Masterclass</div>
+          <div class="card-title" data-cl-lang="ar">احتراف HTML5</div>
+          <div class="card-title" data-cl-lang="fr">Maîtrise HTML5</div>
+          <div class="card-desc" data-cl-lang="en">Master semantic structure, forms, accessibility, and SEO foundations. The bedrock of every modern website.</div>
+          <div class="card-desc" data-cl-lang="ar">أتقن الهيكل الدلالي، النماذج، إمكانية الوصول، وأساسيات تحسين محركات البحث — القاعدة الصلبة لكل موقع حديث.</div>
+          <div class="card-desc" data-cl-lang="fr">Maîtrisez la structure sémantique, les formulaires, l'accessibilité et le SEO — la base de tout site web moderne.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">Beginner</span><span data-cl-lang="ar">مبتدئ</span><span data-cl-lang="fr">Débutant</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>3–5h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.9</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">Semantic Tags</span>
+            <span class="topic-chip">Forms & Input</span>
+            <span class="topic-chip">SEO</span>
+            <span class="topic-chip">Accessibility</span>
+          </div>
+          <a href="html.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/css.webp" alt="CSS">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>CSS3 Styling</h3><p>Build stunning layouts with Flexbox, Grid, and complex animations.</p><a href="css.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>تصميم CSS3</h3><p>ابنِ واجهات مذهلة باستخدام Flexbox و Grid والرسوم المتحركة المعقدة.</p><a href="css.html" class="btn-learn">ابدأ التعلم</a></div>
+
+      <!-- CSS3 -->
+      <div class="course-card" data-keywords="css css3 flexbox grid animation layout design">
+        <div class="card-bar" style="background:linear-gradient(90deg,#264de4,#2965f1);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(38,77,228,0.12); color:#264de4;">
+            <i class="fa-brands fa-css3-alt"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-popular" data-cl-lang="en">⭐ Recommended</span>
+            <span class="card-badge badge-popular" data-cl-lang="ar">⭐ موصى به</span>
+            <span class="card-badge badge-popular" data-cl-lang="fr">⭐ Recommandé</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">CSS3 Styling & Layouts</div>
+          <div class="card-title" data-cl-lang="ar">تصميم CSS3 والتخطيطات</div>
+          <div class="card-title" data-cl-lang="fr">CSS3 — Style & Mise en page</div>
+          <div class="card-desc" data-cl-lang="en">Build stunning responsive layouts with Flexbox, Grid, custom animations, and modern design systems.</div>
+          <div class="card-desc" data-cl-lang="ar">ابنِ واجهات متجاوبة مذهلة باستخدام Flexbox، Grid، الرسوم المتحركة، وأنظمة التصميم الحديثة.</div>
+          <div class="card-desc" data-cl-lang="fr">Créez des mises en page responsives époustouflantes avec Flexbox, Grid, animations et systèmes de design modernes.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">Beginner</span><span data-cl-lang="ar">مبتدئ</span><span data-cl-lang="fr">Débutant</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>5–8h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.8</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">Flexbox</span>
+            <span class="topic-chip">CSS Grid</span>
+            <span class="topic-chip">Animations</span>
+            <span class="topic-chip">Variables</span>
+          </div>
+          <a href="css.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/js.webp" alt="JS">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>JS Deep Dive</h3><p>The logic engine. From ES6+ fundamentals to advanced async patterns.</p><a href="javascript.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>تعمق في JavaScript</h3><p>محرك المنطق. من أساسيات ES6+ إلى الأنماط المتقدمة غير المتزامنة.</p><a href="javascript.html" class="btn-learn">ابدأ التعلم</a></div>
+
+      <!-- JavaScript -->
+      <div class="course-card" data-keywords="javascript js es6 async dom functions closures events">
+        <div class="card-bar" style="background:linear-gradient(90deg,#f7df1e,#f0b400);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(247,223,30,0.12); color:#c9a800; font-family:'Fira Code', monospace; font-size:1.3rem;">
+            JS
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-hot" data-cl-lang="en">🔥 Must Learn</span>
+            <span class="card-badge badge-hot" data-cl-lang="ar">🔥 ضروري</span>
+            <span class="card-badge badge-hot" data-cl-lang="fr">🔥 Indispensable</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">JavaScript — Deep Dive</div>
+          <div class="card-title" data-cl-lang="ar">JavaScript — الغوص في الأعماق</div>
+          <div class="card-title" data-cl-lang="fr">JavaScript — Plongée en profondeur</div>
+          <div class="card-desc" data-cl-lang="en">The logic engine of the web. Master ES6+, async/await, closures, DOM APIs, and advanced patterns.</div>
+          <div class="card-desc" data-cl-lang="ar">محرك المنطق في الويب. أتقن ES6+، async/await، الإغلاقات، واجهات DOM، والأنماط المتقدمة.</div>
+          <div class="card-desc" data-cl-lang="fr">Le moteur logique du web. Maîtrisez ES6+, async/await, closures, les APIs DOM et les patterns avancés.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">Intermediate</span><span data-cl-lang="ar">متوسط</span><span data-cl-lang="fr">Intermédiaire</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>10–14h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.9</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">ES6+</span>
+            <span class="topic-chip">Async/Await</span>
+            <span class="topic-chip">DOM</span>
+            <span class="topic-chip">Closures</span>
+            <span class="topic-chip">OOP</span>
+          </div>
+          <a href="javascript.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/react.jpg" alt="React">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>React Modern</h3><p>Component architecture, Hooks, and high-performance SPA engineering.</p><a href="react.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>React الحديث</h3><p>هندسة المكونات، الـ Hooks، وتطوير تطبيقات الصفحة الواحدة عالية الأداء.</p><a href="react.html" class="btn-learn">ابدأ التعلم</a></div>
+
+      <!-- React -->
+      <div class="course-card" data-keywords="react reactjs hooks component spa frontend ui library">
+        <div class="card-bar" style="background:linear-gradient(90deg,#61dafb,#0ea5e9);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(97,218,251,0.12); color:#61dafb;">
+            <i class="fa-brands fa-react"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-new" data-cl-lang="en">✨ Modern</span>
+            <span class="card-badge badge-new" data-cl-lang="ar">✨ حديث</span>
+            <span class="card-badge badge-new" data-cl-lang="fr">✨ Moderne</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">React — Modern Frontend</div>
+          <div class="card-title" data-cl-lang="ar">React — الواجهة الأمامية الحديثة</div>
+          <div class="card-title" data-cl-lang="fr">React — Frontend Moderne</div>
+          <div class="card-desc" data-cl-lang="en">Component architecture, Hooks (useState, useEffect, useContext), state management, and high-performance SPA engineering.</div>
+          <div class="card-desc" data-cl-lang="ar">هندسة المكونات، الـ Hooks، إدارة الحالة، وبناء تطبيقات الصفحة الواحدة عالية الأداء.</div>
+          <div class="card-desc" data-cl-lang="fr">Architecture en composants, Hooks, gestion d'état et développement d'applications SPA haute performance.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">Intermediate</span><span data-cl-lang="ar">متوسط</span><span data-cl-lang="fr">Intermédiaire</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>12–16h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.8</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">Components</span>
+            <span class="topic-chip">Hooks</span>
+            <span class="topic-chip">State</span>
+            <span class="topic-chip">JSX</span>
+            <span class="topic-chip">Routing</span>
+          </div>
+          <a href="react.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
+
     </div>
   </div>
 
-  <!-- Path: Mobile Development -->
-  <div class="category-block reveal" data-category="mobile">
-    <div data-cl-lang="en"><h2 class="section-title">Mobile App Development</h2><div class="section-separator"></div></div>
-    <div data-cl-lang="ar"><h2 class="section-title">تطوير تطبيقات الموبايل</h2><div class="section-separator"></div></div>
-    
-    <div class="course-grid">
-      <div class="course-card">
-        <img src="assets/images/flutter.jpg" alt="Flutter">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Flutter Mastery</h3><p>Native performance on iOS and Android with a single codebase.</p><a href="flutter.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>إتقان Flutter</h3><p>أداء أصلي على iOS و Android باستخدام قاعدة كود واحدة.</p><a href="flutter.html" class="btn-learn">ابدأ التعلم</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Path: Backend & Systems -->
+  <!-- ══════════════════════════════
+       SECTION 2 — BACKEND & SYSTEMS
+  ══════════════════════════════ -->
   <div class="category-block reveal" data-category="backend">
-    <div data-cl-lang="en"><h2 class="section-title" style="color: #a855f7;">Backend & Enterprise Logic</h2><div class="section-separator" style="background: #a855f7;"></div></div>
-    <div data-cl-lang="ar"><h2 class="section-title" style="color: #a855f7;">الأنظمة الخلفية ومنطق الشركات</h2><div class="section-separator" style="background: #a855f7;"></div></div>
-    
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(139,92,246,0.12); color:#8b5cf6;">
+        <i class="fa-solid fa-server"></i>
+      </div>
+      <div>
+        <h2>
+          <span data-cl-lang="en">Backend & Systems</span>
+          <span data-cl-lang="ar">الأنظمة الخلفية</span>
+          <span data-cl-lang="fr">Backend & Systèmes</span>
+          <span class="section-count">6</span>
+        </h2>
+      </div>
+    </div>
+
     <div class="course-grid">
-      <div class="course-card">
-        <img src="assets/images/java.jpg" alt="Java">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Java Enterprise</h3><p>Master the backbone of corporate systems with Spring Boot 3.</p><a href="java.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>جافا للمؤسسات</h3><p>أتقن العمود الفقري لأنظمة الشركات الكبرى باستخدام Spring Boot 3.</p><a href="java.html" class="btn-learn">ابدأ التعلم</a></div>
+
+      <!-- Python -->
+      <div class="course-card" data-keywords="python scripting automation data science ai machine learning backend">
+        <div class="card-bar" style="background:linear-gradient(90deg,#3776ab,#ffd43b);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(55,118,171,0.12); color:#3776ab;">
+            <i class="fa-brands fa-python"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-hot" data-cl-lang="en">🔥 Top Rated</span>
+            <span class="card-badge badge-hot" data-cl-lang="ar">🔥 الأعلى تقييمًا</span>
+            <span class="card-badge badge-hot" data-cl-lang="fr">🔥 Mieux noté</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">Python — Expert Level</div>
+          <div class="card-title" data-cl-lang="ar">بايثون — مستوى الخبراء</div>
+          <div class="card-title" data-cl-lang="fr">Python — Niveau Expert</div>
+          <div class="card-desc" data-cl-lang="en">From fundamentals to automation scripts, data science workflows, and AI integrations with clean Pythonic code.</div>
+          <div class="card-desc" data-cl-lang="ar">من الأساسيات إلى سكريبتات الأتمتة وسير عمل علوم البيانات ودمج الذكاء الاصطناعي — بكود بايثوني نظيف.</div>
+          <div class="card-desc" data-cl-lang="fr">Des fondamentaux aux scripts d'automatisation, en passant par la data science et l'intégration de l'IA.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">All Levels</span><span data-cl-lang="ar">جميع المستويات</span><span data-cl-lang="fr">Tous niveaux</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>10–15h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.9</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">OOP</span>
+            <span class="topic-chip">Automation</span>
+            <span class="topic-chip">Data Science</span>
+            <span class="topic-chip">AI/ML</span>
+          </div>
+          <a href="python.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/nodejs.jpg" alt="Node">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Node.js Scalable</h3><p>Build real-time, high-throughput architectures using V8.</p><a href="nodejs.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>Node.js المتقدم</h3><p>ابنِ معماريات فورية عالية الإنتاجية باستخدام محرك V8.</p><a href="nodejs.html" class="btn-learn">ابدأ التعلم</a></div>
+
+      <!-- Node.js -->
+      <div class="course-card" data-keywords="nodejs node javascript backend api server express rest">
+        <div class="card-bar" style="background:linear-gradient(90deg,#339933,#4caf50);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(51,153,51,0.12); color:#339933;">
+            <i class="fa-brands fa-node-js"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-popular" data-cl-lang="en">⭐ In Demand</span>
+            <span class="card-badge badge-popular" data-cl-lang="ar">⭐ مطلوب جدًا</span>
+            <span class="card-badge badge-popular" data-cl-lang="fr">⭐ Très demandé</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">Node.js — Scalable Backend</div>
+          <div class="card-title" data-cl-lang="ar">Node.js — الـ Backend القابل للتوسع</div>
+          <div class="card-title" data-cl-lang="fr">Node.js — Backend Scalable</div>
+          <div class="card-desc" data-cl-lang="en">Build real-time, high-throughput server architectures using the V8 engine, Express, and REST API design patterns.</div>
+          <div class="card-desc" data-cl-lang="ar">ابنِ معماريات خادم فورية وعالية الإنتاجية باستخدام محرك V8، Express، وأنماط تصميم REST API.</div>
+          <div class="card-desc" data-cl-lang="fr">Créez des architectures serveur temps-réel et haute performance avec V8, Express et les patterns REST API.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">Intermediate</span><span data-cl-lang="ar">متوسط</span><span data-cl-lang="fr">Intermédiaire</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>8–12h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.7</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">Express</span>
+            <span class="topic-chip">REST API</span>
+            <span class="topic-chip">Middleware</span>
+            <span class="topic-chip">Auth</span>
+          </div>
+          <a href="nodejs.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/php.jpg" alt="PHP">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>PHP Professional</h3><p>Modern server-side development and complex OOP design.</p><a href="php.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>احتراف PHP</h3><p>تطوير السيرفرات الحديث وأنماط البرمجة الكائنية المعقدة.</p><a href="php.html" class="btn-learn">ابدأ التعلم</a></div>
+
+      <!-- PHP -->
+      <div class="course-card" data-keywords="php server backend web laravel oop mysql forms">
+        <div class="card-bar" style="background:linear-gradient(90deg,#777bb4,#4f5b93);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(119,123,180,0.12); color:#777bb4;">
+            <i class="fa-brands fa-php"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-free" data-cl-lang="en">⚡ Practical</span>
+            <span class="card-badge badge-free" data-cl-lang="ar">⚡ عملي</span>
+            <span class="card-badge badge-free" data-cl-lang="fr">⚡ Pratique</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">PHP — Professional Development</div>
+          <div class="card-title" data-cl-lang="ar">PHP — التطوير الاحترافي</div>
+          <div class="card-title" data-cl-lang="fr">PHP — Développement Professionnel</div>
+          <div class="card-desc" data-cl-lang="en">Modern server-side web development with OOP design patterns, database integration, and dynamic web apps.</div>
+          <div class="card-desc" data-cl-lang="ar">تطوير ويب من جانب الخادم بالأنماط الكائنية، دمج قواعد البيانات، وبناء تطبيقات الويب الديناميكية.</div>
+          <div class="card-desc" data-cl-lang="fr">Développement web côté serveur avec les patterns OOP, intégration de bases de données et apps web dynamiques.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">Beginner+</span><span data-cl-lang="ar">مبتدئ+</span><span data-cl-lang="fr">Débutant+</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>8–10h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.6</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">OOP</span>
+            <span class="topic-chip">MySQL</span>
+            <span class="topic-chip">Forms</span>
+            <span class="topic-chip">Sessions</span>
+          </div>
+          <a href="php.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/python.jpg" alt="Python">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Python Expert</h3><p>Automation, high-level Data Science, and AI integration.</p><a href="python.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>خبير بايثون</h3><p>الأتمتة، علوم البيانات المتقدمة، ودمج الذكاء الاصطناعي.</p><a href="python.html" class="btn-learn">ابدأ التعلم</a></div>
+
+      <!-- Java -->
+      <div class="course-card" data-keywords="java enterprise spring boot backend oop object oriented programming">
+        <div class="card-bar" style="background:linear-gradient(90deg,#ed8b00,#f89820);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(237,139,0,0.12); color:#ed8b00;">
+            <i class="fa-brands fa-java"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-popular" data-cl-lang="en">🏢 Enterprise</span>
+            <span class="card-badge badge-popular" data-cl-lang="ar">🏢 مؤسسات</span>
+            <span class="card-badge badge-popular" data-cl-lang="fr">🏢 Entreprise</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">Java — Enterprise Edition</div>
+          <div class="card-title" data-cl-lang="ar">Java — للمؤسسات الكبرى</div>
+          <div class="card-title" data-cl-lang="fr">Java — Édition Entreprise</div>
+          <div class="card-desc" data-cl-lang="en">Master the backbone of corporate systems. OOP principles, data structures, Spring Boot, and clean architecture.</div>
+          <div class="card-desc" data-cl-lang="ar">أتقن العمود الفقري لأنظمة الشركات الكبرى — مبادئ OOP، هياكل البيانات، Spring Boot، والمعمارية النظيفة.</div>
+          <div class="card-desc" data-cl-lang="fr">Maîtrisez l'épine dorsale des systèmes d'entreprise : OOP, structures de données, Spring Boot et clean architecture.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">Intermediate</span><span data-cl-lang="ar">متوسط</span><span data-cl-lang="fr">Intermédiaire</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>12–18h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.7</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">OOP</span>
+            <span class="topic-chip">Spring Boot</span>
+            <span class="topic-chip">Collections</span>
+            <span class="topic-chip">Streams</span>
+          </div>
+          <a href="java.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/sql.jpg" alt="SQL">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>SQL Databases</h3><p>Relational data modeling, indexing, and complex querying.</p><a href="sql.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>قواعد بيانات SQL</h3><p>نمذجة البيانات العلائقية، الفهرسة، والاستعلامات المعقدة.</p><a href="sql.html" class="btn-learn">ابدأ التعلم</a></div>
+
+      <!-- C# -->
+      <div class="course-card" data-keywords="csharp c# dotnet unity windows game backend microsoft">
+        <div class="card-bar" style="background:linear-gradient(90deg,#9b59b6,#6c3483);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(155,89,182,0.12); color:#9b59b6; font-family:'Fira Code',monospace; font-size:1.15rem; font-weight:900;">
+            C#
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-popular" data-cl-lang="en">🎮 Unity & .NET</span>
+            <span class="card-badge badge-popular" data-cl-lang="ar">🎮 يونيتي و .NET</span>
+            <span class="card-badge badge-popular" data-cl-lang="fr">🎮 Unity & .NET</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">C# & .NET Ecosystem</div>
+          <div class="card-title" data-cl-lang="ar">C# ومنظومة .NET</div>
+          <div class="card-title" data-cl-lang="fr">C# & Écosystème .NET</div>
+          <div class="card-desc" data-cl-lang="en">Enterprise logic for Windows applications, ASP.NET web development, and immersive Unity game programming.</div>
+          <div class="card-desc" data-cl-lang="ar">برمجة الشركات لتطبيقات ويندوز، تطوير الويب بـ ASP.NET، وبرمجة الألعاب المذهلة بـ Unity.</div>
+          <div class="card-desc" data-cl-lang="fr">Logique d'entreprise pour Windows, développement web ASP.NET et programmation de jeux Unity immersifs.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">Intermediate</span><span data-cl-lang="ar">متوسط</span><span data-cl-lang="fr">Intermédiaire</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>10–14h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.7</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">OOP</span>
+            <span class="topic-chip">LINQ</span>
+            <span class="topic-chip">ASP.NET</span>
+            <span class="topic-chip">Unity</span>
+          </div>
+          <a href="csharp.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/csharp.jpg" alt="C#">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>C# & .NET</h3><p>Enterprise logic for Windows and immersive Unity games.</p><a href="csharp.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>C# و .NET</h3><p>برمجيات الشركات لويندوز وألعاب Unity المذهلة.</p><a href="csharp.html" class="btn-learn">ابدأ التعلم</a></div>
+
+      <!-- SQL -->
+      <div class="course-card" data-keywords="sql database mysql postgresql relational queries join select insert">
+        <div class="card-bar" style="background:linear-gradient(90deg,#00758f,#00a0b0);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(0,117,143,0.12); color:#00758f;">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-new" data-cl-lang="en">🛠 Practical</span>
+            <span class="card-badge badge-new" data-cl-lang="ar">🛠 تطبيقي</span>
+            <span class="card-badge badge-new" data-cl-lang="fr">🛠 Pratique</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">SQL Database Mastery</div>
+          <div class="card-title" data-cl-lang="ar">إتقان قواعد بيانات SQL</div>
+          <div class="card-title" data-cl-lang="fr">Maîtrise des bases SQL</div>
+          <div class="card-desc" data-cl-lang="en">Relational data modeling, complex multi-table JOINs, indexing strategies, aggregation, and query optimization.</div>
+          <div class="card-desc" data-cl-lang="ar">نمذجة البيانات العلائقية، استعلامات JOIN المتعددة، استراتيجيات الفهرسة، التجميع، وتحسين الأداء.</div>
+          <div class="card-desc" data-cl-lang="fr">Modélisation relationnelle, JOINs multi-tables, indexation, agrégation et optimisation de requêtes.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">Beginner+</span><span data-cl-lang="ar">مبتدئ+</span><span data-cl-lang="fr">Débutant+</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>6–10h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.8</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">SELECT</span>
+            <span class="topic-chip">JOIN</span>
+            <span class="topic-chip">GROUP BY</span>
+            <span class="topic-chip">Indexes</span>
+          </div>
+          <a href="sql.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/git.jpg" alt="Git">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Git Professional</h3><p>Master version control workflows and collaborative development.</p><a href="git.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>احتراف Git</h3><p>أتقن سير عمل التحكم في الإصدارات والتطوير التعاوني.</p><a href="git.html" class="btn-learn">ابدأ التعلم</a></div>
-        </div>
-      </div>
+
     </div>
   </div>
 
-  <!-- Path: Lab & Tools -->
+  <!-- ══════════════════════════════
+       SECTION 3 — MOBILE
+  ══════════════════════════════ -->
+  <div class="category-block reveal" data-category="mobile">
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(6,182,212,0.12); color:#06b6d4;">
+        <i class="fa-solid fa-mobile-screen"></i>
+      </div>
+      <div>
+        <h2>
+          <span data-cl-lang="en">Mobile Development</span>
+          <span data-cl-lang="ar">تطوير الموبايل</span>
+          <span data-cl-lang="fr">Développement Mobile</span>
+          <span class="section-count">1</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="course-grid">
+
+      <!-- Flutter -->
+      <div class="course-card" data-keywords="flutter dart mobile ios android cross platform app development">
+        <div class="card-bar" style="background:linear-gradient(90deg,#54c5f8,#01579b);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(84,197,248,0.12); color:#54c5f8;">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-new" data-cl-lang="en">✨ Cross Platform</span>
+            <span class="card-badge badge-new" data-cl-lang="ar">✨ عبر المنصات</span>
+            <span class="card-badge badge-new" data-cl-lang="fr">✨ Multi-plateforme</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">Flutter — Cross-Platform Mastery</div>
+          <div class="card-title" data-cl-lang="ar">Flutter — إتقان التطوير متعدد المنصات</div>
+          <div class="card-title" data-cl-lang="fr">Flutter — Maîtrise multi-plateforme</div>
+          <div class="card-desc" data-cl-lang="en">Native performance on iOS and Android from a single Dart codebase. Build beautiful, responsive mobile apps fast.</div>
+          <div class="card-desc" data-cl-lang="ar">أداء أصلي على iOS و Android من قاعدة كود Dart واحدة. ابنِ تطبيقات موبايل جميلة ومتجاوبة بسرعة.</div>
+          <div class="card-desc" data-cl-lang="fr">Performance native sur iOS et Android depuis une seule base de code Dart. Créez de belles apps mobiles rapidement.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">Intermediate</span><span data-cl-lang="ar">متوسط</span><span data-cl-lang="fr">Intermédiaire</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>12–16h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.8</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">Dart</span>
+            <span class="topic-chip">Widgets</span>
+            <span class="topic-chip">State Mgmt</span>
+            <span class="topic-chip">Navigation</span>
+            <span class="topic-chip">APIs</span>
+          </div>
+          <a href="flutter.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SECTION 4 — TOOLS & LAB
+  ══════════════════════════════ -->
   <div class="category-block reveal" data-category="tools">
-    <div data-cl-lang="en"><h2 class="section-title" style="color: #0d9488;">Interactive Lab & Dev Tools</h2><div class="section-separator" style="background: #0d9488;"></div></div>
-    <div data-cl-lang="ar"><h2 class="section-title" style="color: #0d9488;">المختبر التفاعلي وأدوات المطورين</h2><div class="section-separator" style="background: #0d9488;"></div></div>
-    
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(16,185,129,0.12); color:#10b981;">
+        <i class="fa-solid fa-toolbox"></i>
+      </div>
+      <div>
+        <h2>
+          <span data-cl-lang="en">Dev Tools & Interactive Lab</span>
+          <span data-cl-lang="ar">أدوات المطورين والمختبر التفاعلي</span>
+          <span data-cl-lang="fr">Outils Dev & Lab Interactif</span>
+          <span class="section-count">3</span>
+        </h2>
+      </div>
+    </div>
+
     <div class="course-grid">
-      <div class="course-card">
-        <img src="assets/images/playground_hero.png" alt="Playground">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Code Playground</h3><p>Real-time HTML/CSS/JS editor. Experiment with code and see live results instantly.</p><a href="playground.html" class="btn-learn">Open Lab</a></div>
-          <div data-cl-lang="ar"><h3>مختبر الكود</h3><p>محرر HTML/CSS/JS فوري. جرب الكود وشاهد النتائج مباشرة وبسرعة.</p><a href="playground.html" class="btn-learn">افتح المختبر</a></div>
+
+      <!-- Git -->
+      <div class="course-card" data-keywords="git github version control branch merge commit workflow team">
+        <div class="card-bar" style="background:linear-gradient(90deg,#f05033,#e44c2a);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(240,80,51,0.12); color:#f05033;">
+            <i class="fa-brands fa-git-alt"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-hot" data-cl-lang="en">🔥 Must Know</span>
+            <span class="card-badge badge-hot" data-cl-lang="ar">🔥 ضروري للجميع</span>
+            <span class="card-badge badge-hot" data-cl-lang="fr">🔥 Indispensable</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">Git & GitHub — Professional</div>
+          <div class="card-title" data-cl-lang="ar">Git و GitHub — الاحتراف الكامل</div>
+          <div class="card-title" data-cl-lang="fr">Git & GitHub — Professionnel</div>
+          <div class="card-desc" data-cl-lang="en">Master version control workflows, branching strategies, collaborative pull requests, rebasing, and CI/CD integration.</div>
+          <div class="card-desc" data-cl-lang="ar">أتقن سير عمل التحكم في الإصدارات، استراتيجيات التفريع، pull requests، rebasing، ودمج CI/CD.</div>
+          <div class="card-desc" data-cl-lang="fr">Maîtrisez les workflows de versioning, les stratégies de branches, pull requests, rebase et l'intégration CI/CD.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">All Levels</span><span data-cl-lang="ar">جميع المستويات</span><span data-cl-lang="fr">Tous niveaux</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-clock"></i> <span>4–6h</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.9</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">Branching</span>
+            <span class="topic-chip">Merge/Rebase</span>
+            <span class="topic-chip">GitHub</span>
+            <span class="topic-chip">CI/CD</span>
+          </div>
+          <a href="git.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/calculator_hero.png" alt="Calculator">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Dev Calculator</h3><p>Premium scientific calculator with advanced math functions and history tracking.</p><a href="calculator.html" class="btn-learn">Launch Tool</a></div>
-          <div data-cl-lang="ar"><h3>آلة حاسبة برمجية</h3><p>آلة حاسبة علمية متطورة مع وظائف رياضية متقدمة وسجل للعمليات.</p><a href="calculator.html" class="btn-learn">شغل الأداة</a></div>
+
+      <!-- Playground -->
+      <div class="course-card" data-keywords="playground code editor live html css js sandbox experiment">
+        <div class="card-bar" style="background:linear-gradient(90deg,#10b981,#059669);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(16,185,129,0.12); color:#10b981;">
+            <i class="fa-solid fa-play"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-new" data-cl-lang="en">⚡ Interactive</span>
+            <span class="card-badge badge-new" data-cl-lang="ar">⚡ تفاعلي</span>
+            <span class="card-badge badge-new" data-cl-lang="fr">⚡ Interactif</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">Live Code Playground</div>
+          <div class="card-title" data-cl-lang="ar">مختبر الكود المباشر</div>
+          <div class="card-title" data-cl-lang="fr">Bac à sable de code Live</div>
+          <div class="card-desc" data-cl-lang="en">Real-time HTML/CSS/JS editor in your browser. Experiment with code, test ideas, and see results instantly.</div>
+          <div class="card-desc" data-cl-lang="ar">محرر HTML/CSS/JS فوري في المتصفح. جرب الكود، اختبر الأفكار، وشاهد النتائج مباشرة.</div>
+          <div class="card-desc" data-cl-lang="fr">Éditeur HTML/CSS/JS temps réel dans le navigateur. Expérimentez et voyez les résultats instantanément.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">All Levels</span><span data-cl-lang="ar">للجميع</span><span data-cl-lang="fr">Tous niveaux</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-bolt" style="color:var(--cl-brand);"></i> <span data-cl-lang="en">Instant</span><span data-cl-lang="ar">فوري</span><span data-cl-lang="fr">Instantané</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">HTML Live</span>
+            <span class="topic-chip">CSS Live</span>
+            <span class="topic-chip">JS Live</span>
+            <span class="topic-chip">Preview</span>
+          </div>
+          <a href="playground.html" class="card-cta">
+            <span data-cl-lang="en">Open Lab</span>
+            <span data-cl-lang="ar">افتح المختبر</span>
+            <span data-cl-lang="fr">Ouvrir le Lab</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/HTMLandCSS.jpg" alt="Converter">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Unit Converter</h3><p>Professional utility to convert PX to REM, EM, and other modern CSS units.</p><a href="css-converter.html" class="btn-learn">Use Converter</a></div>
-          <div data-cl-lang="ar"><h3>محول الوحدات</h3><p>أداة احترافية لتحويل PX إلى REM و EM ووحدات CSS الحديثة الأخرى.</p><a href="css-converter.html" class="btn-learn">استخدم المحول</a></div>
+
+      <!-- SQL Playground -->
+      <div class="course-card" data-keywords="sql playground interactive database queries join select practice">
+        <div class="card-bar" style="background:linear-gradient(90deg,#0284c7,#38bdf8);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(56,189,248,0.12); color:var(--cl-brand);">
+            <i class="fa-solid fa-terminal"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-new" data-cl-lang="en">🆕 New</span>
+            <span class="card-badge badge-new" data-cl-lang="ar">🆕 جديد</span>
+            <span class="card-badge badge-new" data-cl-lang="fr">🆕 Nouveau</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">Interactive SQL Sandbox</div>
+          <div class="card-title" data-cl-lang="ar">مختبر SQL التفاعلي</div>
+          <div class="card-title" data-cl-lang="fr">Bac à sable SQL Interactif</div>
+          <div class="card-desc" data-cl-lang="en">Run real SQL queries against in-browser relational tables. Practice SELECT, JOIN, GROUP BY with instant results.</div>
+          <div class="card-desc" data-cl-lang="ar">نفّذ استعلامات SQL حقيقية على جداول علائقية داخل المتصفح. تدرّب على SELECT، JOIN، GROUP BY بنتائج فورية.</div>
+          <div class="card-desc" data-cl-lang="fr">Exécutez de vraies requêtes SQL sur des tables relationnelles dans le navigateur avec des résultats instantanés.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">All Levels</span><span data-cl-lang="ar">للجميع</span><span data-cl-lang="fr">Tous niveaux</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-bolt" style="color:var(--cl-brand);"></i> <span data-cl-lang="en">In-Browser</span><span data-cl-lang="ar">في المتصفح</span><span data-cl-lang="fr">Dans le navigateur</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">SELECT</span>
+            <span class="topic-chip">JOIN</span>
+            <span class="topic-chip">INSERT</span>
+            <span class="topic-chip">Export CSV</span>
+          </div>
+          <a href="sql-playground.html" class="card-cta">
+            <span data-cl-lang="en">Launch Playground</span>
+            <span data-cl-lang="ar">تشغيل المختبر</span>
+            <span data-cl-lang="fr">Lancer le Playground</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/WhatisCSS.jpg" alt="Palette">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Color Palette</h3><p>Generate and test harmonious color schemes for your engineering projects.</p><a href="colors.html" class="btn-learn">Get Palette</a></div>
-          <div data-cl-lang="ar"><h3>لوحة الألوان</h3><p>قم بتوليد وتجربة مجموعات ألوان متناسقة لمشاريعك الهندسية.</p><a href="colors.html" class="btn-learn">احصل على الألوان</a></div>
-        </div>
-      </div>
+
     </div>
   </div>
 
-  <!-- Path: Growth -->
+  <!-- ══════════════════════════════
+       SECTION 5 — GROWTH & MINDSET
+  ══════════════════════════════ -->
   <div class="category-block reveal" data-category="growth">
-    <div data-cl-lang="en"><h2 class="section-title" style="color: #3b82f6;">Personal Growth & Roadmaps</h2><div class="section-separator" style="background: #3b82f6;"></div></div>
-    <div data-cl-lang="ar"><h2 class="section-title" style="color: #3b82f6;">النمو المهني وخرائط الطريق</h2><div class="section-separator" style="background: #3b82f6;"></div></div>
-    
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(59,130,246,0.12); color:#3b82f6;">
+        <i class="fa-solid fa-seedling"></i>
+      </div>
+      <div>
+        <h2>
+          <span data-cl-lang="en">Growth & Developer Mindset</span>
+          <span data-cl-lang="ar">تطوير الذات وعقلية المطور</span>
+          <span data-cl-lang="fr">Croissance & Mentalité Développeur</span>
+          <span class="section-count">3</span>
+        </h2>
+      </div>
+    </div>
+
     <div class="course-grid">
-      <div class="course-card">
-        <img src="assets/images/start-coding-guide.jpg" alt="Roadmap">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Coding Roadmap</h3><p>A proven structured path for absolute beginners to hero status.</p><a href="coding.html" class="btn-learn">View Path</a></div>
-          <div data-cl-lang="ar"><h3>خارطة طريق البرمجة</h3><p>مسار منظم ومثبت للمبتدئين من الصفر حتى الاحتراف.</p><a href="coding.html" class="btn-learn">عرض الطريق</a></div>
+
+      <!-- Coding Roadmap -->
+      <div class="course-card" data-keywords="roadmap beginner guide start learning path career coding">
+        <div class="card-bar" style="background:linear-gradient(90deg,#3b82f6,#1d4ed8);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(59,130,246,0.12); color:#3b82f6;">
+            <i class="fa-solid fa-map-location-dot"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-free" data-cl-lang="en">🌱 Start Here</span>
+            <span class="card-badge badge-free" data-cl-lang="ar">🌱 ابدأ هنا</span>
+            <span class="card-badge badge-free" data-cl-lang="fr">🌱 Commencer ici</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">Coding Career Roadmap</div>
+          <div class="card-title" data-cl-lang="ar">خارطة طريق مهنة البرمجة</div>
+          <div class="card-title" data-cl-lang="fr">Feuille de route — Carrière Dev</div>
+          <div class="card-desc" data-cl-lang="en">A proven structured path for absolute beginners to professional status. Know exactly what to learn and in which order.</div>
+          <div class="card-desc" data-cl-lang="ar">مسار منظم ومجرّب للمبتدئين من الصفر حتى الاحتراف. اعرف بالضبط ماذا تتعلم وبأي ترتيب.</div>
+          <div class="card-desc" data-cl-lang="fr">Un parcours structuré et éprouvé pour les débutants absolus jusqu'au niveau professionnel.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">Beginner</span><span data-cl-lang="ar">مبتدئ</span><span data-cl-lang="fr">Débutant</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.9</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">Career Path</span>
+            <span class="topic-chip">Roadmap</span>
+            <span class="topic-chip">Zero to Hero</span>
+          </div>
+          <a href="coding.html" class="card-cta">
+            <span data-cl-lang="en">View Roadmap</span>
+            <span data-cl-lang="ar">عرض الخارطة</span>
+            <span data-cl-lang="fr">Voir la feuille de route</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/productivity-methods.jpg" alt="Productivity">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Productivity</h3><p>Optimize your focus and master engineering time management.</p><a href="productivity.html" class="btn-learn">Start Learning</a></div>
-          <div data-cl-lang="ar"><h3>الإنتاجية</h3><p>حسن تركيزك وأتقن إدارة وقتك كمهندس برمجيات.</p><a href="productivity.html" class="btn-learn">ابدأ التعلم</a></div>
+
+      <!-- Productivity -->
+      <div class="course-card" data-keywords="productivity focus pomodoro time management deep work flow state">
+        <div class="card-bar" style="background:linear-gradient(90deg,#f59e0b,#d97706);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(245,158,11,0.12); color:#f59e0b;">
+            <i class="fa-solid fa-bolt-lightning"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-free" data-cl-lang="en">⚡ Power Up</span>
+            <span class="card-badge badge-free" data-cl-lang="ar">⚡ عزّز إنتاجيتك</span>
+            <span class="card-badge badge-free" data-cl-lang="fr">⚡ Boostez-vous</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">Developer Productivity</div>
+          <div class="card-title" data-cl-lang="ar">إنتاجية المطور</div>
+          <div class="card-title" data-cl-lang="fr">Productivité du Développeur</div>
+          <div class="card-desc" data-cl-lang="en">Optimize your coding focus, achieve deep work flow state, and master time management techniques for engineers.</div>
+          <div class="card-desc" data-cl-lang="ar">حسّن تركيزك في البرمجة، ادخل حالة التدفق الذهني، وأتقن تقنيات إدارة الوقت المخصصة للمهندسين.</div>
+          <div class="card-desc" data-cl-lang="fr">Optimisez votre concentration, entrez dans un état de flow et maîtrisez la gestion du temps pour ingénieurs.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">All Levels</span><span data-cl-lang="ar">للجميع</span><span data-cl-lang="fr">Tous niveaux</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.8</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">Deep Work</span>
+            <span class="topic-chip">Pomodoro</span>
+            <span class="topic-chip">Focus</span>
+          </div>
+          <a href="productivity.html" class="card-cta">
+            <span data-cl-lang="en">Start Learning</span>
+            <span data-cl-lang="ar">ابدأ التعلم</span>
+            <span data-cl-lang="fr">Commencer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="course-card">
-        <img src="assets/images/mental-health-guide.jpg" alt="Mental Health">
-        <div class="course-card-content">
-          <div data-cl-lang="en"><h3>Mental Health</h3><p>Essential well-being and burnout prevention for modern devs.</p><a href="mental_health.html" class="btn-learn">Explore</a></div>
-          <div data-cl-lang="ar"><h3>الصحة النفسية</h3><p>جودة الحياة والوقاية من الاحتراق النفسي للمطورين.</p><a href="mental_health.html" class="btn-learn">استكشف</a></div>
+
+      <!-- Mental Health -->
+      <div class="course-card" data-keywords="mental health burnout wellbeing stress developer programmer health">
+        <div class="card-bar" style="background:linear-gradient(90deg,#ec4899,#db2777);"></div>
+        <div class="card-icon-area">
+          <div class="card-lang-icon" style="background:rgba(236,72,153,0.12); color:#ec4899;">
+            <i class="fa-solid fa-heart-pulse"></i>
+          </div>
+          <div class="card-badges">
+            <span class="card-badge badge-popular" data-cl-lang="en">💙 Essential</span>
+            <span class="card-badge badge-popular" data-cl-lang="ar">💙 أساسي</span>
+            <span class="card-badge badge-popular" data-cl-lang="fr">💙 Essentiel</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title" data-cl-lang="en">Developer Mental Health</div>
+          <div class="card-title" data-cl-lang="ar">الصحة النفسية للمطور</div>
+          <div class="card-title" data-cl-lang="fr">Santé Mentale du Développeur</div>
+          <div class="card-desc" data-cl-lang="en">Essential well-being practices, burnout prevention, and sustainable engineering habits for long-term success.</div>
+          <div class="card-desc" data-cl-lang="ar">ممارسات الرفاهية الأساسية، الوقاية من الاحتراق الوظيفي، وعادات هندسية مستدامة للنجاح على المدى البعيد.</div>
+          <div class="card-desc" data-cl-lang="fr">Pratiques de bien-être essentielles, prévention du burnout et habitudes durables pour réussir sur le long terme.</div>
+          <div class="card-meta">
+            <span class="card-meta-item"><i class="fa-solid fa-layer-group"></i> <span data-cl-lang="en">All Devs</span><span data-cl-lang="ar">لكل المطورين</span><span data-cl-lang="fr">Tous les devs</span></span>
+            <span class="card-meta-item"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> <span>4.9</span></span>
+          </div>
+          <div class="card-topics">
+            <span class="topic-chip">Burnout</span>
+            <span class="topic-chip">Well-being</span>
+            <span class="topic-chip">Balance</span>
+          </div>
+          <a href="mental_health.html" class="card-cta">
+            <span data-cl-lang="en">Explore</span>
+            <span data-cl-lang="ar">استكشف</span>
+            <span data-cl-lang="fr">Explorer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
+
     </div>
   </div>
 
-</div>
+  <!-- No Results -->
+  <div class="no-results" id="noResults">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <p data-cl-lang="en">No courses match your search. Try different keywords.</p>
+    <p data-cl-lang="ar">لا توجد دورات تطابق بحثك. جرب كلمات مختلفة.</p>
+    <p data-cl-lang="fr">Aucun cours ne correspond. Essayez d'autres mots-clés.</p>
+  </div>
+
+</div><!-- end .courses-page -->
 
 <script>
-  // Filter Functionality
-  const filterPills = document.querySelectorAll(".filter-pill");
-  const blocks = document.querySelectorAll(".category-block");
-  const searchInput = document.getElementById("courseFilterInput");
-
-  let currentCategory = "all";
-  let searchQuery = "";
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const blocks = document.querySelectorAll('.category-block');
+  const searchInput = document.getElementById('courseSearch');
+  const noResults = document.getElementById('noResults');
+  let currentFilter = 'all';
+  let searchQuery = '';
 
   function applyFilters() {
+    let totalVisible = 0;
+
     blocks.forEach(block => {
-      const cat = block.getAttribute("data-category");
-      const matchCat = currentCategory === "all" || cat === currentCategory;
-      
-      const cards = block.querySelectorAll(".course-card");
-      let visibleInBlock = 0;
+      const cat = block.getAttribute('data-category');
+      const matchCat = currentFilter === 'all' || cat === currentFilter;
+      const cards = block.querySelectorAll('.course-card');
+      let visible = 0;
 
       cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
+        const text = (card.textContent + ' ' + (card.dataset.keywords || '')).toLowerCase();
         const matchSearch = !searchQuery || text.includes(searchQuery);
         if (matchSearch) {
-          card.classList.remove("is-hidden");
-          visibleInBlock++;
+          card.classList.remove('is-hidden');
+          visible++;
         } else {
-          card.classList.add("is-hidden");
+          card.classList.add('is-hidden');
         }
       });
 
-      if (matchCat && visibleInBlock > 0) {
-        block.classList.remove("is-hidden");
+      if (matchCat && visible > 0) {
+        block.classList.remove('is-hidden');
+        totalVisible += visible;
       } else {
-        block.classList.add("is-hidden");
+        block.classList.add('is-hidden');
       }
     });
+
+    noResults.classList.toggle('visible', totalVisible === 0);
   }
 
   filterPills.forEach(pill => {
-    pill.addEventListener("click", () => {
-      filterPills.forEach(p => p.classList.remove("active"));
-      pill.classList.add("active");
-      currentCategory = pill.getAttribute("data-filter");
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentFilter = pill.getAttribute('data-filter');
       applyFilters();
     });
   });
 
-  searchInput.addEventListener("input", (e) => {
+  searchInput.addEventListener('input', e => {
     searchQuery = e.target.value.trim().toLowerCase();
     applyFilters();
   });
