@@ -744,7 +744,18 @@
     let hasErrorOnCurrent = false;
     let arabicNoticeShown = false;
 
-    // Comprehensive Arabic -> Latin QWERTY keyboard map
+    // Helper: distinguish actual OS shortcuts (Ctrl+C, Alt+Tab) from AltGr character inputs (like { } [ ] ~ # | \)
+    function isShortcut(e) {
+      if (e.metaKey) return true;
+      // AltGr on Windows sets both ctrlKey and altKey (or AltGraph modifier)
+      const isAltGr = (e.ctrlKey && e.altKey) || (e.getModifierState && e.getModifierState("AltGraph"));
+      if (isAltGr) return false; // Essential for AZERTY/European symbols
+      if (e.ctrlKey) return true; // Standard Ctrl shortcuts
+      if (e.altKey) return true;  // Standard Alt shortcuts
+      return false;
+    }
+
+    // Standard Arabic 101 -> Latin QWERTY keyboard map
     const ARABIC_TO_LATIN = {
       // Row 1
       'ذ':'`', '1':'1', '2':'2', '3':'3', '4':'4', '5':'5', '6':'6', '7':'7', '8':'8', '9':'9', '0':'0', '-':'-', '=':'=',
@@ -758,6 +769,13 @@
       'َ':'Q', 'ً':'W', 'ُ':'E', 'ٌ':'R', 'لإ':'T', 'إ':'Y', '‘':'U', '÷':'I', '×':'O', '؛':'P', '<':'>', '>':'<',
       'ِ':'A', 'ٍ':'S', ']':'D', '[':'F', 'لأ':'G', 'أ':'H', 'ـ':'J', '،':'K', '/':'L', ':':':', '"':'"',
       '~':'~', 'ْ':'X', '}':'C', '{':'V', 'لآ':'B', 'آ':'N', '’':'M', '؟':'?'
+    };
+
+    // North African / Arabized AZERTY 102 layout map
+    const ARABIC_AZERTY_TO_LATIN = {
+      'ض':'a', 'ص':'z', 'ث':'e', 'ق':'r', 'ف':'t', 'غ':'y', 'ع':'u', 'ه':'i', 'خ':'o', 'ح':'p',
+      'ش':'q', 'س':'s', 'ي':'d', 'ب':'f', 'ل':'g', 'ا':'h', 'ت':'j', 'ن':'k', 'م':'l', 'ط':'m',
+      'ئ':'w', 'ء':'x', 'ؤ':'c', 'ر':'v', 'لا':'b', 'ى':'n'
     };
 
     const SYMBOL_MAP = {
@@ -799,40 +817,42 @@
     }
 
     function checkKeyMatch(e, expected) {
-      // 1. Direct exact match (English / Latin layout)
+      // 1. Direct match with e.key (works for ANY layout: QWERTY, AZERTY, French, German, English, etc.)
       if (e.key === expected) return true;
 
-      // 2. Arabic layout translation
+      // 2. Arabic layout translation (supports both QWERTY Arabic and AZERTY Arabic)
       if (isArabicChar(e.key)) {
         showArabicKbNotice();
-        const mapped = ARABIC_TO_LATIN[e.key];
-        if (mapped === expected) return true;
-        if (mapped && mapped.toLowerCase() === expected.toLowerCase()) {
-          if (expected >= 'A' && expected <= 'Z') {
-            return !!(e.shiftKey || (e.getModifierState && e.getModifierState('CapsLock')));
-          } else {
-            return !e.shiftKey;
-          }
-        }
-      }
-
-      // 3. Physical Key fallback via e.code for English letters
-      if (/^[a-zA-Z]$/.test(expected)) {
-        if (e.code === 'Key' + expected.toUpperCase()) {
+        const qMapped = ARABIC_TO_LATIN[e.key];
+        const azMapped = ARABIC_AZERTY_TO_LATIN[e.key];
+        if (qMapped === expected || azMapped === expected) return true;
+        if (qMapped && qMapped.toLowerCase() === expected.toLowerCase()) {
           const isUpper = !!(e.shiftKey || (e.getModifierState && e.getModifierState('CapsLock')));
-          const expectedUpper = (expected === expected.toUpperCase());
-          return isUpper === expectedUpper;
+          return isUpper === (expected === expected.toUpperCase());
+        }
+        if (azMapped && azMapped.toLowerCase() === expected.toLowerCase()) {
+          const isUpper = !!(e.shiftKey || (e.getModifierState && e.getModifierState('CapsLock')));
+          return isUpper === (expected === expected.toUpperCase());
         }
       }
 
-      // 4. Physical Key fallback for digits
+      // 3. AZERTY number row convenience:
+      // On AZERTY keyboards, digits require Shift. If the user presses the Digit key (e.g. Digit1 for '1'),
+      // accept it even if they didn't hold Shift.
       if (/^[0-9]$/.test(expected)) {
         if (e.code === ('Digit' + expected) || e.code === ('Numpad' + expected)) {
-          return !e.shiftKey;
+          return true;
         }
       }
 
-      // 5. Physical Key fallback for punctuation & symbols
+      // 4. Dead keys on AZERTY / European keyboards (^, ~, `, ¨)
+      if (e.key === 'Dead') {
+        if (expected === '^' && (e.code === 'BracketLeft' || e.code === 'Digit9')) return true;
+        if (expected === '~' && e.code === 'Digit2') return true;
+        if (expected === '`' && (e.code === 'Digit7' || e.code === 'Backquote')) return true;
+      }
+
+      // 5. Common physical symbol fallback
       if (SYMBOL_MAP[e.code]) {
         if (SYMBOL_MAP[e.code](!!e.shiftKey) === expected) {
           return true;
@@ -840,6 +860,29 @@
       }
 
       return false;
+    }
+
+    function getResolvedTypedChar(e) {
+      if (isArabicChar(e.key)) {
+        return ARABIC_TO_LATIN[e.key] || ARABIC_AZERTY_TO_LATIN[e.key] || e.key;
+      }
+      if (e.key === 'Dead') {
+        if (e.code === 'BracketLeft' || e.code === 'Digit9') return '^';
+        if (e.code === 'Digit2') return '~';
+        if (e.code === 'Digit7' || e.code === 'Backquote') return '`';
+        return '^';
+      }
+      if (e.key && e.key.length === 1) {
+        return e.key;
+      }
+      if (e.code && e.code.startsWith('Key')) {
+        const l = e.code.slice(3).toLowerCase();
+        return e.shiftKey ? l.toUpperCase() : l;
+      }
+      if (e.code && e.code.startsWith('Digit')) {
+        return e.code.slice(5);
+      }
+      return '?';
     }
 
     const arena = document.getElementById("arena");
@@ -985,7 +1028,7 @@
 
     function handleKey(e) {
       if (resModal.style.display === "flex") return;
-      if (e.ctrlKey || e.altKey || e.metaKey) return;
+      if (isShortcut(e)) return;
       if (e.key === "F12" || e.key === "F5") return;
 
       const expected = currentCode[typedIndex];
@@ -1057,23 +1100,16 @@
         return;
       }
 
-      // Check single character / physical key
-      const isCharEvent = (e.key && e.key.length === 1) || (e.code && (e.code.startsWith("Key") || e.code.startsWith("Digit") || SYMBOL_MAP[e.code]));
+      // Check single character / physical key (supports AZERTY AltGr, Dead keys, numbers, and QWERTY)
+      const isCharEvent = (e.key && (e.key.length === 1 || e.key === "Dead")) || (e.code && (e.code.startsWith("Key") || e.code.startsWith("Digit") || SYMBOL_MAP[e.code]));
       if (isCharEvent) {
         e.preventDefault();
         totalTyped++;
         const isMatch = checkKeyMatch(e, expected);
-
-        // Determine what character to record as typed
-        let resolvedKey = e.key;
-        if (isArabicChar(e.key) && ARABIC_TO_LATIN[e.key]) {
-          resolvedKey = ARABIC_TO_LATIN[e.key];
-        } else if (SYMBOL_MAP[e.code] && e.key.length !== 1) {
-          resolvedKey = SYMBOL_MAP[e.code](!!e.shiftKey);
-        }
+        const resolvedKey = getResolvedTypedChar(e);
 
         if (isMatch) {
-          typedChars[typedIndex] = { typed: resolvedKey, correct: true };
+          typedChars[typedIndex] = { typed: expected, correct: true };
           typedIndex++;
           hasErrorOnCurrent = false;
         } else {
@@ -1103,7 +1139,7 @@
         return;
       }
       if (resModal.style.display === "flex") return;
-      if (e.ctrlKey || e.altKey || e.metaKey) return;
+      if (isShortcut(e)) return;
       if (e.key === "F12" || e.key === "F5") return;
 
       const tag = document.activeElement && document.activeElement.tagName;
