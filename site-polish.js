@@ -180,7 +180,6 @@
     return [
       { href: "index.html", icon: "fa-house", label: tr.home },
       { href: "dorous-albarmaja.html", icon: "fa-code", label: tr.courses },
-      { href: "cheatsheets.html", icon: "fa-bolt", label: currentLang === 'ar' ? "ملخصات الأكواد" : "Cheatsheets" },
       { href: "blog.html", icon: "fa-newspaper", label: tr.blog },
       { href: "contact.html", icon: "fa-envelope", label: tr.contact }
     ];
