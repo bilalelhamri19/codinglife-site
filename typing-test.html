@@ -292,26 +292,26 @@
       color: #ffffff;
     }
 
-    /* Transparent Input overlay right over the arena (NEVER left: -9999px) */
+    /* Transparent Input overlay right over the arena (Mobile & Desktop friendly) */
     html[lang="ar"] .tt-hidden-input,
     body.rtl .tt-hidden-input,
     .tt-hidden-input {
       position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: auto !important;
+      inset: 0 !important;
       width: 100% !important;
       height: 100% !important;
-      opacity: 0 !important;
+      opacity: 0.01 !important;
       cursor: text !important;
       border: none !important;
       outline: none !important;
       background: transparent !important;
       color: transparent !important;
-      z-index: 5 !important;
+      z-index: 10 !important;
       margin: 0 !important;
       padding: 0 !important;
       caret-color: transparent !important;
+      font-size: 16px !important;
+      -webkit-tap-highlight-color: transparent !important;
     }
 
     /* Action buttons */
@@ -511,7 +511,7 @@
     <!-- Typing Arena -->
     <div class="tt-arena" id="arena" tabindex="0">
       <div class="tt-code-display" id="codeDisplay"></div>
-      <input type="text" id="hiddenInput" class="tt-hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <input type="text" id="hiddenInput" class="tt-hidden-input" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" inputmode="text" enterkeyhint="go">
     </div>
 
     <div class="tt-actions">
@@ -1026,57 +1026,111 @@
       }
     }
 
+    function processChar(char) {
+      if (resModal.style.display === "flex") return;
+      if (!hasStarted) startTimer();
+
+      const expected = currentCode[typedIndex];
+      totalTyped++;
+
+      let isMatch = (char === expected);
+      if (!isMatch && isArabicChar(char)) {
+        showArabicKbNotice();
+        const qMapped = ARABIC_TO_LATIN[char];
+        const azMapped = ARABIC_AZERTY_TO_LATIN[char];
+        if (qMapped === expected || azMapped === expected) isMatch = true;
+      }
+
+      let resolvedChar = char;
+      if (isArabicChar(char)) {
+        resolvedChar = ARABIC_TO_LATIN[char] || ARABIC_AZERTY_TO_LATIN[char] || char;
+      }
+
+      if (isMatch) {
+        typedChars[typedIndex] = { typed: expected, correct: true };
+        typedIndex++;
+        hasErrorOnCurrent = false;
+      } else {
+        errorCount++;
+        typedChars[typedIndex] = { typed: resolvedChar, correct: false };
+        triggerErrorShake();
+        if (errorMode === "show") {
+          typedIndex++;
+          hasErrorOnCurrent = false;
+        } else {
+          hasErrorOnCurrent = true;
+        }
+      }
+
+      checkProgress();
+      renderDisplay();
+      updateStats();
+    }
+
+    function processBackspace() {
+      if (resModal.style.display === "flex") return;
+      if (typedIndex > 0) {
+        typedIndex--;
+        typedChars[typedIndex] = undefined;
+        hasErrorOnCurrent = false;
+        renderDisplay();
+        updateStats();
+      }
+    }
+
+    function processEnter() {
+      if (resModal.style.display === "flex") return;
+      if (!hasStarted) startTimer();
+
+      const expected = currentCode[typedIndex];
+      totalTyped++;
+      if (expected === "\n") {
+        typedChars[typedIndex] = { typed: "\n", correct: true };
+        typedIndex++;
+        hasErrorOnCurrent = false;
+      } else {
+        errorCount++;
+        typedChars[typedIndex] = { typed: "↵", correct: false };
+        triggerErrorShake();
+        if (errorMode === "show") {
+          typedIndex++;
+          hasErrorOnCurrent = false;
+        } else {
+          hasErrorOnCurrent = true;
+        }
+      }
+      checkProgress();
+      renderDisplay();
+      updateStats();
+    }
+
     function handleKey(e) {
       if (resModal.style.display === "flex") return;
       if (isShortcut(e)) return;
       if (e.key === "F12" || e.key === "F5") return;
 
+      // Mobile virtual keyboards use Unidentified/keyCode 229; let beforeinput/input handle them
+      if (e.key === "Unidentified" || e.keyCode === 229) {
+        return;
+      }
+
       const expected = currentCode[typedIndex];
 
       if (e.key === "Backspace") {
         e.preventDefault();
-        if (typedIndex > 0) {
-          typedIndex--;
-          typedChars[typedIndex] = undefined;
-          hasErrorOnCurrent = false;
-          renderDisplay();
-          updateStats();
-        }
+        processBackspace();
         return;
-      }
-
-      // Start timer on first meaningful key
-      if (!hasStarted && (e.key.length === 1 || e.key === "Enter" || e.key === "Tab" || (e.code && (e.code.startsWith("Key") || e.code.startsWith("Digit"))))) {
-        startTimer();
       }
 
       if (e.key === "Enter") {
         e.preventDefault();
-        totalTyped++;
-        const matched = expected === "\n";
-        if (matched) {
-          typedChars[typedIndex] = { typed: "\n", correct: true };
-          typedIndex++;
-          hasErrorOnCurrent = false;
-        } else {
-          errorCount++;
-          typedChars[typedIndex] = { typed: "↵", correct: false };
-          triggerErrorShake();
-          if (errorMode === "show") {
-            typedIndex++;
-            hasErrorOnCurrent = false;
-          } else {
-            hasErrorOnCurrent = true;
-          }
-        }
-        checkProgress();
-        renderDisplay();
-        updateStats();
+        processEnter();
         return;
       }
 
       if (e.key === "Tab") {
         e.preventDefault();
+        if (!hasStarted) startTimer();
         totalTyped += 2;
         if (expected === " " && currentCode[typedIndex + 1] === " ") {
           typedChars[typedIndex] = { typed: " ", correct: true };
@@ -1100,37 +1154,55 @@
         return;
       }
 
-      // Check single character / physical key (supports AZERTY AltGr, Dead keys, numbers, and QWERTY)
+      // Check single character / physical key (Desktop keyboard)
       const isCharEvent = (e.key && (e.key.length === 1 || e.key === "Dead")) || (e.code && (e.code.startsWith("Key") || e.code.startsWith("Digit") || SYMBOL_MAP[e.code]));
       if (isCharEvent) {
         e.preventDefault();
-        totalTyped++;
         const isMatch = checkKeyMatch(e, expected);
-        const resolvedKey = getResolvedTypedChar(e);
-
-        if (isMatch) {
-          typedChars[typedIndex] = { typed: expected, correct: true };
-          typedIndex++;
-          hasErrorOnCurrent = false;
-        } else {
-          errorCount++;
-          typedChars[typedIndex] = { typed: resolvedKey, correct: false };
-          triggerErrorShake();
-          if (errorMode === "show") {
-            typedIndex++;
-            hasErrorOnCurrent = false;
-          } else {
-            hasErrorOnCurrent = true;
-          }
-        }
-        checkProgress();
-        renderDisplay();
-        updateStats();
+        const resolvedKey = isMatch ? expected : getResolvedTypedChar(e);
+        processChar(resolvedKey);
       }
     }
 
     arena.addEventListener("click", () => {
       safeFocusInput();
+    });
+    arena.addEventListener("touchstart", () => {
+      safeFocusInput();
+    }, { passive: true });
+
+    // Mobile / Virtual keyboard beforeinput event
+    hiddenInput.addEventListener("beforeinput", (e) => {
+      if (resModal.style.display === "flex") return;
+
+      if (e.inputType === "deleteContentBackward" || e.inputType === "deleteContentForward" || e.inputType === "deleteByCut") {
+        e.preventDefault();
+        processBackspace();
+        return;
+      }
+      if (e.inputType === "insertLineBreak" || e.inputType === "insertParagraph") {
+        e.preventDefault();
+        processEnter();
+        return;
+      }
+      if (e.data) {
+        e.preventDefault();
+        for (let i = 0; i < e.data.length; i++) {
+          processChar(e.data[i]);
+        }
+        return;
+      }
+    });
+
+    // Mobile input fallback (ensures text input works across any keyboard/IME)
+    hiddenInput.addEventListener("input", (e) => {
+      const val = hiddenInput.value;
+      hiddenInput.value = "";
+      if (val) {
+        for (let i = 0; i < val.length; i++) {
+          processChar(val[i]);
+        }
+      }
     });
 
     window.addEventListener("keydown", (e) => {
