@@ -4,6 +4,7 @@
   --cl-surface: #ffffff;
   --cl-surface-glass: rgba(255, 255, 255, 0.88);
   --cl-ink: #0f172a;
+  --cl-text: #0f172a;
   --cl-muted: #64748b;
   --cl-line: #e2e8f0;
   --cl-brand: #0284c7;           /* Sky 600: Vibrant, professional blue */
@@ -14,6 +15,7 @@
   --cl-success: #10b981;
   --cl-error: #ef4444;
   --cl-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --cl-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --cl-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --cl-shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --cl-radius: 12px;
@@ -26,11 +28,13 @@
   --cl-surface: #0f172a;
   --cl-surface-glass: rgba(15, 23, 42, 0.88);
   --cl-ink: #f8fafc;
+  --cl-text: #f8fafc;
   --cl-muted: #94a3b8;
   --cl-line: #1e293b;
   --cl-brand: #38bdf8;           /* Neon Cyan 400 */
   --cl-brand-dark: #0284c7;
   --cl-brand-soft: rgba(56, 189, 248, 0.14); /* Glowing transparent tint */
+  --cl-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
   --cl-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5);
 }
 
@@ -1294,4 +1298,112 @@ table {
 }
 .code-block pre, .code-example pre {
   color: inherit !important;
+}
+
+/* Feature & Section Icons Across Site */
+.about-header-icon,
+.mot-icon,
+.soft-icon,
+.team-avatar,
+.pillar-icon-box {
+  background: var(--cl-brand-soft) !important;
+  color: var(--cl-brand) !important;
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
+}
+
+:root:not([data-theme="dark"]) .about-header-icon,
+:root:not([data-theme="dark"]) .mot-icon,
+:root:not([data-theme="dark"]) .soft-icon,
+:root:not([data-theme="dark"]) .team-avatar,
+:root:not([data-theme="dark"]) .pillar-icon-box,
+[data-theme="light"] .about-header-icon,
+[data-theme="light"] .mot-icon,
+[data-theme="light"] .soft-icon,
+[data-theme="light"] .team-avatar,
+[data-theme="light"] .pillar-icon-box {
+  background: rgba(2, 132, 199, 0.1) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="dark"] .about-header-icon,
+[data-theme="dark"] .mot-icon,
+[data-theme="dark"] .soft-icon,
+[data-theme="dark"] .team-avatar,
+[data-theme="dark"] .pillar-icon-box {
+  background: rgba(56, 189, 248, 0.14) !important;
+  color: #38bdf8 !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
+}
+
+/* Callout Boxes (Tip, Info, Quote, Skill) */
+.tip-box, .info-box, .quote-box, .skill-box {
+  background: var(--cl-surface) !important;
+  border: 1px solid var(--cl-line) !important;
+  border-left: 4px solid var(--cl-brand) !important;
+  color: var(--cl-ink) !important;
+}
+
+[dir="rtl"] .tip-box, [dir="rtl"] .info-box, [dir="rtl"] .quote-box, [dir="rtl"] .skill-box,
+body.rtl .tip-box, body.rtl .info-box, body.rtl .quote-box, body.rtl .skill-box {
+  border-left: 1px solid var(--cl-line) !important;
+  border-right: 4px solid var(--cl-brand) !important;
+}
+
+/* Informational & Showcase Cards */
+.pillar-card, .about-card, .motivation-card, .soft-card {
+  background: var(--cl-surface) !important;
+  border: 1px solid var(--cl-line) !important;
+  color: var(--cl-ink) !important;
+}
+
+/* Filter Pills on Course Directory */
+.filter-pill.active {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+}
+
+.filter-pill.active span.pill-count {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+}
+
+:root:not([data-theme="dark"]) .filter-pill:not(.active),
+[data-theme="light"] .filter-pill:not(.active) {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+:root:not([data-theme="dark"]) .filter-pill:not(.active) span.pill-count,
+[data-theme="light"] .filter-pill:not(.active) span.pill-count {
+  background: #f1f5f9 !important;
+  color: #64748b !important;
+}
+
+[data-theme="dark"] .filter-pill:not(.active) {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid #334155 !important;
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .filter-pill:not(.active) span.pill-count {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #94a3b8 !important;
+}
+
+/* Tech Symbol Grid */
+.tech-symbol {
+  background: var(--cl-surface) !important;
+  border: 1px solid var(--cl-line) !important;
+  border-radius: 16px !important;
+}
+
+.tech-symbol-name {
+  color: var(--cl-ink) !important;
+}
+
+.tech-symbol:hover .tech-symbol-name {
+  color: var(--cl-brand) !important;
 }
