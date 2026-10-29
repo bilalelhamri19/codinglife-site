@@ -13,7 +13,8 @@
     .contact-form-container { max-width: 600px; margin: 80px auto; padding: 40px; background: var(--cl-surface); border-radius: var(--cl-radius); box-shadow: var(--cl-shadow-lg); border: 1px solid var(--cl-line); }
     .form-group { margin-bottom: 24px; }
     .form-group label { display: block; margin-bottom: 8px; font-weight: 700; color: var(--cl-ink); }
-    .form-group input, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--cl-line); border-radius: 8px; background: var(--cl-bg); color: var(--cl-ink); font-family: inherit; outline: none; transition: var(--cl-transition); }
+    .form-group input, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--cl-line); border-radius: 8px; background: var(--cl-bg); color: var(--cl-ink); font-family: inherit; outline: none; transition: var(--cl-transition); box-sizing: border-box; }
+    .form-group textarea { resize: vertical !important; min-height: 120px; max-height: 500px; }
     .form-group input:focus, .form-group textarea:focus { border-color: var(--cl-brand); box-shadow: 0 0 0 4px var(--cl-brand-soft); }
     .btn-submit { width: 100%; padding: 16px; background: var(--cl-brand); color: white; border: none; border-radius: 8px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: var(--cl-transition); }
     .btn-submit:hover { background: var(--cl-brand-dark); transform: translateY(-2px); }
