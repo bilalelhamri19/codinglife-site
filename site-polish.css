@@ -1407,3 +1407,10 @@ body.rtl .tip-box, body.rtl .info-box, body.rtl .quote-box, body.rtl .skill-box 
 .tech-symbol:hover .tech-symbol-name {
   color: var(--cl-brand) !important;
 }
+
+/* Ensure logo has no border or glow ring */
+.cl-brand-logo, .splash-logo, a.cl-brand img, .cl-site-header img {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
