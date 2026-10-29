@@ -39,13 +39,12 @@
   </div>
 
   <div class="contact-form-container reveal">
-    <form id="contactForm" action="https://formsubmit.co/codinglife06@gmail.com" method="POST">
-      <!-- Anti-bot Honeypot -->
-      <input type="text" name="_honey" style="display:none">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_subject" value="New Contact Message - Coding Life">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://codinglife1.vercel.app/contact.html?success=1">
+    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+      <!-- Web3Forms Access Key -->
+      <input type="hidden" name="access_key" value="db47f939-cc55-4534-a3aa-911ac897be16">
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+      <input type="hidden" name="subject" value="New Contact Message - Coding Life">
+      <input type="hidden" name="from_name" value="Coding Life Website">
       <div class="form-group">
         <div data-cl-lang="en"><label for="name">Full Name</label></div>
         <div data-cl-lang="ar"><label for="name">الاسم الكامل</label></div>
@@ -83,59 +82,43 @@
 
 <script src="site-polish.js"></script>
 <script>
-  // Handle form submission and success feedback
+  // Handle Web3Forms submission with smooth AJAX feedback
   const form = document.getElementById("contactForm");
   const status = document.getElementById("contact-status");
-  
-  // Check if redirected back after successful submission
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('success') === '1' && status) {
-    const lang = localStorage.getItem('cl-lang') || 'fr';
-    const successMsgs = {
-      en: "Message Sent Successfully! ✅ We'll get back to you soon.",
-      ar: "تم إرسال الرسالة بنجاح! ✅ سنتواصل معك قريباً.",
-      fr: "Message envoyé avec succès ! ✅ Nous vous répondrons sous peu."
-    };
-    status.style.display = "block";
-    status.style.color = "#10b981";
-    status.innerHTML = successMsgs[lang] || successMsgs.fr;
-    history.replaceState(null, '', window.location.pathname);
-  }
 
   if (form) {
     form.addEventListener("submit", async (e) => {
-      // First try smooth background AJAX submission
       e.preventDefault();
       status.style.display = "block";
       status.style.color = "var(--cl-brand)";
       const lang = localStorage.getItem('cl-lang') || 'fr';
       const msgs = {
-        en: { sending: "Sending...", success: "Message Sent Successfully! ✅", error: "Redirecting..." },
-        ar: { sending: "جاري الإرسال...", success: "تم إرسال الرسالة بنجاح! ✅", error: "جاري التوجيه..." },
-        fr: { sending: "Envoi en cours...", success: "Message envoyé avec succès ! ✅", error: "Redirection..." }
+        en: { sending: "Sending...", success: "Message Sent Successfully! ✅", error: "Oops! Error sending message. Please try again." },
+        ar: { sending: "جاري الإرسال...", success: "تم إرسال الرسالة بنجاح! ✅", error: "عذراً! حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى." },
+        fr: { sending: "Envoi en cours...", success: "Message envoyé avec succès ! ✅", error: "Oups ! Erreur lors de l'envoi. Veuillez réessayer." }
       };
       const currentMsgs = msgs[lang] || msgs.fr;
       status.innerHTML = currentMsgs.sending;
 
       try {
         const formData = new FormData(form);
-        const response = await fetch("https://formsubmit.co/ajax/codinglife06@gmail.com", {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Accept": "application/json" },
           body: formData
         });
-        const result = await response.json().catch(() => ({}));
-        if (response.ok && (result.success === "true" || result.success === true || result.message)) {
+        const result = await response.json();
+        if (response.ok && result.success) {
           status.style.color = "#10b981";
           status.innerHTML = currentMsgs.success;
           form.reset();
-          return;
+        } else {
+          status.style.color = "#ef4444";
+          status.innerHTML = result.message || currentMsgs.error;
         }
-        // If AJAX endpoint fails or needs verification, fallback to native POST directly
-        form.submit();
       } catch (err) {
-        // Fallback directly to native form submission
-        form.submit();
+        status.style.color = "#ef4444";
+        status.innerHTML = currentMsgs.error;
       }
     });
   }
