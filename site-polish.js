@@ -806,20 +806,7 @@
   }
 
   function initReadingTime() {
-    const container = document.querySelector(".course-container") || document.querySelector("article");
-    if (!container || document.querySelector(".cl-reading-time")) return;
-    const header = container.querySelector(".course-header") || container.querySelector("h1")?.parentElement;
-    if (!header) return;
-    const text = container.innerText || "";
-    const words = text.trim().split(/\s+/).filter(Boolean).length;
-    if (words < 120) return;
-    const mins = Math.max(1, Math.round(words / 180));
-    const isAr = currentLang === "ar";
-    const badge = document.createElement("div");
-    badge.className = "cl-reading-time";
-    badge.style = "display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:99px; background:rgba(45,212,191,0.15); border:1px solid rgba(45,212,191,0.3); color:var(--cl-brand); font-size:0.85rem; font-weight:700; margin-top:14px;";
-    badge.innerHTML = `<i class="fa-regular fa-clock"></i> <span>${mins} ${isAr ? 'دقائق قراءة' : 'min read'}</span>`;
-    header.appendChild(badge);
+    return;
   }
 
   function initCookieConsent() {
