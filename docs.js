@@ -186,22 +186,9 @@
     `;
     main.appendChild(pager);
 
-    // 3. Right TOC
-    const toc = document.createElement('aside');
-    toc.className = 'docs-toc';
-    toc.innerHTML = `
-      <div class="docs-toc-title">On this page</div>
-      <ul class="docs-toc-list" id="docsTocList">
-        ${lessonsData.map(l => `
-          <li><a href="#${l.id}" class="docs-toc-link ${l.index === 0 ? 'active' : ''}">${escapeHtml(l.titleEn)}</a></li>
-        `).join('')}
-      </ul>
-    `;
-
-    // Put into layout
+    // Put into layout (Sidebar + Main Content only, no duplicate right TOC)
     layout.appendChild(sidebar);
     layout.appendChild(main);
-    layout.appendChild(toc);
 
     // Replace contents in body or course-container
     courseContainer.parentNode.insertBefore(layout, courseContainer);
@@ -307,10 +294,6 @@
         const currentId = lessonCards[activeIndex].id;
 
         document.querySelectorAll('.docs-lesson-link').forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
-        });
-
-        document.querySelectorAll('.docs-toc-link').forEach(link => {
           link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
         });
 
