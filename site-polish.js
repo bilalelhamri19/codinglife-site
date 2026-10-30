@@ -854,6 +854,7 @@
   }
 
   function initCourseProgress() {
+    return; // Disabled Mark as Completed
     const lessonCards = document.querySelectorAll(".lesson-card");
     if (!lessonCards || lessonCards.length === 0) return;
 
@@ -1002,6 +1003,12 @@
       document.body.prepend(banner);
     }
   }
+
+  window.CL_POLISH = {
+    applyLang: applyLang,
+    refreshPageContent: refreshPageContent,
+    getCurrentLang: function() { return currentLang; }
+  };
 
   function boot() {
     applyLang(currentLang);

@@ -1493,3 +1493,8 @@ body.rtl .tip-box, body.rtl .info-box, body.rtl .quote-box, body.rtl .skill-box 
 textarea {
   resize: vertical !important;
 }
+
+/* Hide Mark as Completed and Progress Bar */
+.cl-course-progress-card, .cl-lesson-complete-btn {
+  display: none !important;
+}

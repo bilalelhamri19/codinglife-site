@@ -527,3 +527,20 @@
     padding: 20px 0 !important;
   }
 }
+
+
+/* Fallback to ensure lesson link titles are never invisible */
+.docs-lesson-link > span[data-cl-lang="en"] {
+  display: inline;
+}
+.docs-lesson-link > span[data-cl-lang="ar"],
+.docs-lesson-link > span[data-cl-lang="fr"] {
+  display: none;
+}
+.docs-lesson-link > span[data-cl-lang].cl-active-lang {
+  display: inline !important;
+}
+.docs-lesson-link:has(> span[data-cl-lang="ar"].cl-active-lang) > span[data-cl-lang="en"],
+.docs-lesson-link:has(> span[data-cl-lang="fr"].cl-active-lang) > span[data-cl-lang="en"] {
+  display: none !important;
+}

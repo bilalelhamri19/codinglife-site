@@ -21,7 +21,7 @@
     const courseContainer = document.querySelector('.course-container');
     if (!courseContainer) return;
 
-    const currentLang = localStorage.getItem('cl_lang') || 'en';
+    const currentLang = localStorage.getItem('cl-lang') || localStorage.getItem('cl_lang') || 'en';
 
     const courseHeader = document.querySelector('.course-header');
     let courseTitle = 'Course';
@@ -118,8 +118,8 @@
                 <a href="#${l.id}" class="docs-lesson-link ${l.index === 0 ? 'active' : ''}" onclick="window.CL_DOCS.activateLink(this)">
                   <span class="docs-lesson-num">${String(l.index + 1).padStart(2, '0')}</span>
                   <span data-cl-lang="en" class="${currentLang === 'en' ? 'cl-active-lang' : ''}">${escapeHtml(l.titleEn)}</span>
-                  <span data-cl-lang="ar" class="${currentLang === 'ar' ? 'cl-active-lang' : ''}">${escapeHtml(l.titleAr)}</span>
-                  <span data-cl-lang="fr" class="${currentLang === 'fr' ? 'cl-active-lang' : ''}">${escapeHtml(l.titleFr)}</span>
+                  <span data-cl-lang="ar" class="${currentLang === 'ar' ? 'cl-active-lang' : ''}">${escapeHtml(l.titleAr || l.titleEn)}</span>
+                  <span data-cl-lang="fr" class="${currentLang === 'fr' ? 'cl-active-lang' : ''}">${escapeHtml(l.titleFr || l.titleEn)}</span>
                 </a>
               </li>
             `).join('')}
@@ -198,6 +198,16 @@
     // Replace contents in body or course-container
     courseContainer.parentNode.insertBefore(layout, courseContainer);
     courseContainer.remove();
+
+    // Sync language visibility for newly inserted elements
+    const activeLang = localStorage.getItem('cl-lang') || localStorage.getItem('cl_lang') || 'en';
+    layout.querySelectorAll('[data-cl-lang]').forEach(el => {
+      if (el.getAttribute('data-cl-lang') === activeLang) {
+        el.classList.add('cl-active-lang');
+      } else {
+        el.classList.remove('cl-active-lang');
+      }
+    });
 
     // Mobile Drawer Elements
     const mobileBtn = document.createElement('button');
