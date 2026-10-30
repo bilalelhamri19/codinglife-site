@@ -1,71 +1,25 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cours Complet Java - Coding Life</title>
+  <title>Java Fundamentals & Enterprise Docs - Coding Life</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
+  <link rel="stylesheet" href="docs.css">
   <style>
-    .lesson-card {
-      background: var(--cl-surface);
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 30px;
-      border: 1px solid var(--cl-line);
-      transition: var(--cl-transition);
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .lesson-header {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-    .lesson-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--cl-brand);
-      box-shadow: var(--cl-shadow-lg);
-    }
-    .lesson-icon {
-      width: 60px;
-      height: 60px;
-      background: var(--cl-brand-soft);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      color: var(--cl-brand);
-      flex-shrink: 0;
-    }
-    .lesson-info {
-      flex-grow: 1;
-    }
-    .lesson-info h3 {
-      font-size: 1.5rem;
-      color: var(--cl-brand);
-      margin-bottom: 12px;
-      margin-top: 0;
-    }
-    .lesson-content {
-      line-height: 1.8;
-      color: var(--cl-muted);
-      font-size: 1.05rem;
-    }
-    .badge {
+    /* Course specific tweaks */
+    .docs-badge {
       display: inline-block;
       padding: 4px 12px;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .badge-modern { background: var(--cl-brand-soft); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--cl-brand); }
     .badge-important { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); color: #f59e0b; }
@@ -75,200 +29,709 @@
       background: #0d1117;
       color: #c9d1d9;
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       font-family: 'Fira Code', monospace;
       font-size: 0.9rem;
       overflow-x: auto;
-      margin: 15px 0;
+      margin: 16px 0;
       border: 1px solid #30363d;
-    }
-
-    @media (max-width: 768px) {
-      .lesson-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      position: relative;
     }
   </style>
 </head>
 <body>
 
-<div class="course-container">
-  <div class="course-header" >
-    <div data-cl-lang="en">
-      <h1><i class="fab fa-java"></i> Java Enterprise Mastery</h1>
-      <p>Build robust, scalable, and secure enterprise applications with Java.</p>
+  <!-- ================= SUB-NAVIGATION: PARTS BAR ================= -->
+  <nav class="docs-parts-bar" aria-label="Course Parts">
+    <div class="docs-parts-inner">
+      <button class="docs-part-btn active" data-part="1" onclick="switchPart(1)">
+        <i class="fa-solid fa-cube"></i>
+        <span data-cl-lang="en">Part 1: Core Basics</span>
+        <span data-cl-lang="ar">الجزء 1: الأساسيات</span>
+        <span data-cl-lang="fr">Partie 1: Les Fondations</span>
+      </button>
+      <button class="docs-part-btn" data-part="2" onclick="switchPart(2)">
+        <i class="fa-solid fa-code-branch"></i>
+        <span data-cl-lang="en">Part 2: Advanced Core</span>
+        <span data-cl-lang="ar">الجزء 2: التحكم والدوال</span>
+        <span data-cl-lang="fr">Partie 2: Structures & Fonctions</span>
+      </button>
+      <button class="docs-part-btn" data-part="3" onclick="switchPart(3)">
+        <i class="fa-solid fa-layer-group"></i>
+        <span data-cl-lang="en">Part 3: Modern & Enterprise (OOP)</span>
+        <span data-cl-lang="ar">الجزء 3: البرمجة الكائنية OOP</span>
+        <span data-cl-lang="fr">Partie 3: POO & Entreprise</span>
+      </button>
+      <button class="docs-part-btn" data-part="4" onclick="switchPart(4)">
+        <i class="fa-solid fa-rocket"></i>
+        <span data-cl-lang="en">Part 4: Design & Practice</span>
+        <span data-cl-lang="ar">الجزء 4: الاحتراف وخارطة الطريق</span>
+        <span data-cl-lang="fr">Partie 4: Pratique & Roadmap</span>
+      </button>
     </div>
-    <div data-cl-lang="ar">
-      <h1><i class="fab fa-java"></i> إتقان Java</h1>
-      <p>بناء تطبيقات مؤسسية قوية وقابلة للتوسع وآمنة باستخدام جافا.</p>
-    </div>
-    <div data-cl-lang="fr">
-      <h1><i class="fab fa-java"></i> Maîtrise Java</h1>
-      <p>Créez des applications d'entreprise robustes, évolutives et sécurisées.</p>
-    </div>
-  </div>
+  </nav>
 
-  <div class="chapters" id="javaLessons">
-    <!-- Lessons will be injected here -->
-  </div>
-</div>
+  <!-- ================= MASTER DOCS LAYOUT ================= -->
+  <div class="docs-layout-container">
 
-<script>
-  const javaLessons = [
-    {
-      icon: "fa-question-circle",
-      badge: "badge-modern",
-      t_fr: "1. Qu'est-ce que Java ?",
-      d_fr: "Java est un langage multi-plateforme ('Write Once, Run Anywhere') créé par Sun Microsystems. Il est orienté objet, robuste et très utilisé dans les grandes entreprises et les applications Android.",
-      t_en: "1. What is Java?",
-      d_en: "Java is a multi-platform language ('Write Once, Run Anywhere') created by Sun Microsystems. It is object-oriented, robust, and widely used in enterprise and Android development.",
-      t_ar: "1. ما هو Java؟",
-      d_ar: "جافا هي لغة برمجة متعددة المنصات ('اكتب مرة واحدة، وشغل في أي مكان') تم إنشاؤها من قبل Sun Microsystems. هي لغة كائنية التوجه، قوية وتستخدم على نطاق واسع في الشركات وتطوير أندرويد."
-    },
-    {
-      icon: "fa-download",
-      badge: "badge-important",
-      t_fr: "2. Installation & Premier Programme",
-      d_fr: "Installez le JDK (17 ou 21), configurez le PATH, et créez votre premier 'Hello World'. Utilisez IntelliJ IDEA pour la meilleure expérience.",
-      code: "public class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Bonjour le monde ! 👋\");\n    }\n}",
-      t_en: "2. Installation & First Program",
-      d_en: "Install the JDK (17 or 21), configure the PATH, and create your first 'Hello World'. Use IntelliJ IDEA for the best experience.",
-      t_ar: "2. التثبيت وأول برنامج",
-      d_ar: "قم بتثبيت JDK (17 أو 21)، وتهيئة المسار (PATH)، وأنشئ برنامجك الأول 'Hello World'. استخدم IntelliJ IDEA للحصول على أفضل تجربة."
-    },
-    {
-      icon: "fa-vial",
-      badge: "badge-modern",
-      t_fr: "3. Variables et Types de Données",
-      d_fr: "Apprenez les types primitifs (int, double, char, boolean) et les objets (String). Java 10+ permet l'utilisation de 'var' pour l'inférence de type.",
-      code: "int age = 25;\ndouble prix = 9.99;\nString nom = \"Mohammed\";\nvar score = 100; // Java devine le type",
-      t_en: "3. Variables and Data Types",
-      d_en: "Learn primitive types (int, double, char, boolean) and objects (String). Java 10+ allows using 'var' for type inference.",
-      t_ar: "3. المتغيرات وأنواع البيانات",
-      d_ar: "تعلم الأنواع الأساسية (int, double, char, boolean) والكائنات (String). يسمح Java 10+ باستخدام 'var' لاستنتاج النوع."
-    },
-    {
-      icon: "fa-code-branch",
-      badge: "badge-modern",
-      t_fr: "4. Opérateurs et Conditions",
-      d_fr: "Maîtrisez les calculs et la logique. Utilisez if, else if, et le nouveau switch moderne de Java 14+.",
-      code: "if (note >= 16) {\n    System.out.println(\"Très Bien\");\n}\n\nString jour = switch (n) {\n    case 1 -> \"Lundi\";\n    default -> \"Autre\";\n};",
-      t_en: "4. Operators and Conditions",
-      d_en: "Master calculations and logic. Use if, else if, and the modern switch introduced in Java 14+.",
-      t_ar: "4. العمليات والشروط",
-      d_ar: "أتقن الحسابات والمنطق. استخدم if، else if، و switch الحديث المتوفر منذ Java 14+."
-    },
-    {
-      icon: "fa-sync",
-      badge: "badge-modern",
-      t_fr: "5. Boucles et Tableaux",
-      d_fr: "Utilisez for, while, et for-each pour parcourir des données. Gérez des tableaux simples ou multidimensionnels (matrices).",
-      code: "int[] nombres = {1, 2, 3};\nfor (int n : nombres) {\n    System.out.println(n);\n}",
-      t_en: "5. Loops and Arrays",
-      d_en: "Use for, while, and for-each to iterate through data. Manage simple or multi-dimensional arrays (matrices).",
-      t_ar: "5. الحلقات والمصفوفات",
-      d_ar: "استخدم for، while، و for-each للمرور عبر البيانات. تعامل مع المصفوفات البسيطة أو متعددة الأبعاد."
-    },
-    {
-      icon: "fa-tools",
-      badge: "badge-pro",
-      t_fr: "6. Méthodes (Fonctions)",
-      d_fr: "Créez des blocs de code réutilisables. Apprenez la surcharge de méthodes (Overloading) pour avoir le même nom avec des paramètres différents.",
-      code: "public static int addition(int a, int b) {\n    return a + b;\n}",
-      t_en: "6. Methods (Functions)",
-      d_en: "Create reusable blocks of code. Learn method overloading to have the same name with different parameters.",
-      t_ar: "6. الدوال (Methods)",
-      d_ar: "أنشئ كتل برمجية قابلة لإعادة الاستخدام. تعلم تحميل الدوال الزائد (Overloading) لاستخدام نفس الاسم ببارامترات مختلفة."
-    },
-    {
-      icon: "fa-dna",
-      badge: "badge-important",
-      t_fr: "7. POO — Le Cœur de Java",
-      d_fr: "Maîtrisez les 4 piliers : Encapsulation (private/getters), Héritage (extends), Polymorphisme et Abstraction (abstract/interface).",
-      code: "public class Chien extends Animal {\n    @Override\n    public void faireBruit() { System.out.println(\"Waf!\"); }\n}",
-      t_en: "7. OOP — The Core of Java",
-      d_en: "Master the 4 pillars: Encapsulation (private/getters), Inheritance (extends), Polymorphism, and Abstraction (abstract/interface).",
-      t_ar: "7. البرمجة كائنية التوجه (POO)",
-      d_ar: "أتقن الركائز الأربعة: التغليف (Encapsulation)، الوراثة (Inheritance)، تعدد الأشكال (Polymorphism)، والتجريد (Abstraction)."
-    },
-    {
-      icon: "fa-layer-group",
-      badge: "badge-pro",
-      t_fr: "8. Collections (ArrayList & HashMap)",
-      d_fr: "Gérez des listes de données dynamiques avec ArrayList et des paires clé-valeur avec HashMap.",
-      code: "ArrayList<String> liste = new ArrayList<>();\nHashMap<String, Integer> map = new HashMap<>();",
-      t_en: "8. Collections (ArrayList & HashMap)",
-      d_en: "Manage dynamic data lists with ArrayList and key-value pairs with HashMap.",
-      t_ar: "8. المجموعات (Collections)",
-      d_ar: "تعامل مع قوائم البيانات الديناميكية باستخدام ArrayList وأزواج المفتاح والقيمة باستخدام HashMap."
-    },
-    {
-      icon: "fa-exclamation-triangle",
-      badge: "badge-important",
-      t_fr: "9. Gestion des Exceptions",
-      d_fr: "Utilisez try, catch, et finally pour gérer les erreurs et éviter que votre application ne plante.",
-      code: "try {\n    int res = 10 / 0;\n} catch (ArithmeticException e) {\n    System.out.println(\"Erreur !\");\n}",
-      t_en: "9. Exception Handling",
-      d_en: "Use try, catch, and finally to handle errors and prevent your application from crashing.",
-      t_ar: "9. معالجة الاستثناءات",
-      d_ar: "استخدم try، catch، و finally للتعامل مع الأخطاء ومنع تطبيقك من التوقف المفاجئ."
-    },
-    {
-      icon: "fa-bolt",
-      badge: "badge-pro",
-      t_fr: "10. Java Moderne (Lambda & Stream)",
-      d_fr: "Utilisez les expressions Lambda (Java 8+) et l'API Stream pour manipuler les données de manière élégante et concise.",
-      code: "noms.stream()\n    .filter(n -> n.startsWith(\"A\"))\n    .forEach(System.out::println);",
-      t_en: "10. Modern Java (Lambda & Stream)",
-      d_en: "Use Lambda expressions (Java 8+) and the Stream API to manipulate data elegantly and concisely.",
-      t_ar: "10. جافا الحديثة (Lambda & Stream)",
-      d_ar: "استخدم تعبيرات Lambda و Stream API للتعامل مع البيانات بطريقة أنيقة ومختصرة."
-    },
-    {
-      icon: "fa-road",
-      badge: "badge-modern",
-      t_fr: "11. Feuille de Route Java",
-      d_fr: "Le chemin vers l'expertise : Syntaxe -> POO -> Collections -> API Stream -> Spring Boot -> Microservices.",
-      t_en: "11. Java Roadmap",
-      d_en: "The path to expertise: Syntax -> OOP -> Collections -> Stream API -> Spring Boot -> Microservices.",
-      t_ar: "11. خارطة طريق Java",
-      d_ar: "طريق الاحتراف: الأساسيات -> POO -> المجموعات -> Stream API -> Spring Boot -> Microservices."
-    }
-  ];
+    <!-- ── LEFT SIDEBAR ── -->
+    <aside class="docs-sidebar" id="docsSidebar">
+      
+      <!-- Module 1 -->
+      <div class="docs-sidebar-module" data-part-group="1">
+        <div class="docs-module-header" onclick="toggleModule(this)">
+          <span><i class="fa-solid fa-book-open" style="color:var(--cl-brand);margin-right:8px;"></i>
+            <span data-cl-lang="en">Java Fundamentals</span>
+            <span data-cl-lang="ar">أساسيات جافا</span>
+            <span data-cl-lang="fr">Fondamentaux Java</span>
+          </span>
+          <i class="fa-solid fa-chevron-down docs-chevron"></i>
+        </div>
+        <ul class="docs-lesson-list">
+          <li><a href="#lesson-1" class="docs-lesson-link active" onclick="activateLink(this)"><span class="docs-lesson-num">01</span> <span data-cl-lang="en">What is Java?</span><span data-cl-lang="ar">ما هو Java؟</span><span data-cl-lang="fr">Qu'est-ce que Java ?</span></a></li>
+          <li><a href="#lesson-2" class="docs-lesson-link" onclick="activateLink(this)"><span class="docs-lesson-num">02</span> <span data-cl-lang="en">Installing JDK & First Code</span><span data-cl-lang="ar">التثبيت وأول برنامج</span><span data-cl-lang="fr">Installation & 1er Code</span></a></li>
+          <li><a href="#lesson-3" class="docs-lesson-link" onclick="activateLink(this)"><span class="docs-lesson-num">03</span> <span data-cl-lang="en">Variables & Data Types</span><span data-cl-lang="ar">المتغيرات وأنواع البيانات</span><span data-cl-lang="fr">Variables & Types</span></a></li>
+          <li><a href="#lesson-4" class="docs-lesson-link" onclick="activateLink(this)"><span class="docs-lesson-num">04</span> <span data-cl-lang="en">Operators & Conditions</span><span data-cl-lang="ar">العمليات والشروط</span><span data-cl-lang="fr">Opérateurs & Conditions</span></a></li>
+        </ul>
+      </div>
 
-  const chaptersContainer = document.getElementById('javaLessons');
-  
-  function render(lesson) {
-    const div = document.createElement('div');
-    div.className = 'lesson-card reveal';
-    
-    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
-    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
-    
-    div.innerHTML = `
-      <div class="lesson-header">
-        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
-        <div class="lesson-info">
-          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
-          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
-          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
-          ${badgeHtml}
+      <!-- Module 2 -->
+      <div class="docs-sidebar-module" data-part-group="2">
+        <div class="docs-module-header" onclick="toggleModule(this)">
+          <span><i class="fa-solid fa-code" style="color:var(--cl-brand);margin-right:8px;"></i>
+            <span data-cl-lang="en">Control Flow & Methods</span>
+            <span data-cl-lang="ar">التحكم والمصفوفات والدوال</span>
+            <span data-cl-lang="fr">Contrôle & Méthodes</span>
+          </span>
+          <i class="fa-solid fa-chevron-down docs-chevron"></i>
+        </div>
+        <ul class="docs-lesson-list">
+          <li><a href="#lesson-5" class="docs-lesson-link" onclick="activateLink(this)"><span class="docs-lesson-num">05</span> <span data-cl-lang="en">Loops and Arrays</span><span data-cl-lang="ar">الحلقات والمصفوفات</span><span data-cl-lang="fr">Boucles et Tableaux</span></a></li>
+          <li><a href="#lesson-6" class="docs-lesson-link" onclick="activateLink(this)"><span class="docs-lesson-num">06</span> <span data-cl-lang="en">Methods & Reusability</span><span data-cl-lang="ar">الدوال (Methods)</span><span data-cl-lang="fr">Méthodes & Fonctions</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Module 3 -->
+      <div class="docs-sidebar-module" data-part-group="3">
+        <div class="docs-module-header" onclick="toggleModule(this)">
+          <span><i class="fa-solid fa-cubes" style="color:var(--cl-brand);margin-right:8px;"></i>
+            <span data-cl-lang="en">OOP & Collections</span>
+            <span data-cl-lang="ar">الكائنات والمجموعات</span>
+            <span data-cl-lang="fr">POO & Collections</span>
+          </span>
+          <i class="fa-solid fa-chevron-down docs-chevron"></i>
+        </div>
+        <ul class="docs-lesson-list">
+          <li><a href="#lesson-7" class="docs-lesson-link" onclick="activateLink(this)"><span class="docs-lesson-num">07</span> <span data-cl-lang="en">OOP — The 4 Pillars</span><span data-cl-lang="ar">البرمجة الكائنية (POO)</span><span data-cl-lang="fr">Les 4 Piliers de la POO</span></a></li>
+          <li><a href="#lesson-8" class="docs-lesson-link" onclick="activateLink(this)"><span class="docs-lesson-num">08</span> <span data-cl-lang="en">Collections (List & Map)</span><span data-cl-lang="ar">المجموعات (Collections)</span><span data-cl-lang="fr">Collections (List & Map)</span></a></li>
+          <li><a href="#lesson-9" class="docs-lesson-link" onclick="activateLink(this)"><span class="docs-lesson-num">09</span> <span data-cl-lang="en">Exception Handling</span><span data-cl-lang="ar">معالجة الاستثناءات</span><span data-cl-lang="fr">Gestion des Exceptions</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Module 4 -->
+      <div class="docs-sidebar-module" data-part-group="4">
+        <div class="docs-module-header" onclick="toggleModule(this)">
+          <span><i class="fa-solid fa-compass" style="color:var(--cl-brand);margin-right:8px;"></i>
+            <span data-cl-lang="en">Modern Java & Roadmap</span>
+            <span data-cl-lang="ar">جافا الحديثة والمسار</span>
+            <span data-cl-lang="fr">Java Moderne & Roadmap</span>
+          </span>
+          <i class="fa-solid fa-chevron-down docs-chevron"></i>
+        </div>
+        <ul class="docs-lesson-list">
+          <li><a href="#lesson-10" class="docs-lesson-link" onclick="activateLink(this)"><span class="docs-lesson-num">10</span> <span data-cl-lang="en">Lambdas & Stream API</span><span data-cl-lang="ar">جافا الحديثة (Streams)</span><span data-cl-lang="fr">Lambda & Stream API</span></a></li>
+          <li><a href="#lesson-11" class="docs-lesson-link" onclick="activateLink(this)"><span class="docs-lesson-num">11</span> <span data-cl-lang="en">Java Career Roadmap</span><span data-cl-lang="ar">خارطة طريق الاحتراف</span><span data-cl-lang="fr">Feuille de Route Java</span></a></li>
+        </ul>
+      </div>
+
+    </aside>
+
+    <!-- ── MAIN CONTENT ── -->
+    <main class="docs-main-content">
+
+      <!-- Breadcrumbs & PDF Button -->
+      <div class="docs-top-utilities">
+        <div class="docs-breadcrumbs">
+          <a href="index.html" class="docs-breadcrumb-home" title="Home"><i class="fa-solid fa-house"></i></a>
+          <span class="docs-breadcrumb-sep">/</span>
+          <a href="dorous-albarmaja.html" style="color:var(--cl-muted);">Courses</a>
+          <span class="docs-breadcrumb-sep">/</span>
+          <span class="docs-breadcrumb-pill">Java Fundamentals</span>
+        </div>
+        <button class="docs-pdf-btn" onclick="window.print()" title="Print or save as PDF">
+          <i class="fa-solid fa-download"></i>
+          <span>Download PDF</span>
+        </button>
+      </div>
+
+      <!-- Hero Header -->
+      <div class="docs-module-header-area">
+        <h1 class="docs-module-title">Java Fundamentals</h1>
+        <p class="docs-module-lead">
+          <span data-cl-lang="en">Welcome to the Java Fundamentals module of Coding Life Docs. This module is designed for complete beginners and will help you build a strong foundation before moving to Object-Oriented Programming and Advanced Java.</span>
+          <span data-cl-lang="ar">مرحبًا بك في وثائق ودورة أساسيات جافا من Coding Life. صُممت هذه الوحدة لتأخذك من الصفر المطلق إلى فهم عميق لبنية اللغة قبل الانتقال للبرمجة كائنية التوجه وتطوير تطبيقات المؤسسات.</span>
+          <span data-cl-lang="fr">Bienvenue dans le module Fondamentaux Java de Coding Life Docs. Ce cours est conçu pour les débutants complets pour bâtir des fondations solides avant d'aborder la POO et les architectures d'entreprise.</span>
+        </p>
+
+        <!-- What You'll Learn Box -->
+        <div class="docs-learn-card">
+          <h3><i class="fa-solid fa-graduation-cap" style="color:var(--cl-brand);"></i> What You'll Learn</h3>
+          <ul>
+            <li>What Java is and the Write-Once-Run-Anywhere (WORA) philosophy</li>
+            <li>Differences between JDK, JRE, and JVM execution flow</li>
+            <li>Setting up JDK 21+ and writing clean idiomatic code</li>
+            <li>Strong static typing, primitives, and memory safety</li>
+            <li>Object-Oriented Programming: Encapsulation, Inheritance & Polymorphism</li>
+            <li>Modern functional programming with Streams and Lambdas</li>
+          </ul>
         </div>
       </div>
-      <div class="lesson-content">
-        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
-        <div data-cl-lang="en">${lesson.d_en || ''}</div>
-        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
-        ${codeHtml}
+
+      <!-- LESSONS CONTAINER -->
+      <div id="javaLessonsContainer">
+
+        <!-- Lesson 1 -->
+        <article class="docs-lesson-card" id="lesson-1">
+          <div class="docs-lesson-header">
+            <div class="docs-lesson-icon"><i class="fas fa-question-circle"></i></div>
+            <div class="docs-lesson-info">
+              <span class="docs-badge badge-modern">Core Fundamentals</span>
+              <div data-cl-lang="en"><h2>1. What is Java & History</h2></div>
+              <div data-cl-lang="ar"><h2>1. ما هو Java وتاريخه</h2></div>
+              <div data-cl-lang="fr"><h2>1. Qu'est-ce que Java ?</h2></div>
+            </div>
+          </div>
+          <div class="docs-lesson-body">
+            <div data-cl-lang="en">
+              <p>Java is a high-level, class-based, object-oriented programming language designed to have as few implementation dependencies as possible. Released by <strong>Sun Microsystems</strong> in 1995 (now owned by Oracle), its defining motto is: <em>"Write Once, Run Anywhere" (WORA)</em>.</p>
+              <p>This cross-platform capability is achieved via bytecode, which runs on the <strong>Java Virtual Machine (JVM)</strong> regardless of the underlying computer architecture (Windows, macOS, Linux, Android).</p>
+            </div>
+            <div data-cl-lang="ar">
+              <p>جافا (Java) هي لغة برمجة عالية المستوى، كائنية التوجه (OOP)، صممت بهدف تقليل الاعتماد على البنية التحتية للأجهزة إلى أدنى حد. أطلقتها شركة <strong>Sun Microsystems</strong> سنة 1995، وشعارها الشهير: <em>"اكتب مرة واحدة، ونفّذ في أي مكان" (Write Once, Run Anywhere)</em>.</p>
+              <p>تتحقق هذه المرونة عبر ترجمة الكود المصدري إلى <strong>Bytecode</strong> يشتغل فوق آلة جافا الافتراضية (JVM) بسلاسة على ويندوز، ماك، لينكس وأندرويد.</p>
+            </div>
+            <div data-cl-lang="fr">
+              <p>Java est un langage de programmation orienté objet de haut niveau. Créé par Sun Microsystems en 1995 (aujourd'hui Oracle), son principe fondateur est : <em>"Write Once, Run Anywhere" (WORA)</em>.</p>
+              <p>Le code Java est compilé en bytecode exécuté par la machine virtuelle Java (JVM), rendant vos applications indépendantes du système d'exploitation.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lesson 2 -->
+        <article class="docs-lesson-card" id="lesson-2">
+          <div class="docs-lesson-header">
+            <div class="docs-lesson-icon"><i class="fas fa-download"></i></div>
+            <div class="docs-lesson-info">
+              <span class="docs-badge badge-modern">Getting Started</span>
+              <div data-cl-lang="en"><h2>2. Installing JDK 21 & First Program</h2></div>
+              <div data-cl-lang="ar"><h2>2. التثبيت وأول برنامج في جافا</h2></div>
+              <div data-cl-lang="fr"><h2>2. Installation & Premier Programme</h2></div>
+            </div>
+          </div>
+          <div class="docs-lesson-body">
+            <div data-cl-lang="en">
+              <p>To start coding in Java, you need the <strong>Java Development Kit (JDK)</strong>. We recommend <strong>OpenJDK 21 (LTS)</strong>. Every Java application begins with a class containing a <code>main</code> method.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <p>للبدء في كتابة كود جافا، تحتاج لتثبيت حزمة <strong>JDK (Java Development Kit)</strong>. نوصي بإصدار <strong>OpenJDK 21 (LTS)</strong>. يبدأ أي برنامج جافا داخل صنف (class) يحتوي دالة الدخول <code>main</code>.</p>
+            </div>
+            <div data-cl-lang="fr">
+              <p>Pour développer, installez le <strong>JDK (Java Development Kit)</strong> version 21 (LTS). Tout programme Java démarre dans une classe contenant la méthode <code>main</code>.</p>
+            </div>
+
+            <div class="code-block">
+              <pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, Coding Life World!");
+    }
+}</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lesson 3 -->
+        <article class="docs-lesson-card" id="lesson-3">
+          <div class="docs-lesson-header">
+            <div class="docs-lesson-icon"><i class="fas fa-code"></i></div>
+            <div class="docs-lesson-info">
+              <span class="docs-badge badge-modern">Data Types</span>
+              <div data-cl-lang="en"><h2>3. Variables and Static Typing</h2></div>
+              <div data-cl-lang="ar"><h2>3. المتغيرات وأنواع البيانات</h2></div>
+              <div data-cl-lang="fr"><h2>3. Variables et Types de Données</h2></div>
+            </div>
+          </div>
+          <div class="docs-lesson-body">
+            <div data-cl-lang="en">
+              <p>Java is strictly and statically typed. You must declare the type of each variable before using it. Java provides primitive types (<code>int</code>, <code>double</code>, <code>boolean</code>, <code>char</code>) and reference types like <code>String</code>.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <p>جافا لغة ذات كتابة نوعية صارمة (Strictly Typed). يجب تحديد نوع كل متغير بوضوح، مثل الأنواع الأساسية (<code>int</code>, <code>double</code>, <code>boolean</code>) أو المرجعية مثل <code>String</code>.</p>
+            </div>
+            <div data-cl-lang="fr">
+              <p>Java est un langage typé statiquement. Les types primitifs incluent <code>int</code>, <code>double</code>, <code>boolean</code>, et les types objets comme <code>String</code>.</p>
+            </div>
+
+            <div class="code-block">
+              <pre><code class="language-java">int age = 20;
+double price = 19.99;
+String channel = "Coding Life";
+boolean isStudent = true;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lesson 4 -->
+        <article class="docs-lesson-card" id="lesson-4">
+          <div class="docs-lesson-header">
+            <div class="docs-lesson-icon"><i class="fas fa-arrows-split-up-and-left"></i></div>
+            <div class="docs-lesson-info">
+              <span class="docs-badge badge-modern">Conditionals</span>
+              <div data-cl-lang="en"><h2>4. Operators & Control Flow</h2></div>
+              <div data-cl-lang="ar"><h2>4. العمليات والشروط (Conditions)</h2></div>
+              <div data-cl-lang="fr"><h2>4. Opérateurs et Conditions</h2></div>
+            </div>
+          </div>
+          <div class="docs-lesson-body">
+            <div data-cl-lang="en">
+              <p>Make decisions in your code using conditional structures: <code>if</code>, <code>else if</code>, <code>else</code>, and modern pattern-matching <code>switch</code> expressions.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <p>اتخاذ القرارات البرمجية عبر أدوات الشرط <code>if</code>, <code>else if</code>, <code>else</code> ومفتاح الاختيار الحديث <code>switch</code>.</p>
+            </div>
+            <div data-cl-lang="fr">
+              <p>Contrôlez le flux d'exécution grâce aux structures conditionnelles <code>if</code> / <code>else</code> et aux blocs <code>switch</code>.</p>
+            </div>
+
+            <div class="code-block">
+              <pre><code class="language-java">int score = 85;
+if (score >= 90) {
+    System.out.println("Grade: A");
+} else if (score >= 80) {
+    System.out.println("Grade: B");
+} else {
+    System.out.println("Keep pushing!");
+}</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lesson 5 -->
+        <article class="docs-lesson-card" id="lesson-5">
+          <div class="docs-lesson-header">
+            <div class="docs-lesson-icon"><i class="fas fa-repeat"></i></div>
+            <div class="docs-lesson-info">
+              <span class="docs-badge badge-important">Iteration</span>
+              <div data-cl-lang="en"><h2>5. Loops and Arrays</h2></div>
+              <div data-cl-lang="ar"><h2>5. الحلقات التكرارية والمصفوفات</h2></div>
+              <div data-cl-lang="fr"><h2>5. Boucles et Tableaux</h2></div>
+            </div>
+          </div>
+          <div class="docs-lesson-body">
+            <div data-cl-lang="en">
+              <p>Arrays hold fixed-size elements of the same data type. Traverse them cleanly using traditional <code>for</code> loops or enhanced <code>for-each</code> loops.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <p>تسمح المصفوفات بتخزين مجموعة عناصر من نفس النوع بحجم محدد مسبقاً. يمكن المرور عليها باستخدام حلقة <code>for-each</code> الأنيقة.</p>
+            </div>
+            <div data-cl-lang="fr">
+              <p>Les tableaux stockent une taille fixe d'éléments du même type. Parcourez-les facilement avec la boucle <code>for-each</code>.</p>
+            </div>
+
+            <div class="code-block">
+              <pre><code class="language-java">String[] languages = {"Java", "Python", "TypeScript"};
+
+for (String lang : languages) {
+    System.out.println("Mastering: " + lang);
+}</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lesson 6 -->
+        <article class="docs-lesson-card" id="lesson-6">
+          <div class="docs-lesson-header">
+            <div class="docs-lesson-icon"><i class="fas fa-gears"></i></div>
+            <div class="docs-lesson-info">
+              <span class="docs-badge badge-important">Functions</span>
+              <div data-cl-lang="en"><h2>6. Methods (Functions & Parameters)</h2></div>
+              <div data-cl-lang="ar"><h2>6. الدوال والوظائف (Methods)</h2></div>
+              <div data-cl-lang="fr"><h2>6. Méthodes (Fonctions)</h2></div>
+            </div>
+          </div>
+          <div class="docs-lesson-body">
+            <div data-cl-lang="en">
+              <p>Methods promote code reusability and clean architecture. A method defines an access modifier, return type, name, and input parameters.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <p>تساعد الدوال (Methods) في إعادة استخدام الكود وتنظيمه. تحدد الدالة نوع الإرجاع، الاسم، والمعاملات المستقبلة.</p>
+            </div>
+            <div data-cl-lang="fr">
+              <p>Les méthodes permettent de découper et réutiliser votre code. Définissez le type de retour, le nom et les paramètres.</p>
+            </div>
+
+            <div class="code-block">
+              <pre><code class="language-java">public static int calculateSum(int a, int b) {
+    return a + b;
+}</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lesson 7 -->
+        <article class="docs-lesson-card" id="lesson-7">
+          <div class="docs-lesson-header">
+            <div class="docs-lesson-icon"><i class="fas fa-sitemap"></i></div>
+            <div class="docs-lesson-info">
+              <span class="docs-badge badge-pro">Core Pillar</span>
+              <div data-cl-lang="en"><h2>7. OOP — The 4 Pillars of Java</h2></div>
+              <div data-cl-lang="ar"><h2>7. البرمجة كائنية التوجه (POO)</h2></div>
+              <div data-cl-lang="fr"><h2>7. Les 4 Piliers de la POO</h2></div>
+            </div>
+          </div>
+          <div class="docs-lesson-body">
+            <div data-cl-lang="en">
+              <p>Object-Oriented Programming (OOP) is the core foundation of Java software engineering:</p>
+              <ul>
+                <li><strong>Encapsulation:</strong> Private variables with public getter/setter methods.</li>
+                <li><strong>Inheritance:</strong> Reusing code using the <code>extends</code> keyword.</li>
+                <li><strong>Polymorphism:</strong> Overriding methods (<code>@Override</code>) to behave differently.</li>
+                <li><strong>Abstraction:</strong> Defining contracts using <code>interface</code> and <code>abstract class</code>.</li>
+              </ul>
+            </div>
+            <div data-cl-lang="ar">
+              <p>البرمجة كائنية التوجه (OOP) هي العمود الفقري لتطوير البرمجيات في جافا، وترتكز على 4 مبادئ أساسية:</p>
+              <ul>
+                <li><strong>التغليف (Encapsulation):</strong> حماية البيانات بالمتغيرات الخاصة (private) ودوال الوصول.</li>
+                <li><strong>الوراثة (Inheritance):</strong> وراثة الخصائص باستخدام <code>extends</code>.</li>
+                <li><strong>تعدد الأشكال (Polymorphism):</strong> إعادة تعريف الدوال لتتصرف بمرونة (<code>@Override</code>).</li>
+                <li><strong>التجريد (Abstraction):</strong> بناء هياكل ومخططات عبر <code>interface</code> و <code>abstract</code>.</li>
+              </ul>
+            </div>
+            <div data-cl-lang="fr">
+              <p>La Programmation Orientée Objet (POO) est au cœur de Java : Encapsulation, Héritage, Polymorphisme et Abstraction.</p>
+            </div>
+
+            <div class="code-block">
+              <pre><code class="language-java">class Developer {
+    private String name;
+    
+    public Developer(String name) { this.name = name; }
+    public void code() { System.out.println(name + " is building great software!"); }
+}</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lesson 8 -->
+        <article class="docs-lesson-card" id="lesson-8">
+          <div class="docs-lesson-header">
+            <div class="docs-lesson-icon"><i class="fas fa-layer-group"></i></div>
+            <div class="docs-lesson-info">
+              <span class="docs-badge badge-pro">Collections</span>
+              <div data-cl-lang="en"><h2>8. Collections (ArrayList & HashMap)</h2></div>
+              <div data-cl-lang="ar"><h2>8. هياكل البيانات والمجموعات (Collections)</h2></div>
+              <div data-cl-lang="fr"><h2>8. Collections (ArrayList & HashMap)</h2></div>
+            </div>
+          </div>
+          <div class="docs-lesson-body">
+            <div data-cl-lang="en">
+              <p>Handle dynamic datasets effortlessly. <code>ArrayList</code> provides resizable arrays, while <code>HashMap</code> stores lightning-fast key-value mappings.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <p>التعامل مع قوائم البيانات الديناميكية باستخدام <code>ArrayList</code>، وقواميس المفتاح-القيمة فائقة السرعة مع <code>HashMap</code>.</p>
+            </div>
+            <div data-cl-lang="fr">
+              <p>Gérez des listes dynamiques avec <code>ArrayList</code> et des paires clé-valeur ultra-rapides avec <code>HashMap</code>.</p>
+            </div>
+
+            <div class="code-block">
+              <pre><code class="language-java">import java.util.*;
+
+List<String> skills = new ArrayList<>();
+skills.add("Java Core");
+skills.add("Spring Boot");
+
+Map<String, Integer> rankings = new HashMap<>();
+rankings.put("Coding Life", 1);</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lesson 9 -->
+        <article class="docs-lesson-card" id="lesson-9">
+          <div class="docs-lesson-header">
+            <div class="docs-lesson-icon"><i class="fas fa-shield-halved"></i></div>
+            <div class="docs-lesson-info">
+              <span class="docs-badge badge-important">Reliability</span>
+              <div data-cl-lang="en"><h2>9. Exception Handling & Resilience</h2></div>
+              <div data-cl-lang="ar"><h2>9. معالجة الاستثناءات والأخطاء (Exceptions)</h2></div>
+              <div data-cl-lang="fr"><h2>9. Gestion des Exceptions</h2></div>
+            </div>
+          </div>
+          <div class="docs-lesson-body">
+            <div data-cl-lang="en">
+              <p>Ensure your production systems never crash. Catch unexpected runtime issues with structured <code>try-catch-finally</code> blocks and custom business exceptions.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <p>حماية البرنامج من الانهيار المفاجئ عبر التقاط الأخطاء ومعالجتها باحترافية عبر <code>try</code> و <code>catch</code> و <code>finally</code>.</p>
+            </div>
+            <div data-cl-lang="fr">
+              <p>Évitez les plantages en production grâce aux blocs de capture <code>try</code>, <code>catch</code> et <code>finally</code>.</p>
+            </div>
+
+            <div class="code-block">
+              <pre><code class="language-java">try {
+    int result = 100 / 0;
+} catch (ArithmeticException e) {
+    System.err.println("Safely handled division error: " + e.getMessage());
+} finally {
+    System.out.println("Execution completed safely.");
+}</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lesson 10 -->
+        <article class="docs-lesson-card" id="lesson-10">
+          <div class="docs-lesson-header">
+            <div class="docs-lesson-icon"><i class="fas fa-bolt"></i></div>
+            <div class="docs-lesson-info">
+              <span class="docs-badge badge-pro">Modern Standards</span>
+              <div data-cl-lang="en"><h2>10. Modern Java (Lambdas & Stream API)</h2></div>
+              <div data-cl-lang="ar"><h2>10. جافا الحديثة (Lambda & Stream API)</h2></div>
+              <div data-cl-lang="fr"><h2>10. Java Moderne (Lambda & Streams)</h2></div>
+            </div>
+          </div>
+          <div class="docs-lesson-body">
+            <div data-cl-lang="en">
+              <p>Modern Java embraces functional programming. Use concise lambda expressions and the declarative Stream API to filter, transform, and aggregate collections cleanly.</p>
+            </div>
+            <div data-cl-lang="ar">
+              <p>تدعم جافا الحديثة البرمجة الوظيفية (Functional Programming). تتيح تعبيرات Lambda وواجهة Stream API تصفية وتحويل البيانات بسطور برمجية مقتضبة وأنيقة.</p>
+            </div>
+            <div data-cl-lang="fr">
+              <p>Écrivez du code concis et expressif grâce aux expressions Lambda et à l'API Stream de Java moderne.</p>
+            </div>
+
+            <div class="code-block">
+              <pre><code class="language-java">List<String> languages = List.of("Java", "JavaScript", "Python", "Go");
+
+languages.stream()
+         .filter(name -> name.startsWith("J"))
+         .map(String::toUpperCase)
+         .forEach(System.out::println);</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lesson 11 -->
+        <article class="docs-lesson-card" id="lesson-11">
+          <div class="docs-lesson-header">
+            <div class="docs-lesson-icon"><i class="fas fa-road"></i></div>
+            <div class="docs-lesson-info">
+              <span class="docs-badge badge-modern">Career Path</span>
+              <div data-cl-lang="en"><h2>11. Java Enterprise Career Roadmap</h2></div>
+              <div data-cl-lang="ar"><h2>11. خارطة طريق مهندس جافا المحترف</h2></div>
+              <div data-cl-lang="fr"><h2>11. Feuille de Route Ingénieur Java</h2></div>
+            </div>
+          </div>
+          <div class="docs-lesson-body">
+            <div data-cl-lang="en">
+              <p>Where to go next after mastering the fundamentals? Here is the industry-standard progression path:</p>
+              <ul>
+                <li><strong>Phase 1:</strong> Java Core & OOP Mastery (Completed here ✅)</li>
+                <li><strong>Phase 2:</strong> Build Tools & Dependency Management (Maven / Gradle)</li>
+                <li><strong>Phase 3:</strong> Database Integration (JDBC, Hibernate, Spring Data JPA)</li>
+                <li><strong>Phase 4:</strong> Enterprise Frameworks (Spring Boot 3, REST APIs, Microservices)</li>
+                <li><strong>Phase 5:</strong> Deployment & Cloud (Docker, Kubernetes, AWS/GCP)</li>
+              </ul>
+            </div>
+            <div data-cl-lang="ar">
+              <p>الخطوات التالية لتصبح مهندس جافا مطلوباً في سوق العمل الدولي:</p>
+              <ul>
+                <li><strong>المرحلة 1:</strong> إتقان جافا الأساسية والبرمجة الكائنية (أنجزتها هنا ✅)</li>
+                <li><strong>المرحلة 2:</strong> أدوات البناء وإدارة الحزم (Maven و Gradle)</li>
+                <li><strong>المرحلة 3:</strong> قواعد البيانات والربط (JDBC, Hibernate, Spring Data JPA)</li>
+                <li><strong>المرحلة 4:</strong> إطار العمل الأقوى Spring Boot 3 وتطوير Microservices</li>
+                <li><strong>المرحلة 5:</strong> الحاويات والسحابة (Docker, Kubernetes, Cloud)</li>
+              </ul>
+            </div>
+            <div data-cl-lang="fr">
+              <p>La trajectoire idéale : Java Core -> Maven/Gradle -> Spring Boot 3 -> Microservices & Docker.</p>
+            </div>
+          </div>
+        </article>
+
       </div>
-    `;
-    chaptersContainer.appendChild(div);
-  }
 
-  javaLessons.forEach(l => render(l));
-</script>
+      <!-- Bottom Pager Navigation -->
+      <div class="docs-nav-pager">
+        <a href="#lesson-1" class="docs-pager-btn prev" id="pagerPrev" onclick="navigateLesson(-1)">
+          <span class="docs-pager-label"><i class="fa-solid fa-arrow-left"></i> Previous Topic</span>
+          <span class="docs-pager-title" id="pagerPrevTitle">Intro</span>
+        </a>
+        <a href="#lesson-2" class="docs-pager-btn next" id="pagerNext" onclick="navigateLesson(1)">
+          <span class="docs-pager-label">Next Topic <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="docs-pager-title" id="pagerNextTitle">2. Installing JDK</span>
+        </a>
+      </div>
 
-<script src="site-polish.js"></script>
+    </main>
+
+    <!-- ── RIGHT TOC ("On this page") ── -->
+    <aside class="docs-toc">
+      <div class="docs-toc-title">On this page</div>
+      <ul class="docs-toc-list" id="docsTocList">
+        <li><a href="#lesson-1" class="docs-toc-link active">1. What is Java?</a></li>
+        <li><a href="#lesson-2" class="docs-toc-link">2. Installing JDK</a></li>
+        <li><a href="#lesson-3" class="docs-toc-link">3. Variables & Types</a></li>
+        <li><a href="#lesson-4" class="docs-toc-link">4. Operators & Flow</a></li>
+        <li><a href="#lesson-5" class="docs-toc-link">5. Loops and Arrays</a></li>
+        <li><a href="#lesson-6" class="docs-toc-link">6. Methods</a></li>
+        <li><a href="#lesson-7" class="docs-toc-link">7. OOP Pillars</a></li>
+        <li><a href="#lesson-8" class="docs-toc-link">8. Collections</a></li>
+        <li><a href="#lesson-9" class="docs-toc-link">9. Exceptions</a></li>
+        <li><a href="#lesson-10" class="docs-toc-link">10. Modern Java</a></li>
+        <li><a href="#lesson-11" class="docs-toc-link">11. Career Roadmap</a></li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- Mobile Floating Drawer Button -->
+  <button class="docs-mobile-drawer-btn" onclick="toggleSidebarDrawer()">
+    <i class="fa-solid fa-list-ul"></i>
+    <span>Topics</span>
+  </button>
+  <div class="docs-sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebarDrawer()"></div>
+
+  <!-- Documentation Engine Scripts -->
+  <script>
+    // Module Collapsing
+    function toggleModule(header) {
+      const module = header.closest('.docs-sidebar-module');
+      module.classList.toggle('collapsed');
+    }
+
+    // Active Sidebar Link Highlight
+    function activateLink(link) {
+      document.querySelectorAll('.docs-lesson-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      // If on mobile, close drawer
+      const sidebar = document.getElementById('docsSidebar');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      if (sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        backdrop.classList.remove('open');
+      }
+    }
+
+    // Mobile Drawer Toggle
+    function toggleSidebarDrawer() {
+      const sidebar = document.getElementById('docsSidebar');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      sidebar.classList.toggle('open');
+      backdrop.classList.toggle('open');
+    }
+
+    // Switch Part Tabs
+    function switchPart(partNumber) {
+      document.querySelectorAll('.docs-part-btn').forEach(b => {
+        b.classList.toggle('active', parseInt(b.getAttribute('data-part')) === partNumber);
+      });
+
+      // Filter or scroll to the module
+      const targetModule = document.querySelector(`.docs-sidebar-module[data-part-group="${partNumber}"]`);
+      if (targetModule) {
+        // Expand if collapsed
+        targetModule.classList.remove('collapsed');
+        // Scroll first lesson of that module
+        const firstLink = targetModule.querySelector('.docs-lesson-link');
+        if (firstLink) {
+          firstLink.click();
+          const targetId = firstLink.getAttribute('href');
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+    }
+
+    // Pager & ScrollSpy logic
+    const lessonCards = Array.from(document.querySelectorAll('.docs-lesson-card'));
+    let currentLessonIdx = 0;
+
+    function updatePager() {
+      const prevBtn = document.getElementById('pagerPrev');
+      const nextBtn = document.getElementById('pagerNext');
+      const prevTitle = document.getElementById('pagerPrevTitle');
+      const nextTitle = document.getElementById('pagerNextTitle');
+
+      if (currentLessonIdx > 0) {
+        prevBtn.style.visibility = 'visible';
+        const prevCard = lessonCards[currentLessonIdx - 1];
+        const h2 = prevCard.querySelector('h2');
+        prevTitle.textContent = h2 ? h2.textContent : 'Previous';
+        prevBtn.setAttribute('href', '#' + prevCard.id);
+      } else {
+        prevBtn.style.visibility = 'hidden';
+      }
+
+      if (currentLessonIdx < lessonCards.length - 1) {
+        nextBtn.style.visibility = 'visible';
+        const nextCard = lessonCards[currentLessonIdx + 1];
+        const h2 = nextCard.querySelector('h2');
+        nextTitle.textContent = h2 ? h2.textContent : 'Next';
+        nextBtn.setAttribute('href', '#' + nextCard.id);
+      } else {
+        nextBtn.style.visibility = 'hidden';
+      }
+    }
+
+    function navigateLesson(delta) {
+      const newIdx = currentLessonIdx + delta;
+      if (newIdx >= 0 && newIdx < lessonCards.length) {
+        currentLessonIdx = newIdx;
+        const target = lessonCards[newIdx];
+        target.scrollIntoView({ behavior: 'smooth' });
+        updatePager();
+      }
+    }
+
+    // Scrollspy to highlight active lesson in sidebar & TOC
+    window.addEventListener('scroll', () => {
+      let activeIndex = 0;
+      const scrollPos = window.scrollY + 200;
+
+      lessonCards.forEach((card, idx) => {
+        if (card.offsetTop <= scrollPos) {
+          activeIndex = idx;
+        }
+      });
+
+      if (activeIndex !== currentLessonIdx) {
+        currentLessonIdx = activeIndex;
+        const currentId = lessonCards[activeIndex].id;
+
+        // Update sidebar
+        document.querySelectorAll('.docs-lesson-link').forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+        });
+
+        // Update right TOC
+        document.querySelectorAll('.docs-toc-link').forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+        });
+
+        updatePager();
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', updatePager);
+  </script>
+
+  <script src="docs.js"></script>
+  <script src="site-polish.js"></script>
 </body>
 </html>
