@@ -102,10 +102,9 @@
 
       const pName = partNames[p - 1] || { en: `Module ${p}: Advanced Topics`, ar: `الوحدة ${p}: مواضيع متقدمة`, fr: `Module ${p}: Sujets Avancés` };
       modulesHtml += `
-        <div class="docs-sidebar-module" data-part-group="${p}">
+        <div class="docs-sidebar-module ${p === 1 ? '' : 'collapsed'}" data-part-group="${p}">
           <div class="docs-module-header" onclick="this.closest('.docs-sidebar-module').classList.toggle('collapsed')">
-            <span>
-              <i class="fa-solid fa-book-open" style="color:var(--cl-brand);margin-right:8px;"></i>
+            <span class="docs-module-title-span">
               <span data-cl-lang="en" class="${currentLang === 'en' ? 'cl-active-lang' : ''}">${pName.en}</span>
               <span data-cl-lang="ar" class="${currentLang === 'ar' ? 'cl-active-lang' : ''}">${pName.ar}</span>
               <span data-cl-lang="fr" class="${currentLang === 'fr' ? 'cl-active-lang' : ''}">${pName.fr}</span>
@@ -116,10 +115,9 @@
             ${partLessons.map(l => `
               <li>
                 <a href="#${l.id}" class="docs-lesson-link ${l.index === 0 ? 'active' : ''}" onclick="window.CL_DOCS.activateLink(this)">
-                  <span class="docs-lesson-num">${String(l.index + 1).padStart(2, '0')}</span>
-                  <span data-cl-lang="en" class="${currentLang === 'en' ? 'cl-active-lang' : ''}">${escapeHtml(l.titleEn)}</span>
-                  <span data-cl-lang="ar" class="${currentLang === 'ar' ? 'cl-active-lang' : ''}">${escapeHtml(l.titleAr || l.titleEn)}</span>
-                  <span data-cl-lang="fr" class="${currentLang === 'fr' ? 'cl-active-lang' : ''}">${escapeHtml(l.titleFr || l.titleEn)}</span>
+                  <span data-cl-lang="en" class="${currentLang === 'en' ? 'cl-active-lang' : ''}">${escapeHtml(cleanTitle(l.titleEn))}</span>
+                  <span data-cl-lang="ar" class="${currentLang === 'ar' ? 'cl-active-lang' : ''}">${escapeHtml(cleanTitle(l.titleAr || l.titleEn))}</span>
+                  <span data-cl-lang="fr" class="${currentLang === 'fr' ? 'cl-active-lang' : ''}">${escapeHtml(cleanTitle(l.titleFr || l.titleEn))}</span>
                 </a>
               </li>
             `).join('')}
@@ -139,10 +137,8 @@
     utilBar.innerHTML = `
       <div class="docs-breadcrumbs">
         <a href="index.html" class="docs-breadcrumb-home" title="Home"><i class="fa-solid fa-house"></i></a>
-        <span class="docs-breadcrumb-sep">/</span>
-        <a href="dorous-albarmaja.html" style="color:var(--cl-muted);">Courses</a>
-        <span class="docs-breadcrumb-sep">/</span>
-        <span class="docs-breadcrumb-pill">${escapeHtml(courseTitle)}</span>
+        <span class="docs-breadcrumb-sep"><i class="fa-solid fa-chevron-right" style="font-size:0.75rem;"></i></span>
+        <span class="docs-breadcrumb-pill">${escapeHtml(cleanTitle(courseTitle))}</span>
       </div>
       <button class="docs-pdf-btn" onclick="window.print()" title="Print or save as PDF">
         <i class="fa-solid fa-download"></i>
@@ -159,7 +155,7 @@
       ${courseLead ? `<p class="docs-module-lead">${escapeHtml(courseLead)}</p>` : ''}
       ${metaHtml ? `<div style="margin-bottom:24px;">${metaHtml}</div>` : ''}
       <div class="docs-learn-card">
-        <h3><i class="fa-solid fa-graduation-cap" style="color:var(--cl-brand);"></i> What You'll Learn</h3>
+        <h2>What You'll Learn</h2>
         <ul>
           <li>Comprehensive step-by-step masterclass from scratch</li>
           <li>Production-ready best practices and real-world architectures</li>
@@ -224,6 +220,11 @@
 
     // Init scrollspy & pager
     setupInteractiveDocs();
+  }
+
+  function cleanTitle(s) {
+    if (!s) return '';
+    return s.replace(/^\d+[\.\:\-\s]+/, '').trim();
   }
 
   function escapeHtml(text) {
