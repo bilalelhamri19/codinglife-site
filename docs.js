@@ -1,6 +1,6 @@
 /**
  * CODING LIFE — DOCUMENTATION PORTAL ENGINE (docs.js)
- * Transforms all course pages into professional documentation layout matching codinglife.in
+ * Transforms course pages into professional documentation layout matching codinglife.in
  */
 
 (function () {
@@ -20,6 +20,8 @@
     // Auto-transform pages with .course-container and .lesson-card into Docs Layout!
     const courseContainer = document.querySelector('.course-container');
     if (!courseContainer) return;
+
+    const currentLang = localStorage.getItem('cl_lang') || 'en';
 
     const courseHeader = document.querySelector('.course-header');
     let courseTitle = 'Course';
@@ -61,53 +63,20 @@
 
       // Assign card class
       card.classList.add('docs-lesson-card');
-      card.style.scrollMarginTop = '160px';
+      card.style.scrollMarginTop = '120px';
 
       return { id, titleEn, titleAr, titleFr, iconClass, card, index: idx };
     });
 
-    // Partition into 4 parts
+    // Partition into modules
     const total = lessonsData.length;
     const partSize = Math.max(1, Math.ceil(total / 4));
 
-    // 1. Build Top Parts Bar
-    const partsBar = document.createElement('nav');
-    partsBar.className = 'docs-parts-bar';
-    partsBar.setAttribute('aria-label', 'Course Parts');
-    partsBar.innerHTML = `
-      <div class="docs-parts-inner">
-        <button class="docs-part-btn active" data-part="1" onclick="window.CL_DOCS.switchPart(1)">
-          <i class="fa-solid fa-cube"></i>
-          <span data-cl-lang="en">Part 1: Core Basics</span>
-          <span data-cl-lang="ar">الجزء 1: الأساسيات</span>
-          <span data-cl-lang="fr">Partie 1: Fondations</span>
-        </button>
-        <button class="docs-part-btn" data-part="2" onclick="window.CL_DOCS.switchPart(2)">
-          <i class="fa-solid fa-code-branch"></i>
-          <span data-cl-lang="en">Part 2: Advanced Core</span>
-          <span data-cl-lang="ar">الجزء 2: التحكم والمنطق</span>
-          <span data-cl-lang="fr">Partie 2: Logique & Fonctions</span>
-        </button>
-        <button class="docs-part-btn" data-part="3" onclick="window.CL_DOCS.switchPart(3)">
-          <i class="fa-solid fa-layer-group"></i>
-          <span data-cl-lang="en">Part 3: Modern & Enterprise</span>
-          <span data-cl-lang="ar">الجزء 3: المعايير والمشاريع</span>
-          <span data-cl-lang="fr">Partie 3: Entreprise & POO</span>
-        </button>
-        <button class="docs-part-btn" data-part="4" onclick="window.CL_DOCS.switchPart(4)">
-          <i class="fa-solid fa-rocket"></i>
-          <span data-cl-lang="en">Part 4: Design & Practice</span>
-          <span data-cl-lang="ar">الجزء 4: التطبيق وخارطة الطريق</span>
-          <span data-cl-lang="fr">Partie 4: Pratique & Roadmap</span>
-        </button>
-      </div>
-    `;
-
-    // 2. Build Docs Layout Container
+    // Build Docs Layout Container (No top parts bar!)
     const layout = document.createElement('div');
     layout.className = 'docs-layout-container';
 
-    // 2a. Sidebar
+    // 1. Sidebar
     const sidebar = document.createElement('aside');
     sidebar.className = 'docs-sidebar';
     sidebar.id = 'docsSidebar';
@@ -132,9 +101,9 @@
           <div class="docs-module-header" onclick="this.closest('.docs-sidebar-module').classList.toggle('collapsed')">
             <span>
               <i class="fa-solid fa-book-open" style="color:var(--cl-brand);margin-right:8px;"></i>
-              <span data-cl-lang="en">${pName.en}</span>
-              <span data-cl-lang="ar">${pName.ar}</span>
-              <span data-cl-lang="fr">${pName.fr}</span>
+              <span data-cl-lang="en" class="${currentLang === 'en' ? 'cl-active-lang' : ''}">${pName.en}</span>
+              <span data-cl-lang="ar" class="${currentLang === 'ar' ? 'cl-active-lang' : ''}">${pName.ar}</span>
+              <span data-cl-lang="fr" class="${currentLang === 'fr' ? 'cl-active-lang' : ''}">${pName.fr}</span>
             </span>
             <i class="fa-solid fa-chevron-down docs-chevron"></i>
           </div>
@@ -143,9 +112,9 @@
               <li>
                 <a href="#${l.id}" class="docs-lesson-link ${l.index === 0 ? 'active' : ''}" onclick="window.CL_DOCS.activateLink(this)">
                   <span class="docs-lesson-num">${String(l.index + 1).padStart(2, '0')}</span>
-                  <span data-cl-lang="en">${escapeHtml(l.titleEn)}</span>
-                  <span data-cl-lang="ar">${escapeHtml(l.titleAr)}</span>
-                  <span data-cl-lang="fr">${escapeHtml(l.titleFr)}</span>
+                  <span data-cl-lang="en" class="${currentLang === 'en' ? 'cl-active-lang' : ''}">${escapeHtml(l.titleEn)}</span>
+                  <span data-cl-lang="ar" class="${currentLang === 'ar' ? 'cl-active-lang' : ''}">${escapeHtml(l.titleAr)}</span>
+                  <span data-cl-lang="fr" class="${currentLang === 'fr' ? 'cl-active-lang' : ''}">${escapeHtml(l.titleFr)}</span>
                 </a>
               </li>
             `).join('')}
@@ -155,7 +124,7 @@
     }
     sidebar.innerHTML = modulesHtml;
 
-    // 2b. Main Content
+    // 2. Main Content
     const main = document.createElement('main');
     main.className = 'docs-main-content';
 
@@ -217,7 +186,7 @@
     `;
     main.appendChild(pager);
 
-    // 2c. Right TOC
+    // 3. Right TOC
     const toc = document.createElement('aside');
     toc.className = 'docs-toc';
     toc.innerHTML = `
@@ -235,7 +204,6 @@
     layout.appendChild(toc);
 
     // Replace contents in body or course-container
-    courseContainer.parentNode.insertBefore(partsBar, courseContainer);
     courseContainer.parentNode.insertBefore(layout, courseContainer);
     courseContainer.remove();
 
@@ -312,24 +280,6 @@
       }
     }
 
-    function switchPart(partNumber) {
-      document.querySelectorAll('.docs-part-btn').forEach(b => {
-        b.classList.toggle('active', parseInt(b.getAttribute('data-part')) === partNumber);
-      });
-
-      const targetModule = document.querySelector(`.docs-sidebar-module[data-part-group="${partNumber}"]`);
-      if (targetModule) {
-        targetModule.classList.remove('collapsed');
-        const firstLink = targetModule.querySelector('.docs-lesson-link');
-        if (firstLink) {
-          firstLink.click();
-          const targetId = firstLink.getAttribute('href');
-          const targetEl = document.querySelector(targetId);
-          if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }
-
     function activateLink(link) {
       document.querySelectorAll('.docs-lesson-link').forEach(l => l.classList.remove('active'));
       link.classList.add('active');
@@ -344,7 +294,7 @@
     // Scrollspy
     window.addEventListener('scroll', () => {
       let activeIndex = 0;
-      const scrollPos = window.scrollY + 200;
+      const scrollPos = window.scrollY + 140;
 
       lessonCards.forEach((card, idx) => {
         if (card.offsetTop <= scrollPos) {
@@ -370,7 +320,6 @@
 
     // Expose global helpers
     window.CL_DOCS = {
-      switchPart,
       activateLink,
       navigateLesson,
       toggleSidebarDrawer
