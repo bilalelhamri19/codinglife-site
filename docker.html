@@ -139,32 +139,109 @@
     "t_en": "1. What are Containers?",
     "t_ar": "1. ما هي الحاويات البرمجية؟",
     "t_fr": "1. Que sont les Conteneurs ?",
-    "d_en": "Containers package your code, runtime, system tools, and libraries together, guaranteeing it runs everywhere identically.",
-    "d_ar": "تجمع الحاوية كود تطبيقك مع بيئة التشغيل والمكتبات ليعمل في أي سيرفر بنفس الدقة وبدون مشاكل \"It works on my machine\".",
+    "d_en": "Containers package code, runtime, system tools, and libraries together, guaranteeing identical execution in development and production.",
+    "d_ar": "تجمع الحاوية كود تطبيقك مع بيئة التشغيل والمكتبات ليعمل في أي سيرفر بنفس الدقة وبدون مفاجآت.",
     "d_fr": "Les conteneurs emballent le code et ses dépendances pour une exécution garantie partout.",
-    "code": "# Check running containers\ndocker ps\n\n# Run a Node.js container\ndocker run -p 3000:3000 -d my-node-app"
+    "code": "# Check running containers\ndocker ps\n\n# Run an interactive Ubuntu container\ndocker run -it --rm ubuntu:22.04 bash"
   },
   {
     "icon": "fa-file-lines",
     "badge": "badge-important",
     "t_en": "2. Crafting Production Dockerfiles",
-    "t_ar": "2. كتابة ملف Dockerfile",
-    "t_fr": "2. Écrire un Dockerfile de production",
-    "d_en": "Write multi-stage Dockerfiles that keep production image sizes tiny, secure, and fast.",
-    "d_ar": "اكتب ملفات Dockerfile متعددة المراحل للحصول على صور صغيرة الحجم وآمنة وسريعة.",
-    "d_fr": "Créez des builds multi-étapes pour des images légères, rapides et sécurisées.",
-    "code": "FROM node:20-alpine AS builder\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci\nCOPY . .\nRUN npm run build\n\nEXPOSE 3000\nCMD [\"npm\", \"start\"]"
+    "t_ar": "2. بناء ملفات Dockerfile للإنتاج",
+    "t_fr": "2. Créer des Dockerfiles de production",
+    "d_en": "Write lean, secure Dockerfiles using official minimal base images (Alpine or Slim), caching layer techniques, and non-root users.",
+    "d_ar": "كتابة ملفات Dockerfile خفيفة وآمنة بالاعتماد على صور Alpine والاستفادة من الـ Cache ومستخدم بدون صلاحيات root.",
+    "d_fr": "Rédigez des Dockerfiles légers et sécurisés en utilisant des images de base minimales et le cache de couches.",
+    "code": "FROM node:20-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --only=production\nCOPY . .\nUSER node\nEXPOSE 3000\nCMD [\"node\", \"server.js\"]"
+  },
+  {
+    "icon": "fa-layer-group",
+    "badge": "badge-modern",
+    "t_en": "3. Multi-Container Orchestration with Compose",
+    "t_ar": "3. إدارة الحاويات المتعددة عبر Docker Compose",
+    "t_fr": "3. Docker Compose multi-conteneurs",
+    "d_en": "Define and run multi-container applications (frontend, backend API, database) using a single declarative docker-compose.yml file.",
+    "d_ar": "تشغيل التطبيقات متعددة الحاويات (واجهة، سيرفر، قاعدة بيانات) عبر أمر واحد وملف docker-compose.yml تصريحي.",
+    "d_fr": "Définissez et lancez des applications complexes comprenant frontend, backend et base de données avec une seule commande.",
+    "code": "version: '3.8'\nservices:\n  api:\n    build: .\n    ports:\n      - '3000:3000'\n    environment:\n      - DB_HOST=db\n  db:\n    image: postgres:16-alpine\n    volumes:\n      - pgdata:/var/lib/postgresql/data\nvolumes:\n  pgdata:"
+  },
+  {
+    "icon": "fa-database",
+    "badge": "badge-modern",
+    "t_en": "4. Volumes & Persistent Storage",
+    "t_ar": "4. التخزين الدائم والـ Volumes",
+    "t_fr": "4. Volumes et Stockage Persistant",
+    "d_en": "Containers are ephemeral by default. Use named volumes and bind mounts to persist database files and application state.",
+    "d_ar": "بيانات الحاوية مؤقتة بطبيعتها. يتم استخدام الـ Named Volumes والـ Bind Mounts لحفظ ملفات قواعد البيانات بشكل دائم.",
+    "d_fr": "Les conteneurs sont éphémères. Utilisez les volumes nommés pour conserver les données de bases de données et les uploads.",
+    "code": "# Create and inspect a named volume\ndocker volume create db_storage\ndocker volume inspect db_storage\n\n# Mount volume to container\ndocker run -d -v db_storage:/var/lib/mysql mysql:8"
   },
   {
     "icon": "fa-network-wired",
-    "badge": "badge-pro",
-    "t_en": "3. Multi-Service with Docker Compose",
-    "t_ar": "3. إدارة الخدمات بـ Docker Compose",
-    "t_fr": "3. Docker Compose multi-services",
-    "d_en": "Spin up frontend, backend, database, and Redis cache with a single command.",
-    "d_ar": "شغّل السيرفر والواجهة وقاعدة البيانات والـ Redis دفعة واحدة بأمر واحد.",
-    "d_fr": "Démarrez votre frontend, backend et base de données avec une seule commande.",
-    "code": "version: \"3.8\"\nservices:\n  app:\n    build: .\n    ports: [\"3000:3000\"]\n    environment:\n      - DB_URL=mongodb://db:27017/prod\n  db:\n    image: mongo:latest\n    volumes: [\"mongo-data:/data/db\"]\nvolumes:\n  mongo-data:"
+    "badge": "badge-modern",
+    "t_en": "5. Docker Networking & Service Discovery",
+    "t_ar": "5. شبكات Docker والتواصل بين الخدمات",
+    "t_fr": "5. Réseaux Docker & Découverte",
+    "d_en": "Bridge, host, and overlay networks allow containers to communicate securely via built-in DNS using service names.",
+    "d_ar": "تتيح شبكات Docker للحاويات التواصل فيما بينها بأمان عبر نظام أسماء النطاقات المدمج (DNS) باسم الخدمة.",
+    "d_fr": "Les réseaux personnalisés permettent aux conteneurs de communiquer de manière isolée via leur nom de service DNS.",
+    "code": "# Create a custom user-defined bridge network\ndocker network create app-net\n\n# Connect containers to network\ndocker run -d --name redis-server --network app-net redis:alpine"
+  },
+  {
+    "icon": "fa-cubes-stacked",
+    "badge": "badge-modern",
+    "t_en": "6. Multi-Stage Builds & Optimization",
+    "t_ar": "6. تقليص حجم الصور و Multi-Stage Builds",
+    "t_fr": "6. Builds Multi-Étapes & Optimisation",
+    "d_en": "Separate your build environment from your production runtime. Cut image sizes from 1GB down to under 50MB.",
+    "d_ar": "فصل مرحلة الترجمة والتجميع عن بيئة التشغيل النهائية لتخفيض حجم الصورة من 1GB إلى أقل من 50MB.",
+    "d_fr": "Séparez les dépendances de compilation du runtime de production pour réduire la taille des images drastiquement.",
+    "code": "# Multi-stage Go build\nFROM golang:1.22-alpine AS builder\nWORKDIR /src\nCOPY . .\nRUN go build -o /bin/app .\n\nFROM scratch\nCOPY --from=builder /bin/app /bin/app\nENTRYPOINT [\"/bin/app\"]"
+  },
+  {
+    "icon": "fa-key",
+    "badge": "badge-important",
+    "t_en": "7. Environment Variables & Secret Handling",
+    "t_ar": "7. إدارة المتغيرات البيئية والأسرار",
+    "t_fr": "7. Variables d'Environnement & Secrets",
+    "d_en": "Safely inject configuration keys, tokens, and database credentials without ever hardcoding secrets in image layers.",
+    "d_ar": "حقن مفاتيح التكوين والاتصال بقواعد البيانات بأمان عبر ملفات .env ودون تثبيتها داخل طبقات الصورة.",
+    "d_fr": "Injectez vos secrets et variables de configuration proprement à l'exécution sans jamais les figer dans l'image.",
+    "code": "# Run with env file\ndocker run --env-file .env.production -d -p 8080:8080 my-api\n\n# Pass individual variable\ndocker run -e PORT=8080 -e NODE_ENV=production my-api"
+  },
+  {
+    "icon": "fa-infinity",
+    "badge": "badge-modern",
+    "t_en": "8. Docker in CI/CD Automation",
+    "t_ar": "8. أتمتة Docker في خطوط الإنتاج CI/CD",
+    "t_fr": "8. Docker dans les Pipelines CI/CD",
+    "d_en": "Automate building, testing, tagging, and pushing Docker images to registries (Docker Hub, GitHub GHCR, AWS ECR) using GitHub Actions.",
+    "d_ar": "أتمتة بناء واختبار ورفع الصور إلى Docker Hub أو GitHub Container Registry عبر GitHub Actions.",
+    "d_fr": "Automatisez la construction et la publication de vos images de conteneurs dans vos workflows GitHub Actions ou GitLab CI.",
+    "code": "- name: Build and push Docker image\n  uses: docker/build-push-action@v5\n  with:\n    push: true\n    tags: user/app:latest,user/app:${{ github.sha }}"
+  },
+  {
+    "icon": "fa-shield-halved",
+    "badge": "badge-important",
+    "t_en": "9. Container Security & Vulnerability Scanning",
+    "t_ar": "9. حماية الحاويات وفحص الثغرات الأمنية",
+    "t_fr": "9. Sécurité des Conteneurs & Scanners",
+    "d_en": "Scan images for CVE vulnerabilities with tools like Trivy and Docker Scout. Run containers as unprivileged users with read-only root filesystems.",
+    "d_ar": "فحص الثغرات الأمنية في الحزم والصور عبر أدوات مثل Trivy وتشغيل الحاوية دون صلاحيات root.",
+    "d_fr": "Analysez les vulnérabilités CVE de vos images avec Trivy et limitez les privilèges des processus exécutés.",
+    "code": "# Scan image for known security flaws\ndocker scout cves my-app:latest\n\n# Run with read-only root filesystem\ndocker run --read-only --tmpfs /tmp my-app:latest"
+  },
+  {
+    "icon": "fa-server",
+    "badge": "badge-modern",
+    "t_en": "10. From Single Containers to Kubernetes",
+    "t_ar": "10. من الحاوية المنفردة إلى أنظمة Kubernetes",
+    "t_fr": "10. Vers l'Orchestration & Kubernetes",
+    "d_en": "Understand the roadmap from standalone Docker to Docker Swarm and Kubernetes (Pods, Deployments, Services, Ingress).",
+    "d_ar": "فهم مسار الانتقال من إدارة الحاويات الفردية إلى أنظمة الأوركستريشن الضخمة مثل Kubernetes ومفاهيم الـ Pods والـ Services.",
+    "d_fr": "Comprenez la transition vers Kubernetes pour orchestrer des milliers de conteneurs avec auto-scaling et haute disponibilité.",
+    "code": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: web-app\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: web\n  template:\n    metadata:\n      labels:\n        app: web\n    spec:\n      containers:\n      - name: web\n        image: my-app:v1\n        ports:\n        - containerPort: 80"
   }
 ];
 

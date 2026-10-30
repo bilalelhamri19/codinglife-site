@@ -137,34 +137,111 @@
     "icon": "fa-terminal",
     "badge": "badge-modern",
     "t_en": "1. Essential Terminal Commands",
-    "t_ar": "1. أوامر الطرفية الأساسية",
-    "t_fr": "1. Commandes essentielles",
-    "d_en": "Master navigation, directory operations, process monitoring, and file inspection in seconds.",
-    "d_ar": "أتقن التنقل في المجلدات، إنشاء الملفات، ومراقبة العمليات الجارية بسرعة.",
-    "d_fr": "Maîtrisez la navigation, la création de fichiers et la surveillance des processus.",
-    "code": "pwd                      # Print working directory\nls -la                   # List all files with permissions\nmkdir -p project/src     # Create nested directories\ntop                      # Monitor system resource usage\ngrep -rn \"TODO\" .        # Search pattern in codebase"
+    "t_ar": "1. أوامر الطرفية الأساسية والتنقل",
+    "t_fr": "1. Commandes Essentielles & Navigation",
+    "d_en": "Master core shell navigation and file commands: ls, cd, pwd, mkdir, rm, cp, mv, cat, less, and clear.",
+    "d_ar": "إتقان أوامر التصفح والملفات الأساسية في سطر الأوامر: التنقل، الإنشاء، الحذف، والنسخ السريع.",
+    "d_fr": "Maîtrisez les commandes fondamentales du terminal pour naviguer et manipuler les fichiers sans interface graphique.",
+    "code": "# List files with detailed human-readable info\nls -lah\n\n# Create nested directories safely\nmkdir -p projects/web/src"
+  },
+  {
+    "icon": "fa-folder-tree",
+    "badge": "badge-modern",
+    "t_en": "2. Linux File System Hierarchy",
+    "t_ar": "2. هيكلية ملفات لينكس وتنظيم النظام",
+    "t_fr": "2. Arborescence du Système Linux",
+    "d_en": "Understand the FHS structure: /etc for configs, /var for logs, /bin and /usr for binaries, and /home for users.",
+    "d_ar": "فهم بنية المجلدات في نظام لينكس: مجلد الإعدادات /etc، السجلات /var، والملفات التنفيذية /bin.",
+    "d_fr": "Comprenez le rôle de chaque dossier racine (/etc, /var/log, /usr/bin) selon la norme FHS.",
+    "code": "# Check disk usage across mounts\ndf -h\n\n# Inspect size of directories\ndu -sh /var/log/*"
+  },
+  {
+    "icon": "fa-user-lock",
+    "badge": "badge-important",
+    "t_en": "3. Permissions & Ownership (chmod, chown)",
+    "t_ar": "3. صلاحيات الملفات والمستخدمين (chmod, chown)",
+    "t_fr": "3. Permissions & Propriétaires (chmod, chown)",
+    "d_en": "Understand read, write, execute (rwx) octal permissions (755, 644, 400), user groups, and ownership transfer.",
+    "d_ar": "فهم صلاحيات القراءة والكتابة والتنفيذ (rwx) بنظام الأرقام الثماني (755, 644) وتعيين المجموعات والمالكين.",
+    "d_fr": "Gérez les droits de lecture, écriture et exécution (rwx) ainsi que les propriétaires d'utilisateurs et groupes.",
+    "code": "# Make script executable\nchmod +x deploy.sh\n\n# Change owner and group recursively\nsudo chown -R www-data:www-data /var/www/html"
+  },
+  {
+    "icon": "fa-microchip",
+    "badge": "badge-modern",
+    "t_en": "4. Process Management & System Monitoring",
+    "t_ar": "4. إدارة العمليات ومراقبة أداء السيرفر",
+    "t_fr": "4. Gestion des Processus & Monitoring",
+    "d_en": "Inspect CPU and RAM metrics with top, htop, and ps. Manage background processes and send signals with kill.",
+    "d_ar": "مراقبة استهلاك المعالج والذاكرة العشوائية عبر top و htop وإدارة البرامج في الخلفية وإنهاء العمليات العالقة.",
+    "d_fr": "Surveillez les ressources système (RAM, CPU) et gérez le cycle de vie des processus avec ps, kill et htop.",
+    "code": "# Find process using port 8080\nsudo lsof -i :8080\n\n# Gracefully stop a process\nkill -15 12450"
+  },
+  {
+    "icon": "fa-box-open",
+    "badge": "badge-modern",
+    "t_en": "5. Package Management (apt, dnf, pacman)",
+    "t_ar": "5. إدارة وتثبيت الحزم والبرامج",
+    "t_fr": "5. Gestionnaires de Paquets",
+    "d_en": "Update system repositories, install developer packages, clean orphaned dependencies, and manage software sources.",
+    "d_ar": "تحديث مستودعات النظام، تثبيت أدوات التطوير، وتنظيف الحزم القديمة عبر apt أو dnf.",
+    "d_fr": "Installez et maintenez vos paquets logiciels à jour de manière sécurisée avec apt sur Debian/Ubuntu.",
+    "code": "# Update repository cache and upgrade system packages\nsudo apt update && sudo apt upgrade -y\n\n# Install essential developer build tools\nsudo apt install -y build-essential curl git"
+  },
+  {
+    "icon": "fa-magnifying-glass",
+    "badge": "badge-modern",
+    "t_en": "6. Text Processing with grep, sed, and awk",
+    "t_ar": "6. معالجة وتصفية النصوص عبر grep و sed و awk",
+    "t_fr": "6. Traitement de Texte (grep, sed, awk)",
+    "d_en": "Search server log files, perform regex stream replacements, and extract structured columns without opening an editor.",
+    "d_ar": "البحث داخل السجلات الضخمة، استبدال النصوص عبر التعابير النمطية، واستخراج الأعمدة بدقة عالية.",
+    "d_fr": "Filtrez et transformez des flux de données et des journaux d'erreurs directement en ligne de commande.",
+    "code": "# Find 500 errors in Nginx access logs\ngrep ' 500 ' /var/log/nginx/access.log | awk '{print $1, $7}'\n\n# In-place replace in config file\nsed -i 's/DEBUG=True/DEBUG=False/g' config.env"
+  },
+  {
+    "icon": "fa-scroll",
+    "badge": "badge-modern",
+    "t_en": "7. Bash Shell Scripting & Automation",
+    "t_ar": "7. برمجة سكربتات باش وأتمتة المهام اليومية",
+    "t_fr": "7. Scripts Bash & Automatisation",
+    "d_en": "Write automated backup and maintenance scripts using variables, conditionals, loops, functions, and exit codes.",
+    "d_ar": "كتابة سكربتات لأتمتة النسخ الاحتياطي وإدارة السيرفرات بالاعتماد على الشروط والدوال وأكواد الخروج.",
+    "d_fr": "Automatisez vos tâches récurrentes avec des scripts Bash comprenant variables, boucles et gestion d'erreurs.",
+    "code": "#!/bin/bash\nset -e\nBACKUP_DIR=\"/backup/$(date +%F)\"\nmkdir -p \"$BACKUP_DIR\"\ntar -czf \"$BACKUP_DIR/data.tar.gz\" /var/www\necho \"Backup completed successfully!\""
   },
   {
     "icon": "fa-key",
     "badge": "badge-important",
-    "t_en": "2. File Permissions & Sudo",
-    "t_ar": "2. الصلاحيات والمستخدمين (chmod & chown)",
-    "t_fr": "2. Permissions et Sudo",
-    "d_en": "Understand read, write, and execute permissions (chmod 755 / 600) and root privileges.",
-    "d_ar": "افهم صلاحيات القراءة والكتابة والتشغيل وأمّن ملفاتك وسيرفراتك.",
-    "d_fr": "Comprenez les droits de lecture, écriture et exécution pour sécuriser vos serveurs.",
-    "code": "chmod 755 deploy.sh      # rwxr-xr-x (executable for owner)\nchmod 600 id_rsa         # rw------- (secure SSH private key)\nchown -R www-data:www-data /var/www"
+    "t_en": "8. Secure Remote Access with SSH & Key Pairs",
+    "t_ar": "8. الاتصال الآمن بالسيرفرات عن بعد عبر SSH",
+    "t_fr": "8. Accès Distant Sécurisé via SSH",
+    "d_en": "Generate ED25519 cryptographic key pairs, disable password authentication on remote servers, and configure ~/.ssh/config.",
+    "d_ar": "توليد مفاتيح تشفير قوية، إيقاف تسجيل الدخول بكلمات المرور في السيرفرات، وإعداد ملف ssh config.",
+    "d_fr": "Sécurisez vos accès serveurs avec des clés asymétriques ED25519 et configurez vos alias de connexion.",
+    "code": "# Generate modern secure SSH key\nssh-keygen -t ed25519 -C \"admin@codinglife.site\"\n\n# Copy public key to remote VPS\nssh-copy-id user@server-ip"
   },
   {
-    "icon": "fa-scroll",
-    "badge": "badge-pro",
-    "t_en": "3. Automated Bash Scripting",
-    "t_ar": "3. برمجة سكريبتات Bash المؤتمتة",
-    "t_fr": "3. Scripts Bash Automatisés",
-    "d_en": "Automate backups, deployments, and cron jobs with clean shell scripts.",
-    "d_ar": "أتمت النسخ الاحتياطي والنشر والمهام الدورية عبر سكريبتات شل ذكية.",
-    "d_fr": "Automatisez vos sauvegardes et déploiements avec des scripts shell élégants.",
-    "code": "#!/usr/bin/env bash\nBACKUP_DIR=\"/backup/$(date +%F)\"\nmkdir -p \"$BACKUP_DIR\"\npg_dump prod_db > \"$BACKUP_DIR/db.sql\"\necho \"Backup finished successfully at $(date)\""
+    "icon": "fa-gear",
+    "badge": "badge-modern",
+    "t_en": "9. Systemd Services, Daemons & Cron Jobs",
+    "t_ar": "9. إدارة الخدمات الدائمة وجدولة المهام (Systemd & Cron)",
+    "t_fr": "9. Services Systemd & Tâches Cron",
+    "d_en": "Configure background daemons that auto-restart on crashes or system reboot, and schedule recurring tasks with crontab.",
+    "d_ar": "إنشاء خدمات نظام تضمن إعادة تشغيل تطبيقك عند توقفه أو إعادة تشغيل السيرفر، وجدولة المهام عبر Cron.",
+    "d_fr": "Créez des services système robustes qui redémarrent automatiquement et planifiez des tâches périodiques.",
+    "code": "# Control background system service\nsudo systemctl daemon-reload\nsudo systemctl enable --now my-app.service\nsudo systemctl status my-app.service"
+  },
+  {
+    "icon": "fa-shield-halved",
+    "badge": "badge-modern",
+    "t_en": "10. Firewall Configuration & Server Hardening",
+    "t_ar": "10. تأمين السيرفر وإعداد الجدار الناري (UFW)",
+    "t_fr": "10. Pare-feu UFW & Sécurisation Serveur",
+    "d_en": "Close unnecessary ports, configure UFW (Uncomplicated Firewall), install Fail2ban, and protect production VPS servers from brute force attacks.",
+    "d_ar": "إغلاق المنافذ غير المستخدمة، ضبط الجدار الناري UFW، واستخدام Fail2ban لمنع هجمات التخمين.",
+    "d_fr": "Verrouillez les ports de votre serveur avec UFW et configurez Fail2ban pour bloquer les tentatives d'intrusion.",
+    "code": "# Configure standard server firewall\nsudo ufw default deny incoming\nsudo ufw default allow outgoing\nsudo ufw allow ssh\nsudo ufw allow http\nsudo ufw allow https\nsudo ufw enable"
   }
 ];
 
