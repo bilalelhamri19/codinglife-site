@@ -68,9 +68,9 @@
       return { id, titleEn, titleAr, titleFr, iconClass, card, index: idx };
     });
 
-    // Partition into modules
+    // Partition into modules (2 lessons per module to create lots of rich modules)
     const total = lessonsData.length;
-    const partSize = Math.max(1, Math.ceil(total / 4));
+    const partSize = 2;
 
     // Build Docs Layout Container (No top parts bar!)
     const layout = document.createElement('div');
@@ -84,18 +84,23 @@
     let modulesHtml = '';
     const partNames = [
       { en: 'Module 1: Foundations', ar: 'الوحدة 1: الأساسيات', fr: 'Module 1: Fondations' },
-      { en: 'Module 2: Core Logic', ar: 'الوحدة 2: التحكم والمنطق', fr: 'Module 2: Logique' },
-      { en: 'Module 3: Advanced Concepts', ar: 'الوحدة 3: مفاهيم متقدمة', fr: 'Module 3: Avancé' },
-      { en: 'Module 4: Mastery & Practice', ar: 'الوحدة 4: الاحتراف والتطبيق', fr: 'Module 4: Maîtrise' }
+      { en: 'Module 2: Core Syntax & Types', ar: 'الوحدة 2: البنية والأنواع', fr: 'Module 2: Syntaxe & Types' },
+      { en: 'Module 3: Control & Functions', ar: 'الوحدة 3: التحكم والدوال', fr: 'Module 3: Contrôle & Fonctions' },
+      { en: 'Module 4: Architecture & OOP', ar: 'الوحدة 4: الهيكلة والكائنات', fr: 'Module 4: Architecture & POO' },
+      { en: 'Module 5: Advanced Engineering', ar: 'الوحدة 5: مفاهيم متقدمة', fr: 'Module 5: Ingénierie Avancée' },
+      { en: 'Module 6: Enterprise & APIs', ar: 'الوحدة 6: مشاريع المؤسسات', fr: 'Module 6: Entreprise & APIs' },
+      { en: 'Module 7: Production & Roadmap', ar: 'الوحدة 7: الإنتاج والمسار', fr: 'Module 7: Production & Roadmap' },
+      { en: 'Module 8: Mastery & Best Practices', ar: 'الوحدة 8: الاحتراف والتطوير', fr: 'Module 8: Maîtrise' }
     ];
 
-    for (let p = 1; p <= 4; p++) {
+    const numModules = Math.ceil(total / partSize);
+    for (let p = 1; p <= numModules; p++) {
       const startIdx = (p - 1) * partSize;
       const endIdx = Math.min(total, p * partSize);
       const partLessons = lessonsData.slice(startIdx, endIdx);
       if (partLessons.length === 0) continue;
 
-      const pName = partNames[p - 1];
+      const pName = partNames[p - 1] || { en: `Module ${p}: Advanced Topics`, ar: `الوحدة ${p}: مواضيع متقدمة`, fr: `Module ${p}: Sujets Avancés` };
       modulesHtml += `
         <div class="docs-sidebar-module" data-part-group="${p}">
           <div class="docs-module-header" onclick="this.closest('.docs-sidebar-module').classList.toggle('collapsed')">

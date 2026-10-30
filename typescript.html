@@ -134,37 +134,253 @@
 <script>
   const courseLessons = [
   {
-    "icon": "fa-check-circle",
+    "icon": "fa-shield-halved",
     "badge": "badge-modern",
-    "t_en": "1. Why TypeScript?",
-    "t_ar": "1. لماذا نحتاج TypeScript؟",
+    "t_en": "1. Why TypeScript & Architecture",
+    "t_ar": "1. لماذا TypeScript وبنيتها؟",
     "t_fr": "1. Pourquoi TypeScript ?",
-    "d_en": "TypeScript detects syntax and type errors at compile time before your code ever runs in production.",
-    "d_ar": "يكشف TypeScript أخطاء التنسيق والأنواع أثناء الكتابة وقبل تشغيل الكود في الإنتاج.",
-    "d_fr": "TypeScript détecte les erreurs à la compilation avant l'exécution en production.",
-    "code": "function calculateTotal(price: number, taxRate: number = 0.2): number {\n  return price + (price * taxRate);\n}\n\nconst total: number = calculateTotal(100);"
+    "d_en": "TypeScript is a strongly typed superset of JavaScript developed by Microsoft. It catches syntax and type errors at compile-time before your code reaches production, while compiling down to standard, clean JavaScript.",
+    "d_ar": "تايب سكريبت (TypeScript) هي لغة مطورة من مايكروسوفت مبنية فوق جافاسكريبت مع ميزة الأنواع الصارمة. تكتشف الأخطاء أثناء التطوير قبل تشغيل الكود في الإنتاج.",
+    "d_fr": "TypeScript est un sur-ensemble typé de JavaScript développé par Microsoft. Il détecte les bugs à la compilation avant la production.",
+    "code": "function calculateTotal(price: number, taxRate: number = 0.2): number {
+  return price + (price * taxRate);
+}
+
+const total: number = calculateTotal(100);"
+  },
+  {
+    "icon": "fa-terminal",
+    "badge": "badge-modern",
+    "t_en": "2. Installing & tsconfig.json Setup",
+    "t_ar": "2. التثبيت وإعداد tsconfig.json",
+    "t_fr": "2. Installation & Configuration",
+    "d_en": "Install TypeScript globally or as a project devDependency using npm. Configure compilation targets, strict mode, and module resolution via tsconfig.json.",
+    "d_ar": "تثبيت TypeScript عبر npm وتخصيص إعدادات المترجم عبر ملف tsconfig.json لتمكين الوضع الصارم (strict mode) وتحديد إصدار JavaScript المستهدف.",
+    "d_fr": "Installez TypeScript via npm et configurez tsconfig.json pour activer le mode strict et définir la version cible de JavaScript.",
+    "code": "npm install -D typescript @types/node
+npx tsc --init
+
+// tsconfig.json
+{
+  \"compilerOptions\": {
+    \"target\": \"ES2022\",
+    \"module\": \"NodeNext\",
+    \"strict\": true,
+    \"outDir\": \"./dist\"
+  }
+}"
+  },
+  {
+    "icon": "fa-cube",
+    "badge": "badge-modern",
+    "t_en": "3. Primitives & Type Inference",
+    "t_ar": "3. الأنواع الأساسية واستنتاج النوع",
+    "t_fr": "3. Types Primitifs & Inférence",
+    "d_en": "TypeScript features basic primitives (string, number, boolean, null, undefined, bigint, symbol). TypeScript also smartly infers variable types automatically when initialized.",
+    "d_ar": "توفر TypeScript أنواعاً أساسية صريحة مع ميزة الاستنتاج الذكي (Type Inference) التي تحدد نوع المتغير تلقائياً من قيمته الأولية.",
+    "d_fr": "TypeScript supporte les types primitifs de base et déduit automatiquement le type de vos variables à l'initialisation.",
+    "code": "let devName: string = \"Bilal\";
+let experienceYears: number = 5;
+let isFullStack: boolean = true;
+
+// Type Inference
+let inferredScore = 98; // Automatically inferred as number"
+  },
+  {
+    "icon": "fa-list-ol",
+    "badge": "badge-important",
+    "t_en": "4. Arrays, Tuples & Readonly",
+    "t_ar": "4. المصفوفات والتوبل والقراءة فقط",
+    "t_fr": "4. Tableaux, Tuples & Readonly",
+    "d_en": "Define typed arrays, fixed-length multi-type tuples, and immutable readonly collections that prevent accidental array mutations.",
+    "d_ar": "تحديد مصفوفات نوعية محددة، وهياكل Tuple ذات الحجم والأنواع الثابتة، مع إمكانية استخدام readonly لمنع التعديل غير المقصود.",
+    "d_fr": "Définissez des tableaux typés, des tuples à taille fixe et des collections immuables grâce au mot-clé readonly.",
+    "code": "let skills: string[] = [\"TypeScript\", \"React\", \"Node.js\"];
+
+// Tuple: fixed length and types
+let httpResponse: [number, string] = [200, \"OK\"];
+
+// Readonly array
+const roles: readonly string[] = [\"admin\", \"editor\"];"
   },
   {
     "icon": "fa-id-card",
     "badge": "badge-important",
-    "t_en": "2. Interfaces & Custom Types",
-    "t_ar": "2. الـ Interfaces والأنواع المخصصة",
-    "t_fr": "2. Interfaces & Types",
-    "d_en": "Define exact contracts for data structures, objects, and function parameters.",
-    "d_ar": "حدّد بنية البيانات بدقة تامة لضمان صحة الكائنات والـ props.",
-    "d_fr": "Définissez la structure exacte des objets et paramètres de fonction.",
-    "code": "interface User {\n  id: number;\n  name: string;\n  email: string;\n  role: \"admin\" | \"developer\" | \"student\";\n  isActive?: boolean;\n}\n\nconst me: User = { id: 1, name: \"Bilal\", email: \"bilal@dev.ma\", role: \"developer\" };"
+    "t_en": "5. Interfaces & Object Contracts",
+    "t_ar": "5. واجهات الكائنات (Interfaces)",
+    "t_fr": "5. Interfaces & Contrats d'Objets",
+    "d_en": "Interfaces define strict shape contracts for objects. Support optional properties (?), readonly fields, and interface inheritance (extends).",
+    "d_ar": "تحدد الواجهات (Interfaces) هيكل الكائنات وخصائصها الإلزامية والاختيارية، وتدعم الوراثة لتوسيع العقود البرمجية.",
+    "d_fr": "Les interfaces décrivent la forme exacte des objets avec des propriétés optionnelles, readonly et héritables.",
+    "code": "interface User {
+  readonly id: number;
+  name: string;
+  email: string;
+  avatarUrl?: string; // Optional property
+}
+
+interface AdminUser extends User {
+  permissions: string[];
+}
+
+const admin: AdminUser = {
+  id: 101,
+  name: \"Bilal\",
+  email: \"bilal@codinglife.site\",
+  permissions: [\"MANAGE_USERS\", \"DEPLOY\"]
+};"
+  },
+  {
+    "icon": "fa-code-compare",
+    "badge": "badge-important",
+    "t_en": "6. Type Aliases vs Interfaces",
+    "t_ar": "6. مقارنة Type Aliases و Interfaces",
+    "t_fr": "6. Type Aliases vs Interfaces",
+    "d_en": "Understand when to use 'type' vs 'interface'. Types are ideal for unions, primitives, and tuples; interfaces are preferred for extensible object-oriented models.",
+    "d_ar": "فهم الفرق الجوهري بين كلمة type و interface: تستخدم type للاتحادات والأنواع المركبة، بينما تناسب interface هيكلة الكائنات القابلة للتوسيع.",
+    "d_fr": "Comprenez quand utiliser type et interface. Les types excellent pour les unions et primitives, les interfaces pour les objets extensibles.",
+    "code": "// Type Alias for union and primitive combinations
+type ID = string | number;
+type Theme = \"light\" | \"dark\" | \"system\";
+
+// Interface for extensible data models
+interface Product {
+  id: ID;
+  title: string;
+  price: number;
+}"
+  },
+  {
+    "icon": "fa-arrows-split-up-and-left",
+    "badge": "badge-pro",
+    "t_en": "7. Union, Intersection & Literal Types",
+    "t_ar": "7. أنواع الاتحاد والتقاطع والأنواع الحرفية",
+    "t_fr": "7. Unions, Intersections & Littéraux",
+    "d_en": "Compose flexible types using Union (|) and Intersection (&). Narrow down types safely using typeof, instanceof, and discriminator properties.",
+    "d_ar": "دمج الأنواع بمرونة عبر الاتحاد (|) والتقاطع (&)، وتضييق النوع (Type Narrowing) لضمان التعامل الآمن مع المتغيرات متعددة الحالات.",
+    "d_fr": "Combinez des types avec les unions (|) et intersections (&), et filtrez-les avec le Type Narrowing.",
+    "code": "type Status = \"loading\" | \"success\" | \"error\";
+
+interface Timestamps {
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+type DatabaseRecord = User & Timestamps;
+
+function handleStatus(s: Status) {
+  if (s === \"success\") console.log(\"Operation succeeded!\");
+}"
+  },
+  {
+    "icon": "fa-gears",
+    "badge": "badge-pro",
+    "t_en": "8. Typed Functions & Overloads",
+    "t_ar": "8. كتابة الدوال والتحميل الزائد (Overloads)",
+    "t_fr": "8. Fonctions Typées & Surcharges",
+    "d_en": "Specify strict parameter types, return types, rest parameters (...args), default values, and function signatures with overloads.",
+    "d_ar": "تحديد أنواع المعاملات والقيم المرجعة بدقة، ودعم المعاملات الافتراضية ودوال التحميل الزائد (Function Overloading).",
+    "d_fr": "Typez strictement les arguments, retours, paramètres par défaut et créez des surcharges de fonctions.",
+    "code": "type MathOperation = (x: number, y: number) => number;
+
+const multiply: MathOperation = (a, b) => a * b;
+
+function formatInput(val: string | number): string {
+  return typeof val === \"number\" ? `$${val.toFixed(2)}` : val.trim();
+}"
+  },
+  {
+    "icon": "fa-sitemap",
+    "badge": "badge-pro",
+    "t_en": "9. Classes & Access Modifiers",
+    "t_ar": "9. الأصناف ومحددات الوصول",
+    "t_fr": "9. Classes & Modificateurs d'Accès",
+    "d_en": "Master TypeScript's object-oriented class capabilities: public, private, protected, readonly, parameter properties, and getters/setters.",
+    "d_ar": "تطبيق مفاهيم البرمجة الكائنية الصارمة عبر محددات الوصول (public, private, protected) والحقول المحمية وخاصية الاختصار في البناء.",
+    "d_fr": "Maîtrisez la POO TypeScript avec public, private, protected, readonly et les constructeurs concis.",
+    "code": "class BankAccount {
+  constructor(
+    public readonly accountNumber: string,
+    private balance: number = 0
+  ) {}
+
+  public deposit(amount: number): void {
+    if (amount > 0) this.balance += amount;
+  }
+
+  public getBalance(): number {
+    return this.balance;
+  }
+}"
   },
   {
     "icon": "fa-boxes-stacked",
     "badge": "badge-pro",
-    "t_en": "3. Generics (Reusable Type Logic)",
-    "t_ar": "3. الـ Generics (الأنواع القابلة لإعادة الاستخدام)",
-    "t_fr": "3. Les Génériques",
-    "d_en": "Create functions and classes that work over a variety of types rather than a single one.",
-    "d_ar": "ابنِ دوال وهياكل تقبل أي نوع بيانات مع الحفاظ على الأمان البرمجي الكامل.",
-    "d_fr": "Créez des composants et fonctions réutilisables avec n'importe quel type.",
-    "code": "function getFirstItem<T>(items: T[]): T | undefined {\n  return items[0];\n}\n\nconst num = getFirstItem<number>([10, 20, 30]);\nconst str = getFirstItem<string>([\"React\", \"Vue\", \"Next\"]);"
+    "t_en": "10. Generics & Generic Constraints",
+    "t_ar": "10. القوالب العامة والقيود (Generics)",
+    "t_fr": "10. Les Génériques (Generics)",
+    "d_en": "Create reusable components, functions, and interfaces that adapt to any data type while preserving 100% type safety and autocompletion.",
+    "d_ar": "إنشاء دوال وواجهات عامة قابلة لإعادة الاستخدام مع أي نوع بيانات مع الحفاظ على الأمان الكامل للأنواع والتلميح التلقائي.",
+    "d_fr": "Créez du code flexible et réutilisable qui s'adapte à tous les types tout en garantissant un typage strict.",
+    "code": "interface ApiResponse<T> {
+  status: number;
+  data: T;
+  error?: string;
+}
+
+function getFirstItem<T>(items: T[]): T | undefined {
+  return items[0];
+}
+
+const firstNum = getFirstItem<number>([10, 20, 30]);
+const firstUser = getFirstItem<User>([{ id: 1, name: \"Bilal\", email: \"b@dev.ma\" }]);"
+  },
+  {
+    "icon": "fa-wrench",
+    "badge": "badge-modern",
+    "t_en": "11. Utility Types (Partial, Pick, Omit)",
+    "t_ar": "11. أدوات الأنواع المساعدة (Utility Types)",
+    "t_fr": "11. Les Types Utilitaires",
+    "d_en": "Leverage built-in TypeScript helpers: Partial<T>, Required<T>, Readonly<T>, Pick<T, K>, Omit<T, K>, and Record<K, T> for rapid data modeling.",
+    "d_ar": "استخدام أدوات TypeScript المدمجة لتوليد أنواع مشتقة بسرعة وسهولة دون تكرار الكود: Partial و Pick و Omit و Record.",
+    "d_fr": "Exploitez les types utilitaires natifs de TypeScript : Partial, Pick, Omit, Record pour modéliser vos données sans duplication.",
+    "code": "interface Article {
+  id: number;
+  title: string;
+  content: string;
+  publishedAt: Date;
+}
+
+// Make all fields optional for updates
+type UpdateArticleInput = Partial<Article>;
+
+// Pick only title and content for a preview
+type ArticlePreview = Pick<Article, \"title\" | \"content\">;
+
+// Dictionary map
+type ArticleCache = Record<number, Article>;"
+  },
+  {
+    "icon": "fa-road",
+    "badge": "badge-modern",
+    "t_en": "12. Enterprise Projects & Roadmap",
+    "t_ar": "12. مشاريع الإنتاج ومسار الاحتراف",
+    "t_fr": "12. Projets d'Entreprise & Roadmap",
+    "d_en": "Production best practices: using TypeScript in Next.js, React, Node.js/NestJS, managing declarations (.d.ts), and fullstack career roadmap.",
+    "d_ar": "أفضل الممارسات في مشاريع الإنتاج: دمج TypeScript مع React و Next.js و NestJS، وإدارة حزم التعريفات (.d.ts) ومسار المهنة الاحترافي.",
+    "d_fr": "Meilleures pratiques en entreprise : intégration avec React, Next.js, Node.js/NestJS et gestion des déclarations .d.ts.",
+    "code": "// React Component with typed Props
+interface ButtonProps {
+  label: string;
+  onClick: () => void;
+  variant?: \"primary\" | \"secondary\";
+}
+
+export const Button: React.FC<ButtonProps> = ({ label, onClick, variant = \"primary\" }) => (
+  <button className={`btn-${variant}`} onClick={onClick}>{label}</button>
+);"
+  }
+];\n}\n\nconst num = getFirstItem<number>([10, 20, 30]);\nconst str = getFirstItem<string>([\"React\", \"Vue\", \"Next\"]);"
   }
 ];
 
