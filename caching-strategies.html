@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distributed Caching Strategies with Redis: Production Patterns - Coding Life</title>
+  <meta name="description" content="Avoid cache stampedes, manage TTLs effectively, and master Cache-Aside, Write-Through, and Write-Behind architectures for high-traffic systems.">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .article-container {
+      max-width: 860px;
+      margin: 120px auto 80px;
+      padding: 0 24px;
+    }
+    .article-header-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 48px 40px;
+      margin-bottom: 40px;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--cl-brand-soft);
+      color: var(--cl-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .article-header-card h1 {
+      font-size: 2.5rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .article-lead {
+      font-size: 1.15rem;
+      color: var(--cl-muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .article-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid var(--cl-line);
+      font-size: 0.9rem;
+      color: var(--cl-muted);
+    }
+    .article-meta-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .article-body-content {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 44px 40px;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      color: var(--cl-text);
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-body-content h2 {
+      font-size: 1.55rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      margin: 36px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-body-content h2:first-child {
+      margin-top: 0;
+    }
+    .quote-box {
+      background: var(--cl-bg);
+      border-left: 4px solid var(--cl-brand);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 28px 0;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--cl-ink);
+      line-height: 1.7;
+    }
+    [dir="rtl"] .quote-box {
+      border-left: none;
+      border-right: 4px solid var(--cl-brand);
+    }
+    .tip-box {
+      background: var(--cl-brand-soft);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 28px 0;
+      color: var(--cl-text);
+      font-size: 0.98rem;
+    }
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 24px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+    }
+    .code-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--cl-muted);
+      margin-bottom: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+    .back-btn-row {
+      margin-bottom: 24px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 10px;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+      transform: translateX(-3px);
+    }
+    [dir="rtl"] .back-btn:hover {
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="article-container">
+
+  <div class="back-btn-row">
+    <a href="blog.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="ar">العودة لجميع المقالات</span>
+      <span data-cl-lang="fr">Retour aux articles</span>
+    </a>
+  </div>
+
+  <div class="article-header-card">
+    <span class="article-badge">Architecture & Databases</span>
+    
+    <div data-cl-lang="en">
+      <h1>Distributed Caching Strategies with Redis: Production Patterns</h1>
+      <p class="article-lead">Avoid cache stampedes, manage TTLs effectively, and master Cache-Aside, Write-Through, and Write-Behind architectures for high-traffic systems.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1>استراتيجيات التخزين المؤقت الموزع باستخدام Redis: أنماط الإنتاج</h1>
+      <p class="article-lead">تجنب تدافع الكاش، وإدارة فترات الصلاحية TTL بذكاء، واحتراف معمارية Cache-Aside و Write-Through للأنظمة الضخمة.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1>Stratégies de Cache Distribué avec Redis : Modèles de Production</h1>
+      <p class="article-lead">Évitez les avalanches de cache, gérez les TTL efficacement et maîtrisez les architectures Cache-Aside et Write-Through pour les systèmes à fort trafic.</p>
+    </div>
+
+    <div class="article-meta-row">
+      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 11 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+    </div>
+  </div>
+
+  <div class="article-body-content">
+    <div data-cl-lang="en">
+      
+      <h2>1. Why Caching Fails in High-Scale Systems</h2>
+      <p>Adding Redis in front of PostgreSQL or MySQL is trivial. Doing it without introducing stale data bugs, race conditions, or cache stampedes under heavy traffic requires engineering rigor. When thousands of concurrent requests arrive for an expired key, your database will collapse unless properly safeguarded.</p>
+      
+      <div class="quote-box">"There are only two hard things in Computer Science: cache invalidation and naming things." — Phil Karlton</div>
+
+      <h2>2. Core Caching Patterns Compared</h2>
+      <p>Understanding which caching pattern matches your read/write ratio is critical:</p>
+      <ul>
+        <li><strong>Cache-Aside (Lazy Loading):</strong> The application reads from cache; if missing, reads from DB and writes to cache. Best for read-heavy workloads where eventual consistency is acceptable.</li>
+        <li><strong>Write-Through:</strong> The application writes to cache, which synchronously updates the database. Ensures data is always fresh, with slight write latency.</li>
+        <li><strong>Write-Behind (Write-Back):</strong> The cache accepts writes immediately and asynchronously flushes batches to the database. Extreme write throughput, but risks data loss during crashes.</li>
+      </ul>
+
+      <div class="code-block">
+        <div class="code-label">Cache-Aside Pattern with Probabilistic Early Expiration (XFetch)</div>
+        <pre>// Preventing Cache Stampede with Probabilistic Early Recomputation
+async function getWithEarlyRecompute(key, ttlSeconds, beta = 1.0) {
+  const cached = await redis.get(key);
+  if (!cached) return await recomputeAndCache(key, ttlSeconds);
+
+  const { value, delta, expiry } = JSON.parse(cached);
+  const now = Date.now();
+  // XFetch algorithm: recompute early based on compute time delta
+  if (now - (delta * beta * Math.log(Math.random())) >= expiry) {
+    // Asynchronously refresh in background without blocking current read
+    recomputeAndCache(key, ttlSeconds).catch(console.error);
+  }
+  return value;
+}</pre>
+      </div>
+
+      <h2>3. Redis Data Structures for Production Systems</h2>
+      <p>Stop using plain string keys for everything. Production Redis setups leverage <strong>Hashes</strong> for entity storage to reduce memory footprint by up to 60%, <strong>Sorted Sets (ZSET)</strong> for rate-limiting sliding windows and leaderboards, and <strong>HyperLogLog</strong> for unique visitor counts with constant 12KB memory overhead.</p>
+
+      <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Production Tip:</strong> Always configure Redis with <code>maxmemory-policy volatile-lru</code> or <code>allkeys-lru</code> and set explicit alerts on memory saturation and connection pool exhaustion.</div>
+    
+    </div>
+    <div data-cl-lang="ar">
+      
+      <h2>1. لماذا يفشل التخزين المؤقت في الأنظمة ذات الضغط العالي؟</h2>
+      <p>إضافة Redis أمام قاعدة البيانات أمر سهل، لكن القيام بذلك دون إدخال بيانات قديمة أو حدوث انهيار تدافع الكاش (Cache Stampede) عند انتهاء صلاحية المفتاح يتطلب معايير هندسية دقيقة لحماية خوادم قواعد البيانات من السقوط.</p>
+
+      <div class="quote-box">"لا يوجد في علوم الحاسوب سوى أمرين شاقين: إبطال الكاش وتسمية المتغيرات." — فيل كارلتون</div>
+
+      <h2>2. مقارنة أهم أنماط الكاش</h2>
+      <ul>
+        <li><strong>Cache-Aside (التحميل الكسول):</strong> التطبيق يقرأ من الكاش أولاً، وإذا لم يجد البيانات يجلبها من قاعدة البيانات ويخزنها. مثالي للأنظمة كثيرة القراءة.</li>
+        <li><strong>Write-Through:</strong> الكتابة تتم في الكاش وقاعدة البيانات معاً في نفس الوقت، مما يضمن دقة البيانات دائماً.</li>
+        <li><strong>Write-Behind:</strong> الكتابة في الكاش فوراً ثم ترحيل البيانات لقاعدة البيانات في دفعات غير متزامنة، وهو ممتاز للأنظمة فائقة الكتابة.</li>
+      </ul>
+
+      <h2>3. هياكل بيانات Redis المتقدمة</h2>
+      <p>توقف عن تخزين كل شيء كسلاسل نصية String عادية. استخدام الـ Hashes يوفر حتى 60% من الذاكرة، واستخدام Sorted Sets يوفر آليات دقيقة لتحديد معدل الطلبات (Rate Limiting) بكفاءة عالية جداً.</p>
+    
+    </div>
+    <div data-cl-lang="fr">
+      
+      <h2>1. Pourquoi le Cache Échoue à Grande Échelle</h2>
+      <p>Ajouter Redis devant votre base de données est simple, mais éviter les incohérences de données et les avalanches de cache (Cache Stampede) sous fort trafic nécessite une vraie rigueur d'ingénierie.</p>
+      <h2>2. Les Principaux Modèles de Caching</h2>
+      <p>Choisissez Cache-Aside pour les charges dominées par la lecture, Write-Through pour la cohérence stricte, ou Write-Behind pour les débits d'écriture massifs.</p>
+      <h2>3. Structures de Données Redis Avancées</h2>
+      <p>Exploitez les Hashes pour réduire l'empreinte mémoire de 60%, et les Sorted Sets pour implémenter des fenêtres glissantes de limitation de débit.</p>
+    
+    </div>
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

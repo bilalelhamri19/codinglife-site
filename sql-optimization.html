@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PostgreSQL & SQL Performance Tuning: The Production Guide - Coding Life</title>
+  <meta name="description" content="Master EXPLAIN ANALYZE execution graphs, eliminate sequential scans with composite B-Tree indexes, and fix N+1 ORM bottlenecks.">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .article-container {
+      max-width: 860px;
+      margin: 120px auto 80px;
+      padding: 0 24px;
+    }
+    .article-header-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 48px 40px;
+      margin-bottom: 40px;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--cl-brand-soft);
+      color: var(--cl-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .article-header-card h1 {
+      font-size: 2.5rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .article-lead {
+      font-size: 1.15rem;
+      color: var(--cl-muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .article-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid var(--cl-line);
+      font-size: 0.9rem;
+      color: var(--cl-muted);
+    }
+    .article-meta-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .article-body-content {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 44px 40px;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      color: var(--cl-text);
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-body-content h2 {
+      font-size: 1.55rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      margin: 36px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-body-content h2:first-child {
+      margin-top: 0;
+    }
+    .quote-box {
+      background: var(--cl-bg);
+      border-left: 4px solid var(--cl-brand);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 28px 0;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--cl-ink);
+      line-height: 1.7;
+    }
+    [dir="rtl"] .quote-box {
+      border-left: none;
+      border-right: 4px solid var(--cl-brand);
+    }
+    .tip-box {
+      background: var(--cl-brand-soft);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 28px 0;
+      color: var(--cl-text);
+      font-size: 0.98rem;
+    }
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 24px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+    }
+    .code-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--cl-muted);
+      margin-bottom: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+    .back-btn-row {
+      margin-bottom: 24px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 10px;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+      transform: translateX(-3px);
+    }
+    [dir="rtl"] .back-btn:hover {
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="article-container">
+
+  <div class="back-btn-row">
+    <a href="blog.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="ar">العودة لجميع المقالات</span>
+      <span data-cl-lang="fr">Retour aux articles</span>
+    </a>
+  </div>
+
+  <div class="article-header-card">
+    <span class="article-badge">Databases & Performance</span>
+    
+    <div data-cl-lang="en">
+      <h1>PostgreSQL & SQL Performance Tuning: The Production Guide</h1>
+      <p class="article-lead">Master EXPLAIN ANALYZE execution graphs, eliminate sequential scans with composite B-Tree indexes, and fix N+1 ORM bottlenecks.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1>تحسين أداء قواعد بيانات PostgreSQL و SQL: دليل بيئات الإنتاج</h1>
+      <p class="article-lead">احتراف قراءة مخططات التنفيذ EXPLAIN ANALYZE، والتخلص من المسح المتسلسل بالفهارس المركبة، وحل مشاكل N+1 مع الـ ORM.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1>Optimisation PostgreSQL & SQL : Le Guide de Production</h1>
+      <p class="article-lead">Maîtrisez les plans d’exécution EXPLAIN ANALYZE, éliminez les scans séquentiels avec des index B-Tree composites et résolvez le problème N+1 des ORMs.</p>
+    </div>
+
+    <div class="article-meta-row">
+      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 13 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+    </div>
+  </div>
+
+  <div class="article-body-content">
+    <div data-cl-lang="en">
+      
+      <h2>1. Reading EXPLAIN ANALYZE Plans Like a Senior DBA</h2>
+      <p>Never optimize a SQL query based on intuition. Running <code>EXPLAIN (ANALYZE, BUFFERS, COSTS)</code> provides the exact cost model, execution node types (Seq Scan, Index Scan, Bitmap Heap Scan), and buffer hit ratios. A query executing in 4 seconds can often be reduced to 1.8 milliseconds with a single composite index covering filter and sort conditions.</p>
+      
+      <div class="quote-box">"An unindexed foreign key in a relational database with millions of rows is a ticking production incident waiting to happen during an UPDATE or DELETE lock."</div>
+
+      <h2>2. The Anatomy of Indexing in PostgreSQL</h2>
+      <p>Understand which index type solves your query profile:</p>
+      <ul>
+        <li><strong>B-Tree:</strong> Default, optimal for equality, range operators (<code>&lt;, &lt;=, =, &gt;=, &gt;</code>), and sorting. Order of columns in composite indexes matters strictly: Equality first, Range second.</li>
+        <li><strong>GIN (Generalized Inverted Index):</strong> Critical for JSONB containment operators (<code>@&gt;</code>), full-text search (<code>tsvector</code>), and array columns.</li>
+        <li><strong>BRIN (Block Range Index):</strong> Game-changer for massive append-only timeseries tables (hundreds of millions of rows). Requires 99% less disk space than B-Trees.</li>
+      </ul>
+
+      <div class="code-block">
+        <div class="code-label">PostgreSQL Composite Indexing & Partial Indexing</div>
+        <pre>-- Composite index optimized for WHERE tenant_id = ? AND status = ? ORDER BY created_at DESC
+CREATE INDEX idx_orders_tenant_status_created 
+ON orders (tenant_id, status, created_at DESC);
+
+-- Partial index: Index only active records to save 90% index size
+CREATE INDEX idx_users_unverified 
+ON users (email) 
+WHERE is_verified = FALSE;</pre>
+      </div>
+
+      <h2>3. Eliminating the N+1 ORM Trap</h2>
+      <p>ORMs like Prisma, Hibernate, and TypeORM make development fast, but naive relation fetching issues thousands of round-trips to the database over high-latency networks. Always verify generated SQL queries and enforce <code>JOIN FETCH</code>, batch loading (Dataloader pattern), or explicit subqueries.</p>
+
+      <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> Enable <code>pg_stat_statements</code> in your PostgreSQL configuration to continuously capture top queries by cumulative CPU time and shared block reads.</div>
+    
+    </div>
+    <div data-cl-lang="ar">
+      
+      <h2>1. كيف تقرأ مخططات التنفيذ EXPLAIN ANALYZE كمهندس محترف</h2>
+      <p>لا تقم بتحسين استعلامات SQL بناءً على التخمين. أمر <code>EXPLAIN (ANALYZE, BUFFERS)</code> يكشف لك بالتفصيل نوع فحص الجداول (Seq Scan vs Index Scan) وحجم استهلاك الذاكرة. استعلام يستغرق 4 ثوان يمكن خفضه إلى جزء من الميلي ثانية بفهرس مركب مدروس.</p>
+      <h2>2. أنواع الفهارس في PostgreSQL</h2>
+      <ul>
+        <li><strong>B-Tree:</strong> الفهرس الافتراضي الأنسب للعمليات الحسابية والترتيب ومقارنات المساواة.</li>
+        <li><strong>GIN:</strong> ضروري لحقول JSONB والبحث النصي الكامل والمصفوفات.</li>
+        <li><strong>BRIN:</strong> حل سحري للجداول الضخمة المتسلسلة زمنياً ويوفر 95% من مساحة التخزين مقارنة بـ B-Tree.</li>
+      </ul>
+      <h2>3. القضاء على فخ استعلامات N+1 في الـ ORM</h2>
+      <p>مكتبات الـ ORM الحديثة تسهل البرمجة لكنها قد تتسبب في إرسال آلاف الاستعلامات المتكررة للربط بين الجداول. استخدم دوال الـ Eager Loading و Batch Loading لتقليص الاستعلامات واسترجاع البيانات بطلب واحد.</p>
+    
+    </div>
+    <div data-cl-lang="fr">
+      
+      <h2>1. Lire les Plans EXPLAIN ANALYZE</h2>
+      <p>Ne basez jamais l'optimisation SQL sur l'intuition. Analysez le modèle de coût et les accès mémoire pour identifier les goulots d'étranglement.</p>
+      <h2>2. Les Types d'Index PostgreSQL</h2>
+      <p>Utilisez des index B-Tree pour l'égalité et les plages, GIN pour les colonnes JSONB et la recherche plein texte, et BRIN pour les séries temporelles massives.</p>
+      <h2>3. Éliminer le Piège N+1</h2>
+      <p>Adoptez le batch loading et le Dataloader pour éviter des milliers d'allers-retours réseau inutiles avec votre base de données.</p>
+    
+    </div>
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

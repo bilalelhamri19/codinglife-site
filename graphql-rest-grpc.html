@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Protocol Showdown: REST vs. GraphQL vs. gRPC in 2026 - Coding Life</title>
+  <meta name="description" content="Compare network latency, payload overhead, schema contracts, and developer experience to select the optimal protocol for internal vs. external APIs.">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .article-container {
+      max-width: 860px;
+      margin: 120px auto 80px;
+      padding: 0 24px;
+    }
+    .article-header-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 48px 40px;
+      margin-bottom: 40px;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--cl-brand-soft);
+      color: var(--cl-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .article-header-card h1 {
+      font-size: 2.5rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .article-lead {
+      font-size: 1.15rem;
+      color: var(--cl-muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .article-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid var(--cl-line);
+      font-size: 0.9rem;
+      color: var(--cl-muted);
+    }
+    .article-meta-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .article-body-content {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 44px 40px;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      color: var(--cl-text);
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-body-content h2 {
+      font-size: 1.55rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      margin: 36px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-body-content h2:first-child {
+      margin-top: 0;
+    }
+    .quote-box {
+      background: var(--cl-bg);
+      border-left: 4px solid var(--cl-brand);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 28px 0;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--cl-ink);
+      line-height: 1.7;
+    }
+    [dir="rtl"] .quote-box {
+      border-left: none;
+      border-right: 4px solid var(--cl-brand);
+    }
+    .tip-box {
+      background: var(--cl-brand-soft);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 28px 0;
+      color: var(--cl-text);
+      font-size: 0.98rem;
+    }
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 24px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+    }
+    .code-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--cl-muted);
+      margin-bottom: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+    .back-btn-row {
+      margin-bottom: 24px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 10px;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+      transform: translateX(-3px);
+    }
+    [dir="rtl"] .back-btn:hover {
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="article-container">
+
+  <div class="back-btn-row">
+    <a href="blog.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="ar">العودة لجميع المقالات</span>
+      <span data-cl-lang="fr">Retour aux articles</span>
+    </a>
+  </div>
+
+  <div class="article-header-card">
+    <span class="article-badge">Architecture & Protocols</span>
+    
+    <div data-cl-lang="en">
+      <h1>API Protocol Showdown: REST vs. GraphQL vs. gRPC in 2026</h1>
+      <p class="article-lead">Compare network latency, payload overhead, schema contracts, and developer experience to select the optimal protocol for internal vs. external APIs.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1>مقارنة بروتوكولات الـ APIs: المفاضلة بين REST و GraphQL و gRPC في 2026</h1>
+      <p class="article-lead">مقارنة أزمنة الاستجابة، وحجم حزم البيانات، وتوافق المخططات وعقود البيانات، لاختيار البروتوكول الأنسب لكل طبقة في نظامك.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1>Comparatif d’APIs : REST vs GraphQL vs gRPC en 2026</h1>
+      <p class="article-lead">Analysez la latence réseau, l’empreinte des charges utiles, les schémas stricts et l’expérience développeur pour chaque protocole.</p>
+    </div>
+
+    <div class="article-meta-row">
+      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 10 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+    </div>
+  </div>
+
+  <div class="article-body-content">
+    <div data-cl-lang="en">
+      
+      <h2>1. The Evolution of API Protocols</h2>
+      <p>No single protocol wins across all engineering contexts. Senior architects evaluate protocols based on network topology: external public clients have vastly different constraints than internal high-throughput service-to-service RPC calls.</p>
+      
+      <div class="quote-box">"Use REST for public third-party integrations, GraphQL for rich client-driven dashboards, and gRPC/Protobuf for high-frequency internal microservices."</div>
+
+      <h2>2. The Deep Technical Comparison</h2>
+      <ul>
+        <li><strong>REST (HTTP/1.1 & HTTP/2):</strong> Universal interoperability, robust HTTP caching proxies (Cloudflare, Varnish), mature tooling. Downsides: Over-fetching and under-fetching data.</li>
+        <li><strong>GraphQL:</strong> Client-driven queries, eliminates multiple roundtrips, strict type schema. Downsides: Harder to cache over standard HTTP proxies, N+1 query vulnerability without Dataloader.</li>
+        <li><strong>gRPC (HTTP/2 + Protocol Buffers):</strong> Binary serialization yields 7-10x smaller payloads and 5-10x faster serialization than JSON. Built-in bi-directional streaming, code-generated client SDKs. Downsides: Poor browser support without gRPC-Web proxy.</li>
+      </ul>
+
+      <div class="code-block">
+        <div class="code-label">Protobuf Schema Definition for High-Performance Service</div>
+        <pre>syntax = "proto3";
+package payments.v1;
+
+service PaymentService {
+  rpc ProcessPayment (PaymentRequest) returns (PaymentResponse);
+}
+
+message PaymentRequest {
+  string transaction_id = 1;
+  int64 amount_cents = 2;
+  string currency = 3;
+}
+
+message PaymentResponse {
+  enum Status { UNKNOWN = 0; APPROVED = 1; DECLINED = 2; }
+  Status status = 1;
+  string authorization_code = 2;
+}</pre>
+      </div>
+
+      <h2>3. Production Decision Matrix</h2>
+      <p>If you are building an internal mesh of microservices processing tens of thousands of requests per second, adopting gRPC reduces CPU serialization overhead and network bandwidth by over 60%. If your primary clients are mobile apps needing custom views across slow mobile connections, GraphQL is your weapon of choice.</p>
+    
+    </div>
+    <div data-cl-lang="ar">
+      
+      <h2>1. متى تختار كل بروتوكول؟</h2>
+      <p>لا يوجد بروتوكول واحد يناسب كل الاحتياجات. البروتوكول الأنسب يعتمد على طبيعة الشبكة والعميل: هل هو متصفح ويب، تطبيق هاتف، أم اتصال داخلي بين خوادم في نفس مركز البيانات؟</p>
+      <h2>2. المقارنة التقنية العميقة</h2>
+      <ul>
+        <li><strong>REST:</strong> الأفضل لواجهات الـ APIs العامة والمفتوحة للشركاء بسبب التوافق الشامل وسهولة التخزين المؤقت.</li>
+        <li><strong>GraphQL:</strong> الأفضل للواجهات الأمامية وتطبيقات الموبايل حيث يحتاج العميل جلب بيانات مخصصة بطلب واحد دون بيانات زائدة.</li>
+        <li><strong>gRPC و Protobuf:</strong> المعيار الذهبي للتواصل الداخلي بين المايكروسيرفيس بفضل الحجم الصغير جداً للبيانات الثنائية وسرعة المعالجة الفائقة.</li>
+      </ul>
+    
+    </div>
+    <div data-cl-lang="fr">
+      
+      <h2>1. Le Bon Protocole pour le Bon Cas d'Usage</h2>
+      <p>Utilisez REST pour l'interopérabilité publique, GraphQL pour la flexibilité front-end, et gRPC pour la communication inter-services ultra-rapide.</p>
+      <h2>2. Analyse des Performances</h2>
+      <p>La sérialisation binaire de Protocol Buffers réduit la charge réseau de 70% et surpasse le JSON en termes de cycles CPU consommés.</p>
+    
+    </div>
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

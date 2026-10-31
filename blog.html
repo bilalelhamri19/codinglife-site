@@ -4,19 +4,19 @@
   <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog & Tech Insights - Coding Life</title>
-  <meta name="description" content="Explore in-depth engineering articles, software architecture, AI development, career roadmaps, and developer productivity guides.">
+  <title>Engineering Blog & Architecture Insights - Coding Life</title>
+  <meta name="description" content="Explore 20+ comprehensive software engineering guides, distributed systems architecture, production database tuning, AI workflows, and developer career playbooks.">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     :root {
-      --cl-card-radius: 18px;
+      --cl-card-radius: 20px;
     }
 
     .blog-container {
-      max-width: 1240px;
+      max-width: 1300px;
       margin: 110px auto 80px;
       padding: 0 24px;
     }
@@ -24,19 +24,19 @@
     /* Hero Spotlight */
     .blog-hero {
       position: relative;
-      background: linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(99, 102, 241, 0.05) 100%);
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.09) 0%, rgba(99, 102, 241, 0.06) 100%);
       border: 1px solid var(--cl-line);
       border-radius: 28px;
       padding: 48px;
       margin-bottom: 48px;
       overflow: hidden;
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 1.25fr 1fr;
       gap: 40px;
       align-items: center;
       box-shadow: var(--cl-shadow-sm);
     }
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .blog-hero {
         grid-template-columns: 1fr;
         padding: 32px 24px;
@@ -50,20 +50,20 @@
       margin-bottom: 18px;
     }
     .spotlight-pill {
-      background: #0284c7;
+      background: var(--cl-brand);
       color: #fff;
       font-size: 0.76rem;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 5px 14px;
+      padding: 6px 14px;
       border-radius: 9999px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
     .reading-time-pill {
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       color: var(--cl-muted);
       display: inline-flex;
       align-items: center;
@@ -73,13 +73,13 @@
       font-size: clamp(1.8rem, 3.2vw, 2.6rem);
       font-weight: 800;
       color: var(--cl-ink);
-      line-height: 1.25;
+      line-height: 1.28;
       margin-bottom: 16px;
     }
     .blog-hero p {
       font-size: 1.05rem;
       color: var(--cl-muted);
-      line-height: 1.7;
+      line-height: 1.75;
       margin-bottom: 24px;
     }
     .hero-cta-btn {
@@ -88,7 +88,7 @@
       gap: 10px;
       background: var(--cl-brand);
       color: #fff !important;
-      padding: 13px 26px;
+      padding: 13px 28px;
       border-radius: 12px;
       font-weight: 700;
       font-size: 0.98rem;
@@ -118,7 +118,7 @@
       transform: scale(1.04);
     }
 
-    /* Controls Bar: Search & Category Pills */
+    /* Controls Bar: Search & Category Tabs */
     .controls-bar {
       display: flex;
       flex-direction: column;
@@ -127,7 +127,7 @@
     }
     .search-input-wrap {
       position: relative;
-      max-width: 600px;
+      max-width: 640px;
       width: 100%;
     }
     .search-input-wrap i {
@@ -136,7 +136,7 @@
       top: 50%;
       transform: translateY(-50%);
       color: var(--cl-muted);
-      font-size: 1rem;
+      font-size: 1.05rem;
       pointer-events: none;
     }
     [dir="rtl"] .search-input-wrap i {
@@ -148,8 +148,8 @@
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
       border-radius: 14px;
-      padding: 14px 20px 14px 48px;
-      font-size: 0.95rem;
+      padding: 15px 20px 15px 50px;
+      font-size: 0.98rem;
       color: var(--cl-ink);
       font-family: inherit;
       outline: none;
@@ -157,7 +157,7 @@
       box-sizing: border-box;
     }
     [dir="rtl"] .search-input {
-      padding: 14px 48px 14px 20px;
+      padding: 15px 50px 15px 20px;
     }
     .search-input:focus {
       border-color: var(--cl-brand);
@@ -174,15 +174,15 @@
       border: 1px solid var(--cl-line);
       color: var(--cl-muted);
       font-family: inherit;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      padding: 8px 18px;
+      padding: 9px 20px;
       border-radius: 9999px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
     .filter-tab:hover {
       border-color: var(--cl-brand);
@@ -192,17 +192,17 @@
       background: var(--cl-brand);
       color: #fff;
       border-color: var(--cl-brand);
-      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.25);
+      box-shadow: 0 3px 12px rgba(2, 132, 199, 0.25);
     }
 
-    /* Blog Grid */
+    /* Super Dense Rich Blog Grid */
     .blog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 36px;
       margin-bottom: 60px;
     }
-    @media (max-width: 600px) {
+    @media (max-width: 650px) {
       .blog-grid {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -223,15 +223,15 @@
       position: relative;
     }
     .blog-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px);
       box-shadow: var(--cl-shadow-lg);
       border-color: var(--cl-brand);
     }
     .blog-card-media {
       position: relative;
-      height: 200px;
+      height: 220px;
       overflow: hidden;
-      background: #0f172a;
+      background: #0b1120;
     }
     .blog-card-img {
       width: 100%;
@@ -240,30 +240,50 @@
       transition: transform 0.4s ease;
     }
     .blog-card:hover .blog-card-img {
-      transform: scale(1.05);
+      transform: scale(1.06);
     }
     .blog-card-cat {
       position: absolute;
       top: 14px;
       left: 14px;
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(15, 23, 42, 0.88);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       color: #38bdf8;
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 4px 12px;
+      padding: 5px 13px;
       border-radius: 9999px;
-      border: 1px solid rgba(56, 189, 248, 0.3);
+      border: 1px solid rgba(56, 189, 248, 0.35);
     }
     [dir="rtl"] .blog-card-cat {
       left: auto;
       right: 14px;
     }
+    .blog-card-diff {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(8px);
+      color: #f59e0b;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+    [dir="rtl"] .blog-card-diff {
+      right: auto;
+      left: 14px;
+    }
+
     .blog-card-body {
-      padding: 24px;
+      padding: 26px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
@@ -271,118 +291,124 @@
     .blog-meta-inline {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       font-size: 0.82rem;
       color: var(--cl-muted);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
     }
     .blog-meta-inline span {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
-    .blog-card-body h3 {
-      font-size: 1.25rem;
+    .rating-badge {
+      color: #f59e0b;
       font-weight: 700;
+    }
+
+    .blog-card-body h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
       color: var(--cl-ink);
-      line-height: 1.4;
-      margin-bottom: 10px;
+      line-height: 1.38;
+      margin-bottom: 12px;
       transition: color 0.2s ease;
     }
     .blog-card:hover .blog-card-body h3 {
       color: var(--cl-brand);
     }
-    .blog-card-body p {
-      font-size: 0.92rem;
+    .card-desc {
+      font-size: 0.94rem;
       color: var(--cl-muted);
-      line-height: 1.65;
-      margin-bottom: 20px;
-      flex-grow: 1;
+      line-height: 1.68;
+      margin-bottom: 18px;
     }
+
+    /* Takeaways Box inside Card */
+    .takeaways-box {
+      background: var(--cl-bg);
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+    }
+    .takeaways-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--cl-brand);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.86rem;
+      color: var(--cl-text);
+      line-height: 1.6;
+    }
+    [dir="rtl"] .takeaways-list {
+      padding-left: 0;
+      padding-right: 18px;
+    }
+    .takeaways-list li {
+      margin-bottom: 5px;
+    }
+    .takeaways-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Tag Pills */
+    .card-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 22px;
+      margin-top: auto;
+    }
+    .tag-pill {
+      font-size: 0.75rem;
+      color: var(--cl-muted);
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Card Footer */
     .blog-card-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 16px;
+      padding-top: 18px;
       border-top: 1px solid var(--cl-line);
       font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--cl-brand);
     }
-    .blog-card-footer .cta-link {
+    .author-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.82rem;
+      color: var(--cl-muted);
+    }
+    .cta-link {
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      font-weight: 700;
+      color: var(--cl-brand);
       transition: gap 0.2s ease;
     }
-    .blog-card:hover .blog-card-footer .cta-link {
+    .blog-card:hover .cta-link {
       gap: 10px;
     }
 
-    /* Newsletter Box */
-    .newsletter-box {
-      background: linear-gradient(135deg, rgba(2, 132, 199, 0.12) 0%, rgba(14, 165, 233, 0.04) 100%);
-      border: 1px solid var(--cl-line);
-      border-radius: 24px;
-      padding: 48px 40px;
-      margin-bottom: 60px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .newsletter-box h2 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--cl-ink);
-      margin-bottom: 12px;
-    }
-    .newsletter-box p {
-      font-size: 1rem;
-      color: var(--cl-muted);
-      max-width: 600px;
-      margin: 0 auto 24px;
-      line-height: 1.6;
-    }
-    .newsletter-form {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      max-width: 480px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-    }
-    .newsletter-form input {
-      flex: 1;
-      min-width: 240px;
-      padding: 13px 18px;
-      border-radius: 12px;
-      border: 1px solid var(--cl-line);
-      background: var(--cl-surface);
-      color: var(--cl-ink);
-      font-family: inherit;
-      font-size: 0.95rem;
-      outline: none;
-    }
-    .newsletter-form input:focus {
-      border-color: var(--cl-brand);
-    }
-    .newsletter-form button {
-      padding: 13px 24px;
-      border-radius: 12px;
-      background: var(--cl-brand);
-      color: #fff;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.2s;
-    }
-    .newsletter-form button:hover {
-      background: #0369a1;
-      transform: translateY(-2px);
-    }
-
-    /* No results alert */
+    /* No results state */
     .no-results {
       grid-column: 1 / -1;
       text-align: center;
@@ -415,13 +441,13 @@
   <div class="blog-hero">
     <div class="hero-content">
       <div class="hero-badge-row">
-        <span class="spotlight-pill"><i class="fa-solid fa-star"></i> Featured Guide</span>
-        <span class="reading-time-pill"><i class="fa-regular fa-clock"></i> 12 min read</span>
+        <span class="spotlight-pill"><i class="fa-solid fa-fire"></i> Featured Strategic Guide</span>
+        <span class="reading-time-pill"><i class="fa-regular fa-clock"></i> 14 min read • ★ 4.98</span>
       </div>
       <div data-cl-lang="en">
-        <h1>AI-Driven Software Engineering: From Typist to AI Systems Architect</h1>
+        <h1>AI-Driven Software Engineering: From Syntax Typist to AI Systems Architect</h1>
         <p>A comprehensive strategic deep dive into LLM context engineering, deterministic guardrails, spec-driven development, and the future of coding in 2026.</p>
-        <a href="ai-engineering.html" class="hero-cta-btn">Read Featured Story <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="ai-engineering.html" class="hero-cta-btn">Read Featured Analysis <i class="fa-solid fa-arrow-right"></i></a>
       </div>
       <div data-cl-lang="ar">
         <h1>هندسة البرمجيات بالذكاء الاصطناعي: من مجرد مبرمج إلى مهندس نظم ذكية</h1>
@@ -443,31 +469,31 @@
   <div class="controls-bar">
     <div class="search-input-wrap">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="articleSearch" class="search-input" placeholder="Search 12+ in-depth engineering articles..." autocomplete="off">
+      <input type="text" id="articleSearch" class="search-input" placeholder="Search 20+ in-depth engineering guides, architectures, databases, and roadmaps..." autocomplete="off">
     </div>
     <div class="filter-tabs">
       <button class="filter-tab active" data-filter="all">
         <i class="fa-solid fa-border-all"></i>
-        <span data-cl-lang="en">All Articles</span>
-        <span data-cl-lang="ar">كل المقالات</span>
-        <span data-cl-lang="fr">Tous les articles</span>
+        <span data-cl-lang="en">All Articles (20+)</span>
+        <span data-cl-lang="ar">كل المقالات (+20)</span>
+        <span data-cl-lang="fr">Tous les articles (20+)</span>
+      </button>
+      <button class="filter-tab" data-filter="architecture">
+        <i class="fa-solid fa-cubes"></i>
+        <span data-cl-lang="en">Architecture & Systems</span>
+        <span data-cl-lang="ar">هندسة النظم والمعمارية</span>
+        <span data-cl-lang="fr">Architecture & Systèmes</span>
       </button>
       <button class="filter-tab" data-filter="ai">
         <i class="fa-solid fa-robot"></i>
         <span data-cl-lang="en">AI & Future</span>
-        <span data-cl-lang="ar">الذكاء الاصطناعي والمستقبل</span>
+        <span data-cl-lang="ar">الذكاء الاصطناعي</span>
         <span data-cl-lang="fr">IA & Futur</span>
-      </button>
-      <button class="filter-tab" data-filter="architecture">
-        <i class="fa-solid fa-cubes"></i>
-        <span data-cl-lang="en">Architecture</span>
-        <span data-cl-lang="ar">هندسة النظم</span>
-        <span data-cl-lang="fr">Architecture</span>
       </button>
       <button class="filter-tab" data-filter="career">
         <i class="fa-solid fa-briefcase"></i>
         <span data-cl-lang="en">Career & Remote</span>
-        <span data-cl-lang="ar">المسار المهني والعمل عن بعد</span>
+        <span data-cl-lang="ar">المسار المهني والعمل الحر</span>
         <span data-cl-lang="fr">Carrière & Télétravail</span>
       </button>
       <button class="filter-tab" data-filter="productivity">
@@ -478,434 +504,1606 @@
       </button>
       <button class="filter-tab" data-filter="design">
         <i class="fa-solid fa-palette"></i>
-        <span data-cl-lang="en">Design & UI</span>
-        <span data-cl-lang="ar">التصميم والواجهات</span>
-        <span data-cl-lang="fr">Design & UI</span>
+        <span data-cl-lang="en">Design & Frontend</span>
+        <span data-cl-lang="ar">الواجهات والتصميم</span>
+        <span data-cl-lang="fr">Design & Frontend</span>
       </button>
     </div>
   </div>
 
-  <!-- Articles Grid (12 Deep Articles) -->
+  <!-- Articles Grid: 20 Dense Cards -->
   <div class="blog-grid" id="articlesGrid">
 
-    <!-- Card 1: Full-Stack 2026 Roadmap -->
-    <a href="fullstack-roadmap.html" class="blog-card" data-category="career" data-title="Modern Full-Stack Roadmap 2026 خارطة طريق مطور الويب الكامل Feuille de route Full-Stack Moderne 2026">
+    <!-- Card: ai-engineering.html -->
+    <a href="ai-engineering.html" class="blog-card" data-category="ai" data-title="AI-Driven Software Engineering: From Code Typist to AI Systems Architect هندسة البرمجيات بالذكاء الاصطناعي: من مجرد مبرمج إلى مهندس نظم ذكية Génie Logiciel Piloté par l'IA : De Codeur à Architecte Systèmes IA #AIArchitecture #LLMOps #ContextEngineering #CodeQuality">
       <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=650&q=80" alt="Full-Stack Roadmap" class="blog-card-img">
-        <span class="blog-card-cat">Roadmap 2026</span>
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=650&q=80" alt="AI-Driven Software Engineering: From Code Typist to AI Systems Architect" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">AI & Future</span>
+          <span data-cl-lang="ar">الذكاء الاصطناعي</span>
+          <span data-cl-lang="fr">IA & Futur</span>
+        </span>
+        <span class="blog-card-diff">Advanced</span>
       </div>
       <div class="blog-card-body">
+        
         <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 14 min</span>
-          <span><i class="fa-solid fa-layer-group"></i> Architecture</span>
+          <span><i class="fa-regular fa-clock"></i> 14 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 14.2k reads</span>
+          <span class="rating-badge">★ 4.95</span>
         </div>
+
         <div data-cl-lang="en">
-          <h3>Modern Full-Stack Developer Roadmap 2026</h3>
-          <p>Navigating Next.js 15, TypeScript strictness, edge runtimes, vector databases, and full-stack DevOps mastery.</p>
+          <h3>AI-Driven Software Engineering: From Code Typist to AI Systems Architect</h3>
+          <p class="card-desc">A deep strategic guide on context engineering, deterministic evaluation loops, and managing LLMs as high-speed synthetic junior engineers.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Shift focus from syntax typing to system decomposition and domain modeling</li>
+              <li>Context windows require strict schema constraints and structured JSON outputs</li>
+              <li>Automated compiler verification is mandatory before merging AI-assisted PRs</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="ar">
-          <h3>خارطة طريق مطور الويب المتكامل 2026</h3>
-          <p>دليلك لاحتراف Next.js 15، تايب سكريبت الصارم، قواعد البيانات الشعاعية، وتقنيات الحوسبة الطرفية Edge.</p>
+          <h3>هندسة البرمجيات بالذكاء الاصطناعي: من مجرد مبرمج إلى مهندس نظم ذكية</h3>
+          <p class="card-desc">دليل استراتيجي معمق حول هندسة السياق، وحلقات التدقيق الدقيقة، والتعامل مع النماذج اللغوية كمساعدين فائقين السرعة.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>الانتقال من كتابة الدوال البسيطة إلى تصميم المعماريات ونمذجة النطاق</li>
+              <li>حصر سياق النماذج بقيود ومخططات بيانات JSON مهيكلة وصارمة</li>
+              <li>الفحص الآلي عبر المترجم والاختبارات شرط إلزامي قبل قبول أي كود مولد</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="fr">
-          <h3>Feuille de Route Full-Stack Moderne 2026</h3>
-          <p>Maîtrisez Next.js 15, la rigueur de TypeScript, les runtimes Edge, les bases vectorielles et le DevOps moderne.</p>
+          <h3>Génie Logiciel Piloté par l'IA : De Codeur à Architecte Systèmes IA</h3>
+          <p class="card-desc">Guide stratégique sur l'ingénierie de contexte, les boucles d'évaluation déterministes et la supervision avancée des LLMs.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Passer de la saisie de code à la décomposition de systèmes complexes</li>
+              <li>Encadrer les contextes avec des schémas stricts et des sorties JSON typées</li>
+              <li>Vérification par compilateur obligatoire avant toute fusion de code</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#AIArchitecture</span><span class="tag-pill">#LLMOps</span><span class="tag-pill">#ContextEngineering</span><span class="tag-pill">#CodeQuality</span>
+        </div>
+
         <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
           <span class="cta-link">
-            <span data-cl-lang="en">Read Complete Guide</span>
-            <span data-cl-lang="ar">اقرأ الدليل الكامل</span>
-            <span data-cl-lang="fr">Lire le guide complet</span>
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
             <i class="fa-solid fa-arrow-right"></i>
           </span>
         </div>
+
       </div>
     </a>
+  
 
-    <!-- Card 2: System Design (Microservices vs Monoliths) -->
-    <a href="system-design.html" class="blog-card" data-category="architecture" data-title="System Design Microservices vs Modular Monoliths تصميم الأنظمة المايكروسيرفيس مقابل المونوليث Architecture Systèmes Microservices contre Monolithes">
+    <!-- Card: fullstack-roadmap.html -->
+    <a href="fullstack-roadmap.html" class="blog-card" data-category="career" data-title="Modern Full-Stack Developer Roadmap 2026: The Complete Journey خارطة طريق مطور الويب المتكامل 2026: الدليل الشامل Feuille de Route Full-Stack 2026 : Le Guide Complet #FullStack #NextJS15 #TypeScript #pgvector #DevOps">
       <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=650&q=80" alt="System Design" class="blog-card-img">
-        <span class="blog-card-cat">Architecture</span>
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=650&q=80" alt="Modern Full-Stack Developer Roadmap 2026: The Complete Journey" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Career & Learning</span>
+          <span data-cl-lang="ar">المسار المهني</span>
+          <span data-cl-lang="fr">Carrière</span>
+        </span>
+        <span class="blog-card-diff">Comprehensive</span>
       </div>
       <div class="blog-card-body">
+        
         <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 11 min</span>
-          <span><i class="fa-solid fa-server"></i> Scalability</span>
+          <span><i class="fa-regular fa-clock"></i> 15 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 21.8k reads</span>
+          <span class="rating-badge">★ 4.98</span>
         </div>
+
         <div data-cl-lang="en">
-          <h3>Microservices vs. Modular Monoliths: A Practical Guide</h3>
-          <p>Why modern engineering teams are returning to modular monoliths and how to design distributed architectures without operational regret.</p>
+          <h3>Modern Full-Stack Developer Roadmap 2026: The Complete Journey</h3>
+          <p class="card-desc">Master Next.js 15 App Router, TypeScript strict mode, edge functions, vector databases, and full-stack DevOps workflows.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>React Server Components (RSC) separate data fetching from client interaction</li>
+              <li>End-to-end type safety using tRPC or Server Actions with Zod validation</li>
+              <li>Vector search integration using PostgreSQL pgvector and cosine distance</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="ar">
-          <h3>المايكروسيرفيس ضد المونوليث النمطي: دليل عملي للأنظمة الضخمة</h3>
-          <p>لماذا تعود الشركات التقنية الكبرى إلى المونوليث النمطي وكيف تصمم معمارية قابلة للتوسع بدون تعقيد غير مبرر.</p>
+          <h3>خارطة طريق مطور الويب المتكامل 2026: الدليل الشامل</h3>
+          <p class="card-desc">دليلك المتكامل لاحتراف Next.js 15، تايب سكريبت الصارم، قواعد البيانات الشعاعية، وتقنيات الحوسبة الطرفية Edge.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>مكونات الخادم تفصل جلب البيانات عن التفاعل المباشر على المتصفح</li>
+              <li>أمان الأنواع الكامل من الواجهة لقاعدة البيانات باستخدام Zod و Server Actions</li>
+              <li>دمج البحث الشعاعي المتقدم في قواعد البيانات عبر pgvector</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="fr">
-          <h3>Microservices vs Monolithes Modulaires : Le Guide Pratique</h3>
-          <p>Pourquoi les équipes d'ingénierie reviennent au monolithe modulaire et comment concevoir des architectures sans regret opérationnel.</p>
+          <h3>Feuille de Route Full-Stack 2026 : Le Guide Complet</h3>
+          <p class="card-desc">Maîtrisez Next.js 15, la rigueur de TypeScript, les runtimes Edge, les bases vectorielles et le DevOps moderne.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Séparation stricte du fetch de données via React Server Components</li>
+              <li>Sécurité de typage de bout en bout avec Server Actions et Zod</li>
+              <li>Intégration de la recherche vectorielle avec pgvector sous PostgreSQL</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#FullStack</span><span class="tag-pill">#NextJS15</span><span class="tag-pill">#TypeScript</span><span class="tag-pill">#pgvector</span><span class="tag-pill">#DevOps</span>
+        </div>
+
         <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
           <span class="cta-link">
-            <span data-cl-lang="en">Explore Architecture</span>
-            <span data-cl-lang="ar">استكشف المعمارية</span>
-            <span data-cl-lang="fr">Explorer l'architecture</span>
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
             <i class="fa-solid fa-arrow-right"></i>
           </span>
         </div>
+
       </div>
     </a>
+  
 
-    <!-- Card 3: Remote Work Mastery -->
-    <a href="remote-work.html" class="blog-card" data-category="career" data-title="Remote Work Playbook High-Paying Global Contracts العمل عن بعد عقود دولية Télétravail Contrats Internationaux">
+    <!-- Card: system-design.html -->
+    <a href="system-design.html" class="blog-card" data-category="architecture" data-title="Microservices vs. Modular Monoliths: Architectural Realities المايكروسيرفيس ضد المونوليث النمطي: حقائق معمارية لبيئات العمل Microservices vs Monolithes Modulaires : Réalités d'Architecture #Microservices #ModularMonolith #DomainDrivenDesign #DistributedSystems">
       <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=650&q=80" alt="Remote Work" class="blog-card-img">
-        <span class="blog-card-cat">Career</span>
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=650&q=80" alt="Microservices vs. Modular Monoliths: Architectural Realities" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">System Design</span>
+          <span data-cl-lang="ar">تصميم النظم</span>
+          <span data-cl-lang="fr">Architecture</span>
+        </span>
+        <span class="blog-card-diff">Advanced</span>
       </div>
       <div class="blog-card-body">
+        
         <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 10 min</span>
-          <span><i class="fa-solid fa-globe"></i> Global Remote</span>
+          <span><i class="fa-regular fa-clock"></i> 13 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 18.4k reads</span>
+          <span class="rating-badge">★ 4.92</span>
         </div>
+
         <div data-cl-lang="en">
-          <h3>The Remote Work Playbook: Landing High-Paying Global Contracts</h3>
-          <p>Asynchronous communication mastery, building proof-of-work portfolios, and negotiating compensation with US & European tech firms.</p>
+          <h3>Microservices vs. Modular Monoliths: Architectural Realities</h3>
+          <p class="card-desc">Why top tech engineering teams are pivoting back to modular monoliths, avoiding network tax, distributed transactions, and operational bloat.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Domain boundaries must be clean in code before splitting across network boundaries</li>
+              <li>Distributed transactions across microservices introduce catastrophic failure points</li>
+              <li>Modular monoliths provide in-process speed with independent team modularity</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="ar">
-          <h3>دليل العمل عن بعد: الفوز بعقود عمل دولية ذات رواتب عالية</h3>
-          <p>احتراف التواصل غير المتزامن، بناء معارض أعمال ذات مصداقية عالية، والتفاوض مع الشركات الأمريكية والأوروبية.</p>
+          <h3>المايكروسيرفيس ضد المونوليث النمطي: حقائق معمارية لبيئات العمل</h3>
+          <p class="card-desc">لماذا تعود كبرى الشركات التقنية للمونوليث النمطي لتفادي التعقيد الشبكي والمعاملات الموزعة والتكلفة التشغيلية.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>الحدود الوظيفية يجب أن تكون نظيفة في الكود أولاً قبل فصلها عبر الشبكة</li>
+              <li>المعاملات الموزعة بين الخدمات المصغرة تسبب أخطاء يصعب تتبعها</li>
+              <li>المونوليث النمطي يمنحك سرعة الذاكرة مع الحفاظ على استقلالية الوحدات البرمجية</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="fr">
-          <h3>Le Playbook du Télétravail : Décrocher des Contrats Internationaux</h3>
-          <p>Maîtrise de la communication asynchrone, construction d'un portfolio à fort impact et négociation salariale mondiale.</p>
+          <h3>Microservices vs Monolithes Modulaires : Réalités d'Architecture</h3>
+          <p class="card-desc">Pourquoi les meilleures équipes reviennent au monolithe modulaire pour éliminer la taxe réseau et la complexité opérationnelle.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Isoler d'abord les frontières de domaine en mémoire avant de scinder le réseau</li>
+              <li>Les transactions distribuées multiplient les points de défaillance</li>
+              <li>Le monolithe modulaire allie vitesse intra-processus et séparation saine</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#Microservices</span><span class="tag-pill">#ModularMonolith</span><span class="tag-pill">#DomainDrivenDesign</span><span class="tag-pill">#DistributedSystems</span>
+        </div>
+
         <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
           <span class="cta-link">
-            <span data-cl-lang="en">Read Playbook</span>
-            <span data-cl-lang="ar">اقرأ الدليل</span>
-            <span data-cl-lang="fr">Lire le playbook</span>
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
             <i class="fa-solid fa-arrow-right"></i>
           </span>
         </div>
+
       </div>
     </a>
+  
 
-    <!-- Card 4: Zero-Trust API Security -->
-    <a href="api-security.html" class="blog-card" data-category="architecture" data-title="Zero-Trust API Security Production Checklist أمان واجهات البرمجة الحماية السحابية Sécurité des APIs Zero-Trust">
+    <!-- Card: caching-strategies.html -->
+    <a href="caching-strategies.html" class="blog-card" data-category="architecture" data-title="Distributed Caching with Redis: Production Patterns & Stampede Defense استراتيجيات التخزين المؤقت الموزع باستخدام Redis: حماية الإنتاج Cache Distribué avec Redis : Modèles de Production & Protection Stampede #Redis #Caching #Performance #HighTraffic">
       <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=650&q=80" alt="API Security" class="blog-card-img">
-        <span class="blog-card-cat">Security</span>
+        <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=650&q=80" alt="Distributed Caching with Redis: Production Patterns & Stampede Defense" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Databases & Cache</span>
+          <span data-cl-lang="ar">قواعد البيانات والكاش</span>
+          <span data-cl-lang="fr">Bases & Cache</span>
+        </span>
+        <span class="blog-card-diff">Intermediate</span>
       </div>
       <div class="blog-card-body">
+        
         <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 9 min</span>
-          <span><i class="fa-solid fa-shield-halved"></i> Production</span>
+          <span><i class="fa-regular fa-clock"></i> 11 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 11.3k reads</span>
+          <span class="rating-badge">★ 4.89</span>
         </div>
+
+        <div data-cl-lang="en">
+          <h3>Distributed Caching with Redis: Production Patterns & Stampede Defense</h3>
+          <p class="card-desc">Design Cache-Aside and Write-Through systems, configure memory eviction policies, and eliminate cache stampede spikes under extreme loads.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Implement early probabilistic expiration (XFetch) to prevent herd stampedes</li>
+              <li>Use Redis Hashes to compress entity memory footprint by up to 60%</li>
+              <li>Never run production Redis without explicit maxmemory and eviction policies</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="ar">
+          <h3>استراتيجيات التخزين المؤقت الموزع باستخدام Redis: حماية الإنتاج</h3>
+          <p class="card-desc">تصميم أنظمة الكاش الموزعة، وضبط سياسات استبدال الذاكرة، والتخلص من تدافع الكاش عند ملايين الزيارات.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>تطبيق خوارزميات التجديد المبكر لمنع سقوط السيرفر عند انتهاء صلاحية الكاش</li>
+              <li>استخدام هياكل Redis Hashes لتقليص استهلاك الذاكرة العشوائية بنسبة 60%</li>
+              <li>عدم تشغيل خادم Redis في الإنتاج دون ضبط سياسة الإخلاء maxmemory-policy</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="fr">
+          <h3>Cache Distribué avec Redis : Modèles de Production & Protection Stampede</h3>
+          <p class="card-desc">Concevez des systèmes Cache-Aside et Write-Through, configurez l'éviction mémoire et éliminez les pics d'avalanche de cache.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Implémenter le ré-échantillonnage précoce (XFetch) contre les avalanches</li>
+              <li>Utiliser les Hashes Redis pour réduire l'empreinte mémoire de 60%</li>
+              <li>Toujours configurer une politique d'éviction de mémoire stricte</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#Redis</span><span class="tag-pill">#Caching</span><span class="tag-pill">#Performance</span><span class="tag-pill">#HighTraffic</span>
+        </div>
+
+        <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+      </div>
+    </a>
+  
+
+    <!-- Card: sql-optimization.html -->
+    <a href="sql-optimization.html" class="blog-card" data-category="architecture" data-title="PostgreSQL & SQL Performance Tuning: The Production Field Guide تحسين أداء قواعد بيانات PostgreSQL و SQL: دليل بيئات الإنتاج Optimisation PostgreSQL & SQL : Le Guide de Terrain #PostgreSQL #SQLOptimization #Indexing #DatabaseTuning">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=650&q=80" alt="PostgreSQL & SQL Performance Tuning: The Production Field Guide" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">SQL & Performance</span>
+          <span data-cl-lang="ar">تحسين SQL</span>
+          <span data-cl-lang="fr">SQL & Perf</span>
+        </span>
+        <span class="blog-card-diff">Advanced</span>
+      </div>
+      <div class="blog-card-body">
+        
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 13 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 16.7k reads</span>
+          <span class="rating-badge">★ 4.96</span>
+        </div>
+
+        <div data-cl-lang="en">
+          <h3>PostgreSQL & SQL Performance Tuning: The Production Field Guide</h3>
+          <p class="card-desc">Master EXPLAIN ANALYZE execution graphs, eliminate sequential table scans with composite B-Tree indexes, and fix catastrophic ORM N+1 leaks.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Composite indexes require exact ordering: Equality filters first, Range filters second</li>
+              <li>Partial indexes save 90% disk space by indexing only active rows</li>
+              <li>Use pg_stat_statements to uncover the costliest queries by cumulative CPU time</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="ar">
+          <h3>تحسين أداء قواعد بيانات PostgreSQL و SQL: دليل بيئات الإنتاج</h3>
+          <p class="card-desc">احتراف قراءة مخططات التنفيذ EXPLAIN ANALYZE، والتخلص من فحص الجداول البطيء بفهارس ذكية، وحل تسريبات الـ ORM.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>الفهارس المركبة تتطلب ترتيباً صارماً: حقول المساواة أولاً ثم حقول المقارنة</li>
+              <li>الفهارس الجزئية توفر 90% من المساحة بفهرسة السجلات النشطة فقط</li>
+              <li>تفعيل pg_stat_statements لرصد الاستعلامات الأكثر استنزافاً للمعالج فورياً</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="fr">
+          <h3>Optimisation PostgreSQL & SQL : Le Guide de Terrain</h3>
+          <p class="card-desc">Maîtrisez les graphes EXPLAIN ANALYZE, éliminez les scans séquentiels et résolvez les requêtes N+1 destructrices.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Les index composites exigent un ordre strict : égalité d'abord, plages ensuite</li>
+              <li>Les index partiels économisent 90% d'espace disque sur les enregistrements actifs</li>
+              <li>Activer pg_stat_statements pour traquer les requêtes les plus gourmandes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#PostgreSQL</span><span class="tag-pill">#SQLOptimization</span><span class="tag-pill">#Indexing</span><span class="tag-pill">#DatabaseTuning</span>
+        </div>
+
+        <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+      </div>
+    </a>
+  
+
+    <!-- Card: cloud-native-devops.html -->
+    <a href="cloud-native-devops.html" class="blog-card" data-category="architecture" data-title="Kubernetes & Docker in Production: Zero-Downtime Deployment Secrets كوبرنتس ودوكر في بيئات الإنتاج: أسرار النشر بدون أي انقطاع Kubernetes & Docker en Production : Secrets du Zéro-Downtime #Kubernetes #Docker #DevOps #ZeroDowntime #CloudNative">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=650&q=80" alt="Kubernetes & Docker in Production: Zero-Downtime Deployment Secrets" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Kubernetes & Docker</span>
+          <span data-cl-lang="ar">كوبرنتس ودوكر</span>
+          <span data-cl-lang="fr">K8s & DevOps</span>
+        </span>
+        <span class="blog-card-diff">Advanced</span>
+      </div>
+      <div class="blog-card-body">
+        
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 12 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 13.1k reads</span>
+          <span class="rating-badge">★ 4.91</span>
+        </div>
+
+        <div data-cl-lang="en">
+          <h3>Kubernetes & Docker in Production: Zero-Downtime Deployment Secrets</h3>
+          <p class="card-desc">Configure liveness/readiness probes, pod disruption budgets, resource limits, and progressive canary rollouts without dropping user connections.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>PreStop sleep hooks allow upstream ingress controllers to drain traffic smoothly</li>
+              <li>Never point liveness probes to external databases to prevent cascade reboot loops</li>
+              <li>PodDisruptionBudgets guarantee minimal active replicas during cluster upgrades</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="ar">
+          <h3>كوبرنتس ودوكر في بيئات الإنتاج: أسرار النشر بدون أي انقطاع</h3>
+          <p class="card-desc">ضبط مجسات الجاهزية والحياة Probes، وميزانيات انقطاع البودات PDB، والحدود الصارمة للموارد، واستراتيجيات التحديث التدريجي.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>استخدام preStop hook لمنح خادم التوجيه وقتاً كافياً لإنهاء الاتصالات النشطة</li>
+              <li>عدم ربط مجس الحياة بقاعدة بيانات خارجية لتفادي حلقات إعادة التشغيل المتسلسلة</li>
+              <li>تحديد ميزانية PDB لحماية التطبيق من السقوط أثناء تحديثات السيرفرات</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="fr">
+          <h3>Kubernetes & Docker en Production : Secrets du Zéro-Downtime</h3>
+          <p class="card-desc">Configurez les sondes de disponibilité, les PDBs, les quotas de ressources et les déploiements canary sans interruption.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Les hooks preStop permettent aux proxies de purger le trafic sans perte</li>
+              <li>Ne jamais lier les liveness probes à la base de données distante</li>
+              <li>Les PDB garantissent un quorum minimal lors des maintenances de nœuds</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#Kubernetes</span><span class="tag-pill">#Docker</span><span class="tag-pill">#DevOps</span><span class="tag-pill">#ZeroDowntime</span><span class="tag-pill">#CloudNative</span>
+        </div>
+
+        <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+      </div>
+    </a>
+  
+
+    <!-- Card: kafka-event-driven.html -->
+    <a href="kafka-event-driven.html" class="blog-card" data-category="architecture" data-title="Event-Driven Architecture with Apache Kafka: Scale & Pitfalls الأنظمة الموجهة بالأحداث باستخدام Apache Kafka: التوسع والمعمارية Systèmes Événementiels avec Apache Kafka : Scalabilité & Pièges #Kafka #EventDriven #Microservices #DistributedSystems">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=650&q=80" alt="Event-Driven Architecture with Apache Kafka: Scale & Pitfalls" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Event-Driven Systems</span>
+          <span data-cl-lang="ar">الأنظمة الموجهة بالأحداث</span>
+          <span data-cl-lang="fr">Systèmes Événementiels</span>
+        </span>
+        <span class="blog-card-diff">Advanced</span>
+      </div>
+      <div class="blog-card-body">
+        
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 14 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 10.5k reads</span>
+          <span class="rating-badge">★ 4.94</span>
+        </div>
+
+        <div data-cl-lang="en">
+          <h3>Event-Driven Architecture with Apache Kafka: Scale & Pitfalls</h3>
+          <p class="card-desc">Design fault-tolerant distributed streams, partition scaling strategies, idempotent consumer semantics, and distributed transactions via Sagas.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Partition keys govern strict message ordering within distributed consumer groups</li>
+              <li>Every event handler must be strictly idempotent to survive network retries</li>
+              <li>Use the Outbox Pattern to guarantee atomic database updates and event publishing</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="ar">
+          <h3>الأنظمة الموجهة بالأحداث باستخدام Apache Kafka: التوسع والمعمارية</h3>
+          <p class="card-desc">تصميم تدفقات بيانات موزعة عالية التوفر، وتقنيات التقسيم، وضمان معالجة الأحداث بدقة Exactly-Once عبر نمط Saga.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>مفتاح التقسيم هو الضامن الوحيد لترتيب الأحداث داخل مجموعات المستهلكين</li>
+              <li>معالجات الأحداث يجب أن تكون غير قابلة للتكرار Idempotent لمواجهة إعادة المحاولة</li>
+              <li>تطبيق نمط Outbox Pattern للربط الذري بين حفظ البيانات ونشر الحدث في كافكا</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="fr">
+          <h3>Systèmes Événementiels avec Apache Kafka : Scalabilité & Pièges</h3>
+          <p class="card-desc">Flux distribués tolérants aux pannes, stratégies de partitionnement, consommateurs idempotents et sagas distribuées.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>La clé de partition garantit l'ordre strict des messages par entité</li>
+              <li>Concevoir des gestionnaires strictement idempotents face aux doublons réseau</li>
+              <li>Adopter le pattern Transactional Outbox pour fiabiliser la publication</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#Kafka</span><span class="tag-pill">#EventDriven</span><span class="tag-pill">#Microservices</span><span class="tag-pill">#DistributedSystems</span>
+        </div>
+
+        <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+      </div>
+    </a>
+  
+
+    <!-- Card: graphql-rest-grpc.html -->
+    <a href="graphql-rest-grpc.html" class="blog-card" data-category="architecture" data-title="API Protocol Showdown: REST vs. GraphQL vs. gRPC in 2026 مقارنة بروتوكولات الـ APIs: المفاضلة بين REST و GraphQL و gRPC في 2026 Comparatif d’APIs : REST vs GraphQL vs gRPC en 2026 #REST #GraphQL #gRPC #Protobuf #APIDesign">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=650&q=80" alt="API Protocol Showdown: REST vs. GraphQL vs. gRPC in 2026" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">APIs & Protocols</span>
+          <span data-cl-lang="ar">بروتوكولات الـ APIs</span>
+          <span data-cl-lang="fr">APIs & Protocoles</span>
+        </span>
+        <span class="blog-card-diff">Intermediate</span>
+      </div>
+      <div class="blog-card-body">
+        
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 10 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 9.8k reads</span>
+          <span class="rating-badge">★ 4.88</span>
+        </div>
+
+        <div data-cl-lang="en">
+          <h3>API Protocol Showdown: REST vs. GraphQL vs. gRPC in 2026</h3>
+          <p class="card-desc">Compare network latency, payload overhead, schema contracts, and developer experience to select the optimal protocol for internal vs. external APIs.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>REST excels for public APIs due to universal client tooling and HTTP caching</li>
+              <li>GraphQL eliminates mobile under/overfetching but introduces server query complexity</li>
+              <li>gRPC with Protobuf achieves 7x smaller payloads and 5x faster CPU serialization</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="ar">
+          <h3>مقارنة بروتوكولات الـ APIs: المفاضلة بين REST و GraphQL و gRPC في 2026</h3>
+          <p class="card-desc">مقارنة أزمنة الاستجابة، وحجم حزم البيانات، وتوافق المخططات وعقود البيانات، لاختيار البروتوكول الأنسب لكل طبقة في نظامك.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>بروتوكول REST هو الأفضل للـ APIs العامة بفضل التوافق الشامل والتخزين المؤقت</li>
+              <li>بروتوكول GraphQL يمنح مرونة تامة لتطبيقات الهاتف وتفادي جلب بيانات غير لازمة</li>
+              <li>بروتوكول gRPC يوفر حجماً أصغر بـ 7 أضعاف وسرعة معالجة استثنائية بين السيرفرات</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="fr">
+          <h3>Comparatif d’APIs : REST vs GraphQL vs gRPC en 2026</h3>
+          <p class="card-desc">Analysez la latence réseau, l’empreinte des charges utiles, les schémas stricts et l’expérience développeur pour chaque protocole.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>REST reste le standard incontournable pour les intégrations publiques</li>
+              <li>GraphQL résout l'over-fetching mobile mais complexifie le cache HTTP</li>
+              <li>gRPC et Protobuf réduisent la charge réseau de 70% en microservices</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#REST</span><span class="tag-pill">#GraphQL</span><span class="tag-pill">#gRPC</span><span class="tag-pill">#Protobuf</span><span class="tag-pill">#APIDesign</span>
+        </div>
+
+        <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+      </div>
+    </a>
+  
+
+    <!-- Card: api-security.html -->
+    <a href="api-security.html" class="blog-card" data-category="architecture" data-title="Zero-Trust API Security: Production Hardening Checklist أمان واجهات برمجة التطبيقات APIs بمبدأ انعدام الثقة Zero-Trust Sécurité des APIs Zero-Trust : Checklist de Durcissement en Production #APISecurity #ZeroTrust #OAuth2 #JWT #OWASP">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=650&q=80" alt="Zero-Trust API Security: Production Hardening Checklist" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Security & Auth</span>
+          <span data-cl-lang="ar">أمان الـ APIs</span>
+          <span data-cl-lang="fr">Sécurité API</span>
+        </span>
+        <span class="blog-card-diff">Advanced</span>
+      </div>
+      <div class="blog-card-body">
+        
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 11 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 15.3k reads</span>
+          <span class="rating-badge">★ 4.97</span>
+        </div>
+
         <div data-cl-lang="en">
           <h3>Zero-Trust API Security: Production Hardening Checklist</h3>
-          <p>JWT signing vulnerabilities, OAuth2 PKCE flows, rate-limiting with Redis tokens, and preventing OWASP Top 10 API exploits.</p>
+          <p class="card-desc">JWT signing vulnerabilities, OAuth2 PKCE flows, rate-limiting with Redis tokens, and preventing OWASP Top 10 API exploits in live environments.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Never store sensitive JWTs in localStorage; use secure HttpOnly SameSite cookies</li>
+              <li>Implement Redis Sliding-Window rate limiting to defend against API scraping</li>
+              <li>Verify authorization at the database object level to eliminate BOLA / IDOR bugs</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="ar">
           <h3>أمان واجهات برمجة التطبيقات APIs بمبدأ انعدام الثقة Zero-Trust</h3>
-          <p>حماية توكنات JWT، تدفقات OAuth2 PKCE، تحديد معدل الطلبات بريديس، وتفادي أهم ثغرات OWASP للـ APIs.</p>
+          <p class="card-desc">حماية توكنات JWT، تدفقات OAuth2 PKCE، تحديد معدل الطلبات بريديس، وتفادي أهم ثغرات OWASP للـ APIs في بيئات التشغيل الحية.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>عدم حفظ توكنات JWT الحساسة في localStorage واستخدام كوكيز HttpOnly مشفرة</li>
+              <li>تطبيق خوارزميات Sliding Window في Redis للوقاية من هجمات إغراق الطلبات</li>
+              <li>التدقيق الأمني عند مستوى السجل البرمجي لحماية البيانات من ثغرات BOLA و IDOR</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="fr">
           <h3>Sécurité des APIs Zero-Trust : Checklist de Durcissement en Production</h3>
-          <p>Failles JWT, flux OAuth2 PKCE, limitation de débit via Redis et protection contre le Top 10 OWASP API.</p>
+          <p class="card-desc">Failles JWT, flux OAuth2 PKCE, limitation de débit via Redis et protection contre le Top 10 OWASP API en production.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Bannir le localStorage pour les JWTs : privilégier les cookies HttpOnly SameSite</li>
+              <li>Mettre en place un rate-limiting à fenêtre glissante avec Redis</li>
+              <li>Valider l'autorisation au niveau objet pour contrer les failles BOLA/IDOR</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#APISecurity</span><span class="tag-pill">#ZeroTrust</span><span class="tag-pill">#OAuth2</span><span class="tag-pill">#JWT</span><span class="tag-pill">#OWASP</span>
+        </div>
+
         <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
           <span class="cta-link">
-            <span data-cl-lang="en">Secure Your APIs</span>
-            <span data-cl-lang="ar">أمّن واجهاتك الآن</span>
-            <span data-cl-lang="fr">Sécuriser vos APIs</span>
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
             <i class="fa-solid fa-arrow-right"></i>
           </span>
         </div>
+
       </div>
     </a>
+  
 
-    <!-- Card 5: Clean Code -->
-    <a href="coding.html" class="blog-card" data-category="productivity" data-title="The Art of Clean Code فن الكود النظيف L'Art du Code Propre Refactoring SOLID">
+    <!-- Card: web-security-owasp.html -->
+    <a href="web-security-owasp.html" class="blog-card" data-category="architecture" data-title="Modern Web Security Defense: CSP, WebAuthn & OWASP Hardening دفاعات أمان الويب الحديثة: سياسات CSP ومصادقة WebAuthn وحماية OWASP Défense Web Moderne : CSP, WebAuthn & Sécurisation OWASP #WebSecurity #WebAuthn #Passkeys #CSP #CyberSecurity">
       <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=650&q=80" alt="Clean Code" class="blog-card-img">
-        <span class="blog-card-cat">Code Quality</span>
+        <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=650&q=80" alt="Modern Web Security Defense: CSP, WebAuthn & OWASP Hardening" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Web Defense</span>
+          <span data-cl-lang="ar">حماية الويب</span>
+          <span data-cl-lang="fr">Défense Web</span>
+        </span>
+        <span class="blog-card-diff">Advanced</span>
       </div>
       <div class="blog-card-body">
+        
         <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 8 min</span>
-          <span><i class="fa-solid fa-code"></i> Best Practices</span>
+          <span><i class="fa-regular fa-clock"></i> 12 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 8.9k reads</span>
+          <span class="rating-badge">★ 4.93</span>
         </div>
+
         <div data-cl-lang="en">
-          <h3>The Art of Clean Code: Readability Over Cleverness</h3>
-          <p>Why maintainable, explicit code beats clever one-liners every time, with SOLID principles applied to real codebases.</p>
+          <h3>Modern Web Security Defense: CSP, WebAuthn & OWASP Hardening</h3>
+          <p class="card-desc">Eliminate XSS with strict Content-Security-Policies, implement biometric Passkeys with WebAuthn, and protect against CSRF and prototype pollution.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Passkeys eliminate phishing risks by leveraging asymmetric hardware public-key cryptography</li>
+              <li>Strict nonce-based CSP prevents execution of injected malicious script tags</li>
+              <li>Sanitize deep object merges to block prototype pollution in Node.js runtimes</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="ar">
-          <h3>فن الكود النظيف: الوضوح والقراءة أهم من التذاكي</h3>
-          <p>لماذا يتفوق الكود السهل الصيانة على الحيل البرمجية المعقدة، مع تطبيق مبادئ SOLID على مشاريع حقيقية.</p>
+          <h3>دفاعات أمان الويب الحديثة: سياسات CSP ومصادقة WebAuthn وحماية OWASP</h3>
+          <p class="card-desc">القضاء على ثغرات XSS بسياسات أمان المحتوى الصارمة، وتطبيق مفاتيح المرور الحيوية Passkeys، والحماية من تلوث النماذج الأولية.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>مفاتيح المرور Passkeys تلغي مخاطر التصيد الاحتيالي باعتمادها على التشفير العتادي</li>
+              <li>ترويسات CSP مع Nonce عشوائي تمنع المتصفح من تشغيل الأكواد الخبيثة المحقونة</li>
+              <li>تدقيق دمج كائنات JSON لحماية بيئات Node.js من ثغرات Prototype Pollution</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="fr">
-          <h3>L'Art du Code Propre : La Lisibilité Avant la Ruse</h3>
-          <p>Pourquoi un code maintenable et clair surpasse toujours les astuces cryptiques, avec principes SOLID appliqués.</p>
+          <h3>Défense Web Moderne : CSP, WebAuthn & Sécurisation OWASP</h3>
+          <p class="card-desc">Éliminez les failles XSS avec des CSP stricts, intégrez les Passkeys WebAuthn et protégez vos applications contre CSRF et prototype pollution.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Les passkeys éliminent tout risque d'usurpation grâce au chiffrement asymétrique</li>
+              <li>Une politique CSP stricte à base de nonces neutralise totalement les XSS</li>
+              <li>Assainir les fusions d'objets JSON pour prévenir la pollution de prototype</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#WebSecurity</span><span class="tag-pill">#WebAuthn</span><span class="tag-pill">#Passkeys</span><span class="tag-pill">#CSP</span><span class="tag-pill">#CyberSecurity</span>
+        </div>
+
         <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
           <span class="cta-link">
-            <span data-cl-lang="en">Read Clean Code Rules</span>
-            <span data-cl-lang="ar">اقرأ قواعد الكود النظيف</span>
-            <span data-cl-lang="fr">Lire les règles</span>
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
             <i class="fa-solid fa-arrow-right"></i>
           </span>
         </div>
+
       </div>
     </a>
+  
 
-    <!-- Card 6: Deep Work for Coders -->
-    <a href="productivity.html" class="blog-card" data-category="productivity" data-title="Deep Work for Coders العمل العميق للمبرمجين Deep Work pour Développeurs Productivity Focus">
+    <!-- Card: cicd-automation.html -->
+    <a href="cicd-automation.html" class="blog-card" data-category="architecture" data-title="Enterprise CI/CD Pipelines: Fast Builds & Automated Rollbacks خطوط الأتمتة والنشر CI/CD للمؤسسات: بناء سريع وتراجع تلقائي Pipelines CI/CD d’Entreprise : Builds Rapides & Rollbacks Automatiques #CICD #GitHubActions #Automation #Testing #DevOps">
       <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=650&q=80" alt="Deep Work" class="blog-card-img">
-        <span class="blog-card-cat">Productivity</span>
+        <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=650&q=80" alt="Enterprise CI/CD Pipelines: Fast Builds & Automated Rollbacks" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">DevOps & CI/CD</span>
+          <span data-cl-lang="ar">الأتمتة و CI/CD</span>
+          <span data-cl-lang="fr">CI/CD & DevOps</span>
+        </span>
+        <span class="blog-card-diff">Intermediate</span>
       </div>
       <div class="blog-card-body">
+        
         <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 7 min</span>
-          <span><i class="fa-solid fa-brain"></i> Flow State</span>
+          <span><i class="fa-regular fa-clock"></i> 11 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 10.2k reads</span>
+          <span class="rating-badge">★ 4.90</span>
         </div>
+
         <div data-cl-lang="en">
-          <h3>Deep Work for Coders: Entering The Flow State</h3>
-          <p>How to protect 4-hour uninterrupted coding blocks in a workplace full of Slack pings, meetings, and notifications.</p>
+          <h3>Enterprise CI/CD Pipelines: Fast Builds & Automated Rollbacks</h3>
+          <p class="card-desc">Design GitHub Actions workflows with remote caching, matrix testing, branch protections, and automated deployment smoke tests.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Sharded parallel test runners reduce PR validation time by up to 85%</li>
+              <li>Docker Buildx multi-stage caching eliminates redundant image rebuilds</li>
+              <li>Automated synthetic smoke tests trigger rollbacks within 5 minutes of regressions</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="ar">
-          <h3>العمل العميق للمبرمجين: الدخول في حالة التدفق الإبداعي Flow</h3>
-          <p>كيف تحمي 4 ساعات يومية متواصلة من البرمجة المركزة بعيداً عن مقاطعات سلاك والاجتماعات العقيمة والتشتت.</p>
+          <h3>خطوط الأتمتة والنشر CI/CD للمؤسسات: بناء سريع وتراجع تلقائي</h3>
+          <p class="card-desc">تصميم تدفقات عمل GitHub Actions مع الكاش السحابي السريع، واختبارات الماتريكس المتوازية، والتراجع التلقائي عند رصد الخلل.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>تقسيم الاختبارات المتوازية يخفض زمن فحص طلبات السحب PR بنسبة 85%</li>
+              <li>تخزين طبقات Docker Buildx يمنع إعادة بناء الحاويات بدون داعٍ</li>
+              <li>فحوصات الجاهزية الآلية ترجع النسخة السابقة خلال 5 دقائق عند رصد أي خلل</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="fr">
-          <h3>Deep Work pour Codeurs : Atteindre l'État de Flow</h3>
-          <p>Comment préserver 4 heures de code ininterrompu dans un environnement saturé de réunions et de notifications Slack.</p>
+          <h3>Pipelines CI/CD d’Entreprise : Builds Rapides & Rollbacks Automatiques</h3>
+          <p class="card-desc">Concevez des flux GitHub Actions optimisés avec cache distant, tests matriciels et rollbacks automatiques en cas d’anomalie.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>L'exécution parallèle partitionnée des tests réduit la durée de 85%</li>
+              <li>Le cache multi-étapes Docker Buildx supprime les reconstructions inutiles</li>
+              <li>Les smoke tests synthétiques automatisés déclenchent le rollback sous 5 minutes</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#CICD</span><span class="tag-pill">#GitHubActions</span><span class="tag-pill">#Automation</span><span class="tag-pill">#Testing</span><span class="tag-pill">#DevOps</span>
+        </div>
+
         <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
           <span class="cta-link">
-            <span data-cl-lang="en">Boost Your Focus</span>
-            <span data-cl-lang="ar">ضاعف تركيزك</span>
-            <span data-cl-lang="fr">Améliorer votre focus</span>
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
             <i class="fa-solid fa-arrow-right"></i>
           </span>
         </div>
+
       </div>
     </a>
+  
 
-    <!-- Card 7: Design Systems & UI -->
-    <a href="colors.html" class="blog-card" data-category="design" data-title="Design Systems for Developers التصميم للمطورين Design pour Développeurs UI UX Color Systems">
+    <!-- Card: modern-frontend-state.html -->
+    <a href="modern-frontend-state.html" class="blog-card" data-category="design" data-title="Modern Frontend Architecture 2026: Signals, Islands & Edge SSR معمارية الواجهات الأمامية الحديثة 2026: الإشارات Signals وجزر الآيلاند Architecture Frontend Moderne 2026 : Signals, Îlots & SSR Edge #Frontend #Signals #IslandsArchitecture #WebPerformance #React">
       <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=650&q=80" alt="Design Systems" class="blog-card-img">
-        <span class="blog-card-cat">Design & UI</span>
+        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=650&q=80" alt="Modern Frontend Architecture 2026: Signals, Islands & Edge SSR" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Frontend Architecture</span>
+          <span data-cl-lang="ar">معمارية الواجهات</span>
+          <span data-cl-lang="fr">Frontend Moderne</span>
+        </span>
+        <span class="blog-card-diff">Intermediate</span>
       </div>
       <div class="blog-card-body">
+        
         <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 8 min</span>
-          <span><i class="fa-solid fa-wand-magic-sparkles"></i> Aesthetics</span>
+          <span><i class="fa-regular fa-clock"></i> 9 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 11.4k reads</span>
+          <span class="rating-badge">★ 4.87</span>
         </div>
+
         <div data-cl-lang="en">
-          <h3>Design Systems for Engineers: Color, Hierarchy, and Space</h3>
-          <p>A practical mental model for programmers to craft polished, professional user interfaces without relying on a full-time designer.</p>
+          <h3>Modern Frontend Architecture 2026: Signals, Islands & Edge SSR</h3>
+          <p class="card-desc">Why reactive fine-grained Signals, Astro Islands, and React Server Components are redefining client-side bundle efficiency and Core Web Vitals.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Zero-JS by default delivers pristine Core Web Vitals and instant FID/INP scores</li>
+              <li>Signals update specific DOM nodes directly without full virtual DOM diffing</li>
+              <li>Island architecture isolates interactive widgets without blocking the main thread</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="ar">
-          <h3>نظم التصميم للمهندسين: تناغم الألوان والتسلسل البصري والمساحات</h3>
-          <p>نموذج ذهني عملي يمكّن المبرمجين من بناء واجهات مستخدم مذهلة واحترافية بدون الحاجة لمصمم بدوام كامل.</p>
+          <h3>معمارية الواجهات الأمامية الحديثة 2026: الإشارات Signals وجزر الآيلاند</h3>
+          <p class="card-desc">لماذا تعيد أنظمة التفاعلية الدقيقة Signals وجزر Astro ومكونات React Server Components تعريف كفاءة وأحجام حزم الجافاسكريبت.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>تقديم صفحات خالية من الجافاسكريبت الزائد يمنح سرعة قصوى ومؤشرات ويب ممتازة</li>
+              <li>تقنية Signals تحدث العناصر المتغيرة في DOM فوراً دون فحص الشجرة كاملة</li>
+              <li>معمارية الجزر تعزل العناصر التفاعلية لتعمل باستقلالية دون تعطيل تحميل الصفحة</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="fr">
-          <h3>Design Systems pour Ingénieurs : Couleurs, Hiérarchie et Espaces</h3>
-          <p>Un modèle mental pratique pour créer des interfaces utilisateur élégantes et soignées sans dépendre d'un designer.</p>
+          <h3>Architecture Frontend Moderne 2026 : Signals, Îlots & SSR Edge</h3>
+          <p class="card-desc">Comment les Signals réactifs, l’architecture en Îlots et les Server Components redéfinissent la performance des applications web.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Le Zéro-JS par défaut garantit d'excellents scores Core Web Vitals</li>
+              <li>Les Signals ciblent chirurgicalement les nœuds DOM sans réconciliation globale</li>
+              <li>L'architecture en îlots hydrate les composants dynamiques sans bloquer le thread</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#Frontend</span><span class="tag-pill">#Signals</span><span class="tag-pill">#IslandsArchitecture</span><span class="tag-pill">#WebPerformance</span><span class="tag-pill">#React</span>
+        </div>
+
         <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
           <span class="cta-link">
-            <span data-cl-lang="en">Master UI Design</span>
-            <span data-cl-lang="ar">احترف تصميم الواجهات</span>
-            <span data-cl-lang="fr">Maîtriser le design</span>
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
             <i class="fa-solid fa-arrow-right"></i>
           </span>
         </div>
+
       </div>
     </a>
+  
 
-    <!-- Card 8: Developer Soft Skills -->
-    <a href="soft-skills.html" class="blog-card" data-category="career" data-title="Developer Soft Skills المهارات الناعمة للمطور Soft Skills Développeur Leadership Empathy">
+    <!-- Card: remote-work.html -->
+    <a href="remote-work.html" class="blog-card" data-category="career" data-title="The Remote Work Playbook: Landing High-Paying Global Contracts دليل العمل عن بعد: الفوز بعقود عمل دولية ذات رواتب عالية Le Playbook du Télétravail : Décrocher des Contrats Internationaux #RemoteWork #GlobalContracts #CareerGrowth #TechHiring">
       <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=650&q=80" alt="Soft Skills" class="blog-card-img">
-        <span class="blog-card-cat">Career</span>
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=650&q=80" alt="The Remote Work Playbook: Landing High-Paying Global Contracts" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Remote Careers</span>
+          <span data-cl-lang="ar">العمل عن بعد</span>
+          <span data-cl-lang="fr">Télétravail</span>
+        </span>
+        <span class="blog-card-diff">Career Strategy</span>
       </div>
       <div class="blog-card-body">
+        
         <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 7 min</span>
-          <span><i class="fa-solid fa-users"></i> Leadership</span>
+          <span><i class="fa-regular fa-clock"></i> 12 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 19.2k reads</span>
+          <span class="rating-badge">★ 4.96</span>
         </div>
+
         <div data-cl-lang="en">
-          <h3>Developer Soft Skills: The Multiplier of Senior Engineers</h3>
-          <p>Clear asynchronous writing, constructive code reviews, and empathy: the real determinants of technical career progression.</p>
+          <h3>The Remote Work Playbook: Landing High-Paying Global Contracts</h3>
+          <p class="card-desc">Asynchronous communication mastery, building proof-of-work portfolios, and negotiating compensation with US & European tech firms.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>High-signal written communication is the #1 filter for global remote hiring managers</li>
+              <li>A deployed production project with tests beats 10 certificates or generic tutorial clones</li>
+              <li>Anchor pricing around delivered business ROI rather than geographic cost of living</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="ar">
-          <h3>المهارات الناعمة: المضاعف الحقيقي لقيمة المهندس الخبير</h3>
-          <p>الكتابة الواضحة، المراجعة البناءة للكود، والتعاطف مع الفريق: العوامل الحقيقية للترقية المهنية في كبرى الشركات.</p>
+          <h3>دليل العمل عن بعد: الفوز بعقود عمل دولية ذات رواتب عالية</h3>
+          <p class="card-desc">احتراف التواصل غير المتزامن، بناء معارض أعمال ذات مصداقية عالية، والتفاوض مع الشركات الأمريكية والأوروبية.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>الكتابة الواضحة والتواصل غير المتزامن هما المعيار الأول لتوظيف المطورين عن بعد</li>
+              <li>مشروع حقيقي شغال في بيئة إنتاج مع اختبارات يتفوق على 10 شهادات ومشاريع مكررة</li>
+              <li>التفاوض على الأجر بناءً على العائد المادي الذي تحققه للشركة وليس تكلفة معيشتك</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="fr">
-          <h3>Soft Skills : Le Multiplicateur des Ingénieurs Seniors</h3>
-          <p>Communication asynchrone claire, revues de code constructives et empathie : les vrais catalyseurs de promotion.</p>
+          <h3>Le Playbook du Télétravail : Décrocher des Contrats Internationaux</h3>
+          <p class="card-desc">Maîtrise de la communication asynchrone, construction d'un portfolio à fort impact et négociation salariale mondiale.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>La clarté d'écriture asynchrone est le critère n°1 des recruteurs internationaux</li>
+              <li>Un projet en production testé surpasse n'importe quel diplôme théorique</li>
+              <li>Négocier sur la base de la valeur générée et non sur le coût de la vie locale</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#RemoteWork</span><span class="tag-pill">#GlobalContracts</span><span class="tag-pill">#CareerGrowth</span><span class="tag-pill">#TechHiring</span>
+        </div>
+
         <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
           <span class="cta-link">
-            <span data-cl-lang="en">Explore Soft Skills</span>
-            <span data-cl-lang="ar">استكشف المهارات الناعمة</span>
-            <span data-cl-lang="fr">Découvrir les soft skills</span>
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
             <i class="fa-solid fa-arrow-right"></i>
           </span>
         </div>
+
       </div>
     </a>
+  
 
-    <!-- Card 9: Mental Health & Burnout -->
-    <a href="mental_health.html" class="blog-card" data-category="productivity" data-title="Mental Health in Tech الصحة النفسية في البرمجة Santé Mentale Tech Burnout Prevention">
+    <!-- Card: freelance.html -->
+    <a href="freelance.html" class="blog-card" data-category="career" data-title="Freelance Mastery: Value Pricing & Retaining High-Ticket Clients احتراف العمل الحر: التسعير المبني على القيمة وكسب عملاء دائمين Maîtrise du Freelance : Tarification à la Valeur & Rétention Client #Freelance #ValuePricing #ClientAcquisition #Consulting">
       <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=650&q=80" alt="Mental Health" class="blog-card-img">
-        <span class="blog-card-cat">Well-Being</span>
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=650&q=80" alt="Freelance Mastery: Value Pricing & Retaining High-Ticket Clients" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Freelance & Business</span>
+          <span data-cl-lang="ar">العمل الحر والتسعير</span>
+          <span data-cl-lang="fr">Freelance & Business</span>
+        </span>
+        <span class="blog-card-diff">Business Strategy</span>
       </div>
       <div class="blog-card-body">
+        
         <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 6 min</span>
-          <span><i class="fa-solid fa-heart-pulse"></i> Balance</span>
+          <span><i class="fa-regular fa-clock"></i> 11 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 17.8k reads</span>
+          <span class="rating-badge">★ 4.93</span>
         </div>
-        <div data-cl-lang="en">
-          <h3>Preventing Burnout: Longevity for Software Engineers</h3>
-          <p>Recognizing the warning signs of cognitive exhaustion, setting strict work boundaries, and sustaining high output over a 20-year career.</p>
-        </div>
-        <div data-cl-lang="ar">
-          <h3>الوقاية من الاحتراق النفسي: كيف تحافظ على طاقتك لسنوات طويلة</h3>
-          <p>التعرف على مؤشرات الإرهاق الذهني، وضع حدود صارمة بين العمل والحياة، واستدامة الإنتاجية طوال مسارك المهني.</p>
-        </div>
-        <div data-cl-lang="fr">
-          <h3>Prévenir le Burnout : La Longévité pour Ingénieurs Logiciels</h3>
-          <p>Reconnaître les signes d'épuisement mental, poser des limites strictes et maintenir une haute productivité durable.</p>
-        </div>
-        <div class="blog-card-footer">
-          <span class="cta-link">
-            <span data-cl-lang="en">Read Well-Being Guide</span>
-            <span data-cl-lang="ar">اقرأ دليل الصحة النفسية</span>
-            <span data-cl-lang="fr">Lire le guide</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </span>
-        </div>
-      </div>
-    </a>
 
-    <!-- Card 10: Growth Mindset & Motivation -->
-    <a href="motivation.html" class="blog-card" data-category="productivity" data-title="The Self-Development Journey رحلة التطوير الذاتي Le Voyage du Développement Mindset Growth">
-      <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=650&q=80" alt="Self Development" class="blog-card-img">
-        <span class="blog-card-cat">Mindset</span>
-      </div>
-      <div class="blog-card-body">
-        <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 7 min</span>
-          <span><i class="fa-solid fa-seedling"></i> Consistency</span>
-        </div>
         <div data-cl-lang="en">
-          <h3>The Self-Development Journey: Growth Mindset Over Perfection</h3>
-          <p>Overcoming imposter syndrome, embracing bug debugging as learning, and establishing atomic habits for continuous technical mastery.</p>
+          <h3>Freelance Mastery: Value Pricing & Retaining High-Ticket Clients</h3>
+          <p class="card-desc">Moving away from low hourly rates to value-based pricing, writing winning proposals, and building recurring retainer contracts.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Hourly billing penalizes developer efficiency; value-based pricing aligns incentives</li>
+              <li>Position yourself as a specialized technical consultant, not a generic commodity coder</li>
+              <li>Establish recurring maintenance retainer agreements for baseline revenue stability</li>
+            </ul>
+          </div>
         </div>
-        <div data-cl-lang="ar">
-          <h3>رحلة التطوير الذاتي: عقلية النمو والتغلب على متلازمة المحتال</h3>
-          <p>التغلب على متلازمة المحتال، تحويل الأخطاء البرمجية إلى فرص تعلم، وبناء عادات يومية تضمن التطور المستمر.</p>
-        </div>
-        <div data-cl-lang="fr">
-          <h3>Le Voyage du Développement : État d'Esprit de Croissance</h3>
-          <p>Surmonter le syndrome de l'imposteur, voir les bugs comme des leçons et bâtir des habitudes quotidiennes pérennes.</p>
-        </div>
-        <div class="blog-card-footer">
-          <span class="cta-link">
-            <span data-cl-lang="en">Read Reflection</span>
-            <span data-cl-lang="ar">اقرأ المقال</span>
-            <span data-cl-lang="fr">Lire la réflexion</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </span>
-        </div>
-      </div>
-    </a>
 
-    <!-- Card 11: Freelancing & High-Ticket Clients -->
-    <a href="freelance.html" class="blog-card" data-category="career" data-title="Freelancing Client Acquisition العمل الحر جذب العملاء Freelancing Acquisition Clients Business">
-      <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=650&q=80" alt="Freelance & Clients" class="blog-card-img">
-        <span class="blog-card-cat">Business & Growth</span>
-      </div>
-      <div class="blog-card-body">
-        <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 10 min</span>
-          <span><i class="fa-solid fa-handshake"></i> Revenue</span>
-        </div>
-        <div data-cl-lang="en">
-          <h3>Freelance Mastery: Value Pricing & Retaining Premium Clients</h3>
-          <p>Moving away from low hourly rates to value-based pricing, writing winning proposals, and building recurring retainer contracts.</p>
-        </div>
         <div data-cl-lang="ar">
           <h3>احتراف العمل الحر: التسعير المبني على القيمة وكسب عملاء دائمين</h3>
-          <p>الانتقال من أجور الساعات المنخفضة إلى التسعير القائم على القيمة المضافة، وكتابة عروض عمل احترافية تجلب عقوداً طويلة الأجل.</p>
+          <p class="card-desc">الانتقال من أجور الساعات المنخفضة إلى التسعير القائم على القيمة المضافة، وكتابة عروض عمل احترافية تجلب عقوداً طويلة الأجل.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>المحاسبة بالساعة تعاقب المطور السريع؛ التسعير بالقيمة يربط أرباحك بنجاح المشروع</li>
+              <li>قدم نفسك كمستشار تقني متخصص يحل مشاكل تجارية وليس مجرد كاتب أكواد</li>
+              <li>ابنِ عقود صيانة ودعم دورية شهرية Retainers لضمان دخل ثابت ومستمر</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="fr">
           <h3>Maîtrise du Freelance : Tarification à la Valeur & Rétention Client</h3>
-          <p>Quittez les taux horaires bas pour la tarification sur la valeur, rédigez des propositions gagnantes et fidélisez vos clients.</p>
+          <p class="card-desc">Quittez les taux horaires bas pour la tarification sur la valeur, rédigez des propositions gagnantes et fidélisez vos clients.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>La facturation horaire pénalise l'efficacité ; la valeur aligne les intérêts</li>
+              <li>Positionnez-vous comme consultant expert et non comme simple exécutant</li>
+              <li>Mettez en place des contrats de maintenance récurrents pour sécuriser vos revenus</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#Freelance</span><span class="tag-pill">#ValuePricing</span><span class="tag-pill">#ClientAcquisition</span><span class="tag-pill">#Consulting</span>
+        </div>
+
         <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
           <span class="cta-link">
-            <span data-cl-lang="en">View Freelance Guide</span>
-            <span data-cl-lang="ar">عرض دليل العمل الحر</span>
-            <span data-cl-lang="fr">Consulter le guide</span>
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
             <i class="fa-solid fa-arrow-right"></i>
           </span>
         </div>
+
       </div>
     </a>
+  
 
-    <!-- Card 12: AI Autonomous Agents Architecture -->
-    <a href="ai-engineering.html" class="blog-card" data-category="ai" data-title="Autonomous Coding Agents Multi-Agent Workflows وكلاء البرمجة الذاتية Agents Autonomes">
+    <!-- Card: coding.html -->
+    <a href="coding.html" class="blog-card" data-category="productivity" data-title="The Art of Clean Code: Readability Over Cleverness فن الكود النظيف: الوضوح والقراءة أهم من التذاكي L'Art du Code Propre : La Lisibilité Avant la Ruse #CleanCode #Refactoring #SOLID #BestPractices">
       <div class="blog-card-media">
-        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=650&q=80" alt="Autonomous Agents" class="blog-card-img">
-        <span class="blog-card-cat">AI Architecture</span>
+        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=650&q=80" alt="The Art of Clean Code: Readability Over Cleverness" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Code Quality</span>
+          <span data-cl-lang="ar">جودة الكود</span>
+          <span data-cl-lang="fr">Qualité du Code</span>
+        </span>
+        <span class="blog-card-diff">Foundational</span>
       </div>
       <div class="blog-card-body">
+        
         <div class="blog-meta-inline">
-          <span><i class="fa-regular fa-clock"></i> 12 min</span>
-          <span><i class="fa-solid fa-microchip"></i> Agents</span>
+          <span><i class="fa-regular fa-clock"></i> 9 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 16.1k reads</span>
+          <span class="rating-badge">★ 4.91</span>
         </div>
+
         <div data-cl-lang="en">
-          <h3>Building Autonomous Coding Agents: RAG, Tools & Verification</h3>
-          <p>How compiler-in-the-loop validation, AST parsing, and sandboxed execution turn raw LLMs into reliable enterprise pair-programmers.</p>
+          <h3>The Art of Clean Code: Readability Over Cleverness</h3>
+          <p class="card-desc">Why maintainable, explicit code beats clever one-liners every time, with SOLID principles and refactoring techniques applied to real codebases.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Code is read 10 times more often than it is written; optimize ruthlessly for readability</li>
+              <li>Descriptive domain naming eliminates the need for redundant code comments</li>
+              <li>Keep functions small with a single responsibility (SRP) and zero hidden side effects</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="ar">
-          <h3>بناء وكلاء البرمجة الذاتية: التوليد المعزز بالاسترجاع RAG والتحقق الآلي</h3>
-          <p>كيف تحول حلقة المترجم التلقائية وتجزئة شجرة البنية AST النماذج اللغوية إلى مساعدي برمجة موثوقين ومؤتمتين في الشركات.</p>
+          <h3>فن الكود النظيف: الوضوح والقراءة أهم من التذاكي</h3>
+          <p class="card-desc">لماذا يتفوق الكود السهل الصيانة على الحيل البرمجية المعقدة، مع تطبيق مبادئ SOLID على مشاريع حقيقية.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>الكود يُقرأ أكثر بعشر مرات مما يُكتب؛ احرص على جعله واضحاً لأي مبرمج</li>
+              <li>التسميات الدقيقة للمتغيرات والدوال تغنيك عن كتابة تعليقات توضيحية زائدة</li>
+              <li>اجعل الدوال صغيرة وذات مسؤولية واحدة محددة دون أي تأثيرات جانبية غير متوقعة</li>
+            </ul>
+          </div>
         </div>
+
         <div data-cl-lang="fr">
-          <h3>Construire des Agents de Code Autonomes : RAG, Outils & Vérification</h3>
-          <p>Comment la boucle de compilation continue, l'analyse syntaxique AST et les sandboxes transforment les LLMs en assistants d'élite.</p>
+          <h3>L'Art du Code Propre : La Lisibilité Avant la Ruse</h3>
+          <p class="card-desc">Pourquoi un code maintenable et clair surpasse toujours les astuces cryptiques, avec principes SOLID appliqués.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Le code est lu dix fois plus souvent qu'il n'est écrit : priorisez la lisibilité</li>
+              <li>Un nommage métier précis rend les commentaires superflus</li>
+              <li>Concevez des fonctions courtes à responsabilité unique et sans effets de bord</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#CleanCode</span><span class="tag-pill">#Refactoring</span><span class="tag-pill">#SOLID</span><span class="tag-pill">#BestPractices</span>
+        </div>
+
         <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
           <span class="cta-link">
-            <span data-cl-lang="en">Read Agent Architecture</span>
-            <span data-cl-lang="ar">اقرأ معمارية الوكلاء</span>
-            <span data-cl-lang="fr">Découvrir l'architecture</span>
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
             <i class="fa-solid fa-arrow-right"></i>
           </span>
         </div>
+
       </div>
     </a>
+  
+
+    <!-- Card: productivity.html -->
+    <a href="productivity.html" class="blog-card" data-category="productivity" data-title="Deep Work for Coders: Entering & Protecting The Flow State العمل العميق للمبرمجين: الدخول في حالة التدفق الإبداعي Flow Deep Work pour Codeurs : Atteindre l'État de Flow #DeepWork #Focus #Productivity #FlowState">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=650&q=80" alt="Deep Work for Coders: Entering & Protecting The Flow State" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Deep Work</span>
+          <span data-cl-lang="ar">العمل العميق</span>
+          <span data-cl-lang="fr">Productivité</span>
+        </span>
+        <span class="blog-card-diff">Productivity</span>
+      </div>
+      <div class="blog-card-body">
+        
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 8 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 14.5k reads</span>
+          <span class="rating-badge">★ 4.89</span>
+        </div>
+
+        <div data-cl-lang="en">
+          <h3>Deep Work for Coders: Entering & Protecting The Flow State</h3>
+          <p class="card-desc">How to protect 4-hour uninterrupted coding blocks in a workplace full of Slack pings, endless meetings, and cognitive context switching.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Context switching costs an engineer 23 minutes to regain full cognitive momentum</li>
+              <li>Time-block morning hours for high-complexity architectural thinking and core algorithms</li>
+              <li>Batch all emails, Slack inquiries, and code reviews into dedicated afternoon windows</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="ar">
+          <h3>العمل العميق للمبرمجين: الدخول في حالة التدفق الإبداعي Flow</h3>
+          <p class="card-desc">كيف تحمي 4 ساعات يومية متواصلة من البرمجة المركزة بعيداً عن مقاطعات سلاك والاجتماعات العقيمة والتشتت.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>الانتقال بين المهام يكلف المبرمج 23 دقيقة لاستعادة كامل تركيزه الذهني</li>
+              <li>تخصيص ساعات الصباح الباكر للمهام الصعبة والتفكير المعماري وكتابة الخوارزميات</li>
+              <li>تجميع مراجعات الكود والرسائل والاجتماعات في فترات مسائية محددة</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="fr">
+          <h3>Deep Work pour Codeurs : Atteindre l'État de Flow</h3>
+          <p class="card-desc">Comment préserver 4 heures de code ininterrompu dans un environnement saturé de réunions et de notifications Slack.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Chaque interruption coûte en moyenne 23 minutes pour retrouver sa concentration</li>
+              <li>Bloquer les matinées pour les défis algorithmiques et l'architecture complexe</li>
+              <li>Regrouper les communications et revues de code sur des créneaux dédiés l'après-midi</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#DeepWork</span><span class="tag-pill">#Focus</span><span class="tag-pill">#Productivity</span><span class="tag-pill">#FlowState</span>
+        </div>
+
+        <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+      </div>
+    </a>
+  
+
+    <!-- Card: colors.html -->
+    <a href="colors.html" class="blog-card" data-category="design" data-title="Design Systems for Engineers: Color Harmony, Spacing & Typography نظم التصميم للمهندسين: تناغم الألوان والتسلسل البصري والمساحات Design Systems pour Ingénieurs : Couleurs, Hiérarchie et Espaces #DesignSystems #UIUX #Typography #ColorTheory #CSS">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=650&q=80" alt="Design Systems for Engineers: Color Harmony, Spacing & Typography" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Design Systems</span>
+          <span data-cl-lang="ar">نظم التصميم</span>
+          <span data-cl-lang="fr">Design Systems</span>
+        </span>
+        <span class="blog-card-diff">Design for Devs</span>
+      </div>
+      <div class="blog-card-body">
+        
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 8 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 12.8k reads</span>
+          <span class="rating-badge">★ 4.90</span>
+        </div>
+
+        <div data-cl-lang="en">
+          <h3>Design Systems for Engineers: Color Harmony, Spacing & Typography</h3>
+          <p class="card-desc">A practical mental model for programmers to craft polished, professional user interfaces without relying on a full-time designer.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Constrain your design tokens: stick strictly to a 4px/8px spatial rhythm</li>
+              <li>Build semantic color systems with clear primary, surface, and semantic danger tokens</li>
+              <li>Use typographic hierarchy with high contrast to guide eye movement naturally</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="ar">
+          <h3>نظم التصميم للمهندسين: تناغم الألوان والتسلسل البصري والمساحات</h3>
+          <p class="card-desc">نموذج ذهني عملي يمكّن المبرمجين من بناء واجهات مستخدم مذهلة واحترافية بدون الحاجة لمصمم بدوام كامل.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>الاعتماد على مقياس مسافات ثابت (4px و 8px) لضمان اتساق كافة عناصر الصفحة</li>
+              <li>بناء لوحة ألوان دلالية تميز بين ألوان الخلفيات والعناصر الأساسية وتنبيهات الخطأ</li>
+              <li>استغلال التباين في أحجام وأوزان الخطوط لتوجيه عين المستخدم بشكل تلقائي</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="fr">
+          <h3>Design Systems pour Ingénieurs : Couleurs, Hiérarchie et Espaces</h3>
+          <p class="card-desc">Un modèle mental pratique pour créer des interfaces utilisateur élégantes et soignées sans dépendre d'un designer.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Respecter une grille spatiale stricte de 4px / 8px pour une cohérence parfaite</li>
+              <li>Structurer une palette sémantique avec tokens clairs de surface et d'alerte</li>
+              <li>Guider le regard de l'utilisateur grâce à des contrastes typographiques marqués</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#DesignSystems</span><span class="tag-pill">#UIUX</span><span class="tag-pill">#Typography</span><span class="tag-pill">#ColorTheory</span><span class="tag-pill">#CSS</span>
+        </div>
+
+        <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+      </div>
+    </a>
+  
+
+    <!-- Card: soft-skills.html -->
+    <a href="soft-skills.html" class="blog-card" data-category="career" data-title="Developer Soft Skills: The Real Multiplier of Senior Engineers المهارات الناعمة: المضاعف الحقيقي لقيمة المهندس الخبير Soft Skills : Le Multiplicateur des Ingénieurs Seniors #SoftSkills #EngineeringLeadership #CodeReviews #Mentorship">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=650&q=80" alt="Developer Soft Skills: The Real Multiplier of Senior Engineers" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Leadership & Team</span>
+          <span data-cl-lang="ar">المهارات القيادية</span>
+          <span data-cl-lang="fr">Leadership & Équipe</span>
+        </span>
+        <span class="blog-card-diff">Senior Mindset</span>
+      </div>
+      <div class="blog-card-body">
+        
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 8 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 13.6k reads</span>
+          <span class="rating-badge">★ 4.92</span>
+        </div>
+
+        <div data-cl-lang="en">
+          <h3>Developer Soft Skills: The Real Multiplier of Senior Engineers</h3>
+          <p class="card-desc">Clear asynchronous writing, constructive code reviews, and empathy: the real determinants of technical career progression.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Technical writing (RFCs and design docs) scales your impact across the entire organization</li>
+              <li>Review code for architectural soundness and mentorship, not pedantic styling arguments</li>
+              <li>Empathy for end users and junior engineers distinguishes true staff leaders</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="ar">
+          <h3>المهارات الناعمة: المضاعف الحقيقي لقيمة المهندس الخبير</h3>
+          <p class="card-desc">الكتابة الواضحة، المراجعة البناءة للكود، والتعاطف مع الفريق: العوامل الحقيقية للترقية المهنية في كبرى الشركات.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>كتابة وثائق التصميم المعماري (RFCs) تضاعف تأثيرك على مستوى الشركة كاملة</li>
+              <li>مراجعة الكود يجب أن تركز على صحة المعمارية والتدريب وليس على النقاشات الشكلية</li>
+              <li>التعاطف مع المستخدم النهائي وزملائك المبتدئين هو ما يميز القائد التقني الحقيقي</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="fr">
+          <h3>Soft Skills : Le Multiplicateur des Ingénieurs Seniors</h3>
+          <p class="card-desc">Communication asynchrone claire, revues de code constructives et empathie : les vrais catalyseurs de promotion.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>La rédaction de RFCs et de documents d'architecture démultiplie votre influence</li>
+              <li>Orienter les revues de code vers la pédagogie plutôt que les débats futiles de style</li>
+              <li>L'empathie envers l'utilisateur final forge les véritables leaders techniques</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#SoftSkills</span><span class="tag-pill">#EngineeringLeadership</span><span class="tag-pill">#CodeReviews</span><span class="tag-pill">#Mentorship</span>
+        </div>
+
+        <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+      </div>
+    </a>
+  
+
+    <!-- Card: mental_health.html -->
+    <a href="mental_health.html" class="blog-card" data-category="productivity" data-title="Preventing Burnout: Engineering Longevity for Software Developers الوقاية من الاحتراق النفسي: كيف تحافظ على طاقتك لسنوات طويلة Prévenir le Burnout : La Longévité pour Ingénieurs Logiciels #MentalHealth #BurnoutPrevention #WorkLifeBalance #Health">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=650&q=80" alt="Preventing Burnout: Engineering Longevity for Software Developers" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Well-Being</span>
+          <span data-cl-lang="ar">الصحة النفسية</span>
+          <span data-cl-lang="fr">Bien-être</span>
+        </span>
+        <span class="blog-card-diff">Vital Guide</span>
+      </div>
+      <div class="blog-card-body">
+        
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 7 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 11.2k reads</span>
+          <span class="rating-badge">★ 4.94</span>
+        </div>
+
+        <div data-cl-lang="en">
+          <h3>Preventing Burnout: Engineering Longevity for Software Developers</h3>
+          <p class="card-desc">Recognizing the warning signs of cognitive exhaustion, setting strict work boundaries, and sustaining high output over a 20-year career.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Cynicism and decreased satisfaction are early clinical signs of neurological fatigue</li>
+              <li>Disconnect all work chat apps from personal devices outside contracted hours</li>
+              <li>Physical exercise and regular sleep cycles are fundamental engineering prerequisites</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="ar">
+          <h3>الوقاية من الاحتراق النفسي: كيف تحافظ على طاقتك لسنوات طويلة</h3>
+          <p class="card-desc">التعرف على مؤشرات الإرهاق الذهني، وضع حدود صارمة بين العمل والحياة، واستدامة الإنتاجية طوال مسارك المهني.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>الشعور بالاحباط وفقدان الشغف هما أول مؤشرات الإرهاق العصبي والذهني</li>
+              <li>حذف تطبيقات العمل والمحادثات من هاتفك الشخصي خارج أوقات الدوام الرسمي</li>
+              <li>ممارسة الرياضة والنوم المنتظم هما أساس التفكير المنطقي والقدرة على حل المشاكل</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="fr">
+          <h3>Prévenir le Burnout : La Longévité pour Ingénieurs Logiciels</h3>
+          <p class="card-desc">Reconnaître les signes d'épuisement mental, poser des limites strictes et maintenir une haute productivité durable.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>La perte d'enthousiasme est le premier signal clinique d'épuisement mental</li>
+              <li>Déconnecter impérativement les messageries professionnelles hors heures de bureau</li>
+              <li>Le sommeil réparateur et l'activité physique sont le socle de la clarté d'esprit</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#MentalHealth</span><span class="tag-pill">#BurnoutPrevention</span><span class="tag-pill">#WorkLifeBalance</span><span class="tag-pill">#Health</span>
+        </div>
+
+        <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+      </div>
+    </a>
+  
+
+    <!-- Card: motivation.html -->
+    <a href="motivation.html" class="blog-card" data-category="productivity" data-title="The Self-Development Journey: Growth Mindset Over Imposter Syndrome رحلة التطوير الذاتي: عقلية النمو والتغلب على متلازمة المحتال Le Voyage du Développement : État d'Esprit de Croissance #Motivation #GrowthMindset #ImposterSyndrome #SelfDevelopment">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=650&q=80" alt="The Self-Development Journey: Growth Mindset Over Imposter Syndrome" class="blog-card-img" loading="lazy">
+        <span class="blog-card-cat">
+          <span data-cl-lang="en">Growth Mindset</span>
+          <span data-cl-lang="ar">عقلية النمو</span>
+          <span data-cl-lang="fr">Mindset</span>
+        </span>
+        <span class="blog-card-diff">Personal Growth</span>
+      </div>
+      <div class="blog-card-body">
+        
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 8 min read</span>
+          <span><i class="fa-solid fa-chart-line"></i> 15.9k reads</span>
+          <span class="rating-badge">★ 4.95</span>
+        </div>
+
+        <div data-cl-lang="en">
+          <h3>The Self-Development Journey: Growth Mindset Over Imposter Syndrome</h3>
+          <p class="card-desc">Overcoming imposter syndrome, embracing bug debugging as learning, and establishing atomic habits for continuous technical mastery.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Key Architectural Takeaways:</div>
+            <ul class="takeaways-list">
+              <li>Every senior engineer struggles with unknowns; confidence comes from debugging resilience</li>
+              <li>Track a daily learning log to tangibly measure your incremental engineering progress</li>
+              <li>Focus on the process of problem-solving rather than comparing yourself to social media highlight reels</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="ar">
+          <h3>رحلة التطوير الذاتي: عقلية النمو والتغلب على متلازمة المحتال</h3>
+          <p class="card-desc">التغلب على متلازمة المحتال، تحويل الأخطاء البرمجية إلى فرص تعلم، وبناء عادات يومية تضمن التطور المستمر.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> أهم النقاط المعمارية المستفادة:</div>
+            <ul class="takeaways-list">
+              <li>حتى كبار المهندسين يواجهون مشاكل لا يعرفون حلها؛ الثقة تأتي من المثابرة في التجربة</li>
+              <li>سجل إنجازاتك اليومية في مذكرة صغيرة لتشاهد تطورك الملموس شهراً بعد شهر</li>
+              <li>ركز على الاستمتاع بحل المسائل ولا تقارن نفسك بالمنشورات المثالية في وسائل التواصل</li>
+            </ul>
+          </div>
+        </div>
+
+        <div data-cl-lang="fr">
+          <h3>Le Voyage du Développement : État d'Esprit de Croissance</h3>
+          <p class="card-desc">Surmonter le syndrome de l'imposteur, voir les bugs comme des leçons et bâtir des habitudes quotidiennes pérennes.</p>
+          <div class="takeaways-box">
+            <div class="takeaways-title"><i class="fa-solid fa-circle-check"></i> Points Clés d'Architecture :</div>
+            <ul class="takeaways-list">
+              <li>Même les experts butent sur l'inconnu : l'expérience forge la résilience au débogage</li>
+              <li>Tenir un carnet d'apprentissage quotidien pour mesurer ses progrès réels</li>
+              <li>Se concentrer sur le cheminement intellectuel plutôt que sur les réussites d'autrui</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-tags-row">
+          <span class="tag-pill">#Motivation</span><span class="tag-pill">#GrowthMindset</span><span class="tag-pill">#ImposterSyndrome</span><span class="tag-pill">#SelfDevelopment</span>
+        </div>
+
+        <div class="blog-card-footer">
+          <div class="author-meta">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Coding Life Tech Team</span>
+          </div>
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Complete Analysis</span>
+            <span data-cl-lang="ar">قراءة التحليل الكامل</span>
+            <span data-cl-lang="fr">Lire l'analyse complète</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+      </div>
+    </a>
+  
 
     <!-- No results state -->
     <div class="no-results" id="noResultsState">
       <i class="fa-regular fa-face-frown"></i>
       <div data-cl-lang="en">
-        <h3>No matching articles found</h3>
-        <p>Try searching with another keyword or selecting "All Articles".</p>
+        <h3>No matching engineering guides found</h3>
+        <p>Try searching with another keyword or click "All Articles" to reset the filters.</p>
       </div>
       <div data-cl-lang="ar">
         <h3>لم يتم العثور على أي مقال مطابق</h3>
-        <p>جرّب البحث بكلمة مفتاحية أخرى أو اختر "كل المقالات".</p>
+        <p>جرّب البحث بكلمة مفتاحية أخرى أو اختر "كل المقالات" لإعادة ضبط التصفية.</p>
       </div>
       <div data-cl-lang="fr">
         <h3>Aucun article correspondant trouvé</h3>
@@ -915,31 +2113,7 @@
 
   </div>
 
-  <!-- Newsletter Signup Box -->
-  <div class="newsletter-box">
-    <div data-cl-lang="en">
-      <h2>Stay Ahead in Tech</h2>
-      <p>Subscribe to the Coding Life weekly developer dispatch. Deep engineering essays, production architectures, and curated tech trends delivered straight to your inbox.</p>
-    </div>
-    <div data-cl-lang="ar">
-      <h2>كن دائماً في الصدارة التقنية</h2>
-      <p>اشترك في نشرة Coding Life الأسبوعية للمطورين. مقالات هندسية متعمقة، معماريات نظم إنتاجية، وأحدث الاتجاهات التقنية مباشرة إلى بريدك.</p>
-    </div>
-    <div data-cl-lang="fr">
-      <h2>Gardez une Longueur d'Avance</h2>
-      <p>Abonnez-vous à la newsletter hebdomadaire Coding Life. Essais d'ingénierie approfondis, architectures de production et veille technologique directe.</p>
-    </div>
-    <form class="newsletter-form" onsubmit="event.preventDefault(); alert(localStorage.getItem('cl-lang') === 'ar' ? 'شكراً لاشتراكك في نشرة كودينغ لايف!' : localStorage.getItem('cl-lang') === 'fr' ? 'Merci pour votre inscription à la newsletter !' : 'Thank you for subscribing to Coding Life Dispatch!'); this.reset();">
-      <input type="email" placeholder="you@domain.com" required>
-      <button type="submit">
-        <span data-cl-lang="en">Subscribe</span>
-        <span data-cl-lang="ar">اشترك الآن</span>
-        <span data-cl-lang="fr">S'abonner</span>
-      </button>
-    </form>
-  </div>
-
-  <!-- Essential Developer Tools -->
+  <!-- Essential Developer Utilities -->
   <div style="background: var(--cl-surface); padding: 50px 40px; border-radius: 24px; border: 1px solid var(--cl-line); margin-bottom: 60px;">
     <div data-cl-lang="en"><h2 style="text-align: center; margin-bottom: 36px; font-weight: 800;">Essential Developer Utilities</h2></div>
     <div data-cl-lang="ar"><h2 style="text-align: center; margin-bottom: 36px; font-weight: 800;">أدوات برمجية مساعدة</h2></div>

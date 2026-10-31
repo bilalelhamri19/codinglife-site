@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kubernetes & Docker in Production: Zero-Downtime Deployments - Coding Life</title>
+  <meta name="description" content="Configure liveness/readiness probes, pod disruption budgets, resource limits, and progressive canary rollouts without downtime.">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .article-container {
+      max-width: 860px;
+      margin: 120px auto 80px;
+      padding: 0 24px;
+    }
+    .article-header-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 48px 40px;
+      margin-bottom: 40px;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--cl-brand-soft);
+      color: var(--cl-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .article-header-card h1 {
+      font-size: 2.5rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .article-lead {
+      font-size: 1.15rem;
+      color: var(--cl-muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .article-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid var(--cl-line);
+      font-size: 0.9rem;
+      color: var(--cl-muted);
+    }
+    .article-meta-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .article-body-content {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 44px 40px;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      color: var(--cl-text);
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-body-content h2 {
+      font-size: 1.55rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      margin: 36px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-body-content h2:first-child {
+      margin-top: 0;
+    }
+    .quote-box {
+      background: var(--cl-bg);
+      border-left: 4px solid var(--cl-brand);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 28px 0;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--cl-ink);
+      line-height: 1.7;
+    }
+    [dir="rtl"] .quote-box {
+      border-left: none;
+      border-right: 4px solid var(--cl-brand);
+    }
+    .tip-box {
+      background: var(--cl-brand-soft);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 28px 0;
+      color: var(--cl-text);
+      font-size: 0.98rem;
+    }
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 24px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+    }
+    .code-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--cl-muted);
+      margin-bottom: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+    .back-btn-row {
+      margin-bottom: 24px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 10px;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+      transform: translateX(-3px);
+    }
+    [dir="rtl"] .back-btn:hover {
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="article-container">
+
+  <div class="back-btn-row">
+    <a href="blog.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="ar">العودة لجميع المقالات</span>
+      <span data-cl-lang="fr">Retour aux articles</span>
+    </a>
+  </div>
+
+  <div class="article-header-card">
+    <span class="article-badge">Cloud & Infrastructure</span>
+    
+    <div data-cl-lang="en">
+      <h1>Kubernetes & Docker in Production: Zero-Downtime Deployments</h1>
+      <p class="article-lead">Configure liveness/readiness probes, pod disruption budgets, resource limits, and progressive canary rollouts without downtime.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1>كوبرنتس ودوكر في بيئات الإنتاج: نشر التطبيقات بدون أي انقطاع</h1>
+      <p class="article-lead">ضبط مجسات الجاهزية والحياة Probes، وميزانيات انقطاع البودات PDB، والحدود الصارمة للموارد، واستراتيجيات التحديث التدريجي Canary.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1>Kubernetes & Docker en Production : Déploiements Zéro-Downtime</h1>
+      <p class="article-lead">Configurez les sondes de disponibilité, les budgets de perturbation, les limites de ressources et les déploiements canary sans interruption.</p>
+    </div>
+
+    <div class="article-meta-row">
+      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 12 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+    </div>
+  </div>
+
+  <div class="article-body-content">
+    <div data-cl-lang="en">
+      
+      <h2>1. Why Zero-Downtime Deployments Fail in Kubernetes</h2>
+      <p>Many teams believe Kubernetes guarantees zero downtime out of the box. In reality, terminating pods can drop active TCP connections if the container does not handle SIGTERM gracefully or if your readiness probe is improperly synchronized with upstream ingress proxies.</p>
+      
+      <div class="quote-box">"Treat your servers like cattle, not pets; treat your deployment pipelines like mission-critical code."</div>
+
+      <h2>2. The Holy Trinity of Resilient Pod Configuration</h2>
+      <p>Every production Kubernetes manifest must define three critical blocks:</p>
+      <ul>
+        <li><strong>Readiness & Liveness Probes:</strong> Readiness tells the service when to send traffic; liveness tells kubelet when to restart a hung container. Never point liveness probes to external database connections!</li>
+        <li><strong>Explicit Resource Requests & Limits:</strong> Failing to declare requests causes node starvation and unpredictable OOMKilled evictions. Always set CPU requests equal to expected baseline.</li>
+        <li><strong>PodDisruptionBudgets (PDB):</strong> Guarantees that node upgrades or cluster autoscaling events never drain all running instances simultaneously.</li>
+      </ul>
+
+      <div class="code-block">
+        <div class="code-label">Resilient Deployment Manifest with PreStop Hook</div>
+        <pre>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-service
+spec:
+  replicas: 4
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+  template:
+    spec:
+      containers:
+      - name: api
+        image: registry.example.com/api:v2.4
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sleep", "15"] # Allow ingress to drain traffic cleanly
+        readinessProbe:
+          httpGet:
+            path: /healthz/ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5</pre>
+      </div>
+
+      <h2>3. Progressive Canary Delivery with ArgoCD & Flagger</h2>
+      <p>Replace high-risk blue/green cutovers with automated metric-based canary releases. Route 5% of production traffic to the new version, analyze error rates and P99 latency via Prometheus, and automatically roll back if HTTP 5xx errors exceed 0.5%.</p>
+
+      <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>DevOps Rule:</strong> Run your containers with non-root security contexts (<code>runAsNonRoot: true</code>) and read-only root filesystems to enforce container immutability.</div>
+    
+    </div>
+    <div data-cl-lang="ar">
+      
+      <h2>1. كيف تضمن استمرارية الخدمة بدون انقطاع Zero Downtime؟</h2>
+      <p>كوبرنتس لا يضمن عدم الانقطاع تلقائياً إلا إذا كان تطبيقك يستجيب لإشارة SIGTERM بسلاسة وتتأكد من أن مجسات الجاهزية (Readiness Probes) تمنع تحويل الزوار لحاويات لم تكتمل تهيئتها بعد.</p>
+      <h2>2. أهم 3 إعدادات لكل Deployment في كوبرنتس</h2>
+      <ul>
+        <li><strong>Readiness & Liveness Probes:</strong> تضمن عدم إرسال طلبات للبود حتى يصبح جاهزاً تماماً وإعادة تشغيل التطبيق في حالة التجميد.</li>
+        <li><strong>تحديد الموارد (Requests & Limits):</strong> لمنع استهلاك الذاكرة العشوائي وحماية الخوادم من انهيار OOMKilled.</li>
+        <li><strong>ميزانية انقطاع البودات PDB:</strong> تضمن بقاء عدد كافٍ من النسخ قيد العمل أثناء ترقيات السيرفرات.</li>
+      </ul>
+      <h2>3. التحديث التدريجي Canary Deployments</h2>
+      <p>قم بتحويل 5% فقط من الترافيك للنسخة الجديدة ومراقبة معدل الأخطاء وزمن الاستجابة تلقائياً، والرجوع للنسخة السابقة آلياً في حال ظهور أي خلل.</p>
+    
+    </div>
+    <div data-cl-lang="fr">
+      
+      <h2>1. Garantir le Zéro-Downtime</h2>
+      <p>Configurez les hooks preStop et les sondes de disponibilité pour éviter toute perte de connexion active lors des redémarrages de pods.</p>
+      <h2>2. Configuration Résiliente</h2>
+      <p>Définissez systématiquement les demandes et limites de ressources ainsi que les PodDisruptionBudgets pour prévenir les évictions brutales.</p>
+      <h2>3. Déploiements Canary Progressifs</h2>
+      <p>Acheminez un faible pourcentage de trafic vers la nouvelle version et analysez la latence P99 avant le déploiement complet.</p>
+    
+    </div>
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

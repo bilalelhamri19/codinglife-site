@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Web Security Defense: CSP, WebAuthn & OWASP Hardening - Coding Life</title>
+  <meta name="description" content="Eliminate XSS with strict Content-Security-Policies, implement biometric Passkeys with WebAuthn, and protect against CSRF and prototype pollution.">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .article-container {
+      max-width: 860px;
+      margin: 120px auto 80px;
+      padding: 0 24px;
+    }
+    .article-header-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 48px 40px;
+      margin-bottom: 40px;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--cl-brand-soft);
+      color: var(--cl-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .article-header-card h1 {
+      font-size: 2.5rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .article-lead {
+      font-size: 1.15rem;
+      color: var(--cl-muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .article-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid var(--cl-line);
+      font-size: 0.9rem;
+      color: var(--cl-muted);
+    }
+    .article-meta-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .article-body-content {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 44px 40px;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      color: var(--cl-text);
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-body-content h2 {
+      font-size: 1.55rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      margin: 36px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-body-content h2:first-child {
+      margin-top: 0;
+    }
+    .quote-box {
+      background: var(--cl-bg);
+      border-left: 4px solid var(--cl-brand);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 28px 0;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--cl-ink);
+      line-height: 1.7;
+    }
+    [dir="rtl"] .quote-box {
+      border-left: none;
+      border-right: 4px solid var(--cl-brand);
+    }
+    .tip-box {
+      background: var(--cl-brand-soft);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 28px 0;
+      color: var(--cl-text);
+      font-size: 0.98rem;
+    }
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 24px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+    }
+    .code-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--cl-muted);
+      margin-bottom: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+    .back-btn-row {
+      margin-bottom: 24px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 10px;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+      transform: translateX(-3px);
+    }
+    [dir="rtl"] .back-btn:hover {
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="article-container">
+
+  <div class="back-btn-row">
+    <a href="blog.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="ar">العودة لجميع المقالات</span>
+      <span data-cl-lang="fr">Retour aux articles</span>
+    </a>
+  </div>
+
+  <div class="article-header-card">
+    <span class="article-badge">Security & Auth</span>
+    
+    <div data-cl-lang="en">
+      <h1>Modern Web Security Defense: CSP, WebAuthn & OWASP Hardening</h1>
+      <p class="article-lead">Eliminate XSS with strict Content-Security-Policies, implement biometric Passkeys with WebAuthn, and protect against CSRF and prototype pollution.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1>دفاعات أمان الويب الحديثة: سياسات CSP ومصادقة WebAuthn وحماية OWASP</h1>
+      <p class="article-lead">القضاء على ثغرات XSS بسياسات أمان المحتوى الصارمة، وتطبيق مفاتيح المرور الحيوية Passkeys، والحماية من تلوث النماذج الأولية.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1>Défense Web Moderne : CSP, WebAuthn & Sécurisation OWASP</h1>
+      <p class="article-lead">Éliminez les failles XSS avec des CSP stricts, intégrez les Passkeys WebAuthn et protégez vos applications contre CSRF et prototype pollution.</p>
+    </div>
+
+    <div class="article-meta-row">
+      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 12 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+    </div>
+  </div>
+
+  <div class="article-body-content">
+    <div data-cl-lang="en">
+      
+      <h2>1. The Death of Passwords: The Passkey Revolution</h2>
+      <p>Traditional password databases are a liability. Between credential stuffing, phishing, and database leaks, passwords represent 80% of corporate data breaches. Modern web applications are adopting <strong>WebAuthn & Passkeys</strong>: public-key cryptography backed by hardware secure enclaves (TouchID, FaceID, YubiKeys) that are inherently immune to phishing.</p>
+      
+      <div class="quote-box">"You cannot leak a password that was never stored on your servers in the first place."</div>
+
+      <h2>2. Hardening Headers: The Strict CSP Standard</h2>
+      <p>Cross-Site Scripting (XSS) can be mitigated at the browser level using a rigorous <code>Content-Security-Policy</code> (CSP). By enforcing <code>script-src 'nonce-{RANDOM}' 'strict-dynamic'</code> and disallowing <code>'unsafe-inline'</code> and <code>'unsafe-eval'</code>, injected third-party scripts are completely blocked from executing.</p>
+
+      <h2>3. Protecting Modern REST & GraphQL Endpoints</h2>
+      <p>Enforce strict CORS policies matching explicit origins, implement cryptographic HMAC request signing for inter-service communication, and sanitize JSON payloads to block Prototype Pollution attacks in Node.js runtimes.</p>
+    
+    </div>
+    <div data-cl-lang="ar">
+      
+      <h2>1. ثورة مفاتيح المرور Passkeys ونهاية كلمات المرور التقليدية</h2>
+      <p>كلمات المرور هي السبب في 80% من الاختراقات الأمنية. تقنية WebAuthn و Passkeys تعتمد على التشفير بالمفاتيح العامة ومجسات البصمة والوجه، وهي محصنة تماماً ضد هجمات التصيد الاحتيالي Phishing.</p>
+      <h2>2. تحصين المتصفح بسياسات أمان المحتوى CSP الصارمة</h2>
+      <p>تفعيل ترويسات CSP مع كود Nonce عشوائي يمنع المتصفح من تشغيل أي سكريبت خبيث محقون XSS حتى لو نجح المهاجم في تمريره داخل الصفحة.</p>
+      <h2>3. تأمين الواجهات البرمجية APIs</h2>
+      <p>تطبيق سياسات CORS صارمة، وتحديد معدل الطلبات للحد من هجمات الحرمان من الخدمة، وتدقيق حزم JSON لمنع ثغرات Prototype Pollution.</p>
+    
+    </div>
+    <div data-cl-lang="fr">
+      
+      <h2>1. L'Ère des Passkeys et de WebAuthn</h2>
+      <p>Les passkeys matérielles éliminent définitivement le risque de phishing en s'appuyant sur la cryptographie asymétrique.</p>
+      <h2>2. Politique de Sécurité du Contenu (CSP) Stricte</h2>
+      <p>Empêchez l'exécution de tout script malveillant injecté grâce aux nonces cryptographiques dans vos en-têtes CSP.</p>
+    
+    </div>
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>
