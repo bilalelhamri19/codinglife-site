@@ -336,20 +336,7 @@
     lessonCards.forEach(c => lessonsWrap.appendChild(c));
     main.appendChild(lessonsWrap);
 
-    // Bottom Pager Navigation
-    const pager = document.createElement('div');
-    pager.className = 'docs-nav-pager';
-    pager.innerHTML = `
-      <a href="#${lessonsData[0].id}" class="docs-pager-btn prev" id="pagerPrev" onclick="window.CL_DOCS.navigateLesson(-1)">
-        <span class="docs-pager-label"><i class="fa-solid fa-arrow-left"></i> Previous Topic</span>
-        <span class="docs-pager-title" id="pagerPrevTitle">Intro</span>
-      </a>
-      <a href="#${lessonsData[1] ? lessonsData[1].id : lessonsData[0].id}" class="docs-pager-btn next" id="pagerNext" onclick="window.CL_DOCS.navigateLesson(1)">
-        <span class="docs-pager-label">Next Topic <i class="fa-solid fa-arrow-right"></i></span>
-        <span class="docs-pager-title" id="pagerNextTitle">${lessonsData[1] ? escapeHtml(lessonsData[1].titleEn) : 'Next'}</span>
-      </a>
-    `;
-    main.appendChild(pager);
+    
 
     // Put into layout (Sidebar + Main Content only, no duplicate right TOC)
     layout.appendChild(sidebar);
@@ -408,44 +395,7 @@
     const lessonCards = Array.from(document.querySelectorAll('.docs-lesson-card, .lesson-card'));
     let currentLessonIdx = 0;
 
-    function updatePager() {
-      const prevBtn = document.getElementById('pagerPrev');
-      const nextBtn = document.getElementById('pagerNext');
-      const prevTitle = document.getElementById('pagerPrevTitle');
-      const nextTitle = document.getElementById('pagerNextTitle');
-
-      if (!prevBtn || !nextBtn) return;
-
-      if (currentLessonIdx > 0) {
-        prevBtn.style.visibility = 'visible';
-        const prevCard = lessonCards[currentLessonIdx - 1];
-        const h = prevCard.querySelector('h2, h3');
-        if (prevTitle) prevTitle.textContent = h ? h.textContent.trim() : 'Previous';
-        prevBtn.setAttribute('href', '#' + prevCard.id);
-      } else {
-        prevBtn.style.visibility = 'hidden';
-      }
-
-      if (currentLessonIdx < lessonCards.length - 1) {
-        nextBtn.style.visibility = 'visible';
-        const nextCard = lessonCards[currentLessonIdx + 1];
-        const h = nextCard.querySelector('h2, h3');
-        if (nextTitle) nextTitle.textContent = h ? h.textContent.trim() : 'Next';
-        nextBtn.setAttribute('href', '#' + nextCard.id);
-      } else {
-        nextBtn.style.visibility = 'hidden';
-      }
-    }
-
-    function navigateLesson(delta) {
-      const newIdx = currentLessonIdx + delta;
-      if (newIdx >= 0 && newIdx < lessonCards.length) {
-        currentLessonIdx = newIdx;
-        const target = lessonCards[newIdx];
-        target.scrollIntoView({ behavior: 'smooth' });
-        updatePager();
-      }
-    }
+    function updatePager() {}
 
     function activateLink(link) {
       document.querySelectorAll('.docs-lesson-link').forEach(l => l.classList.remove('active'));

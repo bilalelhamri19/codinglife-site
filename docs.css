@@ -572,3 +572,10 @@
 .docs-lesson-link:has(> span[data-cl-lang="fr"].cl-active-lang) > span[data-cl-lang="en"] {
   display: none !important;
 }
+
+
+/* Completely remove bottom topic pager from all courses */
+.docs-nav-pager,
+.docs-pager-btn {
+  display: none !important;
+}

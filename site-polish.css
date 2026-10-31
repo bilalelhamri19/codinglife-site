@@ -1498,3 +1498,10 @@ textarea {
 .cl-course-progress-card, .cl-lesson-complete-btn {
   display: none !important;
 }
+
+
+/* Completely remove bottom topic pager from all courses */
+.docs-nav-pager,
+.docs-pager-btn {
+  display: none !important;
+}
