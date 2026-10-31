@@ -9,103 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
-  <style>
-    .lesson-card {
-      background: var(--cl-surface);
-      border-radius: 16px;
-      padding: 26px 30px;
-      margin-bottom: 24px;
-      border: 1px solid var(--cl-line);
-      transition: var(--cl-transition);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .lesson-header {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
-    .lesson-card:hover {
-      transform: translateY(-4px);
-      border-color: #42b883;
-      box-shadow: var(--cl-shadow-lg);
-    }
-    .lesson-icon {
-      width: 54px;
-      height: 54px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      color: #42b883;
-      flex-shrink: 0;
-    }
-    .lesson-info {
-      flex-grow: 1;
-    }
-    .lesson-info h3 {
-      font-size: 1.35rem;
-      color: var(--cl-ink);
-      margin: 0 0 6px;
-    }
-    .lesson-content {
-      line-height: 1.75;
-      color: var(--cl-muted);
-      font-size: 1rem;
-    }
-    .badge {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .badge-modern { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--cl-brand); }
-    .badge-important { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); color: #f59e0b; }
-    .badge-pro { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; }
-
-    .code-block {
-      background: #090d16;
-      color: #e2e8f0;
-      padding: 18px;
-      border-radius: 12px;
-      font-family: 'Fira Code', monospace;
-      font-size: 0.9rem;
-      overflow-x: auto;
-      margin: 14px 0 6px;
-      border: 1px solid var(--cl-line);
-      line-height: 1.6;
-    }
-    .code-block pre {
-      margin: 0;
-      font-family: inherit;
-    }
-
-    @media (max-width: 768px) {
-      .lesson-card {
-        padding: 20px 16px;
-      }
-      .lesson-header {
-        flex-direction: row;
-        align-items: center;
-        gap: 14px;
-      }
-      .lesson-icon {
-        width: 44px;
-        height: 44px;
-        font-size: 1.3rem;
-      }
-      .lesson-info h3 {
-        font-size: 1.15rem;
-      }
-    }
-  </style>
   <link rel="stylesheet" href="docs.css">
 </head>
 <body>
@@ -139,10 +42,10 @@
     "t_en": "1. The Modern Vue 3 & Composition API Paradigm",
     "t_ar": "1. أساسيات Vue 3 ونظام Composition API الحديث",
     "t_fr": "1. Vue 3 & Composition API Moderne",
-    "d_en": "Discover why Vue is celebrated for its approachable, performant, and versatile developer experience. Learn Single File Components (.vue) and <script setup>.",
+    "d_en": "Discover why Vue is celebrated for its approachable, performant, and versatile developer experience. Learn Single File Components (.vue) and \\x3Cscript setup>.",
     "d_ar": "تعرف على إطار عمل Vue 3 ومميزاته الفائقة وسهولة تعلمه، مع التركيز على نمط Composition API وكتابة الكود داخل ملفات .vue النظيفة.",
-    "d_fr": "Découvrez la puissance et l'élégance de Vue 3 grâce aux composants monofichiers (.vue) et à la syntaxe <script setup>.",
-    "code": "<script setup>\nimport { ref } from 'vue';\nconst message = ref('Welcome to Vue 3 at Coding Life!');\n<\/script>\n\n<template>\n  <h1 class=\"title\">{{ message }}</h1>\n</template>"
+    "d_fr": "Découvrez la puissance et l'élégance de Vue 3 grâce aux composants monofichiers (.vue) et à la syntaxe \\x3Cscript setup>.",
+    "code": "\\x3Cscript setup>\nimport { ref } from 'vue';\nconst message = ref('Welcome to Vue 3 at Coding Life!');\n\\x3C/script>\n\n<template>\n  <h1 class=\"title\">{{ message }}</h1>\n</template>"
   },
   {
     "icon": "fa-arrows-rotate",
@@ -153,7 +56,7 @@
     "d_en": "Understand Vue's ES6 Proxy reactivity system. Differentiate primitive value tracking with ref() vs complex object reactivity with reactive().",
     "d_ar": "كيف يعمل نظام التفاعل التلقائي في Vue 3 بالاعتماد على Javascript Proxies، والفرق بين ref للقيم البسيطة و reactive للكائنات المعقدة.",
     "d_fr": "Maîtrisez le moteur de réactivité de Vue 3 basé sur les Proxies JavaScript pour synchroniser l'état et l'interface.",
-    "code": "<script setup>\nimport { ref, reactive } from 'vue';\n\nconst count = ref(0);\nconst state = reactive({ user: 'Bilal', role: 'Engineer' });\n\nfunction increment() {\n  count.value++;\n}\n<\/script>"
+    "code": "\\x3Cscript setup>\nimport { ref, reactive } from 'vue';\n\nconst count = ref(0);\nconst state = reactive({ user: 'Bilal', role: 'Engineer' });\n\nfunction increment() {\n  count.value++;\n}\n\\x3C/script>"
   },
   {
     "icon": "fa-code",
@@ -175,7 +78,7 @@
     "d_en": "Compute cached derived state automatically with computed(). Monitor variable changes, trigger API requests, and handle side effects with watch() and watchEffect().",
     "d_ar": "حساب القيم المشتقة تلقائياً مع ميزة الـ Cache عبر computed()، ومراقبة التغيرات في المتغيرات لتنفيذ دوال برمجية عبر watch().",
     "d_fr": "Optimisez vos calculs dérivés grâce au cache intelligent de computed() et interceptez les changements d'état avec watch().",
-    "code": "<script setup>\nimport { ref, computed, watch } from 'vue';\n\nconst price = ref(100);\nconst discount = ref(0.2);\nconst finalPrice = computed(() => price.value * (1 - discount.value));\n\nwatch(finalPrice, (newVal) => {\n  console.log('Price updated to:', newVal);\n});\n<\/script>"
+    "code": "\\x3Cscript setup>\nimport { ref, computed, watch } from 'vue';\n\nconst price = ref(100);\nconst discount = ref(0.2);\nconst finalPrice = computed(() => price.value * (1 - discount.value));\n\nwatch(finalPrice, (newVal) => {\n  console.log('Price updated to:', newVal);\n});\n\\x3C/script>"
   },
   {
     "icon": "fa-puzzle-piece",
@@ -186,7 +89,7 @@
     "d_en": "Architect scalable component hierarchies. Pass data down via defineProps, emit custom events up via defineEmits, and customize templates with Slots.",
     "d_ar": "بناء مكونات قابلة لإعادة الاستخدام: إرسال البيانات من الأب إلى الابن عبر Props، وإرسال الأحداث للأعلى عبر emit، واستخدام الـ Slots للقوالب المرنة.",
     "d_fr": "Communiquez efficacement entre composants parents et enfants avec defineProps, defineEmits et les slots personnalisables.",
-    "code": "<script setup>\ndefineProps<{ title: string; views: number }>();\nconst emit = defineEmits<['like']>();\n<\/script>\n\n<template>\n  <div class=\"card\">\n    <h3>{{ title }}</h3>\n    <button @click=\"emit('like')\">Like ({{ views }})</button>\n  </div>\n</template>"
+    "code": "\\x3Cscript setup>\ndefineProps<{ title: string; views: number }>();\nconst emit = defineEmits<['like']>();\n\\x3C/script>\n\n<template>\n  <div class=\"card\">\n    <h3>{{ title }}</h3>\n    <button @click=\"emit('like')\">Like ({{ views }})</button>\n  </div>\n</template>"
   },
   {
     "icon": "fa-cubes-stacked",
@@ -246,35 +149,37 @@
 ];
 
   const container = document.getElementById('courseLessons');
-  courseLessons.forEach(lesson => {
-    const div = document.createElement('div');
-    div.className = 'lesson-card reveal';
-    
-    let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
-    let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
-    
-    div.innerHTML = `
-      <div class="lesson-header">
-        <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
-        <div class="lesson-info">
-          <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
-          <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
-          <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
-          ${badgeHtml}
+  if (container) {
+    courseLessons.forEach(lesson => {
+      const div = document.createElement('div');
+      div.className = 'lesson-card reveal';
+      
+      let badgeHtml = lesson.badge ? `<span class="badge ${lesson.badge}">${lesson.badge.split('-')[1]}</span>` : '';
+      let codeHtml = lesson.code ? `<div class="code-block"><pre>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div>` : '';
+      
+      div.innerHTML = `
+        <div class="lesson-header">
+          <div class="lesson-icon"><i class="fas ${lesson.icon}"></i></div>
+          <div class="lesson-info">
+            <div data-cl-lang="fr"><h3>${lesson.t_fr}</h3></div>
+            <div data-cl-lang="en"><h3>${lesson.t_en}</h3></div>
+            <div data-cl-lang="ar"><h3>${lesson.t_ar}</h3></div>
+            ${badgeHtml}
+          </div>
         </div>
-      </div>
-      <div class="lesson-content">
-        <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
-        <div data-cl-lang="en">${lesson.d_en || ''}</div>
-        <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
-        ${codeHtml}
-      </div>
-    `;
-    container.appendChild(div);
-  });
+        <div class="lesson-content">
+          <div data-cl-lang="fr">${lesson.d_fr || ''}</div>
+          <div data-cl-lang="en">${lesson.d_en || ''}</div>
+          <div data-cl-lang="ar">${lesson.d_ar || ''}</div>
+          ${codeHtml}
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
 </script>
 
-<script src="docs.js"><\/script>
-  <script src="site-polish.js"><\/script>
+<script src="docs.js"></script>
+<script src="site-polish.js"></script>
 </body>
 </html>
