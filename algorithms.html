@@ -136,35 +136,112 @@
   {
     "icon": "fa-stopwatch",
     "badge": "badge-modern",
-    "t_en": "1. Big-O Complexity Analysis",
+    "t_en": "1. Big-O Complexity Analysis & Asymptotic Bounds",
     "t_ar": "1. تحليل التعقيد الزمني والمكاني (Big-O)",
-    "t_fr": "1. Analyse de complexité Big-O",
-    "d_en": "Understand how algorithms scale with input size: O(1) constant, O(log N) logarithmic, O(N) linear, and O(N^2) quadratic.",
-    "d_ar": "افهم كيف يتأثر أداء الكود بزيادة حجم البيانات وميّز بين الحلول السريعة والبطيئة.",
-    "d_fr": "Comprenez comment les algorithmes évoluent : O(1), O(log N), O(N) et O(N^2).",
-    "code": "// O(1) - Constant Time\nfunction getFirst(arr) { return arr[0]; }\n\n// O(N) - Linear Time\nfunction findMax(arr) {\n  let max = -Infinity;\n  for (let x of arr) if (x > max) max = x;\n  return max;\n}"
+    "t_fr": "1. Analyse de Complexité Big-O",
+    "d_en": "Learn how senior engineers evaluate algorithm efficiency. Master time and space complexity: O(1), O(log n), O(n), O(n log n), O(n²), and O(2ⁿ).",
+    "d_ar": "فهم المعيار الهندسي لتقييم كفاءة الخوارزميات: حساب استهلاك الوقت والذاكرة والتفريق بين الأداء اللحظي O(1) والنمو الأسي O(2ⁿ).",
+    "d_fr": "Apprenez à mesurer l'efficacité de vos algorithmes en temps et en mémoire avec la notation asymptotique Big-O.",
+    "code": "// O(1) Constant Time vs O(n) Linear Time\nfunction getFirst(arr) { return arr[0]; } // O(1)\n\nfunction findElement(arr, target) { // O(n)\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] === target) return i;\n  }\n  return -1;\n}"
   },
   {
-    "icon": "fa-magnifying-glass",
+    "icon": "fa-table-list",
+    "badge": "badge-modern",
+    "t_en": "2. Arrays & Fast String Manipulation",
+    "t_ar": "2. هياكل المصفوفات ومعالجة النصوص السريعة",
+    "t_fr": "2. Tableaux & Manipulation de Chaînes",
+    "d_en": "Master memory allocation in static vs dynamic arrays. Solve real interview problems involving prefix sums, in-place rotations, and anagram detection.",
+    "d_ar": "التعامل مع المصفوفات في الذاكرة: مصفوفات التراكم (Prefix Sum)، عكس النصوص وتدوير المصفوفات بدون استهلاك ذاكرة إضافية.",
+    "d_fr": "Manipulez les structures de tableaux et résolvez des problèmes classiques de fenêtres et sommes de préfixes.",
+    "code": "// Running Sum / Prefix Sum Array O(n)\nfunction runningSum(nums) {\n  for (let i = 1; i < nums.length; i++) {\n    nums[i] += nums[i - 1];\n  }\n  return nums;\n}"
+  },
+  {
+    "icon": "fa-hashtag",
     "badge": "badge-important",
-    "t_en": "2. Binary Search (O(log N))",
-    "t_ar": "2. البحث الثنائي (Binary Search)",
-    "t_fr": "2. Recherche Binaire",
-    "d_en": "Find target items in sorted arrays in logarithmic time by repeatedly dividing search space in half.",
-    "d_ar": "ابحث عن أي قيمة في مصفوفة مرتبة في أجزاء من الملي ثانية عن طريق تقسيم النطاق للنصف.",
-    "d_fr": "Trouvez un élément dans un tableau trié en divisant l'espace de recherche par deux.",
-    "code": "function binarySearch(arr, target) {\n  let left = 0, right = arr.length - 1;\n  while (left <= right) {\n    const mid = Math.floor((left + right) / 2);\n    if (arr[mid] === target) return mid;\n    if (arr[mid] < target) left = mid + 1;\n    else right = mid - 1;\n  }\n  return -1;\n}"
+    "t_en": "3. Hash Maps & Hash Sets (O(1) Lookups)",
+    "t_ar": "3. جداول التجزئة والبحث اللحظي O(1)",
+    "t_fr": "3. Tables de Hachage & Ensembles (O(1))",
+    "d_en": "Trade space for lightning-fast time complexity. Solve the classic Two Sum problem in linear O(n) time using hash tables instead of quadratic O(n²) nested loops.",
+    "d_ar": "استخدام جداول الـ Hash للوصول اللحظي للبيانات O(1): حل مسألة Two Sum الشهيرة في وقت خطي بدلاً من الحلقات المتداخلة البطيئة.",
+    "d_fr": "Exploitez les tables de hachage pour convertir des recherches quadratiques lentes O(n²) en recherches linéaires ultra-rapides O(n).",
+    "code": "function twoSum(nums, target) {\n  const map = new Map();\n  for (let i = 0; i < nums.length; i++) {\n    const complement = target - nums[i];\n    if (map.has(complement)) return [map.get(complement), i];\n    map.set(nums[i], i);\n  }\n  return [];\n}"
   },
   {
-    "icon": "fa-tree",
+    "icon": "fa-arrows-left-right",
+    "badge": "badge-modern",
+    "t_en": "4. Two Pointers & Sliding Window Patterns",
+    "t_ar": "4. تقنيات المؤشرين والنافذة المنزلقة (Two Pointers)",
+    "t_fr": "4. Deux Pointeurs & Fenêtre Glissante",
+    "d_en": "Essential algorithmic patterns for sub-array problems, palindrome verification, trapping rainwater, and maximum sum subarrays.",
+    "d_ar": "أهم الأنماط المستخدمة في المقابلات التقنية لشركات التكنولوجيا الكبرى: معالجة النصوص المتناظرة واستخراج أطول سلسلة فرعية بدون تكرار.",
+    "d_fr": "Deux techniques incontournables pour résoudre les problèmes d'intervalles et de sous-chaînes optimales.",
+    "code": "// Check Palindrome with Two Pointers O(n) time, O(1) space\nfunction isPalindrome(s) {\n  let left = 0, right = s.length - 1;\n  while (left < right) {\n    if (s[left] !== s[right]) return false;\n    left++; right--;\n  }\n  return true;\n}"
+  },
+  {
+    "icon": "fa-link",
+    "badge": "badge-modern",
+    "t_en": "5. Singly & Doubly Linked Lists",
+    "t_ar": "5. القوائم المتصلة والعمليات على المؤشرات",
+    "t_fr": "5. Listes Chaînées Simples & Doubles",
+    "d_en": "Understand dynamic pointer structures in memory. Implement list reversal, cycle detection with Floyd's Tortoise and Hare algorithm, and node deletion.",
+    "d_ar": "بنية القوائم المتصلة في الذاكرة العشوائية: عكس القائمة المتصلة، وكشف الحلقات الدائرية بخوارزمية السلحفاة والأرنب.",
+    "d_fr": "Comprenez la manipulation des pointeurs et détectez les boucles infinies avec l'algorithme du lièvre et de la tortue.",
+    "code": "function reverseList(head) {\n  let prev = null, curr = head;\n  while (curr) {\n    let next = curr.next;\n    curr.next = prev;\n    prev = curr;\n    curr = next;\n  }\n  return prev;\n}"
+  },
+  {
+    "icon": "fa-layer-group",
+    "badge": "badge-modern",
+    "t_en": "6. Stacks & Queues (LIFO & FIFO Applications)",
+    "t_ar": "6. الأكوام وطوابير الانتظار (Stacks & Queues)",
+    "t_fr": "6. Piles (LIFO) & Files d'Attente (FIFO)",
+    "d_en": "Solve parenthetical validation (Valid Parentheses), evaluate arithmetic expressions, and implement breadth-first search queues and undo-redo stacks.",
+    "d_ar": "تطبيقات الأكوام وطوابير الانتظار في الحياة العملية: التحقق من إغلاق الأقواس البرمجية، وأنظمة التراجع (Undo) في المحررات.",
+    "d_fr": "Implémentez la validation d'expressions et les mécanismes d'annulation grâce aux structures de piles et files.",
+    "code": "function isValidParentheses(s) {\n  const stack = [];\n  const map = { ')': '(', '}': '{', ']': '[' };\n  for (let char of s) {\n    if (!map[char]) stack.push(char);\n    else if (stack.pop() !== map[char]) return false;\n  }\n  return stack.length === 0;\n}"
+  },
+  {
+    "icon": "fa-magnifying-glass-chart",
+    "badge": "badge-important",
+    "t_en": "7. Binary Search & Divide and Conquer",
+    "t_ar": "7. خوارزمية البحث الثنائي (O(log n))",
+    "t_fr": "7. Recherche Binaire & Diviser pour Régner",
+    "d_en": "Search through millions of sorted items in just 20 comparisons. Master lower/upper bounds and binary searching on monotonic solution spaces.",
+    "d_ar": "البحث في مصفوفات تحتوي على ملايين العناصر خلال 20 خطوة فقط بتقسيم النطاق إلى النصف في كل خطوة O(log n).",
+    "d_fr": "Effectuez des recherches fulgurantes en O(log n) dans des collections triées en divisant l'espace de recherche.",
+    "code": "function binarySearch(arr, target) {\n  let low = 0, high = arr.length - 1;\n  while (low <= high) {\n    let mid = Math.floor((low + high) / 2);\n    if (arr[mid] === target) return mid;\n    if (arr[mid] < target) low = mid + 1;\n    else high = mid - 1;\n  }\n  return -1;\n}"
+  },
+  {
+    "icon": "fa-sitemap",
+    "badge": "badge-modern",
+    "t_en": "8. Binary Trees, BST & Tree Traversals",
+    "t_ar": "8. هياكل الأشجار الثنائية وطرق التصفح (DFS & BFS)",
+    "t_fr": "8. Arbres Binaires & Parcours (DFS / BFS)",
+    "d_en": "Explore tree hierarchy: Binary Search Trees (BST), Pre-order, In-order, Post-order Depth First Search (DFS), and Level-order Breadth First Search (BFS).",
+    "d_ar": "بناء الأشجار الثنائية وطرق التنقل داخلها: البحث بالعمق (DFS) واستخراج القيم بالترتيب، والبحث بالعرض (BFS) عبر المستويات.",
+    "d_fr": "Explorez les structures d'arbres binaires et maîtrisez les parcours en profondeur et en largeur.",
+    "code": "// Maximum Depth of Binary Tree (DFS)\nfunction maxDepth(root) {\n  if (!root) return 0;\n  return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));\n}"
+  },
+  {
+    "icon": "fa-arrow-down-a-z",
+    "badge": "badge-modern",
+    "t_en": "9. Efficient Sorting Algorithms (Merge Sort & Quick Sort)",
+    "t_ar": "9. خوارزميات الترتيب السريع والدمج (Merge & Quick Sort)",
+    "t_fr": "9. Algorithmes de Tri Efficaces (Merge & Quick)",
+    "d_en": "Understand how production systems sort data in O(n log n) time. Compare recursive partitioning, divide-and-conquer guarantees, and memory tradeoffs.",
+    "d_ar": "مقارنة خوارزميات الترتيب الاحترافية O(n log n) ومعرفة سبب تفوق Quick Sort و Merge Sort على الخوارزميات البدائية البطيئة.",
+    "d_fr": "Comparez les performances des algorithmes de tri professionnels et comprenez leur fonctionnement récursif.",
+    "code": "// Merge Sort O(n log n)\nfunction mergeSort(arr) {\n  if (arr.length <= 1) return arr;\n  const mid = Math.floor(arr.length / 2);\n  const left = mergeSort(arr.slice(0, mid));\n  const right = mergeSort(arr.slice(mid));\n  return merge(left, right);\n}"
+  },
+  {
+    "icon": "fa-brain",
     "badge": "badge-pro",
-    "t_en": "3. Binary Trees & Traversal",
-    "t_ar": "3. الأشجار الثنائية وطرق التنقل",
-    "t_fr": "3. Arbres Binaires",
-    "d_en": "Traverse and manipulate hierarchical tree structures using Breadth-First (BFS) and Depth-First Search (DFS).",
-    "d_ar": "تصفح وتنقّل داخل الأشجار وهياكل البيانات الهرمية باستخدام تقنيات BFS و DFS.",
-    "d_fr": "Parcourez les arbres binaires avec les algorithmes BFS et DFS.",
-    "code": "class TreeNode {\n  constructor(val, left = null, right = null) {\n    this.val = val;\n    this.left = left;\n    this.right = right;\n  }\n}\n\nfunction inorder(root) {\n  if (!root) return;\n  inorder(root.left);\n  console.log(root.val);\n  inorder(root.right);\n}"
+    "t_en": "10. Dynamic Programming Fundamentals (Memoization & Tabulation)",
+    "t_ar": "10. مدخل إلى البرمجة الديناميكية (Dynamic Programming)",
+    "t_fr": "10. Programmation Dynamique (Mémoïsation & Tabulation)",
+    "d_en": "Turn exponential O(2ⁿ) time complexity into linear O(n) time by storing the solutions of overlapping subproblems. Master Fibonacci and climbing stairs.",
+    "d_ar": "تحويل المسائل ذات التعقيد الأسي البطيء جداً O(2ⁿ) إلى حلول فورية خطية O(n) بتخزين نتائج الحسابات السابقة (Memoization).",
+    "d_fr": "Optimisez la résolution de problèmes complexes en mémorisant les sous-résultats pour un temps d'exécution linéaire.",
+    "code": "// Fibonacci with Memoization O(n) time\nfunction fib(n, memo = {}) {\n  if (n in memo) return memo[n];\n  if (n <= 1) return n;\n  memo[n] = fib(n - 1, memo) + fib(n - 2, memo);\n  return memo[n];\n}"
   }
 ];
 

@@ -134,37 +134,114 @@
 <script>
   const courseLessons = [
   {
-    "icon": "fa-mobile-screen",
+    "icon": "fa-laptop-code",
     "badge": "badge-modern",
-    "t_en": "1. What is Kotlin for Android?",
-    "t_ar": "1. لماذا Kotlin لتطبيقات Android؟",
-    "t_fr": "1. Pourquoi Kotlin ?",
-    "d_en": "Kotlin is Google's official preferred language for Android, featuring concise syntax, null safety, and full Java interoperability.",
-    "d_ar": "Kotlin هي اللغة الرسمية المفضلة من Google لتطبيقات Android، تتميز بالأمان ضد أخطاء Null وسرعة الأداء.",
-    "d_fr": "Kotlin est le langage officiel recommandé par Google pour développer des applications Android natives.",
-    "code": "fun main() {\n    val developer = \"Bilal\"\n    println(\"Hello Android with $developer!\")\n}"
+    "t_en": "1. Kotlin Fundamentals & Modern JVM Interoperability",
+    "t_ar": "1. أساسيات لغة كوتلن والتوافق مع منصة جافا (JVM)",
+    "t_fr": "1. Fondamentaux Kotlin & Interopérabilité JVM",
+    "d_en": "Learn why Google made Kotlin the preferred language for Android development. Enjoy 100% bidirectional interoperability with existing Java code with concise syntax.",
+    "d_ar": "تعرف على لغة كوتلن المعتمدة رسمياً من جوجل لتطوير تطبيقات الأندرويد، وتوافقها الكامل مع جافا مع اختصار هائل في حجم الكود البرمجي.",
+    "d_fr": "Découvrez le langage officiel recommandé par Google pour Android, 100% interopérable avec Java et d'une concision exemplaire.",
+    "code": "// Compact, expressive Kotlin main function\nfun main() {\n    val greeting = \"Welcome to Kotlin Docs!\"\n    println(greeting)\n}"
+  },
+  {
+    "icon": "fa-shield-halved",
+    "badge": "badge-important",
+    "t_en": "2. Null Safety & The Billion-Dollar Mistake",
+    "t_ar": "2. الحماية الصارمة من أخطاء الـ Null (Null Safety)",
+    "t_fr": "2. Sécurité Anti-Null & Opérateurs Sécurisés",
+    "d_en": "Eliminate NullPointerExceptions forever. Kotlin distinguishes nullable types (String?) from non-nullable types (String) at compile time using safe calls (?.) and Elvis (?:).",
+    "d_ar": "القضاء على أشهر خطأ برمجي (NullPointerException) بفضل نظام الأنواع الذكي في كوتلن، واستخدام معاملات الأمان (?.) ومعامل إلفيس (?:).",
+    "d_fr": "Dites adieu aux NullPointerException grâce au typage strict de Kotlin et à l'opérateur Elvis (?:).",
+    "code": "var nonNullable: String = \"Coding Life\" // Cannot be null\nvar nullable: String? = null           // Explicitly allows null\n\n// Safe call with Elvis fallback\nval length = nullable?.length ?: 0\nprintln(\"Length: $length\") // Outputs: 0"
   },
   {
     "icon": "fa-shapes",
-    "badge": "badge-important",
-    "t_en": "2. Jetpack Compose (Declarative UI)",
-    "t_ar": "2. واجهات Jetpack Compose الحديثة",
-    "t_fr": "2. UI Déclarative avec Jetpack Compose",
-    "d_en": "Build Android UIs purely in Kotlin code without bulky XML layout files.",
-    "d_ar": "ابنِ واجهات المستخدم بكود Kotlin مباشر ومرن وبدون الحاجة لملفات XML المعقدة.",
-    "d_fr": "Créez des interfaces Android modernes directement en code Kotlin sans fichiers XML.",
-    "code": "@Composable\nfun UserCard(name: String) {\n    Card(modifier = Modifier.padding(16.dp)) {\n        Text(text = \"Developer: $name\", style = MaterialTheme.typography.h6)\n    }\n}"
+    "badge": "badge-modern",
+    "t_en": "3. Data Classes, Sealed Classes & Pattern Matching",
+    "t_ar": "3. كائنات البيانات (Data Classes) والفئات المغلقة",
+    "t_fr": "3. Data Classes, Classes Scellées & Pattern Matching",
+    "d_en": "Generate equals(), hashCode(), toString(), and copy() automatically with data classes. Model exhaustive domain states with sealed classes and when expressions.",
+    "d_ar": "إنشاء كائنات البيانات في سطر واحد دون كتابة Getters و Setters يدوياً، وتمثيل حالات التطبيق بدقة عبر Sealed Classes وتعبير when القوي.",
+    "d_fr": "Générez automatiquement les méthodes utilitaires avec les data classes et modélisez des états stricts avec les sealed classes.",
+    "code": "data class Developer(val name: String, val age: Int, val role: String)\n\nsealed class NetworkState {\n    object Loading : NetworkState()\n    data class Success(val data: List<String>) : NetworkState()\n    data class Error(val message: String) : NetworkState()\n}"
+  },
+  {
+    "icon": "fa-wand-magic-sparkles",
+    "badge": "badge-modern",
+    "t_en": "4. Extension Functions & Infix Notation",
+    "t_ar": "4. دوال التوسيع (Extension Functions) وإضافة الميزات",
+    "t_fr": "4. Fonctions d'Extension & Notation Infix",
+    "d_en": "Extend existing classes with new capabilities without modifying their source code or using inheritance patterns.",
+    "d_ar": "إضافة دوال جديدة لأي فئة موجودة في النظام (مثل فئة String) دون الحاجة لتعديل الكود الأصلي أو استخدام الوراثة.",
+    "d_fr": "Enrichissez n'importe quelle classe existante avec de nouvelles méthodes grâce aux fonctions d'extension.",
+    "code": "// Extend String class with validation logic\nfun String.isValidEmail(): Boolean {\n    return this.contains(\"@\") && this.contains(\".\")\n}\n\nval email = \"admin@codinglife.site\"\nprintln(email.isValidEmail()) // true"
+  },
+  {
+    "icon": "fa-list-check",
+    "badge": "badge-modern",
+    "t_en": "5. Collections & Functional Pipelines",
+    "t_ar": "5. المجموعات والدوال الوظيفية (map, filter, reduce)",
+    "t_fr": "5. Collections & Traitement Fonctionnel",
+    "d_en": "Write declarative transformations over lists, sets, and maps: filter, map, flatMap, reduce, associateBy, and lazy evaluation with Sequences.",
+    "d_ar": "معالجة القوائم والمجموعات بأسلوب البرمجة الوظيفية الأنيق: تصفية، تحويل، ودمج البيانات بأقل عدد من الأسطر وبأعلى كفاءة.",
+    "d_fr": "Manipulez les collections de manière déclarative et concise avec les opérations filter, map et reduce.",
+    "code": "val numbers = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)\nval evenSquares = numbers\n    .filter { it % 2 == 0 }\n    .map { it * it }\nprintln(evenSquares) // [4, 16, 36, 64, 100]"
   },
   {
     "icon": "fa-bolt",
+    "badge": "badge-important",
+    "t_en": "6. Coroutines & Asynchronous Programming",
+    "t_ar": "6. الكوروتين (Coroutines) والبرمجة غير المتزامنة",
+    "t_fr": "6. Coroutines & Programmation Asynchrone",
+    "d_en": "Run millions of lightweight background tasks concurrently without blocking threads. Master suspend functions, Dispatchers (IO, Main, Default), and async/await.",
+    "d_ar": "تشغيل آلاف المهام في الخلفية دون استهلاك موارد المعالج أو تجميد واجهة المستخدم عبر Coroutines والدوال المعلقة (suspend).",
+    "d_fr": "Exécutez des tâches asynchrones ultra-légères sans bloquer les threads système grâce aux Coroutines de Kotlin.",
+    "code": "import kotlinx.coroutines.*\n\nsuspend fun fetchUserData(): String {\n    delay(1000) // Simulates non-blocking network call\n    return \"User Profile Loaded\"\n}\n\nfun main() = runBlocking {\n    val data = async(Dispatchers.IO) { fetchUserData() }\n    println(data.await())\n}"
+  },
+  {
+    "icon": "fa-water",
+    "badge": "badge-modern",
+    "t_en": "7. Reactive Streams with Kotlin Flows",
+    "t_ar": "7. تدفق البيانات المستمر عبر Kotlin Flows",
+    "t_fr": "7. Flux Réactifs avec Kotlin Flow",
+    "d_en": "Emit multiple sequentially ordered asynchronous values using Kotlin Flow. Handle live streaming data, search debouncing, and StateFlow in UI architectures.",
+    "d_ar": "بث البيانات الحية في الوقت الفعلي باستخدام Kotlin Flow وتحديث الواجهات تلقائياً مع معالجة الأخطاء.",
+    "d_fr": "Émettez des flux continus de données asynchrones avec Flow et StateFlow pour des architectures réactives.",
+    "code": "import kotlinx.coroutines.flow.*\nimport kotlinx.coroutines.*\n\nfun countdownFlow(): Flow<Int> = flow {\n    for (i in 3 downTo 1) {\n        emit(i)\n        delay(1000)\n    }\n}\n\nfun main() = runBlocking {\n    countdownFlow().collect { count -> println(\"Launch in: $count\") }\n}"
+  },
+  {
+    "icon": "fa-mobile-screen",
+    "badge": "badge-modern",
+    "t_en": "8. Modern Android Development with Jetpack Compose",
+    "t_ar": "8. بناء واجهات أندرويد الحديثة عبر Jetpack Compose",
+    "t_fr": "8. Android Moderne avec Jetpack Compose",
+    "d_en": "Build native Android user interfaces declaratively using Jetpack Compose instead of legacy XML layouts. State-driven rendering and reactive UI state hoisting.",
+    "d_ar": "تصميم واجهات تطبيقات أندرويد المعاصرة بأسلوب التصريح البرمجي الكامل عبر Jetpack Compose والاستغناء التام عن ملفات XML القديمة.",
+    "d_fr": "Créez des interfaces Android natives de manière déclarative avec Jetpack Compose et une gestion d'état réactive.",
+    "code": "@Composable\nfun GreetingCard(name: String) {\n    Card(shape = RoundedCornerShape(12.dp), modifier = Modifier.padding(16.dp)) {\n        Text(text = \"Hello, $name!\", style = MaterialTheme.typography.headlineMedium)\n    }\n}"
+  },
+  {
+    "icon": "fa-server",
+    "badge": "badge-modern",
+    "t_en": "9. Backend Services with Ktor & Spring Boot",
+    "t_ar": "9. بناء الخوادم والـ APIs السريعة عبر Ktor",
+    "t_fr": "9. Développement Backend avec Ktor",
+    "d_en": "Build lightweight, asynchronous microservices and WebSockets using the official Ktor framework or Spring Boot with Kotlin support.",
+    "d_ar": "بناء خوادم ويب خفيفة وسريعة جداً لمعالجة ملايين الطلبات باستخدام إطار عمل Ktor الرسمي أو Spring Boot.",
+    "d_fr": "Développez des microservices et APIs REST asynchrones performants avec le framework Ktor de JetBrains.",
+    "code": "// Ktor Server Endpoint\nrouting {\n    get(\"/api/health\") {\n        call.respond(mapOf(\"status\" to \"healthy\", \"timestamp\" to System.currentTimeMillis()))\n    }\n}"
+  },
+  {
+    "icon": "fa-earth-americas",
     "badge": "badge-pro",
-    "t_en": "3. Kotlin Coroutines (Async Logic)",
-    "t_ar": "3. المعالجة غير المتزامنة (Coroutines)",
-    "t_fr": "3. Coroutines Asynchrones",
-    "d_en": "Execute background network tasks smoothly without blocking the main UI thread.",
-    "d_ar": "نفّذ اتصالات الإنترنت والعمليات الثقيلة في الخلفية بدون تجميد الشاشة أو التأثير على سلاسة التطبيق.",
-    "d_fr": "Exécutez des tâches réseau en arrière-plan sans bloquer l'interface utilisateur.",
-    "code": "viewModelScope.launch(Dispatchers.IO) {\n    val user = apiService.fetchProfile(userId)\n    withContext(Dispatchers.Main) {\n        uiState.value = Success(user)\n    }\n}"
+    "t_en": "10. Kotlin Multiplatform (KMP) Mobile & Desktop",
+    "t_ar": "10. التطوير المتقاطع عبر Kotlin Multiplatform (KMP)",
+    "t_fr": "10. Kotlin Multiplatform (KMP) & Futur",
+    "d_en": "Share core business logic, networking, and data layers between iOS, Android, Desktop, and Web while maintaining 100% native UI performance.",
+    "d_ar": "كتابة منطق التطبيق والاتصال بالإنترنت مرة واحدة ومشاركته بين هواتف أندرويد وآيفون (iOS) والكمبيوتر بأداء أصيل كامل.",
+    "d_fr": "Partagez votre logique métier entre iOS et Android tout en conservant une expérience utilisateur 100% native.",
+    "code": "// Common code shared between Android and iOS\nexpect class PlatformInfo() {\n    val platformName: String\n}"
   }
 ];
 

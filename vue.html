@@ -134,48 +134,114 @@
 <script>
   const courseLessons = [
   {
-    "icon": "fa-info-circle",
+    "icon": "fa-v",
     "badge": "badge-modern",
-    "t_en": "1. What is Vue.js?",
-    "t_ar": "1. ما هو Vue.js؟",
-    "t_fr": "1. Qu'est-ce que Vue.js ?",
-    "d_en": "Vue.js is an approachable, performant and versatile framework for building modern web user interfaces.",
-    "d_ar": "Vue.js هو إطار عمل تدريجي وعالي الأداء لبناء واجهات مستخدم الويب الحديثة.",
-    "d_fr": "Vue.js est un framework progressif, performant et polyvalent pour créer des interfaces web.",
-    "code": "import { createApp, ref } from \"vue\";\n\nconst app = createApp({\n  setup() {\n    const message = ref(\"Hello Vue 3!\");\n    return { message };\n  }\n}).mount(\"#app\");"
+    "t_en": "1. The Modern Vue 3 & Composition API Paradigm",
+    "t_ar": "1. أساسيات Vue 3 ونظام Composition API الحديث",
+    "t_fr": "1. Vue 3 & Composition API Moderne",
+    "d_en": "Discover why Vue is celebrated for its approachable, performant, and versatile developer experience. Learn Single File Components (.vue) and <script setup>.",
+    "d_ar": "تعرف على إطار عمل Vue 3 ومميزاته الفائقة وسهولة تعلمه، مع التركيز على نمط Composition API وكتابة الكود داخل ملفات .vue النظيفة.",
+    "d_fr": "Découvrez la puissance et l'élégance de Vue 3 grâce aux composants monofichiers (.vue) et à la syntaxe <script setup>.",
+    "code": "<script setup>\nimport { ref } from 'vue';\nconst message = ref('Welcome to Vue 3 at Coding Life!');\n<\/script>\n\n<template>\n  <h1 class=\"title\">{{ message }}</h1>\n</template>"
   },
   {
-    "icon": "fa-atom",
+    "icon": "fa-arrows-rotate",
     "badge": "badge-important",
-    "t_en": "2. Composition API & Reactivity",
-    "t_ar": "2. واجهة التكوين (Composition API) والتفاعلية",
-    "t_fr": "2. Composition API & Réactivité",
-    "d_en": "Use ref() for primitive values and reactive() for complex state objects.",
-    "d_ar": "استخدم ref() للقيم البسيطة و reactive() للكائنات المعقدة لإدارة الحالة التفاعلية.",
-    "d_fr": "Utilisez ref() pour les primitives et reactive() pour les objets d'état complexes.",
-    "code": "import { ref, computed } from \"vue\";\n\nconst count = ref(0);\nconst double = computed(() => count.value * 2);\n\nfunction increment() {\n  count.value++;\n}"
+    "t_en": "2. Reactivity Core: ref, reactive & toRefs",
+    "t_ar": "2. إدارة الحالة التفاعلية عبر ref و reactive",
+    "t_fr": "2. Réactivité Fondamentale (ref, reactive)",
+    "d_en": "Understand Vue's ES6 Proxy reactivity system. Differentiate primitive value tracking with ref() vs complex object reactivity with reactive().",
+    "d_ar": "كيف يعمل نظام التفاعل التلقائي في Vue 3 بالاعتماد على Javascript Proxies، والفرق بين ref للقيم البسيطة و reactive للكائنات المعقدة.",
+    "d_fr": "Maîtrisez le moteur de réactivité de Vue 3 basé sur les Proxies JavaScript pour synchroniser l'état et l'interface.",
+    "code": "<script setup>\nimport { ref, reactive } from 'vue';\n\nconst count = ref(0);\nconst state = reactive({ user: 'Bilal', role: 'Engineer' });\n\nfunction increment() {\n  count.value++;\n}\n<\/script>"
   },
   {
     "icon": "fa-code",
     "badge": "badge-modern",
-    "t_en": "3. Template Directives (v-if, v-for, v-model)",
-    "t_ar": "3. توجيهات القوالب (Directives)",
-    "t_fr": "3. Directives de template",
-    "d_en": "Bind data bidirectionally with v-model, loop with v-for, and render conditionally with v-if.",
-    "d_ar": "ربط البيانات ثنائي الاتجاه بـ v-model، التكرار بـ v-for، والعرض الشرطي بـ v-if.",
-    "d_fr": "Liez les données avec v-model, itérez avec v-for et conditionnez avec v-if.",
-    "code": "<template>\n  <input v-model=\"username\" placeholder=\"Enter name\" />\n  <p v-if=\"username\">Hello, {{ username }}!</p>\n  <ul>\n    <li v-for=\"item in items\" :key=\"item.id\">{{ item.name }}</li>\n  </ul>\n</template>"
+    "t_en": "3. Directives Mastery: v-if, v-for, v-model & v-bind",
+    "t_ar": "3. توجيهات القوالب الأساسية (v-if, v-for, v-model)",
+    "t_fr": "3. Directives Essentielles (v-if, v-for, v-model)",
+    "d_en": "Control DOM rendering conditionally with v-if/v-show, render dynamic lists with v-for and keys, and bind two-way form data seamlessly with v-model.",
+    "d_ar": "التحكم في عناصر الصفحة: العرض الشرطي (v-if)، تكرار القوائم (v-for)، والربط ثنائي الاتجاه مع نماذج الإدخال عبر (v-model).",
+    "d_fr": "Contrôlez le DOM de manière déclarative avec les directives natives pour les conditions, les boucles et les formulaires.",
+    "code": "<template>\n  <input v-model=\"searchQuery\" placeholder=\"Search lessons...\" />\n  <ul v-if=\"results.length > 0\">\n    <li v-for=\"item in results\" :key=\"item.id\">{{ item.name }}</li>\n  </ul>\n  <p v-else>No results found.</p>\n</template>"
+  },
+  {
+    "icon": "fa-calculator",
+    "badge": "badge-modern",
+    "t_en": "4. Computed Properties & Side-Effect Watchers",
+    "t_ar": "4. القيم المحسوبة (computed) ومراقبة المتغيرات (watch)",
+    "t_fr": "4. Propriétés Calculées & Observateurs (watch)",
+    "d_en": "Compute cached derived state automatically with computed(). Monitor variable changes, trigger API requests, and handle side effects with watch() and watchEffect().",
+    "d_ar": "حساب القيم المشتقة تلقائياً مع ميزة الـ Cache عبر computed()، ومراقبة التغيرات في المتغيرات لتنفيذ دوال برمجية عبر watch().",
+    "d_fr": "Optimisez vos calculs dérivés grâce au cache intelligent de computed() et interceptez les changements d'état avec watch().",
+    "code": "<script setup>\nimport { ref, computed, watch } from 'vue';\n\nconst price = ref(100);\nconst discount = ref(0.2);\nconst finalPrice = computed(() => price.value * (1 - discount.value));\n\nwatch(finalPrice, (newVal) => {\n  console.log('Price updated to:', newVal);\n});\n<\/script>"
+  },
+  {
+    "icon": "fa-puzzle-piece",
+    "badge": "badge-modern",
+    "t_en": "5. Component Props, Custom Events ($emit) & Slots",
+    "t_ar": "5. المكونات، تبادل البيانات (Props) والأحداث ($emit)",
+    "t_fr": "5. Composants, Props & Événements ($emit)",
+    "d_en": "Architect scalable component hierarchies. Pass data down via defineProps, emit custom events up via defineEmits, and customize templates with Slots.",
+    "d_ar": "بناء مكونات قابلة لإعادة الاستخدام: إرسال البيانات من الأب إلى الابن عبر Props، وإرسال الأحداث للأعلى عبر emit، واستخدام الـ Slots للقوالب المرنة.",
+    "d_fr": "Communiquez efficacement entre composants parents et enfants avec defineProps, defineEmits et les slots personnalisables.",
+    "code": "<script setup>\ndefineProps<{ title: string; views: number }>();\nconst emit = defineEmits<['like']>();\n<\/script>\n\n<template>\n  <div class=\"card\">\n    <h3>{{ title }}</h3>\n    <button @click=\"emit('like')\">Like ({{ views }})</button>\n  </div>\n</template>"
+  },
+  {
+    "icon": "fa-cubes-stacked",
+    "badge": "badge-modern",
+    "t_en": "6. Custom Composables & Code Reuse",
+    "t_ar": "6. دوال الـ Composables المخصصة لإعادة استخدام الكود",
+    "t_fr": "6. Composables Personnalisés & Réutilisabilité",
+    "d_en": "Extract and share stateful business logic across multiple components using composable functions (Vue's answer to React custom hooks).",
+    "d_ar": "استخراج منطق العمل التفاعلي وإعادة استخدامه في مكونات مختلفة عبر دوال Composables (المقابلة لـ Custom Hooks في ريآكت).",
+    "d_fr": "Encapsulez et partagez de la logique réactive entre vos composants grâce aux fonctions composables (ex: useFetch).",
+    "code": "// composables/useMouse.js\nimport { ref, onMounted, onUnmounted } from 'vue';\n\nexport function useMouse() {\n  const x = ref(0);\n  const y = ref(0);\n  function update(e) { x.value = e.pageX; y.value = e.pageY; }\n  onMounted(() => window.addEventListener('mousemove', update));\n  onUnmounted(() => window.removeEventListener('mousemove', update));\n  return { x, y };\n}"
   },
   {
     "icon": "fa-database",
-    "badge": "badge-pro",
-    "t_en": "4. State Management with Pinia",
-    "t_ar": "4. إدارة الحالة بـ Pinia",
-    "t_fr": "4. Gestion d'état avec Pinia",
-    "d_en": "Pinia is the official, type-safe and intuitive store library for Vue applications.",
-    "d_ar": "Pinia هي المكتبة الرسمية لإدارة الحالة المشتركة في تطبيقات Vue بشكل آمن وسلس.",
-    "d_fr": "Pinia est le magasin officiel et typé pour gérer l'état dans Vue 3.",
-    "code": "import { defineStore } from \"pinia\";\n\nexport const useCartStore = defineStore(\"cart\", {\n  state: () => ({ items: [] }),\n  actions: {\n    addItem(item) { this.items.push(item); }\n  }\n});"
+    "badge": "badge-important",
+    "t_en": "7. Global State Management with Pinia",
+    "t_ar": "7. إدارة الحالة العامة للتطبيق عبر Pinia",
+    "t_fr": "7. Gestion d'État Globale avec Pinia",
+    "d_en": "The official, intuitive state management library for Vue. Learn Pinia Stores: state, getters, and asynchronous actions with full TypeScript auto-completion.",
+    "d_ar": "المكتبة الرسمية لإدارة حالة التطبيق في Vue: إنشاء Stores لمشاركة بيانات تسجيل الدخول وسلة المشتريات بين جميع الصفحات بسهولة تامة.",
+    "d_fr": "Gérez l'état global de vos applications complexes avec Pinia, la bibliothèque officielle moderne et typée.",
+    "code": "import { defineStore } from 'pinia';\n\nexport const useCartStore = defineStore('cart', {\n  state: () => ({ items: [] }),\n  getters: {\n    totalCount: (state) => state.items.length,\n  },\n  actions: {\n    addItem(item) { this.items.push(item); }\n  }\n});"
+  },
+  {
+    "icon": "fa-signs-post",
+    "badge": "badge-modern",
+    "t_en": "8. SPA Navigation with Vue Router & Navigation Guards",
+    "t_ar": "8. التوجيه وحماية الروابط عبر Vue Router",
+    "t_fr": "8. Navigation SPA & Vue Router",
+    "d_en": "Configure Single Page Application (SPA) routing, dynamic URL parameters, nested routes, and secure private pages using beforeEach Navigation Guards.",
+    "d_ar": "بناء تطبيقات الصفحة الواحدة (SPA) والتنقل الفوري بين الصفحات دون إعادة تحميل، وحماية لوحة التحكم عبر Navigation Guards.",
+    "d_fr": "Gérez la navigation sans rechargement de page avec Vue Router et sécurisez les accès avec les gardes de navigation.",
+    "code": "import { createRouter, createWebHistory } from 'vue-router';\n\nconst router = createRouter({\n  history: createWebHistory(),\n  routes: [{ path: '/dashboard', component: Dashboard, meta: { requiresAuth: true } }]\n});\n\nrouter.beforeEach((to, from, next) => {\n  if (to.meta.requiresAuth && !isAuthenticated()) next('/login');\n  else next();\n});"
+  },
+  {
+    "icon": "fa-film",
+    "badge": "badge-modern",
+    "t_en": "9. Transitions & Animations in Vue",
+    "t_ar": "9. الحركات والمؤثرات الانتقالية (Transition & TransitionGroup)",
+    "t_fr": "9. Transitions & Animations Déclaratives",
+    "d_en": "Create delightful, fluid UI transitions when elements enter or leave the DOM using Vue's built-in <Transition> and <TransitionGroup> wrapper components.",
+    "d_ar": "إضافة حركات بصرية ناعمة عند ظهور أو اختفاء العناصر في الواجهة باستخدام مكونات Transition المدمجة في Vue.",
+    "d_fr": "Animez l'entrée et la sortie des éléments du DOM en toute simplicité avec les composants natifs <Transition>.",
+    "code": "<template>\n  <Transition name=\"fade\">\n    <div v-if=\"isOpen\" class=\"modal\">Modal Content</div>\n  </Transition>\n</template>\n\n<style>\n.fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease; }\n.fade-enter-from, .fade-leave-to { opacity: 0; }\n</style>"
+  },
+  {
+    "icon": "fa-rocket",
+    "badge": "badge-modern",
+    "t_en": "10. Tooling with Vite & Production Deployment",
+    "t_ar": "10. التجميع فائق السرعة عبر Vite والنشر في الإنتاج",
+    "t_fr": "10. Outillage Vite & Déploiement en Production",
+    "d_en": "Develop with blazing-fast Hot Module Replacement (HMR) powered by Vite. Build optimized production bundles, and deploy seamlessly to Vercel, Netlify, or Nginx.",
+    "d_ar": "تطوير التطبيقات بأعلى سرعة بفضل محرك Vite، وبناء نسخ الإنتاج المحسنة ونشرها على منصات الاستضافة السحابية.",
+    "d_fr": "Profitez de la rapidité extrême de Vite en développement et préparez vos builds de production optimisés pour le déploiement.",
+    "code": "# Build for production with Vite\nnpm run build\n\n# Preview production build locally\nnpm run preview"
   }
 ];
 
@@ -208,7 +274,7 @@
   });
 </script>
 
-<script src="docs.js"></script>
-  <script src="site-polish.js"></script>
+<script src="docs.js"><\/script>
+  <script src="site-polish.js"><\/script>
 </body>
 </html>

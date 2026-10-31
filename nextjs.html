@@ -134,37 +134,114 @@
 <script>
   const courseLessons = [
   {
-    "icon": "fa-info-circle",
+    "icon": "fa-cubes",
     "badge": "badge-modern",
-    "t_en": "1. What is Next.js?",
-    "t_ar": "1. ما هو Next.js؟",
-    "t_fr": "1. Qu'est-ce que Next.js ?",
-    "d_en": "Next.js is the premier React framework providing server-side rendering, hybrid static generation, and built-in routing.",
-    "d_ar": "Next.js هو أقوى إطار عمل لـ React يمنحك الرندرة على السيرفر والتوليد الثابت بدون إعدادات معقدة.",
-    "d_fr": "Next.js est le framework React de référence offrant SSR, SSG et routage automatique.",
-    "code": "// app/page.tsx\nexport default function HomePage() {\n  return <h1>Welcome to Next.js 14!</h1>;\n}"
+    "t_en": "1. Next.js 14 & The App Router Architecture",
+    "t_ar": "1. بنية Next.js 14 ونظام App Router",
+    "t_fr": "1. Next.js 14 & Architecture App Router",
+    "d_en": "Next.js is the premier React full-stack framework. Learn how the App Router leverages nested directory-based routing, Server Components by default, and streaming SSR to deliver lightning-fast web applications.",
+    "d_ar": "نيكست جي اس هو إطار العمل الأقوى لمطوري React. تعرف على معمارية App Router، وكيف تعمل مكونات السيرفر (Server Components) افتراضياً لتحقيق أعلى أداء وسرعة تحميل.",
+    "d_fr": "Next.js est le framework React full-stack de référence. Découvrez comment l'App Router utilise les composants serveur par défaut pour des performances web inégalées.",
+    "code": "// app/page.tsx (React Server Component by default)\nexport default async function HomePage() {\n  return (\n    <main className=\"p-8 max-w-4xl mx-auto\">\n      <h1 className=\"text-4xl font-bold\">Welcome to Next.js App Router</h1>\n      <p className=\"mt-4 text-gray-600\">Rendered securely on the server with zero client-side JavaScript overhead.</p>\n    </main>\n  );\n}"
+  },
+  {
+    "icon": "fa-folder-tree",
+    "badge": "badge-modern",
+    "t_en": "2. Nested Layouts, Templates & Dynamic Routes",
+    "t_ar": "2. التخطيطات المتداخلة والتوجيه الديناميكي",
+    "t_fr": "2. Layouts Imbriqués & Routes Dynamiques",
+    "d_en": "Build persistent parent layouts with shared navigation that do not re-render between route transitions. Implement dynamic segment routes using [id] and catch-all routes [...slug].",
+    "d_ar": "بناء صفحات Layout رئيسية تشارك الهيدر والفوتر دون إعادة تحميل، وإنشاء روابط ديناميكية للمقالات والمنتجات عبر مجلدات [id] المعكوفة.",
+    "d_fr": "Créez des structures de navigation partagées et immuables avec layout.tsx, et gérez les paramètres d'URL dynamiques avec [slug].",
+    "code": "// app/blog/[id]/page.tsx\ninterface PageProps {\n  params: { id: string };\n}\n\nexport default function BlogPost({ params }: PageProps) {\n  return (\n    <article className=\"prose lg:prose-xl\">\n      <h2>Reading Post: #{params.id}</h2>\n      <p>Dynamic routing handled automatically by directory hierarchy.</p>\n    </article>\n  );\n}"
   },
   {
     "icon": "fa-server",
     "badge": "badge-important",
-    "t_en": "2. React Server Components (RSC)",
-    "t_ar": "2. مكونات الخادم (Server Components)",
-    "t_fr": "2. React Server Components",
-    "d_en": "Fetch data directly inside components on the server without client-side waterfalls or sensitive token leaks.",
-    "d_ar": "اجلب البيانات مباشرة داخل المكون على السيرفر بدون تسريب مفاتيح API وبدون تأخير في المتصفح.",
-    "d_fr": "Récupérez les données directement sur le serveur sans exposer de tokens sensibles.",
-    "code": "async function getPosts() {\n  const res = await fetch(\"https://api.example.com/posts\");\n  return res.json();\n}\n\nexport default async function Feed() {\n  const posts = await getPosts();\n  return <div>{posts.map(p => <h2 key={p.id}>{p.title}</h2>)}</div>;\n}"
+    "t_en": "3. Server Actions & Form Mutations",
+    "t_ar": "3. دوال السيرفر المباشرة (Server Actions)",
+    "t_fr": "3. Actions Serveur & Mutations de Formulaire",
+    "d_en": "Execute secure asynchronous functions directly on the server without creating explicit REST API endpoints. Mutate databases directly from form submissions with built-in progressive enhancement.",
+    "d_ar": "تنفيذ دوال برمجية مباشرة على السيرفر بدون الحاجة لبناء endpoints أو controllers. أرسل النماذج وعدل قاعدة البيانات مباشرة بأمان عالٍ.",
+    "d_fr": "Exécutez du code serveur sécurisé directement depuis vos formulaires avec 'use server', sans créer d'API REST manuelle.",
+    "code": "// app/actions.ts\n'use server';\nimport { revalidatePath } from 'next/cache';\n\nexport async function createPost(formData: FormData) {\n  const title = formData.get('title') as string;\n  // Insert directly into database securely\n  await db.post.create({ data: { title } });\n  revalidatePath('/blog');\n}"
   },
   {
-    "icon": "fa-route",
+    "icon": "fa-database",
     "badge": "badge-modern",
-    "t_en": "3. API Routes & Server Actions",
-    "t_ar": "3. مسارات API وأوامر السيرفر",
-    "t_fr": "3. Routes API & Server Actions",
-    "d_en": "Build backend REST and GraphQL endpoints or invoke asynchronous server functions directly from forms.",
-    "d_ar": "ابنِ واجهات خلفية أو استدعِ دوال السيرفر مباشرة من نماذج الإدخال بأمان.",
-    "d_fr": "Créez des endpoints API ou appelez des fonctions serveur directement depuis les formulaires.",
-    "code": "// app/api/users/route.ts\nimport { NextResponse } from \"next/server\";\n\nexport async function GET() {\n  return NextResponse.json({ users: [\"Bilal\", \"Sophia\", \"Lucas\"] });\n}"
+    "t_en": "4. Data Fetching, Caching & Revalidation",
+    "t_ar": "4. جلب البيانات والتخزين المؤقت وإعادة التحقق",
+    "t_fr": "4. Récupération de Données & Cache ISR",
+    "d_en": "Master Next.js fetch cache policies: Static Data (force-cache), Dynamic Data (no-store), and Incremental Static Regeneration (ISR) using revalidate tags.",
+    "d_ar": "التحكم في الـ Caching واسترجاع البيانات: الصفحات الثابتة فائقة السرعة، الصفحات الديناميكية المتجددة، والـ ISR لإعادة بناء المحتوى في الخلفية دون تعطيل الزائر.",
+    "d_fr": "Maîtrisez les stratégies de mise en cache du fetch : statique, dynamique et regénération incrémentielle (ISR).",
+    "code": "// Fetch data with time-based revalidation (ISR every 60 seconds)\nasync function getMarketData() {\n  const res = await fetch('https://api.example.com/rates', {\n    next: { revalidate: 60 } // Cached for 1 minute\n  });\n  return res.json();\n}"
+  },
+  {
+    "icon": "fa-network-wired",
+    "badge": "badge-modern",
+    "t_en": "5. Route Handlers & Custom REST APIs",
+    "t_ar": "5. بناء واجهات REST API عبر Route Handlers",
+    "t_fr": "5. Route Handlers & APIs REST",
+    "d_en": "Create backend REST API endpoints using route.ts. Handle GET, POST, PUT, DELETE, and PATCH HTTP methods with standard Web Request and Response objects.",
+    "d_ar": "إنشاء نقاط اتصال API داخل نفس مشروع Next.js عبر ملفات route.ts، للتعامل مع طلبات الـ Webhooks والدفع الإلكتروني وتطبيقات الموبايل.",
+    "d_fr": "Créez des points de terminaison d'API REST complets (GET, POST, DELETE) avec le nouveau standard route.ts.",
+    "code": "// app/api/users/route.ts\nimport { NextResponse } from 'next/server';\n\nexport async function GET() {\n  const users = await db.user.findMany();\n  return NextResponse.json({ success: true, data: users });\n}\n\nexport async function POST(req: Request) {\n  const body = await req.json();\n  return NextResponse.json({ message: 'User created', user: body }, { status: 201 });\n}"
+  },
+  {
+    "icon": "fa-image",
+    "badge": "badge-modern",
+    "t_en": "6. Image, Font & Script Optimization",
+    "t_ar": "6. تحسين الصور والخطوط وسرعة الموقع",
+    "t_fr": "6. Optimisation Images & Polices",
+    "d_en": "Achieve 100/100 Google Lighthouse scores using next/image (automatic WebP/AVIF compression, lazy loading, layout shift prevention) and next/font (zero layout shift local Google Fonts).",
+    "d_ar": "الحصول على العلامة الكاملة في سرعة الموقع عبر مكونات next/image لتحويل الصور تلقائياً لصيغ AVIF و WebP الحديثة، وتحميل الخطوط محلياً بدون تأخير.",
+    "d_fr": "Optimisez vos Core Web Vitals automatiquement grâce aux composants natifs next/image et next/font.",
+    "code": "import Image from 'next/image';\nimport { Outfit } from 'next/font/google';\n\nconst outfit = Outfit({ subsets: ['latin'] });\n\nexport default function Hero() {\n  return (\n    <div className={outfit.className}>\n      <Image \n        src=\"/hero-banner.png\" \n        alt=\"Platform Banner\" \n        width={1200} \n        height={630} \n        priority \n      />\n    </div>\n  );\n}"
+  },
+  {
+    "icon": "fa-shield-halved",
+    "badge": "badge-important",
+    "t_en": "7. Authentication & Protected Routes (NextAuth.js)",
+    "t_ar": "7. نظام تسجيل الدخول وحماية الروابط",
+    "t_fr": "7. Authentification & Routes Protégées",
+    "d_en": "Implement modern OAuth authentication (Google, GitHub, credentials) using Auth.js (NextAuth v5). Protect routes and server actions with session checks.",
+    "d_ar": "تفعيل تسجيل الدخول الآمن بحسابات جوجل وجيت هاب وحفظ الجلسات المشفرة، وتأمين لوحات التحكم ضد الوصول غير المصرح به.",
+    "d_fr": "Implémentez l'authentification OAuth et par mot de passe avec NextAuth / Auth.js et protégez vos pages privées.",
+    "code": "import { auth } from '@/auth';\nimport { redirect } from 'next/navigation';\n\nexport default async function DashboardPage() {\n  const session = await auth();\n  if (!session?.user) {\n    redirect('/login?callbackUrl=/dashboard');\n  }\n  return <h1>Welcome, {session.user.name}</h1>;\n}"
+  },
+  {
+    "icon": "fa-magnifying-glass",
+    "badge": "badge-modern",
+    "t_en": "8. SEO Mastery, Dynamic Metadata & Sitemaps",
+    "t_ar": "8. احتراف السيو وتوليد خرائط المواقع sitemap.xml",
+    "t_fr": "8. SEO Avancé, Métadonnées Dynamiques & Sitemap",
+    "d_en": "Generate dynamic OpenGraph social cards, canonical URLs, JSON-LD structured data, and automated sitemap.xml and robots.txt files for search engine dominance.",
+    "d_ar": "توليد البيانات الوصفية للمقالات ديناميكياً لتظهر بصور جذابة في شبكات التواصل الاجتماعي، وتوليد خرائط Sitemap تلقائياً لمحركات بحث جوجل.",
+    "d_fr": "Générez des balises Open Graph dynamiques et des fichiers sitemap.xml automatisés pour optimiser votre référencement Google.",
+    "code": "import type { Metadata } from 'next';\n\nexport async function generateMetadata({ params }): Promise<Metadata> {\n  const post = await getPost(params.id);\n  return {\n    title: post.title + ' — Coding Life',\n    description: post.summary,\n    openGraph: {\n      images: [post.coverImage]\n    }\n  };\n}"
+  },
+  {
+    "icon": "fa-shield-cat",
+    "badge": "badge-important",
+    "t_en": "9. Middleware, Geo-Routing & Security Headers",
+    "t_ar": "9. الوسطاء (Middleware) والتوجيه الجغرافي والأمان",
+    "t_fr": "9. Middleware & Sécurité Edge",
+    "d_en": "Run code at the Edge before a request is completed. Enforce authentication redirects, rate limiting, bot protection, and inject Content Security Policies (CSP).",
+    "d_ar": "تنفيذ كود وسيط على سيرفرات Edge قبل وصول الطلب للمستخدم: تحويل الروابط حسب لغة الزائر، وضع حدود للطلبات لمنع الهجمات، وتشفير الترويسات.",
+    "d_fr": "Exécutez du code en amont sur le réseau Edge pour intercepter les requêtes, gérer les redirections et sécuriser les en-têtes HTTP.",
+    "code": "// middleware.ts\nimport { NextResponse } from 'next/server';\nimport type { NextRequest } from 'next/server';\n\nexport function middleware(request: NextRequest) {\n  const token = request.cookies.get('session_token');\n  if (!token && request.nextUrl.pathname.startsWith('/admin')) {\n    return NextResponse.redirect(new URL('/login', request.url));\n  }\n  return NextResponse.next();\n}"
+  },
+  {
+    "icon": "fa-rocket",
+    "badge": "badge-modern",
+    "t_en": "10. Production Deployment, Monitoring & Vercel",
+    "t_ar": "10. النشر في الإنتاج، المراقبة، وأفضل الممارسات",
+    "t_fr": "10. Déploiement en Production & Vercel",
+    "d_en": "Deploy enterprise Next.js applications to Vercel, AWS ECS, or standalone Docker. Configure Speed Insights, OpenTelemetry tracing, and database connection pooling.",
+    "d_ar": "إطلاق تطبيقات Next.js على منصة Vercel أو سيرفرات Docker الخاصة، ومراقبة سرعة الاستجابة، وضبط الاتصال بقواعد البيانات لمنع تجاوز عدد الاتصالات.",
+    "d_fr": "Déployez sur Vercel ou conteneur Docker autonome, configurez le monitoring de performances et préparez l'infrastructure pour la haute charge.",
+    "code": "# Build and test local production bundle\nnpm run build\nnpm run start\n\n# Standalone Docker deployment\nENV PORT=3000\nENV NODE_ENV=production\nCMD [\"node\", \"server.js\"]"
   }
 ];
 

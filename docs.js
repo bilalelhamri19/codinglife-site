@@ -7,6 +7,165 @@
   "use strict";
 
   function initDocsLayout() {
+
+  const COURSE_MODULES = {
+    'python': [
+      { en: 'Python Fundamentals', ar: 'أساسيات لغة بايثون', fr: 'Fondamentaux de Python' },
+      { en: 'Control Flow & Logic', ar: 'التحكم والمنطق البرمجي', fr: 'Contrôle de Flux & Logique' },
+      { en: 'Data Structures & Collections', ar: 'هياكل البيانات والقوائم', fr: 'Structures de Données' },
+      { en: 'Functions & Modular Code', ar: 'الدوال والبرمجة المجزأة', fr: 'Fonctions & Modularité' },
+      { en: 'Object-Oriented Programming (OOP)', ar: 'البرمجة كائنية التوجه (OOP)', fr: 'Programmation Orientée Objet' }
+    ],
+    'javascript': [
+      { en: 'JavaScript Fundamentals', ar: 'أساسيات جافاسكريبت', fr: 'Fondamentaux JavaScript' },
+      { en: 'Control Flow & Modern Loops', ar: 'التحكم وحلقات التكرار', fr: 'Contrôle & Boucles' },
+      { en: 'Functions, Scope & Closures', ar: 'الدوال والنطاقات والـ Closures', fr: 'Fonctions & Closures' },
+      { en: 'Objects, Arrays & ES6+', ar: 'الكائنات والمصفوفات و ES6+', fr: 'Objets, Tableaux & ES6+' },
+      { en: 'DOM Manipulation & Events', ar: 'التحكم في المتصفح والـ DOM', fr: 'Manipulation du DOM' }
+    ],
+    'html': [
+      { en: 'HTML5 Fundamentals', ar: 'أساسيات لغة HTML5', fr: 'Fondamentaux HTML5' },
+      { en: 'Text, Formatting & Links', ar: 'النصوص والتنسيق والروابط', fr: 'Textes, Formatage & Liens' },
+      { en: 'Images, Audio & Video', ar: 'الوسائط المتعددة والصور', fr: 'Médias & Multimédia' },
+      { en: 'Tables & Semantic Elements', ar: 'الجداول والعناصر الدلالية', fr: 'Tableaux & Sémantique' },
+      { en: 'Modern Web Forms & Input', ar: 'نماذج الإدخال الحديثة', fr: 'Formulaires Modernes' }
+    ],
+    'css': [
+      { en: 'CSS3 Foundations & Cascade', ar: 'أساسيات CSS3 والتعاقب', fr: 'Fondations CSS3 & Cascade' },
+      { en: 'The Box Model & Typography', ar: 'نموذج الصندوق والخطوط', fr: 'Box Model & Typographie' },
+      { en: 'Colors, Gradients & Shadows', ar: 'الألوان والتدرجات والظلال', fr: 'Couleurs & Dégradés' },
+      { en: 'Flexbox Layout Engine', ar: 'نظام التخطيط المرن Flexbox', fr: 'Mise en page Flexbox' },
+      { en: 'CSS Grid & Responsive Systems', ar: 'نظام الشبكة والتصميم المتجاوب', fr: 'CSS Grid & Responsive' }
+    ],
+    'react': [
+      { en: 'React Core & JSX', ar: 'أساسيات ريآكت وصيغة JSX', fr: 'Fondamentaux React & JSX' },
+      { en: 'Components, Props & State', ar: 'المكونات والخصائص والحالة', fr: 'Composants & État' },
+      { en: 'Events & Conditional Rendering', ar: 'الأحداث والعرض الشرطي', fr: 'Événements & Rendu' },
+      { en: 'Lists, Keys & Forms', ar: 'القوائم والنماذج في ريآكت', fr: 'Listes & Formulaires' },
+      { en: 'Hooks Deep Dive (useEffect, Custom)', ar: 'دوال Hooks بالتفصيل', fr: 'Hooks Avancés' }
+    ],
+    'typescript': [
+      { en: 'TypeScript Foundations', ar: 'أساسيات تايب سكريبت', fr: 'Fondamentaux TypeScript' },
+      { en: 'Primitive & Literal Types', ar: 'الأنواع الأولية والثابتة', fr: 'Types Primitifs & Littéraux' },
+      { en: 'Interfaces & Type Aliases', ar: 'الواجهات والأسماء المستعارة', fr: 'Interfaces & Alias' },
+      { en: 'Functions & Type Narrowing', ar: 'الدوال وتضييق الأنواع', fr: 'Fonctions & Type Narrowing' },
+      { en: 'Generics & Utility Types', ar: 'الأنواع العامة والأنواع المساعدة', fr: 'Génériques & Utilitaires' },
+      { en: 'Classes & Enterprise Setup', ar: 'الكائنات ومشاريع المؤسسات', fr: 'Classes & Projets Entreprise' }
+    ],
+    'nextjs': [
+      { en: 'Next.js 14 & App Router Architecture', ar: 'بنية Next.js 14 ونظام App Router', fr: 'Architecture App Router' },
+      { en: 'Nested Layouts & Dynamic Routes', ar: 'التخطيطات المتداخلة والتوجيه الديناميكي', fr: 'Layouts Imbriqués & Routes' },
+      { en: 'Server Actions & Data Fetching (ISR)', ar: 'دوال السيرفر وجلب البيانات والتخزين', fr: 'Actions Serveur & Cache' },
+      { en: 'Route Handlers, Images & SEO', ar: 'واجهات API وتحسين الصور والسيو', fr: 'Route Handlers & SEO' },
+      { en: 'Middleware, Security & Vercel Deployment', ar: 'الوسطاء وتأمين التطبيقات والنشر', fr: 'Middleware & Déploiement' }
+    ],
+    'tailwind': [
+      { en: 'Utility-First Fundamentals', ar: 'فلسفة كلاسات الـ Utility والتصميم', fr: 'Approche Utility-First' },
+      { en: 'Mobile-First Responsive Design', ar: 'التصميم المتجاوب للشاشات', fr: 'Design Responsive Mobile-First' },
+      { en: 'Pseudo-States (Hover, Focus, Group)', ar: 'الحالات التفاعلية والتأثيرات', fr: 'États Interactifs & Hover' },
+      { en: 'Dark Mode & Custom Themes', ar: 'الوضع الليلي وتخصيص الألوان والسمات', fr: 'Mode Sombre & Thèmes' },
+      { en: 'Flexbox, Grid & Production Build', ar: 'تنسيق الواجهات وضغط ملفات الإنتاج', fr: 'Flexbox, Grid & Build' }
+    ],
+    'mongodb': [
+      { en: 'NoSQL Document Model & mongosh CRUD', ar: 'نموذج وثائق NoSQL وعمليات CRUD', fr: 'Modèle Document & CRUD' },
+      { en: 'Advanced Querying & Comparison Operators', ar: 'الاستعلامات المتقدمة وفلاتر المقارنة', fr: 'Requêtes Avancées & Filtres' },
+      { en: 'Indexes & Performance Tuning', ar: 'إنشاء الفهارس وتسريع أداء الاستعلامات', fr: 'Indexation & Performances' },
+      { en: 'Aggregation Pipeline Mastery', ar: 'معالجة وتجميع البيانات عبر Aggregation', fr: 'Pipeline d\'Agrégation' },
+      { en: 'Mongoose ODM, Transactions & Atlas Cloud', ar: 'ربط Mongoose والمعاملات وسحابة Atlas', fr: 'Mongoose, Transactions & Atlas' }
+    ],
+    'algorithms': [
+      { en: 'Big-O Complexity & Array Manipulation', ar: 'تحليل التعقيد الزمني ومعالجة المصفوفات', fr: 'Complexité Big-O & Tableaux' },
+      { en: 'Hash Maps & Two Pointers Patterns', ar: 'جداول التجزئة وتقنيات المؤشرين', fr: 'Tables de Hachage & Pointeurs' },
+      { en: 'Linked Lists, Stacks & Queues', ar: 'القوائم المتصلة والأكوام والطوابير', fr: 'Listes Chaînées & Piles' },
+      { en: 'Binary Search & Tree Traversals', ar: 'البحث الثنائي وهياكل الأشجار الثنائية', fr: 'Recherche Binaire & Arbres' },
+      { en: 'Sorting Algorithms & Dynamic Programming', ar: 'خوارزميات الترتيب والبرمجة الديناميكية', fr: 'Algorithmes de Tri & DP' }
+    ],
+    'cybersecurity': [
+      { en: 'Security Fundamentals & OWASP Top 10', ar: 'أساسيات الأمان وأهم 10 ثغرات ويب', fr: 'Fondamentaux & Top 10 OWASP' },
+      { en: 'SQL Injection (SQLi) & XSS Prevention', ar: 'الوقاية من ثغرات SQLi و XSS', fr: 'Injections SQL & Failles XSS' },
+      { en: 'CSRF Defense & Secure Password Hashing', ar: 'الحماية من CSRF والتشفير القوي بـ Bcrypt', fr: 'Protection CSRF & Hachage' },
+      { en: 'JWT Token Management & TLS 1.3 Encryption', ar: 'تأمين رموز JWT والتشفير أثناء النقل', fr: 'Tokens JWT & Chiffrement TLS' },
+      { en: 'API Rate Limiting & Penetration Testing', ar: 'حماية الـ APIs واختبار الاختراق الأخلاقي', fr: 'Rate Limiting & Pen Testing' }
+    ],
+    'kotlin': [
+      { en: 'Kotlin Fundamentals & Null Safety', ar: 'أساسيات لغة كوتلن والحماية من الـ Null', fr: 'Fondamentaux & Null Safety' },
+      { en: 'Data Classes & Extension Functions', ar: 'كائنات البيانات ودوال التوسيع', fr: 'Data Classes & Extensions' },
+      { en: 'Collections & Functional Pipelines', ar: 'المجموعات والبرمجة الوظيفية', fr: 'Collections & Fonctions' },
+      { en: 'Coroutines & Reactive Flows', ar: 'الكوروتين والبرمجة غير المتزامنة', fr: 'Coroutines & Flux Réactifs' },
+      { en: 'Jetpack Compose & Multiplatform (KMP)', ar: 'بناء واجهات أندرويد والتطوير المتقاطع', fr: 'Jetpack Compose & KMP' }
+    ],
+    'vue': [
+      { en: 'Vue 3 & Composition API Paradigm', ar: 'أساسيات Vue 3 ونظام Composition API', fr: 'Vue 3 & Composition API' },
+      { en: 'Reactivity Core (ref, reactive) & Directives', ar: 'إدارة الحالة التفاعلية والتوجيهات', fr: 'Réactivité & Directives' },
+      { en: 'Computed Properties, Watchers & Components', ar: 'القيم المحسوبة والمكونات والـ Props', fr: 'Computed, Watch & Composants' },
+      { en: 'Custom Composables & Pinia State', ar: 'دوال Composables وإدارة الحالة بـ Pinia', fr: 'Composables & Pinia' },
+      { en: 'Vue Router, Transitions & Vite Tooling', ar: 'التوجيه والحركات وأدوات Vite للإنتاج', fr: 'Vue Router & Déploiement' }
+    ],
+    'freelance': [
+      { en: 'Defining Your High-Value Tech Niche', ar: 'تحديد مجالك البرمجي المربح ونقاط قوتك', fr: 'Définir sa Niche Technique' },
+      { en: 'High-Converting Developer Portfolios', ar: 'تصميم معرض أعمال احترافي يجلب العقود', fr: 'Portfolio qui Convertit' },
+      { en: 'Proposals, Upwork & Outreach Strategies', ar: 'كتابة عروض العمل والمراسلة المباشرة', fr: 'Propositions & Prospection' },
+      { en: 'Pricing Models, Contracts & Invoicing', ar: 'استراتيجيات التسعير وصياغة العقود والفواتير', fr: 'Tarification & Contrats' },
+      { en: 'Time Management & Scaling to an Agency', ar: 'تنظيم الوقت وتجنب الإرهاق والتوسع', fr: 'Gestion du Temps & Agence' }
+    ],
+    'docker': [
+      { en: 'Containers & Architecture', ar: 'الحاويات البرمجية والمعمارية', fr: 'Conteneurs & Architecture' },
+      { en: 'Production Dockerfiles', ar: 'بناء ملفات Dockerfile للإنتاج', fr: 'Dockerfiles de Production' },
+      { en: 'Compose & Multi-Services', ar: 'إدارة الخدمات عبر Compose', fr: 'Docker Compose' },
+      { en: 'Volumes & Networking', ar: 'التخزين والشبكات الافتراضية', fr: 'Volumes & Réseaux' },
+      { en: 'Optimization & Multi-Stage', ar: 'تحسين الأداء وتقليص الأحجام', fr: 'Optimisation & Multi-Stage' }
+    ],
+    'linux': [
+      { en: 'Terminal Navigation & Commands', ar: 'الطرفية والتنقل الأساسي', fr: 'Terminal & Navigation' },
+      { en: 'File System & Permissions (chmod/chown)', ar: 'نظام الملفات والصلاحيات', fr: 'Système & Permissions' },
+      { en: 'Processes & Packages', ar: 'إدارة العمليات والحزم', fr: 'Processus & Paquets' },
+      { en: 'Text Processing (grep, sed, awk)', ar: 'معالجة النصوص وتصفية السجلات', fr: 'Traitement de Texte' },
+      { en: 'Bash Scripting & SSH Security', ar: 'برمجة سكربتات باش وتأمين السيرفرات', fr: 'Scripts Bash & Sécurité' }
+    ],
+    'sql': [
+      { en: 'Relational Database Foundations', ar: 'أساسيات قواعد البيانات العلائقية', fr: 'Bases Relationnelles' },
+      { en: 'CRUD Operations & Filtering', ar: 'عمليات الاستعلام والتصفية', fr: 'CRUD & Filtrage' },
+      { en: 'Aggregation & Grouping', ar: 'دوال التجميع والتحليل الإحصائي', fr: 'Agrégation & Group By' },
+      { en: 'Joins & Multi-Table Relationships', ar: 'ربط الجداول وعلاقات البيانات', fr: 'Jointures & Relations' },
+      { en: 'Indexes, Transactions & Performance', ar: 'الفهارس والعمليات الآمنة (ACID)', fr: 'Index & Performances' }
+    ],
+    'git': [
+      { en: 'Version Control Foundations', ar: 'أساسيات نظام التحكم في الإصدار', fr: 'Fondamentaux Git' },
+      { en: 'Commits & Staging Area', ar: 'تسجيل التعديلات ومنطقة التجهيز', fr: 'Commits & Staging' },
+      { en: 'Branching & Merging', ar: 'الفروع ودمج المسارات البرمجية', fr: 'Branches & Fusions' },
+      { en: 'Remote Repositories & GitHub', ar: 'المستودعات البعيدة ومنصة GitHub', fr: 'Dépôts Distants & GitHub' },
+      { en: 'Rebase, Reset & Conflict Resolution', ar: 'حل التعارضات وأوامر التراجع', fr: 'Rebase, Reset & Conflits' }
+    ],
+    'nodejs': [
+      { en: 'Node.js Runtime & Architecture', ar: 'بيئة تشغيل نود جي اس والمعمارية', fr: 'Architecture Node.js' },
+      { en: 'Modules & Package Management', ar: 'نظام الحزم والموديولات (NPM)', fr: 'Modules & NPM' },
+      { en: 'Event Loop & File System Operations', ar: 'العمليات غير المتزامنة ونظام الملفات', fr: 'Event Loop & Fichiers' },
+      { en: 'HTTP Servers & Express.js', ar: 'بناء خوادم الويب عبر Express', fr: 'Serveurs HTTP & Express' },
+      { en: 'REST APIs & Production Middleware', ar: 'واجهات REST والربط بقواعد البيانات', fr: 'APIs REST & BDD' }
+    ],
+    'php': [
+      { en: 'PHP Fundamentals & Syntax', ar: 'أساسيات لغة PHP والبنية', fr: 'Fondamentaux PHP' },
+      { en: 'Arrays & Functions', ar: 'المصفوفات والدوال في PHP', fr: 'Tableaux & Fonctions' },
+      { en: 'Form Handling & Superglobals', ar: 'معالجة النماذج والمتغيرات العامة', fr: 'Formulaires & Superglobales' },
+      { en: 'Database PDO & Security', ar: 'الاتصال بقواعد البيانات عبر PDO', fr: 'Bases de Données & PDO' },
+      { en: 'Object-Oriented PHP & Modern Features', ar: 'البرمجة الكائنية في PHP الحديثة', fr: 'PHP Orienté Objet' }
+    ],
+    'csharp': [
+      { en: 'C# Foundations & .NET Ecosystem', ar: 'أساسيات لغة سي شارب ومنصة دوت نت', fr: 'Fondamentaux C# & .NET' },
+      { en: 'Control Flow & Methods', ar: 'التحكم في التدفق والدوال', fr: 'Contrôle & Méthodes' },
+      { en: 'Object-Oriented Programming (OOP)', ar: 'البرمجة كائنية التوجه في سي شارب', fr: 'Programmation Orientée Objet' },
+      { en: 'Collections & LINQ Queries', ar: 'المجموعات واستعلامات LINQ', fr: 'Collections & LINQ' },
+      { en: 'Async/Await & Modern C# Features', ar: 'البرمجة غير المتزامنة وميزات C# الحديثة', fr: 'Asynchronisme & C# Moderne' }
+    ],
+    'flutter': [
+      { en: 'Dart Language & Flutter Architecture', ar: 'لغة دارت ومعمارية فلاتر', fr: 'Langage Dart & Architecture' },
+      { en: 'Core Widgets & Layouts', ar: 'عناصر الواجهة وتخطيط الشاشات', fr: 'Widgets & Mises en Page' },
+      { en: 'State Management (Stateful & Providers)', ar: 'إدارة الحالة في التطبيقات', fr: 'Gestion d\'État' },
+      { en: 'Navigation, Routing & Assets', ar: 'التنقل بين الشاشات والوسائط', fr: 'Navigation & Ressources' },
+      { en: 'REST APIs, Animations & Production', ar: 'واجهات API والحركات والنشر', fr: 'APIs & Production' }
+    ]
+  };
+
     // Check if this page has course lessons
     let lessonCards = Array.from(document.querySelectorAll('.docs-lesson-card, .lesson-card'));
     if (lessonCards.length === 0) return;
@@ -82,7 +241,12 @@
     sidebar.id = 'docsSidebar';
 
     let modulesHtml = '';
-    const partNames = [
+    // Determine course key from URL
+    const pagePath = window.location.pathname.toLowerCase();
+    const courseKey = Object.keys(COURSE_MODULES).find(k => pagePath.includes(k)) || 'default';
+    const courseModulesList = COURSE_MODULES[courseKey] || [];
+
+    const partNames = courseModulesList.length > 0 ? courseModulesList : [
       { en: 'Module 1: Foundations', ar: 'الوحدة 1: الأساسيات', fr: 'Module 1: Fondations' },
       { en: 'Module 2: Core Syntax & Types', ar: 'الوحدة 2: البنية والأنواع', fr: 'Module 2: Syntaxe & Types' },
       { en: 'Module 3: Control & Functions', ar: 'الوحدة 3: التحكم والدوال', fr: 'Module 3: Contrôle & Fonctions' },

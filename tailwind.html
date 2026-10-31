@@ -134,37 +134,114 @@
 <script>
   const courseLessons = [
   {
-    "icon": "fa-palette",
+    "icon": "fa-wand-magic-sparkles",
     "badge": "badge-modern",
-    "t_en": "1. The Utility-First Workflow",
-    "t_ar": "1. فلسفة Utility-First",
-    "t_fr": "1. Philosophie Utility-First",
-    "d_en": "Style elements directly in markup without writing separate CSS classes or leaving your HTML.",
-    "d_ar": "نسّق العناصر مباشرة داخل HTML بدون الحاجة لإنشاء ملفات وفئات CSS منفصلة.",
-    "d_fr": "Appliquez les styles directement dans le HTML sans quitter votre balisage.",
-    "code": "<button class=\"bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-xl shadow-lg transition duration-200\">\n  Click Me\n</button>"
+    "t_en": "1. Utility-First CSS & The Modern Mindset",
+    "t_ar": "1. فلسفة كلاسات الـ Utility والتصميم السريع",
+    "t_fr": "1. Approche Utility-First & Philosophie Moderne",
+    "d_en": "Understand why utility-first CSS revolutionizes modern web development. Stop wasting time inventing arbitrary class names and writing separate stylesheet files.",
+    "d_ar": "فهم فلسفة Utility-First التي غيرت طريقة تصميم مواقع الويب: صمم واجهات جذابة ومخصصة بالكامل مباشرة من ملف HTML دون مغادرته ودون الحاجة لتسميات كلاسات معقدة.",
+    "d_fr": "Comprenez la révolution des classes utilitaires pour composer des interfaces modernes sans écrire de feuilles de style séparées.",
+    "code": "<!-- Modern button built entirely with utility classes -->\n<button class=\"px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/25 transition-all duration-200 active:scale-95\">\n  Explore Courses\n</button>"
   },
   {
-    "icon": "fa-mobile-screen",
-    "badge": "badge-important",
-    "t_en": "2. Responsive Design (sm, md, lg, xl)",
-    "t_ar": "2. التصميم المتجاوب للشاشات",
-    "t_fr": "2. Design Responsive",
-    "d_en": "Prefix utility classes with screen breakpoints to adapt layouts seamlessly from phones to wide monitors.",
-    "d_ar": "استخدم بادئات الشاشات لتعديل التصميم تلقائيًا بين الهاتف والكمبيوتر.",
-    "d_fr": "Préfixez les classes pour adapter la mise en page à chaque taille d'écran.",
-    "code": "<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4\">\n  <div class=\"p-6 bg-slate-900 rounded-2xl border border-slate-800\">Card 1</div>\n</div>"
+    "icon": "fa-mobile-screen-button",
+    "badge": "badge-modern",
+    "t_en": "2. Mobile-First Responsive Design & Breakpoints",
+    "t_ar": "2. التصميم المتجاوب للشاشات (Mobile-First)",
+    "t_fr": "2. Design Responsive Mobile-First",
+    "d_en": "Master Tailwind's mobile-first responsive modifiers: sm (640px), md (768px), lg (1024px), xl (1280px), and 2xl (1536px).",
+    "d_ar": "إتقان تقنية Mobile-First: كتابة الكود للشاشات الصغيرة أولاً، ثم توسيعه للشاشات الكبيرة باستخدام sm و md و lg و xl بكل سلاسة.",
+    "d_fr": "Appliquez le principe Mobile-First en utilisant les préfixes responsives natifs (sm, md, lg, xl, 2xl) pour adapter vos mises en page.",
+    "code": "<div class=\"w-full p-4 sm:p-6 md:p-8 lg:max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6\">\n  <!-- Responsive grid cards -->\n</div>"
+  },
+  {
+    "icon": "fa-hand-pointer",
+    "badge": "badge-modern",
+    "t_en": "3. Interactive Pseudo-States (Hover, Focus, Active)",
+    "t_ar": "3. الحالات التفاعلية (hover, focus, group, peer)",
+    "t_fr": "3. États Interactifs & Pseudo-Classes",
+    "d_en": "Style hover states, keyboard focus outlines, disabled elements, and orchestrate parent-child animations with group-hover and peer modifiers.",
+    "d_ar": "تخصيص تأثيرات مرور الماوس، التركيز في الحقول، وتنسيق العناصر الفرعية عند التفاعل مع الأب عبر group و peer بكل احترافية.",
+    "d_fr": "Gérez les interactions utilisateur comme le survol, le focus et les interactions parent-enfant avec group-hover et peer.",
+    "code": "<div class=\"group p-6 bg-slate-900 hover:bg-blue-900/40 rounded-2xl border border-slate-800 transition-colors cursor-pointer\">\n  <h3 class=\"text-white group-hover:text-cyan-400 transition-colors font-bold\">Interactive Card</h3>\n  <p class=\"text-slate-400 group-hover:translate-x-1 transition-transform\">Hover parent to animate child &rarr;</p>\n</div>"
   },
   {
     "icon": "fa-moon",
-    "badge": "badge-pro",
-    "t_en": "3. Dark Mode & Custom Themes",
-    "t_ar": "3. الوضع الليلي والثيمات",
-    "t_fr": "3. Mode Sombre & Thèmes",
-    "d_en": "Implement flawless light and dark themes using the dark: modifier and CSS variables.",
-    "d_ar": "فعّل الوضع الداكن بسلاسة تامة باستخدام بادئة dark: ومتغيرات الألوان.",
-    "d_fr": "Implémentez un mode sombre parfait avec le modificateur dark: et vos variables.",
-    "code": "<div class=\"bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 border border-slate-200 dark:border-slate-800 p-8 rounded-xl\">\n  <h2 class=\"text-xl font-bold\">Theme Adaptive Box</h2>\n</div>"
+    "badge": "badge-important",
+    "t_en": "4. Dark Mode Engineering & Color Palettes",
+    "t_ar": "4. تفعيل الوضع الليلي وتنسيق لوحة الألوان",
+    "t_fr": "4. Mode Sombre & Gestion des Couleurs",
+    "d_en": "Configure the dark mode strategy (class vs media). Seamlessly support automatic OS preferences or custom user toggle switches using dark: modifiers.",
+    "d_ar": "تفعيل الوضع الليلي في تطبيقك بسهولة تامة عبر بادئة dark: مع دعم اختيار المستخدم أو تفعيل التبديل التلقائي حسب إعدادات نظام التشغيل.",
+    "d_fr": "Intégrez le mode sombre en une seule ligne grâce au préfixe dark: et synchronisez-le avec le stockage local.",
+    "code": "<div class=\"bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl\">\n  <p class=\"text-sm text-slate-500 dark:text-slate-400\">Adapts instantly to user theme preference.</p>\n</div>"
+  },
+  {
+    "icon": "fa-table-cells-large",
+    "badge": "badge-modern",
+    "t_en": "5. Flexbox & CSS Grid Mastery",
+    "t_ar": "5. احتراف توزيع العناصر عبر Flexbox و Grid",
+    "t_fr": "5. Maîtrise de Flexbox & CSS Grid",
+    "d_en": "Build modern dashboards, complex navigational headers, split hero sections, and auto-fitting responsive grids without writing CSS media queries.",
+    "d_ar": "تنسيق لوحات التحكم والهيدر والبطاقات المعقدة باستخدام كلاسات Flexbox و CSS Grid الجاهزة في ثوانٍ معدودة.",
+    "d_fr": "Construisez des mises en page sophistiquées grâce aux utilitaires Flexbox et Grid prêts à l'emploi.",
+    "code": "<nav class=\"flex items-center justify-between px-6 py-4 border-b border-slate-800\">\n  <div class=\"flex items-center gap-3\">\n    <span class=\"font-black text-xl text-white\">CodingLife</span>\n  </div>\n  <div class=\"hidden md:flex items-center gap-6\">\n    <a href=\"#\" class=\"text-slate-300 hover:text-white\">Courses</a>\n  </div>\n</nav>"
+  },
+  {
+    "icon": "fa-sliders",
+    "badge": "badge-modern",
+    "t_en": "6. Custom Configuration (tailwind.config.js)",
+    "t_ar": "6. تخصيص الألوان والخطوط في ملف التكوين",
+    "t_fr": "6. Configuration Avancée (tailwind.config.js)",
+    "d_en": "Extend Tailwind with your company brand guidelines: custom hex colors, font families, border radii, keyframe animations, and custom spacing scales.",
+    "d_ar": "توسيع إمكانيات Tailwind عبر ملف tailwind.config.js لإضافة ألوان هويتك البصرية، خطوطك المخصصة، وقياسات المسافات الخاصة بمشروعك.",
+    "d_fr": "Personnalisez votre identité graphique (polices, palettes de couleurs, espacements) via le fichier de configuration.",
+    "code": "// tailwind.config.js\nmodule.exports = {\n  darkMode: 'class',\n  theme: {\n    extend: {\n      colors: {\n        brand: { DEFAULT: '#0284c7', dark: '#0369a1', light: '#38bdf8' }\n      },\n      fontFamily: {\n        cairo: ['Cairo', 'sans-serif'],\n        code: ['Fira Code', 'monospace']\n      }\n    }\n  }\n};"
+  },
+  {
+    "icon": "fa-film",
+    "badge": "badge-modern",
+    "t_en": "7. Transitions, Transforms & Keyframe Animations",
+    "t_ar": "7. الحركات والمؤثرات البصرية والانتقالات",
+    "t_fr": "7. Transitions, Transformations & Animations",
+    "d_en": "Add micro-interactions, spring transitions, rotational hover effects, pulsing skeletons, and custom CSS keyframes using transition, scale, and animate utilities.",
+    "d_ar": "إضفاء الحيوية على الموقع بإضافة حركات التكبير، تأثيرات الظهور، والتحولات السلسة لعناصر الواجهة والأزرار.",
+    "d_fr": "Dynamisez l'expérience utilisateur avec des transitions fluides, des rotations et des animations d'apparition subtiles.",
+    "code": "<!-- Pulsing skeleton loading state -->\n<div class=\"animate-pulse flex space-x-4 p-4 border border-slate-800 rounded-xl\">\n  <div class=\"rounded-full bg-slate-700 h-10 w-10\"></div>\n  <div class=\"flex-1 space-y-3 py-1\">\n    <div class=\"h-2 bg-slate-700 rounded\"></div>\n    <div class=\"h-2 bg-slate-700 rounded w-5/6\"></div>\n  </div>\n</div>"
+  },
+  {
+    "icon": "fa-puzzle-piece",
+    "badge": "badge-important",
+    "t_en": "8. Component Extraction & Clean Architecture",
+    "t_ar": "8. استخراج المكونات وإعادة الاستخدام (@apply)",
+    "t_fr": "8. Extraction de Composants & @apply",
+    "d_en": "Learn when to extract reusable UI components in React/Vue vs using the @apply directive in your stylesheet without creating maintenance bottlenecks.",
+    "d_ar": "أفضل الممارسات لتنظيم الكود: متى تستخرج مكونات React/Vue قابلة لإعادة الاستخدام ومتى تستخدم تعليمة @apply لتنظيف الكود المكرر.",
+    "d_fr": "Structurez votre projet proprement en combinant des composants UI réutilisables et la directive @apply avec modération.",
+    "code": "/* styles.css */\n@layer components {\n  .btn-primary {\n    @apply inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-medium transition-all shadow-md focus:ring-2 focus:ring-sky-400 focus:outline-none;\n  }\n}"
+  },
+  {
+    "icon": "fa-plug",
+    "badge": "badge-modern",
+    "t_en": "9. Official Plugins (@tailwindcss/typography & forms)",
+    "t_ar": "9. الإضافات الرسمية للطباعة والنماذج",
+    "t_fr": "9. Plugins Officiels (Typography, Forms)",
+    "d_en": "Instantly style markdown content and blog articles using the prose class from @tailwindcss/typography. Reset form inputs cleanly with @tailwindcss/forms.",
+    "d_ar": "تنسيق المقالات والنصوص الطويلة بلمسة واحدة باستخدام كلاس prose من إضافة Typography، وإعادة ضبط حقول الإدخال عبر إضافة Forms.",
+    "d_fr": "Formatez instantanément du contenu Markdown avec la classe prose et normalisez vos formulaires avec les extensions officielles.",
+    "code": "<!-- Automatically style markdown blog posts -->\n<article class=\"prose prose-slate dark:prose-invert lg:prose-lg max-w-none\">\n  <h1>Mastering Tailwind CSS</h1>\n  <p>Articles, blockquotes, lists, and tables styled with perfection automatically.</p>\n</article>"
+  },
+  {
+    "icon": "fa-gauge-high",
+    "badge": "badge-modern",
+    "t_en": "10. Production Optimization, JIT & Purge",
+    "t_ar": "10. ضغط الكود وتسريع الأداء في الإنتاج (JIT)",
+    "t_fr": "10. Compilation JIT & Optimisation de Production",
+    "d_en": "How the Just-In-Time (JIT) compiler scans your source files to generate lightning-fast production CSS files under 15KB in size.",
+    "d_ar": "كيف يقوم محرك JIT بفحص ملفات المشروع وإنتاج ملف CSS نهائي مضغوط وخفيف جداً (أقل من 15KB) خالي من أي كود زائد.",
+    "d_fr": "Découvrez comment le moteur JIT élimine le code CSS inutilisé pour générer un fichier ultra-léger inférieur à 15 Ko en production.",
+    "code": "# Build and minify CSS bundle for deployment\nnpx tailwindcss -i ./src/input.css -o ./dist/output.css --minify\n\n# Production build check size\nls -lh ./dist/output.css"
   }
 ];
 

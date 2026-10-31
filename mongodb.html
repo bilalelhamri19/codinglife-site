@@ -136,35 +136,112 @@
   {
     "icon": "fa-database",
     "badge": "badge-modern",
-    "t_en": "1. SQL vs NoSQL (Document Store)",
-    "t_ar": "1. الفارق بين SQL و NoSQL",
-    "t_fr": "1. SQL vs NoSQL",
-    "d_en": "MongoDB stores data in flexible JSON-like documents called BSON instead of rigid tables and rows.",
-    "d_ar": "تخزن MongoDB البيانات في وثائق JSON مرنة (BSON) بدلاً من الجداول والأعمدة الصارمة.",
-    "d_fr": "MongoDB stocke les données dans des documents flexibles similaires au format JSON (BSON).",
-    "code": "// Document Structure in MongoDB\n{\n  \"_id\": \"65e23a9b2...\",\n  \"name\": \"Bilal\",\n  \"skills\": [\"JavaScript\", \"Python\", \"MongoDB\"],\n  \"profile\": { \"city\": \"Casablanca\", \"verified\": true }\n}"
+    "t_en": "1. The NoSQL Document Model vs Relational Databases",
+    "t_ar": "1. نموذج وثائق NoSQL مقابل قواعد البيانات العلائقية",
+    "t_fr": "1. Modèle Document NoSQL vs Bases Relationnelles",
+    "d_en": "Understand the core paradigm of MongoDB: storing dynamic data in JSON-like BSON documents. Contrast hierarchical embedding vs relational joins for modern web applications.",
+    "d_ar": "فهم فلسفة قواعد بيانات MongoDB المبنية على الوثائق (Documents) بصيغة BSON، ومقارنة التضمين الهرمي بالربط التقليدي (Joins) في قواعد SQL.",
+    "d_fr": "Comprenez la structure NoSQL orientée documents BSON et découvrez ses avantages face aux bases relationnelles traditionnelles.",
+    "code": "// Sample MongoDB Document (BSON)\n{\n  \"_id\": ObjectId(\"65c8f12a8f1b2c001a123456\"),\n  \"username\": \"bilal_dev\",\n  \"email\": \"bilal@codinglife.site\",\n  \"roles\": [\"admin\", \"instructor\"],\n  \"profile\": {\n    \"bio\": \"Senior Full-Stack Engineer\",\n    \"skills\": [\"Next.js\", \"MongoDB\", \"Docker\"]\n  },\n  \"createdAt\": ISODate(\"2026-01-15T10:00:00Z\")\n}"
+  },
+  {
+    "icon": "fa-terminal",
+    "badge": "badge-modern",
+    "t_en": "2. CRUD Operations in Mongosh",
+    "t_ar": "2. عمليات الإضافة والقراءة والتعديل والحذف (CRUD)",
+    "t_fr": "2. Opérations CRUD dans Mongosh",
+    "d_en": "Master essential database commands in the modern MongoDB Shell (mongosh): insertOne, insertMany, find, findOne, updateOne, updateMany, and deleteMany.",
+    "d_ar": "إتقان أوامر الإدارة والاستعلام الأساسية داخل سطر أوامر mongosh لإدخال وتحديث وحذف البيانات بدقة وسرعة.",
+    "d_fr": "Manipulez vos collections avec les commandes fondamentales du terminal mongosh : insertion, recherche, mise à jour et suppression.",
+    "code": "// 1. Insert a document\ndb.courses.insertOne({\n  title: \"Mastering MongoDB\",\n  studentsCount: 1420,\n  published: true\n});\n\n// 2. Query with filters\ndb.courses.find({ published: true, studentsCount: { $gte: 1000 } });"
+  },
+  {
+    "icon": "fa-filter",
+    "badge": "badge-modern",
+    "t_en": "3. Advanced Querying & Comparison Operators",
+    "t_ar": "3. الاستعلامات المتقدمة وفلاتر المقارنة والمنطق",
+    "t_fr": "3. Requêtes Avancées & Opérateurs de Filtrage",
+    "d_en": "Leverage advanced query selectors: $gt, $lt, $in, $and, $or, $exists, $regex, and array operators like $elemMatch and $all.",
+    "d_ar": "استخدام أدوات المقارنة والمنطق المتقدمة لتصفية البيانات بدقة: البحث الجزئي عبر التعابير النمطية وفحص محتويات المصفوفات المتداخلة.",
+    "d_fr": "Filtrez vos données avec précision en combinant les opérateurs logiques ($and, $or), de comparaison ($gt, $in) et de tableaux.",
+    "code": "// Find articles published in 2026 with specific tags\ndb.articles.find({\n  $and: [\n    { tags: { $in: [\"database\", \"cloud\"] } },\n    { views: { $gte: 5000 } },\n    { \"metadata.status\": \"approved\" }\n  ]\n}).sort({ views: -1 }).limit(10);"
+  },
+  {
+    "icon": "fa-bolt",
+    "badge": "badge-important",
+    "t_en": "4. Indexes & Performance Optimization",
+    "t_ar": "4. إنشاء الفهارس (Indexes) وتسريع أداء الاستعلامات",
+    "t_fr": "4. Indexation & Optimisation des Performances",
+    "d_en": "Prevent slow collection scans (COLLSCAN). Create single-field, compound, unique, TTL, and text indexes. Analyze queries using explain('executionStats').",
+    "d_ar": "منع الفحص البطيء لجميع الوثائق بإنشاء الفهارس الفردية والمركبة وفهارس النصوص، وتحليل سرعة الاستعلامات عبر أمر explain().",
+    "d_fr": "Accélérez vos requêtes de plusieurs ordres de grandeur grâce aux index composés et analysez vos plans d'exécution.",
+    "code": "// Create a compound unique index on tenantId and email\ndb.users.createIndex({ tenantId: 1, email: 1 }, { unique: true });\n\n// Inspect performance metrics\ndb.users.find({ email: \"bilal@codinglife.site\" }).explain(\"executionStats\");"
+  },
+  {
+    "icon": "fa-diagram-project",
+    "badge": "badge-modern",
+    "t_en": "5. Aggregation Pipeline Mastery",
+    "t_ar": "5. معالجة وتجميع البيانات عبر Aggregation Pipeline",
+    "t_fr": "5. Maîtrise du Pipeline d'Agrégation",
+    "d_en": "Process documents through multi-stage pipelines: $match, $group, $sort, $project, $lookup (left outer joins), and $unwind.",
+    "d_ar": "بناء خطوط معالجة متقدمة لتحليل البيانات، حساب الإحصائيات، تجميع السجلات، وربط المجموعات عبر $lookup.",
+    "d_fr": "Transformez et analysez vos données en profondeur grâce aux étapes du pipeline d'agrégation ($match, $group, $lookup).",
+    "code": "// Calculate total revenue grouped by course category\ndb.orders.aggregate([\n  { $match: { status: \"completed\" } },\n  { $group: {\n      _id: \"$category\",\n      totalRevenue: { $sum: \"$amount\" },\n      totalOrders: { $sum: 1 }\n    }\n  },\n  { $sort: { totalRevenue: -1 } }\n]);"
+  },
+  {
+    "icon": "fa-cubes-stacked",
+    "badge": "badge-modern",
+    "t_en": "6. Data Modeling & Schema Design Patterns",
+    "t_ar": "6. تصميم قواعد البيانات وأنماط نمذجة العلاقات",
+    "t_fr": "6. Modélisation des Données & Schémas",
+    "d_en": "Master the 1-to-1, 1-to-Few, 1-to-Many, and Many-to-Many relationships. Learn when to embed for speed vs reference to avoid document size limits (16MB).",
+    "d_ar": "هيكلة العلاقات البرمجية: متى تضمن البيانات داخل نفس الوثيقة للسرعة القصوى، ومتى تستخدم المراجع (References) لتجنب حد الـ 16MB.",
+    "d_fr": "Choisissez les bonnes structures de données entre imbrication (embedding) et référencement selon les cas d'usage réels.",
+    "code": "// 1-to-Few: Embed reviews inside product document\n{\n  _id: ObjectId(\"...\"),\n  name: \"Full-Stack Masterclass\",\n  recentReviews: [\n    { user: \"Sara\", rating: 5, comment: \"Amazing explanations!\" },\n    { user: \"Omar\", rating: 5, comment: \"Very practical.\" }\n  ]\n}"
   },
   {
     "icon": "fa-code",
-    "badge": "badge-important",
-    "t_en": "2. Mongoose Models & Schemas",
-    "t_ar": "2. نمذجة البيانات بـ Mongoose",
-    "t_fr": "2. Schémas et Modèles Mongoose",
-    "d_en": "Structure and validate document data in Node.js applications with ease.",
-    "d_ar": "نظّم وتحقق من صحة بيانات الوثائق في تطبيقات Node.js باستخدام مكتبة Mongoose.",
-    "d_fr": "Structurez et validez vos données avec Mongoose dans vos projets Node.js.",
-    "code": "import mongoose from \"mongoose\";\n\nconst ProductSchema = new mongoose.Schema({\n  title: { type: String, required: true },\n  price: { type: Number, required: true },\n  category: String,\n  inStock: { type: Boolean, default: true }\n});\n\nexport const Product = mongoose.model(\"Product\", ProductSchema);"
+    "badge": "badge-modern",
+    "t_en": "7. Mongoose ODM Integration with Node.js & TypeScript",
+    "t_ar": "7. ربط MongoDB مع Node.js و TypeScript عبر Mongoose",
+    "t_fr": "7. Intégration Mongoose avec Node.js & TypeScript",
+    "d_en": "Define strong TypeScript schemas, model validations, custom instance methods, pre/post middleware hooks, and populate relationships cleanly.",
+    "d_ar": "ربط قاعدة البيانات بتطبيقات Node.js عبر Mongoose: تحديد أنواع الحقول الصارمة، التحقق من صحة المدخلات، وتطبيق Middleware الحفظ.",
+    "d_fr": "Structurez vos modèles de données avec Mongoose, validez les types TypeScript et gérez les hooks de pré-sauvegarde.",
+    "code": "import mongoose, { Schema, Document } from 'mongoose';\n\ninterface IUser extends Document {\n  email: string;\n  name: string;\n  createdAt: Date;\n}\n\nconst UserSchema = new Schema<IUser>({\n  email: { type: String, required: true, unique: true, lowercase: true },\n  name: { type: String, required: true }\n}, { timestamps: true });\n\nexport const UserModel = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);"
   },
   {
-    "icon": "fa-chart-pie",
-    "badge": "badge-pro",
-    "t_en": "3. Aggregation Pipelines",
-    "t_ar": "3. مسارات التجميع (Aggregation Pipeline)",
-    "t_fr": "3. Pipelines d'Agrégation",
-    "d_en": "Filter, group, and compute metrics over millions of documents with maximum speed.",
-    "d_ar": "قم بفرز وتجميع وتحليل البيانات عبر مراحل متتالية بسرعة فائقة.",
-    "d_fr": "Filtrez, regroupez et calculez des statistiques complexes à grande vitesse.",
-    "code": "const stats = await Product.aggregate([\n  { $match: { inStock: true } },\n  { $group: { _id: \"$category\", avgPrice: { $avg: \"$price\" }, total: { $sum: 1 } } },\n  { $sort: { avgPrice: -1 } }\n]);"
+    "icon": "fa-shield-halved",
+    "badge": "badge-important",
+    "t_en": "8. Multi-Document Transactions & ACID Guarantees",
+    "t_ar": "8. المعاملات المالية وضمان سلامة البيانات (ACID)",
+    "t_fr": "8. Transactions Multi-Documents & ACID",
+    "d_en": "Execute atomic transactions across multiple documents and collections. Ensure zero data corruption during financial transfers or complex booking flows.",
+    "d_ar": "تنفيذ العمليات المالية الحساسة عبر الـ Transactions لضمان إما نجاح جميع التعديلات معاً أو التراجع الكامل في حالة حدوث أي خطأ.",
+    "d_fr": "Garantissez l'intégrité de vos données critiques grâce aux transactions atomiques conformes aux standards ACID.",
+    "code": "const session = await mongoose.startSession();\nsession.startTransaction();\ntry {\n  await Account.updateOne({ _id: fromId }, { $inc: { balance: -amount } }, { session });\n  await Account.updateOne({ _id: toId }, { $inc: { balance: amount } }, { session });\n  await session.commitTransaction();\n} catch (err) {\n  await session.abortTransaction();\n} finally {\n  session.endSession();\n}"
+  },
+  {
+    "icon": "fa-server",
+    "badge": "badge-modern",
+    "t_en": "9. Replica Sets, Sharding & High Availability",
+    "t_ar": "9. النسخ الاحتياطي التلقائي وتوزيع الأحمال (Sharding)",
+    "t_fr": "9. Replica Sets, Sharding & Haute Disponibilité",
+    "d_en": "Understand Primary-Secondary replica election architecture for 99.999% uptime, and horizontal database partition scaling through Sharding.",
+    "d_ar": "فهم كيفية عمل مجموعات النسخ الاحتياطي (Replica Sets) لضمان استمرار السيرفر حتى في حال تعطل أحد الأجهزة، وتوزيع البيانات عبر الشاردينج.",
+    "d_fr": "Configurez des clusters à haute disponibilité avec basculement automatique et découvrez le partitionnement horizontal.",
+    "code": "# Check cluster replication status in mongosh\nrs.status()\n\n# Check secondary read preference\ndb.getMongo().setReadPref('secondaryPreferred')"
+  },
+  {
+    "icon": "fa-cloud",
+    "badge": "badge-modern",
+    "t_en": "10. MongoDB Atlas & Cloud Production Hardening",
+    "t_ar": "10. السحابة وإدارة قواعد البيانات على MongoDB Atlas",
+    "t_fr": "10. Déploiement Cloud sur MongoDB Atlas",
+    "d_en": "Deploy production clusters on MongoDB Atlas: IP access lists, TLS/SSL encryption at rest and in transit, automated daily backups, and serverless vector search for AI.",
+    "d_ar": "إطلاق وإدارة قواعد البيانات السحابية على منصة Atlas: تأمين الاتصال عبر قوائم IP المسموح بها، تفعيل التشفير، ودعم البحث الدلالي Vector Search للذكاء الاصطناعي.",
+    "d_fr": "Déployez sur MongoDB Atlas, gérez les sauvegardes continues et activez la recherche vectorielle pour vos applications d'IA.",
+    "code": "# Secure Atlas Connection String\nexport MONGODB_URI=\"mongodb+srv://admin:StrongPassword@cluster0.abcde.mongodb.net/production?retryWrites=true&w=majority\""
   }
 ];
 
