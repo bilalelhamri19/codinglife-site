@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero-Trust API Security: Defending Production Backends - Coding Life</title>
+  <meta name="description" content="Best practices for securing modern REST and GraphQL APIs against authentication bypass, data leaks, and volumetric DDoS attacks.">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .article-container {
+      max-width: 860px;
+      margin: 120px auto 80px;
+      padding: 0 24px;
+    }
+    .article-header-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 48px 40px;
+      margin-bottom: 40px;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--cl-brand-soft);
+      color: var(--cl-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .article-header-card h1 {
+      font-size: 2.5rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .article-lead {
+      font-size: 1.15rem;
+      color: var(--cl-muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .article-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid var(--cl-line);
+      font-size: 0.9rem;
+      color: var(--cl-muted);
+    }
+    .article-meta-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .article-body-content {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 44px 40px;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      color: var(--cl-text);
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-body-content h2 {
+      font-size: 1.55rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      margin: 36px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-body-content h2:first-child {
+      margin-top: 0;
+    }
+    .quote-box {
+      background: var(--cl-bg);
+      border-left: 4px solid var(--cl-brand);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 28px 0;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--cl-ink);
+      line-height: 1.7;
+    }
+    [dir="rtl"] .quote-box {
+      border-left: none;
+      border-right: 4px solid var(--cl-brand);
+    }
+    .tip-box {
+      background: var(--cl-brand-soft);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 28px 0;
+      color: var(--cl-text);
+      font-size: 0.98rem;
+    }
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 24px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+    }
+    .code-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--cl-muted);
+      margin-bottom: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+    .back-btn-row {
+      margin-bottom: 24px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 10px;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+      transform: translateX(-3px);
+    }
+    [dir="rtl"] .back-btn:hover {
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="article-container">
+
+  <div class="back-btn-row">
+    <a href="blog.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="ar">العودة لجميع المقالات</span>
+      <span data-cl-lang="fr">Retour aux articles</span>
+    </a>
+  </div>
+
+  <div class="article-header-card">
+    <span class="article-badge">Architecture</span>
+    
+    <div data-cl-lang="en">
+      <h1>Zero-Trust API Security: Defending Production Backends</h1>
+      <p class="article-lead">Best practices for securing modern REST and GraphQL APIs against authentication bypass, data leaks, and volumetric DDoS attacks.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1>تأمين واجهات البرمجة API: استراتيجيات الحماية في بيئات الإنتاج</h1>
+      <p class="article-lead">أفضل الممارسات لحماية واجهات REST و GraphQL من محاولات الاختراق، تسريب البيانات، وهجمات حجب الخدمة.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1>Sécurité API Zero-Trust : Protéger ses Backends en Production</h1>
+      <p class="article-lead">Les meilleures pratiques pour sécuriser vos API REST et GraphQL contre les fuites de données et attaques par déni de service.</p>
+    </div>
+
+    <div class="article-meta-row">
+      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 8 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+    </div>
+  </div>
+
+  <div class="article-body-content">
+    <div data-cl-lang="en">
+      
+      <h2>1. Validate Everything at the Network Boundary</h2>
+      <p>Never trust incoming payloads. Use schema validators like Zod, Joi, or Pydantic to strictly reject unexpected fields. Enforce type safety, string sanitization, and number bounds before touching application logic.</p>
+
+      <h2>2. Stateless Token Rotation & Revocation</h2>
+      <p>JWTs are powerful but dangerous if stolen. Keep access token lifespans short (10-15 minutes) and issue refresh tokens stored in HTTP-only, secure, SameSite cookies. Back refresh tokens with an in-memory blacklist (Redis) for instantaneous revocation on password changes or logout.</p>
+
+      <h2>3. Rate Limiting, CORS & Security Headers</h2>
+      <p>Enforce strict Cross-Origin Resource Sharing (CORS) rules. Configure Redis token-bucket rate limiters on sensitive endpoints (login, password reset, payment webhooks) to neutralize credential-stuffing botnets.</p>
+      
+      <div class="code-block">
+        <div class="code-label">Essential Helmet Security Headers (Express)</div>
+        <pre>app.use(helmet({
+  contentSecurityPolicy: true,
+  crossOriginEmbedderPolicy: true,
+  hsts: { maxAge: 31536000, includeSubDomains: true, preload: true }
+}));</pre>
+      </div>
+    
+    </div>
+    <div data-cl-lang="ar">
+      
+      <h2>1. التحقق الصارم من جميع المدخلات (Input Validation)</h2>
+      <p>لا تثق أبداً بأي بيانات مرسلة من العميل. استخدم أدوات مثل Zod للتحقق من سلامة البيانات ورفض أي حقول مشبوهة قبل تمريرها لقاعدة البيانات.</p>
+
+      <h2>2. تأمين رموز الجلسات (JWT)</h2>
+      <p>اجعل صلاحية رموز الدخول قصيرة (15 دقيقة كحد أقصى) واحفظ رموز التحديث في كوكيز HttpOnly محمية، مع استخدام Redis لإلغاء الجلسات فوراً عند تسجيل الخروج.</p>
+
+      <h2>3. تحديد معدل الطلبات (Rate Limiting) والجدار الناري</h2>
+      <p>حماية روابط تسجيل الدخول والعمليات الحساسة بوضع حدود صارمة لعدد الطلبات المسموح بها لكل مستخدم لمنع هجمات التخمين الآلي.</p>
+    
+    </div>
+    <div data-cl-lang="fr">
+      
+      <h2>1. Validation Rigoureuse des Données Entrantes</h2>
+      <p>Appliquez des schémas de validation stricts (Zod, Joi) dès la frontière réseau pour bloquer les payloads malveillants.</p>
+      <h2>2. Gestion des Sessions & Limites de Requêtes</h2>
+      <p>Combinez des tokens JWT à courte durée de vie et une limitation de débit basée sur Redis pour contrer les attaques automatisées.</p>
+    
+    </div>
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

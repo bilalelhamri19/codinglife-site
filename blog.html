@@ -1,281 +1,987 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Insights & Articles - Coding Life</title>
+  <title>Blog & Tech Insights - Coding Life</title>
+  <meta name="description" content="Explore in-depth engineering articles, software architecture, AI development, career roadmaps, and developer productivity guides.">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
+    :root {
+      --cl-card-radius: 18px;
+    }
+
+    .blog-container {
+      max-width: 1240px;
+      margin: 110px auto 80px;
+      padding: 0 24px;
+    }
+
+    /* Hero Spotlight */
+    .blog-hero {
+      position: relative;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(99, 102, 241, 0.05) 100%);
+      border: 1px solid var(--cl-line);
+      border-radius: 28px;
+      padding: 48px;
+      margin-bottom: 48px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    @media (max-width: 900px) {
+      .blog-hero {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+        gap: 28px;
+      }
+    }
+    .hero-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .spotlight-pill {
+      background: #0284c7;
+      color: #fff;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .reading-time-pill {
+      font-size: 0.82rem;
+      color: var(--cl-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .blog-hero h1 {
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      font-weight: 800;
+      color: var(--cl-ink);
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .blog-hero p {
+      font-size: 1.05rem;
+      color: var(--cl-muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .hero-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--cl-brand);
+      color: #fff !important;
+      padding: 13px 26px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 16px rgba(2, 132, 199, 0.3);
+    }
+    .hero-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45);
+    }
+    .hero-img-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      box-shadow: var(--cl-shadow-md);
+      border: 1px solid var(--cl-line);
+    }
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .blog-hero:hover .hero-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    /* Controls Bar: Search & Category Pills */
+    .controls-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .search-input-wrap {
+      position: relative;
+      max-width: 600px;
+      width: 100%;
+    }
+    .search-input-wrap i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--cl-muted);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+    [dir="rtl"] .search-input-wrap i {
+      left: auto;
+      right: 18px;
+    }
+    .search-input {
+      width: 100%;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 14px 20px 14px 48px;
+      font-size: 0.95rem;
+      color: var(--cl-ink);
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+    [dir="rtl"] .search-input {
+      padding: 14px 48px 14px 20px;
+    }
+    .search-input:focus {
+      border-color: var(--cl-brand);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .filter-tab {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-muted);
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .filter-tab:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+    }
+    .filter-tab.active {
+      background: var(--cl-brand);
+      color: #fff;
+      border-color: var(--cl-brand);
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.25);
+    }
+
+    /* Blog Grid */
     .blog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 32px;
       margin-bottom: 60px;
     }
+    @media (max-width: 600px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
     .blog-card {
       background: var(--cl-surface);
-      border-radius: 16px;
       border: 1px solid var(--cl-line);
+      border-radius: var(--cl-card-radius);
       overflow: hidden;
-      transition: var(--cl-transition);
-      cursor: pointer;
       display: flex;
       flex-direction: column;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
     }
     .blog-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-6px);
       box-shadow: var(--cl-shadow-lg);
       border-color: var(--cl-brand);
     }
-    .blog-img {
-      width: 100%;
+    .blog-card-media {
+      position: relative;
       height: 200px;
-      object-fit: cover;
-      border-bottom: 1px solid var(--cl-line);
+      overflow: hidden;
+      background: #0f172a;
     }
-    .blog-body {
+    .blog-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .blog-card:hover .blog-card-img {
+      transform: scale(1.05);
+    }
+    .blog-card-cat {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #38bdf8;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    [dir="rtl"] .blog-card-cat {
+      left: auto;
+      right: 14px;
+    }
+    .blog-card-body {
       padding: 24px;
+      display: flex;
+      flex-direction: column;
       flex-grow: 1;
     }
-    .blog-category {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      background: var(--cl-brand-soft);
-      color: var(--cl-brand);
-    }
-    .blog-body h3 {
-      font-size: 1.3rem;
-      margin-bottom: 12px;
-      color: var(--cl-ink);
-    }
-    .blog-body p {
-      font-size: 0.95rem;
-      color: var(--cl-muted);
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-    .read-more {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--cl-brand);
+    .blog-meta-inline {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 14px;
+      font-size: 0.82rem;
+      color: var(--cl-muted);
+      margin-bottom: 12px;
+    }
+    .blog-meta-inline span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .blog-card-body h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cl-ink);
+      line-height: 1.4;
+      margin-bottom: 10px;
+      transition: color 0.2s ease;
+    }
+    .blog-card:hover .blog-card-body h3 {
+      color: var(--cl-brand);
+    }
+    .blog-card-body p {
+      font-size: 0.92rem;
+      color: var(--cl-muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .blog-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--cl-line);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--cl-brand);
+    }
+    .blog-card-footer .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s ease;
+    }
+    .blog-card:hover .blog-card-footer .cta-link {
+      gap: 10px;
+    }
+
+    /* Newsletter Box */
+    .newsletter-box {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.12) 0%, rgba(14, 165, 233, 0.04) 100%);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 48px 40px;
+      margin-bottom: 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .newsletter-box h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--cl-ink);
+      margin-bottom: 12px;
+    }
+    .newsletter-box p {
+      font-size: 1rem;
+      color: var(--cl-muted);
+      max-width: 600px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    .newsletter-form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      max-width: 480px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .newsletter-form input {
+      flex: 1;
+      min-width: 240px;
+      padding: 13px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--cl-line);
+      background: var(--cl-surface);
+      color: var(--cl-ink);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .newsletter-form input:focus {
+      border-color: var(--cl-brand);
+    }
+    .newsletter-form button {
+      padding: 13px 24px;
+      border-radius: 12px;
+      background: var(--cl-brand);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .newsletter-form button:hover {
+      background: #0369a1;
+      transform: translateY(-2px);
+    }
+
+    /* No results alert */
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--cl-surface);
+      border: 1px dashed var(--cl-line);
+      border-radius: 20px;
+      display: none;
+    }
+    .no-results i {
+      font-size: 2.8rem;
+      color: var(--cl-muted);
+      margin-bottom: 16px;
+    }
+    .no-results h3 {
+      font-size: 1.3rem;
+      color: var(--cl-ink);
+      margin-bottom: 8px;
+    }
+    .no-results p {
+      color: var(--cl-muted);
     }
   </style>
 </head>
 <body>
 
-<div class="course-container" style="max-width: 1200px;">
-  <div class="course-header" >
+<div class="blog-container">
+
+  <!-- Hero Spotlight: AI Engineering 2026 -->
+  <div class="blog-hero">
+    <div class="hero-content">
+      <div class="hero-badge-row">
+        <span class="spotlight-pill"><i class="fa-solid fa-star"></i> Featured Guide</span>
+        <span class="reading-time-pill"><i class="fa-regular fa-clock"></i> 12 min read</span>
+      </div>
+      <div data-cl-lang="en">
+        <h1>AI-Driven Software Engineering: From Typist to AI Systems Architect</h1>
+        <p>A comprehensive strategic deep dive into LLM context engineering, deterministic guardrails, spec-driven development, and the future of coding in 2026.</p>
+        <a href="ai-engineering.html" class="hero-cta-btn">Read Featured Story <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div data-cl-lang="ar">
+        <h1>هندسة البرمجيات بالذكاء الاصطناعي: من مجرد مبرمج إلى مهندس نظم ذكية</h1>
+        <p>دليل استراتيجي معمق حول هندسة السياق لنماذج اللغة، حواجز الحماية الدقيقة، والتطوير المبني على المواصفات في عصر 2026.</p>
+        <a href="ai-engineering.html" class="hero-cta-btn">اقرأ المقال المميز <i class="fa-solid fa-arrow-left"></i></a>
+      </div>
+      <div data-cl-lang="fr">
+        <h1>Génie Logiciel Piloté par l'IA : De Codeur à Architecte Systèmes IA</h1>
+        <p>Une analyse approfondie du context engineering pour LLMs, des garde-fous déterministes et du développement par spécifications en 2026.</p>
+        <a href="ai-engineering.html" class="hero-cta-btn">Lire l'article vedette <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80" alt="AI-Driven Software Engineering">
+    </div>
+  </div>
+
+  <!-- Search & Category Controls -->
+  <div class="controls-bar">
+    <div class="search-input-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="articleSearch" class="search-input" placeholder="Search 12+ in-depth engineering articles..." autocomplete="off">
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">
+        <i class="fa-solid fa-border-all"></i>
+        <span data-cl-lang="en">All Articles</span>
+        <span data-cl-lang="ar">كل المقالات</span>
+        <span data-cl-lang="fr">Tous les articles</span>
+      </button>
+      <button class="filter-tab" data-filter="ai">
+        <i class="fa-solid fa-robot"></i>
+        <span data-cl-lang="en">AI & Future</span>
+        <span data-cl-lang="ar">الذكاء الاصطناعي والمستقبل</span>
+        <span data-cl-lang="fr">IA & Futur</span>
+      </button>
+      <button class="filter-tab" data-filter="architecture">
+        <i class="fa-solid fa-cubes"></i>
+        <span data-cl-lang="en">Architecture</span>
+        <span data-cl-lang="ar">هندسة النظم</span>
+        <span data-cl-lang="fr">Architecture</span>
+      </button>
+      <button class="filter-tab" data-filter="career">
+        <i class="fa-solid fa-briefcase"></i>
+        <span data-cl-lang="en">Career & Remote</span>
+        <span data-cl-lang="ar">المسار المهني والعمل عن بعد</span>
+        <span data-cl-lang="fr">Carrière & Télétravail</span>
+      </button>
+      <button class="filter-tab" data-filter="productivity">
+        <i class="fa-solid fa-bolt"></i>
+        <span data-cl-lang="en">Productivity & Code</span>
+        <span data-cl-lang="ar">الإنتاجية وجودة الكود</span>
+        <span data-cl-lang="fr">Productivité & Code</span>
+      </button>
+      <button class="filter-tab" data-filter="design">
+        <i class="fa-solid fa-palette"></i>
+        <span data-cl-lang="en">Design & UI</span>
+        <span data-cl-lang="ar">التصميم والواجهات</span>
+        <span data-cl-lang="fr">Design & UI</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Articles Grid (12 Deep Articles) -->
+  <div class="blog-grid" id="articlesGrid">
+
+    <!-- Card 1: Full-Stack 2026 Roadmap -->
+    <a href="fullstack-roadmap.html" class="blog-card" data-category="career" data-title="Modern Full-Stack Roadmap 2026 خارطة طريق مطور الويب الكامل Feuille de route Full-Stack Moderne 2026">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=650&q=80" alt="Full-Stack Roadmap" class="blog-card-img">
+        <span class="blog-card-cat">Roadmap 2026</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 14 min</span>
+          <span><i class="fa-solid fa-layer-group"></i> Architecture</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>Modern Full-Stack Developer Roadmap 2026</h3>
+          <p>Navigating Next.js 15, TypeScript strictness, edge runtimes, vector databases, and full-stack DevOps mastery.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>خارطة طريق مطور الويب المتكامل 2026</h3>
+          <p>دليلك لاحتراف Next.js 15، تايب سكريبت الصارم، قواعد البيانات الشعاعية، وتقنيات الحوسبة الطرفية Edge.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Feuille de Route Full-Stack Moderne 2026</h3>
+          <p>Maîtrisez Next.js 15, la rigueur de TypeScript, les runtimes Edge, les bases vectorielles et le DevOps moderne.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Complete Guide</span>
+            <span data-cl-lang="ar">اقرأ الدليل الكامل</span>
+            <span data-cl-lang="fr">Lire le guide complet</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 2: System Design (Microservices vs Monoliths) -->
+    <a href="system-design.html" class="blog-card" data-category="architecture" data-title="System Design Microservices vs Modular Monoliths تصميم الأنظمة المايكروسيرفيس مقابل المونوليث Architecture Systèmes Microservices contre Monolithes">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=650&q=80" alt="System Design" class="blog-card-img">
+        <span class="blog-card-cat">Architecture</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 11 min</span>
+          <span><i class="fa-solid fa-server"></i> Scalability</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>Microservices vs. Modular Monoliths: A Practical Guide</h3>
+          <p>Why modern engineering teams are returning to modular monoliths and how to design distributed architectures without operational regret.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>المايكروسيرفيس ضد المونوليث النمطي: دليل عملي للأنظمة الضخمة</h3>
+          <p>لماذا تعود الشركات التقنية الكبرى إلى المونوليث النمطي وكيف تصمم معمارية قابلة للتوسع بدون تعقيد غير مبرر.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Microservices vs Monolithes Modulaires : Le Guide Pratique</h3>
+          <p>Pourquoi les équipes d'ingénierie reviennent au monolithe modulaire et comment concevoir des architectures sans regret opérationnel.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">Explore Architecture</span>
+            <span data-cl-lang="ar">استكشف المعمارية</span>
+            <span data-cl-lang="fr">Explorer l'architecture</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 3: Remote Work Mastery -->
+    <a href="remote-work.html" class="blog-card" data-category="career" data-title="Remote Work Playbook High-Paying Global Contracts العمل عن بعد عقود دولية Télétravail Contrats Internationaux">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=650&q=80" alt="Remote Work" class="blog-card-img">
+        <span class="blog-card-cat">Career</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 10 min</span>
+          <span><i class="fa-solid fa-globe"></i> Global Remote</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>The Remote Work Playbook: Landing High-Paying Global Contracts</h3>
+          <p>Asynchronous communication mastery, building proof-of-work portfolios, and negotiating compensation with US & European tech firms.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>دليل العمل عن بعد: الفوز بعقود عمل دولية ذات رواتب عالية</h3>
+          <p>احتراف التواصل غير المتزامن، بناء معارض أعمال ذات مصداقية عالية، والتفاوض مع الشركات الأمريكية والأوروبية.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Le Playbook du Télétravail : Décrocher des Contrats Internationaux</h3>
+          <p>Maîtrise de la communication asynchrone, construction d'un portfolio à fort impact et négociation salariale mondiale.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Playbook</span>
+            <span data-cl-lang="ar">اقرأ الدليل</span>
+            <span data-cl-lang="fr">Lire le playbook</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 4: Zero-Trust API Security -->
+    <a href="api-security.html" class="blog-card" data-category="architecture" data-title="Zero-Trust API Security Production Checklist أمان واجهات البرمجة الحماية السحابية Sécurité des APIs Zero-Trust">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=650&q=80" alt="API Security" class="blog-card-img">
+        <span class="blog-card-cat">Security</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 9 min</span>
+          <span><i class="fa-solid fa-shield-halved"></i> Production</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>Zero-Trust API Security: Production Hardening Checklist</h3>
+          <p>JWT signing vulnerabilities, OAuth2 PKCE flows, rate-limiting with Redis tokens, and preventing OWASP Top 10 API exploits.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>أمان واجهات برمجة التطبيقات APIs بمبدأ انعدام الثقة Zero-Trust</h3>
+          <p>حماية توكنات JWT، تدفقات OAuth2 PKCE، تحديد معدل الطلبات بريديس، وتفادي أهم ثغرات OWASP للـ APIs.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Sécurité des APIs Zero-Trust : Checklist de Durcissement en Production</h3>
+          <p>Failles JWT, flux OAuth2 PKCE, limitation de débit via Redis et protection contre le Top 10 OWASP API.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">Secure Your APIs</span>
+            <span data-cl-lang="ar">أمّن واجهاتك الآن</span>
+            <span data-cl-lang="fr">Sécuriser vos APIs</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 5: Clean Code -->
+    <a href="coding.html" class="blog-card" data-category="productivity" data-title="The Art of Clean Code فن الكود النظيف L'Art du Code Propre Refactoring SOLID">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=650&q=80" alt="Clean Code" class="blog-card-img">
+        <span class="blog-card-cat">Code Quality</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 8 min</span>
+          <span><i class="fa-solid fa-code"></i> Best Practices</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>The Art of Clean Code: Readability Over Cleverness</h3>
+          <p>Why maintainable, explicit code beats clever one-liners every time, with SOLID principles applied to real codebases.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>فن الكود النظيف: الوضوح والقراءة أهم من التذاكي</h3>
+          <p>لماذا يتفوق الكود السهل الصيانة على الحيل البرمجية المعقدة، مع تطبيق مبادئ SOLID على مشاريع حقيقية.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>L'Art du Code Propre : La Lisibilité Avant la Ruse</h3>
+          <p>Pourquoi un code maintenable et clair surpasse toujours les astuces cryptiques, avec principes SOLID appliqués.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Clean Code Rules</span>
+            <span data-cl-lang="ar">اقرأ قواعد الكود النظيف</span>
+            <span data-cl-lang="fr">Lire les règles</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 6: Deep Work for Coders -->
+    <a href="productivity.html" class="blog-card" data-category="productivity" data-title="Deep Work for Coders العمل العميق للمبرمجين Deep Work pour Développeurs Productivity Focus">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=650&q=80" alt="Deep Work" class="blog-card-img">
+        <span class="blog-card-cat">Productivity</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 7 min</span>
+          <span><i class="fa-solid fa-brain"></i> Flow State</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>Deep Work for Coders: Entering The Flow State</h3>
+          <p>How to protect 4-hour uninterrupted coding blocks in a workplace full of Slack pings, meetings, and notifications.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>العمل العميق للمبرمجين: الدخول في حالة التدفق الإبداعي Flow</h3>
+          <p>كيف تحمي 4 ساعات يومية متواصلة من البرمجة المركزة بعيداً عن مقاطعات سلاك والاجتماعات العقيمة والتشتت.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Deep Work pour Codeurs : Atteindre l'État de Flow</h3>
+          <p>Comment préserver 4 heures de code ininterrompu dans un environnement saturé de réunions et de notifications Slack.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">Boost Your Focus</span>
+            <span data-cl-lang="ar">ضاعف تركيزك</span>
+            <span data-cl-lang="fr">Améliorer votre focus</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 7: Design Systems & UI -->
+    <a href="colors.html" class="blog-card" data-category="design" data-title="Design Systems for Developers التصميم للمطورين Design pour Développeurs UI UX Color Systems">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=650&q=80" alt="Design Systems" class="blog-card-img">
+        <span class="blog-card-cat">Design & UI</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 8 min</span>
+          <span><i class="fa-solid fa-wand-magic-sparkles"></i> Aesthetics</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>Design Systems for Engineers: Color, Hierarchy, and Space</h3>
+          <p>A practical mental model for programmers to craft polished, professional user interfaces without relying on a full-time designer.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>نظم التصميم للمهندسين: تناغم الألوان والتسلسل البصري والمساحات</h3>
+          <p>نموذج ذهني عملي يمكّن المبرمجين من بناء واجهات مستخدم مذهلة واحترافية بدون الحاجة لمصمم بدوام كامل.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Design Systems pour Ingénieurs : Couleurs, Hiérarchie et Espaces</h3>
+          <p>Un modèle mental pratique pour créer des interfaces utilisateur élégantes et soignées sans dépendre d'un designer.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">Master UI Design</span>
+            <span data-cl-lang="ar">احترف تصميم الواجهات</span>
+            <span data-cl-lang="fr">Maîtriser le design</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 8: Developer Soft Skills -->
+    <a href="soft-skills.html" class="blog-card" data-category="career" data-title="Developer Soft Skills المهارات الناعمة للمطور Soft Skills Développeur Leadership Empathy">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=650&q=80" alt="Soft Skills" class="blog-card-img">
+        <span class="blog-card-cat">Career</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 7 min</span>
+          <span><i class="fa-solid fa-users"></i> Leadership</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>Developer Soft Skills: The Multiplier of Senior Engineers</h3>
+          <p>Clear asynchronous writing, constructive code reviews, and empathy: the real determinants of technical career progression.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>المهارات الناعمة: المضاعف الحقيقي لقيمة المهندس الخبير</h3>
+          <p>الكتابة الواضحة، المراجعة البناءة للكود، والتعاطف مع الفريق: العوامل الحقيقية للترقية المهنية في كبرى الشركات.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Soft Skills : Le Multiplicateur des Ingénieurs Seniors</h3>
+          <p>Communication asynchrone claire, revues de code constructives et empathie : les vrais catalyseurs de promotion.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">Explore Soft Skills</span>
+            <span data-cl-lang="ar">استكشف المهارات الناعمة</span>
+            <span data-cl-lang="fr">Découvrir les soft skills</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 9: Mental Health & Burnout -->
+    <a href="mental_health.html" class="blog-card" data-category="productivity" data-title="Mental Health in Tech الصحة النفسية في البرمجة Santé Mentale Tech Burnout Prevention">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=650&q=80" alt="Mental Health" class="blog-card-img">
+        <span class="blog-card-cat">Well-Being</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 6 min</span>
+          <span><i class="fa-solid fa-heart-pulse"></i> Balance</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>Preventing Burnout: Longevity for Software Engineers</h3>
+          <p>Recognizing the warning signs of cognitive exhaustion, setting strict work boundaries, and sustaining high output over a 20-year career.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>الوقاية من الاحتراق النفسي: كيف تحافظ على طاقتك لسنوات طويلة</h3>
+          <p>التعرف على مؤشرات الإرهاق الذهني، وضع حدود صارمة بين العمل والحياة، واستدامة الإنتاجية طوال مسارك المهني.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Prévenir le Burnout : La Longévité pour Ingénieurs Logiciels</h3>
+          <p>Reconnaître les signes d'épuisement mental, poser des limites strictes et maintenir une haute productivité durable.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Well-Being Guide</span>
+            <span data-cl-lang="ar">اقرأ دليل الصحة النفسية</span>
+            <span data-cl-lang="fr">Lire le guide</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 10: Growth Mindset & Motivation -->
+    <a href="motivation.html" class="blog-card" data-category="productivity" data-title="The Self-Development Journey رحلة التطوير الذاتي Le Voyage du Développement Mindset Growth">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=650&q=80" alt="Self Development" class="blog-card-img">
+        <span class="blog-card-cat">Mindset</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 7 min</span>
+          <span><i class="fa-solid fa-seedling"></i> Consistency</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>The Self-Development Journey: Growth Mindset Over Perfection</h3>
+          <p>Overcoming imposter syndrome, embracing bug debugging as learning, and establishing atomic habits for continuous technical mastery.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>رحلة التطوير الذاتي: عقلية النمو والتغلب على متلازمة المحتال</h3>
+          <p>التغلب على متلازمة المحتال، تحويل الأخطاء البرمجية إلى فرص تعلم، وبناء عادات يومية تضمن التطور المستمر.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Le Voyage du Développement : État d'Esprit de Croissance</h3>
+          <p>Surmonter le syndrome de l'imposteur, voir les bugs comme des leçons et bâtir des habitudes quotidiennes pérennes.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Reflection</span>
+            <span data-cl-lang="ar">اقرأ المقال</span>
+            <span data-cl-lang="fr">Lire la réflexion</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 11: Freelancing & High-Ticket Clients -->
+    <a href="freelance.html" class="blog-card" data-category="career" data-title="Freelancing Client Acquisition العمل الحر جذب العملاء Freelancing Acquisition Clients Business">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=650&q=80" alt="Freelance & Clients" class="blog-card-img">
+        <span class="blog-card-cat">Business & Growth</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 10 min</span>
+          <span><i class="fa-solid fa-handshake"></i> Revenue</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>Freelance Mastery: Value Pricing & Retaining Premium Clients</h3>
+          <p>Moving away from low hourly rates to value-based pricing, writing winning proposals, and building recurring retainer contracts.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>احتراف العمل الحر: التسعير المبني على القيمة وكسب عملاء دائمين</h3>
+          <p>الانتقال من أجور الساعات المنخفضة إلى التسعير القائم على القيمة المضافة، وكتابة عروض عمل احترافية تجلب عقوداً طويلة الأجل.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Maîtrise du Freelance : Tarification à la Valeur & Rétention Client</h3>
+          <p>Quittez les taux horaires bas pour la tarification sur la valeur, rédigez des propositions gagnantes et fidélisez vos clients.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">View Freelance Guide</span>
+            <span data-cl-lang="ar">عرض دليل العمل الحر</span>
+            <span data-cl-lang="fr">Consulter le guide</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 12: AI Autonomous Agents Architecture -->
+    <a href="ai-engineering.html" class="blog-card" data-category="ai" data-title="Autonomous Coding Agents Multi-Agent Workflows وكلاء البرمجة الذاتية Agents Autonomes">
+      <div class="blog-card-media">
+        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=650&q=80" alt="Autonomous Agents" class="blog-card-img">
+        <span class="blog-card-cat">AI Architecture</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta-inline">
+          <span><i class="fa-regular fa-clock"></i> 12 min</span>
+          <span><i class="fa-solid fa-microchip"></i> Agents</span>
+        </div>
+        <div data-cl-lang="en">
+          <h3>Building Autonomous Coding Agents: RAG, Tools & Verification</h3>
+          <p>How compiler-in-the-loop validation, AST parsing, and sandboxed execution turn raw LLMs into reliable enterprise pair-programmers.</p>
+        </div>
+        <div data-cl-lang="ar">
+          <h3>بناء وكلاء البرمجة الذاتية: التوليد المعزز بالاسترجاع RAG والتحقق الآلي</h3>
+          <p>كيف تحول حلقة المترجم التلقائية وتجزئة شجرة البنية AST النماذج اللغوية إلى مساعدي برمجة موثوقين ومؤتمتين في الشركات.</p>
+        </div>
+        <div data-cl-lang="fr">
+          <h3>Construire des Agents de Code Autonomes : RAG, Outils & Vérification</h3>
+          <p>Comment la boucle de compilation continue, l'analyse syntaxique AST et les sandboxes transforment les LLMs en assistants d'élite.</p>
+        </div>
+        <div class="blog-card-footer">
+          <span class="cta-link">
+            <span data-cl-lang="en">Read Agent Architecture</span>
+            <span data-cl-lang="ar">اقرأ معمارية الوكلاء</span>
+            <span data-cl-lang="fr">Découvrir l'architecture</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- No results state -->
+    <div class="no-results" id="noResultsState">
+      <i class="fa-regular fa-face-frown"></i>
+      <div data-cl-lang="en">
+        <h3>No matching articles found</h3>
+        <p>Try searching with another keyword or selecting "All Articles".</p>
+      </div>
+      <div data-cl-lang="ar">
+        <h3>لم يتم العثور على أي مقال مطابق</h3>
+        <p>جرّب البحث بكلمة مفتاحية أخرى أو اختر "كل المقالات".</p>
+      </div>
+      <div data-cl-lang="fr">
+        <h3>Aucun article correspondant trouvé</h3>
+        <p>Essayez de chercher avec un autre mot-clé ou sélectionnez "Tous les articles".</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Newsletter Signup Box -->
+  <div class="newsletter-box">
     <div data-cl-lang="en">
-      <h1><i class="fa-solid fa-newspaper"></i> The Developer's Mindset</h1>
-      <p>Master the art of coding, productivity, and professional growth.</p>
+      <h2>Stay Ahead in Tech</h2>
+      <p>Subscribe to the Coding Life weekly developer dispatch. Deep engineering essays, production architectures, and curated tech trends delivered straight to your inbox.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1><i class="fa-solid fa-newspaper"></i> عقلية المطور</h1>
-      <p>احترف فن البرمجة، الإنتاجية، والنمو المهني.</p>
+      <h2>كن دائماً في الصدارة التقنية</h2>
+      <p>اشترك في نشرة Coding Life الأسبوعية للمطورين. مقالات هندسية متعمقة، معماريات نظم إنتاجية، وأحدث الاتجاهات التقنية مباشرة إلى بريدك.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1><i class="fa-solid fa-newspaper"></i> L'Esprit du Développeur</h1>
-      <p>Maîtrisez l'art du code, la productivité et la croissance professionnelle.</p>
+      <h2>Gardez une Longueur d'Avance</h2>
+      <p>Abonnez-vous à la newsletter hebdomadaire Coding Life. Essais d'ingénierie approfondis, architectures de production et veille technologique directe.</p>
     </div>
+    <form class="newsletter-form" onsubmit="event.preventDefault(); alert(localStorage.getItem('cl-lang') === 'ar' ? 'شكراً لاشتراكك في نشرة كودينغ لايف!' : localStorage.getItem('cl-lang') === 'fr' ? 'Merci pour votre inscription à la newsletter !' : 'Thank you for subscribing to Coding Life Dispatch!'); this.reset();">
+      <input type="email" placeholder="you@domain.com" required>
+      <button type="submit">
+        <span data-cl-lang="en">Subscribe</span>
+        <span data-cl-lang="ar">اشترك الآن</span>
+        <span data-cl-lang="fr">S'abonner</span>
+      </button>
+    </form>
   </div>
 
-  <div class="blog-grid">
-    
-    <!-- Article 1: Motivation -->
-    <div class="blog-card reveal" onclick="window.location.href='motivation.html'">
-      <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80" alt="Motivation" class="blog-img">
-      <div class="blog-body">
-        <span class="blog-category">Growth</span>
-        <div data-cl-lang="en">
-          <h3>The Self-Development Journey</h3>
-          <p>Important steps to reach your goals gradually with a growth mindset.</p>
-          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-        <div data-cl-lang="ar">
-          <h3>رحلة التطوير الذاتي</h3>
-          <p>خطوات مهمة للوصول إلى أهدافك تدريجياً بعقلية النمو.</p>
-          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
-        </div>
-        <div data-cl-lang="fr">
-          <h3>Le Voyage du Développement</h3>
-          <p>Étapes clés pour atteindre vos objectifs avec un état d'esprit de croissance.</p>
-          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Article 2: Focus -->
-    <div class="blog-card reveal" onclick="window.location.href='productivity.html'">
-      <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=600&q=80" alt="Focus" class="blog-img">
-      <div class="blog-body">
-        <span class="blog-category">Productivity</span>
-        <div data-cl-lang="en">
-          <h3>Deep Work for Coders</h3>
-          <p>How to stay focused for hours in an era of constant notifications.</p>
-          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-        <div data-cl-lang="ar">
-          <h3>العمل العميق للمبرمجين</h3>
-          <p>كيف تحافظ على تركيزك لساعات في عصر التنبيهات المستمرة.</p>
-          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
-        </div>
-        <div data-cl-lang="fr">
-          <h3>Deep Work pour Codeurs</h3>
-          <p>Comment rester concentré pendant des heures à l'ère des notifications.</p>
-          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Article 3: Clean Code -->
-    <div class="blog-card reveal" onclick="window.location.href='coding.html'">
-      <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=600&q=80" alt="Clean Code" class="blog-img">
-      <div class="blog-body">
-        <span class="blog-category">Technical</span>
-        <div data-cl-lang="en">
-          <h3>The Art of Clean Code</h3>
-          <p>Why writing readable code is more important than writing clever code.</p>
-          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-        <div data-cl-lang="ar">
-          <h3>فن الكود النظيف</h3>
-          <p>لماذا تعتبر كتابة كود مقروء أهم من كتابة كود ذكي.</p>
-          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
-        </div>
-        <div data-cl-lang="fr">
-          <h3>L'Art du Code Propre</h3>
-          <p>Pourquoi écrire du code lisible est plus important que du code malin.</p>
-          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Article 4: Soft Skills -->
-    <div class="blog-card reveal" onclick="window.location.href='soft-skills.html'">
-      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80" alt="Soft Skills" class="blog-img">
-      <div class="blog-body">
-        <span class="blog-category">Career</span>
-        <div data-cl-lang="en">
-          <h3>Developer Soft Skills</h3>
-          <p>Communication and empathy: The secret weapons of senior engineers.</p>
-          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-        <div data-cl-lang="ar">
-          <h3>المهارات الناعمة للمطور</h3>
-          <p>التواصل والتعاطف: الأسلحة السرية لكبار المهندسين.</p>
-          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
-        </div>
-        <div data-cl-lang="fr">
-          <h3>Soft Skills du Développeur</h3>
-          <p>Communication et empathie : Les armes secrètes des ingénieurs seniors.</p>
-          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Article 5: Mental Health -->
-    <div class="blog-card reveal" onclick="window.location.href='mental_health.html'">
-      <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Mental Health" class="blog-img">
-      <div class="blog-body">
-        <span class="blog-category">Well-being</span>
-        <div data-cl-lang="en">
-          <h3>Mental Health in Tech</h3>
-          <p>Managing burnout and stress in a fast-paced engineering environment.</p>
-          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-        <div data-cl-lang="ar">
-          <h3>الصحة العقلية في البرمجة</h3>
-          <p>إدارة الاحتراق النفسي والتوتر في بيئة هندسية متسارعة.</p>
-          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
-        </div>
-        <div data-cl-lang="fr">
-          <h3>Santé Mentale et Tech</h3>
-          <p>Gérer le burnout et le stress dans un environnement d'ingénierie rapide.</p>
-          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Article 6: Design -->
-    <div class="blog-card reveal" onclick="window.location.href='colors.html'">
-      <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=600&q=80" alt="Design" class="blog-img">
-      <div class="blog-body">
-        <span class="blog-category">Design</span>
-        <div data-cl-lang="en">
-          <h3>Design for Developers</h3>
-          <p>Basic UI/UX principles to make your applications look professional.</p>
-          <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-        <div data-cl-lang="ar">
-          <h3>التصميم للمطورين</h3>
-          <p>مبادئ UI/UX الأساسية لجعل تطبيقاتك تبدو احترافية.</p>
-          <span class="read-more">اقرأ المقال <i class="fa-solid fa-arrow-left"></i></span>
-        </div>
-        <div data-cl-lang="fr">
-          <h3>Design pour Développeurs</h3>
-          <p>Principes de base UI/UX pour rendre vos applications professionnelles.</p>
-          <span class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Tools Section -->
-  <div style="background: var(--cl-surface); padding: 60px 40px; border-radius: 24px; border: 1px solid var(--cl-line); margin-bottom: 60px;">
-    <div data-cl-lang="en"><h2 style="text-align: center; margin-bottom: 40px;">Essential Tools</h2></div>
-    <div data-cl-lang="ar"><h2 style="text-align: center; margin-bottom: 40px;">أدوات أساسية</h2></div>
-    <div data-cl-lang="fr"><h2 style="text-align: center; margin-bottom: 40px;">Outils Essentiels</h2></div>
+  <!-- Essential Developer Tools -->
+  <div style="background: var(--cl-surface); padding: 50px 40px; border-radius: 24px; border: 1px solid var(--cl-line); margin-bottom: 60px;">
+    <div data-cl-lang="en"><h2 style="text-align: center; margin-bottom: 36px; font-weight: 800;">Essential Developer Utilities</h2></div>
+    <div data-cl-lang="ar"><h2 style="text-align: center; margin-bottom: 36px; font-weight: 800;">أدوات برمجية مساعدة</h2></div>
+    <div data-cl-lang="fr"><h2 style="text-align: center; margin-bottom: 36px; font-weight: 800;">Outils Pratiques pour Développeurs</h2></div>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
       
-      <div class="reveal" style="text-align: center; padding: 24px; background: var(--cl-bg); border-radius: 16px;">
+      <div style="text-align: center; padding: 28px; background: var(--cl-bg); border-radius: 18px; border: 1px solid var(--cl-line);">
         <i class="fas fa-code" style="font-size: 2.5rem; color: var(--cl-brand); margin-bottom: 16px; display: block;"></i>
         <div data-cl-lang="en">
-          <h3>Playground</h3>
-          <p style="font-size: 0.9rem; margin-bottom: 20px;">Code, test and share your HTML/CSS/JS snippets instantly.</p>
-          <a href="playground.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Open Playground</a>
+          <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Interactive Code Playground</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px; color: var(--cl-muted);">Write, compile, and preview HTML/CSS/JavaScript with live real-time output.</p>
+          <a href="playground.html" class="hero-cta-btn" style="width: auto; padding: 10px 22px; font-size: 0.9rem;">Launch Playground</a>
         </div>
         <div data-cl-lang="ar">
-          <h3>ساحة اللعب</h3>
-          <p style="font-size: 0.9rem; margin-bottom: 20px;">برمج، اختبر وشارك مقتطفات الكود الخاصة بك فوراً.</p>
-          <a href="playground.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">افتح ساحة اللعب</a>
+          <h3 style="font-size: 1.2rem; margin-bottom: 8px;">محرر الأكواد التفاعلي</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px; color: var(--cl-muted);">اكتب، نفذ، وشاهد نتيجة أكواد HTML/CSS/JS مباشرة بشكل فوري.</p>
+          <a href="playground.html" class="hero-cta-btn" style="width: auto; padding: 10px 22px; font-size: 0.9rem;">افتح ساحة التجارب</a>
         </div>
         <div data-cl-lang="fr">
-          <h3>Playground</h3>
-          <p style="font-size: 0.9rem; margin-bottom: 20px;">Codez, testez et partagez vos snippets HTML/CSS/JS.</p>
-          <a href="playground.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Ouvrir</a>
+          <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Playground de Code Interactif</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px; color: var(--cl-muted);">Écrivez, exécutez et prévisualisez vos snippets HTML/CSS/JS en temps réel.</p>
+          <a href="playground.html" class="hero-cta-btn" style="width: auto; padding: 10px 22px; font-size: 0.9rem;">Ouvrir le Playground</a>
         </div>
       </div>
 
-      <div class="reveal" style="text-align: center; padding: 24px; background: var(--cl-bg); border-radius: 16px;">
-        <i class="fas fa-calculator" style="font-size: 2.5rem; color: #0369a1; margin-bottom: 16px; display: block;"></i>
+      <div style="text-align: center; padding: 28px; background: var(--cl-bg); border-radius: 18px; border: 1px solid var(--cl-line);">
+        <i class="fas fa-calculator" style="font-size: 2.5rem; color: #0284c7; margin-bottom: 16px; display: block;"></i>
         <div data-cl-lang="en">
-          <h3>Converter</h3>
-          <p style="font-size: 0.9rem; margin-bottom: 20px;">Professional CSS unit converter for modern web design.</p>
-          <a href="css-converter.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Use Converter</a>
+          <h3 style="font-size: 1.2rem; margin-bottom: 8px;">CSS Unit & Rem Converter</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px; color: var(--cl-muted);">Accurate PX to REM, EM, VW, and percentage conversion for responsive layouts.</p>
+          <a href="css-converter.html" class="hero-cta-btn" style="width: auto; padding: 10px 22px; font-size: 0.9rem; background: #0284c7;">Launch Converter</a>
         </div>
         <div data-cl-lang="ar">
-          <h3>المحول</h3>
-          <p style="font-size: 0.9rem; margin-bottom: 20px;">محول وحدات CSS احترافي لتصميم الويب الحديث.</p>
-          <a href="css-converter.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">استخدم المحول</a>
+          <h3 style="font-size: 1.2rem; margin-bottom: 8px;">محول وحدات CSS الاحترافي</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px; color: var(--cl-muted);">تحويل دقيق بين PX و REM و EM و VW لضمان استجابة وتوافق تام لتصاميمك.</p>
+          <a href="css-converter.html" class="hero-cta-btn" style="width: auto; padding: 10px 22px; font-size: 0.9rem; background: #0284c7;">افتح المحول</a>
         </div>
         <div data-cl-lang="fr">
-          <h3>Convertisseur</h3>
-          <p style="font-size: 0.9rem; margin-bottom: 20px;">Convertisseur d'unités CSS professionnel pour le web.</p>
-          <a href="css-converter.html" class="theme-toggle" style="width: 100%; text-decoration: none; border-radius: 8px; display: block;">Ouvrir</a>
+          <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Convertisseur d'Unités CSS</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 20px; color: var(--cl-muted);">Conversion précise de PX en REM, EM, VW et pourcentages pour designs fluides.</p>
+          <a href="css-converter.html" class="hero-cta-btn" style="width: auto; padding: 10px 22px; font-size: 0.9rem; background: #0284c7;">Ouvrir le Convertisseur</a>
         </div>
       </div>
 
@@ -283,6 +989,59 @@
   </div>
 
 </div>
+
+<!-- Client-side Interactive Filtering Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('articleSearch');
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const cards = document.querySelectorAll('.blog-card');
+    const noResults = document.getElementById('noResultsState');
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function applyFilters() {
+      let visibleCount = 0;
+      const query = currentSearch.trim().toLowerCase();
+
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const textContent = (card.getAttribute('data-title') || '') + ' ' + card.innerText;
+        
+        const matchesCat = (currentFilter === 'all') || (category === currentFilter);
+        const matchesQuery = !query || textContent.toLowerCase().includes(query);
+
+        if (matchesCat && matchesQuery) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (noResults) {
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', function (e) {
+        currentSearch = e.target.value;
+        applyFilters();
+      });
+    }
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', function () {
+        filterTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.getAttribute('data-filter');
+        applyFilters();
+      });
+    });
+  });
+</script>
 
 <script src="site-polish.js"></script>
 </body>

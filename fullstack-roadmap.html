@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Complete 2026 Full-Stack Engineer Roadmap - Coding Life</title>
+  <meta name="description" content="From modern JavaScript and TypeScript to Next.js, Docker, PostgreSQL, and Cloud Deployment. The proven path to mastery.">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .article-container {
+      max-width: 860px;
+      margin: 120px auto 80px;
+      padding: 0 24px;
+    }
+    .article-header-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 48px 40px;
+      margin-bottom: 40px;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--cl-brand-soft);
+      color: var(--cl-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .article-header-card h1 {
+      font-size: 2.5rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .article-lead {
+      font-size: 1.15rem;
+      color: var(--cl-muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .article-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid var(--cl-line);
+      font-size: 0.9rem;
+      color: var(--cl-muted);
+    }
+    .article-meta-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .article-body-content {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 24px;
+      padding: 44px 40px;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      color: var(--cl-text);
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-body-content h2 {
+      font-size: 1.55rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      margin: 36px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-body-content h2:first-child {
+      margin-top: 0;
+    }
+    .quote-box {
+      background: var(--cl-bg);
+      border-left: 4px solid var(--cl-brand);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 28px 0;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--cl-ink);
+      line-height: 1.7;
+    }
+    [dir="rtl"] .quote-box {
+      border-left: none;
+      border-right: 4px solid var(--cl-brand);
+    }
+    .tip-box {
+      background: var(--cl-brand-soft);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 28px 0;
+      color: var(--cl-text);
+      font-size: 0.98rem;
+    }
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 24px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+    }
+    .code-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--cl-muted);
+      margin-bottom: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+    .back-btn-row {
+      margin-bottom: 24px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 10px;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+      transform: translateX(-3px);
+    }
+    [dir="rtl"] .back-btn:hover {
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="article-container">
+
+  <div class="back-btn-row">
+    <a href="blog.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="ar">العودة لجميع المقالات</span>
+      <span data-cl-lang="fr">Retour aux articles</span>
+    </a>
+  </div>
+
+  <div class="article-header-card">
+    <span class="article-badge">Career & Remote</span>
+    
+    <div data-cl-lang="en">
+      <h1>The Complete 2026 Full-Stack Engineer Roadmap</h1>
+      <p class="article-lead">From modern JavaScript and TypeScript to Next.js, Docker, PostgreSQL, and Cloud Deployment. The proven path to mastery.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1>خارطة الطريق الشاملة لمهندس الويب الكامل في 2026</h1>
+      <p class="article-lead">من جافاسكريبت وتايب سكريبت إلى Next.js و Docker وقواعد البيانات السحابية: دليلك العملي لاحتراف تطوير الويب.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1>La Roadmap Complète du Développeur Full-Stack en 2026</h1>
+      <p class="article-lead">De TypeScript à Next.js, Docker, PostgreSQL et le déploiement cloud. Le guide complet pour maîtriser le web moderne.</p>
+    </div>
+
+    <div class="article-meta-row">
+      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 9 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+    </div>
+  </div>
+
+  <div class="article-body-content">
+    <div data-cl-lang="en">
+      
+      <h2>Phase 1: Deep Web Foundations (HTML5, Modern CSS, TypeScript)</h2>
+      <p>Master the web runtime before touching frameworks. Understand semantics, CSS Grid/Flexbox, DOM mechanics, and TypeScript static typing. Strict typing eliminates 80% of runtime bugs before deployment.</p>
+
+      <h2>Phase 2: Modern Frontend & Server-Side Rendering (React & Next.js)</h2>
+      <p>Understand Component-Driven development, State Management, and the shift from pure Single Page Applications (SPAs) to Hybrid Server Components (RSC) and Streaming SSR.</p>
+
+      <h2>Phase 3: Robust Backend APIs & Relational Databases (Node.js & PostgreSQL)</h2>
+      <p>Learn to design RESTful and GraphQL APIs, multi-tenant database schemas, indexing strategies, transactions (ACID), and ORMs like Prisma and Drizzle.</p>
+
+      <h2>Phase 4: DevOps, Containers & Cloud Deployment (Docker, CI/CD, Vercel)</h2>
+      <p>A full-stack engineer does not stop when code runs on localhost. Package services in Docker containers, configure automated GitHub Actions pipelines, and deploy with zero downtime.</p>
+      
+      <div class="tip-box"><i class="fa-solid fa-graduation-cap"></i> <strong>Pro Roadmap Tip:</strong> Don't try to learn everything at once. Build 3 production-grade, deployed projects that solve real problems to stand out to hiring managers.</div>
+    
+    </div>
+    <div data-cl-lang="ar">
+      
+      <h2>المرحلة 1: الأساسيات الصلبة (HTML5, Modern CSS, TypeScript)</h2>
+      <p>افهم بيئة تشغيل المتصفح والأنواع الصارمة في تايب سكريبت قبل الانتقال لأي إطار عمل. الأساس المتين هو ما يجعلك مبرمجاً سريع التطور.</p>
+
+      <h2>المرحلة 2: الواجهات التفاعلية والسيرفر (React & Next.js)</h2>
+      <p>تعلم بناء تطبيقات سريعة التحميل تجمع بين معالجة السيرفر (Server Components) وتفاعل العميل في الواجهة الأمامية بسلاسة تامة.</p>
+
+      <h2>المرحلة 3: السيرفر وقواعد البيانات (Node.js & PostgreSQL)</h2>
+      <p>بناء واجهات API مؤمنة، تصميم الجداول والعلاقات في قواعد البيانات، والتعامل مع العمليات المالية والـ Transactions باحترافية.</p>
+
+      <h2>المرحلة 4: الحاويات والنشر السحابي (Docker & CI/CD)</h2>
+      <p>المهندس الكامل يعرف كيف ينقل التطبيق من جهازه الشخصي إلى خوادم الإنتاج السحابية عبر Docker وخطوط الأتمتة المستمرة.</p>
+    
+    </div>
+    <div data-cl-lang="fr">
+      
+      <h2>Étape 1 : Fondations Web & Typage Strict</h2>
+      <p>Maîtrisez le DOM, CSS moderne et TypeScript pour garantir un code sans bugs dès la phase de développement.</p>
+      <h2>Étape 2 : Frameworks Full-Stack & SSR</h2>
+      <p>Adoptez Next.js et React pour combiner le rendu serveur performant et l'interactivité côté client.</p>
+      <h2>Étape 3 : Bases de Données & DevOps</h2>
+      <p>Déployez vos conteneurs Docker et orchestrez vos bases relationnelles en haute disponibilité.</p>
+    
+    </div>
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>
