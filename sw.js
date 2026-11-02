@@ -1,5 +1,5 @@
 // Coding Life - Progressive Web App Service Worker
-const CACHE_NAME = 'codinglife-v9';
+const CACHE_NAME = 'codinglife-v10';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -7,7 +7,7 @@ const ASSETS_TO_CACHE = [
   './site-polish.js',
   './docs.css',
   './docs.js',
-  './logo-icon.png',
+  './logo-header.png',
   './favicon.png',
   './manifest.json',
   './404.html'

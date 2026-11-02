@@ -6,13 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coding Life (codinglife1) — Official Programming Platform</title>
   <meta name="keywords" content="codinglife1, codinglife, coding life, codinglife1 vercel, codinglife site, learn to code, programming courses, دروس البرمجة, تعلم البرمجة">
-  <meta name="description" content="Coding Life (codinglife1) — Official interactive platform for mastering software engineering, modern web development, and dev tools. 23 free programming courses.">
+  <meta name="description" content="Coding Life (codinglife1) — Official interactive platform for mastering software engineering, modern web development, and dev tools. 33 free programming courses.">
   <link rel="canonical" href="https://codinglife1.vercel.app/">
   <meta name="google-site-verification" content="googlec27d1a205f1d8510">
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#020617">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Pacifico&family=Outfit:wght@300;400;600;700;800;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
@@ -223,11 +226,11 @@
   <meta property="og:url" content="https://codinglife1.vercel.app/">
   <meta property="og:site_name" content="Coding Life (codinglife1)">
   <meta property="og:title" content="Coding Life (codinglife1) — Official Programming Platform">
-  <meta property="og:description" content="Learn to code with 23 structured programming courses, interactive live playgrounds, assessment quizzes, and developer utilities. 100% Free.">
+  <meta property="og:description" content="Learn to code with 33 structured programming courses, interactive live playgrounds, assessment quizzes, and developer utilities. 100% Free.">
   <meta property="og:image" content="https://codinglife1.vercel.app/logo-icon.png">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Coding Life (codinglife1) — Official Programming Platform">
-  <meta name="twitter:description" content="Learn to code with 23 structured programming courses, interactive live playgrounds, assessment quizzes, and developer utilities. 100% Free.">
+  <meta name="twitter:description" content="Learn to code with 33 structured programming courses, interactive live playgrounds, assessment quizzes, and developer utilities. 100% Free.">
   <meta name="twitter:image" content="https://codinglife1.vercel.app/logo-icon.png">
 
   <!-- Schema.org WebSite, SearchAction & Sitelinks Navigation -->
@@ -262,7 +265,7 @@
             "@type": "SiteNavigationElement",
             "position": 1,
             "name": "All Courses — جميع الدروس",
-            "description": "23 programming courses in Web, Backend, Mobile, and DevOps.",
+            "description": "33 programming courses in Web, Backend, Mobile, and DevOps.",
             "url": "https://codinglife1.vercel.app/dorous-albarmaja.html"
           },
           {
@@ -317,9 +320,25 @@
 
   <!-- Hero Section -->
   <div class="hero-premium">
-    <video autoplay muted loop playsinline class="hero-video">
-      <source src="assets/videos/video.mp4" type="video/mp4">
-    </video>
+    <video muted loop playsinline preload="none" class="hero-video" data-src="assets/videos/video.mp4"></video>
+    <script>
+      (function () {
+        function loadHero() {
+          var v = document.querySelector(".hero-video");
+          if (!v || v.dataset.loaded) return;
+          v.dataset.loaded = "1";
+          var s = document.createElement("source");
+          s.src = v.getAttribute("data-src");
+          s.type = "video/mp4";
+          v.appendChild(s);
+          v.load();
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        }
+        if ("requestIdleCallback" in window) { requestIdleCallback(loadHero, { timeout: 2500 }); }
+        else { window.addEventListener("load", loadHero); }
+      })();
+    </script>
     <div class="hero-content">
       <div class="reveal">
         <!-- English Hero -->
@@ -388,10 +407,10 @@
   <section class="stats-bar">
     <div class="stats-grid">
       <div class="reveal">
-        <div class="stat-number">12+</div>
+        <div class="stat-number">33</div>
         <div class="stat-label">
-          <span data-cl-lang="en">Specialized Tracks</span>
-          <span data-cl-lang="ar">مسار برمجي متخصص</span>
+          <span data-cl-lang="en">Master Courses</span>
+          <span data-cl-lang="ar">دورة برمجية شاملة</span>
         </div>
       </div>
       <div class="reveal">
@@ -682,7 +701,7 @@
     </div>
   </section>
 
-  <script src="site-polish.js"></script>
+  <script src="site-polish.js" defer></script>
   <script>
     // Splash screen handler
     (function() {

@@ -3,7 +3,7 @@
 
   const CONFIG = {
     brandName: "Coding Life",
-    logoPath: "logo-icon.png",
+    logoPath: "logo-header.png",
     adsensePublisherId: "", // e.g. "ca-pub-xxxxxxxxxxxxxxxx" after AdSense approval
     adsenseAdSlot: "",
     socialLinks: [
