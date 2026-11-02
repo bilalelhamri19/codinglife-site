@@ -1,5 +1,5 @@
 // Coding Life - Progressive Web App Service Worker
-const CACHE_NAME = 'codinglife-v8';
+const CACHE_NAME = 'codinglife-v9';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
