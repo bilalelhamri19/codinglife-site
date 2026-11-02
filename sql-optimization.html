@@ -4,133 +4,278 @@
   <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PostgreSQL & SQL Performance Tuning: The Production Guide - Coding Life</title>
-  <meta name="description" content="Master EXPLAIN ANALYZE execution graphs, eliminate sequential scans with composite B-Tree indexes, and fix N+1 ORM bottlenecks.">
-  <link rel="icon" href="logo.png" type="image/png">
+  <title>PostgreSQL & SQL Performance Tuning: The Production Field Manual - Coding Life</title>
+  <meta name="description" content="Master EXPLAIN ANALYZE execution graphs, eliminate sequential table scans, master composite B-Tree indexing, partial indexes, and eliminate N+1 ORM bottlenecks.">
+  <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code:wght@400;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .article-container {
-      max-width: 860px;
+      max-width: 920px;
       margin: 120px auto 80px;
       padding: 0 24px;
     }
     .article-header-card {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
+      border-radius: 28px;
       padding: 48px 40px;
       margin-bottom: 40px;
       box-shadow: var(--cl-shadow-sm);
     }
     .article-badge {
       display: inline-block;
-      padding: 4px 14px;
+      padding: 5px 16px;
       border-radius: 9999px;
       background: var(--cl-brand-soft);
       color: var(--cl-brand);
       font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-header-card h1 {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 3.5vw, 2.7rem);
       color: var(--cl-ink);
       font-weight: 800;
       line-height: 1.25;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-lead {
       font-size: 1.15rem;
       color: var(--cl-muted);
       line-height: 1.8;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
     .article-meta-row {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
       flex-wrap: wrap;
-      padding-top: 20px;
+      padding-top: 22px;
       border-top: 1px solid var(--cl-line);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--cl-muted);
     }
     .article-meta-row span {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
+
+    /* Table of contents box */
+    .toc-box {
+      background: var(--cl-bg);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0 36px;
+    }
+    .toc-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cl-brand);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toc-list {
+      margin: 0;
+      padding-left: 20px;
+      list-style-type: none;
+    }
+    [dir="rtl"] .toc-list {
+      padding-left: 0;
+      padding-right: 20px;
+    }
+    .toc-list li {
+      margin-bottom: 10px;
+    }
+    .toc-list li a {
+      color: var(--cl-text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .toc-list li a:hover {
+      color: var(--cl-brand);
+      text-decoration: underline;
+    }
+
+    /* Article Body Styling */
     .article-body-content {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
-      padding: 44px 40px;
-      line-height: 1.9;
-      font-size: 1.05rem;
+      border-radius: 28px;
+      padding: 50px 44px;
+      line-height: 1.95;
+      font-size: 1.08rem;
       color: var(--cl-text);
       box-shadow: var(--cl-shadow-sm);
     }
+    @media (max-width: 600px) {
+      .article-body-content {
+        padding: 30px 20px;
+      }
+      .article-header-card {
+        padding: 30px 20px;
+      }
+    }
     .article-body-content h2 {
-      font-size: 1.55rem;
+      font-size: 1.7rem;
       color: var(--cl-ink);
       font-weight: 800;
-      margin: 36px 0 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--cl-line);
+      margin: 44px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cl-line);
     }
     .article-body-content h2:first-child {
       margin-top: 0;
     }
+    .article-body-content h3 {
+      font-size: 1.3rem;
+      color: var(--cl-ink);
+      font-weight: 700;
+      margin: 28px 0 14px;
+    }
+    .article-body-content p {
+      margin-bottom: 20px;
+    }
+    .article-body-content ul, .article-body-content ol {
+      margin-bottom: 24px;
+      padding-left: 26px;
+    }
+    [dir="rtl"] .article-body-content ul, [dir="rtl"] .article-body-content ol {
+      padding-left: 0;
+      padding-right: 26px;
+    }
+    .article-body-content li {
+      margin-bottom: 10px;
+    }
+
+    /* Callout & Quote boxes */
     .quote-box {
       background: var(--cl-bg);
-      border-left: 4px solid var(--cl-brand);
-      border-radius: 12px;
-      padding: 24px;
-      margin: 28px 0;
-      font-size: 1.15rem;
+      border-left: 5px solid var(--cl-brand);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 32px 0;
+      font-size: 1.2rem;
       font-style: italic;
       color: var(--cl-ink);
-      line-height: 1.7;
+      line-height: 1.75;
     }
     [dir="rtl"] .quote-box {
       border-left: none;
-      border-right: 4px solid var(--cl-brand);
+      border-right: 5px solid var(--cl-brand);
     }
     .tip-box {
       background: var(--cl-brand-soft);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin: 28px 0;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
       color: var(--cl-text);
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
+    .warning-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
+      color: var(--cl-text);
+      font-size: 1rem;
+    }
+    .warning-box strong {
+      color: #ef4444;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 30px 0;
+      border-radius: 14px;
+      border: 1px solid var(--cl-line);
+    }
+    .article-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    [dir="rtl"] .article-table {
+      text-align: right;
+    }
+    .article-table th {
+      background: var(--cl-bg);
+      padding: 14px 18px;
+      font-weight: 700;
+      color: var(--cl-ink);
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Code Blocks */
     .code-block {
       background: #090d16;
       color: #e2e8f0;
       border: 1px solid var(--cl-line);
-      border-radius: 14px;
-      padding: 20px;
-      margin: 24px 0;
+      border-radius: 16px;
+      padding: 22px;
+      margin: 28px 0;
       font-family: 'Fira Code', monospace;
       font-size: 0.92rem;
       overflow-x: auto;
     }
     .code-label {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
-      color: var(--cl-muted);
-      margin-bottom: 8px;
+      color: #38bdf8;
+      margin-bottom: 10px;
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
+      letter-spacing: 0.05em;
     }
     .code-block pre {
       margin: 0;
       font-family: inherit;
     }
+
+    /* Checklist */
+    .checklist {
+      list-style-type: none;
+      padding: 0 !important;
+      margin: 24px 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+    .checklist li i {
+      color: #10b981;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    /* Back button */
     .back-btn-row {
       margin-bottom: 24px;
     }
@@ -138,13 +283,13 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 18px;
-      border-radius: 10px;
+      padding: 9px 20px;
+      border-radius: 12px;
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
       color: var(--cl-text);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       text-decoration: none;
       transition: all 0.2s;
     }
@@ -165,7 +310,7 @@
   <div class="back-btn-row">
     <a href="blog.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i>
-      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="en">Back to All Guides</span>
       <span data-cl-lang="ar">العودة لجميع المقالات</span>
       <span data-cl-lang="fr">Retour aux articles</span>
     </a>
@@ -175,81 +320,222 @@
     <span class="article-badge">Databases & Performance</span>
     
     <div data-cl-lang="en">
-      <h1>PostgreSQL & SQL Performance Tuning: The Production Guide</h1>
-      <p class="article-lead">Master EXPLAIN ANALYZE execution graphs, eliminate sequential scans with composite B-Tree indexes, and fix N+1 ORM bottlenecks.</p>
+      <h1>PostgreSQL & SQL Performance Tuning: The Production Field Manual</h1>
+      <p class="article-lead">Master EXPLAIN ANALYZE execution graphs, eliminate sequential table scans, master composite B-Tree indexing, partial indexes, and eliminate N+1 ORM bottlenecks.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1>تحسين أداء قواعد بيانات PostgreSQL و SQL: دليل بيئات الإنتاج</h1>
-      <p class="article-lead">احتراف قراءة مخططات التنفيذ EXPLAIN ANALYZE، والتخلص من المسح المتسلسل بالفهارس المركبة، وحل مشاكل N+1 مع الـ ORM.</p>
+      <h1>تحسين أداء قواعد بيانات PostgreSQL و SQL: الدليل الميداني لبيئات الإنتاج</h1>
+      <p class="article-lead">احتراف قراءة مخططات التنفيذ EXPLAIN ANALYZE، والتخلص من فحص الجداول البطيء بالفهارس المركبة والجزئية، وحل اختناقات الـ ORM.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1>Optimisation PostgreSQL & SQL : Le Guide de Production</h1>
-      <p class="article-lead">Maîtrisez les plans d’exécution EXPLAIN ANALYZE, éliminez les scans séquentiels avec des index B-Tree composites et résolvez le problème N+1 des ORMs.</p>
+      <h1>Optimisation PostgreSQL & SQL : Le Manuel de Terrain en Production</h1>
+      <p class="article-lead">Maîtrisez les graphes EXPLAIN ANALYZE, éliminez les scans séquentiels, concevez des index B-Tree composites et éradiquez le problème N+1.</p>
     </div>
 
     <div class="article-meta-row">
-      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
-      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 13 min read</span>
-      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+      <span><i class="fa-solid fa-user-gear" style="color:var(--cl-brand);"></i> Coding Life Staff Engineers</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 19 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Masterclass</span>
+      <span><i class="fa-solid fa-star" style="color:#f59e0b;"></i> Top Engineering Pick</span>
     </div>
   </div>
 
   <div class="article-body-content">
     <div data-cl-lang="en">
       
-      <h2>1. Reading EXPLAIN ANALYZE Plans Like a Senior DBA</h2>
-      <p>Never optimize a SQL query based on intuition. Running <code>EXPLAIN (ANALYZE, BUFFERS, COSTS)</code> provides the exact cost model, execution node types (Seq Scan, Index Scan, Bitmap Heap Scan), and buffer hit ratios. A query executing in 4 seconds can often be reduced to 1.8 milliseconds with a single composite index covering filter and sort conditions.</p>
-      
-      <div class="quote-box">"An unindexed foreign key in a relational database with millions of rows is a ticking production incident waiting to happen during an UPDATE or DELETE lock."</div>
-
-      <h2>2. The Anatomy of Indexing in PostgreSQL</h2>
-      <p>Understand which index type solves your query profile:</p>
-      <ul>
-        <li><strong>B-Tree:</strong> Default, optimal for equality, range operators (<code>&lt;, &lt;=, =, &gt;=, &gt;</code>), and sorting. Order of columns in composite indexes matters strictly: Equality first, Range second.</li>
-        <li><strong>GIN (Generalized Inverted Index):</strong> Critical for JSONB containment operators (<code>@&gt;</code>), full-text search (<code>tsvector</code>), and array columns.</li>
-        <li><strong>BRIN (Block Range Index):</strong> Game-changer for massive append-only timeseries tables (hundreds of millions of rows). Requires 99% less disk space than B-Trees.</li>
-      </ul>
-
-      <div class="code-block">
-        <div class="code-label">PostgreSQL Composite Indexing & Partial Indexing</div>
-        <pre>-- Composite index optimized for WHERE tenant_id = ? AND status = ? ORDER BY created_at DESC
-CREATE INDEX idx_orders_tenant_status_created 
-ON orders (tenant_id, status, created_at DESC);
-
--- Partial index: Index only active records to save 90% index size
-CREATE INDEX idx_users_unverified 
-ON users (email) 
-WHERE is_verified = FALSE;</pre>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. The Golden Rule: Measure with EXPLAIN (ANALYZE, BUFFERS)</a></li>
+          <li><a href="#sec-2">2. Indexing Deep Dive: B-Tree, GIN, GiST, and BRIN</a></li>
+          <li><a href="#sec-3">3. Composite Indexing: Column Ordering Rules That Matter</a></li>
+          <li><a href="#sec-4">4. Partial & Covering Indexes (INCLUDE Clause)</a></li>
+          <li><a href="#sec-5">5. The ORM N+1 Catastrophe: Batch Loading & CTEs</a></li>
+          <li><a href="#sec-6">6. Connection Pooling Architecture with PgBouncer</a></li>
+          <li><a href="#sec-7">7. Production DBA Checklist</a></li>
+        </ul>
       </div>
 
-      <h2>3. Eliminating the N+1 ORM Trap</h2>
-      <p>ORMs like Prisma, Hibernate, and TypeORM make development fast, but naive relation fetching issues thousands of round-trips to the database over high-latency networks. Always verify generated SQL queries and enforce <code>JOIN FETCH</code>, batch loading (Dataloader pattern), or explicit subqueries.</p>
+      <h2 id="sec-1">1. The Golden Rule: Measure with EXPLAIN (ANALYZE, BUFFERS)</h2>
+      <p>Never attempt to optimize a SQL query based on intuition. PostgreSQL contains a cost-based query optimizer (CBO) that computes join algorithms, scan strategies, and memory work-mem allocations. The single most important diagnostic command in relational databases is:</p>
+      
+      <div class="code-block">
+        <div class="code-label">PostgreSQL Diagnostic Query</div>
+        <pre>EXPLAIN (ANALYZE, BUFFERS, VERBOSE, COSTS, TIMING)
+SELECT o.id, o.total_amount, u.email
+FROM orders o
+JOIN users u ON u.id = o.user_id
+WHERE o.status = 'COMPLETED' 
+  AND o.created_at >= '2026-01-01'
+ORDER BY o.created_at DESC
+LIMIT 50;</pre>
+      </div>
 
-      <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> Enable <code>pg_stat_statements</code> in your PostgreSQL configuration to continuously capture top queries by cumulative CPU time and shared block reads.</div>
+      <p>Key metrics to inspect in the execution graph output:</p>
+      <ul>
+        <li><strong>Seq Scan (Sequential Scan):</strong> Reads the entire table from disk page by page. Acceptable on 500 rows; catastrophic on 50,000,000 rows.</li>
+        <li><strong>Buffers Hit vs. Read:</strong> <code>Buffers: shared hit=421 read=1204</code>. Hit means found in RAM cache; read means fetched from high-latency NVMe/SSD storage. High read counts indicate cache misses or missing indexes.</li>
+        <li><strong>Actual Rows vs. Estimated Rows:</strong> If PostgreSQL estimates 10 rows but actual rows are 250,000, table statistics are stale. Run <code>ANALYZE orders;</code> immediately to recalculate pg_statistic distributions.</li>
+      </ul>
+
+      <h2 id="sec-2">2. Indexing Deep Dive: B-Tree, GIN, GiST, and BRIN</h2>
+      <div class="table-wrap">
+        <table class="article-table">
+          <thead>
+            <tr>
+              <th>Index Type</th>
+              <th>Underlying Structure</th>
+              <th>Supported Operators</th>
+              <th>Ideal Production Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>B-Tree</strong></td>
+              <td>Balanced Multi-Way Search Tree</td>
+              <td><code>=, &lt;, &lt;=, &gt;=, &gt;, BETWEEN, IN</code></td>
+              <td>Primary keys, foreign keys, timestamps, sorted filters</td>
+            </tr>
+            <tr>
+              <td><strong>GIN</strong></td>
+              <td>Generalized Inverted Index</td>
+              <td><code>@&gt;, &lt;@, ?, ?|, ?&amp;</code></td>
+              <td>JSONB payload keys, full-text search (tsvector), tags arrays</td>
+            </tr>
+            <tr>
+              <td><strong>BRIN</strong></td>
+              <td>Block Range Index</td>
+              <td>Range operators on sorted physical data</td>
+              <td>Massive timeseries tables (saves 98% RAM compared to B-Tree)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="sec-3">3. Composite Indexing: Column Ordering Rules That Matter</h2>
+      <p>When creating multi-column indexes (Composite Indexes), column order is not stylistic—it dictates whether PostgreSQL can use the index at all. Follow the universal formula: <strong>Equality Columns First, Range Columns Second</strong>.</p>
+
+      <div class="code-block">
+        <div class="code-label">PostgreSQL — Proper Composite Index Design</div>
+        <pre>-- Query to accelerate:
+-- WHERE company_id = 42 AND status = 'ACTIVE' AND created_at >= NOW() - INTERVAL '30 days'
+-- ORDER BY created_at DESC
+
+-- WRONG ORDER (Index scan stops at range!):
+CREATE INDEX idx_bad ON orders (created_at, company_id, status);
+
+-- OPTIMAL ORDER (Equality filters first, range filter last):
+CREATE INDEX idx_orders_optimized 
+ON orders (company_id, status, created_at DESC);</pre>
+      </div>
+
+      <h2 id="sec-4">4. Partial & Covering Indexes (INCLUDE Clause)</h2>
+      <p>Why index 10,000,000 rows when only 50,000 rows are queried frequently? <strong>Partial Indexes</strong> dramatically reduce index bloat and maintenance overhead during writes:</p>
+
+      <div class="code-block">
+        <div class="code-label">PostgreSQL — Partial and Covering Indexes</div>
+        <pre>-- Partial Index: Only index unpaid pending invoices
+CREATE INDEX idx_invoices_pending 
+ON invoices (customer_id, due_date) 
+WHERE status = 'PENDING';
+
+-- Covering Index (Index-Only Scan):
+-- Includes total_amount in index leaf pages without adding it to the B-Tree sort key
+CREATE INDEX idx_orders_covering 
+ON orders (user_id, status) 
+INCLUDE (total_amount, currency);</pre>
+      </div>
+
+      <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Index-Only Scan Magic:</strong> A covering index satisfies the entire query directly from RAM leaf pages without touching the heap table pages on disk, resulting in a <strong>20x speedup</strong>!</div>
+
+      <h2 id="sec-5">5. The ORM N+1 Catastrophe: Batch Loading & CTEs</h2>
+      <p>ORMs make developers fast during the prototyping phase but introduce devastating N+1 query cascades in production. When fetching 100 users and their recent 5 orders, naive ORM loops execute 1 query for users plus 100 individual queries for orders over high-latency network round-trips.</p>
+      <p>Solve this with <strong>Common Table Expressions (CTEs)</strong> and <strong>Window Functions</strong>:</p>
+
+      <div class="code-block">
+        <div class="code-label">Single Performant SQL Query Replacing 101 ORM Calls</div>
+        <pre>WITH ranked_orders AS (
+  SELECT 
+    id, user_id, total_amount, created_at,
+    ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) as rn
+  FROM orders
+  WHERE user_id IN (SELECT id FROM users WHERE is_active = true LIMIT 100)
+)
+SELECT u.id as user_id, u.email, ro.id as order_id, ro.total_amount
+FROM users u
+JOIN ranked_orders ro ON ro.user_id = u.id AND ro.rn &lt;= 5;</pre>
+      </div>
+
+      <h2 id="sec-6">6. Connection Pooling Architecture with PgBouncer</h2>
+      <p>PostgreSQL forks a dedicated operating system process per client connection. 1,000 concurrent client connections consume over 5 GB of RAM in backend process overhead and incur severe context-switching penalties. Deploying <strong>PgBouncer in Transaction Pooling mode</strong> reduces database process count to 50 dedicated connections while smoothly serving 15,000 active web clients.</p>
+
+      <h2 id="sec-7">7. Production DBA Checklist</h2>
+      <ul class="checklist">
+        <li><i class="fa-solid fa-check"></i> Always create indexes in production with <code>CREATE INDEX CONCURRENTLY</code> to prevent locking table writes.</li>
+        <li><i class="fa-solid fa-check"></i> Enable <code>pg_stat_statements</code> to identify the top 10 queries consuming cumulative CPU time.</li>
+        <li><i class="fa-solid fa-check"></i> Index every foreign key column to avoid whole-table lock contention during parent row deletions.</li>
+        <li><i class="fa-solid fa-check"></i> Monitor bloat with autovacuum metrics (<code>autovacuum_vacuum_scale_factor = 0.05</code> on hot tables).</li>
+      </ul>
     
     </div>
     <div data-cl-lang="ar">
       
-      <h2>1. كيف تقرأ مخططات التنفيذ EXPLAIN ANALYZE كمهندس محترف</h2>
-      <p>لا تقم بتحسين استعلامات SQL بناءً على التخمين. أمر <code>EXPLAIN (ANALYZE, BUFFERS)</code> يكشف لك بالتفصيل نوع فحص الجداول (Seq Scan vs Index Scan) وحجم استهلاك الذاكرة. استعلام يستغرق 4 ثوان يمكن خفضه إلى جزء من الميلي ثانية بفهرس مركب مدروس.</p>
-      <h2>2. أنواع الفهارس في PostgreSQL</h2>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس المقال</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. القاعدة الذهبية: القياس بالأمر EXPLAIN (ANALYZE, BUFFERS)</a></li>
+          <li><a href="#sec-2">2. أنواع الفهارس المتقدمة: B-Tree و GIN و BRIN</a></li>
+          <li><a href="#sec-3">3. الفهارس المركبة: قواعد ترتيب الحقول الحيوية</a></li>
+          <li><a href="#sec-4">4. الفهارس الجزئية والفهارس الشاملة (INCLUDE)</a></li>
+          <li><a href="#sec-5">5. كارثة استعلامات N+1 في الـ ORM وكيفية حلها</a></li>
+          <li><a href="#sec-6">6. معمارية تجميع الاتصالات عبر PgBouncer</a></li>
+          <li><a href="#sec-7">7. قائمة التحقق لمهندسي قواعد البيانات في الإنتاج</a></li>
+        </ul>
+      </div>
+
+      <h2 id="sec-1">1. القاعدة الذهبية: القياس بالأمر EXPLAIN (ANALYZE, BUFFERS)</h2>
+      <p>لا تقم أبداً بتحسين استعلام بناءً على التخمين. قاعدة بيانات PostgreSQL تعتمد على محرك تكلفة ذكي (Cost-Based Optimizer). استخدام الأمر <code>EXPLAIN (ANALYZE, BUFFERS)</code> يظهر لك عدد الصفحات المقروءة من الذاكرة العشوائية مقارنة بالقرص الصلب.</p>
+
+      <h2 id="sec-2">2. أنواع الفهارس المتقدمة: B-Tree و GIN و BRIN</h2>
       <ul>
-        <li><strong>B-Tree:</strong> الفهرس الافتراضي الأنسب للعمليات الحسابية والترتيب ومقارنات المساواة.</li>
-        <li><strong>GIN:</strong> ضروري لحقول JSONB والبحث النصي الكامل والمصفوفات.</li>
-        <li><strong>BRIN:</strong> حل سحري للجداول الضخمة المتسلسلة زمنياً ويوفر 95% من مساحة التخزين مقارنة بـ B-Tree.</li>
+        <li><strong>B-Tree:</strong> الفهرس الافتراضي الأساسي للمقارنات والترتيب والمفاتيح الأساسية.</li>
+        <li><strong>GIN:</strong> لا غنى عنه لحقول JSONB والبحث النصي الكامل والمصفوفات.</li>
+        <li><strong>BRIN:</strong> يوفر 98% من مساحة الرام للجداول الضخمة المرتبطة بالتاريخ والوقت.</li>
       </ul>
-      <h2>3. القضاء على فخ استعلامات N+1 في الـ ORM</h2>
-      <p>مكتبات الـ ORM الحديثة تسهل البرمجة لكنها قد تتسبب في إرسال آلاف الاستعلامات المتكررة للربط بين الجداول. استخدم دوال الـ Eager Loading و Batch Loading لتقليص الاستعلامات واسترجاع البيانات بطلب واحد.</p>
+
+      <h2 id="sec-3">3. الفهارس المركبة: قواعد ترتيب الحقول الحيوية</h2>
+      <p>الترتيب في الفهرس المركب ليس عشوائياً: القاعدة الصارمة هي <strong>حقول المساواة أولاً، وحقول المقارنة والنطاق أخيراً</strong>. هذا يضمن استخدام الفهرس بكامل طاقته وتفادي فحص ملايين الصفوف.</p>
+
+      <h2 id="sec-4">4. الفهارس الجزئية والفهارس الشاملة (Covering Indexes)</h2>
+      <p>بدلاً من فهرسة 10 ملايين صف، يمكنك فهرسة الفواتير المعلقة فقط (Pending) مما يقلل حجم الفهرس بنسبة 90%. وباستخدام جملة <code>INCLUDE</code>، يقرأ المحرك البيانات من الفهرس مباشرة (Index-Only Scan) في الذاكرة دون فتح صفحات الجدول على القرص الصلب نهائياً!</p>
+
+      <h2 id="sec-5">5. كارثة استعلامات N+1 في الـ ORM</h2>
+      <p>الـ ORM يطلق مئات الاستعلامات المتكررة لجلب العلاقات. الحل هو استخدام استعلام SQL واحد يعتمد على دوال النوافذ Window Functions لجلب المستخدمين وأحدث 5 طلبات لكل منهم دفعة واحدة في طلب شبكي واحد.</p>
+
+      <h2 id="sec-6">6. معمارية تجميع الاتصالات عبر PgBouncer</h2>
+      <p>قاعدة بيانات PostgreSQL تنشئ Process نظام تشغيل منفصل لكل اتصال. 1,000 اتصال يستهلك 5 جيجابايت رام. استخدام PgBouncer في وضع Transaction Pooling يخفض الاتصالات الحقيقية إلى 50 اتصالاً فقط مع خدمة 15,000 زائر متزامن بكل سلاسة.</p>
     
     </div>
     <div data-cl-lang="fr">
       
-      <h2>1. Lire les Plans EXPLAIN ANALYZE</h2>
-      <p>Ne basez jamais l'optimisation SQL sur l'intuition. Analysez le modèle de coût et les accès mémoire pour identifier les goulots d'étranglement.</p>
-      <h2>2. Les Types d'Index PostgreSQL</h2>
-      <p>Utilisez des index B-Tree pour l'égalité et les plages, GIN pour les colonnes JSONB et la recherche plein texte, et BRIN pour les séries temporelles massives.</p>
-      <h2>3. Éliminer le Piège N+1</h2>
-      <p>Adoptez le batch loading et le Dataloader pour éviter des milliers d'allers-retours réseau inutiles avec votre base de données.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. La Règle d'Or : Mesurer avec EXPLAIN (ANALYZE, BUFFERS)</a></li>
+          <li><a href="#sec-2">2. Types d'Index : B-Tree, GIN et BRIN</a></li>
+          <li><a href="#sec-3">3. Index Composites : L'Ordre Crucial des Colonnes</a></li>
+          <li><a href="#sec-4">4. Index Partiels et Index Couvrants (Clause INCLUDE)</a></li>
+          <li><a href="#sec-5">5. La Catastrophe N+1 des ORMs et les Window Functions</a></li>
+          <li><a href="#sec-6">6. Architecture de Connection Pooling avec PgBouncer</a></li>
+        </ul>
+      </div>
+
+      <h2 id="sec-1">1. Mesurer avec Rigueur</h2>
+      <p>Analysez toujours le plan d'exécution pour éliminer les scans séquentiels massifs et vérifier le ratio d'accès mémoire tampon.</p>
+      <h2 id="sec-2">2. L'Art de l'Indexation Composite</h2>
+      <p>Placez impérativement les filtres d'égalité en tête de l'index et les filtres de plage en dernière position.</p>
+      <h2 id="sec-3">3. Les Index Couvrants</h2>
+      <p>Avec la clause INCLUDE, le moteur résout la requête en mémoire sans jamais toucher les pages du disque, divisant la latence par vingt.</p>
     
     </div>
   </div>

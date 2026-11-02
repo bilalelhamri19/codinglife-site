@@ -1,7 +1,7 @@
 {
-  "name": "barmaja",
+  "name": "codinglife-site",
   "version": "1.0.0",
-  "description": "",
+  "description": "Coding Life static learning platform",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

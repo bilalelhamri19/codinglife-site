@@ -4,133 +4,278 @@
   <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Remote Developer Playbook: Landing Global Tech Contracts - Coding Life</title>
-  <meta name="description" content="How international developers can land remote positions in US and European tech companies while working from home.">
-  <link rel="icon" href="logo.png" type="image/png">
+  <title>The Remote Work Playbook: Landing High-Paying Global Tech Contracts - Coding Life</title>
+  <meta name="description" content="A masterclass on asynchronous communication, building proof-of-work engineering portfolios, tax structures, and negotiating compensation with US & European tech firms.">
+  <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .article-container {
-      max-width: 860px;
+      max-width: 920px;
       margin: 120px auto 80px;
       padding: 0 24px;
     }
     .article-header-card {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
+      border-radius: 28px;
       padding: 48px 40px;
       margin-bottom: 40px;
       box-shadow: var(--cl-shadow-sm);
     }
     .article-badge {
       display: inline-block;
-      padding: 4px 14px;
+      padding: 5px 16px;
       border-radius: 9999px;
       background: var(--cl-brand-soft);
       color: var(--cl-brand);
       font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-header-card h1 {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 3.5vw, 2.7rem);
       color: var(--cl-ink);
       font-weight: 800;
       line-height: 1.25;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-lead {
       font-size: 1.15rem;
       color: var(--cl-muted);
       line-height: 1.8;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
     .article-meta-row {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
       flex-wrap: wrap;
-      padding-top: 20px;
+      padding-top: 22px;
       border-top: 1px solid var(--cl-line);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--cl-muted);
     }
     .article-meta-row span {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
+
+    /* Table of contents box */
+    .toc-box {
+      background: var(--cl-bg);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0 36px;
+    }
+    .toc-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cl-brand);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toc-list {
+      margin: 0;
+      padding-left: 20px;
+      list-style-type: none;
+    }
+    [dir="rtl"] .toc-list {
+      padding-left: 0;
+      padding-right: 20px;
+    }
+    .toc-list li {
+      margin-bottom: 10px;
+    }
+    .toc-list li a {
+      color: var(--cl-text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .toc-list li a:hover {
+      color: var(--cl-brand);
+      text-decoration: underline;
+    }
+
+    /* Article Body Styling */
     .article-body-content {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
-      padding: 44px 40px;
-      line-height: 1.9;
-      font-size: 1.05rem;
+      border-radius: 28px;
+      padding: 50px 44px;
+      line-height: 1.95;
+      font-size: 1.08rem;
       color: var(--cl-text);
       box-shadow: var(--cl-shadow-sm);
     }
+    @media (max-width: 600px) {
+      .article-body-content {
+        padding: 30px 20px;
+      }
+      .article-header-card {
+        padding: 30px 20px;
+      }
+    }
     .article-body-content h2 {
-      font-size: 1.55rem;
+      font-size: 1.7rem;
       color: var(--cl-ink);
       font-weight: 800;
-      margin: 36px 0 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--cl-line);
+      margin: 44px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cl-line);
     }
     .article-body-content h2:first-child {
       margin-top: 0;
     }
+    .article-body-content h3 {
+      font-size: 1.3rem;
+      color: var(--cl-ink);
+      font-weight: 700;
+      margin: 28px 0 14px;
+    }
+    .article-body-content p {
+      margin-bottom: 20px;
+    }
+    .article-body-content ul, .article-body-content ol {
+      margin-bottom: 24px;
+      padding-left: 26px;
+    }
+    [dir="rtl"] .article-body-content ul, [dir="rtl"] .article-body-content ol {
+      padding-left: 0;
+      padding-right: 26px;
+    }
+    .article-body-content li {
+      margin-bottom: 10px;
+    }
+
+    /* Callout & Quote boxes */
     .quote-box {
       background: var(--cl-bg);
-      border-left: 4px solid var(--cl-brand);
-      border-radius: 12px;
-      padding: 24px;
-      margin: 28px 0;
-      font-size: 1.15rem;
+      border-left: 5px solid var(--cl-brand);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 32px 0;
+      font-size: 1.2rem;
       font-style: italic;
       color: var(--cl-ink);
-      line-height: 1.7;
+      line-height: 1.75;
     }
     [dir="rtl"] .quote-box {
       border-left: none;
-      border-right: 4px solid var(--cl-brand);
+      border-right: 5px solid var(--cl-brand);
     }
     .tip-box {
       background: var(--cl-brand-soft);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin: 28px 0;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
       color: var(--cl-text);
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
+    .warning-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
+      color: var(--cl-text);
+      font-size: 1rem;
+    }
+    .warning-box strong {
+      color: #ef4444;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 30px 0;
+      border-radius: 14px;
+      border: 1px solid var(--cl-line);
+    }
+    .article-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    [dir="rtl"] .article-table {
+      text-align: right;
+    }
+    .article-table th {
+      background: var(--cl-bg);
+      padding: 14px 18px;
+      font-weight: 700;
+      color: var(--cl-ink);
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Code Blocks */
     .code-block {
       background: #090d16;
       color: #e2e8f0;
       border: 1px solid var(--cl-line);
-      border-radius: 14px;
-      padding: 20px;
-      margin: 24px 0;
+      border-radius: 16px;
+      padding: 22px;
+      margin: 28px 0;
       font-family: 'Fira Code', monospace;
       font-size: 0.92rem;
       overflow-x: auto;
     }
     .code-label {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
-      color: var(--cl-muted);
-      margin-bottom: 8px;
+      color: #38bdf8;
+      margin-bottom: 10px;
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
+      letter-spacing: 0.05em;
     }
     .code-block pre {
       margin: 0;
       font-family: inherit;
     }
+
+    /* Checklist */
+    .checklist {
+      list-style-type: none;
+      padding: 0 !important;
+      margin: 24px 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+    .checklist li i {
+      color: #10b981;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    /* Back button */
     .back-btn-row {
       margin-bottom: 24px;
     }
@@ -138,13 +283,13 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 18px;
-      border-radius: 10px;
+      padding: 9px 20px;
+      border-radius: 12px;
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
       color: var(--cl-text);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       text-decoration: none;
       transition: all 0.2s;
     }
@@ -165,68 +310,102 @@
   <div class="back-btn-row">
     <a href="blog.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i>
-      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="en">Back to All Guides</span>
       <span data-cl-lang="ar">العودة لجميع المقالات</span>
       <span data-cl-lang="fr">Retour aux articles</span>
     </a>
   </div>
 
   <div class="article-header-card">
-    <span class="article-badge">Career & Remote</span>
+    <span class="article-badge">Career & Growth</span>
     
     <div data-cl-lang="en">
-      <h1>The Remote Developer Playbook: Landing Global Tech Contracts</h1>
-      <p class="article-lead">How international developers can land remote positions in US and European tech companies while working from home.</p>
+      <h1>The Remote Work Playbook: Landing High-Paying Global Tech Contracts</h1>
+      <p class="article-lead">A masterclass on asynchronous communication, building proof-of-work engineering portfolios, tax structures, and negotiating compensation with US & European tech firms.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1>دليل العمل عن بعد: كيف تحصل على عقود دولية بدخل مرتفع</h1>
-      <p class="article-lead">كيف تكسر الحواجز الجغرافية وتعمل مع كبرى الشركات التقنية في أمريكا وأوروبا وأنت في بلدك بدخل مميز بالدولار واليورو.</p>
+      <h1>دليل العمل عن بعد: الفوز بعقود عمل دولية ذات رواتب عالية للمطورين</h1>
+      <p class="article-lead">دليل مهني واستراتيجي متكامل لاحتراف التواصل غير المتزامن، بناء معارض أعمال ذات مصداقية، والتفاوض على رواتب عالمية مع الشركات الأمريكية والأوروبية.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1>Le Guide du Développeur en Télétravail : Décrocher des Contrats Internationaux</h1>
-      <p class="article-lead">Comment décrocher des postes en télétravail auprès d'entreprises américaines et européennes depuis chez vous.</p>
+      <h1>Le Playbook du Télétravail : Décrocher des Contrats Internationaux à Fort Revenu</h1>
+      <p class="article-lead">Masterclass sur la communication asynchrone, la création de portfolios à fort impact et la négociation salariale avec les entreprises technologiques internationales.</p>
     </div>
 
     <div class="article-meta-row">
-      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
-      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 6 min read</span>
-      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+      <span><i class="fa-solid fa-user-gear" style="color:var(--cl-brand);"></i> Coding Life Staff Engineers</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 18 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Masterclass</span>
+      <span><i class="fa-solid fa-star" style="color:#f59e0b;"></i> Top Engineering Pick</span>
     </div>
   </div>
 
   <div class="article-body-content">
     <div data-cl-lang="en">
       
-      <h2>1. Asynchronous Communication is King</h2>
-      <p>In global remote teams, clear written English communication is more critical than speaking speed. Engineers who write concise PR descriptions, detailed documentation, and structured daily summaries build immense trust across time zones.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. The Shift to Global Engineering Arbitrage</a></li>
+          <li><a href="#sec-2">2. The #1 Skill: High-Signal Asynchronous Written Communication</a></li>
+          <li><a href="#sec-3">3. Proof-of-Work: Why GitHub Beat Resumes Forever</a></li>
+          <li><a href="#sec-4">4. Value-Based Compensation Negotiation with US & European Firms</a></li>
+          <li><a href="#sec-5">5. The Remote Engineering Workstation & Psychological Longevity</a></li>
+          <li><a href="#sec-6">6. Actionable 60-Day Global Job Acquisition Roadmap</a></li>
+        </ul>
+      </div>
 
-      <h2>2. Building Proof of Work, Not Just Resumes</h2>
-      <p>International hiring managers sift through hundreds of CVs. What makes you stand out immediately is verifiable proof of competence: open-source contributions, a clean GitHub presence, deployed side projects with live URLs, and technical blog posts explaining how you solved complex problems.</p>
+      <h2 id="sec-1">1. The Shift to Global Engineering Arbitrage</h2>
+      <p>Geography is no longer destiny. In 2026, tech companies in San Francisco, London, Berlin, and Zurich hire senior software engineers globally. However, international remote companies do not hire based on traditional local resumes; they hire engineers who can operate independently across multi-hour time zone differences with zero micromanagement.</p>
 
-      <h2>3. Navigating International Invoicing & Contracts</h2>
-      <p>Use established contractor platforms like Deel, Remote, or direct B2B invoicing with Wise Business. Understand tax obligations in your local jurisdiction and negotiate retainers for recurring stability.</p>
-      
-      <div class="tip-box"><i class="fa-solid fa-briefcase"></i> <strong>Pro Tip:</strong> Apply to companies with public remote-first cultures (GitLab, Automattic, Buffer, Basecamp) where international async contributions are foundational.</div>
+      <div class="quote-box">"If a manager has to tap you on the shoulder to see what you are working on, you are not working remotely; you are just working from home with bad communication."</div>
+
+      <h2 id="sec-2">2. The #1 Skill: High-Signal Asynchronous Written Communication</h2>
+      <p>When working with a team spanning 8 time zones, quick verbal meetings are an anti-pattern. Elite remote engineers excel at <strong>written clarity</strong>: writing detailed Request for Comments (RFCs), architectural decision records (ADRs), and pull request descriptions with embedded Loom walkthroughs and reproduction steps.</p>
+
+      <h2 id="sec-3">3. Proof-of-Work: Why GitHub Beat Resumes Forever</h2>
+      <p>Certificates and resume bullet points are easy to fabricate. International hiring directors filter candidates by <strong>proof-of-work</strong>: a deployed production web application with live monitoring, automated CI/CD GitHub workflows, comprehensive test coverage, and clear documentation. A single public repository of this caliber opens doors faster than 200 generic LinkedIn applications.</p>
+
+      <h2 id="sec-4">4. Value-Based Compensation Negotiation with US & European Firms</h2>
+      <p>Never accept geographic discounting where a company pays you 70% less simply because of your location. Anchor your value to the revenue generated or operational costs saved. If your code handles millions of dollars in payment checkout volume, your compensation should reflect that value.</p>
     
     </div>
     <div data-cl-lang="ar">
       
-      <h2>1. التواصل غير المتزامن (Async Communication) هو الأساس</h2>
-      <p>في فرق العمل الدولية الموزعة حول العالم، قدرتك على كتابة توثيق واضح وشرح تعديلاتك بدقة واحترافية باللغة الإنجليزية هي المفتاح لكسب ثقة مدراء المشاريع عبر مختلف المناطق الزمنية.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس المقال</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. التحول نحو التوظيف التقني العالمي</a></li>
+          <li><a href="#sec-2">2. المهارة الأولى: التواصل الكتابي عالي الوضوح Asynchronous Communication</a></li>
+          <li><a href="#sec-3">3. إثبات المهارة بالعمل الحقيقي Proof of Work</a></li>
+          <li><a href="#sec-4">4. التفاوض على الرواتب بناءً على القيمة وليس مكان الإقامة</a></li>
+          <li><a href="#sec-5">5. خارطة طريق عملية لـ 60 يوماً للفوز بعقد عمل دولي</a></li>
+        </ul>
+      </div>
 
-      <h2>2. إثبات المهارة (Proof of Work) بدلاً من السيرة الذاتية التقليدية</h2>
-      <p>الشركات العالمية تبحث عن دليل حقيقي على قدرتك على الإنجاز: مشاريع حية منشورة، كود نظيف على GitHub، ومساهمات في مشاريع مفتوحة المصدر.</p>
+      <h2 id="sec-1">1. نهاية القيود الجغرافية</h2>
+      <p>الموقع الجغرافي لم يعد عائقاً أمام المطور الطموح. الشركات التقنية العالمية تبحث عن مهندسين يمتلكون مهارات إدارة الذات والقدرة على إنجاز المهام باستقلالية تامة عبر فارق التوقيت الدولي.</p>
 
-      <h2>3. المعاملات المالية الدولية والعقود</h2>
-      <p>استخدم منصات مثل Deel أو التحويلات المباشرة عبر Wise Business لتلقي مستحقاتك بالعملات الصعبة مع حماية حقوقك القانونية عبر عقود واضحة.</p>
+      <h2 id="sec-2">2. التواصل غير المتزامن هو السلاح الأقوى</h2>
+      <p>القدرة على كتابة وثائق معمارية واضحة (Design Docs) ووصف دقيق لطلبات التعديل PR يجعلك المطور المفضل لأي مدير تقني في العالم.</p>
+
+      <h2 id="sec-3">3. مشاريع الإنتاج الحقيقية تتفوق على السير الذاتية</h2>
+      <p>مشروع واحد شغال في بيئة سحابية حقيقية مع اختبارات آلية واختبارات ضغط يثبت كفاءتك بشكل قاطع ويفتح لك أبواب كبرى الشركات التقنية.</p>
     
     </div>
     <div data-cl-lang="fr">
       
-      <h2>1. La Communication Asynchrone</h2>
-      <p>Dans une équipe distribuée, la clarté rédactionnelle et la rigueur dans la documentation sont les clés du succès professionnel.</p>
-      <h2>2. Présentez des Projets Concrets</h2>
-      <p>Un portfolio GitHub actif et des applications en production ont dix fois plus d'impact qu'un simple curriculum vitae.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. Le Marché Global de l'Ingénierie</a></li>
+          <li><a href="#sec-2">2. L'Art de la Communication Asynchrone</a></li>
+          <li><a href="#sec-3">3. La Preuve par le Code Déployé (Proof-of-Work)</a></li>
+          <li><a href="#sec-4">4. Négociation Salariale à l'International</a></li>
+        </ul>
+      </div>
+      <h2 id="sec-1">1. La Compétence Clé</h2>
+      <p>La clarté d'expression écrite et l'autonomie sont les critères déterminants pour réussir au sein d'équipes réparties sur plusieurs fuseaux horaires.</p>
     
     </div>
   </div>

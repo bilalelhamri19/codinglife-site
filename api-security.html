@@ -4,133 +4,278 @@
   <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zero-Trust API Security: Defending Production Backends - Coding Life</title>
-  <meta name="description" content="Best practices for securing modern REST and GraphQL APIs against authentication bypass, data leaks, and volumetric DDoS attacks.">
-  <link rel="icon" href="logo.png" type="image/png">
+  <title>Zero-Trust API Security: Production Hardening Masterclass - Coding Life</title>
+  <meta name="description" content="Defend production REST & GraphQL APIs against OWASP Top 10 exploits, broken object level authorization (BOLA/IDOR), JWT algorithm confusion, and automated credential stuffing.">
+  <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .article-container {
-      max-width: 860px;
+      max-width: 920px;
       margin: 120px auto 80px;
       padding: 0 24px;
     }
     .article-header-card {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
+      border-radius: 28px;
       padding: 48px 40px;
       margin-bottom: 40px;
       box-shadow: var(--cl-shadow-sm);
     }
     .article-badge {
       display: inline-block;
-      padding: 4px 14px;
+      padding: 5px 16px;
       border-radius: 9999px;
       background: var(--cl-brand-soft);
       color: var(--cl-brand);
       font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-header-card h1 {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 3.5vw, 2.7rem);
       color: var(--cl-ink);
       font-weight: 800;
       line-height: 1.25;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-lead {
       font-size: 1.15rem;
       color: var(--cl-muted);
       line-height: 1.8;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
     .article-meta-row {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
       flex-wrap: wrap;
-      padding-top: 20px;
+      padding-top: 22px;
       border-top: 1px solid var(--cl-line);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--cl-muted);
     }
     .article-meta-row span {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
+
+    /* Table of contents box */
+    .toc-box {
+      background: var(--cl-bg);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0 36px;
+    }
+    .toc-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cl-brand);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toc-list {
+      margin: 0;
+      padding-left: 20px;
+      list-style-type: none;
+    }
+    [dir="rtl"] .toc-list {
+      padding-left: 0;
+      padding-right: 20px;
+    }
+    .toc-list li {
+      margin-bottom: 10px;
+    }
+    .toc-list li a {
+      color: var(--cl-text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .toc-list li a:hover {
+      color: var(--cl-brand);
+      text-decoration: underline;
+    }
+
+    /* Article Body Styling */
     .article-body-content {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
-      padding: 44px 40px;
-      line-height: 1.9;
-      font-size: 1.05rem;
+      border-radius: 28px;
+      padding: 50px 44px;
+      line-height: 1.95;
+      font-size: 1.08rem;
       color: var(--cl-text);
       box-shadow: var(--cl-shadow-sm);
     }
+    @media (max-width: 600px) {
+      .article-body-content {
+        padding: 30px 20px;
+      }
+      .article-header-card {
+        padding: 30px 20px;
+      }
+    }
     .article-body-content h2 {
-      font-size: 1.55rem;
+      font-size: 1.7rem;
       color: var(--cl-ink);
       font-weight: 800;
-      margin: 36px 0 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--cl-line);
+      margin: 44px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cl-line);
     }
     .article-body-content h2:first-child {
       margin-top: 0;
     }
+    .article-body-content h3 {
+      font-size: 1.3rem;
+      color: var(--cl-ink);
+      font-weight: 700;
+      margin: 28px 0 14px;
+    }
+    .article-body-content p {
+      margin-bottom: 20px;
+    }
+    .article-body-content ul, .article-body-content ol {
+      margin-bottom: 24px;
+      padding-left: 26px;
+    }
+    [dir="rtl"] .article-body-content ul, [dir="rtl"] .article-body-content ol {
+      padding-left: 0;
+      padding-right: 26px;
+    }
+    .article-body-content li {
+      margin-bottom: 10px;
+    }
+
+    /* Callout & Quote boxes */
     .quote-box {
       background: var(--cl-bg);
-      border-left: 4px solid var(--cl-brand);
-      border-radius: 12px;
-      padding: 24px;
-      margin: 28px 0;
-      font-size: 1.15rem;
+      border-left: 5px solid var(--cl-brand);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 32px 0;
+      font-size: 1.2rem;
       font-style: italic;
       color: var(--cl-ink);
-      line-height: 1.7;
+      line-height: 1.75;
     }
     [dir="rtl"] .quote-box {
       border-left: none;
-      border-right: 4px solid var(--cl-brand);
+      border-right: 5px solid var(--cl-brand);
     }
     .tip-box {
       background: var(--cl-brand-soft);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin: 28px 0;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
       color: var(--cl-text);
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
+    .warning-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
+      color: var(--cl-text);
+      font-size: 1rem;
+    }
+    .warning-box strong {
+      color: #ef4444;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 30px 0;
+      border-radius: 14px;
+      border: 1px solid var(--cl-line);
+    }
+    .article-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    [dir="rtl"] .article-table {
+      text-align: right;
+    }
+    .article-table th {
+      background: var(--cl-bg);
+      padding: 14px 18px;
+      font-weight: 700;
+      color: var(--cl-ink);
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Code Blocks */
     .code-block {
       background: #090d16;
       color: #e2e8f0;
       border: 1px solid var(--cl-line);
-      border-radius: 14px;
-      padding: 20px;
-      margin: 24px 0;
+      border-radius: 16px;
+      padding: 22px;
+      margin: 28px 0;
       font-family: 'Fira Code', monospace;
       font-size: 0.92rem;
       overflow-x: auto;
     }
     .code-label {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
-      color: var(--cl-muted);
-      margin-bottom: 8px;
+      color: #38bdf8;
+      margin-bottom: 10px;
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
+      letter-spacing: 0.05em;
     }
     .code-block pre {
       margin: 0;
       font-family: inherit;
     }
+
+    /* Checklist */
+    .checklist {
+      list-style-type: none;
+      padding: 0 !important;
+      margin: 24px 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+    .checklist li i {
+      color: #10b981;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    /* Back button */
     .back-btn-row {
       margin-bottom: 24px;
     }
@@ -138,13 +283,13 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 18px;
-      border-radius: 10px;
+      padding: 9px 20px;
+      border-radius: 12px;
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
       color: var(--cl-text);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       text-decoration: none;
       transition: all 0.2s;
     }
@@ -165,75 +310,175 @@
   <div class="back-btn-row">
     <a href="blog.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i>
-      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="en">Back to All Guides</span>
       <span data-cl-lang="ar">العودة لجميع المقالات</span>
       <span data-cl-lang="fr">Retour aux articles</span>
     </a>
   </div>
 
   <div class="article-header-card">
-    <span class="article-badge">Architecture</span>
+    <span class="article-badge">Security & Production</span>
     
     <div data-cl-lang="en">
-      <h1>Zero-Trust API Security: Defending Production Backends</h1>
-      <p class="article-lead">Best practices for securing modern REST and GraphQL APIs against authentication bypass, data leaks, and volumetric DDoS attacks.</p>
+      <h1>Zero-Trust API Security: Production Hardening Masterclass</h1>
+      <p class="article-lead">Defend production REST & GraphQL APIs against OWASP Top 10 exploits, broken object level authorization (BOLA/IDOR), JWT algorithm confusion, and automated credential stuffing.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1>تأمين واجهات البرمجة API: استراتيجيات الحماية في بيئات الإنتاج</h1>
-      <p class="article-lead">أفضل الممارسات لحماية واجهات REST و GraphQL من محاولات الاختراق، تسريب البيانات، وهجمات حجب الخدمة.</p>
+      <h1>أمان واجهات برمجة التطبيقات APIs بمبدأ انعدام الثقة Zero-Trust: الدليل المتقدم</h1>
+      <p class="article-lead">تحصين واجهات الـ APIs ضد ثغرات OWASP Top 10 و BOLA/IDOR، والتلاعب بتوقيعات JWT، وحماية السيرفرات من هجمات الحرمان من الخدمة DDoS.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1>Sécurité API Zero-Trust : Protéger ses Backends en Production</h1>
-      <p class="article-lead">Les meilleures pratiques pour sécuriser vos API REST et GraphQL contre les fuites de données et attaques par déni de service.</p>
+      <h1>Sécurité des APIs Zero-Trust : Masterclass de Durcissement en Production</h1>
+      <p class="article-lead">Protégez vos APIs de production contre les vulnérabilités du Top 10 OWASP, les failles BOLA/IDOR, les altérations JWT et les attaques par force brute.</p>
     </div>
 
     <div class="article-meta-row">
-      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
-      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 8 min read</span>
-      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+      <span><i class="fa-solid fa-user-gear" style="color:var(--cl-brand);"></i> Coding Life Staff Engineers</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 18 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Masterclass</span>
+      <span><i class="fa-solid fa-star" style="color:#f59e0b;"></i> Top Engineering Pick</span>
     </div>
   </div>
 
   <div class="article-body-content">
     <div data-cl-lang="en">
       
-      <h2>1. Validate Everything at the Network Boundary</h2>
-      <p>Never trust incoming payloads. Use schema validators like Zod, Joi, or Pydantic to strictly reject unexpected fields. Enforce type safety, string sanitization, and number bounds before touching application logic.</p>
-
-      <h2>2. Stateless Token Rotation & Revocation</h2>
-      <p>JWTs are powerful but dangerous if stolen. Keep access token lifespans short (10-15 minutes) and issue refresh tokens stored in HTTP-only, secure, SameSite cookies. Back refresh tokens with an in-memory blacklist (Redis) for instantaneous revocation on password changes or logout.</p>
-
-      <h2>3. Rate Limiting, CORS & Security Headers</h2>
-      <p>Enforce strict Cross-Origin Resource Sharing (CORS) rules. Configure Redis token-bucket rate limiters on sensitive endpoints (login, password reset, payment webhooks) to neutralize credential-stuffing botnets.</p>
-      
-      <div class="code-block">
-        <div class="code-label">Essential Helmet Security Headers (Express)</div>
-        <pre>app.use(helmet({
-  contentSecurityPolicy: true,
-  crossOriginEmbedderPolicy: true,
-  hsts: { maxAge: 31536000, includeSubDomains: true, preload: true }
-}));</pre>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. The Zero-Trust API Paradigm</a></li>
+          <li><a href="#sec-2">2. Broken Object Level Authorization (BOLA/IDOR): The #1 API Killer</a></li>
+          <li><a href="#sec-3">3. JWT Hardening: Algorithms, Revocation & Refresh Token Rotation</a></li>
+          <li><a href="#sec-4">4. Distributed Rate Limiting with Redis Sliding Windows</a></li>
+          <li><a href="#sec-5">5. Input Validation & Strict Schema Invariants with Zod</a></li>
+          <li><a href="#sec-6">6. Production API Security Checklist</a></li>
+        </ul>
       </div>
+
+      <h2 id="sec-1">1. The Zero-Trust API Paradigm</h2>
+      <p>Traditional network perimeter security (firewalls, VPCs) is obsolete. Once an attacker breaches the perimeter or gains compromised developer credentials, flat networks allow unfettered lateral movement. Zero-Trust API architecture assumes <strong>the network is already compromised</strong>: every single incoming request must be cryptographically authenticated, authorized at the discrete object level, and strictly rate-limited regardless of origin.</p>
+
+      <div class="quote-box">"Never trust an incoming request simply because it originated behind your internal private subnet or load balancer."</div>
+
+      <h2 id="sec-2">2. Broken Object Level Authorization (BOLA/IDOR): The #1 API Killer</h2>
+      <p>OWASP consistently ranks BOLA as the most widespread and damaging API vulnerability. BOLA occurs when an endpoint relies on a user-supplied ID (e.g., <code>/api/documents/1042</code>) to fetch a resource without verifying whether the authenticated user actually owns that resource.</p>
+
+      <div class="code-block">
+        <div class="code-label">TypeScript / Express — Vulnerable vs. Secure Object Authorization</div>
+        <pre>// VULNERABLE TO BOLA / IDOR:
+app.get('/api/invoices/:id', async (req, res) => {
+  // Bug: Anyone with a valid JWT can view ANY user's invoice by guessing the ID!
+  const invoice = await db.invoices.findById(req.params.id);
+  res.json(invoice);
+});
+
+// ZERO-TRUST SECURE IMPLEMENTATION:
+app.get('/api/invoices/:id', async (req, res) => {
+  const currentUserId = req.user.id;
+  const currentTenantId = req.user.tenantId;
+
+  // Enforce ownership directly inside the SQL WHERE clause:
+  const invoice = await db.invoices.findOne({
+    where: {
+      id: req.params.id,
+      tenantId: currentTenantId, // Strict multi-tenant isolation
+      userId: currentUserId
+    }
+  });
+
+  if (!invoice) {
+    // Return 404 instead of 403 to prevent resource existence enumeration!
+    return res.status(404).json({ error: 'Invoice not found' });
+  }
+
+  res.json(invoice);
+});</pre>
+      </div>
+
+      <h2 id="sec-3">3. JWT Hardening: Algorithms, Revocation & Refresh Token Rotation</h2>
+      <p>JSON Web Tokens (JWT) are frequently misconfigured. Production guidelines:</p>
+      <ul>
+        <li><strong>Strict Algorithm Whitelisting:</strong> Reject the <code>"alg": "none"</code> bypass and prevent RSA-to-HMAC algorithm confusion attacks by strictly configuring your verification library to accept only <code>RS256</code> or <code>EdDSA</code>.</li>
+        <li><strong>Short-Lived Access Tokens:</strong> Set access token TTL to a maximum of 15 minutes. Store access tokens in memory or strictly HttpOnly, SameSite cookies.</li>
+        <li><strong>Refresh Token Rotation (RTR):</strong> Every time a client exchanges a refresh token for a new access token, invalidate the old refresh token and issue a new one. If an invalidated refresh token is ever reused, revoke the entire token family immediately (compromise detection).</li>
+      </ul>
+
+      <h2 id="sec-4">4. Distributed Rate Limiting with Redis Sliding Windows</h2>
+      <p>Standard fixed-window rate limiters permit 2x traffic bursts at window boundaries (e.g. 100 requests at 11:59:59 and 100 requests at 12:00:01). Production systems use a <strong>Sliding-Window Counter</strong> powered by Redis sorted sets (ZSET):</p>
+
+      <div class="code-block">
+        <div class="code-label">TypeScript / Redis — Sliding Window Rate Limiter</div>
+        <pre>export async function checkRateLimit(ip: string, maxRequests = 60, windowSeconds = 60): Promise&lt;boolean&gt; {
+  const now = Date.now();
+  const windowStart = now - (windowSeconds * 1000);
+  const key = 'rate_limit:' + ip;
+
+  const multi = redis.multi();
+  // Remove expired timestamps older than the sliding window
+  multi.zremrangebyscore(key, 0, windowStart);
+  // Add current request timestamp
+  multi.zadd(key, now, now.toString());
+  // Count requests within the current sliding window
+  multi.zcard(key);
+  // Set TTL on key to auto-clean memory
+  multi.expire(key, windowSeconds);
+
+  const results = await multi.exec();
+  const requestCount = results[2][1] as number;
+
+  return requestCount <= maxRequests;
+}</pre>
+      </div>
+
+      <h2 id="sec-5">5. Input Validation & Strict Schema Invariants with Zod</h2>
+      <p>Never pass unvalidated user input into database queries or external API calls. Enforce strict Zod schemas that reject unexpected properties (strip unknowns) to block Mass Assignment attacks.</p>
+
+      <h2 id="sec-6">6. Production API Security Checklist</h2>
+      <ul class="checklist">
+        <li><i class="fa-solid fa-check"></i> All endpoints enforce object-level ownership checks in database queries.</li>
+        <li><i class="fa-solid fa-check"></i> JWT signature verification explicitly whitelists RS256/Ed25519.</li>
+        <li><i class="fa-solid fa-check"></i> Distributed Redis sliding-window rate limiting enforced on all public routes.</li>
+        <li><i class="fa-solid fa-check"></i> Strict CORS headers configured; wildcard <code>Access-Control-Allow-Origin: *</code> banned.</li>
+      </ul>
     
     </div>
     <div data-cl-lang="ar">
       
-      <h2>1. التحقق الصارم من جميع المدخلات (Input Validation)</h2>
-      <p>لا تثق أبداً بأي بيانات مرسلة من العميل. استخدم أدوات مثل Zod للتحقق من سلامة البيانات ورفض أي حقول مشبوهة قبل تمريرها لقاعدة البيانات.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس المقال</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. مبدأ انعدام الثقة Zero-Trust في الواجهات البرمجية</a></li>
+          <li><a href="#sec-2">2. ثغرة BOLA/IDOR: الخطر الأكبر على بيانات المستخدمين</a></li>
+          <li><a href="#sec-3">3. تحصين توكنات JWT وتدوير Refresh Tokens</a></li>
+          <li><a href="#sec-4">4. تحديد معدل الطلبات عبر النافذة المنزلقة في Redis</a></li>
+          <li><a href="#sec-5">5. فحص المدخلات الصارم عبر Zod ضد ثغرات Mass Assignment</a></li>
+          <li><a href="#sec-6">6. قائمة الأمان الإلزامية لواجهات الإنتاج</a></li>
+        </ul>
+      </div>
 
-      <h2>2. تأمين رموز الجلسات (JWT)</h2>
-      <p>اجعل صلاحية رموز الدخول قصيرة (15 دقيقة كحد أقصى) واحفظ رموز التحديث في كوكيز HttpOnly محمية، مع استخدام Redis لإلغاء الجلسات فوراً عند تسجيل الخروج.</p>
+      <h2 id="sec-1">1. مبدأ انعدام الثقة Zero-Trust</h2>
+      <p>الأمان التقليدي الذي يفترض أن السيرفر الداخلي آمن أصبح غير كافٍ. مبدأ Zero-Trust يفترض أن الشبكة مخترقة بالفعل، وبالتالي يجب التحقق من هوية وصلاحية كل طلب بشكل منفصل قبل لمس أي سجل في قاعدة البيانات.</p>
 
-      <h2>3. تحديد معدل الطلبات (Rate Limiting) والجدار الناري</h2>
-      <p>حماية روابط تسجيل الدخول والعمليات الحساسة بوضع حدود صارمة لعدد الطلبات المسموح بها لكل مستخدم لمنع هجمات التخمين الآلي.</p>
+      <h2 id="sec-2">2. ثغرة BOLA/IDOR وكيفية القضاء عليها</h2>
+      <p>أكبر خطأ يقع فيه المطور هو جلب الفاتورة برقم المعرف الممرر من المستخدم فقط دون التأكد من أن المستخدم الحالي هو المالك الحقيقي للفاتورة. الحل هو دمج شرط الملكية دائماً داخل جملة الاستعلام <code>WHERE tenant_id = ? AND user_id = ?</code>.</p>
+
+      <h2 id="sec-3">3. حماية توكنات JWT وتدوير التوكنات</h2>
+      <p>يجب تحديد عمر توكن الوصول بـ 15 دقيقة فقط، وتطبيق ميزة تدوير Refresh Token Rotation بحيث يتم إبطال التوكن القديم فور استخدامه لكشف أي محاولة سرقة للهوية فورياً.</p>
     
     </div>
     <div data-cl-lang="fr">
       
-      <h2>1. Validation Rigoureuse des Données Entrantes</h2>
-      <p>Appliquez des schémas de validation stricts (Zod, Joi) dès la frontière réseau pour bloquer les payloads malveillants.</p>
-      <h2>2. Gestion des Sessions & Limites de Requêtes</h2>
-      <p>Combinez des tokens JWT à courte durée de vie et une limitation de débit basée sur Redis pour contrer les attaques automatisées.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. Le Paradigme Zero-Trust pour les APIs</a></li>
+          <li><a href="#sec-2">2. Neutralisation des Failles BOLA/IDOR</a></li>
+          <li><a href="#sec-3">3. Durcissement des JWTs et Rotation des Refresh Tokens</a></li>
+          <li><a href="#sec-4">4. Rate-Limiting Distribué par Fenêtre Glissante</a></li>
+        </ul>
+      </div>
+      <h2 id="sec-1">1. Zéro Confiance par Défaut</h2>
+      <p>Chaque requête doit être rigoureusement authentifiée et autorisée au niveau de l'objet, même en provenance d'un réseau interne.</p>
     
     </div>
   </div>

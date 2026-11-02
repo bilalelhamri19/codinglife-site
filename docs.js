@@ -150,6 +150,11 @@
       { en: 'Database PDO & Security', ar: 'الاتصال بقواعد البيانات عبر PDO', fr: 'Bases de Données & PDO' },
       { en: 'Object-Oriented PHP & Modern Features', ar: 'البرمجة الكائنية في PHP الحديثة', fr: 'PHP Orienté Objet' }
     ],
+    'java': [
+      { en: 'Java Fundamentals', ar: 'أساسيات جافا', fr: 'Fondamentaux Java' },
+      { en: 'Object-Oriented Programming (OOP)', ar: 'البرمجة كائنية التوجه (OOP)', fr: 'Programmation Orientée Objet' },
+      { en: 'Collections & Modern Java', ar: 'المجموعات وجافا الحديثة', fr: 'Collections & Java Moderne' }
+    ],
     'csharp': [
       { en: 'C# Foundations & .NET Ecosystem', ar: 'أساسيات لغة سي شارب ومنصة دوت نت', fr: 'Fondamentaux C# & .NET' },
       { en: 'Control Flow & Methods', ar: 'التحكم في التدفق والدوال', fr: 'Contrôle & Méthodes' },
@@ -242,9 +247,10 @@
 
     let modulesHtml = '';
     // Determine course key from URL
-    const pagePath = window.location.pathname.toLowerCase();
-    const courseKey = Object.keys(COURSE_MODULES).find(k => pagePath.includes(k)) || 'default';
-    const courseModulesList = COURSE_MODULES[courseKey] || [];
+    const pageFile = (window.location.pathname.split('/').pop() || '')
+      .replace(/\.html$/i, '')
+      .toLowerCase();
+    const courseModulesList = COURSE_MODULES[pageFile] || [];
 
     const partNames = courseModulesList.length > 0 ? courseModulesList : [
       { en: 'Module 1: Foundations', ar: 'الوحدة 1: الأساسيات', fr: 'Module 1: Fondations' },

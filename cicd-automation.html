@@ -4,133 +4,278 @@
   <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enterprise CI/CD Pipelines: Fast Builds & Automated Rollbacks - Coding Life</title>
-  <meta name="description" content="Design GitHub Actions workflows with remote caching, matrix testing, branch protections, and automated deployment smoke tests.">
-  <link rel="icon" href="logo.png" type="image/png">
+  <title>Enterprise CI/CD Pipelines: Fast Builds, Sharding & Automated Rollbacks - Coding Life</title>
+  <meta name="description" content="Architect enterprise-grade GitHub Actions workflows with remote caching, multi-stage Docker Buildx layers, test sharding, and synthetic canary health verification.">
+  <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .article-container {
-      max-width: 860px;
+      max-width: 920px;
       margin: 120px auto 80px;
       padding: 0 24px;
     }
     .article-header-card {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
+      border-radius: 28px;
       padding: 48px 40px;
       margin-bottom: 40px;
       box-shadow: var(--cl-shadow-sm);
     }
     .article-badge {
       display: inline-block;
-      padding: 4px 14px;
+      padding: 5px 16px;
       border-radius: 9999px;
       background: var(--cl-brand-soft);
       color: var(--cl-brand);
       font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-header-card h1 {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 3.5vw, 2.7rem);
       color: var(--cl-ink);
       font-weight: 800;
       line-height: 1.25;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-lead {
       font-size: 1.15rem;
       color: var(--cl-muted);
       line-height: 1.8;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
     .article-meta-row {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
       flex-wrap: wrap;
-      padding-top: 20px;
+      padding-top: 22px;
       border-top: 1px solid var(--cl-line);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--cl-muted);
     }
     .article-meta-row span {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
+
+    /* Table of contents box */
+    .toc-box {
+      background: var(--cl-bg);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0 36px;
+    }
+    .toc-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cl-brand);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toc-list {
+      margin: 0;
+      padding-left: 20px;
+      list-style-type: none;
+    }
+    [dir="rtl"] .toc-list {
+      padding-left: 0;
+      padding-right: 20px;
+    }
+    .toc-list li {
+      margin-bottom: 10px;
+    }
+    .toc-list li a {
+      color: var(--cl-text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .toc-list li a:hover {
+      color: var(--cl-brand);
+      text-decoration: underline;
+    }
+
+    /* Article Body Styling */
     .article-body-content {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
-      padding: 44px 40px;
-      line-height: 1.9;
-      font-size: 1.05rem;
+      border-radius: 28px;
+      padding: 50px 44px;
+      line-height: 1.95;
+      font-size: 1.08rem;
       color: var(--cl-text);
       box-shadow: var(--cl-shadow-sm);
     }
+    @media (max-width: 600px) {
+      .article-body-content {
+        padding: 30px 20px;
+      }
+      .article-header-card {
+        padding: 30px 20px;
+      }
+    }
     .article-body-content h2 {
-      font-size: 1.55rem;
+      font-size: 1.7rem;
       color: var(--cl-ink);
       font-weight: 800;
-      margin: 36px 0 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--cl-line);
+      margin: 44px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cl-line);
     }
     .article-body-content h2:first-child {
       margin-top: 0;
     }
+    .article-body-content h3 {
+      font-size: 1.3rem;
+      color: var(--cl-ink);
+      font-weight: 700;
+      margin: 28px 0 14px;
+    }
+    .article-body-content p {
+      margin-bottom: 20px;
+    }
+    .article-body-content ul, .article-body-content ol {
+      margin-bottom: 24px;
+      padding-left: 26px;
+    }
+    [dir="rtl"] .article-body-content ul, [dir="rtl"] .article-body-content ol {
+      padding-left: 0;
+      padding-right: 26px;
+    }
+    .article-body-content li {
+      margin-bottom: 10px;
+    }
+
+    /* Callout & Quote boxes */
     .quote-box {
       background: var(--cl-bg);
-      border-left: 4px solid var(--cl-brand);
-      border-radius: 12px;
-      padding: 24px;
-      margin: 28px 0;
-      font-size: 1.15rem;
+      border-left: 5px solid var(--cl-brand);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 32px 0;
+      font-size: 1.2rem;
       font-style: italic;
       color: var(--cl-ink);
-      line-height: 1.7;
+      line-height: 1.75;
     }
     [dir="rtl"] .quote-box {
       border-left: none;
-      border-right: 4px solid var(--cl-brand);
+      border-right: 5px solid var(--cl-brand);
     }
     .tip-box {
       background: var(--cl-brand-soft);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin: 28px 0;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
       color: var(--cl-text);
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
+    .warning-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
+      color: var(--cl-text);
+      font-size: 1rem;
+    }
+    .warning-box strong {
+      color: #ef4444;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 30px 0;
+      border-radius: 14px;
+      border: 1px solid var(--cl-line);
+    }
+    .article-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    [dir="rtl"] .article-table {
+      text-align: right;
+    }
+    .article-table th {
+      background: var(--cl-bg);
+      padding: 14px 18px;
+      font-weight: 700;
+      color: var(--cl-ink);
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Code Blocks */
     .code-block {
       background: #090d16;
       color: #e2e8f0;
       border: 1px solid var(--cl-line);
-      border-radius: 14px;
-      padding: 20px;
-      margin: 24px 0;
+      border-radius: 16px;
+      padding: 22px;
+      margin: 28px 0;
       font-family: 'Fira Code', monospace;
       font-size: 0.92rem;
       overflow-x: auto;
     }
     .code-label {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
-      color: var(--cl-muted);
-      margin-bottom: 8px;
+      color: #38bdf8;
+      margin-bottom: 10px;
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
+      letter-spacing: 0.05em;
     }
     .code-block pre {
       margin: 0;
       font-family: inherit;
     }
+
+    /* Checklist */
+    .checklist {
+      list-style-type: none;
+      padding: 0 !important;
+      margin: 24px 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+    .checklist li i {
+      color: #10b981;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    /* Back button */
     .back-btn-row {
       margin-bottom: 24px;
     }
@@ -138,13 +283,13 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 18px;
-      border-radius: 10px;
+      padding: 9px 20px;
+      border-radius: 12px;
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
       color: var(--cl-text);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       text-decoration: none;
       transition: all 0.2s;
     }
@@ -165,7 +310,7 @@
   <div class="back-btn-row">
     <a href="blog.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i>
-      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="en">Back to All Guides</span>
       <span data-cl-lang="ar">العودة لجميع المقالات</span>
       <span data-cl-lang="fr">Retour aux articles</span>
     </a>
@@ -175,63 +320,125 @@
     <span class="article-badge">DevOps & Tooling</span>
     
     <div data-cl-lang="en">
-      <h1>Enterprise CI/CD Pipelines: Fast Builds & Automated Rollbacks</h1>
-      <p class="article-lead">Design GitHub Actions workflows with remote caching, matrix testing, branch protections, and automated deployment smoke tests.</p>
+      <h1>Enterprise CI/CD Pipelines: Fast Builds, Sharding & Automated Rollbacks</h1>
+      <p class="article-lead">Architect enterprise-grade GitHub Actions workflows with remote caching, multi-stage Docker Buildx layers, test sharding, and synthetic canary health verification.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1>خطوط الأتمتة والنشر CI/CD للمؤسسات: بناء سريع وتراجع تلقائي عند الأخطاء</h1>
-      <p class="article-lead">تصميم تدفقات عمل GitHub Actions مع الكاش السحابي السريع، واختبارات الماتريكس المتوازية، والتراجع التلقائي عند رصد الخلل.</p>
+      <h1>خطوط الأتمتة والنشر CI/CD للمؤسسات: بناء سريع، تقسيم الاختبارات وتراجع تلقائي</h1>
+      <p class="article-lead">تصميم تدفقات عمل GitHub Actions احترافية مع الكاش السحابي السريع، واختبارات الماتريكس المتوازية، والتراجع التلقائي عند رصد الخلل في الإنتاج.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1>Pipelines CI/CD d’Entreprise : Builds Rapides & Rollbacks Automatiques</h1>
-      <p class="article-lead">Concevez des flux GitHub Actions optimisés avec cache distant, tests matriciels et rollbacks automatiques en cas d’anomalie.</p>
+      <h1>Pipelines CI/CD d’Entreprise : Builds Rapides, Sharding & Rollbacks Automatiques</h1>
+      <p class="article-lead">Conception de flux GitHub Actions d’élite avec cache distant, build multi-étapes Docker, partitionnement des tests et rollbacks automatiques.</p>
     </div>
 
     <div class="article-meta-row">
-      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
-      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 11 min read</span>
-      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+      <span><i class="fa-solid fa-user-gear" style="color:var(--cl-brand);"></i> Coding Life Staff Engineers</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 17 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Masterclass</span>
+      <span><i class="fa-solid fa-star" style="color:#f59e0b;"></i> Top Engineering Pick</span>
     </div>
   </div>
 
   <div class="article-body-content">
     <div data-cl-lang="en">
       
-      <h2>1. Why Slow Pipelines Kill Engineering Velocity</h2>
-      <p>A CI pipeline taking 35 minutes to validate a pull request directly degrades team productivity and delays hotfixes. Optimizing test parallelization, dependency caching, and Docker multi-stage build layers can reduce pipeline times to under 3 minutes.</p>
-      
-      <div class="quote-box">"If a build isn't fast and automated, developers stop running tests and ship regressions to production."</div>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. The Velocity Metric: Why 30-Minute Pipelines Are Poison</a></li>
+          <li><a href="#sec-2">2. Multi-Stage Docker Layer Caching with Buildx & GitHub Cache</a></li>
+          <li><a href="#sec-3">3. Test Sharding: Slashing 2,000 Tests from 25 Minutes to 3 Minutes</a></li>
+          <li><a href="#sec-4">4. Monorepo Affected Builds with Turbo & Nx</a></li>
+          <li><a href="#sec-5">5. Automated Health Verifications & Instant Rollback Hooks</a></li>
+          <li><a href="#sec-6">6. Production CI/CD Pipeline Blueprint</a></li>
+        </ul>
+      </div>
 
-      <h2>2. Proven Speed Optimizations in GitHub Actions</h2>
-      <ul>
-        <li><strong>Docker Layer Caching with Buildx:</strong> Cache intermediate layers in GitHub Actions cache or container registry.</li>
-        <li><strong>Turbo / Nx Monorepo Affected Execution:</strong> Run lint, test, and build only for packages and dependencies touched in the PR.</li>
-        <li><strong>Sharded Test Runners:</strong> Split 2,000 unit/integration tests across 8 parallel runners to reduce test duration by 85%.</li>
-      </ul>
+      <h2 id="sec-1">1. The Velocity Metric: Why 30-Minute Pipelines Are Poison</h2>
+      <p>When a continuous integration pipeline takes 30 minutes to run, developer context switching spikes, hotfixes are delayed, and developers start batching massive, risky pull requests instead of shipping small, continuous updates. Elite engineering teams target a strict benchmark: <strong>Pull request validation must complete in under 5 minutes</strong>.</p>
 
-      <h2>3. Automated Health Verification & Rollback</h2>
-      <p>Deployments must never end at <code>kubectl apply</code>. A resilient CI/CD pipeline triggers synthetic smoke tests and monitors error budgets for 10 minutes post-release, rolling back automatically if latency SLAs are violated.</p>
+      <div class="quote-box">"A slow CI pipeline does not guarantee high quality; it guarantees that developers will avoid writing tests to avoid waiting for builds."</div>
+
+      <h2 id="sec-2">2. Multi-Stage Docker Layer Caching with Buildx & GitHub Cache</h2>
+      <p>Re-downloading npm dependencies or re-compiling Go binaries on every CI run wastes hours of compute time. Configure Docker Buildx with GitHub Actions inline cache backend to reuse unchanged layers across runs:</p>
+
+      <div class="code-block">
+        <div class="code-label">GitHub Actions Workflow — Docker Buildx with GitHub Remote Cache</div>
+        <pre>- name: Set up Docker Buildx
+  uses: docker/setup-buildx-action@v3
+
+- name: Build and Push Docker Image
+  uses: docker/build-push-action@v5
+  with:
+    context: .
+    push: true
+    tags: registry.example.com/api:${{ github.sha }}
+    cache-from: type=gha
+    cache-to: type=gha,mode=max</pre>
+      </div>
+
+      <h2 id="sec-3">3. Test Sharding: Slashing 2,000 Tests from 25 Minutes to 3 Minutes</h2>
+      <p>Running a comprehensive suite of 2,000 Playwright and Jest tests on a single runner is inherently sequential. By applying <strong>Test Sharding</strong> across a GitHub Actions matrix, tests execute concurrently across 8 parallel runners:</p>
+
+      <div class="code-block">
+        <div class="code-label">GitHub Actions — Sharded Parallel Test Matrix</div>
+        <pre>jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4, 5, 6, 7, 8]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Test Shard
+        run: pnpm test --shard=${{ matrix.shard }}/8</pre>
+      </div>
+
+      <h2 id="sec-4">4. Monorepo Affected Builds with Turbo & Nx</h2>
+      <p>In modern monorepos containing 15 microservices and shared utility libraries, never re-test unaffected packages. Tools like Turborepo compute a cryptographic git hash graph of changed files, executing test and build commands solely for packages impacted by the current branch.</p>
+
+      <h2 id="sec-5">5. Automated Health Verifications & Instant Rollback Hooks</h2>
+      <p>Deployments must never stop at <code>git push</code>. A mature pipeline initiates synthetic end-to-end smoke tests against the freshly deployed canary revision. If HTTP 5xx error rates spike above 0.2% over a 5-minute observation window, the pipeline automatically triggers an automated rollback to the previous stable release tag without requiring human intervention.</p>
     
     </div>
     <div data-cl-lang="ar">
       
-      <h2>1. لماذا تعطل خطوط البناء البطيئة إنتاجية الفريق؟</h2>
-      <p>انتظار نصف ساعة لفحص Pull Request يضيع وقت المهندسين. استخدام تقنيات التخزين المؤقت وحزم الاختبارات المتوازية يخفض زمن الفحص إلى دقائق معدودة.</p>
-      <h2>2. تقنيات تسريع GitHub Actions</h2>
-      <ul>
-        <li><strong>تخزين طبقات Docker:</strong> استغلال Docker Buildx لتخزين الطبقات وعدم إعادة بنائها من الصفر.</li>
-        <li><strong>تقسيم الاختبارات بالتوازي:</strong> تشغيل الاختبارات على خوادم متعددة في نفس الوقت لتقليص مدة الفحص بنسبة 80%.</li>
-      </ul>
-      <h2>3. التراجع التلقائي الذكي (Automated Rollback)</h2>
-      <p>البايبلاين الناجح يراقب مؤشرات النظام لمدة 10 دقائق بعد النشر، وفي حال تجاوز معدل الأخطاء الحد المسموح يعيد النسخة السابقة آلياً دون تدخل بشري.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس المقال</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. مقياس سرعة الإنجاز: لماذا تدمر خطوط البناء البطيئة إنتاجية الفريق؟</a></li>
+          <li><a href="#sec-2">2. تسريع بناء Docker عبر التخزين المؤقت للطبقات Docker Buildx</a></li>
+          <li><a href="#sec-3">3. تقسيم الاختبارات Sharding: تقليص زمن الفحص من 25 دقيقة إلى 3 دقائق</a></li>
+          <li><a href="#sec-4">4. البناء الذكي في Monorepo عبر أدوات Turbo و Nx</a></li>
+          <li><a href="#sec-5">5. المراقبة التلقائية والتراجع الفوري عند الأخطاء (Auto-Rollback)</a></li>
+        </ul>
+      </div>
+
+      <h2 id="sec-1">1. لماذا يجب ألا يتجاوز البناء 5 دقائق؟</h2>
+      <p>انتظار نصف ساعة لفحص Pull Request يقطع تركيز المطورين ويؤخر إصلاح الأخطاء الطارئة. الفرق التقنية المتطورة تحرص على ألا يتجاوز زمن الفحص الكامل 5 دقائق باستخدام الاختبارات المتوازية والكاش السحابي.</p>
+
+      <h2 id="sec-2">2. تقسيم الاختبارات Sharding عبر خوادم متوازية</h2>
+      <p>بدلاً من تشغيل 2,000 اختبار على سيرفر واحد بشكل متسلسل، يتم تقسيمها عبر مصفوفة GitHub Actions Matrix لتعمل على 8 خوادم في نفس اللحظة، مما يخفض وقت الانتظار بنسبة 85%.</p>
+
+      <h2 id="sec-3">3. التراجع التلقائي الآمن Auto-Rollback</h2>
+      <p>بعد نشر التحديث في السيرفر، يراقب النظام مؤشرات الأداء لمدة 5 دقائق، وفي حال رصد أي ارتفاع في أخطاء 5xx أو زمن الاستجابة، يتم استرجاع النسخة السابقة آلياً دون الحاجة لتدخل أي مهندس.</p>
     
     </div>
     <div data-cl-lang="fr">
       
-      <h2>1. L'Impact de la Rapidité du CI/CD</h2>
-      <p>Un pipeline de 3 minutes maintient la vélocité et encourage des commits fréquents et sécurisés.</p>
-      <h2>2. Optimisations Techniques Clés</h2>
-      <p>Profitez du cache de couches Docker et du sharding des tests pour diviser le temps d'exécution par cinq.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. L'Impératif de la Vélocité CI/CD</a></li>
+          <li><a href="#sec-2">2. Optimisation du Cache Docker Buildx</a></li>
+          <li><a href="#sec-3">3. Sharding Parallèle des Suites de Tests</a></li>
+          <li><a href="#sec-4">4. Détection des Anomalies et Rollback Automatisé</a></li>
+        </ul>
+      </div>
+      <h2 id="sec-1">1. La Règle des 5 Minutes</h2>
+      <p>Un pipeline véloce encourage les micro-déploiements fréquents et élimine les goulots d'étranglement de livraison logicielle.</p>
     
     </div>
   </div>

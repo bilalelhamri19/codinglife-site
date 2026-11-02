@@ -5,132 +5,277 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modern Web Security Defense: CSP, WebAuthn & OWASP Hardening - Coding Life</title>
-  <meta name="description" content="Eliminate XSS with strict Content-Security-Policies, implement biometric Passkeys with WebAuthn, and protect against CSRF and prototype pollution.">
-  <link rel="icon" href="logo.png" type="image/png">
+  <meta name="description" content="A comprehensive engineering guide on eliminating Cross-Site Scripting (XSS), implementing hardware-backed biometric Passkeys with WebAuthn, and neutralizing CSRF.">
+  <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .article-container {
-      max-width: 860px;
+      max-width: 920px;
       margin: 120px auto 80px;
       padding: 0 24px;
     }
     .article-header-card {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
+      border-radius: 28px;
       padding: 48px 40px;
       margin-bottom: 40px;
       box-shadow: var(--cl-shadow-sm);
     }
     .article-badge {
       display: inline-block;
-      padding: 4px 14px;
+      padding: 5px 16px;
       border-radius: 9999px;
       background: var(--cl-brand-soft);
       color: var(--cl-brand);
       font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-header-card h1 {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 3.5vw, 2.7rem);
       color: var(--cl-ink);
       font-weight: 800;
       line-height: 1.25;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-lead {
       font-size: 1.15rem;
       color: var(--cl-muted);
       line-height: 1.8;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
     .article-meta-row {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
       flex-wrap: wrap;
-      padding-top: 20px;
+      padding-top: 22px;
       border-top: 1px solid var(--cl-line);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--cl-muted);
     }
     .article-meta-row span {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
+
+    /* Table of contents box */
+    .toc-box {
+      background: var(--cl-bg);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0 36px;
+    }
+    .toc-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cl-brand);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toc-list {
+      margin: 0;
+      padding-left: 20px;
+      list-style-type: none;
+    }
+    [dir="rtl"] .toc-list {
+      padding-left: 0;
+      padding-right: 20px;
+    }
+    .toc-list li {
+      margin-bottom: 10px;
+    }
+    .toc-list li a {
+      color: var(--cl-text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .toc-list li a:hover {
+      color: var(--cl-brand);
+      text-decoration: underline;
+    }
+
+    /* Article Body Styling */
     .article-body-content {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
-      padding: 44px 40px;
-      line-height: 1.9;
-      font-size: 1.05rem;
+      border-radius: 28px;
+      padding: 50px 44px;
+      line-height: 1.95;
+      font-size: 1.08rem;
       color: var(--cl-text);
       box-shadow: var(--cl-shadow-sm);
     }
+    @media (max-width: 600px) {
+      .article-body-content {
+        padding: 30px 20px;
+      }
+      .article-header-card {
+        padding: 30px 20px;
+      }
+    }
     .article-body-content h2 {
-      font-size: 1.55rem;
+      font-size: 1.7rem;
       color: var(--cl-ink);
       font-weight: 800;
-      margin: 36px 0 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--cl-line);
+      margin: 44px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cl-line);
     }
     .article-body-content h2:first-child {
       margin-top: 0;
     }
+    .article-body-content h3 {
+      font-size: 1.3rem;
+      color: var(--cl-ink);
+      font-weight: 700;
+      margin: 28px 0 14px;
+    }
+    .article-body-content p {
+      margin-bottom: 20px;
+    }
+    .article-body-content ul, .article-body-content ol {
+      margin-bottom: 24px;
+      padding-left: 26px;
+    }
+    [dir="rtl"] .article-body-content ul, [dir="rtl"] .article-body-content ol {
+      padding-left: 0;
+      padding-right: 26px;
+    }
+    .article-body-content li {
+      margin-bottom: 10px;
+    }
+
+    /* Callout & Quote boxes */
     .quote-box {
       background: var(--cl-bg);
-      border-left: 4px solid var(--cl-brand);
-      border-radius: 12px;
-      padding: 24px;
-      margin: 28px 0;
-      font-size: 1.15rem;
+      border-left: 5px solid var(--cl-brand);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 32px 0;
+      font-size: 1.2rem;
       font-style: italic;
       color: var(--cl-ink);
-      line-height: 1.7;
+      line-height: 1.75;
     }
     [dir="rtl"] .quote-box {
       border-left: none;
-      border-right: 4px solid var(--cl-brand);
+      border-right: 5px solid var(--cl-brand);
     }
     .tip-box {
       background: var(--cl-brand-soft);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin: 28px 0;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
       color: var(--cl-text);
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
+    .warning-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
+      color: var(--cl-text);
+      font-size: 1rem;
+    }
+    .warning-box strong {
+      color: #ef4444;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 30px 0;
+      border-radius: 14px;
+      border: 1px solid var(--cl-line);
+    }
+    .article-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    [dir="rtl"] .article-table {
+      text-align: right;
+    }
+    .article-table th {
+      background: var(--cl-bg);
+      padding: 14px 18px;
+      font-weight: 700;
+      color: var(--cl-ink);
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Code Blocks */
     .code-block {
       background: #090d16;
       color: #e2e8f0;
       border: 1px solid var(--cl-line);
-      border-radius: 14px;
-      padding: 20px;
-      margin: 24px 0;
+      border-radius: 16px;
+      padding: 22px;
+      margin: 28px 0;
       font-family: 'Fira Code', monospace;
       font-size: 0.92rem;
       overflow-x: auto;
     }
     .code-label {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
-      color: var(--cl-muted);
-      margin-bottom: 8px;
+      color: #38bdf8;
+      margin-bottom: 10px;
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
+      letter-spacing: 0.05em;
     }
     .code-block pre {
       margin: 0;
       font-family: inherit;
     }
+
+    /* Checklist */
+    .checklist {
+      list-style-type: none;
+      padding: 0 !important;
+      margin: 24px 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+    .checklist li i {
+      color: #10b981;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    /* Back button */
     .back-btn-row {
       margin-bottom: 24px;
     }
@@ -138,13 +283,13 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 18px;
-      border-radius: 10px;
+      padding: 9px 20px;
+      border-radius: 12px;
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
       color: var(--cl-text);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       text-decoration: none;
       transition: all 0.2s;
     }
@@ -165,7 +310,7 @@
   <div class="back-btn-row">
     <a href="blog.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i>
-      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="en">Back to All Guides</span>
       <span data-cl-lang="ar">العودة لجميع المقالات</span>
       <span data-cl-lang="fr">Retour aux articles</span>
     </a>
@@ -176,55 +321,151 @@
     
     <div data-cl-lang="en">
       <h1>Modern Web Security Defense: CSP, WebAuthn & OWASP Hardening</h1>
-      <p class="article-lead">Eliminate XSS with strict Content-Security-Policies, implement biometric Passkeys with WebAuthn, and protect against CSRF and prototype pollution.</p>
+      <p class="article-lead">A comprehensive engineering guide on eliminating Cross-Site Scripting (XSS), implementing hardware-backed biometric Passkeys with WebAuthn, and neutralizing CSRF.</p>
     </div>
     <div data-cl-lang="ar">
       <h1>دفاعات أمان الويب الحديثة: سياسات CSP ومصادقة WebAuthn وحماية OWASP</h1>
-      <p class="article-lead">القضاء على ثغرات XSS بسياسات أمان المحتوى الصارمة، وتطبيق مفاتيح المرور الحيوية Passkeys، والحماية من تلوث النماذج الأولية.</p>
+      <p class="article-lead">دليل هندسي متكامل للقضاء على ثغرات XSS بسياسات أمان المحتوى الصارمة، وتطبيق مفاتيح المرور الحيوية Passkeys، ومصادقة WebAuthn.</p>
     </div>
     <div data-cl-lang="fr">
       <h1>Défense Web Moderne : CSP, WebAuthn & Sécurisation OWASP</h1>
-      <p class="article-lead">Éliminez les failles XSS avec des CSP stricts, intégrez les Passkeys WebAuthn et protégez vos applications contre CSRF et prototype pollution.</p>
+      <p class="article-lead">Guide d’ingénierie sur l’élimination des failles XSS avec des CSP stricts, l’intégration des Passkeys WebAuthn et la neutralisation des attaques CSRF.</p>
     </div>
 
     <div class="article-meta-row">
-      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
-      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 12 min read</span>
-      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+      <span><i class="fa-solid fa-user-gear" style="color:var(--cl-brand);"></i> Coding Life Staff Engineers</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 18 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Masterclass</span>
+      <span><i class="fa-solid fa-star" style="color:#f59e0b;"></i> Top Engineering Pick</span>
     </div>
   </div>
 
   <div class="article-body-content">
     <div data-cl-lang="en">
       
-      <h2>1. The Death of Passwords: The Passkey Revolution</h2>
-      <p>Traditional password databases are a liability. Between credential stuffing, phishing, and database leaks, passwords represent 80% of corporate data breaches. Modern web applications are adopting <strong>WebAuthn & Passkeys</strong>: public-key cryptography backed by hardware secure enclaves (TouchID, FaceID, YubiKeys) that are inherently immune to phishing.</p>
-      
-      <div class="quote-box">"You cannot leak a password that was never stored on your servers in the first place."</div>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. The Death of Passwords: The Passkey Revolution</a></li>
+          <li><a href="#sec-2">2. WebAuthn Implementation: Cryptographic Authentication Flow</a></li>
+          <li><a href="#sec-3">3. Strict Content Security Policy (CSP) with Nonces</a></li>
+          <li><a href="#sec-4">4. Cross-Site Request Forgery (CSRF) in the SameSite Era</a></li>
+          <li><a href="#sec-5">5. Prototype Pollution Defense in Modern JavaScript Engines</a></li>
+          <li><a href="#sec-6">6. Frontend Security Hardening Checklist</a></li>
+        </ul>
+      </div>
 
-      <h2>2. Hardening Headers: The Strict CSP Standard</h2>
-      <p>Cross-Site Scripting (XSS) can be mitigated at the browser level using a rigorous <code>Content-Security-Policy</code> (CSP). By enforcing <code>script-src 'nonce-{RANDOM}' 'strict-dynamic'</code> and disallowing <code>'unsafe-inline'</code> and <code>'unsafe-eval'</code>, injected third-party scripts are completely blocked from executing.</p>
+      <h2 id="sec-1">1. The Death of Passwords: The Passkey Revolution</h2>
+      <p>Traditional passwords are an engineering liability. They are leaked in third-party database breaches, vulnerable to sophisticated phishing proxies (Evilginx), and reused across dozens of services. In 2026, modern platforms have migrated to <strong>Passkeys backed by the FIDO2 / WebAuthn standard</strong>.</p>
+      <p>Passkeys leverage asymmetric public-key cryptography stored in local hardware Secure Enclaves (Apple TouchID/FaceID, Android Biometrics, Windows Hello, YubiKeys). The private key never leaves the user's physical device; only the public key is registered on your server. As a result, database leaks expose zero authentication credentials, and phishing is mathematically impossible because the browser cryptographically binds the authentication response to your exact domain origin.</p>
 
-      <h2>3. Protecting Modern REST & GraphQL Endpoints</h2>
-      <p>Enforce strict CORS policies matching explicit origins, implement cryptographic HMAC request signing for inter-service communication, and sanitize JSON payloads to block Prototype Pollution attacks in Node.js runtimes.</p>
+      <div class="quote-box">"You cannot steal or phish a private key that never leaves the hardware secure enclave of the user's phone or laptop."</div>
+
+      <h2 id="sec-2">2. WebAuthn Implementation: Cryptographic Authentication Flow</h2>
+      <p>The WebAuthn flow consists of two phases: Registration and Authentication.</p>
+
+      <div class="code-block">
+        <div class="code-label">JavaScript — WebAuthn Client-Side Biometric Authentication Trigger</div>
+        <pre>// Step 1: Request cryptographic challenge from server
+const response = await fetch('/api/auth/webauthn-options');
+const options = await response.json();
+
+// Convert base64url challenge to ArrayBuffer
+options.challenge = Uint8Array.from(atob(options.challenge), c => c.charCodeAt(0));
+options.allowCredentials.forEach(cred => {
+  cred.id = Uint8Array.from(atob(cred.id), c => c.charCodeAt(0));
+});
+
+// Step 2: Prompt hardware sensor (TouchID / FaceID)
+const assertion = await navigator.credentials.get({ publicKey: options });
+
+// Step 3: Send signed cryptographic assertion back to server for verification
+await fetch('/api/auth/webauthn-verify', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    id: assertion.id,
+    rawId: btoa(String.fromCharCode(...new Uint8Array(assertion.rawId))),
+    response: {
+      authenticatorData: btoa(String.fromCharCode(...new Uint8Array(assertion.response.authenticatorData))),
+      clientDataJSON: btoa(String.fromCharCode(...new Uint8Array(assertion.response.clientDataJSON))),
+      signature: btoa(String.fromCharCode(...new Uint8Array(assertion.response.signature)))
+    }
+  })
+});</pre>
+      </div>
+
+      <h2 id="sec-3">3. Strict Content Security Policy (CSP) with Nonces</h2>
+      <p>Cross-Site Scripting (XSS) can be fundamentally blocked by the browser engine using a strict <code>Content-Security-Policy</code> header. By utilizing dynamic cryptographic nonces generated per HTTP request, malicious injected script tags cannot execute:</p>
+
+      <div class="code-block">
+        <div class="code-label">HTTP Response Header — Strict Nonce-Based CSP</div>
+        <pre>Content-Security-Policy: 
+  default-src 'self';
+  script-src 'nonce-rAnd0m123456789' 'strict-dynamic';
+  object-src 'none';
+  base-uri 'none';
+  frame-ancestors 'none';</pre>
+      </div>
+
+      <h2 id="sec-4">4. Cross-Site Request Forgery (CSRF) in the SameSite Era</h2>
+      <p>While configuring cookies with <code>SameSite=Lax</code> or <code>SameSite=Strict</code> stops simple cross-site POST attacks, state-changing APIs must still implement anti-CSRF double-submit cookies or custom header verification (e.g. verifying <code>Sec-Fetch-Site: same-origin</code>) to defend against complex top-level navigation vectors.</p>
+
+      <h2 id="sec-5">5. Prototype Pollution Defense in Modern JavaScript Engines</h2>
+      <p>Prototype pollution allows attackers to inject malicious properties into <code>Object.prototype</code> via deeply nested JSON payloads, altering application logic across the entire Node.js runtime. Always use <code>Object.create(null)</code> for dictionaries, or freeze base prototypes in entry files:</p>
+
+      <div class="code-block">
+        <div class="code-label">JavaScript — Freezing Object Prototypes</div>
+        <pre>// In entry file (server.ts):
+Object.freeze(Object.prototype);
+Object.freeze(Array.prototype);
+// Any attempt to pollute Object.prototype will now throw an immediate TypeError!</pre>
+      </div>
+
+      <h2 id="sec-6">6. Frontend Security Hardening Checklist</h2>
+      <ul class="checklist">
+        <li><i class="fa-solid fa-check"></i> FIDO2 / WebAuthn passkey support enabled for phishing-resistant logins.</li>
+        <li><i class="fa-solid fa-check"></i> Nonce-based Content-Security-Policy enforced on all HTML document responses.</li>
+        <li><i class="fa-solid fa-check"></i> Session cookies configured with <code>HttpOnly; Secure; SameSite=Lax; Path=/</code>.</li>
+        <li><i class="fa-solid fa-check"></i> <code>X-Frame-Options: DENY</code> and <code>X-Content-Type-Options: nosniff</code> enabled.</li>
+      </ul>
     
     </div>
     <div data-cl-lang="ar">
       
-      <h2>1. ثورة مفاتيح المرور Passkeys ونهاية كلمات المرور التقليدية</h2>
-      <p>كلمات المرور هي السبب في 80% من الاختراقات الأمنية. تقنية WebAuthn و Passkeys تعتمد على التشفير بالمفاتيح العامة ومجسات البصمة والوجه، وهي محصنة تماماً ضد هجمات التصيد الاحتيالي Phishing.</p>
-      <h2>2. تحصين المتصفح بسياسات أمان المحتوى CSP الصارمة</h2>
-      <p>تفعيل ترويسات CSP مع كود Nonce عشوائي يمنع المتصفح من تشغيل أي سكريبت خبيث محقون XSS حتى لو نجح المهاجم في تمريره داخل الصفحة.</p>
-      <h2>3. تأمين الواجهات البرمجية APIs</h2>
-      <p>تطبيق سياسات CORS صارمة، وتحديد معدل الطلبات للحد من هجمات الحرمان من الخدمة، وتدقيق حزم JSON لمنع ثغرات Prototype Pollution.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس المقال</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. نهاية كلمات المرور وثورة مفاتيح المرور Passkeys</a></li>
+          <li><a href="#sec-2">2. آلية عمل معيار WebAuthn والتشفير بالمفاتيح العامة</a></li>
+          <li><a href="#sec-3">3. سياسة أمان المحتوى الصارمة CSP وكود Nonce العشوائي</a></li>
+          <li><a href="#sec-4">4. حماية الجلسات من هجمات CSRF و SameSite Cookies</a></li>
+          <li><a href="#sec-5">5. حماية محركات الجافاسكريبت من ثغرات Prototype Pollution</a></li>
+        </ul>
+      </div>
+
+      <h2 id="sec-1">1. ثورة مفاتيح المرور Passkeys ونهاية كلمات المرور</h2>
+      <p>كلمات المرور أصبحت عبئاً أمنياً خطيراً. معيار WebAuthn يعتمد على التشفير غير المتماثل، حيث يبقى المفتاح الخاص محفوظاً في معالج الأمان داخل هاتف أو حاسوب المستخدم (بصمة الإصبع أو الوجه)، ولا يتم إرسال أي كلمة مرور للسيرفر، مما يجعل التصيد الاحتيالي مستحيلاً برمجياً.</p>
+
+      <h2 id="sec-2">2. القضاء على ثغرات XSS بسياسات CSP</h2>
+      <p>ترويسات أمان المحتوى CSP تمنع المتصفح تماماً من تشغيل أي كود جافاسكريبت غير معتمد. توليد كود Nonce عشوائي لكل زيارة يضمن أنه حتى لو نجح المخترق في حقن وسم <code>&lt;script&gt;</code> داخل الصفحة، سيرفض المتصفح تنفيذه فوراً.</p>
+
+      <h2 id="sec-3">3. تجميد النماذج الأولية في Node.js</h2>
+      <p>استخدام <code>Object.freeze(Object.prototype)</code> في بداية تشغيل خادم Node.js يمنع هجمات Prototype Pollution التي تستهدف حقن دوال خبيثة في كائنات النظام الأساسية.</p>
     
     </div>
     <div data-cl-lang="fr">
       
-      <h2>1. L'Ère des Passkeys et de WebAuthn</h2>
-      <p>Les passkeys matérielles éliminent définitivement le risque de phishing en s'appuyant sur la cryptographie asymétrique.</p>
-      <h2>2. Politique de Sécurité du Contenu (CSP) Stricte</h2>
-      <p>Empêchez l'exécution de tout script malveillant injecté grâce aux nonces cryptographiques dans vos en-têtes CSP.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. La Révolution des Passkeys et la Fin des Mots de Passe</a></li>
+          <li><a href="#sec-2">2. Intégration Cryptographique de WebAuthn</a></li>
+          <li><a href="#sec-3">3. CSP Stricte à base de Nonces Contre les Failles XSS</a></li>
+        </ul>
+      </div>
+      <h2 id="sec-1">1. Cryptographie Asymétrique Matérielle</h2>
+      <p>Les Passkeys éliminent définitivement le risque de phishing en isolant la clé privée dans l'enclave sécurisée du terminal utilisateur.</p>
     
     </div>
   </div>

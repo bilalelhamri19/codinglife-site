@@ -4,133 +4,278 @@
   <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Event-Driven Systems with Apache Kafka: Architecture & Pitfalls - Coding Life</title>
-  <meta name="description" content="Design fault-tolerant distributed streams, guarantee exactly-once processing semantics, and master the Saga pattern for distributed transactions.">
-  <link rel="icon" href="logo.png" type="image/png">
+  <title>Event-Driven Architecture with Apache Kafka: Production Patterns - Coding Life</title>
+  <meta name="description" content="Design fault-tolerant event streams, partition sizing strategies, transactional outbox patterns, idempotent consumers, and distributed sagas.">
+  <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code:wght@400;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .article-container {
-      max-width: 860px;
+      max-width: 920px;
       margin: 120px auto 80px;
       padding: 0 24px;
     }
     .article-header-card {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
+      border-radius: 28px;
       padding: 48px 40px;
       margin-bottom: 40px;
       box-shadow: var(--cl-shadow-sm);
     }
     .article-badge {
       display: inline-block;
-      padding: 4px 14px;
+      padding: 5px 16px;
       border-radius: 9999px;
       background: var(--cl-brand-soft);
       color: var(--cl-brand);
       font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-header-card h1 {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 3.5vw, 2.7rem);
       color: var(--cl-ink);
       font-weight: 800;
       line-height: 1.25;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .article-lead {
       font-size: 1.15rem;
       color: var(--cl-muted);
       line-height: 1.8;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
     .article-meta-row {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
       flex-wrap: wrap;
-      padding-top: 20px;
+      padding-top: 22px;
       border-top: 1px solid var(--cl-line);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--cl-muted);
     }
     .article-meta-row span {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
+
+    /* Table of contents box */
+    .toc-box {
+      background: var(--cl-bg);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0 36px;
+    }
+    .toc-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cl-brand);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toc-list {
+      margin: 0;
+      padding-left: 20px;
+      list-style-type: none;
+    }
+    [dir="rtl"] .toc-list {
+      padding-left: 0;
+      padding-right: 20px;
+    }
+    .toc-list li {
+      margin-bottom: 10px;
+    }
+    .toc-list li a {
+      color: var(--cl-text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .toc-list li a:hover {
+      color: var(--cl-brand);
+      text-decoration: underline;
+    }
+
+    /* Article Body Styling */
     .article-body-content {
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
-      border-radius: 24px;
-      padding: 44px 40px;
-      line-height: 1.9;
-      font-size: 1.05rem;
+      border-radius: 28px;
+      padding: 50px 44px;
+      line-height: 1.95;
+      font-size: 1.08rem;
       color: var(--cl-text);
       box-shadow: var(--cl-shadow-sm);
     }
+    @media (max-width: 600px) {
+      .article-body-content {
+        padding: 30px 20px;
+      }
+      .article-header-card {
+        padding: 30px 20px;
+      }
+    }
     .article-body-content h2 {
-      font-size: 1.55rem;
+      font-size: 1.7rem;
       color: var(--cl-ink);
       font-weight: 800;
-      margin: 36px 0 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--cl-line);
+      margin: 44px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cl-line);
     }
     .article-body-content h2:first-child {
       margin-top: 0;
     }
+    .article-body-content h3 {
+      font-size: 1.3rem;
+      color: var(--cl-ink);
+      font-weight: 700;
+      margin: 28px 0 14px;
+    }
+    .article-body-content p {
+      margin-bottom: 20px;
+    }
+    .article-body-content ul, .article-body-content ol {
+      margin-bottom: 24px;
+      padding-left: 26px;
+    }
+    [dir="rtl"] .article-body-content ul, [dir="rtl"] .article-body-content ol {
+      padding-left: 0;
+      padding-right: 26px;
+    }
+    .article-body-content li {
+      margin-bottom: 10px;
+    }
+
+    /* Callout & Quote boxes */
     .quote-box {
       background: var(--cl-bg);
-      border-left: 4px solid var(--cl-brand);
-      border-radius: 12px;
-      padding: 24px;
-      margin: 28px 0;
-      font-size: 1.15rem;
+      border-left: 5px solid var(--cl-brand);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 32px 0;
+      font-size: 1.2rem;
       font-style: italic;
       color: var(--cl-ink);
-      line-height: 1.7;
+      line-height: 1.75;
     }
     [dir="rtl"] .quote-box {
       border-left: none;
-      border-right: 4px solid var(--cl-brand);
+      border-right: 5px solid var(--cl-brand);
     }
     .tip-box {
       background: var(--cl-brand-soft);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin: 28px 0;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
       color: var(--cl-text);
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
+    .warning-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
+      color: var(--cl-text);
+      font-size: 1rem;
+    }
+    .warning-box strong {
+      color: #ef4444;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 30px 0;
+      border-radius: 14px;
+      border: 1px solid var(--cl-line);
+    }
+    .article-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    [dir="rtl"] .article-table {
+      text-align: right;
+    }
+    .article-table th {
+      background: var(--cl-bg);
+      padding: 14px 18px;
+      font-weight: 700;
+      color: var(--cl-ink);
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Code Blocks */
     .code-block {
       background: #090d16;
       color: #e2e8f0;
       border: 1px solid var(--cl-line);
-      border-radius: 14px;
-      padding: 20px;
-      margin: 24px 0;
+      border-radius: 16px;
+      padding: 22px;
+      margin: 28px 0;
       font-family: 'Fira Code', monospace;
       font-size: 0.92rem;
       overflow-x: auto;
     }
     .code-label {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
-      color: var(--cl-muted);
-      margin-bottom: 8px;
+      color: #38bdf8;
+      margin-bottom: 10px;
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
+      letter-spacing: 0.05em;
     }
     .code-block pre {
       margin: 0;
       font-family: inherit;
     }
+
+    /* Checklist */
+    .checklist {
+      list-style-type: none;
+      padding: 0 !important;
+      margin: 24px 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+    .checklist li i {
+      color: #10b981;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    /* Back button */
     .back-btn-row {
       margin-bottom: 24px;
     }
@@ -138,13 +283,13 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 18px;
-      border-radius: 10px;
+      padding: 9px 20px;
+      border-radius: 12px;
       background: var(--cl-surface);
       border: 1px solid var(--cl-line);
       color: var(--cl-text);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       text-decoration: none;
       transition: all 0.2s;
     }
@@ -165,93 +310,169 @@
   <div class="back-btn-row">
     <a href="blog.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i>
-      <span data-cl-lang="en">Back to Articles</span>
+      <span data-cl-lang="en">Back to All Guides</span>
       <span data-cl-lang="ar">العودة لجميع المقالات</span>
       <span data-cl-lang="fr">Retour aux articles</span>
     </a>
   </div>
 
   <div class="article-header-card">
-    <span class="article-badge">Architecture & Systems</span>
+    <span class="article-badge">Architecture & Distributed Systems</span>
     
     <div data-cl-lang="en">
-      <h1>Event-Driven Systems with Apache Kafka: Architecture & Pitfalls</h1>
-      <p class="article-lead">Design fault-tolerant distributed streams, guarantee exactly-once processing semantics, and master the Saga pattern for distributed transactions.</p>
+      <h1>Event-Driven Architecture with Apache Kafka: Production Patterns</h1>
+      <p class="article-lead">Design fault-tolerant event streams, partition sizing strategies, transactional outbox patterns, idempotent consumers, and distributed sagas.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1>الأنظمة الموجهة بالأحداث باستخدام Apache Kafka: المعمارية والأخطاء الشائعة</h1>
-      <p class="article-lead">تصميم تدفقات بيانات موزعة عالية التوفر، وضمان معالجة الأحداث بدقة Exactly-Once، واحتراف نمط Saga للمعاملات الموزعة.</p>
+      <h1>الأنظمة الموجهة بالأحداث باستخدام Apache Kafka: أنماط بيئات الإنتاج</h1>
+      <p class="article-lead">تصميم تدفقات بيانات موزعة عالية التوفر، ونمط Outbox Pattern، وضمان معالجة الأحداث بدقة Exactly-Once عبر نمط Saga.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1>Systèmes Événementiels avec Apache Kafka : Architecture et Pièges</h1>
-      <p class="article-lead">Concevez des flux distribués tolérants aux pannes, garantissez le traitement Exactly-Once et maîtrisez le pattern Saga.</p>
+      <h1>Systèmes Événementiels avec Apache Kafka : Patterns de Production</h1>
+      <p class="article-lead">Conception de flux tolérants aux pannes, stratégie de partitionnement, pattern Outbox transactionnel et sagas distribuées.</p>
     </div>
 
     <div class="article-meta-row">
-      <span><i class="fa-solid fa-user-pen" style="color:var(--cl-brand);"></i> Coding Life Editorial</span>
-      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 14 min read</span>
-      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+      <span><i class="fa-solid fa-user-gear" style="color:var(--cl-brand);"></i> Coding Life Staff Engineers</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 20 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Masterclass</span>
+      <span><i class="fa-solid fa-star" style="color:#f59e0b;"></i> Top Engineering Pick</span>
     </div>
   </div>
 
   <div class="article-body-content">
     <div data-cl-lang="en">
       
-      <h2>1. Beyond Simple Message Queues: The Log Abstraction</h2>
-      <p>Apache Kafka is not RabbitMQ or SQS. It is an append-only distributed commit log. Messages are ordered within partitions, immutable, and retained based on time or compaction policies. This fundamental architectural distinction enables event replayability, horizontal scaling, and zero-loss audit trails.</p>
-      
-      <div class="quote-box">"In an event-driven architecture, events are facts that happened in the past. You cannot change history; you can only append new facts."</div>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. The Commit Log Abstraction: Kafka vs. Message Queues</a></li>
+          <li><a href="#sec-2">2. Partitioning Strategies & Consumer Group Rebalancing</a></li>
+          <li><a href="#sec-3">3. The Dual-Write Problem: The Transactional Outbox Pattern</a></li>
+          <li><a href="#sec-4">4. Guaranteeing Exactly-Once Processing Semantics (EOS)</a></li>
+          <li><a href="#sec-5">5. Distributed Sagas: Orchestration vs. Choreography</a></li>
+          <li><a href="#sec-6">6. Dead Letter Queues (DLQ) & Poison Pill Recovery</a></li>
+          <li><a href="#sec-7">7. Enterprise Kafka Production Checklist</a></li>
+        </ul>
+      </div>
 
-      <h2>2. Partitioning Strategies & Consumer Scaling</h2>
-      <p>The partition is the atomic unit of parallelism in Kafka. A consumer group cannot have more active consumers than the number of partitions in a topic. Choose partition keys strategically to guarantee message ordering for specific entities (e.g., <code>userId</code> or <code>orderId</code>) without creating hot-partition skews.</p>
+      <h2 id="sec-1">1. The Commit Log Abstraction: Kafka vs. Message Queues</h2>
+      <p>Developers who transition from RabbitMQ, ActiveMQ, or Amazon SQS often make the fatal mistake of treating Apache Kafka as another message queue. In traditional message brokers, messages are transient; once acknowledged by a consumer, they are deleted from the queue. Kafka, in contrast, is an append-only distributed commit log. Messages are immutable, strictly ordered per partition, and permanently retained according to configured time or size thresholds.</p>
+      <p>This architectural foundation transforms how systems communicate: instead of pushing commands across ephemeral queues, services publish durable facts. Multiple independent services can read, replay, and reconstruct state from history at their own processing speeds.</p>
+
+      <div class="quote-box">"In an event-driven system, events are immutable historical facts. You cannot rewrite history; you can only append new facts that correct or expand upon past states."</div>
+
+      <h2 id="sec-2">2. Partitioning Strategies & Consumer Group Rebalancing</h2>
+      <p>The partition is the fundamental unit of parallelism and horizontal scale in Kafka. Key rules of partitioning:</p>
+      <ul>
+        <li><strong>Strict Ordering Guarantee:</strong> Kafka guarantees strict FIFO ordering <em>only within a single partition</em>, never across multiple partitions.</li>
+        <li><strong>Consumer Limit:</strong> In a consumer group, active consumers cannot exceed the total number of topic partitions. If a topic has 8 partitions, a 9th consumer worker will sit completely idle.</li>
+        <li><strong>Hot Partition Prevention:</strong> Selecting an un-balanced partition key (e.g. <code>country_code</code> where 80% of traffic is US) causes partition skews where a single broker is overwhelmed while others remain idle.</li>
+      </ul>
+
+      <h2 id="sec-3">3. The Dual-Write Problem: The Transactional Outbox Pattern</h2>
+      <p>When an application processes an order, it must update the relational database AND publish an event to Kafka. Doing this naively in application code is fundamentally flawed:</p>
 
       <div class="code-block">
-        <div class="code-label">Transactional Producer with Idempotence</div>
-        <pre>// Initializing idempotent transactional Kafka producer
-const producer = kafka.producer({
-  transactionalId: 'order-checkout-tx-producer',
-  maxInFlightRequests: 1,
-  idempotent: true
-});
+        <div class="code-label">Anti-Pattern — The Dual Write Bug</div>
+        <pre>// DANGEROUS ANTI-PATTERN:
+await database.orders.insert(order);
+// IF THE APP CRASHES OR NETWORK DROPS HERE:
+// The database has the order, but Kafka NEVER receives the event! Inconsistency forever.
+await kafkaProducer.send('order.created', order);</pre>
+      </div>
 
-await producer.connect();
-const transaction = await producer.transaction();
-try {
-  await transaction.send({
-    topic: 'orders.created',
-    messages: [{ key: order.id, value: JSON.stringify(order) }]
-  });
-  await transaction.commit();
-} catch (err) {
-  await transaction.abort();
-  throw err;
+      <p>The industry-standard solution is the <strong>Transactional Outbox Pattern</strong>. Instead of publishing directly to Kafka, the application writes the business entity and the outgoing event into an <code>outbox_events</code> table within the <em>exact same local ACID database transaction</em>. A background Change Data Capture (CDC) worker (such as Debezium) streams the outbox table directly into Kafka with zero loss guarantees.</p>
+
+      <h2 id="sec-4">4. Guaranteeing Exactly-Once Processing Semantics (EOS)</h2>
+      <p>Due to transient network partitions and retries, duplicate messages are an unavoidable reality of distributed computing. Building reliable Kafka consumers requires enforcing <strong>strict idempotency</strong>:</p>
+
+      <div class="code-block">
+        <div class="code-label">TypeScript / Node.js — Idempotent Consumer Handler with Deduplication</div>
+        <pre>export async function handleOrderCreatedEvent(event: KafkaEvent&lt;OrderPayload&gt;) {
+  const { eventId, data } = event;
+
+  // Use Redis or database unique constraint to prevent duplicate processing
+  const isProcessed = await redis.set(
+    'processed_event:' + eventId,
+    '1',
+    'EX',
+    86400, // 24-hour deduplication window
+    'NX'   // Set only if key does not exist
+  );
+
+  if (!isProcessed) {
+    console.warn('Duplicate event detected: ' + eventId + '. Safely skipping execution.');
+    return; // Safely acknowledge without duplicate side-effects
+  }
+
+  // Execute business logic safely
+  await processPayment(data);
 }</pre>
       </div>
 
-      <h2>3. The Saga Pattern for Distributed Transactions</h2>
-      <p>In distributed microservices, two-phase commits (2PC) do not scale and introduce locking deadlocks. Instead, orchestrate transactions across services using the <strong>Saga Pattern</strong> with choreography or orchestration, backed by compensating transactions whenever downstream steps fail.</p>
+      <h2 id="sec-5">5. Distributed Sagas: Orchestration vs. Choreography</h2>
+      <p>In distributed microservices, two-phase commits (2PC) introduce catastrophic locking deadlocks across network partitions. Instead, multi-service workflows are orchestrated using the <strong>Saga Pattern</strong>:</p>
+      <ul>
+        <li><strong>Choreographed Sagas:</strong> Each service listens to events and triggers its local step, emitting the next event. Best for simple, 2-3 step workflows.</li>
+        <li><strong>Orchestrated Sagas:</strong> A centralized state machine coordinator directs services via explicit commands and triggers compensating transactions whenever any downstream step fails. Mandatory for complex e-commerce order checkouts.</li>
+      </ul>
 
-      <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Key Takeaway:</strong> Always design consumer handlers to be strictly idempotent. Network retries mean duplicate messages are an inevitable reality of distributed computing.</div>
+      <h2 id="sec-6">6. Dead Letter Queues (DLQ) & Poison Pill Recovery</h2>
+      <p>A "poison pill" is a malformed message that triggers an unhandled exception every time a consumer attempts to parse it. If unhandled, consumer offsets will fail to commit, causing the consumer to re-read the same message infinitely in a stuck loop. Always route unparseable messages to a dedicated Dead Letter Queue (DLQ) with error metadata and continue consuming live traffic.</p>
+
+      <h2 id="sec-7">7. Enterprise Kafka Production Checklist</h2>
+      <ul class="checklist">
+        <li><i class="fa-solid fa-check"></i> Producer enables <code>acks=all</code> and <code>enable.idempotence=true</code>.</li>
+        <li><i class="fa-solid fa-check"></i> Replication factor set to at least 3 with <code>min.insync.replicas=2</code>.</li>
+        <li><i class="fa-solid fa-check"></i> Outbox Pattern implemented for all critical state changes.</li>
+        <li><i class="fa-solid fa-check"></i> Consumer handlers are completely idempotent with deduplication stores.</li>
+      </ul>
     
     </div>
     <div data-cl-lang="ar">
       
-      <h2>1. ما وراء طوابير الرسائل: سجل الأحداث المتسلسل</h2>
-      <p>كافكا ليس مجرد طابور رسائل تقليدي، بل هو سجل موزع غير قابل للتعديل (Distributed Commit Log). الأحداث المسجلة تمثل حقائق تاريخية لا يمكن تغييرها، مما يتيح إعادة تشغيل الأحداث وتوسيع نطاق القراءة لآلاف المستهلكين بالتوازي.</p>
-      <h2>2. استراتيجيات التقسيم والتوسع</h2>
-      <p>الـ Partition هو وحدة التوازي الأساسية في كافكا. يجب اختيار مفتاح التقسيم (Partition Key) بدقة لضمان ترتيب الأحداث المرتبطة بنفس العميل أو الطلب دون تحميل مفرط على خادم واحد.</p>
-      <h2>3. نمط Saga للمعاملات المالية الموزعة</h2>
-      <p>تنسيق العمليات بين الخدمات المصغرة يتطلب تطبيق نمط Saga مع تجهيز عمليات تعويضية (Compensating Actions) لعكس الخطوات في حال فشل أي خدمة في السلسلة.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس المقال</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. سجل الأحداث Commit Log: الفرق الجذري بين كافكا وطوابير الرسائل</a></li>
+          <li><a href="#sec-2">2. استراتيجيات تقسيم البيانات Partitions وتوازن المستهلكين</a></li>
+          <li><a href="#sec-3">3. فخ الكتابة المزدوجة ونمط Transactional Outbox Pattern</a></li>
+          <li><a href="#sec-4">4. ضمان معالجة الأحداث بدقة Exactly-Once والحماية من التكرار</a></li>
+          <li><a href="#sec-5">5. نمط Saga للمعاملات المالية الموزعة بين الخدمات المصغرة</a></li>
+          <li><a href="#sec-6">6. طوابير الرسائل التالفة Dead Letter Queue وطرق التعافي</a></li>
+        </ul>
+      </div>
+
+      <h2 id="sec-1">1. الفرق الجذري بين كافكا وطوابير الرسائل التقليدية</h2>
+      <p>في طوابير الرسائل مثل RabbitMQ، تُحذف الرسالة فور قراءتها. أما في Apache Kafka، فالأحداث تُسجل كسجل تاريخي غير قابل للتعديل (Append-Only Log) وتبقى محفوظة لسنوات، مما يسمح لأي خدمة جديدة بإعادة قراءة تاريخ النظام كاملاً في أي وقت.</p>
+
+      <h2 id="sec-2">2. نمط Transactional Outbox لحل مشكلة الكتابة المزدوجة</h2>
+      <p>كتابة البيانات في قاعدة البيانات ثم إرسال الحدث لكافكا عبر كود عادي قد يؤدي لضياع الأحداث في حال انقطاع السيرفر. الحل هو حفظ الحدث في نفس معاملة قاعدة البيانات (Outbox Table) واستخدام أداة CDC مثل Debezium لترحيلها لكافكا دون فقدان أي رسالة.</p>
+
+      <h2 id="sec-3">3. التعامل مع الرسائل المكررة Idempotency</h2>
+      <p>بسبب طبيعة الشبكات، وصول رسائل مكررة أمر حتمي. يجب تصميم كل معالج أحداث ليكون غير قابل للتكرار باستخدام معرف الحدث Event ID ومخزن فحص سريع في Redis.</p>
+
+      <h2 id="sec-4">4. نمط Saga وتنسيق المعاملات الموزعة</h2>
+      <p>في الخدمات المصغرة، يتم تنفيذ العمليات المعقدة كسلسلة من الخطوات المستقلة، مع تجهيز عمليات عكسية تعويضية (Compensating Transactions) لإرجاع الأموال وإلغاء الحجز في حال فشل أي خطوة في السلسلة.</p>
     
     </div>
     <div data-cl-lang="fr">
       
-      <h2>1. Le Journal de Commit Distribué</h2>
-      <p>Kafka est un journal d'événements immuable et distribué, offrant une capacité unique de rejeu et une scalabilité horizontale massive.</p>
-      <h2>2. Stratégies de Partitionnement</h2>
-      <p>Le partitionnement est l'unité atomique de parallélisme. Choisissez soigneusement vos clés de partition pour garantir l'ordre séquentiel sans créer de partition chaude.</p>
-      <h2>3. Le Pattern Saga</h2>
-      <p>Remplacez les transactions distribuées lourdes par des sagas chorégraphiées avec transactions compensatoires en cas d'échec.</p>
+      <div class="toc-box">
+        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire</div>
+        <ul class="toc-list">
+          <li><a href="#sec-1">1. L'Abstraction du Commit Log Immuable</a></li>
+          <li><a href="#sec-2">2. Le Problème de la Double Écriture & Pattern Outbox</a></li>
+          <li><a href="#sec-3">3. Traitement Idempotent et Dédoublonnage</a></li>
+          <li><a href="#sec-4">4. Le Pattern Saga pour Transactions Distribuées</a></li>
+          <li><a href="#sec-5">5. Dead Letter Queues et Résilience</a></li>
+        </ul>
+      </div>
+      <h2 id="sec-1">1. Le Journal Immuable</h2>
+      <p>Contrairement aux files de messages qui détruisent la donnée après lecture, Kafka persiste les faits historiques, autorisant le rejeu et la scalabilité massive.</p>
+      <h2 id="sec-2">2. Pattern Transactional Outbox</h2>
+      <p>Enregistrez l'événement dans la même transaction ACID que l'entité métier pour garantir une synchronisation sans faille via CDC vers Kafka.</p>
     
     </div>
   </div>

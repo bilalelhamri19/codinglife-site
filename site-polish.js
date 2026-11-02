@@ -3,8 +3,9 @@
 
   const CONFIG = {
     brandName: "Coding Life",
-    logoPath: "logo.png",
-    adsensePublisherId: "ca-pub-0000000000000000", // Replace with your approved AdSense Publisher ID
+    logoPath: "logo-icon.png",
+    adsensePublisherId: "", // e.g. "ca-pub-xxxxxxxxxxxxxxxx" after AdSense approval
+    adsenseAdSlot: "",
     socialLinks: [
       { href: "https://www.facebook.com/profile.php?id=100087855939787", icon: "fab fa-facebook-f" },
       { href: "https://www.instagram.com/codinglife_1?igsh=eXU4ZHZ4MWY5dXR6", icon: "fab fa-instagram" },
@@ -131,6 +132,117 @@
   let currentLang = localStorage.getItem("cl-lang") || "en";
 
   function t() { return TRANSLATIONS[currentLang]; }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function isAdsConfigured() {
+    const id = CONFIG.adsensePublisherId || "";
+    const slot = CONFIG.adsenseAdSlot || "";
+    return id.startsWith("ca-pub-") && !id.includes("000000") && slot.length > 0 && slot !== "1234567890";
+  }
+
+  function isAdsAllowed() {
+    return isAdsConfigured() && localStorage.getItem("cl-cookie-consent") === "accepted";
+  }
+
+  function mountAds() {
+    if (!isAdsAllowed()) return;
+    const holder = document.getElementById("clFooterAd");
+    if (!holder || holder.querySelector("ins")) return;
+
+    const ins = document.createElement("ins");
+    ins.className = "adsbygoogle";
+    ins.style.display = "block";
+    ins.setAttribute("data-ad-client", CONFIG.adsensePublisherId);
+    ins.setAttribute("data-ad-slot", CONFIG.adsenseAdSlot);
+    ins.setAttribute("data-ad-format", "auto");
+    ins.setAttribute("data-full-width-responsive", "true");
+    holder.appendChild(ins);
+
+    const push = () => {
+      try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+    };
+
+    if (!document.getElementById("cl-adsense-script")) {
+      const script = document.createElement("script");
+      script.id = "cl-adsense-script";
+      script.async = true;
+      script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(CONFIG.adsensePublisherId);
+      script.crossOrigin = "anonymous";
+      script.onload = push;
+      document.head.appendChild(script);
+    } else {
+      push();
+    }
+  }
+
+  const SEARCH_PAGES = [
+    { t: "HTML5 Masterclass", t_ar: "احتراف HTML5", t_fr: "Maîtrise HTML5", d: "Foundation of web development.", d_ar: "أساسيات تطوير الويب.", d_fr: "Fondations du web.", h: "html.html" },
+    { t: "CSS3 Styling", t_ar: "تصميم CSS3", t_fr: "Styles CSS3", d: "Responsive design, Flexbox, Grid.", d_ar: "تصميم متجاوب، فليكس بوكس، وجريد.", d_fr: "Design responsive, Flexbox et Grid.", h: "css.html" },
+    { t: "JavaScript Deep Dive", t_ar: "تعمق في JavaScript", t_fr: "JavaScript en profondeur", d: "Modern JS and async logic.", d_ar: "جافا سكريبت الحديثة والمنطق غير المتزامن.", d_fr: "JavaScript moderne et asynchrone.", h: "javascript.html" },
+    { t: "TypeScript", t_ar: "تايب سكريبت", t_fr: "TypeScript", d: "Typed JavaScript for large apps.", d_ar: "جافا سكريبت بأنواع للدعم المؤسسي.", d_fr: "JavaScript typé pour les grandes apps.", h: "typescript.html" },
+    { t: "React", t_ar: "ريآكت", t_fr: "React", d: "Component-based UI architecture.", d_ar: "هندسة المكونات المعاصرة.", d_fr: "Interfaces par composants.", h: "react.html" },
+    { t: "Vue 3", t_ar: "فيو 3", t_fr: "Vue 3", d: "Composition API and reactive UI.", d_ar: "Composition API والواجهات التفاعلية.", d_fr: "Composition API et UI réactive.", h: "vue.html" },
+    { t: "Next.js", t_ar: "نكست جي إس", t_fr: "Next.js", d: "App Router, server actions, SEO.", d_ar: "App Router ودوال السيرفر والسيو.", d_fr: "App Router, actions serveur et SEO.", h: "nextjs.html" },
+    { t: "Tailwind CSS", t_ar: "تيلويند", t_fr: "Tailwind CSS", d: "Utility-first styling system.", d_ar: "نظام تصميم بالكلاسات الجاهزة.", d_fr: "Design utility-first.", h: "tailwind.html" },
+    { t: "Python", t_ar: "بايثون", t_fr: "Python", d: "Automation, scripting, and data.", d_ar: "الأتمتة وعلوم البيانات.", d_fr: "Automatisation et data.", h: "python.html" },
+    { t: "Node.js", t_ar: "نود جي إس", t_fr: "Node.js", d: "High-performance JavaScript backend.", d_ar: "خوادم عالية الأداء.", d_fr: "Backend JavaScript performant.", h: "nodejs.html" },
+    { t: "PHP", t_ar: "بي إتش بي", t_fr: "PHP", d: "Server-side web programming.", d_ar: "برمجة السيرفرات.", d_fr: "Programmation côté serveur.", h: "php.html" },
+    { t: "Java", t_ar: "جافا", t_fr: "Java", d: "OOP, collections, and modern Java.", d_ar: "البرمجة كائنية التوجه وجافا الحديثة.", d_fr: "POO, collections et Java moderne.", h: "java.html" },
+    { t: "C# & .NET", t_ar: "C# و .NET", t_fr: "C# et .NET", d: "Enterprise logic and Unity.", d_ar: "برمجة الشركات ومحرك Unity.", d_fr: "Logique entreprise et Unity.", h: "csharp.html" },
+    { t: "SQL Databases", t_ar: "قواعد بيانات SQL", t_fr: "Bases SQL", d: "Relational data and queries.", d_ar: "إدارة البيانات العلائقية.", d_fr: "Données relationnelles et requêtes.", h: "sql.html" },
+    { t: "MongoDB", t_ar: "مونغو دي بي", t_fr: "MongoDB", d: "NoSQL documents, indexes, aggregation.", d_ar: "وثائق NoSQL والفهارس والتجميع.", d_fr: "Documents NoSQL, index et agrégation.", h: "mongodb.html" },
+    { t: "Docker", t_ar: "دوكر", t_fr: "Docker", d: "Containers, Compose, production images.", d_ar: "الحاويات و Compose وصور الإنتاج.", d_fr: "Conteneurs, Compose et images prod.", h: "docker.html" },
+    { t: "Linux", t_ar: "لينكس", t_fr: "Linux", d: "Terminal, permissions, and bash.", d_ar: "الطرفية والصلاحيات وباش.", d_fr: "Terminal, permissions et bash.", h: "linux.html" },
+    { t: "Git", t_ar: "جيت", t_fr: "Git", d: "Version control and collaboration.", d_ar: "إدارة النسخ والتعاون.", d_fr: "Contrôle de version et collaboration.", h: "git.html" },
+    { t: "Algorithms", t_ar: "الخوارزميات", t_fr: "Algorithmes", d: "Big-O, trees, and interview patterns.", d_ar: "التعقيد الزمني وهياكل البيانات.", d_fr: "Complexité, arbres et patterns.", h: "algorithms.html" },
+    { t: "Cybersecurity", t_ar: "الأمن السيبراني", t_fr: "Cybersécurité", d: "OWASP, XSS, SQLi, and secure APIs.", d_ar: "OWASP وثغرات الويب وتأمين الـ API.", d_fr: "OWASP, XSS, SQLi et APIs sûres.", h: "cybersecurity.html" },
+    { t: "Flutter", t_ar: "فلاتر", t_fr: "Flutter", d: "Multi-platform mobile apps.", d_ar: "تطبيقات الموبايل لكافة المنصات.", d_fr: "Apps mobiles multiplateformes.", h: "flutter.html" },
+    { t: "Kotlin", t_ar: "كوتلن", t_fr: "Kotlin", d: "Null safety, coroutines, Compose.", d_ar: "الحماية من Null والكوروتين.", d_fr: "Null safety, coroutines et Compose.", h: "kotlin.html" },
+    { t: "Freelancing", t_ar: "العمل الحر", t_fr: "Freelance", d: "Niche, portfolio, pricing, clients.", d_ar: "التخصص والمعرض والتسعير والعملاء.", d_fr: "Niche, portfolio, tarifs et clients.", h: "freelance.html" },
+    { t: "SQL Playground", t_ar: "مختبر SQL", t_fr: "Playground SQL", d: "Practice queries in the browser.", d_ar: "تمرن على الاستعلامات في المتصفح.", d_fr: "Pratiquez SQL dans le navigateur.", h: "sql-playground.html" },
+    { t: "CSS Unit Converter", t_ar: "محول وحدات CSS", t_fr: "Convertisseur d'unités CSS", d: "PX, REM, EM, VW conversion.", d_ar: "تحويل البكسل والريم وغيرها.", d_fr: "Conversion PX, REM, EM, VW.", h: "css-converter.html" },
+    { t: "Palette Generator", t_ar: "مولد الألوان", t_fr: "Générateur de palettes", d: "Color scheme creator.", d_ar: "إنشاء مجموعات ألوان متناسقة.", d_fr: "Créateur de palettes.", h: "colors.html" },
+    { t: "Code Playground", t_ar: "مختبر الكود", t_fr: "Bac à sable", d: "Live HTML/CSS/JS editor.", d_ar: "محرر مباشر للتجربة.", d_fr: "Éditeur HTML/CSS/JS en direct.", h: "playground.html" },
+    { t: "Developer Skills Quiz", t_ar: "اختبارات المهارات", t_fr: "Quiz développeur", d: "Interactive skill assessments.", d_ar: "اختبارات تفاعلية لمهارات المبرمج.", d_fr: "Évaluations interactives.", h: "quiz.html" },
+    { t: "Tools Dashboard", t_ar: "مركز الأدوات", t_fr: "Outils", d: "Developer utilities hub.", d_ar: "أدوات ومساعدات برمجية.", d_fr: "Hub d'utilitaires développeur.", h: "tools.html" },
+    { t: "Cheatsheets", t_ar: "ملخصات الأكواد", t_fr: "Aide-mémoires", d: "Fast syntax reference.", d_ar: "ملخصات سريعة للأوامر والأكواد.", d_fr: "Référence syntaxe rapide.", h: "cheatsheets.html" },
+    { t: "Code Formatter", t_ar: "منسق الأكواد", t_fr: "Formateur de code", d: "Beautify and minify JSON, HTML, CSS, JS.", d_ar: "تنسيق وضغط JSON و HTML و CSS و JS.", d_fr: "Embellir et minifier le code.", h: "formatter.html" },
+    { t: "Typing Speed Test", t_ar: "اختبار سرعة الكتابة", t_fr: "Test de frappe", d: "Code typing WPM challenge.", d_ar: "تحدي سرعة كتابة الأكواد.", d_fr: "Défi de vitesse de frappe.", h: "typing-test.html" },
+    { t: "Calculator", t_ar: "آلة حاسبة", t_fr: "Calculatrice", d: "Scientific and programmer calculator.", d_ar: "حاسبة علمية وبرمجية.", d_fr: "Calculatrice scientifique et dev.", h: "calculator.html" },
+    { t: "Learner Profile", t_ar: "ملف المتعلم", t_fr: "Profil apprenant", d: "Track your learning profile.", d_ar: "تتبع ملفك التعلمي.", d_fr: "Suivi de votre profil d'apprentissage.", h: "profile.html" },
+    { t: "Courses Catalog", t_ar: "فهرس الدروس", t_fr: "Catalogue des cours", d: "All programming tracks.", d_ar: "دليل جميع الدروس البرمجية.", d_fr: "Tous les parcours de programmation.", h: "dorous-albarmaja.html" },
+    { t: "Coding Roadmap", t_ar: "خارطة طريق البرمجة", t_fr: "Feuille de route", d: "What to learn and in which order.", d_ar: "ماذا تتعلم وبأي ترتيب.", d_fr: "Quoi apprendre et dans quel ordre.", h: "coding.html" },
+    { t: "Productivity", t_ar: "الإنتاجية", t_fr: "Productivité", d: "Focus and deep work for developers.", d_ar: "التركيز والعمل العميق للمبرمجين.", d_fr: "Focus et deep work.", h: "productivity.html" },
+    { t: "Mental Health", t_ar: "الصحة النفسية", t_fr: "Santé mentale", d: "Well-being for developers.", d_ar: "الصحة النفسية للمبرمجين.", d_fr: "Bien-être des développeurs.", h: "mental_health.html" },
+    { t: "Motivation", t_ar: "التحفيز", t_fr: "Motivation", d: "Mindset and consistency.", d_ar: "العقلية والاستمرارية.", d_fr: "Mentalité et constance.", h: "motivation.html" },
+    { t: "Soft Skills", t_ar: "المهارات الناعمة", t_fr: "Soft skills", d: "Communication and teamwork.", d_ar: "التواصل والعمل الجماعي.", d_fr: "Communication et travail d'équipe.", h: "soft-skills.html" },
+    { t: "Blog", t_ar: "المدونة", t_fr: "Blog", d: "Engineering articles and guides.", d_ar: "مقالات ونصائح تقنية.", d_fr: "Articles et guides d'ingénierie.", h: "blog.html" },
+    { t: "System Design", t_ar: "تصميم الأنظمة", t_fr: "System design", d: "Scalable architecture fundamentals.", d_ar: "أساسيات هندسة الأنظمة القابلة للتوسع.", d_fr: "Fondamentaux d'architecture scalable.", h: "system-design.html" },
+    { t: "OWASP Web Security", t_ar: "أمن الويب OWASP", t_fr: "Sécurité web OWASP", d: "Top 10 web risks and defenses.", d_ar: "أهم ثغرات الويب وطرق الوقاية.", d_fr: "Top 10 web et défenses.", h: "web-security-owasp.html" },
+    { t: "API Security", t_ar: "تأمين الـ API", t_fr: "Sécurité des APIs", d: "Auth, rate limits, and API threats.", d_ar: "المصادقة وتحديد المعدل وتهديدات الـ API.", d_fr: "Auth, rate limiting et menaces API.", h: "api-security.html" },
+    { t: "Caching Strategies", t_ar: "استراتيجيات الكاش", t_fr: "Stratégies de cache", d: "TTL, CDN, and cache stampedes.", d_ar: "مدة الكاش والـ CDN وتهافت الكاش.", d_fr: "TTL, CDN et stampedes.", h: "caching-strategies.html" },
+    { t: "SQL Optimization", t_ar: "تحسين SQL", t_fr: "Optimisation SQL", d: "Indexes, plans, and query tuning.", d_ar: "الفهارس وخطط التنفيذ وتحسين الاستعلامات.", d_fr: "Index, plans et tuning.", h: "sql-optimization.html" },
+    { t: "Kafka Event-Driven", t_ar: "كافكا والأحداث", t_fr: "Kafka event-driven", d: "Streams, topics, and consumers.", d_ar: "التدفقات والموضوعات والمستهلكون.", d_fr: "Streams, topics et consumers.", h: "kafka-event-driven.html" },
+    { t: "Cloud Native DevOps", t_ar: "الحوسبة السحابية و DevOps", t_fr: "Cloud native DevOps", d: "Containers, orchestration, delivery.", d_ar: "الحاويات والتنسيق والتسليم.", d_fr: "Conteneurs, orchestration et delivery.", h: "cloud-native-devops.html" },
+    { t: "CI/CD Automation", t_ar: "أتمتة CI/CD", t_fr: "Automatisation CI/CD", d: "Pipelines, tests, and releases.", d_ar: "الأنابيب والاختبارات والإصدارات.", d_fr: "Pipelines, tests et releases.", h: "cicd-automation.html" },
+    { t: "AI Engineering", t_ar: "هندسة الذكاء الاصطناعي", t_fr: "Ingénierie IA", d: "LLM workflows for developers.", d_ar: "مسارات نماذج اللغة للمطورين.", d_fr: "Workflows LLM pour développeurs.", h: "ai-engineering.html" },
+    { t: "GraphQL, REST & gRPC", t_ar: "GraphQL و REST و gRPC", t_fr: "GraphQL, REST et gRPC", d: "API styles compared.", d_ar: "مقارنة أنماط واجهات البرمجة.", d_fr: "Comparaison des styles d'API.", h: "graphql-rest-grpc.html" },
+    { t: "Modern Frontend State", t_ar: "حالة الواجهة الحديثة", t_fr: "État frontend moderne", d: "Client state, servers, and caches.", d_ar: "حالة العميل والسيرفر والكاش.", d_fr: "État client, serveur et caches.", h: "modern-frontend-state.html" },
+    { t: "Full-Stack Roadmap", t_ar: "مسار فول ستاك", t_fr: "Roadmap full-stack", d: "Path from frontend to production.", d_ar: "المسار من الواجهة إلى الإنتاج.", d_fr: "Du frontend à la production.", h: "fullstack-roadmap.html" },
+    { t: "Remote Work", t_ar: "العمل عن بعد", t_fr: "Télétravail", d: "Async teamwork for developers.", d_ar: "العمل غير المتزامن للفرق البرمجية.", d_fr: "Travail asynchrone en équipe.", h: "remote-work.html" },
+    { t: "Workshops", t_ar: "ورشات العمل", t_fr: "Ateliers", d: "Live coding workshops.", d_ar: "ورشات عمل مباشرة.", d_fr: "Ateliers de live coding.", h: "workshops.html" },
+    { t: "About", t_ar: "من نحن", t_fr: "À propos", d: "Mission and the person behind Coding Life.", d_ar: "المهمة والقائم على المنصة.", d_fr: "Mission et créateur.", h: "about.html" },
+    { t: "Contact", t_ar: "تواصل معنا", t_fr: "Contact", d: "Support and collaborations.", d_ar: "الدعم والتعاون المهني.", d_fr: "Support et collaborations.", h: "contact.html" },
+    { t: "Privacy Policy", t_ar: "سياسة الخصوصية", t_fr: "Politique de confidentialité", d: "How we handle your data and cookies.", d_ar: "كيف نتعامل مع بياناتك وملفات الكوكيز.", d_fr: "Gestion de vos données et cookies.", h: "privacy.html" },
+    { t: "Terms of Use", t_ar: "شروط الاستخدام", t_fr: "Conditions d'utilisation", d: "Rules and terms for using the platform.", d_ar: "القواعد وشروط استخدام المنصة.", d_fr: "Règles et conditions d'utilisation.", h: "terms.html" }
+  ];
 
   function applyLang(lang) {
     currentLang = lang;
@@ -437,17 +549,10 @@
           <a href="about.html">${tr.about}</a>
           <a href="privacy.html">${tr.privacy}</a>
           <a href="terms.html">${tr.terms}</a>
-          <!-- AdSense compliant ad unit with clear labeling -->
-          <div class="ad-unit-container" style="margin-top:24px;">
+          ${isAdsAllowed() ? `
+          <div class="ad-unit-container" id="clFooterAd" style="margin-top:24px;">
             <span class="ad-notice-badge">${t().cookies ? t().cookies.adNotice : 'Advertisement'}</span>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="${CONFIG.adsensePublisherId}"
-                 data-ad-slot="1234567890"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-          </div>
+          </div>` : ''}
         </div>
       </div>
       <div style="text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;">
@@ -504,6 +609,7 @@
     if (footer) {
       footer.innerHTML = buildFooterHTML();
       bindFooterEvents();
+      mountAds();
     }
   }
 
@@ -557,57 +663,23 @@
       const results = document.getElementById("searchResults");
       if (!q) { results.innerHTML = ""; return; }
       
-      const pages = [
-        { t: "HTML5 Masterclass", t_ar: "احتراف HTML5", d: "Foundation of web development.", d_ar: "أساسيات تطوير الويب.", h: "html.html" },
-        { t: "CSS3 Styling", t_ar: "تصميم CSS3", d: "Responsive design, Flexbox, Grid.", d_ar: "تصميم متجاوب، فليكس بوكس، وجريد.", h: "css.html" },
-        { t: "JavaScript Deep Dive", t_ar: "تعمق في JavaScript", d: "Modern JS and async logic.", d_ar: "جافا سكريبت الحديثة والمنطق غير المتزامن.", h: "javascript.html" },
-        { t: "React Modern", t_ar: "React الحديث", d: "Component-based architecture.", d_ar: "هندسة المكونات المعاصرة.", h: "react.html" },
-        { t: "PHP Backend", t_ar: "احتراف PHP", d: "Server-side programming.", d_ar: "برمجة السيرفرات.", h: "php.html" },
-        { t: "Node.js Scalable", t_ar: "Node.js المتقدم", d: "High-performance backend.", d_ar: "خوادم عالية الأداء.", h: "nodejs.html" },
-        { t: "SQL Databases", t_ar: "قواعد بيانات SQL", d: "Relational data management.", d_ar: "إدارة البيانات العلائقية.", h: "sql.html" },
-        { t: "Python Expert", t_ar: "خبير بايثون", d: "Automation and data science.", d_ar: "الأتمتة وعلوم البيانات.", h: "python.html" },
-        { t: "C# & .NET", t_ar: "C# و .NET", d: "Enterprise logic and Unity.", d_ar: "برمجة الشركات ومحرك Unity.", h: "csharp.html" },
-        { t: "Java Enterprise", t_ar: "جافا للمؤسسات", d: "Spring Boot backend.", d_ar: "تطوير الأنظمة بـ Spring Boot.", h: "java.html" },
-        { t: "Git Expert", t_ar: "خبير Git", d: "Version control and collaboration.", d_ar: "إدارة النسخ والتعاون.", h: "git.html" },
-        { t: "Flutter Mobile", t_ar: "تطوير تطبيقات Flutter", d: "Multi-platform mobile apps.", d_ar: "تطبيقات الموبايل لكافة المنصات.", h: "flutter.html" },
-        { t: "CSS Unit Converter", t_ar: "محول وحدات CSS", d: "PX, REM, EM, VW conversion.", d_ar: "تحويل البكسل والريم وغيرها.", h: "css-converter.html" },
-        { t: "Palette Generator", t_ar: "مولد الألوان", d: "Color scheme creator.", d_ar: "إنشاء مجموعات ألوان متناسقة.", h: "colors.html" },
-        { t: "Code Playground", t_ar: "مختبر الكود", d: "Live editor for practice.", d_ar: "محرر مباشر للتجربة.", h: "playground.html" },
-        { t: "Developer Skills Quiz", t_ar: "اختبارات المهارات البرمجية", d: "Interactive developer skill quizzes and assessments.", d_ar: "اختبارات وتقييمات تفاعلية لمهارات المبرمج.", h: "quiz.html" },
-        { t: "Tools Dashboard", t_ar: "مركز الأدوات", d: "Developer utilities and interactive tools.", d_ar: "أدوات ومساعدات برمجية ذكية.", h: "tools.html" },
-        { t: "Developer Cheatsheets Hub", t_ar: "مركز ملخصات الأكواد السريعة", d: "Fast syntax reference for Git, CSS, JS, Python, SQL, Linux, and Regex.", d_ar: "ملخصات سريعة لأهم أوامر وأكواد Git و CSS و JS و Python و SQL.", h: "cheatsheets.html" },
-        { t: "Code Formatter & Minifier", t_ar: "منسق وضواغط الأكواد", d: "Format, beautify, validate, and minify JSON, HTML, CSS, and JS.", d_ar: "تنسيق وتجميل وضغط أكواد JSON و HTML و CSS و JavaScript.", h: "formatter.html" },
-        { t: "Code Typing Speed Test", t_ar: "اختبار سرعة كتابة الكود", d: "Developer typing speed challenge for code syntax and WPM.", d_ar: "تحدي واختبار سرعة كتابة الأكواد البرمجية والدقة.", h: "typing-test.html" },
-        { t: "Scientific & Developer Calculator", t_ar: "آلة حاسبة علمية وبرمجية", d: "Scientific, programmer bitwise, base conversions, and aspect ratio.", d_ar: "حاسبة علمية متطورة، تحويل الأنظمة العددية، ونسب الشاشات.", h: "calculator.html" },
-        { t: "Courses Catalog", t_ar: "فهرس ومسارات الدروس", d: "Complete catalog of programming tutorials.", d_ar: "دليل وفهرس شامل لجميع الدروس البرمجية.", h: "dorous-albarmaja.html" },
-        { t: "Productivity Tips", t_ar: "نصائح الإنتاجية", d: "Increase your daily output.", d_ar: "زيادة إنتاجيتك اليومية.", h: "productivity.html" },
-        { t: "Mental Health", t_ar: "صحة العقل والجسد", d: "Well-being for developers.", d_ar: "الصحة النفسية للمبرمجين.", h: "mental_health.html" },
-        { t: "Motivation", t_ar: "التحفيز والاستمرارية", d: "Overcome burnout and stay focused.", d_ar: "تجاوز الإحباط ومواصلة التطور.", h: "motivation.html" },
-        { t: "Soft Skills", t_ar: "المهارات الناعمة", d: "Communication and team collaboration.", d_ar: "التواصل والعمل الجماعي.", h: "soft-skills.html" },
-        { t: "Blog", t_ar: "المدونة", d: "Articles and tips.", d_ar: "مقالات ونصائح تقنية.", h: "blog.html" },
-        { t: "Workshops", t_ar: "ورشات العمل", d: "Live coding workshops.", d_ar: "ورشات عمل مباشرة.", h: "workshops.html" },
-        { t: "About", t_ar: "من نحن", d: "Our mission.", d_ar: "مهمتنا ورؤيتنا.", h: "about.html" },
-        { t: "Contact", t_ar: "تواصل معنا", d: "Support or collaborations.", d_ar: "الدعم والتعاون المهني.", h: "contact.html" }
-      ];
-
-      const filtered = pages.filter(p => 
-        p.t.toLowerCase().includes(q) || p.d.toLowerCase().includes(q) ||
-        (p.t_ar && p.t_ar.includes(q)) || (p.d_ar && p.d_ar.includes(q))
+      const filtered = SEARCH_PAGES.filter(p =>
+        [p.t, p.t_ar, p.t_fr, p.d, p.d_ar, p.d_fr].filter(Boolean).join(" ").toLowerCase().includes(q)
       );
 
       const lang = currentLang;
-      results.innerHTML = filtered.length > 0 
+      results.innerHTML = filtered.length > 0
         ? filtered.map(p => {
-          const title = lang === 'ar' ? (p.t_ar || p.t) : p.t;
-          const desc = lang === 'ar' ? (p.d_ar || p.d) : p.d;
+          const title = lang === "ar" ? (p.t_ar || p.t) : lang === "fr" ? (p.t_fr || p.t) : p.t;
+          const desc = lang === "ar" ? (p.d_ar || p.d) : lang === "fr" ? (p.d_fr || p.d) : p.d;
           return `
-            <a href="${p.h}" style="padding:16px; background:rgba(30,41,59,0.8); border-radius:8px; color:white; text-decoration:none; display:block; transition:0.2s; border:1px solid #1e293b; text-align:${lang === 'ar' ? 'right' : 'left'};">
-              <div style="font-weight:bold; color:#38bdf8; margin-bottom:4px;">${title}</div>
-              <div style="font-size:0.85rem; color:#94a3b8;">${desc}</div>
+            <a href="${p.h}" style="padding:16px; background:rgba(30,41,59,0.8); border-radius:8px; color:white; text-decoration:none; display:block; transition:0.2s; border:1px solid #1e293b; text-align:${lang === "ar" ? "right" : "left"};">
+              <div style="font-weight:bold; color:#38bdf8; margin-bottom:4px;">${escapeHtml(title)}</div>
+              <div style="font-size:0.85rem; color:#94a3b8;">${escapeHtml(desc)}</div>
             </a>
           `;
         }).join("")
-        : `<div style="color:#94a3b8; text-align:center; padding:20px;">${t().search.noResults} "${q}"</div>`;
+        : `<div style="color:#94a3b8; text-align:center; padding:20px;">${t().search.noResults} "${escapeHtml(q)}"</div>`;
     });
   }
 
@@ -784,7 +856,7 @@
         "@type": "EducationalOrganization",
         "name": "Coding Life",
         "url": "https://codinglife1.vercel.app/",
-        "logo": "https://codinglife1.vercel.app/logo.png",
+        "logo": "https://codinglife1.vercel.app/logo-icon.png",
         "description": "Premium programming courses and career-focused workshops.",
         "sameAs": ["https://github.com/bilalelhamri19"]
       },
@@ -839,6 +911,8 @@
         banner.style.transform = 'translateY(20px)';
         banner.style.transition = '0.3s ease';
         setTimeout(() => banner.remove(), 300);
+        refreshFooter();
+        mountAds();
       });
     }
 
@@ -1027,6 +1101,7 @@
     bindFooterEvents();
     refreshPageContent();
     initCookieConsent();
+    mountAds();
     initCourseProgress();
     initDailyDevTip();
 
