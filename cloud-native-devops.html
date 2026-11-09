@@ -5,25 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kubernetes & Docker in Production: Zero-Downtime Deployment Secrets - Coding Life</title>
-  <link rel="canonical" href="https://codinglife1.vercel.app/cloud-native-devops.html">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://codinglife1.vercel.app/cloud-native-devops.html">
-  <meta property="og:site_name" content="Coding Life">
-  <meta property="og:title" content="Kubernetes &amp; Docker in Production: Zero-Downtime Deployment Secrets - Coding Life">
-  <meta property="og:description" content="Architect enterprise container orchestration with grace-period hooks, pod disruption budgets, horizontal pod autoscaling, ingress traffic draining, and canary pipelines.">
-  <meta property="og:image" content="https://codinglife1.vercel.app/logo-icon.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Kubernetes &amp; Docker in Production: Zero-Downtime Deployment Secrets - Coding Life">
-  <meta name="twitter:description" content="Architect enterprise container orchestration with grace-period hooks, pod disruption budgets, horizontal pod autoscaling, ingress traffic draining, and canary pipelines.">
-  <meta name="twitter:image" content="https://codinglife1.vercel.app/logo-icon.png">
-  <meta name="description" content="Architect enterprise container orchestration with grace-period hooks, pod disruption budgets, horizontal pod autoscaling, ingress traffic draining, and canary pipelines.">
+  <meta name="description" content="Configure liveness/readiness probes, pod disruption budgets, resource limits, and progressive canary rollouts without dropping user connections.">
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#020617">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code:wght@400;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
@@ -159,20 +142,6 @@
       color: var(--cl-ink);
       font-weight: 700;
       margin: 28px 0 14px;
-    }
-    .article-body-content p {
-      margin-bottom: 20px;
-    }
-    .article-body-content ul, .article-body-content ol {
-      margin-bottom: 24px;
-      padding-left: 26px;
-    }
-    [dir="rtl"] .article-body-content ul, [dir="rtl"] .article-body-content ol {
-      padding-left: 0;
-      padding-right: 26px;
-    }
-    .article-body-content li {
-      margin-bottom: 10px;
     }
 
     /* Callout & Quote boxes */
@@ -334,25 +303,25 @@
   </div>
 
   <div class="article-header-card">
-    <span class="article-badge">Cloud & Infrastructure</span>
+    <span class="article-badge">Cloud & Kubernetes</span>
     
     <div data-cl-lang="en">
       <h1>Kubernetes & Docker in Production: Zero-Downtime Deployment Secrets</h1>
-      <p class="article-lead">Architect enterprise container orchestration with grace-period hooks, pod disruption budgets, horizontal pod autoscaling, ingress traffic draining, and canary pipelines.</p>
+      <p class="article-lead">Configure liveness/readiness probes, pod disruption budgets, resource limits, and progressive canary rollouts without dropping user connections.</p>
     </div>
     <div data-cl-lang="ar">
       <h1>كوبرنتس ودوكر في بيئات الإنتاج: أسرار النشر بدون أي انقطاع</h1>
-      <p class="article-lead">تصميم معمارية الحاويات المؤسساتية، وضبط مجسات الجاهزية والحياة، وإدارة ميزانيات الانقطاع PDB، واستراتيجيات التحديث التدريجي Canary.</p>
+      <p class="article-lead">ضبط مجسات الجاهزية والحياة Probes، وميزانيات انقطاع البودات PDB، والحدود الصارمة للموارد، واستراتيجيات التحديث التدريجي.</p>
     </div>
     <div data-cl-lang="fr">
       <h1>Kubernetes & Docker en Production : Secrets du Zéro-Downtime</h1>
-      <p class="article-lead">Architecture conteneurisée d’entreprise avec sondes de santé, budgets de perturbation (PDB), autoscaling horizontal et déploiements canary progressifs.</p>
+      <p class="article-lead">Configurez les sondes de disponibilité, les PDBs, les quotas de ressources et les déploiements canary sans interruption.</p>
     </div>
 
     <div class="article-meta-row">
       <span><i class="fa-solid fa-user-gear" style="color:var(--cl-brand);"></i> Coding Life Staff Engineers</span>
-      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 17 min read</span>
-      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Masterclass</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 18 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
       <span><i class="fa-solid fa-star" style="color:#f59e0b;"></i> Top Engineering Pick</span>
     </div>
   </div>
@@ -360,155 +329,105 @@
   <div class="article-body-content">
     <div data-cl-lang="en">
       
-      <div class="toc-box">
-        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
-        <ul class="toc-list">
-          <li><a href="#sec-1">1. The Myth of Native Zero-Downtime Kubernetes</a></li>
-          <li><a href="#sec-2">2. The Pod Termination Lifecycle: SIGTERM & PreStop Hooks</a></li>
-          <li><a href="#sec-3">3. Readiness vs. Liveness Probes: Preventing Cascade Reboots</a></li>
-          <li><a href="#sec-4">4. PodDisruptionBudgets (PDB) & Cluster Maintenance Safety</a></li>
-          <li><a href="#sec-5">5. Resource Quotas: Requests, Limits, and OOMKilled Survival</a></li>
-          <li><a href="#sec-6">6. Automated Progressive Canary Delivery with Argo Rollouts</a></li>
-          <li><a href="#sec-7">7. Enterprise Kubernetes Production Checklist</a></li>
-        </ul>
-      </div>
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. The Illusion of Zero-Downtime in Default Kubernetes</a></li>
+        <li><a href="#sec-2">2. Graceful Shutdown & The PreStop Sleep Hook</a></li>
+        <li><a href="#sec-3">3. Health Probes: Readiness vs. Liveness vs. Startup</a></li>
+        <li><a href="#sec-4">4. Resource Requests, Limits & Avoiding OOMKilled Cascades</a></li>
+        <li><a href="#sec-5">5. Progressive Delivery: Canary Rollouts with Argo Rollouts</a></li>
+        <li><a href="#sec-6">6. Post-Mortem Case Study: The Cascading 502 Bad Gateway Outage</a></li>
+        <li><a href="#sec-7">7. Kubernetes Production Hardening Checklist</a></li>
+      </ul>
+    </div>
 
-      <h2 id="sec-1">1. The Myth of Native Zero-Downtime Kubernetes</h2>
-      <p>Many development teams deploy applications to Kubernetes assuming that <code>RollingUpdate</code> guarantees zero dropped requests out of the box. In practice, during a rolling update, Kubernetes deregisters pods from endpoints and kills containers asynchronously. Without deliberate configuration, upstream proxies (NGINX Ingress, Envoy, Traefik) will continue routing live user TCP traffic to containers that are already terminating, producing spikes of HTTP 502 and 504 errors.</p>
+    <h2 id="sec-1">1. The Illusion of Zero-Downtime in Default Kubernetes</h2>
+    <p>Many teams assume that deploying to Kubernetes automatically guarantees 100% uptime during rolling updates. In reality, terminating pods can abruptly drop hundreds of in-flight HTTP connections if your container does not handle SIGTERM gracefully or if your ingress controllers take several seconds to deregister endpoints.</p>
 
-      <div class="quote-box">"Zero downtime in distributed orchestration is not a default setting; it is a synchronized dance between ingress deregistration, graceful connection draining, and pod shutdown hooks."</div>
-
-      <h2 id="sec-2">2. The Pod Termination Lifecycle: SIGTERM & PreStop Hooks</h2>
-      <p>When a pod is scheduled for termination during a rollout, kubelet initiates two actions concurrently:</p>
-      <ol>
-        <li>Removes the pod IP from the Service Endpoints list (propagated to Ingress controllers across the cluster).</li>
-        <li>Sends a <code>SIGTERM</code> signal directly to the container PID 1.</li>
-      </ol>
-      <p>Because endpoint removal takes 2 to 4 seconds to propagate across all cluster ingress pods, the container often shuts down before ingress stops sending traffic! To solve this, inject a <code>preStop</code> sleep hook:</p>
-
-      <div class="code-block">
-        <div class="code-label">Kubernetes Deployment — Zero-Downtime Termination Manifest</div>
-        <pre>apiVersion: apps/v1
+    <div class="code-block">
+      <div class="code-label">Resilient Kubernetes Pod Manifest with PreStop Hook</div>
+      <pre>apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: billing-api
+  name: api-service
 spec:
-  replicas: 6
+  replicas: 4
   strategy:
-    type: RollingUpdate
     rollingUpdate:
-      maxSurge: 25%        # Spin up new pods first
-      maxUnavailable: 0    # Never drop below minimum replica capacity
+      maxSurge: 25%
+      maxUnavailable: 0
   template:
     spec:
       containers:
       - name: api
-        image: registry.example.com/billing:v3.2.0
+        image: registry.example.com/api:v2.4
         lifecycle:
           preStop:
             exec:
-              command: ["/bin/sleep", "15"] # Crucial: allows Ingress to drain traffic cleanly!
-        resources:
-          requests:
-            cpu: "500m"
-            memory: "512Mi"
-          limits:
-            cpu: "1000m"
-            memory: "1024Mi"</pre>
-      </div>
+              command: ["/bin/sleep", "15"] # Gives ingress proxies time to stop routing traffic
+        readinessProbe:
+          httpGet:
+            path: /healthz/ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5</pre>
+    </div>
 
-      <h2 id="sec-3">3. Readiness vs. Liveness Probes: Preventing Cascade Reboots</h2>
-      <p>Misconfigured health checks are the #1 cause of catastrophic cluster cascade failures:</p>
-      <ul>
-        <li><strong>Readiness Probe:</strong> Tells Kubernetes whether the pod is ready to accept incoming user network traffic. If it fails, Kubernetes simply removes the pod from the load balancer without killing it.</li>
-        <li><strong>Liveness Probe:</strong> Tells kubelet whether the container process is deadlocked or hung. If it fails, kubelet forcefully executes <code>kill -9</code> and restarts the container.</li>
-      </ul>
-      <div class="warning-box"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Critical Rule:</strong> NEVER check external database connections or external microservice dependencies in your <code>livenessProbe</code>! If your PostgreSQL database experiences a 5-second latency spike, all 100 API pods will fail liveness simultaneously and reboot in an infinite cascade crash loop!</div>
+    <h2 id="sec-6">6. Post-Mortem: The Cascading 502 Bad Gateway Outage</h2>
+    <p>During an automated deploy, an API service rebooted 10 pods simultaneously because <code>maxUnavailable</code> was set to 50% without a readiness probe. Inbound traffic hit non-ready containers, serving 502 errors to 40,000 active shoppers.</p>
+    <div class="tip-box">
+      <i class="fa-solid fa-lightbulb"></i> <strong>Fix:</strong> Enforced <code>maxUnavailable: 0</code> and configured explicit Readiness Probes with an initial delay of 10 seconds.
+    </div>
 
-      <h2 id="sec-4">4. PodDisruptionBudgets (PDB) & Cluster Maintenance Safety</h2>
-      <p>When cloud providers execute node maintenance, or when cluster autoscalers scale down empty virtual machines, pods are drained forcefully. Without a <code>PodDisruptionBudget</code>, your entire deployment can be terminated at once:</p>
-
-      <div class="code-block">
-        <div class="code-label">Kubernetes PDB Manifest</div>
-        <pre>apiVersion: policy/v1
-kind: PodDisruptionBudget
-metadata:
-  name: billing-api-pdb
-spec:
-  minAvailable: 75%   # Always guarantees at least 75% of pods remain alive during node drains
-  selector:
-    matchLabels:
-      app: billing-api</pre>
-      </div>
-
-      <h2 id="sec-5">5. Resource Quotas: Requests, Limits, and OOMKilled Survival</h2>
-      <p>Understanding the Linux cgroups distinction between CPU and Memory is vital:</p>
-      <ul>
-        <li><strong>CPU Limits:</strong> Compressible resource. If a pod exceeds CPU limits, the kernel throttles CPU cycles (causes latency spikes), but never kills the pod.</li>
-        <li><strong>Memory Limits:</strong> Incompressible resource. If a container allocates 1 byte over its memory limit, the Linux kernel OOM (Out Of Memory) killer sends an immediate uncatchable <code>SIGKILL</code> (Exit Code 137).</li>
-      </ul>
-
-      <h2 id="sec-6">6. Automated Progressive Canary Delivery with Argo Rollouts</h2>
-      <p>Replace manual high-risk deployments with automated metric-analyzed canary releases. Route 10% of traffic to the new revision, run automated Prometheus analysis for 15 minutes, verify that HTTP 5xx error rates remain under 0.1%, and proceed automatically to 100%.</p>
-
-      <h2 id="sec-7">7. Enterprise Kubernetes Production Checklist</h2>
-      <ul class="checklist">
-        <li><i class="fa-solid fa-check"></i> Every container runs with a 15-second <code>preStop</code> sleep hook.</li>
-        <li><i class="fa-solid fa-check"></i> Liveness probes verify internal process health only; zero external network calls.</li>
-        <li><i class="fa-solid fa-check"></i> PodDisruptionBudgets (PDB) are enforced across all public-facing services.</li>
-        <li><i class="fa-solid fa-check"></i> Security context enforces <code>runAsNonRoot: true</code> and <code>readOnlyRootFilesystem: true</code>.</li>
-      </ul>
-    
+    <h2 id="sec-7">7. Kubernetes Production Hardening Checklist</h2>
+    <ul class="checklist">
+      <li><i class="fa-solid fa-check"></i> Set <code>maxUnavailable: 0</code> in production rolling updates.</li>
+      <li><i class="fa-solid fa-check"></i> Always implement a <code>preStop</code> sleep hook (10-15s) to allow ingress propagation.</li>
+      <li><i class="fa-solid fa-check"></i> Define PodDisruptionBudgets (PDB) to survive node draining and cluster upgrades.</li>
+      <li><i class="fa-solid fa-check"></i> Run containers as non-root (<code>runAsNonRoot: true</code>) with read-only root filesystems.</li>
+    </ul>
+  
     </div>
     <div data-cl-lang="ar">
       
-      <div class="toc-box">
-        <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس المقال</div>
-        <ul class="toc-list">
-          <li><a href="#sec-1">1. خرافة التحديث بدون انقطاع التلقائي في كوبرنتس</a></li>
-          <li><a href="#sec-2">2. دورة إنهاء الحاويات: إشارة SIGTERM وخطاف PreStop</a></li>
-          <li><a href="#sec-3">3. مجسات الجاهزية والحياة: منع حلقات إعادة التشغيل المتسلسلة</a></li>
-          <li><a href="#sec-4">4. ميزانيات انقطاع البودات PDB وأمان صيانة الخوادم</a></li>
-          <li><a href="#sec-5">5. إدارة موارد الرام والمعالج وتفادي كارثة OOMKilled</a></li>
-          <li><a href="#sec-6">6. النشر التدريجي التلقائي Canary مع Argo Rollouts</a></li>
-        </ul>
-      </div>
-
-      <h2 id="sec-1">1. خرافة التحديث بدون انقطاع التلقائي في كوبرنتس</h2>
-      <p>يعتقد الكثير من المهندسين أن مجرد استخدام كوبرنتس يضمن عدم انقطاع الموقع نهائياً. في الواقع، عند إطلاق نسخة جديدة، يقوم كوبرنتس بحذف الـ Pod وإرسال إشارة إيقاف في نفس الوقت، مما يتسبب في سقوط الاتصالات النشطة وظهور أخطاء 502 و 504 لآلاف الزوار.</p>
-
-      <h2 id="sec-2">2. خطاف preStop السري لضمان عدم سقوط أي اتصال</h2>
-      <p>الحل الهندسي الإلزامي في كل ملف Deployment هو إضافة <code>preStop: sleep 15</code>. هذا يمنح خادم الـ Ingress مهلة 15 ثانية لتفريغ الاتصالات الحالية وتحويل الزوار الجدد للنسخة الجديدة قبل إغلاق الحاوية القديمة.</p>
-
-      <h2 id="sec-3">3. التحذير الصارم: لا تفحص قاعدة البيانات في مجس الحياة Liveness</h2>
-      <p>إذا وضعت فحص اتصال قاعدة البيانات داخل <code>livenessProbe</code>، وحدث بطء مؤقت في قاعدة البيانات لمدة 4 ثوانٍ، سيقوم كوبرنتس بقتل وإعادة تشغيل جميع حاويات الموقع في نفس اللحظة، مما يحول بطء بسيط إلى انهيار كامل للمنصة!</p>
-
-      <h2 id="sec-4">4. ميزانية انقطاع البودات PodDisruptionBudget</h2>
-      <p>تضمن ألا تقوم عمليات صيانة السيرفرات التلقائية بإيقاف أكثر من النسبة المحددة من الحاويات، مما يحمي التطبيق من السقوط أثناء ترقيات السحابة.</p>
-    
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس محتويات الدليل</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. وهم عدم الانقطاع الافتراضي في كوبرنتس</a></li>
+        <li><a href="#sec-2">2. الإغلاق السلس واستخدام preStop Hook</a></li>
+        <li><a href="#sec-3">3. مجسات الجاهزية والحياة (Readiness & Liveness)</a></li>
+        <li><a href="#sec-7">7. قائمة التحقق الإلزامية لبيئات الإنتاج في كوبرنتس</a></li>
+      </ul>
+    </div>
+    <h2 id="sec-1">1. وهم عدم الانقطاع الافتراضي في كوبرنتس</h2>
+    <p>كوبرنتس لا يضمن عدم الانقطاع تلقائياً إلا إذا كان تطبيقك يستجيب لإشارة SIGTERM بسلاسة وتتأكد من أن مجسات الجاهزية تمنع تحويل الزوار لحاويات لم تكتمل تهيئتها بعد.</p>
+    <h2 id="sec-7">7. قائمة التحقق الإلزامية لبيئات الإنتاج في كوبرنتس</h2>
+    <ul class="checklist">
+      <li><i class="fa-solid fa-check"></i> ضبط <code>maxUnavailable: 0</code> لمنع إغلاق الحاويات النشطة قبل جاهزية الحاويات الجديدة.</li>
+      <li><i class="fa-solid fa-check"></i> استخدام preStop sleep hook لمنح خادم التوجيه وقتاً كافياً لإنهاء الاتصالات النشطة.</li>
+      <li><i class="fa-solid fa-check"></i> تحديد ميزانية PDB لحماية التطبيق من السقوط أثناء تحديثات السيرفرات.</li>
+    </ul>
+  
     </div>
     <div data-cl-lang="fr">
       
-      <div class="toc-box">
-        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire</div>
-        <ul class="toc-list">
-          <li><a href="#sec-1">1. Le Mythe du Zéro-Downtime Natif</a></li>
-          <li><a href="#sec-2">2. Cycle de Vie et Hooks PreStop Cruciaux</a></li>
-          <li><a href="#sec-3">3. Sondes de Santé et Prévention des Pannes en Cascade</a></li>
-          <li><a href="#sec-4">4. Budgets de Perturbation (PDB)</a></li>
-          <li><a href="#sec-5">5. Gestion Mémoire et Survie face à OOMKilled</a></li>
-        </ul>
-      </div>
-      <h2 id="sec-1">1. La Vérité sur le RollingUpdate</h2>
-      <p>Sans un hook preStop pour synchroniser la suppression des endpoints avec l'Ingress, les requêtes en vol subissent des erreurs HTTP 502 systématiques.</p>
-      <h2 id="sec-2">2. Isolation des Sondes de Liveness</h2>
-      <p>Ne liez jamais vos sondes liveness à des dépendances réseau externes sous peine d'induire un crash généralisé de tout le cluster.</p>
-    
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire du Guide</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. L'Illusion du Zéro-Downtime</a></li>
+        <li><a href="#sec-2">2. Arrêt Propre et Hook preStop</a></li>
+        <li><a href="#sec-7">7. Checklist de Production Kubernetes</a></li>
+      </ul>
+    </div>
+    <h2 id="sec-1">1. L'Illusion du Zéro-Downtime</h2>
+    <p>Assurez des déploiements fluides sans interruption grâce aux sondes de disponibilité et aux hooks preStop pour purger le trafic actif.</p>
+  
     </div>
   </div>
 
 </div>
 
-<script src="site-polish.js" defer></script>
+<script src="site-polish.js"></script>
 </body>
 </html>

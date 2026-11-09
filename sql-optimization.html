@@ -4,26 +4,9 @@
   <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PostgreSQL & SQL Performance Tuning: The Production Field Manual - Coding Life</title>
-  <link rel="canonical" href="https://codinglife1.vercel.app/sql-optimization.html">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://codinglife1.vercel.app/sql-optimization.html">
-  <meta property="og:site_name" content="Coding Life">
-  <meta property="og:title" content="PostgreSQL &amp; SQL Performance Tuning: The Production Field Manual - Coding Life">
-  <meta property="og:description" content="Master EXPLAIN ANALYZE execution graphs, eliminate sequential table scans, master composite B-Tree indexing, partial indexes, and eliminate N+1 ORM bottlenecks.">
-  <meta property="og:image" content="https://codinglife1.vercel.app/logo-icon.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="PostgreSQL &amp; SQL Performance Tuning: The Production Field Manual - Coding Life">
-  <meta name="twitter:description" content="Master EXPLAIN ANALYZE execution graphs, eliminate sequential table scans, master composite B-Tree indexing, partial indexes, and eliminate N+1 ORM bottlenecks.">
-  <meta name="twitter:image" content="https://codinglife1.vercel.app/logo-icon.png">
-  <meta name="description" content="Master EXPLAIN ANALYZE execution graphs, eliminate sequential table scans, master composite B-Tree indexing, partial indexes, and eliminate N+1 ORM bottlenecks.">
+  <title>PostgreSQL & SQL Performance Tuning: The Production Field Guide - Coding Life</title>
+  <meta name="description" content="Master EXPLAIN ANALYZE execution graphs, eliminate sequential table scans with composite B-Tree indexes, and fix catastrophic ORM N+1 leaks.">
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#020617">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code:wght@400;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
@@ -159,20 +142,6 @@
       color: var(--cl-ink);
       font-weight: 700;
       margin: 28px 0 14px;
-    }
-    .article-body-content p {
-      margin-bottom: 20px;
-    }
-    .article-body-content ul, .article-body-content ol {
-      margin-bottom: 24px;
-      padding-left: 26px;
-    }
-    [dir="rtl"] .article-body-content ul, [dir="rtl"] .article-body-content ol {
-      padding-left: 0;
-      padding-right: 26px;
-    }
-    .article-body-content li {
-      margin-bottom: 10px;
     }
 
     /* Callout & Quote boxes */
@@ -337,22 +306,22 @@
     <span class="article-badge">Databases & Performance</span>
     
     <div data-cl-lang="en">
-      <h1>PostgreSQL & SQL Performance Tuning: The Production Field Manual</h1>
-      <p class="article-lead">Master EXPLAIN ANALYZE execution graphs, eliminate sequential table scans, master composite B-Tree indexing, partial indexes, and eliminate N+1 ORM bottlenecks.</p>
+      <h1>PostgreSQL & SQL Performance Tuning: The Production Field Guide</h1>
+      <p class="article-lead">Master EXPLAIN ANALYZE execution graphs, eliminate sequential table scans with composite B-Tree indexes, and fix catastrophic ORM N+1 leaks.</p>
     </div>
     <div data-cl-lang="ar">
-      <h1>تحسين أداء قواعد بيانات PostgreSQL و SQL: الدليل الميداني لبيئات الإنتاج</h1>
-      <p class="article-lead">احتراف قراءة مخططات التنفيذ EXPLAIN ANALYZE، والتخلص من فحص الجداول البطيء بالفهارس المركبة والجزئية، وحل اختناقات الـ ORM.</p>
+      <h1>تحسين أداء قواعد بيانات PostgreSQL و SQL: دليل بيئات الإنتاج الشامل</h1>
+      <p class="article-lead">احتراف قراءة مخططات التنفيذ EXPLAIN ANALYZE، والتخلص من المسح المتسلسل بالفهارس المركبة، وحل مشاكل N+1 مع الـ ORM.</p>
     </div>
     <div data-cl-lang="fr">
-      <h1>Optimisation PostgreSQL & SQL : Le Manuel de Terrain en Production</h1>
-      <p class="article-lead">Maîtrisez les graphes EXPLAIN ANALYZE, éliminez les scans séquentiels, concevez des index B-Tree composites et éradiquez le problème N+1.</p>
+      <h1>Optimisation PostgreSQL & SQL : Le Guide de Terrain</h1>
+      <p class="article-lead">Maîtrisez les graphes EXPLAIN ANALYZE, éliminez les scans séquentiels et résolvez les requêtes N+1 destructrices.</p>
     </div>
 
     <div class="article-meta-row">
       <span><i class="fa-solid fa-user-gear" style="color:var(--cl-brand);"></i> Coding Life Staff Engineers</span>
-      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 19 min read</span>
-      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Masterclass</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 17 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
       <span><i class="fa-solid fa-star" style="color:#f59e0b;"></i> Top Engineering Pick</span>
     </div>
   </div>
@@ -360,205 +329,134 @@
   <div class="article-body-content">
     <div data-cl-lang="en">
       
-      <div class="toc-box">
-        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
-        <ul class="toc-list">
-          <li><a href="#sec-1">1. The Golden Rule: Measure with EXPLAIN (ANALYZE, BUFFERS)</a></li>
-          <li><a href="#sec-2">2. Indexing Deep Dive: B-Tree, GIN, GiST, and BRIN</a></li>
-          <li><a href="#sec-3">3. Composite Indexing: Column Ordering Rules That Matter</a></li>
-          <li><a href="#sec-4">4. Partial & Covering Indexes (INCLUDE Clause)</a></li>
-          <li><a href="#sec-5">5. The ORM N+1 Catastrophe: Batch Loading & CTEs</a></li>
-          <li><a href="#sec-6">6. Connection Pooling Architecture with PgBouncer</a></li>
-          <li><a href="#sec-7">7. Production DBA Checklist</a></li>
-        </ul>
-      </div>
-
-      <h2 id="sec-1">1. The Golden Rule: Measure with EXPLAIN (ANALYZE, BUFFERS)</h2>
-      <p>Never attempt to optimize a SQL query based on intuition. PostgreSQL contains a cost-based query optimizer (CBO) that computes join algorithms, scan strategies, and memory work-mem allocations. The single most important diagnostic command in relational databases is:</p>
-      
-      <div class="code-block">
-        <div class="code-label">PostgreSQL Diagnostic Query</div>
-        <pre>EXPLAIN (ANALYZE, BUFFERS, VERBOSE, COSTS, TIMING)
-SELECT o.id, o.total_amount, u.email
-FROM orders o
-JOIN users u ON u.id = o.user_id
-WHERE o.status = 'COMPLETED' 
-  AND o.created_at >= '2026-01-01'
-ORDER BY o.created_at DESC
-LIMIT 50;</pre>
-      </div>
-
-      <p>Key metrics to inspect in the execution graph output:</p>
-      <ul>
-        <li><strong>Seq Scan (Sequential Scan):</strong> Reads the entire table from disk page by page. Acceptable on 500 rows; catastrophic on 50,000,000 rows.</li>
-        <li><strong>Buffers Hit vs. Read:</strong> <code>Buffers: shared hit=421 read=1204</code>. Hit means found in RAM cache; read means fetched from high-latency NVMe/SSD storage. High read counts indicate cache misses or missing indexes.</li>
-        <li><strong>Actual Rows vs. Estimated Rows:</strong> If PostgreSQL estimates 10 rows but actual rows are 250,000, table statistics are stale. Run <code>ANALYZE orders;</code> immediately to recalculate pg_statistic distributions.</li>
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. Reading EXPLAIN ANALYZE Like a Senior Database Engineer</a></li>
+        <li><a href="#sec-2">2. Indexing Deep Dive: B-Tree vs. GIN vs. BRIN vs. GiST</a></li>
+        <li><a href="#sec-3">3. Eliminating the Catastrophic ORM N+1 Query Anti-Pattern</a></li>
+        <li><a href="#sec-4">4. Connection Pooling Mastery: PgBouncer & Transaction Mode</a></li>
+        <li><a href="#sec-5">5. PostgreSQL Index Type Comparison Matrix</a></li>
+        <li><a href="#sec-6">6. Post-Mortem Case Study: The Unindexed Foreign Key Deadlock</a></li>
+        <li><a href="#sec-7">7. Production Database Tuning Checklist</a></li>
       </ul>
+    </div>
 
-      <h2 id="sec-2">2. Indexing Deep Dive: B-Tree, GIN, GiST, and BRIN</h2>
-      <div class="table-wrap">
-        <table class="article-table">
-          <thead>
-            <tr>
-              <th>Index Type</th>
-              <th>Underlying Structure</th>
-              <th>Supported Operators</th>
-              <th>Ideal Production Use Case</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>B-Tree</strong></td>
-              <td>Balanced Multi-Way Search Tree</td>
-              <td><code>=, &lt;, &lt;=, &gt;=, &gt;, BETWEEN, IN</code></td>
-              <td>Primary keys, foreign keys, timestamps, sorted filters</td>
-            </tr>
-            <tr>
-              <td><strong>GIN</strong></td>
-              <td>Generalized Inverted Index</td>
-              <td><code>@&gt;, &lt;@, ?, ?|, ?&amp;</code></td>
-              <td>JSONB payload keys, full-text search (tsvector), tags arrays</td>
-            </tr>
-            <tr>
-              <td><strong>BRIN</strong></td>
-              <td>Block Range Index</td>
-              <td>Range operators on sorted physical data</td>
-              <td>Massive timeseries tables (saves 98% RAM compared to B-Tree)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <h2 id="sec-1">1. Reading EXPLAIN ANALYZE Like a Senior Database Engineer</h2>
+    <p>Never optimize a query based on guess-work. Executing <code>EXPLAIN (ANALYZE, BUFFERS, COSTS, VERBOSE)</code> provides the exact runtime reality of your query: actual execution time, shared buffer cache hits, memory spill to disk, and execution plan operators (such as Sequential Scan, Index Scan, and Hash Join).</p>
 
-      <h2 id="sec-3">3. Composite Indexing: Column Ordering Rules That Matter</h2>
-      <p>When creating multi-column indexes (Composite Indexes), column order is not stylistic—it dictates whether PostgreSQL can use the index at all. Follow the universal formula: <strong>Equality Columns First, Range Columns Second</strong>.</p>
+    <div class="quote-box">"If a query execution plan shows a Sequential Scan on a table with more than 100,000 rows, your system is burning CPU cycles reading gigabytes of dead disk pages on every request."</div>
 
-      <div class="code-block">
-        <div class="code-label">PostgreSQL — Proper Composite Index Design</div>
-        <pre>-- Query to accelerate:
--- WHERE company_id = 42 AND status = 'ACTIVE' AND created_at >= NOW() - INTERVAL '30 days'
--- ORDER BY created_at DESC
-
--- WRONG ORDER (Index scan stops at range!):
-CREATE INDEX idx_bad ON orders (created_at, company_id, status);
-
--- OPTIMAL ORDER (Equality filters first, range filter last):
-CREATE INDEX idx_orders_optimized 
-ON orders (company_id, status, created_at DESC);</pre>
-      </div>
-
-      <h2 id="sec-4">4. Partial & Covering Indexes (INCLUDE Clause)</h2>
-      <p>Why index 10,000,000 rows when only 50,000 rows are queried frequently? <strong>Partial Indexes</strong> dramatically reduce index bloat and maintenance overhead during writes:</p>
-
-      <div class="code-block">
-        <div class="code-label">PostgreSQL — Partial and Covering Indexes</div>
-        <pre>-- Partial Index: Only index unpaid pending invoices
-CREATE INDEX idx_invoices_pending 
-ON invoices (customer_id, due_date) 
-WHERE status = 'PENDING';
-
--- Covering Index (Index-Only Scan):
--- Includes total_amount in index leaf pages without adding it to the B-Tree sort key
-CREATE INDEX idx_orders_covering 
-ON orders (user_id, status) 
-INCLUDE (total_amount, currency);</pre>
-      </div>
-
-      <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Index-Only Scan Magic:</strong> A covering index satisfies the entire query directly from RAM leaf pages without touching the heap table pages on disk, resulting in a <strong>20x speedup</strong>!</div>
-
-      <h2 id="sec-5">5. The ORM N+1 Catastrophe: Batch Loading & CTEs</h2>
-      <p>ORMs make developers fast during the prototyping phase but introduce devastating N+1 query cascades in production. When fetching 100 users and their recent 5 orders, naive ORM loops execute 1 query for users plus 100 individual queries for orders over high-latency network round-trips.</p>
-      <p>Solve this with <strong>Common Table Expressions (CTEs)</strong> and <strong>Window Functions</strong>:</p>
-
-      <div class="code-block">
-        <div class="code-label">Single Performant SQL Query Replacing 101 ORM Calls</div>
-        <pre>WITH ranked_orders AS (
-  SELECT 
-    id, user_id, total_amount, created_at,
-    ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) as rn
-  FROM orders
-  WHERE user_id IN (SELECT id FROM users WHERE is_active = true LIMIT 100)
-)
-SELECT u.id as user_id, u.email, ro.id as order_id, ro.total_amount
+    <div class="code-block">
+      <div class="code-label">PostgreSQL Execution Plan Inspection</div>
+      <pre>EXPLAIN (ANALYZE, BUFFERS)
+SELECT u.id, u.email, count(o.id) AS total_orders
 FROM users u
-JOIN ranked_orders ro ON ro.user_id = u.id AND ro.rn &lt;= 5;</pre>
-      </div>
+JOIN orders o ON o.user_id = u.id
+WHERE o.status = 'COMPLETED' AND o.created_at &gt;= NOW() - INTERVAL '30 days'
+GROUP BY u.id, u.email
+ORDER BY total_orders DESC
+LIMIT 50;</pre>
+    </div>
 
-      <h2 id="sec-6">6. Connection Pooling Architecture with PgBouncer</h2>
-      <p>PostgreSQL forks a dedicated operating system process per client connection. 1,000 concurrent client connections consume over 5 GB of RAM in backend process overhead and incur severe context-switching penalties. Deploying <strong>PgBouncer in Transaction Pooling mode</strong> reduces database process count to 50 dedicated connections while smoothly serving 15,000 active web clients.</p>
+    <h2 id="sec-2">2. Indexing Deep Dive: B-Tree vs. GIN vs. BRIN</h2>
+    <p>Choosing the correct index type can mean the difference between a 4,500ms sequential disk crawl and a 1.2ms memory seek:</p>
 
-      <h2 id="sec-7">7. Production DBA Checklist</h2>
-      <ul class="checklist">
-        <li><i class="fa-solid fa-check"></i> Always create indexes in production with <code>CREATE INDEX CONCURRENTLY</code> to prevent locking table writes.</li>
-        <li><i class="fa-solid fa-check"></i> Enable <code>pg_stat_statements</code> to identify the top 10 queries consuming cumulative CPU time.</li>
-        <li><i class="fa-solid fa-check"></i> Index every foreign key column to avoid whole-table lock contention during parent row deletions.</li>
-        <li><i class="fa-solid fa-check"></i> Monitor bloat with autovacuum metrics (<code>autovacuum_vacuum_scale_factor = 0.05</code> on hot tables).</li>
-      </ul>
-    
+    <div class="table-wrap">
+      <table class="article-table">
+        <thead>
+          <tr>
+            <th>Index Type</th>
+            <th>Optimal Data Type</th>
+            <th>Supported Operators</th>
+            <th>Disk Overhead</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>B-Tree</strong></td>
+            <td>Integers, UUIDs, Timestamps, Text</td>
+            <td>=, &lt;, &lt;=, &gt;=, &gt;, BETWEEN, ORDER BY</td>
+            <td>Medium (~20% table size)</td>
+          </tr>
+          <tr>
+            <td><strong>GIN</strong></td>
+            <td>JSONB, Arrays, Full-Text (tsvector)</td>
+            <td>@&gt;, ?, ?|, @@ (containment)</td>
+            <td>High (~40% table size)</td>
+          </tr>
+          <tr>
+            <td><strong>BRIN</strong></td>
+            <td>Append-only logs, massive Timeseries</td>
+            <td>Equality & Range on ordered physical data</td>
+            <td><strong>Extremely Low (&lt;1% table size)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="sec-3">3. Eliminating the Catastrophic ORM N+1 Query Anti-Pattern</h2>
+    <p>ORMs (like Prisma, Hibernate, and TypeORM) make developer onboarding easy, but naive nested relations trigger hundreds of synchronous database roundtrips. Always inspect generated SQL and use explicit JOINs or Dataloader batching.</p>
+
+    <h2 id="sec-6">6. Post-Mortem: The Unindexed Foreign Key Deadlock</h2>
+    <p>A SaaS company suffered a complete database outage during monthly subscription renewal billing. The <code>subscriptions</code> table had a foreign key pointing to <code>organizations(id)</code>, but lacked an explicit B-Tree index on <code>subscriptions.org_id</code>.</p>
+    <div class="warning-box">
+      <strong>Incident Cause:</strong> A batch UPDATE on organizations triggered row-level share locks across millions of subscriptions rows, inducing cascading transaction deadlocks that crashed the primary database.
+    </div>
+    <div class="tip-box">
+      <i class="fa-solid fa-lightbulb"></i> <strong>Fix:</strong> Adding <code>CREATE INDEX CONCURRENTLY idx_subscriptions_org_id ON subscriptions(org_id);</code> permanently eliminated the deadlock with zero downtime.
+    </div>
+
+    <h2 id="sec-7">7. Production Database Tuning Checklist</h2>
+    <ul class="checklist">
+      <li><i class="fa-solid fa-check"></i> Always create indexes on all foreign key columns (PostgreSQL does not do this automatically).</li>
+      <li><i class="fa-solid fa-check"></i> Use partial indexes (<code>WHERE is_active = true</code>) to reduce index disk footprint by up to 90%.</li>
+      <li><i class="fa-solid fa-check"></i> Enable <code>pg_stat_statements</code> to identify the top 10 most expensive queries in production.</li>
+      <li><i class="fa-solid fa-check"></i> Configure connection pooling with PgBouncer to prevent backend connection saturation.</li>
+    </ul>
+  
     </div>
     <div data-cl-lang="ar">
       
-      <div class="toc-box">
-        <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس المقال</div>
-        <ul class="toc-list">
-          <li><a href="#sec-1">1. القاعدة الذهبية: القياس بالأمر EXPLAIN (ANALYZE, BUFFERS)</a></li>
-          <li><a href="#sec-2">2. أنواع الفهارس المتقدمة: B-Tree و GIN و BRIN</a></li>
-          <li><a href="#sec-3">3. الفهارس المركبة: قواعد ترتيب الحقول الحيوية</a></li>
-          <li><a href="#sec-4">4. الفهارس الجزئية والفهارس الشاملة (INCLUDE)</a></li>
-          <li><a href="#sec-5">5. كارثة استعلامات N+1 في الـ ORM وكيفية حلها</a></li>
-          <li><a href="#sec-6">6. معمارية تجميع الاتصالات عبر PgBouncer</a></li>
-          <li><a href="#sec-7">7. قائمة التحقق لمهندسي قواعد البيانات في الإنتاج</a></li>
-        </ul>
-      </div>
-
-      <h2 id="sec-1">1. القاعدة الذهبية: القياس بالأمر EXPLAIN (ANALYZE, BUFFERS)</h2>
-      <p>لا تقم أبداً بتحسين استعلام بناءً على التخمين. قاعدة بيانات PostgreSQL تعتمد على محرك تكلفة ذكي (Cost-Based Optimizer). استخدام الأمر <code>EXPLAIN (ANALYZE, BUFFERS)</code> يظهر لك عدد الصفحات المقروءة من الذاكرة العشوائية مقارنة بالقرص الصلب.</p>
-
-      <h2 id="sec-2">2. أنواع الفهارس المتقدمة: B-Tree و GIN و BRIN</h2>
-      <ul>
-        <li><strong>B-Tree:</strong> الفهرس الافتراضي الأساسي للمقارنات والترتيب والمفاتيح الأساسية.</li>
-        <li><strong>GIN:</strong> لا غنى عنه لحقول JSONB والبحث النصي الكامل والمصفوفات.</li>
-        <li><strong>BRIN:</strong> يوفر 98% من مساحة الرام للجداول الضخمة المرتبطة بالتاريخ والوقت.</li>
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس محتويات الدليل</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. احتراف قراءة مخططات التنفيذ EXPLAIN ANALYZE</a></li>
+        <li><a href="#sec-2">2. أسرار الفهارس في PostgreSQL: B-Tree و GIN و BRIN</a></li>
+        <li><a href="#sec-3">3. القضاء على كارثة استعلامات N+1 في الـ ORM</a></li>
+        <li><a href="#sec-6">6. دراسة حالة واقعية: انهيار قاعدة البيانات بسبب مفتاح أجنبي غير مفهرس</a></li>
+        <li><a href="#sec-7">7. قائمة التحقق الإلزامية لصيانة وتحسين أداء SQL</a></li>
       </ul>
-
-      <h2 id="sec-3">3. الفهارس المركبة: قواعد ترتيب الحقول الحيوية</h2>
-      <p>الترتيب في الفهرس المركب ليس عشوائياً: القاعدة الصارمة هي <strong>حقول المساواة أولاً، وحقول المقارنة والنطاق أخيراً</strong>. هذا يضمن استخدام الفهرس بكامل طاقته وتفادي فحص ملايين الصفوف.</p>
-
-      <h2 id="sec-4">4. الفهارس الجزئية والفهارس الشاملة (Covering Indexes)</h2>
-      <p>بدلاً من فهرسة 10 ملايين صف، يمكنك فهرسة الفواتير المعلقة فقط (Pending) مما يقلل حجم الفهرس بنسبة 90%. وباستخدام جملة <code>INCLUDE</code>، يقرأ المحرك البيانات من الفهرس مباشرة (Index-Only Scan) في الذاكرة دون فتح صفحات الجدول على القرص الصلب نهائياً!</p>
-
-      <h2 id="sec-5">5. كارثة استعلامات N+1 في الـ ORM</h2>
-      <p>الـ ORM يطلق مئات الاستعلامات المتكررة لجلب العلاقات. الحل هو استخدام استعلام SQL واحد يعتمد على دوال النوافذ Window Functions لجلب المستخدمين وأحدث 5 طلبات لكل منهم دفعة واحدة في طلب شبكي واحد.</p>
-
-      <h2 id="sec-6">6. معمارية تجميع الاتصالات عبر PgBouncer</h2>
-      <p>قاعدة بيانات PostgreSQL تنشئ Process نظام تشغيل منفصل لكل اتصال. 1,000 اتصال يستهلك 5 جيجابايت رام. استخدام PgBouncer في وضع Transaction Pooling يخفض الاتصالات الحقيقية إلى 50 اتصالاً فقط مع خدمة 15,000 زائر متزامن بكل سلاسة.</p>
-    
+    </div>
+    <h2 id="sec-1">1. احتراف قراءة مخططات التنفيذ EXPLAIN ANALYZE</h2>
+    <p>لا تقم بتحسين استعلامات SQL بالتخمين؛ أمر <code>EXPLAIN (ANALYZE, BUFFERS)</code> يكشف لك بالتفصيل الوقت الفعلي المستغرق وحجم قراءة الأقراص ونوع الفحص المطبق.</p>
+    <h2 id="sec-7">7. قائمة التحقق الإلزامية لصيانة وتحسين أداء SQL</h2>
+    <ul class="checklist">
+      <li><i class="fa-solid fa-check"></i> فهرسة جميع حقول المفاتيح الأجنبية Foreign Keys لمنع أقفال الـ Deadlocks.</li>
+      <li><i class="fa-solid fa-check"></i> استخدام الفهارس الجزئية (Partial Indexes) لتوفير 90% من حجم التخزين.</li>
+      <li><i class="fa-solid fa-check"></i> تفعيل <code>pg_stat_statements</code> لمراقبة الاستعلامات الأكثر استهلاكاً للمعالج.</li>
+    </ul>
+  
     </div>
     <div data-cl-lang="fr">
       
-      <div class="toc-box">
-        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire</div>
-        <ul class="toc-list">
-          <li><a href="#sec-1">1. La Règle d'Or : Mesurer avec EXPLAIN (ANALYZE, BUFFERS)</a></li>
-          <li><a href="#sec-2">2. Types d'Index : B-Tree, GIN et BRIN</a></li>
-          <li><a href="#sec-3">3. Index Composites : L'Ordre Crucial des Colonnes</a></li>
-          <li><a href="#sec-4">4. Index Partiels et Index Couvrants (Clause INCLUDE)</a></li>
-          <li><a href="#sec-5">5. La Catastrophe N+1 des ORMs et les Window Functions</a></li>
-          <li><a href="#sec-6">6. Architecture de Connection Pooling avec PgBouncer</a></li>
-        </ul>
-      </div>
-
-      <h2 id="sec-1">1. Mesurer avec Rigueur</h2>
-      <p>Analysez toujours le plan d'exécution pour éliminer les scans séquentiels massifs et vérifier le ratio d'accès mémoire tampon.</p>
-      <h2 id="sec-2">2. L'Art de l'Indexation Composite</h2>
-      <p>Placez impérativement les filtres d'égalité en tête de l'index et les filtres de plage en dernière position.</p>
-      <h2 id="sec-3">3. Les Index Couvrants</h2>
-      <p>Avec la clause INCLUDE, le moteur résout la requête en mémoire sans jamais toucher les pages du disque, divisant la latence par vingt.</p>
-    
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire du Guide</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. Maîtriser EXPLAIN ANALYZE</a></li>
+        <li><a href="#sec-2">2. Comparatif des Index : B-Tree, GIN et BRIN</a></li>
+        <li><a href="#sec-3">3. Élimination du Piège N+1</a></li>
+        <li><a href="#sec-7">7. Checklist de Performance SQL</a></li>
+      </ul>
+    </div>
+    <h2 id="sec-1">1. Maîtriser EXPLAIN ANALYZE</h2>
+    <p>L'analyse des plans d'exécution permet d'éliminer les scans séquentiels coûteux et d'optimiser les jointures complexes pour des temps de réponse sous la milliseconde.</p>
+  
     </div>
   </div>
 
 </div>
 
-<script src="site-polish.js" defer></script>
+<script src="site-polish.js"></script>
 </body>
 </html>

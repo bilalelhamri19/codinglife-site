@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering Git Internals: Architecture, Rebase, Reflog & Monorepos - Coding Life</title>
+  <meta name="description" content="A deep architectural dive into Git’s directed acyclic graph (DAG), object database, reflog disaster recovery, and large-scale monorepo strategies.">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code:wght@400;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-polish.css">
+  <style>
+    .article-container {
+      max-width: 920px;
+      margin: 120px auto 80px;
+      padding: 0 24px;
+    }
+    .article-header-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 28px;
+      padding: 48px 40px;
+      margin-bottom: 40px;
+      box-shadow: var(--cl-shadow-sm);
+    }
+    .article-badge {
+      display: inline-block;
+      padding: 5px 16px;
+      border-radius: 9999px;
+      background: var(--cl-brand-soft);
+      color: var(--cl-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .article-header-card h1 {
+      font-size: clamp(2rem, 3.5vw, 2.7rem);
+      color: var(--cl-ink);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+    .article-lead {
+      font-size: 1.15rem;
+      color: var(--cl-muted);
+      line-height: 1.8;
+      margin-bottom: 26px;
+    }
+    .article-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-top: 22px;
+      border-top: 1px solid var(--cl-line);
+      font-size: 0.92rem;
+      color: var(--cl-muted);
+    }
+    .article-meta-row span {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    /* Table of contents box */
+    .toc-box {
+      background: var(--cl-bg);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0 36px;
+    }
+    .toc-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cl-brand);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toc-list {
+      margin: 0;
+      padding-left: 20px;
+      list-style-type: none;
+    }
+    [dir="rtl"] .toc-list {
+      padding-left: 0;
+      padding-right: 20px;
+    }
+    .toc-list li {
+      margin-bottom: 10px;
+    }
+    .toc-list li a {
+      color: var(--cl-text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .toc-list li a:hover {
+      color: var(--cl-brand);
+      text-decoration: underline;
+    }
+
+    /* Article Body Styling */
+    .article-body-content {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: 28px;
+      padding: 50px 44px;
+      line-height: 1.95;
+      font-size: 1.08rem;
+      color: var(--cl-text);
+      box-shadow: var(--cl-shadow-sm);
+    }
+    @media (max-width: 600px) {
+      .article-body-content {
+        padding: 30px 20px;
+      }
+      .article-header-card {
+        padding: 30px 20px;
+      }
+    }
+    .article-body-content h2 {
+      font-size: 1.7rem;
+      color: var(--cl-ink);
+      font-weight: 800;
+      margin: 44px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cl-line);
+    }
+    .article-body-content h2:first-child {
+      margin-top: 0;
+    }
+    .article-body-content h3 {
+      font-size: 1.3rem;
+      color: var(--cl-ink);
+      font-weight: 700;
+      margin: 28px 0 14px;
+    }
+
+    /* Callout & Quote boxes */
+    .quote-box {
+      background: var(--cl-bg);
+      border-left: 5px solid var(--cl-brand);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 32px 0;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--cl-ink);
+      line-height: 1.75;
+    }
+    [dir="rtl"] .quote-box {
+      border-left: none;
+      border-right: 5px solid var(--cl-brand);
+    }
+    .tip-box {
+      background: var(--cl-brand-soft);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
+      color: var(--cl-text);
+      font-size: 1rem;
+    }
+    .warning-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 30px 0;
+      color: var(--cl-text);
+      font-size: 1rem;
+    }
+    .warning-box strong {
+      color: #ef4444;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 30px 0;
+      border-radius: 14px;
+      border: 1px solid var(--cl-line);
+    }
+    .article-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    [dir="rtl"] .article-table {
+      text-align: right;
+    }
+    .article-table th {
+      background: var(--cl-bg);
+      padding: 14px 18px;
+      font-weight: 700;
+      color: var(--cl-ink);
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .article-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Code Blocks */
+    .code-block {
+      background: #090d16;
+      color: #e2e8f0;
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 22px;
+      margin: 28px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+    }
+    .code-label {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      color: #38bdf8;
+      margin-bottom: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .code-block pre {
+      margin: 0;
+      font-family: inherit;
+    }
+
+    /* Checklist */
+    .checklist {
+      list-style-type: none;
+      padding: 0 !important;
+      margin: 24px 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+    .checklist li i {
+      color: #10b981;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    /* Back button */
+    .back-btn-row {
+      margin-bottom: 24px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 12px;
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-text);
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      border-color: var(--cl-brand);
+      color: var(--cl-brand);
+      transform: translateX(-3px);
+    }
+    [dir="rtl"] .back-btn:hover {
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="article-container">
+
+  <div class="back-btn-row">
+    <a href="blog.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span data-cl-lang="en">Back to All Guides</span>
+      <span data-cl-lang="ar">العودة لجميع المقالات</span>
+      <span data-cl-lang="fr">Retour aux articles</span>
+    </a>
+  </div>
+
+  <div class="article-header-card">
+    <span class="article-badge">DevOps & Tooling</span>
+    
+    <div data-cl-lang="en">
+      <h1>Mastering Git Internals: Architecture, Rebase, Reflog & Monorepos</h1>
+      <p class="article-lead">A deep architectural dive into Git’s directed acyclic graph (DAG), object database, reflog disaster recovery, and large-scale monorepo strategies.</p>
+    </div>
+    <div data-cl-lang="ar">
+      <h1>احتراف أسرار Git الداخلية: المعمارية، Rebase، Reflog وإدارة المشاريع الضخمة</h1>
+      <p class="article-lead">غوص معماري عميق في بنية رسم البيانات الموجه (DAG)، قاعدة كائنات Git، استعادة الملفات الضائعة عبر Reflog، واستراتيجيات إدارة الـ Monorepos.</p>
+    </div>
+    <div data-cl-lang="fr">
+      <h1>Maîtriser les Entrailles de Git : Architecture, Rebase, Reflog & Monorepos</h1>
+      <p class="article-lead">Une plongée architecturale approfondie dans le graphe acyclique dirigé (DAG) de Git, sa base d’objets, la récupération d’urgence via le reflog et les stratégies de monorepo.</p>
+    </div>
+
+    <div class="article-meta-row">
+      <span><i class="fa-solid fa-user-gear" style="color:var(--cl-brand);"></i> Coding Life Staff Engineers</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 15 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
+      <span><i class="fa-solid fa-star" style="color:#f59e0b;"></i> Top Engineering Pick</span>
+    </div>
+  </div>
+
+  <div class="article-body-content">
+    <div data-cl-lang="en">
+      
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. The Object Database: Blobs, Trees, Commits, and Tags</a></li>
+        <li><a href="#sec-2">2. The Staging Area: Inside the Binary .git/index File</a></li>
+        <li><a href="#sec-3">3. Merge vs. Rebase: Linear History vs. True Chronology</a></li>
+        <li><a href="#sec-4">4. The Safety Net: Disaster Recovery with Git Reflog</a></li>
+        <li><a href="#sec-5">5. Advanced Interactive Rebase & Autosquash Workflows</a></li>
+        <li><a href="#sec-6">6. Post-Mortem: Recovering From a Rogue 'git push --force'</a></li>
+        <li><a href="#sec-7">7. Enterprise Monorepo Performance & Git Hygiene Checklist</a></li>
+      </ul>
+    </div>
+
+    <h2 id="sec-1">1. The Object Database: Blobs, Trees, Commits, and Tags</h2>
+    <p>Git is not merely a version control system; fundamentally, it is a content-addressable key-value datastore with a VCS user interface wrapped on top of it. Inside the <code>.git/objects/</code> directory, every piece of data is stored under a 40-character SHA-1 (or SHA-256 in modern versions) hash derived strictly from its contents plus an internal header.</p>
+    
+    <div class="quote-box">"Git doesn't store file differences or deltas. Every commit is a full, immutable snapshot of your entire working tree at that instant in time."</div>
+
+    <p>There are four fundamental object types in the Git database:</p>
+    <ul>
+      <li><strong>Blobs:</strong> Raw binary representations of file data. Blobs store no filenames, timestamps, or file mode metadata—solely the file's binary content.</li>
+      <li><strong>Trees:</strong> Analogous to Unix directories. A tree object lists SHA-1 hashes of blobs (files) and other nested trees (subdirectories), along with filenames and POSIX permissions (e.g. <code>100644</code> for normal files, <code>100755</code> for executables).</li>
+      <li><strong>Commits:</strong> A pointer to a root tree object, accompanied by author and committer metadata, commit timestamps, a commit message, and one or more parent commit SHAs.</li>
+      <li><strong>Annotated Tags:</strong> An explicit reference object containing a target commit SHA, tagger information, a GPG cryptographic signature, and a release description.</li>
+    </ul>
+
+    <div class="code-block">
+      <div class="code-label">Inspecting Raw Git Objects Directly via Plumbing Commands</div>
+      <pre># Examine the type of any object hash
+git cat-file -t 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+
+# Print the formatted contents of an object (e.g. a Tree)
+git cat-file -p HEAD^{tree}
+# Output:
+# 100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    README.md
+# 040000 tree d8329fc1cc938780ffdd9f94e0d364e0ea74f579    src
+# 100644 blob a8b29c9103847293847298347298347293847293    package.json</pre>
+    </div>
+
+    <h2 id="sec-2">2. The Staging Area: Inside the Binary .git/index File</h2>
+    <p>Most developers conceive the workflow as <em>Working Directory &rarr; Commit</em>. However, Git’s architectural genius lies in the intermediate <strong>Index</strong> (or Staging Area). Located at <code>.git/index</code>, it is a binary cache mapping file paths to their staged blob SHA-1 hashes and file status flags.</p>
+    <p>When you execute <code>git add .</code>, Git immediately hashes your file contents, writes corresponding compressed zlib blob objects into <code>.git/objects/</code>, and updates the binary index. Running <code>git commit</code> is therefore instantaneous: Git simply converts the pre-existing index state into tree objects and creates a single commit object pointing to the root tree.</p>
+
+    <h2 id="sec-3">3. Merge vs. Rebase: Linear History vs. True Chronology</h2>
+    <p>The philosophical debate between merging and rebasing stems from two divergent views of what git history should represent: an audit log of exact chronological actions, or a clean, bisect-friendly story of progressive feature delivery.</p>
+
+    <div class="table-wrap">
+      <table class="article-table">
+        <thead>
+          <tr>
+            <th>Strategy</th>
+            <th>History Topology</th>
+            <th>Commit SHAs</th>
+            <th>Git Bisect Usability</th>
+            <th>Best Use Case</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>git merge</strong></td>
+            <td>Non-linear branching graph with diamond merge commits</td>
+            <td>Preserved unmodified</td>
+            <td>Medium (test failures on intermediate branches)</td>
+            <td>Long-lived release branches & Open Source PR integration</td>
+          </tr>
+          <tr>
+            <td><strong>git rebase</strong></td>
+            <td>Strict linear progression without merge noise</td>
+            <td>Re-written with brand new hashes</td>
+            <td>Exceptional (pinpoint bug regressions effortlessly)</td>
+            <td>Local feature branches before pushing to trunk</td>
+          </tr>
+          <tr>
+            <td><strong>squash & merge</strong></td>
+            <td>Single consolidated commit per pull request</td>
+            <td>Entirely synthesized</td>
+            <td>High (one commit equals one atomic feature)</td>
+            <td>GitHub Trunk-Based Development & microservices</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="sec-4">4. The Safety Net: Disaster Recovery with Git Reflog</h2>
+    <p>One of the most terrifying moments for an engineer is accidentally executing <code>git reset --hard HEAD~5</code> or deleting a branch before it was pushed to remote. In almost every circumstance, <strong>your commits are not lost</strong>.</p>
+    <p>Git maintains a local append-only ledger called the <strong>Reference Log (Reflog)</strong> at <code>.git/logs/HEAD</code>. Every time HEAD moves (via commit, checkout, rebase, merge, or reset), Git logs the old and new SHA-1 values. These orphaned commits remain on disk until Git's garbage collection (<code>git gc</code>) runs, typically 30 to 90 days later.</p>
+
+    <div class="code-block">
+      <div class="code-label">Disaster Recovery Routine via Git Reflog</div>
+      <pre># 1. View recent HEAD movements
+git reflog --date=relative
+# Example output:
+# 2a4bf10 HEAD@{0}: reset: moving to HEAD~5
+# 7d891b2 HEAD@{1}: commit: feat: implement stripe webhooks payment listener
+# 89fc12e HEAD@{2}: commit: fix: database deadlock on concurrent orders
+
+# 2. Rescue the lost commit state to a new safety branch immediately
+git checkout -b rescue-branch HEAD@{1}
+
+# All your "lost" code and commit history is completely restored!</pre>
+    </div>
+
+    <h2 id="sec-5">5. Advanced Interactive Rebase & Autosquash Workflows</h2>
+    <p>Senior engineers never ship messy "wip", "fix typo", or "more tests" commits to main. Using interactive rebasing combined with the <code>--fixup</code> flag enables frictionless automated squashing before code review:</p>
+
+    <div class="code-block">
+      <div class="code-label">Automated Fixup Workflow</div>
+      <pre># Configure git to automatically arrange fixup commits during rebase
+git config --global rebase.autoSquash true
+
+# Target an earlier commit to patch without switching branches
+git commit --fixup &lt;target-commit-sha&gt;
+
+# Automatically re-orders and squashes fixup commits cleanly into their parents
+git rebase -i --autosquash main</pre>
+    </div>
+
+    <h2 id="sec-6">6. Post-Mortem: Recovering From a Rogue 'git push --force'</h2>
+    <p>A senior developer working on a high-throughput payments service attempted to rebase their branch against main. Accidentally working on the <code>main</code> branch itself, they executed <code>git push --force origin main</code>, overwriting two weeks of team commits on GitHub.</p>
+    <div class="warning-box">
+      <strong>Incident Impact:</strong> CI/CD pipelines failed across 18 microservices, active PRs went into merge conflict chaos, and production deploy rollbacks were temporarily blocked.
+    </div>
+    <p><strong>The Fix:</strong> Any team member who had recently pulled <code>main</code> had the complete commit history in their local reflog. A team member ran <code>git reflog show origin/main</code>, located the exact SHA before the destructive push, and safely restored the branch with <code>git push --force-with-lease origin &lt;sha&gt;:main</code>.</p>
+    <div class="tip-box">
+      <i class="fa-solid fa-shield-halved"></i> <strong>Hardening Rule:</strong> Always configure branch protection rules on GitHub/GitLab to <strong>block force pushes entirely</strong> on production branches, and train developers to use <code>--force-with-lease</code> exclusively.
+    </div>
+
+    <h2 id="sec-7">7. Enterprise Monorepo Performance & Git Hygiene Checklist</h2>
+    <ul class="checklist">
+      <li><i class="fa-solid fa-check"></i> Enable <code>git config --global core.fsmonitor true</code> to speed up status checks on huge codebases.</li>
+      <li><i class="fa-solid fa-check"></i> Enable Sparse Checkout (<code>git sparse-checkout</code>) to clone only relevant subdirectories in multi-gigabyte monorepos.</li>
+      <li><i class="fa-solid fa-check"></i> Always use <code>git push --force-with-lease</code> instead of naked <code>--force</code> to prevent overwriting colleague commits.</li>
+      <li><i class="fa-solid fa-check"></i> Enforce Conventional Commits (e.g. <code>feat:</code>, <code>fix:</code>, <code>perf:</code>) paired with Git hooks (Husky) to automate semver releases.</li>
+      <li><i class="fa-solid fa-check"></i> Run <code>git maintenance run</code> periodically on active workstations to optimize packfiles and commit-graph caches.</li>
+    </ul>
+  
+    </div>
+    <div data-cl-lang="ar">
+      
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس محتويات الدليل</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. قاعدة كائنات Git: الـ Blobs والـ Trees والـ Commits والـ Tags</a></li>
+        <li><a href="#sec-2">2. منطقة الإعداد (Staging Area): أسرار ملف .git/index الثنائي</a></li>
+        <li><a href="#sec-3">3. المقارنة المعمارية: Merge مقابل Rebase مقابل Squash</a></li>
+        <li><a href="#sec-4">4. شبكة الأمان: استعادة الأكواد المحذوفة عبر Git Reflog</a></li>
+        <li><a href="#sec-5">5. تقنيات الترتيب المتقدم: Interactive Rebase و Autosquash</a></li>
+        <li><a href="#sec-6">6. دراسة حالة واقعية: النجاة من كارثة git push --force على الفرع الرئيسي</a></li>
+        <li><a href="#sec-7">7. قائمة التحقق الإلزامية للمشاريع الكبيرة والـ Monorepos</a></li>
+      </ul>
+    </div>
+
+    <h2 id="sec-1">1. قاعدة كائنات Git: الـ Blobs والـ Trees والـ Commits والـ Tags</h2>
+    <p>برنامج Git ليس مجرد أداة لتسجيل التعديلات؛ بل هو في جوهره قاعدة بيانات موجهة للمحتوى (Content-Addressable Key-Value Store). كل جزء من بيانات مشروعك يُحفظ داخل المجلد <code>.git/objects/</code> تحت بصمة تجزئة SHA مشتقة حسابياً من محتوى الملف نفسه.</p>
+    
+    <div class="quote-box">"برنامج Git لا يخزن الفروقات بين الملفات (Deltas)؛ بل يخزن لقطة كاملة وغير قابلة للتغيير لكل ملفات مشروعك في كل عملية Commit."</div>
+
+    <p>يتكون نظام Git من 4 كائنات برمجية أساسية:</p>
+    <ul>
+      <li><strong>Blobs:</strong> تخزن المحتوى الثنائي الخالص للملف بدون الاسم أو وقت التعديل.</li>
+      <li><strong>Trees:</strong> تشبه المجلدات في نظام التشغيل، حيث تربط أسماء الملفات وصلاحياتها ببصمات الـ Blobs.</li>
+      <li><strong>Commits:</strong> تشير إلى شجرة الملفات الجذرية للمشروع، مع اسم الكاتب والوقت ورسالة الالتزام وعنوان الـ Commit السابق.</li>
+      <li><strong>Tags:</strong> مؤشر خاص يحمل اسم إصدار محدد (Release) وتوقيع رقمي موثق.</li>
+    </ul>
+
+    <h2 id="sec-2">2. منطقة الإعداد (Staging Area): أسرار ملف .git/index الثنائي</h2>
+    <p>العديد من المطورين يظنون أن التعديلات تنتقل مباشرة من مجلد العمل إلى الـ Commit. لكن الحقيقة هي وجود منطقة وسيطة ذكية تُعرف بالـ Index وتخزن في <code>.git/index</code>.</p>
+    <p>عند تنفيذ الأمر <code>git add .</code>، يقوم Git بحساب بصمات الملفات فورياً وضغطها في <code>.git/objects/</code> وتحديث الفهرس الثنائي. وبفضل ذلك، تصبح عملية <code>git commit</code> شبه لحظية لأن كائنات البيانات تم إنشاؤها بالفعل مسبقاً.</p>
+
+    <h2 id="sec-3">3. المقارنة المعمارية: Merge مقابل Rebase مقابل Squash</h2>
+    <p>الجدل بين Merge و Rebase هو جدل حول فلسفة التاريخ البرمجي: هل تريد توثيقاً حرفياً للخط الزمني مع كل التفرعات المعقدة، أم تريد خطاً نظيفاً يسهل قراءته وتتبع الأخطاء فيه عبر <code>git bisect</code>؟</p>
+
+    <div class="table-wrap">
+      <table class="article-table">
+        <thead>
+          <tr>
+            <th>الاستراتيجية</th>
+            <th>شكل التاريخ</th>
+            <th>معرفات التعديلات (SHAs)</th>
+            <th>أفضل استخدام</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>git merge</strong></td>
+            <td>تفرعات متشابكة مع merge commits</td>
+            <td>تبقى ثابتة دون تغيير</td>
+            <td>دمج الفروع الرئيسية ومشاريع المصدر المفتوح</td>
+          </tr>
+          <tr>
+            <td><strong>git rebase</strong></td>
+            <td>خط تاريخي مستقيم ونظيف جداً</td>
+            <td>يُعاد كتابتها بمعرفات جديدة</td>
+            <td>ترتيب فروع الميزات الشخصية قبل دمجها</td>
+          </tr>
+          <tr>
+            <td><strong>squash & merge</strong></td>
+            <td>تعديل واحد مدمج لكل Pull Request</td>
+            <td>تعديل جديد بالكامل</td>
+            <td>استراتيجية Trunk-Based Development في الشركات</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="sec-4">4. شبكة الأمان: استعادة الأكواد المحذوفة عبر Git Reflog</h2>
+    <p>من أصعب المواقف على المطور تنفيذ أمر خاطئ مثل <code>git reset --hard HEAD~5</code> أو حذف فرع بالخطأ. في Git، لا شيء يضيع فعلياً!</p>
+    <p>يحتفظ Git بسجل تاريخي محلي في <code>.git/logs/HEAD</code> يسجل كل حركة قام بها المؤشر، وتظل هذه الالتزامات محفوظة على القرص لمدة تتراوح بين 30 إلى 90 يوماً قبل أن يقوم جامع المهملات بحذفها.</p>
+
+    <div class="code-block">
+      <div class="code-label">خطوات استعادة الأكواد الضائعة عبر Reflog</div>
+      <pre># 1. استعراض سجل حركات المؤشر السابقة
+git reflog --date=relative
+
+# 2. إنشاء فرع أمان جديد انطلاقاً من النقطة التي فقدتها
+git checkout -b rescue-branch HEAD@{1}
+
+# يعود كودك المفقود وتاريخ التعديلات بالكامل وكأن شيئاً لم يحدث!</pre>
+    </div>
+
+    <h2 id="sec-5">5. تقنيات الترتيب المتقدم: Interactive Rebase و Autosquash</h2>
+    <p>المطور المحترف لا يرفع تعديلات عشوائية مثل "fix typo" أو "wip" إلى الفرع المشترك. باستخدام خيار <code>--fixup</code> مع <code>git rebase -i --autosquash</code>، يمكنك دمج وتنسيق تعديلاتك تلقائياً وبأعلى معايير الاحترافية البرمجية.</p>
+
+    <h2 id="sec-6">6. دراسة حالة واقعية: النجاة من كارثة git push --force على الفرع الرئيسي</h2>
+    <p>قام أحد المطورين بتنفيذ أمر <code>git push --force origin main</code> بالخطأ، مما مسح أسبوعين كاملين من عمل الفريق على منصة مدفوعات نشطة، وتوقفت خطوط النشر الآلي CI/CD بالكامل.</p>
+    <p><strong>الحل السريع:</strong> قام زميل آخر بسحب سجل <code>git reflog show origin/main</code> من جهازه المحلي، وعثر على البصمة الصحيحة للفرع قبل الحذف، وتمت استعادة الفرع الرئيسي في دقيقة واحدة باستخدام <code>git push --force-with-lease</code>.</p>
+
+    <h2 id="sec-7">7. قائمة التحقق الإلزامية للمشاريع الكبيرة والـ Monorepos</h2>
+    <ul class="checklist">
+      <li><i class="fa-solid fa-check"></i> تفعيل <code>core.fsmonitor</code> لتسريع أوامر Git على المشاريع الضخمة التي تحتوي آلاف الملفات.</li>
+      <li><i class="fa-solid fa-check"></i> استخدام <code>git sparse-checkout</code> لتحميل أجزاء المشروع التي تحتاج العمل عليها فقط.</li>
+      <li><i class="fa-solid fa-check"></i> استخدام <code>--force-with-lease</code> دائماً بدلاً من <code>--force</code> لحماية عمل زملائك من المسح غير المقصود.</li>
+      <li><i class="fa-solid fa-check"></i> قفل الفرع الرئيسي (Protected Branch) على GitHub لمنع أي دفع مباشر أو إجباري.</li>
+    </ul>
+  
+    </div>
+    <div data-cl-lang="fr">
+      
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire du Guide</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. La Base d'Objets : Blobs, Trees, Commits et Tags</a></li>
+        <li><a href="#sec-2">2. La Zone d'Index : Dans le Binaire .git/index</a></li>
+        <li><a href="#sec-3">3. Merge vs Rebase : Histoire Linéaire vs Chronologie Réelle</a></li>
+        <li><a href="#sec-4">4. Le Filet de Sécurité : Récupération d'Urgence via Git Reflog</a></li>
+        <li><a href="#sec-5">5. Rebase Interactif & Autosquash Avancé</a></li>
+        <li><a href="#sec-6">6. Autopsie : Sauvetage Après un 'git push --force' Destructeur</a></li>
+        <li><a href="#sec-7">7. Checklist de Performance pour Monorepos d'Entreprise</a></li>
+      </ul>
+    </div>
+
+    <h2 id="sec-1">1. La Base d'Objets : Blobs, Trees, Commits et Tags</h2>
+    <p>Git n'est pas seulement un système de contrôle de version ; c'est un magasin clé-valeur adressable par contenu. Chaque donnée dans <code>.git/objects/</code> est stockée sous une clé de hachage SHA dérivée de son contenu binaire exact.</p>
+    
+    <div class="quote-box">"Git ne stocke pas des deltas ou des différences entre fichiers. Chaque commit est un instantané complet et immuable de l'arbre entier de votre code."</div>
+
+    <h2 id="sec-2">2. La Zone d'Index : Dans le Binaire .git/index</h2>
+    <p>L'Index est un cache binaire ultra-rapide qui prépare la composition des objets Tree avant la création du commit, rendant la commande <code>git commit</code> quasi instantanée.</p>
+
+    <h2 id="sec-3">3. Merge vs Rebase : Histoire Linéaire vs Chronologie Réelle</h2>
+    <p>Utilisez le rebase pour maintenir une histoire propre et lisible sur vos branches de fonctionnalités locales, et conservez les merges explicites pour intégrer les releases stables.</p>
+
+    <h2 id="sec-4">4. Le Filet de Sécurité : Récupération d'Urgence via Git Reflog</h2>
+    <p>Grâce au <code>git reflog</code>, aucun commit perdu par un reset imprudent n'est réellement effacé avant 30 à 90 jours. Il suffit de créer une branche de secours sur l'entrée voulue de l'historique.</p>
+  
+    </div>
+  </div>
+
+</div>
+
+<script src="site-polish.js"></script>
+</body>
+</html>

@@ -5,27 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI-Driven Software Engineering: From Syntax Typist to AI Systems Architect - Coding Life</title>
-  <link rel="canonical" href="https://codinglife1.vercel.app/ai-engineering.html">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://codinglife1.vercel.app/ai-engineering.html">
-  <meta property="og:site_name" content="Coding Life">
-  <meta property="og:title" content="AI-Driven Software Engineering: From Syntax Typist to AI Systems Architect - Coding Life">
-  <meta property="og:description" content="A masterclass on context window engineering, deterministic test loops, semantic routing, sandboxed execution, and the shifting role of senior engineers in 2026.">
-  <meta property="og:image" content="https://codinglife1.vercel.app/logo-icon.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI-Driven Software Engineering: From Syntax Typist to AI Systems Architect - Coding Life">
-  <meta name="twitter:description" content="A masterclass on context window engineering, deterministic test loops, semantic routing, sandboxed execution, and the shifting role of senior engineers in 2026.">
-  <meta name="twitter:image" content="https://codinglife1.vercel.app/logo-icon.png">
   <meta name="description" content="A masterclass on context window engineering, deterministic test loops, semantic routing, sandboxed execution, and the shifting role of senior engineers in 2026.">
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#020617">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Pacifico&family=Fira+Code:wght@400;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-polish.css">
   <style>
     .article-container {
@@ -159,20 +142,6 @@
       color: var(--cl-ink);
       font-weight: 700;
       margin: 28px 0 14px;
-    }
-    .article-body-content p {
-      margin-bottom: 20px;
-    }
-    .article-body-content ul, .article-body-content ol {
-      margin-bottom: 24px;
-      padding-left: 26px;
-    }
-    [dir="rtl"] .article-body-content ul, [dir="rtl"] .article-body-content ol {
-      padding-left: 0;
-      padding-right: 26px;
-    }
-    .article-body-content li {
-      margin-bottom: 10px;
     }
 
     /* Callout & Quote boxes */
@@ -342,17 +311,17 @@
     </div>
     <div data-cl-lang="ar">
       <h1>هندسة البرمجيات بالذكاء الاصطناعي: من مجرد مبرمج إلى مهندس نظم ذكية</h1>
-      <p class="article-lead">دليل استراتيجي متكامل حول هندسة سياق نماذج اللغة، حلقات التحقق الآلي، التوجيه الدلالي، ومستقبل المهندسين في عصر الذكاء الاصطناعي 2026.</p>
+      <p class="article-lead">دليل شامل واحترافي حول هندسة نوافذ السياق، حلقات التدقيق الآلية، التوجيه الدلالي، والتحول الجذري في دور كبار المهندسين عام 2026.</p>
     </div>
     <div data-cl-lang="fr">
       <h1>Génie Logiciel Piloté par l'IA : De Codeur à Architecte Systèmes IA</h1>
-      <p class="article-lead">Guide d'ingénierie sur la gestion du contexte LLM, les boucles de tests déterministes et la transformation du rôle d'architecte en 2026.</p>
+      <p class="article-lead">Une analyse approfondie du context engineering pour LLMs, des boucles de test déterministes, du routage sémantique et de la métamorphose du rôle d'ingénieur senior en 2026.</p>
     </div>
 
     <div class="article-meta-row">
       <span><i class="fa-solid fa-user-gear" style="color:var(--cl-brand);"></i> Coding Life Staff Engineers</span>
-      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 19 min read</span>
-      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Masterclass</span>
+      <span><i class="fa-solid fa-clock" style="color:var(--cl-brand);"></i> 18 min read</span>
+      <span><i class="fa-solid fa-calendar-check" style="color:var(--cl-brand);"></i> 2026 Edition</span>
       <span><i class="fa-solid fa-star" style="color:#f59e0b;"></i> Top Engineering Pick</span>
     </div>
   </div>
@@ -360,137 +329,221 @@
   <div class="article-body-content">
     <div data-cl-lang="en">
       
-      <div class="toc-box">
-        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
-        <ul class="toc-list">
-          <li><a href="#sec-1">1. The Death of Syntax-Typing as an Engineering MOAT</a></li>
-          <li><a href="#sec-2">2. Context Window Engineering & Attention Budgeting</a></li>
-          <li><a href="#sec-3">3. Deterministic Guardrails: Compilers & AST Verification</a></li>
-          <li><a href="#sec-4">4. Multi-Agent Orchestration Patterns (Supervisor & Reflection)</a></li>
-          <li><a href="#sec-5">5. Production Case Study: Scaling From 50 to 500 PRs/Month Safely</a></li>
-          <li><a href="#sec-6">6. Senior Engineer Survival Checklist in 2026</a></li>
-        </ul>
-      </div>
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. The Paradigm Shift: From Code Generation to Architecture Verification</a></li>
+        <li><a href="#sec-2">2. Context Window Engineering: RAG, AST Slicing, and Vector Memory</a></li>
+        <li><a href="#sec-3">3. Deterministic Evaluation Loops: Compilers, Linter Enforcers & Automated Tests</a></li>
+        <li><a href="#sec-4">4. Building Autonomous Coding Agents with Tool-Use & Sandboxes</a></li>
+        <li><a href="#sec-5">5. Architectural Comparison: Code Assistants vs. Agentic Systems</a></li>
+        <li><a href="#sec-6">6. Post-Mortem Case Study: The Hallucinated Dependency Attack</a></li>
+        <li><a href="#sec-7">7. Production AI-Assisted Engineering Checklist</a></li>
+      </ul>
+    </div>
 
-      <h2 id="sec-1">1. The Death of Syntax-Typing as an Engineering MOAT</h2>
-      <p>For decades, software engineers were evaluated by their ability to memorize API signatures, write regex patterns, and type algorithmic boilerplate without glancing at documentation. In 2026, modern frontier LLMs generate syntactically correct boilerplate in milliseconds. Syntax is now a commodity.</p>
-      <p>The true moat of a software engineer has shifted decisively to <strong>system boundary definition, invariants enforcement, failure domain isolation, and domain modeling</strong>. An AI can write a function; it cannot understand the regulatory, security, and eventual consistency trade-offs of an enterprise checkout pipeline.</p>
+    <h2 id="sec-1">1. The Paradigm Shift: From Code Generation to Architecture Verification</h2>
+    <p>In 2026, writing boilerplate syntax, regular expressions, and basic CRUD endpoints is no longer an engineer's competitive advantage. State-of-the-art generative models produce syntactically valid code in milliseconds. However, code volume is not software engineering. Unchecked AI code generation exponentially increases technical debt, cognitive review fatigue, and architectural entropy.</p>
+    <p>The true value of a senior software engineer has pivoted radically: from a <em>code generator</em> who types syntax to an <strong>AI Systems Architect</strong> who designs domain boundaries, models invariant data contracts, constructs automated verification guardrails, and curates high-fidelity context for multi-agent coding workflows.</p>
 
-      <div class="quote-box">"AI won't replace software engineers. But software engineers who master AI systems architecture will decisively replace those who write code like it's 2018."</div>
+    <div class="quote-box">"AI will not replace software engineers; but software engineers who master context engineering and deterministic evaluation will decisively replace those who rely on manual syntax typing."</div>
 
-      <h2 id="sec-2">2. Context Window Engineering & Attention Budgeting</h2>
-      <p>Feeding an entire repository into a million-token context window is an amateur anti-pattern. Large models suffer from the <em>"Lost in the Middle"</em> degradation: attention accuracy drops sharply in the middle 60% of a context buffer. High-performance AI engineering requires selective semantic retrieval (RAG with hybrid dense-sparse search):</p>
+    <h2 id="sec-2">2. Context Window Engineering: RAG, AST Slicing, and Vector Memory</h2>
+    <p>The output of any LLM is strictly bounded by the fidelity of the context it is provided. Dumping an entire 500,000-line repository into a 2-million-token context window produces degraded reasoning, "lost-in-the-middle" attention degradation, and high financial costs.</p>
+    <p>High-performance engineering teams implement <strong>Abstract Syntax Tree (AST) Slicing</strong> and semantic symbol retrieval. Instead of feeding raw text, systems parse code using tree-sitter, identify call-graph dependencies, and inject only the exact type interfaces, schema definitions, and relevant function signatures.</p>
 
-      <div class="code-block">
-        <div class="code-label">TypeScript / Node.js — Dynamic Context Assembler with Relevance Scoring</div>
-        <pre>interface ContextSlice {
-  file: string;
-  astSymbols: string[];
-  relevanceScore: number;
-}
+    <div class="code-block">
+      <div class="code-label">TypeScript / Node.js — AST Symbol Context Pruner for LLM Prompts</div>
+      <pre>import Parser from 'tree-sitter';
+import TypeScript from 'tree-sitter-typescript';
 
-export function assembleContextWindow(slices: ContextSlice[], maxTokenBudget = 8000): string {
-  // Sort slices by relevance score descending
-  slices.sort((a, b) => b.relevanceScore - a.relevanceScore);
+// Extract only exported signatures and interfaces to minimize prompt token bloat
+export function extractInterfaceContext(sourceCode: string): string {
+  const parser = new Parser();
+  parser.setLanguage(TypeScript.typescript);
+  const tree = parser.parse(sourceCode);
   
-  let currentTokens = 0;
-  const assembled: string[] = [];
-
-  for (const slice of slices) {
-    const estimatedTokens = slice.astSymbols.join('
-').length / 4;
-    if (currentTokens + estimatedTokens > maxTokenBudget) break;
-    
-    assembled.push('// FILE: ' + slice.file + '
-' + slice.astSymbols.join('
-'));
-    currentTokens += estimatedTokens;
+  const extractedSignatures: string[] = [];
+  
+  function traverse(node: Parser.SyntaxNode) {
+    if (
+      node.type === 'interface_declaration' ||
+      node.type === 'type_alias_declaration' ||
+      (node.type === 'export_statement' && node.text.includes('function'))
+    ) {
+      extractedSignatures.push(node.text);
+    }
+    for (let i = 0; i < node.childCount; i++) {
+      traverse(node.child(i)!);
+    }
   }
 
-  return assembled.join('
-
-');
+  traverse(tree.rootNode);
+  return extractedSignatures.join('\n\n');
 }</pre>
-      </div>
+    </div>
 
-      <h2 id="sec-3">3. Deterministic Guardrails: Compilers & AST Verification</h2>
-      <p>Never allow an LLM to commit code directly to git. Modern enterprise pipelines enforce a <strong>Compiler-in-the-Loop sandbox</strong>:</p>
-      <ol>
-        <li>LLM outputs a code patch.</li>
-        <li>The patch is applied in an isolated WebAssembly or Docker container.</li>
-        <li>The TypeScript compiler (<code>tsc --noEmit</code>) and linter (<code>eslint</code>) execute strictly.</li>
-        <li>If compilation fails, the compiler error output is automatically fed back to the LLM for self-correction.</li>
-      </ol>
+    <h2 id="sec-3">3. Deterministic Evaluation Loops: Compilers & Automated Tests</h2>
+    <p>Never trust an LLM's assertion that its code works. Production-grade workflows enforce a <strong>closed-loop deterministic verification cycle</strong>. The output generated by the AI agent is immediately piped into an isolated test runner, static typechecker (such as <code>tsc --noEmit</code>), and security linter.</p>
 
-      <div class="tip-box"><i class="fa-solid fa-lightbulb"></i> <strong>Production Metric:</strong> Implementing automated 3-iteration self-healing compiler loops raises autonomous PR pass rates from <strong>42% to 94.7%</strong>!</div>
+    <div class="table-wrap">
+      <table class="article-table">
+        <thead>
+          <tr>
+            <th>Verification Stage</th>
+            <th>Tool / Mechanism</th>
+            <th>Failure Recovery Action</th>
+            <th>Max Loop Iterations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Static Typing</strong></td>
+            <td>TypeScript / Rust Compiler (rustc)</td>
+            <td>Feed compiler diagnostics directly back into LLM error context</td>
+            <td>3 Attempts</td>
+          </tr>
+          <tr>
+            <td><strong>Linter & Formatting</strong></td>
+            <td>ESLint, Biome, Ruff (Python)</td>
+            <td>Automated autofix with <code>--fix</code> or syntax repair prompt</td>
+            <td>2 Attempts</td>
+          </tr>
+          <tr>
+            <td><strong>Unit & Integration Tests</strong></td>
+            <td>Vitest, Jest, Playwright</td>
+            <td>Parse failed assertion stack trace and prompt for patch</td>
+            <td>3 Attempts</td>
+          </tr>
+          <tr>
+            <td><strong>Security Audit</strong></td>
+            <td>Semgrep, Snyk, npm audit</td>
+            <td>Immediate rejection on high/critical CVE or unvetted package import</td>
+            <td>Zero-Tolerance</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <h2 id="sec-4">4. Multi-Agent Orchestration Patterns</h2>
-      <p>Single-prompt coding agents fail on complex tasks. Successful teams employ specialized multi-agent architectures:</p>
-      <ul>
-        <li><strong>Planner Agent:</strong> Deconstructs GitHub issues into discrete atomic sub-tasks.</li>
-        <li><strong>Coder Agent:</strong> Implements code changes strictly within defined module boundaries.</li>
-        <li><strong>Adversarial Reviewer Agent:</strong> Specifically tasked with discovering edge case regressions, SQL injection vectors, and missing null checks.</li>
-      </ul>
+    <h2 id="sec-4">4. Building Autonomous Coding Agents with Tool-Use & Sandboxes</h2>
+    <p>Autonomous agents operate by decomposing complex prompts into sequential tool calls: reading workspace files, running shell commands in containerized sandboxes, and analyzing execution logs. When designing coding agents, <strong>strict sandbox boundaries are non-negotiable</strong>.</p>
+    <p>Running LLM-generated shell commands directly on a developer workstation or production bastion is an extreme security liability. Workflows must execute within ephemeral WebAssembly runtimes or containerized firewalled environments with egress whitelisting.</p>
 
-      <h2 id="sec-5">5. Production Case Study: Scaling From 50 to 500 PRs/Month Safely</h2>
-      <p>A fintech startup automated their repetitive API endpoint creation and test coverage using AI agents. By enforcing strict Zod schemas and automatic integration test execution in pre-commit hooks, their engineering velocity multiplied by 10x without introducing a single production security incident.</p>
+    <div class="code-block">
+      <div class="code-label">Agentic Tool-Calling Schema for Safe Sandbox Execution</div>
+      <pre>const executionToolDefinition = {
+  name: "execute_sandboxed_command",
+  description: "Runs shell command inside a gVisor-isolated container without external network access",
+  parameters: {
+    type: "object",
+    properties: {
+      command: { type: "string", description: "The shell command to run" },
+      timeoutMs: { type: "number", default: 15000 },
+      allowedPaths: { type: "array", items: { type: "string" } }
+    },
+    required: ["command"]
+  }
+};</pre>
+    </div>
 
-      <h2 id="sec-6">6. Senior Engineer Survival Checklist in 2026</h2>
-      <ul class="checklist">
-        <li><i class="fa-solid fa-check"></i> Master Domain-Driven Design (DDD) to set impenetrable module boundaries.</li>
-        <li><i class="fa-solid fa-check"></i> Write rigorous automated contract tests to verify AI-generated interfaces.</li>
-        <li><i class="fa-solid fa-check"></i> Treat prompts as version-controlled code artifacts with semantic regression tests.</li>
-        <li><i class="fa-solid fa-check"></i> Focus on telemetry, distributed tracing (OpenTelemetry), and observability.</li>
-      </ul>
-    
+    <h2 id="sec-5">5. Architectural Comparison: Code Assistants vs. Agentic Systems</h2>
+    <p>There is a massive architectural difference between passive autocomplete tools (Copilot) and proactive multi-agent systems:</p>
+    <ul>
+      <li><strong>Inline Autocomplete:</strong> Low-latency (<200ms), single-token prediction, zero long-term planning, high rate of context blindness.</li>
+      <li><strong>Spec-Driven Multi-Agent Systems:</strong> High-latency (10s to 5 minutes), step-by-step reasoning (ReAct loop), file-system awareness, self-correcting via automated regression suites.</li>
+    </ul>
+
+    <h2 id="sec-6">6. Post-Mortem Case Study: The Hallucinated Dependency Attack</h2>
+    <p>In late 2025, an enterprise engineering team leveraged an LLM to generate an optimized authentication utility for an internal billing dashboard. The LLM referenced a non-existent package: <code>@auth-utils/jwt-rs256-verify</code>.</p>
+    <p>Because the developers did not review the package manifest, a threat actor executing a "Package Hallucination Squatting" attack registered that exact package name on npm 4 hours later, packaging a backdoor that extracted server environment variables.</p>
+    <div class="warning-box">
+      <strong>Incident Impact:</strong> 42 database credentials and API secret keys were exfiltrated before the anomaly was detected via VPC egress monitoring.
+    </div>
+    <div class="tip-box">
+      <i class="fa-solid fa-shield-halved"></i> <strong>The Remediation:</strong> Never allow automated installations of uncached packages. Enforce an internal private artifact registry (Nexus/Verdaccio) that blocks net-new package downloads without explicit security review.
+    </div>
+
+    <h2 id="sec-7">7. Production AI-Assisted Engineering Checklist</h2>
+    <ul class="checklist">
+      <li><i class="fa-solid fa-check"></i> Enforce strict type contracts (Zod, TypeScript strict) on all LLM structured outputs.</li>
+      <li><i class="fa-solid fa-check"></i> Never commit AI-generated code without automated unit tests verifying boundary edge cases.</li>
+      <li><i class="fa-solid fa-check"></i> Sandbox all agentic terminal execution within gVisor, Firecracker microVMs, or Docker scratch containers.</li>
+      <li><i class="fa-solid fa-check"></i> Use AST-level pruning to keep context windows small, fast, and targeted on relevant interfaces.</li>
+      <li><i class="fa-solid fa-check"></i> Monitor token consumption and rate limits with automated fallbacks to smaller inference models.</li>
+    </ul>
+  
     </div>
     <div data-cl-lang="ar">
       
-      <div class="toc-box">
-        <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس المقال</div>
-        <ul class="toc-list">
-          <li><a href="#sec-1">1. نهاية عصر كتابة الدوال البسيطة كمعيار للخبرة</a></li>
-          <li><a href="#sec-2">2. هندسة سياق نماذج اللغة وميزانية الانتباه Context Window</a></li>
-          <li><a href="#sec-3">3. حواجز الحماية الدقيقة: التحقق عبر المترجم وفحص AST</a></li>
-          <li><a href="#sec-4">4. معمارية الوكلاء المتعددين Multi-Agent Systems</a></li>
-          <li><a href="#sec-5">5. دراسة حالة واقعية: مضاعفة الإنتاجية 10 مرات بأمان تام</a></li>
-          <li><a href="#sec-6">6. قائمة بقاء المهندس المحترف في عصر الذكاء الاصطناعي 2026</a></li>
-        </ul>
-      </div>
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> فهرس محتويات الدليل</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. التحول الجذري: من كتابة الكود إلى التحقق المعماري والتصميم</a></li>
+        <li><a href="#sec-2">2. هندسة سياق النماذج: تقنيات RAG وتشريح شجرة البنية AST</a></li>
+        <li><a href="#sec-3">3. حلقات الفحص الآلي الدقيقة: المترجمات، الفاحصات واختبارات الوحدة</a></li>
+        <li><a href="#sec-4">4. بناء وكلاء البرمجة الذاتية (Autonomous Agents) في بيئات معزولة</a></li>
+        <li><a href="#sec-5">5. المقارنة المعمارية: مساعدات الإكمال التلقائي مقابل الوكلاء المستقلين</a></li>
+        <li><a href="#sec-6">6. دراسة حالة واقعية: هجوم الحزمة البرمجية الوهمية المسروقة</a></li>
+        <li><a href="#sec-7">7. قائمة التحقق الإلزامية للمهندس المحترف في عصر الذكاء الاصطناعي</a></li>
+      </ul>
+    </div>
 
-      <h2 id="sec-1">1. نهاية عصر كتابة الدوال البسيطة كمعيار للخبرة</h2>
-      <p>لعقود طويلة، كان المبرمج يُقاس بسرعته في كتابة الأكواد وحفظ الدوال. اليوم، نماذج الذكاء الاصطناعي تولد آلاف الأسطر في ثوانٍ معدودة. القيمة الحقيقية للمهندس انتقلت بالكامل إلى <strong>تصميم المعمارية البرمجية، تحديد حدود النظم، والأمان الصارم</strong>.</p>
+    <h2 id="sec-1">1. التحول الجذري: من كتابة الكود إلى التحقق المعماري والتصميم</h2>
+    <p>في عام 2026، لم تعد ميزة المبرمج الناجح في سرعة طباعة الدوال الروتينية أو كتابة الـ CRUD endpoints. النماذج التوليدية الحديثة قادرة على كتابة آلاف الأسطر في ثوانٍ. ولكن زيادة حجم الكود دون تدقيق معماري يؤدي إلى تراكم الديون التقنية وانهيار المشاريع.</p>
+    <p>القيمة الحقيقية للمهندس الخبير تحولت جذرياً: من مجرد كاتب أكواد إلى <strong>مهندس نظم ذكية (AI Systems Architect)</strong> يقوم بتحديد حدود الأنظمة، صياغة عقود البيانات الصارمة، وبناء حواجز حماية آلية تضمن جودة وموثوقية الكود المولد.</p>
 
-      <h2 id="sec-2">2. هندسة سياق نماذج اللغة (Context Engineering)</h2>
-      <p>تمرير ملفات المشروع كاملة للنموذج يضعف تركيزه. المهندس المحترف يقوم بفرز وتمرير الأجزاء والتعريفات البرمجية الأكثر ارتباطاً بالمهمة، مما يرفع دقة الكود المولد ويقلل من الأخطاء الخفية (Hallucinations).</p>
+    <div class="quote-box">"الذكاء الاصطناعي لن يستبدل المبرمجين؛ ولكن المبرمج الذي يحترف هندسة السياق والفحص الآلي الدقيق سيتفوق على كل من يكتفي بالكتابة اليدوية التقليدية."</div>
 
-      <h2 id="sec-3">3. حلقة المترجم التلقائية (Compiler-in-the-Loop)</h2>
-      <p>لا تقبل أي كود من الذكاء الاصطناعي دون تمريره فوراً عبر المترجم (TypeScript Compiler) وفاحص الأخطاء (Linter) في بيئة معزولة Sandbox، مع إرجاع أي خطأ للنموذج ليصلحه تلقائياً قبل دمجه في الفرع الرئيسي.</p>
+    <h2 id="sec-2">2. هندسة سياق النماذج: تقنيات RAG وتشريح شجرة البنية AST</h2>
+    <p>جودة إجابات نماذج الذكاء الاصطناعي تعتمد 100% على دقة السياق المقدم لها. تمرير مشروع كامل يضم 500,000 سطر إلى نافذة السياق يسبب تشتت النموذج وارتفاعاً جنونياً في التكلفة.</p>
+    <p>الحل الهندسي هو <strong>تشريح شجرة البنية المجردة (AST Slicing)</strong>؛ حيث يقوم النظام بتحليل الكود واستخلاص الواجهات البرمجية (Interfaces) وتواقيع الدوال فقط وتغذية النموذج بها بدقة متناهية.</p>
 
-      <h2 id="sec-4">4. تنسيق الوكلاء المتعددين Multi-Agent</h2>
-      <p>استخدام وكيل للتخطيط ووكيل لكتابة الكود ووكيل ثالث متخصص فقط في فحص الثغرات الأمنية يضمن إنتاج برمجيات بجودة تضاهي كبار مهندسي الشركات التقنية العالمية.</p>
-    
+    <h2 id="sec-3">3. حلقات الفحص الآلي الدقيقة: المترجمات والاختبارات</h2>
+    <p>القاعدة الذهبية: لا تثق أبداً في كود مولد دون إخضاعه لدورة فحص حتمية (Deterministic Loop). الكود يمر تلقائياً على فاحص الأنواع <code>tsc</code> ثم أدوات الـ Linting ثم حزم الاختبارات التلقائية، وفي حال وجود أي خطأ، يُعاد تقرير المترجم للنموذج لتصحيح نفسه آلياً.</p>
+
+    <h2 id="sec-4">4. بناء وكلاء البرمجة الذاتية (Autonomous Agents)</h2>
+    <p>يعمل الوكلاء البرمجيون عبر تقسيم المشاكل المعقدة إلى استدعاءات أدوات منظمة: قراءة الملفات، تعديل الأسطر، وتشغيل الأوامر في الطرفية. يجب أن تتم كل هذه العمليات داخل حاويات معزولة تماماً (Sandboxes) لضمان عدم تنفيذ أي كود ضار على السيرفرات الحقيقية.</p>
+
+    <h2 id="sec-6">6. دراسة حالة واقعية: هجوم الحزمة البرمجية الوهمية المسروقة</h2>
+    <p>في أواخر عام 2025، قام فريق برمجي بتوليد كود مصادقة عبر الذكاء الاصطناعي. النموذج تخيل حزمة وهمية غير موجودة باسم <code>@auth-utils/jwt-rs256-verify</code>. لاحظ أحد المخترقين هذه التسمية الشائعة وقام برفع حزمة خبيثة بنفس الاسم على npm بعد ساعات، مما تسبب في تسريب 42 مفتاح سري لقواعد بيانات الشركة قبل إيقاف الهجوم.</p>
+
+    <h2 id="sec-7">7. قائمة التحقق الإلزامية للمهندس المحترف</h2>
+    <ul class="checklist">
+      <li><i class="fa-solid fa-check"></i> فرض مخططات بيانات صارمة (Zod schemas) على كل المخرجات المبرمجة بالذكاء الاصطناعي.</li>
+      <li><i class="fa-solid fa-check"></i> عدم دمج أي كود دون وجود اختبارات وحدة آلية تغطي الحالات النادرة (Edge cases).</li>
+      <li><i class="fa-solid fa-check"></i> تشغيل أدوات الوكلاء البرمجية داخل بيئات معزولة تماماً مثل gVisor أو Docker.</li>
+      <li><i class="fa-solid fa-check"></i> حظر تثبيت أي حزم برمجية خارجية جديدة دون فحص سجل الثغرات الأمنية مسبقاً.</li>
+    </ul>
+  
     </div>
     <div data-cl-lang="fr">
       
-      <div class="toc-box">
-        <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire</div>
-        <ul class="toc-list">
-          <li><a href="#sec-1">1. La Fin de la Simple Saisie de Code</a></li>
-          <li><a href="#sec-2">2. L'Ingénierie de Contexte LLM Avancée</a></li>
-          <li><a href="#sec-3">3. Garde-Fous Déterministes & Boucle Compilateur</a></li>
-          <li><a href="#sec-4">4. Architectures Multi-Agents</a></li>
-          <li><a href="#sec-5">5. Checklist de l'Ingénieur en 2026</a></li>
-        </ul>
-      </div>
-      <h2 id="sec-1">1. La Révolution de la Valeur Technique</h2>
-      <p>La syntaxe est devenue une commodité. L'avantage compétitif d'un ingénieur réside désormais dans sa maîtrise de l'architecture logicielle et de la modélisation de domaine.</p>
-    
+    <div class="toc-box">
+      <div class="toc-title"><i class="fa-solid fa-list-check"></i> Sommaire du Guide</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1">1. Le Changement de Paradigme : De Codeur à Architecte Systèmes</a></li>
+        <li><a href="#sec-2">2. L'Ingénierie de Contexte : RAG et Découpage AST</a></li>
+        <li><a href="#sec-3">3. Boucles d'Évaluation Déterministes et Tests Automatisés</a></li>
+        <li><a href="#sec-4">4. Agents de Code Autonomes et Environnements Sandbox</a></li>
+        <li><a href="#sec-5">5. Étude de Cas : L'Attaque par Paquet Halluciné</a></li>
+        <li><a href="#sec-6">6. Checklist de Production pour l'Ingénierie Assistée par IA</a></li>
+      </ul>
+    </div>
+
+    <h2 id="sec-1">1. Le Changement de Paradigme : De Codeur à Architecte Systèmes</h2>
+    <p>En 2026, la valeur d'un développeur ne réside plus dans la syntaxe brute mais dans sa capacité à orchestrer des systèmes fiables, à concevoir des architectures résilientes et à vérifier rigoureusement le code produit par les modèles d'IA.</p>
+
+    <h2 id="sec-2">2. L'Ingénierie de Contexte : RAG et Découpage AST</h2>
+    <p>L'utilisation de l'arbre syntaxique abstrait (AST) permet d'extraire uniquement les interfaces et signatures critiques, réduisant la latence et éliminant les hallucinations causées par la surcharge des fenêtres de contexte.</p>
+
+    <h2 id="sec-3">3. Boucles d'Évaluation Déterministes</h2>
+    <p>Tout code généré par IA doit être immédiatement soumis à un compilateur statique, un linter et une suite de tests unitaires avant d'être validé.</p>
+  
     </div>
   </div>
 
 </div>
 
-<script src="site-polish.js" defer></script>
+<script src="site-polish.js"></script>
 </body>
 </html>
