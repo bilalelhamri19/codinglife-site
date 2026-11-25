@@ -278,9 +278,10 @@
       const parents = new Set();
       elements.forEach(el => { if (el.parentElement) parents.add(el.parentElement); });
       parents.forEach(parent => {
-        const hasActive = parent.querySelector(':scope > .cl-active-lang');
+        const children = Array.from(parent.children);
+        const hasActive = children.some(c => c.classList.contains('cl-active-lang'));
         if (!hasActive) {
-          const fallback = parent.querySelector(':scope > [data-cl-lang="en"]') || parent.querySelector(':scope > [data-cl-lang="ar"]');
+          const fallback = children.find(c => c.getAttribute('data-cl-lang') === 'en') || children.find(c => c.getAttribute('data-cl-lang') === 'ar');
           if (fallback) fallback.classList.add('cl-active-lang');
         }
       });

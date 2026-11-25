@@ -353,14 +353,31 @@
     courseContainer.remove();
 
     // Sync language visibility for newly inserted elements
-    const activeLang = localStorage.getItem('cl-lang') || localStorage.getItem('cl_lang') || 'en';
-    layout.querySelectorAll('[data-cl-lang]').forEach(el => {
-      if (el.getAttribute('data-cl-lang') === activeLang) {
-        el.classList.add('cl-active-lang');
-      } else {
-        el.classList.remove('cl-active-lang');
+    if (window.CL_POLISH && typeof window.CL_POLISH.refreshPageContent === 'function') {
+      window.CL_POLISH.refreshPageContent();
+    } else {
+      const activeLang = localStorage.getItem('cl-lang') || localStorage.getItem('cl_lang') || 'en';
+      const allEls = layout.querySelectorAll('[data-cl-lang]');
+      allEls.forEach(el => {
+        if (el.getAttribute('data-cl-lang') === activeLang) {
+          el.classList.add('cl-active-lang');
+        } else {
+          el.classList.remove('cl-active-lang');
+        }
+      });
+      if (activeLang === 'fr') {
+        const parents = new Set();
+        allEls.forEach(el => { if (el.parentElement) parents.add(el.parentElement); });
+        parents.forEach(parent => {
+          const children = Array.from(parent.children);
+          const hasActive = children.some(c => c.classList.contains('cl-active-lang'));
+          if (!hasActive) {
+            const fallback = children.find(c => c.getAttribute('data-cl-lang') === 'en') || children.find(c => c.getAttribute('data-cl-lang') === 'ar');
+            if (fallback) fallback.classList.add('cl-active-lang');
+          }
+        });
       }
-    });
+    }
 
     // Mobile Drawer Elements
     const mobileBtn = document.createElement('button');
