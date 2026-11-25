@@ -428,6 +428,7 @@
   }
 
   function bindMobileDrawerEvents() {
+    if (typeof updateBookmarkBadges === "function") updateBookmarkBadges();
     const overlay = document.getElementById("clMobileOverlay");
     const drawer = document.getElementById("clMobileDrawer");
     const closeBtn = document.getElementById("clMobileDrawerClose");
@@ -462,6 +463,7 @@
   }
 
   function bindHeaderEvents() {
+    if (typeof updateBookmarkBadges === "function") updateBookmarkBadges();
     const themeBtn = document.getElementById("themeToggle");
     const currentTheme = localStorage.getItem("theme") || "dark";
     document.documentElement.setAttribute("data-theme", currentTheme);
@@ -1083,6 +1085,362 @@
     refreshPageContent: refreshPageContent,
     getCurrentLang: function() { return currentLang; }
   };
+
+
+  /* ==========================================================================
+     Toast Notifications
+     ========================================================================== */
+  function showToast(message) {
+    let toast = document.getElementById("clToast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "clToast";
+      toast.className = "cl-toast-notification";
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--cl-brand);"></i> <span>${message}</span>`;
+    toast.classList.add("active");
+    clearTimeout(window.__clToastTimer);
+    window.__clToastTimer = setTimeout(() => {
+      toast.classList.remove("active");
+    }, 2800);
+  }
+
+  /* ==========================================================================
+     Bookmarks Storage & Drawer Management
+     ========================================================================== */
+  function getStoredBookmarks() {
+    try {
+      return JSON.parse(localStorage.getItem("cl_bookmarks") || "[]");
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function setStoredBookmarks(bookmarks) {
+    localStorage.setItem("cl_bookmarks", JSON.stringify(bookmarks));
+    updateBookmarkBadges();
+  }
+
+  function updateBookmarkBadges() {
+    const list = getStoredBookmarks();
+    const count = list.length;
+    ['clBookmarkBadge', 'mobileDrawerBookmarkBadge'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.textContent = count;
+        el.style.display = count > 0 ? "inline-flex" : "none";
+      }
+    });
+  }
+
+  function renderBookmarksDrawerList() {
+    const listContainer = document.getElementById("clBookmarksList");
+    if (!listContainer) return;
+    const bookmarks = getStoredBookmarks();
+    const tr = (t().article) || {};
+
+    if (bookmarks.length === 0) {
+      listContainer.innerHTML = `
+        <div class="cl-bookmarks-empty">
+          <i class="fa-solid fa-bookmark"></i>
+          <p>${tr.noBookmarks || "No saved articles yet. Bookmark any guide to read it later!"}</p>
+        </div>
+      `;
+      return;
+    }
+
+    listContainer.innerHTML = bookmarks.map((item, index) => `
+      <div class="cl-bookmark-item">
+        <a href="${item.url}" class="cl-bookmark-item-info">
+          <span class="cl-bookmark-item-title">${escapeHtml(item.title)}</span>
+          <span class="cl-bookmark-item-meta">${item.category || "Article"} • ${item.date || ""}</span>
+        </a>
+        <button class="cl-bookmark-remove-btn" data-remove-index="${index}" title="Remove">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+      </div>
+    `).join('');
+
+    listContainer.querySelectorAll("[data-remove-index]").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const idx = parseInt(btn.getAttribute("data-remove-index"), 10);
+        const list = getStoredBookmarks();
+        list.splice(idx, 1);
+        setStoredBookmarks(list);
+        renderBookmarksDrawerList();
+        updateArticleBookmarkButton();
+      });
+    });
+  }
+
+  function initBookmarksDrawer() {
+    if (document.getElementById("clBookmarksDrawer")) {
+      updateBookmarkBadges();
+      return;
+    }
+
+    const tr = (t().article) || {};
+    const overlay = document.createElement("div");
+    overlay.className = "cl-bookmarks-overlay";
+    overlay.id = "clBookmarksOverlay";
+
+    const drawer = document.createElement("div");
+    drawer.className = "cl-bookmarks-drawer";
+    drawer.id = "clBookmarksDrawer";
+    drawer.innerHTML = `
+      <div class="cl-bookmarks-header">
+        <h3><i class="fa-solid fa-bookmark" style="color:var(--cl-brand);"></i> ${tr.bookmarksTitle || "Saved Articles"}</h3>
+        <button class="cl-bookmarks-close-btn" id="clBookmarksCloseBtn" aria-label="Close">&times;</button>
+      </div>
+      <div class="cl-bookmarks-list" id="clBookmarksList"></div>
+      <div class="cl-bookmarks-footer">
+        <button class="cl-bookmarks-clear-btn" id="clBookmarksClearBtn">${tr.clearBookmarks || "Clear all"}</button>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+    document.body.appendChild(drawer);
+
+    function openDrawer() {
+      renderBookmarksDrawerList();
+      overlay.classList.add("active");
+      drawer.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeDrawer() {
+      overlay.classList.remove("active");
+      drawer.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    overlay.addEventListener("click", closeDrawer);
+    document.getElementById("clBookmarksCloseBtn").addEventListener("click", closeDrawer);
+    document.getElementById("clBookmarksClearBtn").addEventListener("click", () => {
+      setStoredBookmarks([]);
+      renderBookmarksDrawerList();
+      updateArticleBookmarkButton();
+    });
+
+    // Bind triggers
+    document.addEventListener("click", (e) => {
+      const toggle = e.target.closest("#clBookmarksToggle, #mobileDrawerBookmarksToggle");
+      if (toggle) {
+        e.preventDefault();
+        openDrawer();
+      }
+    });
+
+    updateBookmarkBadges();
+  }
+
+  function updateArticleBookmarkButton() {
+    const btn = document.getElementById("clArticleBookmarkBtn");
+    if (!btn) return;
+    const currentPath = location.pathname.split("/").pop() || "index.html";
+    const bookmarks = getStoredBookmarks();
+    const isBookmarked = bookmarks.some(b => b.url.endsWith(currentPath));
+    const tr = (t().article) || {};
+
+    if (isBookmarked) {
+      btn.classList.add("bookmarked");
+      btn.innerHTML = `<i class="fa-solid fa-bookmark"></i> <span>${tr.bookmarked || "Bookmarked"}</span>`;
+    } else {
+      btn.classList.remove("bookmarked");
+      btn.innerHTML = `<i class="fa-regular fa-bookmark"></i> <span>${tr.bookmark || "Bookmark"}</span>`;
+    }
+  }
+
+  /* ==========================================================================
+     Article Reactions & Social Sharing System
+     ========================================================================== */
+  function initArticleFeatures() {
+    const bodyContent = document.querySelector(".article-body-content");
+    const container = document.querySelector(".article-container");
+    if (!bodyContent && !container) return;
+
+    const currentFile = location.pathname.split("/").pop() || "index.html";
+    const tr = (t().article) || {};
+    const pageTitle = document.title.split("|")[0].trim() || document.title;
+    const badgeEl = document.querySelector(".article-badge");
+    const category = badgeEl ? badgeEl.textContent.trim() : "Tech Guide";
+
+    // 1. In-Article Bookmark Toggle Button
+    const headerCard = document.querySelector(".article-header-card");
+    if (headerCard && !document.getElementById("clArticleBookmarkBtn")) {
+      const actionRow = document.createElement("div");
+      actionRow.className = "cl-article-action-row";
+      actionRow.innerHTML = `
+        <button class="cl-bookmark-toggle-btn" id="clArticleBookmarkBtn">
+          <i class="fa-regular fa-bookmark"></i>
+          <span>${tr.bookmark || "Bookmark"}</span>
+        </button>
+        <div style="font-size:0.85rem; color:var(--cl-muted); display:flex; align-items:center; gap:6px;">
+          <i class="fa-regular fa-clock"></i>
+          <span>${category}</span>
+        </div>
+      `;
+      headerCard.appendChild(actionRow);
+
+      const bookmarkBtn = document.getElementById("clArticleBookmarkBtn");
+      bookmarkBtn.addEventListener("click", () => {
+        let bookmarks = getStoredBookmarks();
+        const existsIndex = bookmarks.findIndex(b => b.url.endsWith(currentFile));
+        if (existsIndex > -1) {
+          bookmarks.splice(existsIndex, 1);
+          setStoredBookmarks(bookmarks);
+          showToast(currentLang === 'ar' ? "تمت إزالة المقال من المفضلة" : (currentLang === 'fr' ? "Article retiré des favoris" : "Article removed from bookmarks"));
+        } else {
+          bookmarks.unshift({
+            url: currentFile,
+            title: pageTitle,
+            category: category,
+            date: new Date().toLocaleDateString(currentLang === 'ar' ? 'ar-MA' : (currentLang === 'fr' ? 'fr-FR' : 'en-US'), { month: 'short', day: 'numeric', year: 'numeric' })
+          });
+          setStoredBookmarks(bookmarks);
+          showToast(tr.bookmarked || "Article bookmarked!");
+        }
+        updateArticleBookmarkButton();
+      });
+
+      updateArticleBookmarkButton();
+    }
+
+    // 2. Article Reactions & 1-Click Social Share Card
+    if (!document.getElementById("clReactionsCard")) {
+      const reactionsKey = "cl_react_" + currentFile;
+      let storedData = {};
+      try {
+        storedData = JSON.parse(localStorage.getItem(reactionsKey) || "{}");
+      } catch (e) {
+        storedData = {};
+      }
+
+      // Default baseline counts (creates an engaging community feel)
+      const baseCounts = {
+        rocket: storedData.rocket !== undefined ? storedData.rocket : (12 + (currentFile.length % 9)),
+        insight: storedData.insight !== undefined ? storedData.insight : (24 + (currentFile.length % 11)),
+        love: storedData.love !== undefined ? storedData.love : (38 + (currentFile.length % 15)),
+        clap: storedData.clap !== undefined ? storedData.clap : (29 + (currentFile.length % 13))
+      };
+      const userReactions = storedData.userReacted || [];
+
+      const targetMount = bodyContent || container;
+      const card = document.createElement("div");
+      card.className = "cl-reactions-card";
+      card.id = "clReactionsCard";
+
+      const shareUrl = window.location.href;
+      const shareTitle = encodeURIComponent(pageTitle);
+      const encodedUrl = encodeURIComponent(shareUrl);
+
+      card.innerHTML = `
+        <div class="cl-reactions-header">
+          <h4 class="cl-reactions-title">
+            <i class="fa-solid fa-sparkles" style="color:var(--cl-brand);"></i>
+            <span>${tr.reactionsTitle || "Did you find this guide helpful?"}</span>
+          </h4>
+        </div>
+
+        <div class="cl-reactions-grid">
+          <button class="cl-react-btn ${userReactions.includes('rocket') ? 'active' : ''}" data-reaction="rocket">
+            <span class="cl-emoji">🚀</span>
+            <span>${tr.rocket || "Mind-blowing"}</span>
+            <span class="cl-react-count" id="count-rocket">${baseCounts.rocket}</span>
+          </button>
+          <button class="cl-react-btn ${userReactions.includes('insight') ? 'active' : ''}" data-reaction="insight">
+            <span class="cl-emoji">💡</span>
+            <span>${tr.insight || "Insightful"}</span>
+            <span class="cl-react-count" id="count-insight">${baseCounts.insight}</span>
+          </button>
+          <button class="cl-react-btn ${userReactions.includes('love') ? 'active' : ''}" data-reaction="love">
+            <span class="cl-emoji">❤️</span>
+            <span>${tr.love || "Loved it"}</span>
+            <span class="cl-react-count" id="count-love">${baseCounts.love}</span>
+          </button>
+          <button class="cl-react-btn ${userReactions.includes('clap') ? 'active' : ''}" data-reaction="clap">
+            <span class="cl-emoji">👏</span>
+            <span>${tr.clap || "Applaud"}</span>
+            <span class="cl-react-count" id="count-clap">${baseCounts.clap}</span>
+          </button>
+        </div>
+
+        <div class="cl-share-row">
+          <div class="cl-share-label">
+            <i class="fa-solid fa-share-nodes" style="color:var(--cl-brand);"></i>
+            <span>${tr.shareLabel || "Share this guide:"}</span>
+          </div>
+          <div class="cl-share-buttons">
+            <a href="https://api.whatsapp.com/send?text=${shareTitle}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" class="cl-share-btn cl-share-wa" title="Share on WhatsApp" aria-label="Share on WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" class="cl-share-btn cl-share-li" title="Share on LinkedIn" aria-label="Share on LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?text=${shareTitle}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" class="cl-share-btn cl-share-x" title="Share on X" aria-label="Share on X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <button class="cl-share-btn cl-share-copy" id="clCopyShareBtn" title="Copy Link" aria-label="Copy Link">
+              <i class="fa-solid fa-link"></i>
+            </button>
+          </div>
+        </div>
+      `;
+
+      if (bodyContent) {
+        bodyContent.parentNode.insertBefore(card, bodyContent.nextSibling);
+      } else {
+        container.appendChild(card);
+      }
+
+      // Handle Reactions clicks
+      card.querySelectorAll(".cl-react-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const type = btn.getAttribute("data-reaction");
+          const countEl = document.getElementById("count-" + type);
+          let currentReactionList = storedData.userReacted || [];
+          const isSelected = currentReactionList.includes(type);
+
+          if (isSelected) {
+            baseCounts[type] = Math.max(0, baseCounts[type] - 1);
+            currentReactionList = currentReactionList.filter(t => t !== type);
+            btn.classList.remove("active");
+          } else {
+            baseCounts[type] = baseCounts[type] + 1;
+            currentReactionList.push(type);
+            btn.classList.add("active");
+            showToast(currentLang === 'ar' ? "شكراً على تفاعلك! 🌟" : (currentLang === 'fr' ? "Merci pour votre réaction ! 🌟" : "Thanks for reacting! 🌟"));
+          }
+
+          if (countEl) countEl.textContent = baseCounts[type];
+          storedData = {
+            ...baseCounts,
+            userReacted: currentReactionList
+          };
+          localStorage.setItem(reactionsKey, JSON.stringify(storedData));
+        });
+      });
+
+      // Handle Copy Link
+      const copyBtn = document.getElementById("clCopyShareBtn");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", () => {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(shareUrl).then(() => {
+              showToast(tr.copied || "Article link copied to clipboard!");
+            }).catch(() => {
+              showToast(tr.copied || "Article link copied to clipboard!");
+            });
+          } else {
+            showToast(tr.copied || "Article link copied to clipboard!");
+          }
+        });
+      }
+    }
+  }
 
   function boot() {
     applyLang(currentLang);
