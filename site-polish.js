@@ -557,7 +557,7 @@
         </div>
       </div>
       <div style="text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;">
-        &copy; 2026 ${CONFIG.brandName}. ${tr.copy}
+        &copy; 2024 ${CONFIG.brandName}. ${tr.copy}
       </div>
     `;
   }
